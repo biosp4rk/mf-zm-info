@@ -611,6 +611,57 @@ ParticleEffect:
   - desc: X position
     type: u16
     offset: 0xA
+ProjectileData:
+  size: 0x1C
+  vars:
+  - desc: Status
+    type: flags8
+    offset: 0x0
+    enum: ProjectileStatus
+  - desc: OAM pointer
+    type: pointer
+    offset: 0x4
+  - desc: Y position
+    type: u16
+    offset: 0x8
+  - desc: X position
+    type: u16
+    offset: 0xA
+  - desc: Animation frame
+    type: u16
+    offset: 0xC
+  - desc: Animation counter
+    type: u8
+    offset: 0xE
+  - desc: Type
+    type: u8
+    offset: 0xF
+    enum: ProjectileType
+  - desc: Direction
+    type: u8
+    offset: 0x10
+    enum: ProjectileDirection
+  - desc: Movement stage
+    type: u8
+    offset: 0x11
+  - desc: Category?
+    type: u8
+    offset: 0x12
+  - desc: Timer/counter
+    type: u8
+    offset: 0x13
+  - desc: Hitbox top offset
+    type: u16
+    offset: 0x14
+  - desc: Hitbox bottom offset
+    type: u16
+    offset: 0x16
+  - desc: Hitbox left offset
+    type: u16
+    offset: 0x18
+  - desc: Hitbox right offset
+    type: u16
+    offset: 0x1A
 RoomEntry:
   size: 0x3C
   vars:
