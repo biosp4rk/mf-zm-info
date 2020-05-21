@@ -1,0 +1,938 @@
+AmmoDigits:
+  size: 0x4
+  vars:
+  - desc: Ones place
+    type: u8
+    offset: 0x0
+  - desc: Tens place
+    type: u8
+    offset: 0x1
+  - desc: Hundreds place
+    type: u8
+    offset: 0x2
+  - desc: Thousands place
+    type: u8
+    offset: 0x3
+AnimatedGraphicsEntry:
+  size: 0x8
+  vars:
+  - desc: Animation type
+    type: u8
+    offset: 0x0
+    enum: GraphicsAnimationType
+  - desc: Frames per state
+    type: u8
+    offset: 0x1
+  - desc: Number of states
+    type: u8
+    offset: 0x2
+  - desc: Pointer to graphics
+    type: pointer
+    offset: 0x4
+AnimatedPaletteEntry:
+  size: 0x8
+  vars:
+  - desc: Animation type
+    type: u8
+    offset: 0x0
+    enum: PaletteAnimationType
+  - desc: Frames per state
+    type: u8
+    offset: 0x1
+  - desc: Number of states
+    type: u8
+    offset: 0x2
+  - desc: Pointer to palette
+    type: pointer
+    offset: 0x4
+AreaConnection:
+  size: 0x3
+  vars:
+  - desc: Source area
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - desc: Source door
+    type: u8
+    offset: 0x1
+  - desc: Destination area
+    type: u8
+    offset: 0x2
+    enum: AreaID
+BackupOfIoRegisters:
+  size: 0x12
+  vars:
+  - desc: Backup of DISPCNT (LCD control) during non-gameplay
+    type: u16
+    offset: 0x0
+  - desc: Backup of BLDCNT (color special effects selection) during non-gameplay
+    type: u16
+    offset: 0x2
+  - desc: Backup of BLDALPHA (alpha blending coefficients) during non-gameplay
+    type: u16
+    offset: 0x4
+  - desc: Backup of WININ_H (inside of window 1) during non-gameplay
+    type: u8
+    offset: 0x6
+  - desc: Backup of WINOUT_L (outside of windows) during non-gameplay
+    type: u8
+    offset: 0x7
+  - desc: Backup of BG0CNT (BG0 control), written to only
+    type: u16
+    offset: 0x8
+  - desc: Backup of BG1CNT (BG1 control)
+    type: u16
+    offset: 0xA
+  - desc: Backup of BG2CNT (BG2 control)
+    type: u16
+    offset: 0xC
+  - desc: Backup of BG3CNT (BG3 control)
+    type: u16
+    offset: 0xE
+  - desc: Backup of BG0CNT (BG0 control)
+    type: u16
+    offset: 0x10
+BgPositions:
+  size: 0x14
+  vars:
+  - desc: BG0 X position
+    type: u16
+    offset: 0x0
+  - desc: BG0 Y position
+    type: u16
+    offset: 0x2
+  - desc: BG1 X position
+    type: u16
+    offset: 0x4
+  - desc: BG1 Y position
+    type: u16
+    offset: 0x6
+  - desc: BG2 X position
+    type: u16
+    offset: 0x8
+  - desc: BG2 Y position
+    type: u16
+    offset: 0xA
+  - desc: BG3 X position
+    type: u16
+    offset: 0xC
+  - desc: BG3 Y position
+    type: u16
+    offset: 0xE
+  - desc: Door transition X position
+    type: u16
+    offset: 0x10
+  - desc: Door transition Y position
+    type: u16
+    offset: 0x12
+BgPtrsAndDimensions:
+  size: 0x20
+  vars:
+  - desc: Pointer to decompressed BG0
+    type: pointer
+    offset: 0x0
+  - desc: Width of BG0 in blocks
+    type: u16
+    offset: 0x4
+  - desc: Height of BG0 in blocks
+    type: u16
+    offset: 0x6
+  - desc: Pointer to decompressed BG1
+    type: pointer
+    offset: 0x8
+  - desc: Width of BG1 in blocks
+    type: u16
+    offset: 0xC
+  - desc: Height of BG1 in blocks
+    type: u16
+    offset: 0xE
+  - desc: Pointer to decompressed BG2
+    type: pointer
+    offset: 0x10
+  - desc: Width of BG2 in blocks
+    type: u16
+    offset: 0x14
+  - desc: Height of BG2 in blocks
+    type: u16
+    offset: 0x16
+  - desc: Pointer to decompressed clipdata
+    type: pointer
+    offset: 0x18
+  - desc: Width of clipdata in blocks
+    type: u16
+    offset: 0x1C
+  - desc: Height of clipdata in blocks
+    type: u16
+    offset: 0x1E
+BrokenReformBlock:
+  size: 0x8
+  vars:
+  - desc: Broken flag
+    type: u8
+    offset: 0x0
+  - desc: Stage
+    type: u8
+    offset: 0x1
+  - desc: Block type
+    type: u8
+    offset: 0x2
+  - desc: X position
+    type: u8
+    offset: 0x3
+  - desc: Y position
+    type: u8
+    offset: 0x4
+  - desc: Timer
+    type: u16
+    offset: 0x6
+ChozoStatueTarget:
+  size: 0xC
+  vars:
+  - desc: Statue area
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - desc: Statue X start
+    type: u8
+    offset: 0x1
+  - desc: Statue X end
+    type: u8
+    offset: 0x2
+  - desc: Statue Y start
+    type: u8
+    offset: 0x3
+  - desc: Statue Y end
+    type: u8
+    offset: 0x4
+  - desc: Start icon
+    type: u8
+    offset: 0x5
+    enum: ChozoTargetIcon
+  - desc: Target area
+    type: u8
+    offset: 0x6
+    enum: AreaID
+  - desc: Target X position
+    type: u8
+    offset: 0x7
+  - desc: Target Y position
+    type: u8
+    offset: 0x8
+  - desc: End icon
+    type: u8
+    offset: 0x9
+    enum: ChozoTargetIcon
+CurrPowerBomb:
+  size: 0x14
+  vars:
+  - desc: Animation state
+    type: u8
+    offset: 0x0
+  - desc: '?'
+    type: u8
+    offset: 0x1
+  - desc: Semi-minor axis
+    type: u8
+    offset: 0x2
+  - desc: X position
+    type: u16
+    offset: 0x4
+  - desc: Y position
+    type: u16
+    offset: 0x6
+  - desc: Hitbox left offset
+    type: u16
+    offset: 0x8
+  - desc: Hitbox right offset
+    type: u16
+    offset: 0xA
+  - desc: Hitbox top offset
+    type: u16
+    offset: 0xC
+  - desc: Hitbox bottom offset
+    type: u16
+    offset: 0xE
+CurrRoomEntry:
+  size: 0x20
+  vars:
+  - desc: Tileset number
+    type: u8
+    offset: 0x0
+  - desc: BG0 properties
+    type: u8
+    offset: 0x1
+    enum: BG0Property
+  - desc: BG1 properties
+    type: u8
+    offset: 0x2
+  - desc: BG2 properties
+    type: u8
+    offset: 0x3
+  - desc: BG3 properties
+    type: u8
+    offset: 0x4
+  - desc: Scrolls flag
+    type: u8
+    offset: 0x5
+    enum: ScrollsFlag
+  - desc: BG3 scrolling method
+    type: u8
+    offset: 0x6
+  - desc: Transparency
+    type: u8
+    offset: 0x7
+  - desc: Pointer to room's enemy data
+    type: pointer
+    offset: 0x8
+  - desc: Event to use the first spriteset
+    type: u8
+    offset: 0xC
+    enum: Event
+  - desc: Event to use the second spriteset
+    type: u8
+    offset: 0xD
+    enum: Event
+  - desc: Map X coordinate
+    type: u8
+    offset: 0xE
+  - desc: Map Y coordinate
+    type: u8
+    offset: 0xF
+  - desc: Room effect
+    type: u8
+    offset: 0x10
+    enum: RoomEffect
+  - desc: Room effect Y position
+    type: u16
+    offset: 0x12
+  - desc: Music track
+    type: u16
+    offset: 0x16
+  - desc: BG0 size
+    type: u8
+    offset: 0x18
+    enum: LZ77BackgroundSize
+  - desc: BG3 size
+    type: u8
+    offset: 0x19
+    enum: LZ77BackgroundSize
+  - desc: Animated tileset number
+    type: u8
+    offset: 0x1B
+  - desc: Animated palette number
+    type: u8
+    offset: 0x1C
+CurrScrolls:
+  size: 0x18
+  vars:
+  - desc: Within scroll flag
+    type: u8
+    offset: 0x0
+  - desc: Current scroll X end
+    type: u16
+    offset: 0x2
+  - desc: Current scroll X start
+    type: u16
+    offset: 0x4
+  - desc: Current scroll Y start
+    type: u16
+    offset: 0x6
+  - desc: Current scroll Y end
+    type: u16
+    offset: 0x8
+  - desc: Within overlapping scrolls flag
+    type: u8
+    offset: 0xC
+  - desc: Second scroll X end
+    type: u16
+    offset: 0xE
+  - desc: Second scroll X start
+    type: u16
+    offset: 0x10
+  - desc: Second scroll Y start
+    type: u16
+    offset: 0x12
+  - desc: Second scroll Y end
+    type: u16
+    offset: 0x14
+DoorEntry:
+  size: 0xC
+  vars:
+  - desc: Type
+    type: u8
+    offset: 0x0
+    enum: DoorType
+  - desc: Source room
+    type: u8
+    offset: 0x1
+  - desc: X start
+    type: u8
+    offset: 0x2
+  - desc: X end
+    type: u8
+    offset: 0x3
+  - desc: Y start
+    type: u8
+    offset: 0x4
+  - desc: Y end
+    type: u8
+    offset: 0x5
+  - desc: Destination door
+    type: u8
+    offset: 0x6
+  - desc: X exit distance
+    type: u8
+    offset: 0x7
+  - desc: Y exit distance
+    type: u8
+    offset: 0x8
+EscapeTimerDigits:
+  size: 0x6
+  vars:
+  - desc: Hundredths of a second
+    type: u8
+    offset: 0x0
+  - desc: Tenths of a second
+    type: u8
+    offset: 0x1
+  - desc: Seconds ones place
+    type: u8
+    offset: 0x2
+  - desc: Seconds tens place
+    type: u8
+    offset: 0x3
+  - desc: Minutes ones place
+    type: u8
+    offset: 0x4
+  - desc: Minutes tens place
+    type: u8
+    offset: 0x5
+FileScreenOptionsUnlocked:
+  size: 0xC
+  vars:
+  - desc: Gallery images unlocked
+    type: flags16
+    offset: 0x0
+  - desc: Metroid Fusion gallery unlocked flag
+    type: u16
+    offset: 0x2
+  - desc: Sound test and original Metroid unlocked flag
+    type: u8
+    offset: 0x4
+  - desc: '?'
+    type: u8
+    offset: 0x5
+  - desc: '?'
+    type: u8
+    offset: 0x6
+  - desc: '?'
+    type: u8
+    offset: 0x7
+  - desc: Time attack related?
+    type: u32
+    offset: 0x8
+GameCompletion:
+  size: 0x4
+  vars:
+  - desc: Completed game flag
+    type: u8
+    offset: 0x0
+  - desc: Intro played flag
+    type: u8
+    offset: 0x1
+  - desc: Language
+    type: u8
+    offset: 0x2
+    enum: Language
+HatchData:
+  size: 0x8
+  vars:
+  - desc: Direction
+    type: u8
+    offset: 0x0
+  - desc: Status
+    type: u8
+    offset: 0x0
+  - desc: Hits?
+    type: u8
+    offset: 0x0
+  - desc: Type
+    type: u8
+    offset: 0x0
+  - desc: Animation counter
+    type: u8
+    offset: 0x0
+HatchLockEvent:
+  size: 0x8
+  vars:
+  - desc: Destination room
+    type: u8
+    offset: 0x0
+  - desc: Event
+    type: u8
+    offset: 0x1
+    enum: Event
+  - desc: Before/after event flag
+    type: u8
+    offset: 0x2
+    enum: BeforeAfterEventFlag
+  - desc: Hatches to lock
+    type: flags8
+    offset: 0x3
+InGameTime:
+  size: 0x4
+  vars:
+  - desc: In-game hours
+    type: u8
+    offset: 0x0
+  - desc: In-game minutes
+    type: u8
+    offset: 0x1
+  - desc: In-game seconds
+    type: u8
+    offset: 0x2
+  - desc: In-game frames
+    type: u8
+    offset: 0x3
+InGameTimeAtBosses:
+  size: 0x10
+  vars:
+  - desc: In-game time when Kraid killed
+    type: InGameTime
+    offset: 0x0
+  - desc: In-game time when Mother Brain killed
+    type: InGameTime
+    offset: 0x4
+  - desc: In-game time when fully powered suit obtained
+    type: InGameTime
+    offset: 0x8
+  - desc: In-game time when Mecha Ridley killed
+    type: InGameTime
+    offset: 0xC
+LastElevatorUsed:
+  size: 0x4
+  vars:
+  - desc: Unused?
+    type: u16
+    offset: 0x0
+  - desc: Elevator number
+    type: Elevator
+    offset: 0x2
+  - desc: Travel direction
+    type: u8
+    offset: 0x3
+NumItemsCollected:
+  size: 0x8
+  vars:
+  - desc: Number of items collected in Brinstar
+    type: u8
+    offset: 0x0
+  - desc: Number of items collected in Kraid
+    type: u8
+    offset: 0x1
+  - desc: Number of items collected in Norfair
+    type: u8
+    offset: 0x2
+  - desc: Number of items collected in Ridley
+    type: u8
+    offset: 0x3
+  - desc: Number of items collected in Tourian
+    type: u8
+    offset: 0x4
+  - desc: Number of items collected in Crateria
+    type: u8
+    offset: 0x5
+  - desc: Number of items collected in Chozodia
+    type: u8
+    offset: 0x6
+NumNeverReformBlocksBroken:
+  size: 0x8
+  vars:
+  - desc: Number of never reform blocks broken in Brinstar
+    type: u8
+    offset: 0x0
+  - desc: Number of never reform blocks broken in Kraid
+    type: u8
+    offset: 0x1
+  - desc: Number of never reform blocks broken in Norfair
+    type: u8
+    offset: 0x2
+  - desc: Number of never reform blocks broken in Ridley
+    type: u8
+    offset: 0x3
+  - desc: Number of never reform blocks broken in Tourian
+    type: u8
+    offset: 0x4
+  - desc: Number of never reform blocks broken in Crateria
+    type: u8
+    offset: 0x5
+  - desc: Number of never reform blocks broken in Chozodia
+    type: u8
+    offset: 0x6
+NumTanksInArea:
+  size: 0x4
+  vars:
+  - desc: Energy tanks
+    type: u8
+    offset: 0x0
+  - desc: Missile tanks
+    type: u8
+    offset: 0x1
+  - desc: Super missile tanks
+    type: u8
+    offset: 0x2
+  - desc: Power bomb tanks
+    type: u8
+    offset: 0x3
+ParticleEffect:
+  size: 0xC
+  vars:
+  - desc: Status
+    type: flags8
+    offset: 0x0
+  - desc: Animation frame counter
+    type: u8
+    offset: 0x1
+  - desc: Effect number
+    type: u8
+    offset: 0x2
+  - desc: '?'
+    type: u8
+    offset: 0x3
+  - desc: Frame counter
+    type: u8
+    offset: 0x4
+  - desc: Animation state
+    type: u16
+    offset: 0x6
+  - desc: Y position
+    type: u16
+    offset: 0x8
+  - desc: X position
+    type: u16
+    offset: 0xA
+RoomEntry:
+  size: 0x3C
+  vars:
+  - desc: Tileset
+    type: u8
+    offset: 0x0
+  - desc: BG0 properties
+    type: u8
+    offset: 0x1
+    enum: BG0Property
+  - desc: BG1 properties
+    type: u8
+    offset: 0x2
+  - desc: BG2 properties
+    type: u8
+    offset: 0x3
+  - desc: BG3 properties
+    type: u8
+    offset: 0x4
+  - desc: BG0 pointer
+    type: pointer
+    offset: 0x8
+  - desc: BG1 pointer
+    type: pointer
+    offset: 0xC
+  - desc: BG2 pointer
+    type: pointer
+    offset: 0x10
+  - desc: Clipdata pointer
+    type: pointer
+    offset: 0x14
+  - desc: BG3 pointer
+    type: pointer
+    offset: 0x18
+  - desc: BG3 scrolling
+    type: u8
+    offset: 0x1C
+  - desc: Transparency
+    type: u8
+    offset: 0x1D
+  - desc: Default sprite data pointer
+    type: pointer
+    offset: 0x20
+  - desc: Default spriteset
+    type: u8
+    offset: 0x24
+  - desc: First spriteset event
+    type: u8
+    offset: 0x25
+    enum: Event
+  - desc: First sprite data pointer
+    type: pointer
+    offset: 0x28
+  - desc: First spriteset
+    type: u8
+    offset: 0x2C
+  - desc: Second spriteset event
+    type: u8
+    offset: 0x2D
+    enum: Event
+  - desc: Second sprite data pointer
+    type: pointer
+    offset: 0x30
+  - desc: Second spriteset
+    type: u8
+    offset: 0x34
+  - desc: Map X coordinate
+    type: u8
+    offset: 0x35
+  - desc: Map Y coordinate
+    type: u8
+    offset: 0x36
+  - desc: Effect
+    type: u8
+    offset: 0x37
+  - desc: Effect Y position
+    type: u8
+    offset: 0x38
+  - desc: Music track
+    type: u16
+    offset: 0x3A
+ScreenPositionAndVelocity:
+  size: 0x8
+  vars:
+  - desc: Screen X position
+    type: u16
+    offset: 0x0
+  - desc: Screen Y position
+    type: u16
+    offset: 0x4
+  - desc: Screen X velocity
+    type: u8
+    offset: 0x6
+  - desc: Screen Y velocity
+    type: u8
+    offset: 0x7
+ScreenShake:
+  size: 0x4
+  vars:
+  - desc: Timer
+    type: u8
+    offset: 0x0
+  - desc: Loop counter
+    type: u8
+    offset: 0x1
+  - desc: '?'
+    type: u8
+    offset: 0x2
+  - desc: '?'
+    type: u8
+    offset: 0x3
+SpriteData:
+  size: 0x38
+  vars:
+  - desc: Status
+    type: flags16
+    offset: 0x0
+    enum: SpriteStatus
+  - desc: Y position
+    type: u16
+    offset: 0x2
+  - desc: X position
+    type: u16
+    offset: 0x4
+  - desc: Y position spawn?
+    type: u16
+    offset: 0x6
+  - desc: X position spawn?
+    type: u16
+    offset: 0x8
+  - desc: Hitbox top offset
+    type: u16
+    offset: 0xA
+  - desc: Hitbox bottom offset
+    type: u16
+    offset: 0xC
+  - desc: Hitbox left offset
+    type: u16
+    offset: 0xE
+  - desc: Hitbox right offset
+    type: u16
+    offset: 0x10
+  - desc: OAM scaling
+    type: u16
+    offset: 0x12
+  - desc: Health
+    type: u16
+    offset: 0x14
+  - desc: Current animation frame
+    type: u16
+    offset: 0x16
+  - desc: OAM pointer
+    type: pointer
+    offset: 0x18
+  - desc: Animation duration counter
+    type: u8
+    offset: 0x1C
+  - desc: Sprite ID
+    type: u8
+    offset: 0x1D
+  - desc: Room slot/part number
+    type: u8
+    offset: 0x1E
+  - desc: Spriteset graphics slot
+    type: u8
+    offset: 0x1F
+  - desc: Palette row
+    type: u8
+    offset: 0x20
+  - desc: Background priority?
+    type: u8
+    offset: 0x21
+  - desc: Draw order
+    type: u8
+    offset: 0x22
+  - desc: Primary sprite RAM slot
+    type: u8
+    offset: 0x23
+  - desc: Pose
+    type: u8
+    offset: 0x24
+  - desc: Samus collision
+    type: u8
+    offset: 0x25
+    enum: SpriteSamusCollision
+  - desc: Ignore Samus collision timer
+    type: u8
+    offset: 0x26
+  - desc: Drawing related?
+    type: u8
+    offset: 0x27
+  - desc: Drawing related?
+    type: u8
+    offset: 0x28
+  - desc: Drawing related?
+    type: u8
+    offset: 0x29
+  - desc: OAM rotation
+    type: u8
+    offset: 0x2A
+  - desc: Invincibility/stun/flash timer
+    type: u8
+    offset: 0x2B
+  - desc: Timer 1?
+    type: u8
+    offset: 0x2C
+  - desc: Timer 2?
+    type: u8
+    offset: 0x2D
+  - desc: '?'
+    type: u8
+    offset: 0x2E
+  - desc: '?'
+    type: u8
+    offset: 0x2F
+  - desc: Freeze timer
+    type: u8
+    offset: 0x30
+  - desc: Standing on sprite flag
+    type: u8
+    offset: 0x31
+  - desc: Properties
+    type: flags8
+    offset: 0x32
+    enum: SpriteProperties
+  - desc: '?'
+    type: u8
+    offset: 0x34
+  - desc: '?'
+    type: u8
+    offset: 0x35
+  - desc: '?'
+    type: u8
+    offset: 0x36
+SpriteDebris:
+  size: 0x10
+  vars:
+  - desc: OAM pointer
+    type: pointer
+    offset: 0x0
+  - desc: '?'
+    type: u16
+    offset: 0x4
+  - desc: Y position
+    type: u16
+    offset: 0x6
+  - desc: X position
+    type: u16
+    offset: 0x8
+  - desc: '?'
+    type: u8
+    offset: 0xA
+  - desc: Exists flag
+    type: u8
+    offset: 0xB
+  - desc: Debris type
+    type: u8
+    offset: 0xC
+  - desc: '?'
+    type: u8
+    offset: 0xD
+  - desc: '?'
+    type: u8
+    offset: 0xE
+SpritesetEntry:
+  size: 0x2
+  vars:
+  - desc: Sprite ID
+    type: u8
+    offset: 0x0
+    enum: PrimarySpriteID
+  - desc: Graphics row
+    type: u8
+    offset: 0x1
+StartingHealthAmmo:
+  size: 0x4
+  vars:
+  - desc: Energy
+    type: u8
+    offset: 0x0
+  - desc: Missiles
+    type: u8
+    offset: 0x1
+  - desc: Super missiles
+    type: u8
+    offset: 0x2
+  - desc: Power bombs
+    type: u8
+    offset: 0x3
+TankIncreaseAmounts:
+  size: 0x4
+  vars:
+  - desc: Energy
+    type: u8
+    offset: 0x0
+  - desc: Missiles
+    type: u8
+    offset: 0x1
+  - desc: Super missiles
+    type: u8
+    offset: 0x2
+  - desc: Power bombs
+    type: u8
+    offset: 0x3
+TilesetEntry:
+  size: 0x14
+  vars:
+  - desc: RLE background graphics pointer
+    type: pointer
+    offset: 0x0
+  - desc: Background palette pointer
+    type: pointer
+    offset: 0x4
+  - desc: LZ77 background graphics pointer
+    type: pointer
+    offset: 0x8
+  - desc: Tile table pointer
+    type: pointer
+    offset: 0xC
+  - desc: Animated tileset
+    type: u8
+    offset: 0x10
+  - desc: Animated palette
+    type: u8
+    offset: 0x11

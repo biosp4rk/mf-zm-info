@@ -1,0 +1,1129 @@
+-
+  desc: Clipdata collision types
+  label: ClipdataCollisionTypes_Ram
+  type: u8
+  addr:
+    U: 0x2002000
+  count: 0x400
+  enum: ClipdataCollisionType
+-
+  desc: Clipdata collision types (0x400)
+  label: ClipdataCollisionTypes_400_Ram
+  type: u8
+  addr:
+    U: 0x2002400
+  count: 0x400
+  enum: ClipdataCollisionType
+-
+  desc: Clipdata behavior types
+  label: ClipdataBehaviorTypes_Ram
+  type: u16
+  addr:
+    U: 0x2003000
+  count: 0x400
+  enum: ClipdataBehaviorType
+-
+  desc: Clipdata behavior types (0x400)
+  label: ClipdataBehaviorTypes_400_Ram
+  type: u16
+  addr:
+    U: 0x2003800
+  count: 0x400
+  enum: ClipdataBehaviorType
+-
+  desc: Tile table
+  label: TileTable_Ram
+  type: u16
+  addr:
+    U: 0x2004000
+  count: 0x1000
+-
+  desc: Tile table (0x400)
+  label: TileTable_400_Ram
+  type: u16
+  addr:
+    U: 0x2006000
+  count: 0x1000
+-
+  desc: Pause screen background palette
+  addr:
+    U: 0x2006C00
+  size: 0x200
+-
+  desc: Pause overlay tile table
+  type: u16
+  addr:
+    U: 0x2009800
+  count: 0x400
+-
+  desc: Pause overlay?
+  addr:
+    U: 0x200A000
+  size: 0x800
+-
+  desc: Decompressed clipdata
+  label: DecompClipdata
+  type: u16
+  addr:
+    U: 0x2027800
+  count: 0x1800
+-
+  desc: Decompressed BG0 map
+  label: DecompBG0Data
+  type: u16
+  addr:
+    U: 0x202A800
+  count: 0x1000
+-
+  desc: Decompressed BG1 map
+  label: DecompBG1Data
+  type: u16
+  addr:
+    U: 0x202D800
+  count: 0x1800
+-
+  desc: Decompressed BG2 map
+  label: DecompBG2Data
+  type: u16
+  addr:
+    U: 0x2030800
+  count: 0x1800
+-
+  desc: Minimap tiles with obtained items
+  label: MinimapTilesWithObtainedItems
+  addr:
+    U: 0x2033800
+  size: 0x800
+-
+  desc: Decompressed minimap visited tiles
+  label: DecompExploredMinimap
+  addr:
+    U: 0x2034000
+  size: 0x800
+-
+  desc: Decompressed minimap data
+  label: DecompMinimapData
+  addr:
+    U: 0x2034800
+  size: 0x800
+-
+  desc: Items collected
+  label: ItemsCollected
+  addr:
+    U: 0x2036C00
+  size: 0x800
+-
+  desc: Visited minimap tiles
+  label: VisitedMinimapTiles
+  addr:
+    U: 0x2037400
+  size: 0x400
+-
+  desc: Hatches opened
+  label: HatchesOpened
+  addr:
+    U: 0x2037C00
+  size: 0x100
+-
+  desc: Events triggered
+  label: EventsTriggered
+  addr:
+    U: 0x2037E00
+  size: 0x20
+-
+  desc: SRAM
+  label: Sram
+  addr:
+    U: 0x2038000
+  size: 0x1220
+-
+  desc: Debug flag
+  label: DebugFlag
+  type: u8
+  addr:
+    U: 0x3000000
+-
+  desc: 16-bit frame counter
+  label: FrameCounter16Bit
+  type: u16
+  addr:
+    U: 0x3000002
+-
+  desc: Stereo flag
+  label: StereoFlag
+  type: u8
+  addr:
+    U: 0x3000004
+-
+  desc: Written to BLDALPHA (alpha blending coefficients)
+  label: WrittenToBLDALPHA
+  type: u16
+  addr:
+    U: 0x3000006
+-
+  desc: Written to BLDCNT (color special effects selection)
+  label: WrittenToBLDCNT
+  type: u16
+  addr:
+    U: 0x3000008
+-
+  desc: Written to DISPCNT (LCD control)
+  label: WrittenToDISPCNT
+  type: u16
+  addr:
+    U: 0x300000A
+-
+  desc: Written to WININ_H (inside of window 1)
+  label: WrittenToWININ_H
+  type: u8
+  addr:
+    U: 0x300000E
+-
+  desc: Written to WINOUT_L (outside of windows)
+  label: WrittenToWINOUT_L
+  type: u8
+  addr:
+    U: 0x300000F
+-
+  desc: Written to 0x05000000 (transparent color)
+  label: WrittenTo5000000
+  type: u16
+  addr:
+    U: 0x3000010
+-
+  desc: Written to BLDY (brightness coefficient)
+  label: WrittenToBLDY
+  type: s8
+  addr:
+    U: 0x30000012
+-
+  desc: File screen options unlocked
+  label: FileScreenOptionsUnlocked
+  type: FileScreenOptionsUnlocked
+  addr:
+    U: 0x3000014
+-
+  desc: Language
+  label: Language
+  type: u8
+  addr:
+    U: 0x3000020
+  enum: Language
+-
+  desc: Game completion
+  label: GameCompletion
+  type: GameCompletion
+  addr:
+    U: 0x3000024
+-
+  desc: Fades backgrounds to black or white
+  label: FadeBgBlackWhite
+  type: u8
+  addr:
+    U: 0x3000029
+  enum: BackgroundFade
+-
+  desc: Which background's position is written to BG3OFS
+  label: BgPositionWrittenToBG3OFS
+  type: u8
+  addr:
+    U: 0x300002A
+-
+  desc: Samus on top of backgrounds flag
+  label: SamusOnTopOfBgFlag
+  type: u8
+  addr:
+    U: 0x300002B
+-
+  desc: Difficulty
+  label: Difficulty
+  type: u8
+  addr:
+    U: 0x300002C
+  enum: Difficulty
+-
+  desc: Use mothership doors flag
+  label: MothershipDoorsFlag
+  type: u8
+  addr:
+    U: 0x300002D
+-
+  desc: Time attack flag
+  label: TimeAttackFlag
+  type: u8
+  addr:
+    U: 0x300002E
+-
+  desc: Room's music track
+  label: RoomMusicTrack
+  type: u16
+  addr:
+    U: 0x3000030
+-
+  desc: Current demo
+  label: CurrDemo
+  type: u8
+  addr:
+    U: 0x3000038
+-
+  desc: Skip door transition flag
+  label: SkipDoorTransitionFlag
+  type: u8
+  addr:
+    U: 0x3000042
+-
+  desc: Disable soft-reset flag
+  label: DisableSoftResetFlag
+  type: u8
+  addr:
+    U: 0x3000043
+-
+  desc: Collecting tank flag
+  label: CollectingTankFlag
+  type: u8
+  addr:
+    U: 0x3000044
+-
+  desc: Disable animated graphics timer
+  label: DisableAnimGfxTimer
+  type: u8
+  addr:
+    U: 0x3000045
+-
+  desc: Animated graphics to update
+  label: AnimGfxToUpdate
+  type: flags16
+  addr:
+    U: 0x3000046
+-
+  desc: Disable doors and tanks flag
+  label: DisableDoorsAndTanksFlag
+  type: u8
+  addr:
+    U: 0x3000048
+-
+  desc: Disable pause flag
+  label: DisablePauseFlag
+  type: u8
+  addr:
+    U: 0x3000049
+-
+  desc: Hide HUD flag
+  label: HideHudFlag
+  type: u8
+  addr:
+    U: 0x300004A
+-
+  desc: Ship landing cutscene flag?
+  label: ShipLandingCutsceneFlag?
+  type: u8
+  addr:
+    U: 0x300004B
+-
+  desc: Chozodia alarm flag
+  label: ChozodiaAlarmFlag
+  type: u8
+  addr:
+    U: 0x300004D
+-
+  desc: Current area
+  label: AreaID
+  type: u8
+  addr:
+    U: 0x3000054
+  enum: AreaID
+-
+  desc: Current room
+  label: RoomID
+  type: u8
+  addr:
+    U: 0x3000055
+-
+  desc: Last door used
+  label: PrevDoor
+  type: u8
+  addr:
+    U: 0x3000056
+-
+  desc: Last door properties
+  label: PrevDoorProperties
+  type: u8
+  addr:
+    U: 0x3000057
+-
+  desc: Bit 6 of above, displays new location pop-up
+  label: DoorDisplayLocationFlag
+  type: u8
+  addr:
+    U: 0x3000058
+-
+  desc: Minimap X coordinate
+  label: MinimapXPosition
+  type: u8
+  addr:
+    U: 0x3000059
+-
+  desc: Minimap Y coordinate
+  label: MinimapYPosition
+  type: u8
+  addr:
+    U: 0x300005A
+-
+  desc: Number of never reform blocks broken
+  label: NumNeverReformBlocksBroken
+  type: NumNeverReformBlocksBroken
+  addr:
+    U: 0x300005B
+-
+  desc: Number of items collected
+  label: NumItemsCollected
+  type: NumItemsCollected
+  addr:
+    U: 0x3000063
+-
+  desc: Spriteset
+  label: SpritesetNum
+  type: u8
+  addr:
+    U: 0x3000078
+-
+  desc: Current clipdata affecting action
+  label: CurrClipdataAffectingAction
+  type: u8
+  addr:
+    U: 0x3000079
+  enum: ClipdataAffectingAction
+-
+  desc: Spriteset entry used
+  label: SpritesetEntryUsed
+  type: u8
+  addr:
+    U: 0x300007A
+-
+  desc: Door unlock timer
+  label: DoorUnlockTimer
+  type: u8
+  addr:
+    U: 0x300007B
+-
+  desc: Disable drawing sprites flag
+  label: DisableDrawingSpritesFlag
+  type: u8
+  addr:
+    U: 0x300007C
+-
+  desc: Current cutscene
+  label: CurrCutscene
+  type: u8
+  addr:
+    U: 0x300007D
+  enum: Cutscene
+-
+  desc: Backup of I/O registers
+  label: BackupOfIoRegisters
+  type: BackupOfIoRegisters
+  addr:
+    U: 0x3000088
+-
+  desc: Background pointers and dimensions
+  label: BgPtrsAndDimensions
+  type: BgPtrsAndDimensions
+  addr:
+    U: 0x300009C
+-
+  desc: Current room entry
+  label: CurrRoomEntry
+  type: CurrRoomEntry
+  addr:
+    U: 0x30000BC
+-
+  desc: Current clipdata behavior type?
+  label: CurrClipdataBehaviorType?
+  type: ClipdataBehaviorType
+  addr:
+    U: 0x30000DC
+-
+  desc: Background positions
+  label: BgPositions
+  type: BgPositions
+  addr:
+    U: 0x30000E4
+-
+  desc: Screen shake Y
+  label: ScreenShakeY
+  type: ScreenShake
+  addr:
+    U: 0x3000110
+-
+  desc: Screen shake X
+  label: ScreenShakeX
+  type: ScreenShake
+  addr:
+    U: 0x3000114
+-
+  desc: Current scrolls
+  label: CurrScrolls
+  type: CurrScrolls
+  addr:
+    U: 0x3000118
+-
+  desc: Current power bomb
+  label: CurrPowerBomb
+  type: CurrPowerBomb
+  addr:
+    U: 0x3000130
+-
+  desc: Screen position and velocity
+  label: ScreenPositionAndVelocity
+  type: ScreenPositionAndVelocity
+  addr:
+    U: 0x3000144
+-
+  desc: Max in-game time flag
+  label: MaxInGameTimeFlag
+  type: u8
+  addr:
+    U: 0x300014C
+-
+  desc: In-game timer
+  label: InGameTimer
+  type: InGameTime
+  addr:
+    U: 0x3000150
+-
+  desc: Best completion times (unused?)
+  label: BestCompletionTimes
+  type: InGameTime
+  addr:
+    U: 0x3000154
+  count: 0xC
+-
+  desc: In-game time at bosses
+  label: InGameTimeAtBosses
+  type: InGameTimeAtBosses
+  addr:
+    U: 0x3000184
+-
+  desc: Last elevator used
+  label: LastElevatorUsed
+  type: LastElevatorUsed
+  addr:
+    U: 0x3000198
+-
+  desc: Cutscene related?
+  label: CutsceneRelated?
+  addr:
+    U: 0x300019C
+  size: 0xC
+-
+  desc: Alarm timer
+  label: AlarmTimer
+  type: u16
+  addr:
+    U: 0x30001A8
+-
+  desc: Sprite data
+  label: SpriteDataSlot0
+  type: SpriteData
+  addr:
+    U: 0x30001AC
+  count: 0x18
+-
+  desc: Spriteset sprite IDs
+  label: SpritesetSpriteIDs
+  type: u8
+  addr:
+    U: 0x30006EC
+  count: 0xF
+-
+  desc: Spriteset sprite graphics slots
+  label: SpritesetSpriteGfxSlots
+  type: u8
+  addr:
+    U: 0x30006FB
+  count: 0xF
+-
+  desc: Sprite OAM related?
+  label: SpriteOamRelated?
+  addr:
+    U: 0x300070C
+  size: 0x14
+-
+  desc: Sprite OAM related?
+  label: SpriteOamRelated?
+  addr:
+    U: 0x3000720
+  size: 0x14
+-
+  desc: Parasite related?
+  label: ParasiteRelated?
+  type: u8
+  addr:
+    U: 0x3000734
+-
+  desc: Current sprite being processed
+  label: CurrSpriteData
+  type: SpriteData
+  addr:
+    U: 0x3000738
+-
+  desc: Sprite debris
+  label: SpriteDebris
+  type: SpriteDebris
+  addr:
+    U: 0x3000770
+  count: 0x8
+-
+  desc: Previous vertical collision check
+  label: PrevVerticalCollisionCheck
+  type: u8
+  addr:
+    U: 0x30007F0
+  enum: CollisionCheck
+-
+  desc: Previous collision check
+  label: PrevCollisionCheck
+  type: u8
+  addr:
+    U: 0x30007F1
+  enum: CollisionCheck
+-
+  desc: Collision related?
+  label: CollisionRelated?
+  type: u8
+  addr:
+    U: 0x30007F2
+-
+  desc: Sprite draw order
+  label: SpriteDrawOrder
+  type: u8
+  addr:
+    U: 0x30007F3
+  count: 0x18
+-
+  desc: Sprite random number
+  label: SpriteRandomNum
+  type: u8
+  addr:
+    U: 0x300083C
+-
+  desc: Particle effects
+  label: ParticleEffects
+  type: ParticleEffect
+  addr:
+    U: 0x3000840
+  count: 0x10
+-
+  desc: Missiles highlight status
+  label: MissileHighlightStatus
+  type: u8
+  addr:
+    U: 0x3000900
+-
+  desc: Power bombs highlight status
+  label: PowerBombHighlightStatus
+  type: u8
+  addr:
+    U: 0x3000901
+-
+  desc: Super missiles highlight status
+  label: SuperMissileHighlightStatus
+  type: u8
+  addr:
+    U: 0x3000902
+-
+  desc: Update corner map flag
+  label: UpdateCornerMapFlag
+  type: u8
+  addr:
+    U: 0x3000903
+-
+  desc: Energy digits
+  label: EnergyDigits
+  type: AmmoDigits
+  addr:
+    U: 0x3000904
+-
+  desc: Max energy digits
+  label: MaxEnergyDigits
+  type: AmmoDigits
+  addr:
+    U: 0x3000908
+-
+  desc: Missiles digits
+  label: MissileDigits
+  type: AmmoDigits
+  addr:
+    U: 0x300090C
+-
+  desc: Power bombs digits
+  label: PowerBombDigits
+  type: AmmoDigits
+  addr:
+    U: 0x3000910
+-
+  desc: Super missiles digits
+  label: SuperMissileDigits
+  type: AmmoDigits
+  addr:
+    U: 0x3000914
+-
+  desc: OAM pointer?
+  label: OamPtr?
+  type: pointer
+  addr:
+    U: 0x3000918
+-
+  desc: Ammo digit graphics
+  label: AmmoDigitGfx
+  type: graphics
+  addr:
+    U: 0x300091C
+  size: 0x40
+-
+  desc: Escape timer status?
+  label: EscapeTimerStatus?
+  type: u8
+  addr:
+    U: 0x300095C
+-
+  desc: Escape timer digits
+  label: EscapeTimerDigits
+  type: EscapeTimerDigits
+  addr:
+    U: 0x300095E
+-
+  desc: Energy refill animation
+  label: EnergyRefillAnimation
+  type: u8
+  addr:
+    U: 0x3000996
+-
+  desc: Missile refill animation
+  label: MissileRefillAnimation
+  type: u8
+  addr:
+    U: 0x3000997
+-
+  desc: Super missile refill animation
+  label: SuperMissileRefillAnimation
+  type: u8
+  addr:
+    U: 0x3000998
+-
+  desc: Power bomb refill animation
+  label: PowerBombRefillAnimation
+  type: u8
+  addr:
+    U: 0x3000999
+-
+  desc: Projectile data
+  label: ProjectileDataSlot0
+  addr:
+    U: 0x3000A2C
+  size: 0x1C
+  count: 0x10
+-
+  desc: Arm cannon Y position
+  label: ArmCannonYPos
+  type: u16
+  addr:
+    U: 0x3000BEC
+-
+  desc: Arm cannon X position
+  label: ArmCannonXPos
+  type: u16
+  addr:
+    U: 0x3000BEE
+-
+  desc: Pause screen flag
+  label: PauseScreenFlag
+  type: u8
+  addr:
+    U: 0x3000BF0
+  enum: PauseScreenFlag
+-
+  desc: Current message number
+  type: u8
+  addr:
+    U: 0x3000C16
+-
+  desc: Current message graphics slot
+  type: u8
+  addr:
+    U: 0x3000C17
+-
+  desc: Most recent save file
+  label: MostRecentSaveFile
+  type: u8
+  addr:
+    U: 0x3000C1E
+-
+  desc: Game mode
+  label: GameMode
+  type: u16
+  addr:
+    U: 0x3000C70
+  enum: GameMode
+-
+  desc: Sub-game mode 1
+  label: SubGameMode1
+  type: u16
+  addr:
+    U: 0x3000C72
+-
+  desc: Sub-game mode 2
+  label: SubGameMode2
+  type: u16
+  addr:
+    U: 0x3000C74
+-
+  desc: OAM data
+  addr:
+    U: 0x3000E7C
+  size: 0x8
+  count: 0xA0
+-
+  desc: Button input
+  label: ButtonInput
+  type: u16
+  addr:
+    U: 0x300137C
+  enum: ButtonInput
+-
+  desc: Button input copy
+  label: ButtonInputCopy
+  type: u16
+  addr:
+    U: 0x300137E
+  enum: ButtonInput
+-
+  desc: Changed input
+  label: ChangedInput
+  type: u16
+  addr:
+    U: 0x3001380
+  enum: ButtonInput
+-
+  desc: Next OAM slot
+  label: NextOAMSlot
+  type: u8
+  addr:
+    U: 0x3001382
+-
+  desc: Samus data
+  label: SamusData
+  addr:
+    U: 0x30013D4
+  size: 0x20?
+-
+  desc: Samus data copy when changing pose
+  label: SamusDataCopy
+  addr:
+    U: 0x30013F4
+  size: 0x20
+-
+  desc: Screw attacking flag
+  type: u8
+  addr:
+    U: 0x3001528
+-
+  desc: Screw attack animation counter
+  type: u8
+  addr:
+    U: 0x3001529
+-
+  desc: Screw attack current animation
+  type: u8
+  addr:
+    U: 0x300152A
+-
+  desc: Max energy
+  label: Equipment
+  type: u16
+  addr:
+    U: 0x3001530
+-
+  desc: Max missiles
+  type: u16
+  addr:
+    U: 0x3001532
+-
+  desc: Max super missiles
+  type: u8
+  addr:
+    U: 0x3001534
+-
+  desc: Max power bombs
+  type: u8
+  addr:
+    U: 0x3001535
+-
+  desc: Current energy
+  type: u16
+  addr:
+    U: 0x3001536
+-
+  desc: Current missiles
+  type: u16
+  addr:
+    U: 0x3001538
+-
+  desc: Current super missiles
+  type: u8
+  addr:
+    U: 0x300153A
+-
+  desc: Current power bombs
+  type: u8
+  addr:
+    U: 0x300153B
+-
+  desc: Beam/bombs
+  type: flags8
+  addr:
+    U: 0x300153C
+  enum: BeamBombStatus
+-
+  desc: Beam/bombs activation
+  label: BeamBombActivation
+  type: flags8
+  addr:
+    U: 0x300153D
+  enum: BeamBombStatus
+-
+  desc: Suit/misc
+  type: flags8
+  addr:
+    U: 0x300153E
+  enum: SuitMiscStatus
+-
+  desc: Suit/misc activation
+  label: SuitMiscActivation
+  type: flags8
+  addr:
+    U: 0x300153F
+  enum: SuitMiscStatus
+-
+  desc: Downloaded map status
+  type: flags8
+  addr:
+    U: 0x3001540
+  enum: AreaBitFlags
+-
+  desc: Low health flag
+  type: u8
+  addr:
+    U: 0x3001541
+-
+  desc: Fully powered suit flag
+  type: u8
+  addr:
+    U: 0x3001542
+-
+  desc: Grabbed by Metroid flag
+  type: u8
+  addr:
+    U: 0x3001543
+-
+  desc: Lava damage timer
+  label: LavaDamageTimer
+  type: u8
+  addr:
+    U: 0x3001544
+-
+  desc: Arm cannon X position offset
+  type: u16
+  addr:
+    U: 0x30015D2
+-
+  desc: Arm cannon Y position offset
+  type: u16
+  addr:
+    U: 0x30015D4
+-
+  desc: X acceleration
+  type: u16
+  addr:
+    U: 0x30015E6
+-
+  desc: X velocity cap
+  type: u16
+  addr:
+    U: 0x30015E8
+-
+  desc: Y acceleration
+  type: u16
+  addr:
+    U: 0x30015EA
+-
+  desc: Positive Y velocity cap
+  type: u16
+  addr:
+    U: 0x30015EC
+-
+  desc: Negative Y velocity cap
+  type: u16
+  addr:
+    U: 0x30015EE
+-
+  desc: Mid-air X acceleration
+  type: u16
+  addr:
+    U: 0x30015F0
+-
+  desc: Mid-air X velocity cap
+  type: u16
+  addr:
+    U: 0x30015F2
+-
+  desc: Mid-air morphed X velocity cap
+  type: u16
+  addr:
+    U: 0x30015F4
+-
+  desc: Previous X position
+  label: PrevXPos
+  type: u16
+  addr:
+    U: 0x3001600
+-
+  desc: Previous Y position
+  label: PrevYPos
+  type: u16
+  addr:
+    U: 0x3001602
+-
+  desc: Debug menu related?
+  type: u8
+  addr:
+    U: 0x30016C4
+-
+  desc: Chozo statue area
+  type: u8
+  addr:
+    U: 0x30016D6
+  enum: AreaID
+-
+  desc: Chozo statue X position
+  type: u8
+  addr:
+    U: 0x30016D7
+-
+  desc: Chozo statue Y position
+  type: u8
+  addr:
+    U: 0x30016D8
+-
+  desc: Chozo statue target X position
+  type: u8
+  addr:
+    U: 0x30016D9
+-
+  desc: Chozo statue target Y position
+  type: u8
+  addr:
+    U: 0x30016DA
+-
+  desc: Sound test sound ID
+  type: u8
+  addr:
+    U: 0x3001727
+-
+  desc: Inputting time attack code flag
+  type: u8
+  addr:
+    U: 0x3001730
+-
+  desc: Number of time attack code buttons input
+  type: u8
+  addr:
+    U: 0x3001731
+-
+  desc: Time attack code cooldown timer
+  type: u8
+  addr:
+    U: 0x3001732
+-
+  desc: Ending number
+  type: u8
+  addr:
+    U: 0x300175C
+-
+  desc: Current music track
+  type: u16
+  addr:
+    U: 0x3001D1C
+-
+  desc: Pointer to tile table
+  type: pointer
+  addr:
+    U: 0x3005450
+-
+  desc: Pointer to clipdata collision types
+  type: pointer
+  addr:
+    U: 0x3005454
+-
+  desc: Pointer to clipdata behavior types
+  type: pointer
+  addr:
+    U: 0x3005458
+-
+  desc: Hatch data
+  label: HatchData
+  type: HatchData
+  addr:
+    U: 0x300545C
+  count: 0x10
+-
+  desc: Doors unlocked flag
+  label: DoorsLockedFlag?
+  type: u8
+  addr:
+    U: 0x30054E4
+-
+  desc: Rain sound effect flag?
+  type: u16
+  addr:
+    U: 0x3005518
+-
+  desc: Broken reform blocks
+  type: BrokenReformBlock
+  addr:
+    U: 0x3005528
+  count: 0x30
+-
+  desc: Animated palette counter
+  label: AnimPaletteCounter
+  type: u8
+  addr:
+    U: 0x30056EC
+-
+  desc: Animated palette state
+  type: u8
+  addr:
+    U: 0x30056ED
+-
+  desc: Animated palette number
+  label: AnimPaletteNum
+  type: u8
+  addr:
+    U: 0x30056F4
+-
+  desc: Animated tileset number
+  type: u8
+  addr:
+    U: 0x30056F5
+-
+  desc: Pointer to code?
+  type: pointer
+  addr:
+    U: 0x3005704
+-
+  desc: All animated graphics from animated tileset
+  label: AnimatedTilesetData
+  addr:
+    U: 0x3005730
+  size: 0xC
+  count: 0x10

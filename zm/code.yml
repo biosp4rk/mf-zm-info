@@ -1,0 +1,1357 @@
+-
+  desc: Interrupt setup
+  label: InterruptSetup
+  addr:
+    U: 0xC0
+  size: 0x44
+  mode: arm
+  params: null
+  return: null
+-
+  desc: Interrupt code
+  label: InterruptCode
+  addr:
+    U: 0x104
+  size: 0x138
+  mode: arm
+  params: null
+  return: null
+-
+  desc: Main game loop
+  label: MainGameLoop
+  addr:
+    U: 0x23C
+  size: 0x464
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Initialize game
+  label: InitializeGame
+  addr:
+    U: 0x6A0
+  size: 0x124
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Soft-reset check
+  label: SoftResetCheck
+  addr:
+    U: 0x7D0
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Soft-reset
+  label: SoftReset
+  addr:
+    U: 0x804
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Execute LZ77UnComp16Bit
+  label: ExecuteLZ77UnComp16Bit
+  addr:
+    U: 0x90C
+  size: 0xC
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  return: null
+-
+  desc: Execute LZ77UnComp8Bit
+  label: ExecuteLZ77UnComp8Bit
+  addr:
+    U: 0x918
+  size: 0xC
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  return: null
+-
+  desc: Execute DivArm
+  label: ExecuteDivArm
+  addr:
+    U: 0x924
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Execute SoundBias
+  label: ExecuteSoundBias
+  addr:
+    U: 0x940
+  size: 0x10
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update input
+  label: UpdateInput
+  addr:
+    U: 0x968
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Play sound 1
+  addr:
+    U: 0x2A18
+  size: 0x10
+  mode: thumb
+  params:
+  - Sound ID
+  return: null
+-
+  desc: Play sound 2
+  addr:
+    U: 0x2A28
+  size: 0x10
+  mode: thumb
+  params:
+  - Sound ID
+  return: null
+-
+  desc: DMA transfer
+  label: DMATransfer
+  addr:
+    U: 0x31E4
+  size: 0xD0
+  mode: thumb
+  params:
+  - DMA channel
+  - Source address
+  - Destination address
+  - Length
+  - Bit size
+  return: null
+-
+  desc: 16-bit fill
+  label: 16BitFill
+  addr:
+    U: 0x32B4
+  size: 0xCC
+  mode: thumb
+  params:
+  - DMA channel
+  - Value
+  - Destination address
+  - Length
+  return: null
+-
+  desc: Check set new music track
+  addr:
+    U: 0x36D0
+  size: 0xBC
+  mode: thumb
+  params:
+  - Music track
+  return: null
+-
+  desc: Check play new music track
+  addr:
+    U: 0x3878
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Music related
+  addr:
+    U: 0x39F4
+  size: 0x78
+  mode: thumb
+  params:
+  - Music track
+  - '?'
+  return: null
+-
+  desc: SoundBias 0
+  label: SoundBias0
+  addr:
+    U: 0x51B8
+  size: 0x8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: SoundBias 1
+  label: SoundBias1
+  addr:
+    U: 0x51C0
+  size: 0x8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call update arm cannon position offset
+  addr:
+    U: 0x7928
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update arm cannon position offset
+  addr:
+    U: 0xB910
+  size: 0x3A8
+  mode: thumb
+  params:
+  - 0 if facing right, 1 if facing left
+  return: null
+-
+  desc: Main loop for in-game
+  label: MainLoopForInGame
+  addr:
+    U: 0xC4B4
+  size: 0x244
+  mode: thumb
+  params: null
+  return: 1 if returning to title screen
+-
+  desc: Load spriteset
+  label: LoadSpriteset
+  addr:
+    U: 0xDF84
+  size: 0x100
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Clear sprite data
+  label: ClearSpriteData
+  addr:
+    U: 0xE0F0
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load room sprites
+  label: LoadRoomSprites
+  addr:
+    U: 0xE134
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Initialize primary sprite
+  label: InitPrimarySprite
+  addr:
+    U: 0xE17C
+  size: 0xDC
+  mode: thumb
+  params:
+  - Sprite property/spriteset slot
+  - Sprite Y position
+  - Sprite X position
+  - Room sprite number
+  return: null
+-
+  desc: Spawn new secondary sprite
+  label: SpawnNewSecondarySprite
+  addr:
+    U: 0xE258
+  size: 0xC4
+  mode: thumb
+  params:
+  - Sprite ID
+  - Sprite data 1E
+  - Spriteset graphics row
+  - Primary sprite RAM slot
+  - Y position
+  - X position
+  - Status
+  return: Assigned sprite RAM slot, 0xFF otherwise
+-
+  desc: Spawn new primary sprite
+  label: DisplayOnScreenMessage
+  addr:
+    U: 0xE31C
+  size: 0xB8
+  mode: thumb
+  params:
+  - Sprite ID
+  - Sprite data 1E
+  - Spriteset graphics row
+  - Y position
+  - X position
+  - Status
+  return: Assigned sprite RAM slot, 0xFF otherwise
+-
+  desc: Take damage from sprite
+  label: TakeDamageFromSprite
+  addr:
+    U: 0xE634
+  size: 0xC4
+  mode: thumb
+  params:
+  - Knockback flag
+  - Sprite data pointer
+  - Damage multiplier
+  return: 1 if energy is 0, 0 otherwise
+-
+  desc: Check objects touching
+  label: CheckObjectsTouching
+  addr:
+    U: 0xE6F8
+  size: 0x50
+  mode: thumb
+  params:
+  - Object 1 top position
+  - Object 1 bottom position
+  - Object 1 left position
+  - Object 1 right position
+  - Object 2 top position
+  - Object 2 bottom position
+  - Object 2 left position
+  - Object 2 right position
+  return: 1 if objects are touching, 0 otherwise
+-
+  desc: Samus and sprite collision
+  label: SamusAndSpriteCollision
+  addr:
+    U: 0xE748
+  size: 0xC18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check vertical collision at position
+  label: CheckVerticalCollisionAtPosition
+  addr:
+    U: 0xF360
+  size: 0x11C
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: Block top edge Y position
+-
+  desc: Check vertical collision at position (account for slopes)
+  label: CheckVerticalCollisionAtPosition_Slopes
+  addr:
+    U: 0xF47C
+  size: 0x118
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: Block top edge Y position
+-
+  desc: Check collision at position
+  label: CheckCollisionAtPosition
+  addr:
+    U: 0xF688
+  size: 0x98
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: null
+-
+  desc: Make sprite face Samus (X-flip)
+  label: MakeSpriteFaceSamus_XFlip
+  addr:
+    U: 0xF8B0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Make sprite face Samus (direction)
+  label: MakeSpriteFaceSamus_Direction
+  addr:
+    U: 0xF8E0
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Make sprite face away from Samus (X-flip)
+  label: MakeSpriteFaceAwayFromSamus_XFlip
+  addr:
+    U: 0xF914
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Make sprite face away from Samus (direction)
+  addr:
+    U: 0xF944
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check end of sprite animation (current)
+  label: CheckEndOfSpriteAnimation_Curr
+  addr:
+    U: 0xFBC8
+  size: 0x38
+  mode: thumb
+  params: null
+  return: 1 if animation has ended, 0 otherwise
+-
+  desc: Check near end of sprite animation (current)
+  label: CheckNearEndOfSpriteAnimation_Curr
+  addr:
+    U: 0xFC00
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: 1 if animation is near end, 0 otherwise
+-
+  desc: Check end of sprite animation (slot)
+  label: CheckEndOfSpriteAnimation_Slot
+  addr:
+    U: 0xFC7C
+  size: 0x8
+  mode: thumb
+  params:
+  - Sprite slot number
+  return: 1 if animation has ended, 0 otherwise
+-
+  desc: Check near end of sprite animation (slot)
+  label: CheckNearEndOfSpriteAnimation_Slot
+  addr:
+    U: 0xFC84
+  size: 0x4C
+  mode: thumb
+  params:
+  - Sprite slot number
+  return: 1 if animation is near end, 0 otherwise
+-
+  desc: Find given primary sprite
+  addr:
+    U: 0x107F8
+  size: 0x58
+  mode: thumb
+  params:
+  - Sprite ID
+  return: Sprite RAM slot, 0xFF otherwise
+-
+  desc: Sprite AI
+  addr:
+    U: 0x12748
+  size: 0x3C5C0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set beam particle effect
+  addr:
+    U: 0x4ED08
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check number of projectiles
+  addr:
+    U: 0x4ED94
+  size: 0x50
+  mode: thumb
+  params:
+  - Projectile type
+  - Projectile limit
+  return: 1 if under limit, 0 otherwise
+-
+  desc: Initialize projectile
+  addr:
+    U: 0x4EDE4
+  size: 0xA4
+  mode: thumb
+  params:
+  - Projectile type
+  - Projectile Y position
+  - Projectile X position
+  return: 1 if initialized, 0 otherwise
+-
+  desc: Update arm cannon and weapons
+  addr:
+    U: 0x4EE88
+  size: 0x47C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Advance projectile animation
+  addr:
+    U: 0x4F304
+  size: 0x38
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Check despawn projectile
+  addr:
+    U: 0x4F578
+  size: 0xF8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Load beam graphics
+  addr:
+    U: 0x4F670
+  size: 0x2B0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call load beam graphics and clear projectiles
+  addr:
+    U: 0x4F920
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Move projectile
+  addr:
+    U: 0x4F954
+  size: 0xC4
+  mode: thumb
+  params:
+  - Projectile data pointer
+  - Distance
+  return: null
+-
+  desc: Check projectile hit block?
+  addr:
+    U: 0x4FA18
+  size: 0x24
+  mode: thumb
+  params:
+  - Projectile Y position
+  - Projectile X position
+  return: ???
+-
+  desc: Check projectile hit block?
+  addr:
+    U: 0x4FA3C
+  size: 0x1FC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: ???
+-
+  desc: Charged beam trail related?
+  addr:
+    U: 0x4FC38
+  size: 0xA8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  - '?'
+  - '?'
+  return: null
+-
+  desc: Missile tink related?
+  addr:
+    U: 0x4FCE0
+  size: 0x68
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Check projectile hit block?
+  addr:
+    U: 0x4FD48
+  size: 0x54
+  mode: thumb
+  params:
+  - Projectile data pointer
+  - Clipdata affecting action
+  - Particle effect
+  return: null
+-
+  desc: Check projectile hit sprite?
+  addr:
+    U: 0x4FD9C
+  size: 0x5D4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Get sprite weakness
+  addr:
+    U: 0x50370
+  size: 0x50
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: Sprite weakness
+-
+  desc: Ice beam deal damage
+  addr:
+    U: 0x503A0
+  size: 0x84
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Damage
+  return: Sprite freeze timer (F0 if alive, 0 if dead)
+-
+  desc: Projectile deal damage
+  addr:
+    U: 0x50424
+  size: 0x88
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Damage
+  return: 1 if sprite is dead, 0 otherwise
+-
+  desc: Projectile hit sprite immune to projectiles
+  addr:
+    U: 0x504AC
+  size: 0x20
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: null
+-
+  desc: Projectile hit solid sprite
+  addr:
+    U: 0x504CC
+  size: 0x20
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: null
+-
+  desc: Projectile hit sprite
+  addr:
+    U: 0x505AC
+  size: 0xA8
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile Y position
+  - Projectile X position
+  - Damage
+  - Graphics effect
+  return: null
+-
+  desc: Move tinked missile
+  addr:
+    U: 0x50914
+  size: 0x60
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile data pointer
+  - Projectile type
+  return: null
+-
+  desc: Missile hit sprite
+  addr:
+    U: 0x509DC
+  size: 0xA0
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile data pointer
+  - Projectile Y position
+  - Projectile X position
+  return: null
+-
+  desc: Super missile hit sprite
+  addr:
+    U: 0x50A7C
+  size: 0x9C
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile data pointer
+  - Projectile Y position
+  - Projectile X position
+  return: null
+-
+  desc: Process normal beam
+  addr:
+    U: 0x50B64
+  size: 0xF8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process long beam
+  addr:
+    U: 0x50C5C
+  size: 0xEC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process ice beam
+  addr:
+    U: 0x50D48
+  size: 0x124
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Wave beam related
+  addr:
+    U: 0x50E6C
+  size: 0x1FC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: ???
+-
+  desc: Process wave beam
+  addr:
+    U: 0x51068
+  size: 0x130
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process plasma beam
+  addr:
+    U: 0x51198
+  size: 0x1BC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process pistol
+  addr:
+    U: 0x51354
+  size: 0xEC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged normal beam
+  addr:
+    U: 0x51440
+  size: 0xF8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged long beam
+  addr:
+    U: 0x51538
+  size: 0xF8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged ice beam
+  addr:
+    U: 0x51630
+  size: 0x134
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged wave beam
+  addr:
+    U: 0x51764
+  size: 0x13C
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged plasma beam
+  addr:
+    U: 0x518A0
+  size: 0x1DC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process charged pistol
+  addr:
+    U: 0x51A7C
+  size: 0xF8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Decrement missile counter
+  addr:
+    U: 0x51B74
+  size: 0x38
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process missile
+  addr:
+    U: 0x51BAC
+  size: 0x118
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Decrement super missile counter
+  addr:
+    U: 0x51CC4
+  size: 0x38
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process super missile
+  addr:
+    U: 0x51CFC
+  size: 0x118
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Ball launcher related
+  addr:
+    U: 0x51E14
+  size: 0xB8
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Bomb explosion related
+  addr:
+    U: 0x51ECC
+  size: 0x12C
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process bomb
+  addr:
+    U: 0x51FF8
+  size: 0x1FC
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Process power bomb
+  addr:
+    U: 0x521F4
+  size: 0x114
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
+  desc: Draw HUD
+  addr:
+    U: 0x52308
+  size: 0x35C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check timer displayed
+  addr:
+    U: 0x53968
+  size: 0x40
+  mode: thumb
+  params: null
+  return: 1 for Mother Brain, 2 for Mecha Ridley, 0 otherwise
+-
+  desc: Set timer digits
+  addr:
+    U: 0x53AA8
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set particle effect
+  addr:
+    U: 0x540EC
+  size: 0xA0
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  - Effect number
+  return: null
+-
+  desc: Load room
+  addr:
+    U: 0x55F7C
+  size: 0x26C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load tileset
+  label: LoadTileset
+  addr:
+    U: 0x561E8
+  size: 0x21C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load room backgrounds
+  label: LoadRoomBGs
+  addr:
+    U: 0x5656C
+  size: 0x158
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Clipdata related?
+  addr:
+    U: 0x57E7C
+  size: 0x100
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: ???
+-
+  desc: Check can use elevator
+  addr:
+    U: 0x5819C
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: 1 if can't be used, 0 otherwise
+-
+  desc: Set BG1 block value
+  label: SetBG1BlockValue
+  addr:
+    U: 0x5A55C
+  size: 0xCC
+  mode: thumb
+  params:
+  - Value
+  - Y position
+  - X position
+  return: null
+-
+  desc: Set clipdata block value
+  label: SetClipdataBlockValue
+  addr:
+    U: 0x5A64C
+  size: 0x24
+  mode: thumb
+  params:
+  - Value
+  - Y position
+  - X position
+  return: null
+-
+  desc: Check touching transition or tank
+  label: CheckTouchingTransitionOrTank
+  addr:
+    U: 0x5A96C
+  size: 0x420
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Finish collecting tank
+  label: RemoveCollectedTank
+  addr:
+    U: 0x5AD8C
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Finish collecting ability
+  label: RemoveCollectedAbility
+  addr:
+    U: 0x5ADEC
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set item as collected
+  label: SetItemAsCollected
+  addr:
+    U: 0x5B0A0
+  size: 0x74
+  mode: thumb
+  params:
+  - X position
+  - Y position
+  - Item type
+  return: null
+-
+  desc: Remove collected tanks
+  label: CheckRemoveCollectedTanks
+  addr:
+    U: 0x5B114
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Play cutscene
+  addr:
+    U: 0x5BFD4
+  size: 0xA0
+  mode: thumb
+  params:
+  - Cutscene number
+  return: null
+-
+  desc: Load animated tileset
+  label: LoadAnimTileset
+  addr:
+    U: 0x5E130
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check enter door
+  addr:
+    U: 0x5EBF0
+  size: 0x1A4
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: 1 if door found, 0 otherwise
+-
+  desc: Set hatch as opened
+  addr:
+    U: 0x5F004
+  size: 0xA0
+  mode: thumb
+  params:
+  - 0 for checking if opened, 1 for setting source and destination, 2 for setting
+    source
+  - Door number
+  return: 1 if hatch never opened, 0 otherwise
+-
+  desc: Check play cutscene during transition
+  addr:
+    U: 0x5F744
+  size: 0xB8
+  mode: thumb
+  params:
+  - Area
+  - Destination room + 1
+  return: null
+-
+  desc: Check play cutscene during elevator
+  addr:
+    U: 0x5F7FC
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load first room?
+  addr:
+    U: 0x6055C
+  size: 0x204
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Event functions
+  label: EventFunctions
+  addr:
+    U: 0x608BC
+  size: 0x6C
+  mode: thumb
+  params:
+  - 0 if clearing event, 1 if setting event, 2 if toggling event, 3 if checking event
+  - Event
+  return: 1 if event is set, 0 otherwise
+-
+  desc: Cutscene related?
+  addr:
+    U: 0x61044
+  size: 0x1E4
+  mode: thumb
+  params: null
+  return: ???
+-
+  desc: Get minimap data
+  addr:
+    U: 0x6B0F8
+  size: 0x148
+  mode: thumb
+  params:
+  - Minimap number
+  - Destination address
+  return: null
+-
+  desc: Update minimap square for collected item
+  label: GetItemUpdateMinimap
+  addr:
+    U: 0x6CBD8
+  size: 0x90
+  mode: thumb
+  params:
+  - Item X position
+  - Item Y position
+  return: null
+-
+  desc: Count tanks in area
+  label: CountTanksInArea
+  addr:
+    U: 0x6CEF8
+  size: 0x168
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw in-game time and tanks
+  label: DrawTimeAndTanks
+  addr:
+    U: 0x6D060
+  size: 0x2D4
+  mode: thumb
+  params:
+  - '?'
+  - '?'
+  return: null
+-
+  desc: Update minimap animated palettes
+  addr:
+    U: 0x6FD00
+  size: 0x118
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw status screen items
+  addr:
+    U: 0x6FF4C
+  size: 0xD4
+  mode: thumb
+  params:
+  - Row to draw
+  return: 1 if done drawing
+-
+  desc: Set status screen bomb visibility
+  addr:
+    U: 0x709C0
+  size: 0x26C
+  mode: thumb
+  params:
+  - Tile table offset
+  return: null
+-
+  desc: Write SRAM
+  addr:
+    U: 0x73CE4
+  size: 0x350
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check unlock time attack?
+  addr:
+    U: 0x7F3FC
+  size: 0x210
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Get percent and ending number
+  addr:
+    U: 0x87AEC
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: Item counts and ending number
+-
+  desc: bx r0
+  label: bx_r0
+  addr:
+    U: 0x8ABF8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r1
+  label: bx_r1
+  addr:
+    U: 0x8ABFC
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r2
+  label: bx_r2
+  addr:
+    U: 0x8AC00
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r3
+  label: bx_r3
+  addr:
+    U: 0x8AC04
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r4
+  label: bx_r4
+  addr:
+    U: 0x8AC08
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r5
+  label: bx_r5
+  addr:
+    U: 0x8AC0C
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r6
+  label: bx_r6
+  addr:
+    U: 0x8AC10
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r7
+  label: bx_r7
+  addr:
+    U: 0x8AC14
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r8
+  label: bx_r8
+  addr:
+    U: 0x8AC18
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r9
+  label: bx_r9
+  addr:
+    U: 0x8AC1C
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r10
+  label: bx_r10
+  addr:
+    U: 0x8AC20
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r11
+  label: bx_r11
+  addr:
+    U: 0x8AC24
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r12
+  label: bx_r12
+  addr:
+    U: 0x8AC28
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r13
+  label: bx_r13
+  addr:
+    U: 0x8AC2C
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: bx r14
+  label: bx_r14
+  addr:
+    U: 0x8AC30
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Division
+  label: Division
+  addr:
+    U: 0x8AC34
+  size: 0x88
+  mode: thumb
+  params:
+  - Dividend
+  - Divisor
+  return: Quotient
+-
+  desc: Modulo
+  label: Modulo
+  addr:
+    U: 0x8AD10
+  size: 0xC4
+  mode: thumb
+  params:
+  - Dividend
+  - Divisor
+  return: Remainder
