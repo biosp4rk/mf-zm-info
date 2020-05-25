@@ -29,6 +29,15 @@ AnimatedGraphicsEntry:
   - desc: Pointer to graphics
     type: pointer
     offset: 0x4
+AnimatedPaletteAndTilesetNum:
+  size: 0x2
+  vars:
+  - desc: Animated palette number
+    type: u8
+    offset: 0x0
+  - desc: Animated tileset number
+    type: u8
+    offset: 0x1
 AnimatedPaletteEntry:
   size: 0x8
   vars:
@@ -45,6 +54,18 @@ AnimatedPaletteEntry:
   - desc: Pointer to palette
     type: pointer
     offset: 0x4
+AnimatedPaletteTiming:
+  size: 0x3
+  vars:
+  - desc: Counter
+    type: u8
+    offset: 0x0
+  - desc: State
+    type: u8
+    offset: 0x1
+  - desc: '?'
+    type: u8
+    offset: 0x2
 AreaConnection:
   size: 0x3
   vars:
@@ -59,6 +80,18 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
+BG3Movement:
+  size: 0x6
+  vars:
+  - desc: Direction
+    type: u8
+    offset: 0x0
+  - desc: Counter
+    type: u8
+    offset: 0x1
+  - desc: X position offset
+    type: u16
+    offset: 0x4
 BackupOfIoRegisters:
   size: 0x12
   vars:
@@ -185,6 +218,25 @@ BrokenReformBlock:
   - desc: Timer
     type: u16
     offset: 0x6
+ButtonAssignments:
+  size: 0x8
+  vars:
+  - desc: Arm missiles button
+    type: u16
+    offset: 0x0
+    enum: ButtonInput
+  - desc: Diagonal aim button
+    type: u16
+    offset: 0x2
+    enum: ButtonInput
+  - desc: Swap missiles button
+    type: u16
+    offset: 0x4
+    enum: ButtonInput
+  - desc: Pause screen button
+    type: u16
+    offset: 0x6
+    enum: ButtonInput
 ChozoStatueTarget:
   size: 0xC
   vars:
@@ -222,6 +274,27 @@ ChozoStatueTarget:
     type: u8
     offset: 0x9
     enum: ChozoTargetIcon
+CurrMessage:
+  size: 0x10
+  vars:
+  - desc: '?'
+    type: u16
+    offset: 0x2
+  - desc: '?'
+    type: u16
+    offset: 0x4
+  - desc: '?'
+    type: u8
+    offset: 0x7
+  - desc: Message number
+    type: u8
+    offset: 0xA
+  - desc: Graphics slot
+    type: u8
+    offset: 0xB
+  - desc: '?'
+    type: u8
+    offset: 0xC
 CurrPowerBomb:
   size: 0x14
   vars:
@@ -316,6 +389,9 @@ CurrRoomEntry:
     type: u8
     offset: 0x19
     enum: LZ77BackgroundSize
+  - desc: '?'
+    type: u8
+    offset: 0x1A
   - desc: Animated tileset number
     type: u8
     offset: 0x1B
@@ -386,6 +462,71 @@ DoorEntry:
   - desc: Y exit distance
     type: u8
     offset: 0x8
+DoorPositionStart:
+  size: 0x4
+  vars:
+  - desc: X position start
+    type: u16
+    offset: 0x0
+  - desc: Y position start
+    type: u16
+    offset: 0x2
+Equipment:
+  size: 0x14
+  vars:
+  - desc: Max energy
+    type: u16
+    offset: 0x0
+  - desc: Max missiles
+    type: u16
+    offset: 0x2
+  - desc: Max super missiles
+    type: u8
+    offset: 0x4
+  - desc: Max power bombs
+    type: u8
+    offset: 0x5
+  - desc: Current energy
+    type: u16
+    offset: 0x6
+  - desc: Current missiles
+    type: u16
+    offset: 0x8
+  - desc: Current super missiles
+    type: u8
+    offset: 0xA
+  - desc: Current power bombs
+    type: u8
+    offset: 0xB
+  - desc: Beam/bombs
+    type: flags8
+    offset: 0xC
+    enum: BeamBombStatus
+  - desc: Beam/bombs activation
+    type: flags8
+    offset: 0xD
+    enum: BeamBombStatus
+  - desc: Suit/misc
+    type: flags8
+    offset: 0xE
+    enum: SuitMiscStatus
+  - desc: Suit/misc activation
+    type: flags8
+    offset: 0xF
+    enum: SuitMiscStatus
+  - desc: Downloaded map status
+    type: flags8
+    offset: 0x10
+    enum: AreaBitFlags
+  - desc: Low health flag
+    type: u8
+    offset: 0x11
+  - desc: Fully powered suit flag
+    type: u8
+    offset: 0x12
+  - desc: Grabbed by Metroid flag
+    type: u8
+    offset: 0x13
 EscapeTimerDigits:
   size: 0x6
   vars:
@@ -521,6 +662,58 @@ LastElevatorUsed:
   - desc: Travel direction
     type: u8
     offset: 0x3
+LavaDamageTimer:
+  size: 0x8
+  vars:
+  - desc: Lava damage timer
+    type: u8
+    offset: 0x0
+  - desc: Counter?
+    type: u8
+    offset: 0x4
+MusicInfo:
+  size: 0xC24
+  vars:
+  - desc: Current music track
+    type: u16
+    offset: 0x1C
+NonGameplayRam:
+  size: 0x280
+  vars:
+  - desc: Debug menu related?
+    type: u8
+    offset: 0x0
+  - desc: Chozo statue area
+    type: u8
+    offset: 0x12
+    enum: AreaID
+  - desc: Chozo statue X position
+    type: u8
+    offset: 0x13
+  - desc: Chozo statue Y position
+    type: u8
+    offset: 0x14
+  - desc: Chozo statue target X position
+    type: u8
+    offset: 0x15
+  - desc: Chozo statue target Y position
+    type: u8
+    offset: 0x16
+  - desc: Sound test sound ID
+    type: u8
+    offset: 0x63
+  - desc: Inputting time attack code flag
+    type: u8
+    offset: 0x6C
+  - desc: Number of time attack code buttons input
+    type: u8
+    offset: 0x6D
+  - desc: Time attack code cooldown timer
+    type: u8
+    offset: 0x6E
+  - desc: Ending number
+    type: u8
+    offset: 0x98
 NumItemsCollected:
   size: 0x8
   vars:
@@ -743,6 +936,160 @@ RoomEntry:
   - desc: Music track
     type: u16
     offset: 0x3A
+SamusData:
+  size: 0x20
+  vars:
+  - desc: Current pose
+    type: u8
+    offset: 0x0
+    enum: SamusPose
+  - desc: Standing status
+    type: u8
+    offset: 0x1
+    enum: SamusStandingStatus
+  - desc: Arm cannon direction
+    type: u8
+    offset: 0x2
+    enum: ArmCannonDirection
+  - desc: Turning flag
+    type: u8
+    offset: 0x3
+  - desc: Forced movement flag
+    type: u8
+    offset: 0x4
+    enum: ForcedMovement
+  - desc: Speed boosting/shinespark flag
+    type: u8
+    offset: 0x5
+  - desc: Invincibility timer
+    type: u8
+    offset: 0x6
+  - desc: Wall-jump timer
+    type: u8
+    offset: 0x7
+  - desc: Shinespark timer
+    type: u8
+    offset: 0x8
+  - desc: Unmorph palette timer
+    type: u8
+    offset: 0x9
+  - desc: Speedboost timer
+    type: u8
+    offset: 0xA
+  - desc: Last wall touched mid-air
+    type: u16
+    offset: 0xC
+  - desc: Direction
+    type: u16
+    offset: 0xE
+    enum: HorizontalDirection
+  - desc: X position
+    type: u16
+    offset: 0x12
+  - desc: Y position
+    type: u16
+    offset: 0x14
+  - desc: X velocity
+    type: s16
+    offset: 0x16
+  - desc: Y velocity
+    type: S16
+    offset: 0x18
+  - desc: Current slope type
+    type: u16
+    offset: 0x1A
+    enum: SamusSlopeType
+  - desc: Animation counter
+    type: u8
+    offset: 0x1C
+  - desc: Current animation
+    type: u8
+    offset: 0x1D
+SamusEcho:
+  size: 0x10C
+  vars:
+  - desc: Echo flag
+    type: u8
+    offset: 0x0
+  - desc: Timer
+    type: u8
+    offset: 0x1
+  - desc: Position
+    type: u8
+    offset: 0x2
+  - desc: Distance
+    type: u8
+    offset: 0x3
+  - desc: Previous 64 X positions
+    type: u16
+    offset: 0x8
+    count: 0x40
+  - desc: Previous 64 Y positions
+    type: u16
+    offset: 0x88
+    count: 0x40
+  - desc: Previous position counter
+    type: u16
+    offset: 0x108
+SamusPhysics:
+  size: 0x78
+  vars:
+  - desc: Arm cannon X position offset
+    type: u16
+    offset: 0x4A
+  - desc: Arm cannon Y position offset
+    type: u16
+    offset: 0x4C
+  - desc: X acceleration
+    type: u16
+    offset: 0x5E
+  - desc: X velocity cap
+    type: u16
+    offset: 0x60
+  - desc: Y acceleration
+    type: u16
+    offset: 0x62
+  - desc: Positive Y velocity cap
+    type: u16
+    offset: 0x64
+  - desc: Negative Y velocity cap
+    type: u16
+    offset: 0x66
+  - desc: Mid-air X acceleration
+    type: u16
+    offset: 0x68
+  - desc: Mid-air X velocity cap
+    type: u16
+    offset: 0x6A
+  - desc: Mid-air morphed X velocity cap
+    type: u16
+    offset: 0x6C
+SamusWeaponInfo:
+  size: 0x8
+  vars:
+  - desc: Diagonal aim
+    type: u8
+    offset: 0x0
+    enum: DiagonalAim
+  - desc: New projectile
+    type: u8
+    offset: 0x1
+    enum: NewProjectileType
+  - desc: Missile type highlighted
+    type: u8
+    offset: 0x2
+  - desc: Missile type selected
+    type: u8
+    offset: 0x3
+  - desc: Cooldown timer
+    type: u8
+    offset: 0x4
+  - desc: Charge counter
+    type: u8
+    offset: 0x5
+  - desc: Beam release palette timer
+    type: u8
+    offset: 0x6
 ScreenPositionAndVelocity:
   size: 0x8
   vars:
@@ -773,6 +1120,18 @@ ScreenShake:
   - desc: '?'
     type: u8
     offset: 0x3
+ScrewAttackAnimation:
+  size: 0x8
+  vars:
+  - desc: Screw attacking flag
+    type: u8
+    offset: 0x0
+  - desc: Animation counter
+    type: u8
+    offset: 0x1
+  - desc: Current animation
+    type: u8
+    offset: 0x2
 SpriteData:
   size: 0x38
   vars:
@@ -966,6 +1325,18 @@ TankIncreaseAmounts:
   - desc: Power bombs
     type: u8
     offset: 0x3
+TileTableAndClipdataPtrs:
+  size: 0xC
+  vars:
+  - desc: Pointer to tile table
+    type: pointer
+    offset: 0x0
+  - desc: Pointer to clipdata collision types
+    type: pointer
+    offset: 0x4
+  - desc: Pointer to clipdata behavior types
+    type: pointer
+    offset: 0x8
 TilesetEntry:
   size: 0x14
   vars:

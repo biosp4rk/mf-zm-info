@@ -167,43 +167,43 @@
   addr:
     J: 0x3000004
 -
-  desc: Written to 0x4000052 (BLDALPHA, alpha blending coefficients)
-  label: WrittenTo4000052
+  desc: Written to BLDALPHA (alpha blending coefficients)
+  label: WrittenToBLDALPHA
   type: u16
   addr:
     U: 0x3000004
     J: 0x3000006
 -
-  desc: Written to 0x4000050 (BLDCNT, color special effects selection)
-  label: WrittenTo4000050
+  desc: Written to BLDCNT (color special effects selection)
+  label: WrittenToBLDCNT
   type: u16
   addr:
     U: 0x3000006
     J: 0x3000008
 -
-  desc: Written to 0x4000000 (DISPCNT, LCD control)
-  label: WrittenTo4000000
+  desc: Written to DISPCNT (LCD control)
+  label: WrittenToDISPCNT
   type: u16
   addr:
     U: 0x3000008
     J: 0x300000A
 -
-  desc: Written to 0x400000E (BG3CNT, BG3 control)
-  label: WrittenTo400000E
+  desc: Written to BG3CNT (BG3 control)
+  label: WrittenToBG3CNT
   type: u16
   addr:
     U: 0x300000A
     J: 0x300000C
 -
-  desc: Written to 0x4000049 (WININ_H, inside of window 1)
-  label: WrittenTo4000049
+  desc: Written to WININ_H (inside of window 1)
+  label: WrittenToWININ_H
   type: u8
   addr:
     U: 0x300000C
     J: 0x300000E
 -
-  desc: Written to 0x400004A (WINOUT_L, outside of windows)
-  label: WrittenTo400004A
+  desc: Written to WINOUT_L (outside of windows)
+  label: WrittenToWINOUT_L
   type: u8
   addr:
     U: 0x300000D
@@ -574,10 +574,11 @@
 -
   desc: Current clipdata behavior type?
   label: CurrClipdataBehaviorType?
-  type: ClipdataBehaviorType
+  type: u8
   addr:
     U: 0x30000C0
     J: 0x30000C4
+  enum: ClipdataBehaviorType
 -
   desc: Background positions
   label: BgPositions
@@ -1092,7 +1093,7 @@
   addr:
     U: 0x30011EC
     J: 0x3001220
-  enum: ChangedInput
+  enum: ButtonInput
 -
   desc: Next OAM slot
   label: NextOamSlot
@@ -1101,22 +1102,22 @@
     U: 0x30011EE
     J: 0x3001222
 -
-  desc: Written to high nibble of 0x400004C (MOSAIC, mosaic size)
-  label: WrittenTo400004C_High
+  desc: Written to MOSAIC_H (mosaic size)
+  label: WrittenToMOSAIC_H
   type: u16
   addr:
     U: 0x300120C
     J: 0x3001240
 -
-  desc: Written to low nibble 0x400004C (MOSAIC, mosaic size)
-  label: WrittenTo400004C_Low
+  desc: Written to MOSAIC_L (mosaic size)
+  label: WrittenToMOSAIC_L
   type: u16
   addr:
     U: 0x300120E
     J: 0x3001242
 -
-  desc: Written to 0x4000054 (BLDY, brightness coefficient)
-  label: WrittenTo4000054
+  desc: Written to BLDY (brightness coefficient)
+  label: WrittenToBLDY
   type: u16
   addr:
     U: 0x300121E
@@ -1459,10 +1460,11 @@
 -
   desc: Demo button input
   label: DemoButtonInput
-  type: ButtonInput
+  type: u16
   addr:
     U: 0x3004C16
     J: 0x3004C46
+  enum: ButtonInput
 -
   desc: Demo related?
   type: u16

@@ -28,6 +28,39 @@ AreaID:
   val: 0x5
 - desc: Chozodia
   val: 0x6
+ArmCannonDirection:
+- desc: Forward
+  val: 0x0
+- desc: Diagonally up
+  val: 0x1
+- desc: Diagonally down
+  val: 0x2
+- desc: Up
+  val: 0x3
+- desc: Down
+  val: 0x4
+- desc: None
+  val: 0x5
+BGProperty:
+- desc: None
+  val: 0x0
+- desc: RLE compressed
+  val: 0x10
+- desc: Moving BG2
+  val: 0x31
+- desc: LZ77 compressed
+  val: 0x40
+- desc: Dark room
+  val: 0x45
+- desc: BG3 starts from bottom
+  val: 0x46
+BackgroundFade:
+- desc: Nothing
+  val: 0x0
+- desc: Fade to black
+  val: 0x1
+- desc: Fade to white
+  val: 0x2
 BeamBombStatus:
 - desc: Long beam
   val: 0x1
@@ -302,6 +335,11 @@ CollisionCheck:
   val: 0x10
 - desc: Solid/collision
   val: 0x11
+DiagonalAim:
+- desc: Diagonally up
+  val: 0x1
+- desc: Diagonally down
+  val: 0x2
 Difficulty:
 - desc: Easy
   val: 0x0
@@ -502,6 +540,19 @@ Event:
   val: 0x4D
 - desc: End (unused)
   val: 0x4E
+ForcedMovement:
+- desc: Sparking upwards
+  val: 0x0
+- desc: Bouncing/wall-jumping/sparking sidewards
+  val: 0x1
+- desc: Sparking diagonally
+  val: 0x2
+- desc: Holding jump when bouncing (frame 1)
+  val: 0x20
+- desc: Holding jump when bouncing (frame 2)
+  val: 0x21
+- desc: Holding jump when bouncing (frame 3)
+  val: 0x22
 GameMode:
 - desc: Soft reset
   val: 0x0
@@ -561,6 +612,19 @@ Language:
   val: 0x1
 - desc: English
   val: 0x2
+NewProjectileType:
+- desc: Beam
+  val: 0x1
+- desc: Missile
+  val: 0x2
+- desc: Super missile
+  val: 0x3
+- desc: Bomb
+  val: 0x4
+- desc: Power bomb
+  val: 0x5
+- desc: Charged beam
+  val: 0x6
 PaletteAnimationType:
 - desc: Not animated
   val: 0x0
@@ -802,6 +866,24 @@ SamusPose:
   val: 0x3F
 - desc: Activating ziplines
   val: 0x40
+SamusStandingStatus:
+- desc: Standing on ground
+  val: 0x0
+- desc: Standing on enemy
+  val: 0x1
+- desc: Mid-air
+  val: 0x2
+- desc: Not in control of Samus
+  val: 0x3
+SamusSlopeType:
+- desc: Steep
+  val: 0x1
+- desc: Slight
+  val: 0x2
+- desc: /
+  val: 0x10
+- desc: \
+  val: 0x20
 SpriteProperties:
 - desc: No collision?
   val: 0x1
