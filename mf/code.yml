@@ -586,9 +586,9 @@
   mode: thumb
   params:
   - Source address
-  - Interval
+  - Midi key
   - Adjustment value
-  return: Assignment value
+  return: Frequency
 -
   desc: SoundBias 0
   label: SoundBias0
@@ -935,7 +935,7 @@
   label: TakeDamageFromSprite
   addr:
     U: 0xFE18
-    J: 0xFECC
+    J: 0xFEF8
   size:
     U: 0x110
     J: 0x124
@@ -999,6 +999,7 @@
   return: Block top edge Y position
 -
   desc: Sprite collision related?
+  label: SpriteCollisionRelated?
   addr:
     U: 0x1129C
     J: 0x113D8
@@ -1008,6 +1009,7 @@
   return: null
 -
   desc: Sprite collision related?
+  label: SpriteCollisionRelated?
   addr:
     U: 0x11310
     J: 0x1144C
@@ -1059,6 +1061,7 @@
   return: null
 -
   desc: Make sprite face away from Samus (direction)
+  label: MakeSpriteFaceAwayFromSamus_Direction
   addr:
     U: 0x115D0
     J: 0x1170C
@@ -1243,25 +1246,25 @@
   params: null
   return: null
 -
-  desc: Check full health and not full missiles
-  label: CheckFullHealthAndNotFullMissiles
+  desc: Check full energy and not full missiles
+  label: CheckFullEnergyAndNotFullMissiles
   addr:
     U: 0x124A0
     J: 0x1260C
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if full health and not full missiles, 0 otherwise
+  return: 1 if full energy and not full missiles, 0 otherwise
 -
-  desc: Check full missiles and not full health
-  label: CheckFullMissilesAndNotFullHealth
+  desc: Check full missiles and not full energy
+  label: CheckFullMissilesAndNotFullEnergy
   addr:
     U: 0x124D0
     J: 0x1263C
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if full missiles and not full health, 0 otherwise
+  return: 1 if full missiles and not full energy, 0 otherwise
 -
   desc: Check Samus passes through frozen sprite
   label: CheckSamusPassesThroughFrozenSprite
@@ -1274,15 +1277,15 @@
   - Sprite slot number
   return: 1 if Samus passes through sprite, 0 otherwise
 -
-  desc: Check crouched/morphed
-  label: CheckCrouchedOrMorphed
+  desc: Check crouching or morphed
+  label: CheckCrouchingOrMorphed
   addr:
     U: 0x125C4
     J: 0x12730
   size: 0x5C
   mode: thumb
   params: null
-  return: 1 if crouched/morphed, 0 otherwise
+  return: 1 if crouching or morphed, 0 otherwise
 -
   desc: Check morphed
   label: CheckMorphed

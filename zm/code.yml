@@ -27,7 +27,7 @@
   return: null
 -
   desc: Initialize game
-  label: InitializeGame
+  label: InitGame
   addr:
     U: 0x6A0
   size: 0x124
@@ -53,8 +53,8 @@
   params: null
   return: null
 -
-  desc: Execute LZ77UnComp16Bit
-  label: ExecuteLZ77UnComp16Bit
+  desc: Call LZ77UnComp16Bit
+  label: CallLZ77UnComp16Bit
   addr:
     U: 0x90C
   size: 0xC
@@ -64,8 +64,8 @@
   - Destination address
   return: null
 -
-  desc: Execute LZ77UnComp8Bit
-  label: ExecuteLZ77UnComp8Bit
+  desc: Call LZ77UnComp8Bit
+  label: CallLZ77UnComp8Bit
   addr:
     U: 0x918
   size: 0xC
@@ -75,8 +75,8 @@
   - Destination address
   return: null
 -
-  desc: Execute DivArm
-  label: ExecuteDivArm
+  desc: Test DivArm and Sqrt?
+  label: Test_DivArm_Sqrt?
   addr:
     U: 0x924
   size: 0x1C
@@ -84,11 +84,29 @@
   params: null
   return: null
 -
-  desc: Execute SoundBias
-  label: ExecuteSoundBias
+  desc: Call SoundBias
+  label: CallSoundBias
   addr:
     U: 0x940
   size: 0x10
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call MultiBoot
+  label: CallMultiBoot
+  addr:
+    U: 0x950
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call VBlankIntrWait
+  label: CallVBlankIntrWait
+  addr:
+    U: 0x95C
+  size: 0xC
   mode: thumb
   params: null
   return: null
@@ -102,7 +120,124 @@
   params: null
   return: null
 -
+  desc: Clear RAM
+  label: ClearRAM
+  addr:
+    U: 0x9A0
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load interrupt code
+  label: LoadInterruptCode
+  addr:
+    U: 0x9E8
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Reset free OAM
+  label: ResetFreeOam
+  addr:
+    U: 0xA18
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Multiply decimal
+  label: MultiplyDecimal
+  addr:
+    U: 0xA4C
+  size: 0x1C
+  mode: thumb
+  params:
+  - Multiplicand
+  - Multiplier (0x100 = 1)
+  return: Product
+-
+  desc: Divide dividend times 4
+  label: DivideDividendTimes4
+  addr:
+    U: 0xA68
+  size: 0x18
+  mode: thumb
+  params:
+  - Dividend
+  - Divisor
+  return: Quotient
+-
+  desc: Divide from 0x10000
+  label: DivideFrom10000
+  addr:
+    U: 0xA80
+  size: 0x18
+  mode: thumb
+  params:
+  - Divisor
+  return: Quotient
+-
+  desc: Call V-Blank code
+  label: CallVBlankCode
+  addr:
+    U: 0xA98
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set V-Blank code pointer
+  label: SetVBlankCodePtr
+  addr:
+    U: 0xAE4
+  size: 0x1C
+  mode: thumb
+  params:
+  - V-Blank code pointer
+  return: null
+-
+  desc: Call H-Blank code
+  label: CallHBlankCode
+  addr:
+    U: 0xB00
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set H-Blank code pointer
+  label: SetHBlankCodePtr
+  addr:
+    U: 0xB24
+  size: 0x1C
+  mode: thumb
+  params:
+  - H-Blank code pointer
+  return: null
+-
+  desc: Call V-Count code
+  label: CallVCountCode
+  addr:
+    U: 0xB40
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set V-Count code pointer
+  label: SetVCountCodePtr
+  addr:
+    U: 0xB64
+  size: 0x1C
+  mode: thumb
+  params:
+  - V-Count code pointer
+  return: null
+-
   desc: Play sound 1
+  label: PlaySound1
   addr:
     U: 0x2A18
   size: 0x10
@@ -112,6 +247,7 @@
   return: null
 -
   desc: Play sound 2
+  label: PlaySound2
   addr:
     U: 0x2A28
   size: 0x10
@@ -148,6 +284,7 @@
   return: null
 -
   desc: Check set new music track
+  label: CheckSetNewMusicTrack
   addr:
     U: 0x36D0
   size: 0xBC
@@ -157,6 +294,7 @@
   return: null
 -
   desc: Check play new music track
+  label: CheckPlayNewMusicTrack
   addr:
     U: 0x3878
   size: 0x60
@@ -164,7 +302,8 @@
   params: null
   return: null
 -
-  desc: Music related
+  desc: Music related ?
+  label: MusicRelated?
   addr:
     U: 0x39F4
   size: 0x78
@@ -174,8 +313,176 @@
   - '?'
   return: null
 -
-  desc: SoundBias 0
-  label: SoundBias0
+  desc: Call sound code B
+  label: CallSoundCodeB
+  addr:
+    U: 0x4310
+  size: 0x10
+  mode: thumb
+  params:
+  - '?'
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: Sound code B
+  label: SoundCodeB
+  addr:
+    U: 0x4320
+  size: 0x94
+  mode: arm
+  params:
+  - '?'
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: Call sound code C
+  label: CallSoundCodeC
+  addr:
+    U: 0x43B4
+  size: 0x10
+  mode: thumb
+  params:
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: Sound code C
+  label: SoundCodeC
+  addr:
+    U: 0x43C4
+  size: 0xA0
+  mode: arm
+  params:
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: Call sound code A
+  label: CallSoundCodeA
+  addr:
+    U: 0x4464
+  size: 0x10
+  mode: thumb
+  params:
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: Sound code A
+  label: SoundCodeA
+  addr:
+    U: 0x4474
+  size: 0x6DC
+  mode: arm
+  params:
+  - '?'
+  - '?'
+  - '?'
+  return: '?'
+-
+  desc: CpuFastSet
+  label: CpuFastSet
+  addr:
+    U: 0x5190
+  size: 0x4
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  - Length/Mode
+  return: null
+-
+  desc: CpuSet
+  label: CpuSet
+  addr:
+    U: 0x5194
+  size: 0x4
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  - Length/Mode
+  return: null
+-
+  desc: DivArm (divide)
+  label: DivArm_Divide
+  addr:
+    U: 0x5198
+  size: 0x4
+  mode: thumb
+  params:
+  - Denominator
+  - Numerator
+  return: Quotient
+-
+  desc: DivArm (modulo)
+  label: DivArm_Modulo
+  addr:
+    U: 0x519C
+  size: 0x8
+  mode: thumb
+  params:
+  - Denominator
+  - Numerator
+  return: Remainder
+-
+  desc: LZ77UnCompReadNormalWrite16bit
+  label: LZ77UnCompReadNormalWrite16bit
+  addr:
+    U: 0x51A4
+  size: 0x4
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  - Callback parameter
+  - Callback structure
+  return: null
+-
+  desc: LZ77UnCompReadNormalWrite8bit
+  label: LZ77UnCompReadNormalWrite8bit
+  addr:
+    U: 0x51A8
+  size: 0x4
+  mode: thumb
+  params:
+  - Source address
+  - Destination address
+  - Callback parameter
+  - Callback structure
+  return: null
+-
+  desc: MidiKey2Freq
+  label: MidiKey2Freq
+  addr:
+    U: 0x51AC
+  size: 0x4
+  mode: thumb
+  params:
+  - Source address
+  - Midi key
+  - Adjustment value
+  return: Frequency
+-
+  desc: MultiBoot
+  label: MultiBoot
+  addr:
+    U: 0x51B0
+  size: 0x8
+  mode: thumb
+  params:
+  - Pointer to MultiBootParam structure
+  return: 1 if failed, 0 otherwise
+-
+  desc: SoundBias (level 0)
+  label: SoundBias_0
   addr:
     U: 0x51B8
   size: 0x8
@@ -183,8 +490,8 @@
   params: null
   return: null
 -
-  desc: SoundBias 1
-  label: SoundBias1
+  desc: SoundBias (level 0x200)
+  label: SoundBias_200
   addr:
     U: 0x51C0
   size: 0x8
@@ -192,7 +499,27 @@
   params: null
   return: null
 -
+  desc: Sqrt
+  label: Sqrt
+  addr:
+    U: 0x51C8
+  size: 0x4
+  mode: thumb
+  params:
+  - Number
+  return: Result
+-
+  desc: VBlankIntrWait
+  label: VBlankIntrWait
+  addr:
+    U: 0x51CC
+  size: 0x8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Call update arm cannon position offset
+  label: CallUpdateArmCannonPositionOffset
   addr:
     U: 0x7928
   size: 0x20
@@ -200,13 +527,41 @@
   params: null
   return: null
 -
+  desc: Check play low health sound
+  label: CheckPlayLowHealthSound
+  addr:
+    U: 0xB868
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Update arm cannon position offset
+  label: UpdateArmCannonPositionOffset
   addr:
     U: 0xB910
   size: 0x3A8
   mode: thumb
   params:
   - 0 if facing right, 1 if facing left
+  return: null
+-
+  desc: Initialize Samus data
+  label: InitSamusData
+  addr:
+    U: 0xBCB8
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Copy demo button input
+  label: CopyDemoButtonInput
+  addr:
+    U: 0xC414
+  size: 0x34
+  mode: thumb
+  params: null
   return: null
 -
   desc: Main loop for in-game
@@ -218,6 +573,44 @@
   params: null
   return: 1 if returning to title screen
 -
+  desc: Set V-Blank code for in-game
+  label: SetVBlankCodeForInGame
+  addr:
+    U: 0xC6F8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update Samus graphics
+  label: UpdateSamusGfx
+  addr:
+    U: 0xC734
+  size: 0x160
+  mode: thumb
+  params:
+  - Update palette flag
+  - Samus graphics info
+  return: null
+-
+  desc: V-Blank code during in-game loads
+  label: VBlankCodeDuringInGameLoads
+  addr:
+    U: 0xC894
+  size: 0x158
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: V-Blank code during in-game
+  label: VBlankCodeDuringInGame
+  addr:
+    U: 0xCA6C
+  size: 0x134
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Load spriteset
   label: LoadSpriteset
   addr:
@@ -225,6 +618,29 @@
   size: 0x100
   mode: thumb
   params: null
+  return: null
+-
+  desc: Load new sprite graphics
+  label: LoadNewSpriteGfx
+  addr:
+    U: 0xE084
+  size: 0x2C
+  mode: thumb
+  params:
+  - Sprite ID
+  - Sprite graphics row
+  return: null
+-
+  desc: Load new sprite palette
+  label: LoadNewSpritePalette
+  addr:
+    U: 0xE0B0
+  size: 0x40
+  mode: thumb
+  params:
+  - Sprite ID
+  - Sprite graphics row
+  - Length (rows)
   return: null
 -
   desc: Clear sprite data
@@ -275,7 +691,7 @@
   return: Assigned sprite RAM slot, 0xFF otherwise
 -
   desc: Spawn new primary sprite
-  label: DisplayOnScreenMessage
+  label: SpawnNewPrimarySprite
   addr:
     U: 0xE31C
   size: 0xB8
@@ -388,6 +804,7 @@
   return: null
 -
   desc: Make sprite face away from Samus (direction)
+  label: MakeSpriteFaceAwayFromSamus_Direction
   addr:
     U: 0xF944
   size: 0x34
@@ -416,8 +833,8 @@
   desc: Check end of sprite animation (slot)
   label: CheckEndOfSpriteAnimation_Slot
   addr:
-    U: 0xFC7C
-  size: 0x8
+    U: 0xFC3C
+  size: 0x48
   mode: thumb
   params:
   - Sprite slot number
@@ -432,6 +849,166 @@
   params:
   - Sprite slot number
   return: 1 if animation is near end, 0 otherwise
+-
+  desc: Check Samus near sprite (left/right)
+  label: CheckSamusNearSprite_LeftRight
+  addr:
+    U: 0xFDE0
+  size: 0x68
+  mode: thumb
+  params:
+  - Y range
+  - X range
+  return: 4 if left of sprite, 8 if right of sprite, 0 if out of range
+-
+  desc: Check Samus near sprite (above/below)
+  label: CheckSamusNearSprite_AboveBelow
+  addr:
+    U: 0xFE48
+  size: 0x68
+  mode: thumb
+  params:
+  - Y range
+  - X range
+  return: 1 if above sprite, 2 if below sprite, 0 if out of range
+-
+  desc: Check Samus near sprite (front/behind X)
+  label: CheckSamusNearSprite_FrontBehindX
+  addr:
+    U: 0xFEB0
+  size: 0xB0
+  mode: thumb
+  params:
+  - Y range
+  - X range (front)
+  - X range (behind)
+  return: 3 if in range in front, 0xC if in range behind, 0 if out of range
+-
+  desc: Update sprite freeze timer
+  label: UpdateSpriteFreezeTimer
+  addr:
+    U: 0xFFE8
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update secondary sprites freeze timer
+  label: UpdateSecondarySpritesFreezeTimer
+  addr:
+    U: 0x100FC
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update primary sprite freeze timer
+  label: UpdatePrimarySpriteFreezeTimer
+  addr:
+    U: 0x10198
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Unfreeze secondary sprites
+  label: UnfreezeSecondarySprites
+  addr:
+    U: 0x101F4
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Refill energy
+  label: RefillEnergy
+  addr:
+    U: 0x1025C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: 1 if energy not full at start, 0 otherwise
+-
+  desc: Refill missiles
+  label: RefillMissiles
+  addr:
+    U: 0x102A0
+  size: 0x44
+  mode: thumb
+  params: null
+  return: 1 if missiles not full at start, 0 otherwise
+-
+  desc: Refill super missiles
+  label: RefillSuperMissiles
+  addr:
+    U: 0x102E4
+  size: 0x44
+  mode: thumb
+  params: null
+  return: 1 if super missiles not full at start, 0 otherwise
+-
+  desc: Refill power bombs
+  label: RefillPowerBombs
+  addr:
+    U: 0x10328
+  size: 0x44
+  mode: thumb
+  params: null
+  return: 1 if power bombs not full at start, 0 otherwise
+-
+  desc: Check crouching or morphed
+  label: CheckCrouchingOrMorphed
+  addr:
+    U: 0x1036C
+  size: 0x110
+  mode: thumb
+  params: null
+  return: 1 if crouching or morphed, 0 otherwise
+-
+  desc: Check crouching or crawling
+  label: CheckCrouchingOrCrawling
+  addr:
+    U: 0x1047C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: 1 if crouching or crawling, 0 otherwise
+-
+  desc: Check morphed
+  label: CheckMorphed
+  addr:
+    U: 0x104A8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: 1 if morphed, 0 otherwise
+-
+  desc: Check Samus pose pauses background activity?
+  label: CheckSamusPosePausesBackground?
+  addr:
+    U: 0x104CC
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: '?'
+-
+  desc: Check pulling self up
+  label: CheckPullingSelfUp
+  addr:
+    U: 0x106A8
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if pulling self up, 0 otherwise
+-
+  desc: Check on a zipline
+  label: CheckOnZipline
+  addr:
+    U: 0x106C8
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if on a zipline, 0 otherwise
 -
   desc: Find given primary sprite
   addr:
@@ -1334,8 +1911,8 @@
   params: null
   return: null
 -
-  desc: Division
-  label: Division
+  desc: Divide (signed)
+  label: Divide_Signed
   addr:
     U: 0x8AC34
   size: 0x88
@@ -1345,11 +1922,42 @@
   - Divisor
   return: Quotient
 -
-  desc: Modulo
-  label: Modulo
+  desc: Divide by 0 handler (empty)
+  label: DivideBy0Handler
+  addr:
+    U: 0x8ACC8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Modulo (signed)
+  label: Modulo_Signed
   addr:
     U: 0x8AD10
-  size: 0xC4
+  size: 0xD0
+  mode: thumb
+  params:
+  - Dividend
+  - Divisor
+  return: Remainder
+-
+  desc: Divide (unsigned)
+  label: Divide_Unsigned
+  addr:
+    U: 0x8ADE0
+  size: 0x78
+  mode: thumb
+  params:
+  - Dividend
+  - Divisor
+  return: Quotient
+-
+  desc: Modulo (unsigned)
+  label: Modulo_Unsigned
+  addr:
+    U: 0x8AE58
+  size: 0x88
   mode: thumb
   params:
   - Dividend

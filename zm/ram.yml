@@ -1037,6 +1037,24 @@
   addr:
     U: 0x30016C4
 -
+  desc: Pointer to V-Blank code
+  label: VBlankCodePtr
+  type: pointer
+  addr:
+    U: 0x3001CEC
+-
+  desc: Pointer to H-Blank code
+  label: HBlankCodePtr
+  type: pointer
+  addr:
+    U: 0x3001CF0
+-
+  desc: Pointer to V-Count code
+  label: VCountCodePtr
+  type: pointer
+  addr:
+    U: 0x3001CF4
+-
   desc: Music info
   label: MusicInfo
   type: MusicInfo
@@ -1075,6 +1093,25 @@
   addr:
     U: 0x3004294
   size: 0xAC
+-
+  desc: Demo input number
+  label: DemoInputNumber
+  type: u16
+  addr:
+    U: 0x30053CA
+-
+  desc: Demo input timer
+  label: DemoInputTimer
+  type: u16
+  addr:
+    U: 0x30053CC
+-
+  desc: Demo button input
+  label: DemoButtonInput
+  type: u16
+  addr:
+    U: 0x30053CE
+  enum: ButtonInput
 -
   desc: Tile table and clipdata pointers
   label: TileTableAndClipdataPtrs

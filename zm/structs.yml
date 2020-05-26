@@ -958,7 +958,7 @@ SamusData:
     type: u8
     offset: 0x4
     enum: ForcedMovement
-  - desc: Speed boosting/shinespark flag
+  - desc: Speed boosting/shinesparking flag
     type: u8
     offset: 0x5
   - desc: Invincibility timer
@@ -1285,6 +1285,37 @@ SpriteDebris:
   - desc: '?'
     type: u8
     offset: 0xE
+SpriteStats:
+  size: 0x12
+  vars:
+  - desc: Spawn health
+    type: u16
+    offset: 0x0
+  - desc: Damage
+    type: u16
+    offset: 0x2
+  - desc: Weakness
+    type: flags16
+    offset: 0x4
+    enum: SpriteWeakness
+  - desc: No drop probability (out of 0x400)
+    type: u16
+    offset: 0x6
+  - desc: Small health probability (out of 0x400)
+    type: u16
+    offset: 0x8
+  - desc: Large probability (out of 0x400)
+    type: u16
+    offset: 0xA
+  - desc: Missile probability (out of 0x400)
+    type: u16
+    offset: 0xC
+  - desc: Super missile probability (out of 0x400)
+    type: u16
+    offset: 0xE
+  - desc: Power bomb probability (out of 0x400)
+    type: u16
+    offset: 0x10
 SpritesetEntry:
   size: 0x2
   vars:
