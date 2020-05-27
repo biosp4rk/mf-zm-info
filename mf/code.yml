@@ -1368,8 +1368,8 @@
   params: null
   return: null
 -
-  desc: Count given secondary sprite
-  label: CountGivenSecondarySprite
+  desc: Count secondary sprites
+  label: CountSecondarySprites
   addr:
     U: 0x12858
     J: 0x129C4
@@ -1379,8 +1379,8 @@
   - Sprite ID
   return: Secondary sprite count
 -
-  desc: Count given primary sprite
-  label: CountGivenPrimarySprite
+  desc: Count primary sprites
+  label: CountPrimarySprites
   addr:
     U: 0x128A8
     J: 0x12A14
@@ -1390,8 +1390,8 @@
   - Sprite ID
   return: Primary sprite count
 -
-  desc: Find given primary sprite
-  label: FindGivenPrimarySprite
+  desc: Find primary sprite
+  label: FindPrimarySprite
   addr:
     U: 0x128F8
     J: 0x12A64
@@ -1401,8 +1401,8 @@
   - Sprite ID
   return: Sprite RAM slot, 0xFF otherwise
 -
-  desc: Find given secondary sprite
-  label: FindGivenSecondarySprite
+  desc: Find secondary sprite
+  label: FindSecondarySprite
   addr:
     U: 0x12944
     J: 0x12AB0
@@ -1412,8 +1412,8 @@
   - Sprite ID
   return: Sprite RAM slot, 0xFF otherwise
 -
-  desc: Find given secondary sprite with primary sprite slot
-  label: FindGivenSecondarySpriteWithPrimary
+  desc: Find secondary sprite with primary sprite slot
+  label: FindSecondarySpriteWithPrimarySlot
   addr:
     U: 0x12990
     J: 0x12AFC
@@ -1987,6 +1987,7 @@
   return: null
 -
   desc: SA-X elevator close-up related?
+  label: SaxElevatorCloseUpRelated?
   addr:
     U: 0x6E1AC
     J: 0x6E858
@@ -1996,6 +1997,7 @@
   return: null
 -
   desc: Cutscene related?
+  label: CutsceneRelated?
   addr:
     U: 0x6E9A8
     J: 0x6F054
@@ -2005,6 +2007,7 @@
   return: '?'
 -
   desc: Get foreground effect based on event?
+  label: GetForegroundEffecBasedOnEvent?
   addr:
     U: 0x6EDF4
     J: 0x6F4A0
@@ -2104,6 +2107,16 @@
   mode: thumb
   params:
   - Address group to initialize (0 or 1)
+  return: null
+-
+  desc: Draw HUD OAM
+  label: DrawHudOam
+  addr:
+    U: 0x719F8
+    J: 0x720A4
+  size: 0x254
+  mode: thumb
+  params: null
   return: null
 -
   desc: Draw HUD energy
@@ -3185,8 +3198,8 @@
   - Projectile X position
   return: null
 -
-  desc: Missile tink
-  label: MissileTink
+  desc: Missile tumble
+  label: MissileTumble
   addr:
     U: 0x84660
     J: 0x852BC
@@ -3384,8 +3397,8 @@
   - 1 for ice, 2 for diffusion, 0 otherwise
   return: null
 -
-  desc: Move tinked missile
-  label: MoveTinkedMissile
+  desc: Move tumbling missile
+  label: MoveTumblingMissile
   addr:
     U: 0x85094
     J: 0x85CF0

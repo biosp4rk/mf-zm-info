@@ -1010,7 +1010,38 @@
   params: null
   return: 1 if on a zipline, 0 otherwise
 -
-  desc: Find given primary sprite
+  desc: Count primary sprites
+  label: CountPrimarySprites
+  addr:
+    U: 0x106E8
+  size: 0x50
+  mode: thumb
+  params:
+  - Sprite ID
+  return: Primary sprite count
+-
+  desc: Count secondary sprites with current sprite's primary slot
+  label: CountSecondarySpritesWithCurrPrimarySlot
+  addr:
+    U: 0x10738
+  size: 0x60
+  mode: thumb
+  params:
+  - Sprite ID
+  return: Secondary sprite count
+-
+  desc: Count primary sprites with current sprite's primary slot
+  label: CountPrimarySpritesWithCurrPrimarySlot
+  addr:
+    U: 0x10798
+  size: 0x60
+  mode: thumb
+  params:
+  - Sprite ID
+  return: Primary sprite count
+-
+  desc: Find primary sprite
+  label: FindPrimarySprite
   addr:
     U: 0x107F8
   size: 0x58
@@ -1018,6 +1049,139 @@
   params:
   - Sprite ID
   return: Sprite RAM slot, 0xFF otherwise
+-
+  desc: Find secondary sprite with part number
+  label: FindSecondarySpriteWithPartNumber
+  addr:
+    U: 0x10850
+  size: 0x60
+  mode: thumb
+  params:
+  - Sprite ID
+  - Part number
+  return: Sprite RAM slot, 0xFF otherwise
+-
+  desc: Check current enemy has drop
+  label: CheckCurrEnemyHasDrop
+  addr:
+    U: 0x108B0
+  size: 0x50
+  mode: thumb
+  params: null
+  return: 1 if current enemy has drop, 0xFF otherwise
+-
+  desc: Count enemy drops
+  label: CountEnemyDrops
+  addr:
+    U: 0x10900
+  size: 0x44
+  mode: thumb
+  params: null
+  return: Enemy drop count
+-
+  desc: Get ammo drop sprite ID
+  label: GetAmmoDropSpriteID
+  addr:
+    U: 0x10E90
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: Ammo drop sprite ID, 0 otherwise
+-
+  desc: Determine enemy drop sprite ID
+  label: DetermineEnemyDropSpriteID
+  addr:
+    U: 0x10EEC
+  size: 0x198
+  mode: thumb
+  params: null
+  return: Enemy drop sprite ID, 0 otherwise
+-
+  desc: Process sprite debris
+  label: ProcessSpriteDebris
+  addr:
+    U: 0x117B4
+  size: 0x4D4
+  mode: thumb
+  params:
+  - Debris data pointer
+  return: null
+-
+  desc: Initialize sprite debris
+  label: InitSpriteDebris
+  addr:
+    U: 0x11E48
+  size: 0x90
+  mode: thumb
+  params:
+  - Cloud type
+  - Debris type
+  - Y position
+  - X position
+  return: null
+-
+  desc: Get Brinstar room location text number
+  label: GetBrinstarLocationTextNum
+  addr:
+    U: 0x11ED8
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Kraid room location text number
+  label: GetKraidLocationTextNum
+  addr:
+    U: 0x11F90
+  size: 0xD0
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Crateria room location text number
+  label: GetCrateriaLocationTextNum
+  addr:
+    U: 0x12060
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Norfair room location text number
+  label: GetNorfairLocationTextNum
+  addr:
+    U: 0x120DC
+  size: 0xE8
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Ridley room location text number
+  label: GetRidleyLocationTextNum
+  addr:
+    U: 0x121C4
+  size: 0x98
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Chozodia room location text number
+  label: GetChozodiaLocationTextNum
+  addr:
+    U: 0x1225C
+  size: 0x1A8
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
+-
+  desc: Get Tourian room location text number
+  label: GetTourianLocationTextNum
+  addr:
+    U: 0x12404
+  size: 0x80
+  mode: thumb
+  params: null
+  return: Location text number, 0xFF otherwise
 -
   desc: Sprite AI
   addr:
@@ -1028,6 +1192,7 @@
   return: null
 -
   desc: Set beam particle effect
+  label: SetBeamParticleEffect
   addr:
     U: 0x4ED08
   size: 0x8C
@@ -1036,6 +1201,7 @@
   return: null
 -
   desc: Check number of projectiles
+  label: CheckNumOfProjectiles
   addr:
     U: 0x4ED94
   size: 0x50
@@ -1046,6 +1212,7 @@
   return: 1 if under limit, 0 otherwise
 -
   desc: Initialize projectile
+  label: InitProjectile
   addr:
     U: 0x4EDE4
   size: 0xA4
@@ -1057,6 +1224,7 @@
   return: 1 if initialized, 0 otherwise
 -
   desc: Update arm cannon and weapons
+  label: UpdateArmCannonAndWeapons
   addr:
     U: 0x4EE88
   size: 0x47C
@@ -1065,6 +1233,7 @@
   return: null
 -
   desc: Advance projectile animation
+  label: AdvanceProjectileAnimation
   addr:
     U: 0x4F304
   size: 0x38
@@ -1074,6 +1243,7 @@
   return: null
 -
   desc: Check despawn projectile
+  label: CheckDespawnProjectile
   addr:
     U: 0x4F578
   size: 0xF8
@@ -1083,6 +1253,7 @@
   return: null
 -
   desc: Load beam graphics
+  label: LoadBeamGfx
   addr:
     U: 0x4F670
   size: 0x2B0
@@ -1091,6 +1262,7 @@
   return: null
 -
   desc: Call load beam graphics and clear projectiles
+  label: LoadBeamGfxAndClearProjectiles
   addr:
     U: 0x4F920
   size: 0x34
@@ -1099,6 +1271,7 @@
   return: null
 -
   desc: Move projectile
+  label: MoveProjectile
   addr:
     U: 0x4F954
   size: 0xC4
@@ -1109,6 +1282,7 @@
   return: null
 -
   desc: Check projectile hit block?
+  label: CheckProjectileHitBlock?
   addr:
     U: 0x4FA18
   size: 0x24
@@ -1116,18 +1290,20 @@
   params:
   - Projectile Y position
   - Projectile X position
-  return: ???
+  return: '?'
 -
   desc: Check projectile hit block?
+  label: CheckProjectileHitBlock?
   addr:
     U: 0x4FA3C
   size: 0x1FC
   mode: thumb
   params:
   - Projectile data pointer
-  return: ???
+  return: '?'
 -
   desc: Charged beam trail related?
+  label: ChargedBeamTrailRelated?
   addr:
     U: 0x4FC38
   size: 0xA8
@@ -1138,7 +1314,8 @@
   - '?'
   return: null
 -
-  desc: Missile tink related?
+  desc: Missile tumble related?
+  label: MissileTumbleRelated?
   addr:
     U: 0x4FCE0
   size: 0x68
@@ -1148,6 +1325,7 @@
   return: null
 -
   desc: Check projectile hit block?
+  label: CheckProjectileHitBlock?
   addr:
     U: 0x4FD48
   size: 0x54
@@ -1159,6 +1337,7 @@
   return: null
 -
   desc: Check projectile hit sprite?
+  label: CheckProjectileHitSprite?
   addr:
     U: 0x4FD9C
   size: 0x5D4
@@ -1167,6 +1346,7 @@
   return: null
 -
   desc: Get sprite weakness
+  label: GetSpriteWeakness
   addr:
     U: 0x50370
   size: 0x50
@@ -1176,6 +1356,7 @@
   return: Sprite weakness
 -
   desc: Ice beam deal damage
+  label: IceBeamDealDamage
   addr:
     U: 0x503A0
   size: 0x84
@@ -1186,6 +1367,7 @@
   return: Sprite freeze timer (F0 if alive, 0 if dead)
 -
   desc: Projectile deal damage
+  label: ProjectileDealDamage
   addr:
     U: 0x50424
   size: 0x88
@@ -1196,6 +1378,7 @@
   return: 1 if sprite is dead, 0 otherwise
 -
   desc: Projectile hit sprite immune to projectiles
+  label: ProjectileHitImmuneSprite
   addr:
     U: 0x504AC
   size: 0x20
@@ -1205,6 +1388,7 @@
   return: null
 -
   desc: Projectile hit solid sprite
+  label: ProjectileHitSolidSprite
   addr:
     U: 0x504CC
   size: 0x20
@@ -1214,6 +1398,7 @@
   return: null
 -
   desc: Projectile hit sprite
+  label: ProjectileHitSprite
   addr:
     U: 0x505AC
   size: 0xA8
@@ -1226,7 +1411,8 @@
   - Graphics effect
   return: null
 -
-  desc: Move tinked missile
+  desc: Move tumbling missile
+  label: MoveTumblingMissile
   addr:
     U: 0x50914
   size: 0x60
@@ -1238,6 +1424,7 @@
   return: null
 -
   desc: Missile hit sprite
+  label: MissileHitSprite
   addr:
     U: 0x509DC
   size: 0xA0
@@ -1250,6 +1437,7 @@
   return: null
 -
   desc: Super missile hit sprite
+  label: SuperMissileHitSprite
   addr:
     U: 0x50A7C
   size: 0x9C
@@ -1262,6 +1450,7 @@
   return: null
 -
   desc: Process normal beam
+  label: ProcessNormalBeam
   addr:
     U: 0x50B64
   size: 0xF8
@@ -1271,6 +1460,7 @@
   return: null
 -
   desc: Process long beam
+  label: ProcessLongBeam
   addr:
     U: 0x50C5C
   size: 0xEC
@@ -1280,6 +1470,7 @@
   return: null
 -
   desc: Process ice beam
+  label: ProcessIceBeam
   addr:
     U: 0x50D48
   size: 0x124
@@ -1288,16 +1479,18 @@
   - Projectile data pointer
   return: null
 -
-  desc: Wave beam related
+  desc: Wave beam related?
+  label: WaveBeamRelated?
   addr:
     U: 0x50E6C
   size: 0x1FC
   mode: thumb
   params:
   - Projectile data pointer
-  return: ???
+  return: '?'
 -
   desc: Process wave beam
+  label: ProcessWaveBeam
   addr:
     U: 0x51068
   size: 0x130
@@ -1307,6 +1500,7 @@
   return: null
 -
   desc: Process plasma beam
+  label: ProcessPlasmaBeam
   addr:
     U: 0x51198
   size: 0x1BC
@@ -1316,6 +1510,7 @@
   return: null
 -
   desc: Process pistol
+  label: ProcessPistol
   addr:
     U: 0x51354
   size: 0xEC
@@ -1325,6 +1520,7 @@
   return: null
 -
   desc: Process charged normal beam
+  label: ProcessChargedNormalBeam
   addr:
     U: 0x51440
   size: 0xF8
@@ -1334,6 +1530,7 @@
   return: null
 -
   desc: Process charged long beam
+  label: ProcessChargedLongBeam
   addr:
     U: 0x51538
   size: 0xF8
@@ -1343,6 +1540,7 @@
   return: null
 -
   desc: Process charged ice beam
+  label: ProcessChargedIceBeam
   addr:
     U: 0x51630
   size: 0x134
@@ -1352,6 +1550,7 @@
   return: null
 -
   desc: Process charged wave beam
+  label: ProcessChargedWaveBeam
   addr:
     U: 0x51764
   size: 0x13C
@@ -1361,6 +1560,7 @@
   return: null
 -
   desc: Process charged plasma beam
+  label: ProcessChargedPlasmaBeam
   addr:
     U: 0x518A0
   size: 0x1DC
@@ -1370,6 +1570,7 @@
   return: null
 -
   desc: Process charged pistol
+  label: ProcessChargedPistol
   addr:
     U: 0x51A7C
   size: 0xF8
@@ -1379,6 +1580,7 @@
   return: null
 -
   desc: Decrement missile counter
+  label: DecrementMissileCounter
   addr:
     U: 0x51B74
   size: 0x38
@@ -1388,6 +1590,7 @@
   return: null
 -
   desc: Process missile
+  label: ProcessMissile
   addr:
     U: 0x51BAC
   size: 0x118
@@ -1397,6 +1600,7 @@
   return: null
 -
   desc: Decrement super missile counter
+  label: DecrementSuperMissileCounter
   addr:
     U: 0x51CC4
   size: 0x38
@@ -1406,6 +1610,7 @@
   return: null
 -
   desc: Process super missile
+  label: ProcessSuperMissile
   addr:
     U: 0x51CFC
   size: 0x118
@@ -1414,7 +1619,8 @@
   - Projectile data pointer
   return: null
 -
-  desc: Ball launcher related
+  desc: Ball launcher related?
+  label: BallLauncherRelated?
   addr:
     U: 0x51E14
   size: 0xB8
@@ -1423,7 +1629,8 @@
   - Projectile data pointer
   return: null
 -
-  desc: Bomb explosion related
+  desc: Bomb explosion related?
+  label: BombExplosionRelated?
   addr:
     U: 0x51ECC
   size: 0x12C
@@ -1433,6 +1640,7 @@
   return: null
 -
   desc: Process bomb
+  label: ProcessBomb
   addr:
     U: 0x51FF8
   size: 0x1FC
@@ -1442,6 +1650,7 @@
   return: null
 -
   desc: Process power bomb
+  label: ProcessPowerBomb
   addr:
     U: 0x521F4
   size: 0x114
@@ -1450,7 +1659,8 @@
   - Projectile data pointer
   return: null
 -
-  desc: Draw HUD
+  desc: Draw HUD OAM
+  label: DrawHudOam
   addr:
     U: 0x52308
   size: 0x35C
@@ -1458,7 +1668,48 @@
   params: null
   return: null
 -
+  desc: Draw HUD energy
+  label: DrawHudEnergy
+  addr:
+    U: 0x526D4
+  size: 0x598
+  mode: thumb
+  params:
+  - Skip updating number flag?
+  return: null
+-
+  desc: Draw HUD missiles
+  label: DrawHudMissiles
+  addr:
+    U: 0x52F1C
+  size: 0x220
+  mode: thumb
+  params:
+  - Skip updating number flag?
+  return: null
+-
+  desc: Draw HUD power bombs
+  label: DrawHudPowerBombs
+  addr:
+    U: 0x5313C
+  size: 0x1F8
+  mode: thumb
+  params:
+  - Skip updating number flag?
+  return: null
+-
+  desc: Draw HUD super missiles
+  label: DrawHudSuperMissiles
+  addr:
+    U: 0x53334
+  size: 0x1F8
+  mode: thumb
+  params:
+  - Skip updating number flag?
+  return: null
+-
   desc: Check timer displayed
+  label: CheckTimerDisplayed
   addr:
     U: 0x53968
   size: 0x40
@@ -1467,6 +1718,7 @@
   return: 1 for Mother Brain, 2 for Mecha Ridley, 0 otherwise
 -
   desc: Set timer digits
+  label: SetTimerDigits
   addr:
     U: 0x53AA8
   size: 0xBC
@@ -1475,6 +1727,7 @@
   return: null
 -
   desc: Set particle effect
+  label: SetParticleEffect
   addr:
     U: 0x540EC
   size: 0xA0
@@ -1486,6 +1739,7 @@
   return: null
 -
   desc: Load room
+  label: LoadRoom
   addr:
     U: 0x55F7C
   size: 0x26C
@@ -1503,7 +1757,7 @@
   return: null
 -
   desc: Load room backgrounds
-  label: LoadRoomBGs
+  label: LoadRoomBackgrounds
   addr:
     U: 0x5656C
   size: 0x158
@@ -1512,6 +1766,7 @@
   return: null
 -
   desc: Clipdata related?
+  label: ClipdataRelated?
   addr:
     U: 0x57E7C
   size: 0x100
@@ -1519,9 +1774,10 @@
   params:
   - Y position
   - X position
-  return: ???
+  return: '?'
 -
   desc: Check can use elevator
+  label: CheckCanUseElevator
   addr:
     U: 0x5819C
   size: 0xC4
@@ -1563,7 +1819,7 @@
   return: null
 -
   desc: Finish collecting tank
-  label: RemoveCollectedTank
+  label: FinishCollectingTank
   addr:
     U: 0x5AD8C
   size: 0x60
@@ -1572,7 +1828,7 @@
   return: null
 -
   desc: Finish collecting ability
-  label: RemoveCollectedAbility
+  label: FinishCollectedAbility
   addr:
     U: 0x5ADEC
   size: 0x30
@@ -1593,7 +1849,7 @@
   return: null
 -
   desc: Remove collected tanks
-  label: CheckRemoveCollectedTanks
+  label: RemoveCollectedTanks
   addr:
     U: 0x5B114
   size: 0xC4
@@ -1602,6 +1858,7 @@
   return: null
 -
   desc: Play cutscene
+  label: PlayCutscene
   addr:
     U: 0x5BFD4
   size: 0xA0
@@ -1611,7 +1868,7 @@
   return: null
 -
   desc: Load animated tileset
-  label: LoadAnimTileset
+  label: LoadAnimatedTileset
   addr:
     U: 0x5E130
   size: 0xF4
@@ -1620,6 +1877,7 @@
   return: null
 -
   desc: Check enter door
+  label: CheckEnterDoor
   addr:
     U: 0x5EBF0
   size: 0x1A4
@@ -1630,6 +1888,7 @@
   return: 1 if door found, 0 otherwise
 -
   desc: Set hatch as opened
+  label: SetHatchAsOpened
   addr:
     U: 0x5F004
   size: 0xA0
@@ -1641,6 +1900,7 @@
   return: 1 if hatch never opened, 0 otherwise
 -
   desc: Check play cutscene during transition
+  label: CheckPlayCutsceneDuringTransition
   addr:
     U: 0x5F744
   size: 0xB8
@@ -1651,6 +1911,7 @@
   return: null
 -
   desc: Check play cutscene during elevator
+  label: CheckPlayCutsceneDuringElevator
   addr:
     U: 0x5F7FC
   size: 0xF8
@@ -1659,6 +1920,7 @@
   return: null
 -
   desc: Load first room?
+  label: LoadFirstRoom?
   addr:
     U: 0x6055C
   size: 0x204
@@ -1678,14 +1940,16 @@
   return: 1 if event is set, 0 otherwise
 -
   desc: Cutscene related?
+  label: CutsceneRelated?
   addr:
     U: 0x61044
   size: 0x1E4
   mode: thumb
   params: null
-  return: ???
+  return: '?'
 -
   desc: Get minimap data
+  label: GetMinimapData
   addr:
     U: 0x6B0F8
   size: 0x148
@@ -1696,7 +1960,7 @@
   return: null
 -
   desc: Update minimap square for collected item
-  label: GetItemUpdateMinimap
+  label: UpdateMinimapSquareForCollectedItem
   addr:
     U: 0x6CBD8
   size: 0x90
@@ -1727,6 +1991,7 @@
   return: null
 -
   desc: Update minimap animated palettes
+  label: UpdateMinimapAnimatedPalettes
   addr:
     U: 0x6FD00
   size: 0x118
@@ -1735,6 +2000,7 @@
   return: null
 -
   desc: Draw status screen items
+  label: DrawStatusScreenItems
   addr:
     U: 0x6FF4C
   size: 0xD4
@@ -1744,6 +2010,7 @@
   return: 1 if done drawing
 -
   desc: Set status screen bomb visibility
+  label: SetStatusScreenBombVisibility
   addr:
     U: 0x709C0
   size: 0x26C
@@ -1753,6 +2020,7 @@
   return: null
 -
   desc: Write SRAM
+  label: WriteSram
   addr:
     U: 0x73CE4
   size: 0x350
@@ -1761,6 +2029,7 @@
   return: null
 -
   desc: Check unlock time attack?
+  label: CheckUnlockTimeAttack?
   addr:
     U: 0x7F3FC
   size: 0x210
@@ -1769,6 +2038,7 @@
   return: null
 -
   desc: Get percent and ending number
+  label: GetPercentAndEndingNum
   addr:
     U: 0x87AEC
   size: 0x11C
