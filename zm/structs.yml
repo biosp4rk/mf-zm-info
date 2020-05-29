@@ -471,6 +471,35 @@ DoorPositionStart:
   - desc: Y position start
     type: u16
     offset: 0x2
+ElevatorRoomPair:
+  size: 0x8
+  vars:
+  - desc: Area ID 1
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - desc: Room ID 1
+    type: u8
+    offset: 0x1
+  - desc: Map X coordinate 1
+    type: u8
+    offset: 0x2
+  - desc: Map Y coordinate 1
+    type: u8
+    offset: 0x3
+  - desc: Area ID 2
+    type: u8
+    offset: 0x4
+    enum: AreaID
+  - desc: Room ID 2
+    type: u8
+    offset: 0x5
+  - desc: Map X coordinate 2
+    type: u8
+    offset: 0x6
+  - desc: Map Y coordinate 2
+    type: u8
+    offset: 0x7
 Equipment:
   size: 0x14
   vars:
@@ -593,16 +622,16 @@ HatchData:
     offset: 0x0
   - desc: Status
     type: u8
-    offset: 0x0
+    offset: 0x1
   - desc: Hits?
     type: u8
-    offset: 0x0
+    offset: 0x2
   - desc: Type
     type: u8
-    offset: 0x0
+    offset: 0x3
   - desc: Animation counter
     type: u8
-    offset: 0x0
+    offset: 0x4
 HatchLockEvent:
   size: 0x8
   vars:
@@ -936,6 +965,18 @@ RoomEntry:
   - desc: Music track
     type: u16
     offset: 0x3A
+RoomSpriteEntry:
+  size: 0x3
+  vars:
+  - desc: Y position
+    type: u8
+    offset: 0x0
+  - desc: X position
+    type: u8
+    offset: 0x1
+  - desc: Properties
+    type: u8
+    offset: 0x2
 SamusData:
   size: 0x20
   vars:
@@ -993,7 +1034,7 @@ SamusData:
     type: s16
     offset: 0x16
   - desc: Y velocity
-    type: S16
+    type: s16
     offset: 0x18
   - desc: Current slope type
     type: u16
@@ -1132,6 +1173,18 @@ ScrewAttackAnimation:
   - desc: Current animation
     type: u8
     offset: 0x2
+SoundDataEntry:
+  size: 0x8
+  vars:
+  - desc: Sound header pointer
+    type: pointer
+    offset: 0x0
+  - desc: Track group number
+    type: u16
+    offset: 0x4
+  - desc: Track group number
+    type: u16
+    offset: 0x6
 SpriteData:
   size: 0x38
   vars:

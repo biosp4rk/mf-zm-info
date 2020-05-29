@@ -1,10 +1,38 @@
 -
+  desc: Sine Y values
+  label: SineYValues
+  type: u16
+  addr:
+    U: 0x8C71C
+  count: 0x140
+-
   desc: Random number table for Ruins Test
   label: RuinsTestRandomNumbers
   type: u8
   addr:
     U: 0x8C99C
   count: 0x100
+-
+  desc: Delay/note length table
+  label: DelayNoteLengthTable
+  type: u8
+  addr:
+    U: 0x8CBD0
+  count: 0x31
+-
+  desc: Sound data entries
+  label: SoundDataEntries
+  type: SoundDataEntry
+  addr:
+    U: 0x8F2C0
+  count: 0x2C4
+-
+  desc: Random number table (0-F)
+  label: RandomNumTable_0_F
+  type: u8
+  addr:
+    U: 0x2B0CAC
+  count: 0x20
 -
   desc: Primary sprite stats
   label: PrimarySpriteStats
@@ -20,6 +48,16 @@
     U: 0x2B1BE4
   count: 0x4D
 -
+  desc: Spriteset entries
+  addr:
+    U: 0x2B2150
+  size: 0x3D4
+-
+  desc: Sprite graphics
+  addr:
+    U: 0x2B2870
+  size: 0x71238
+-
   desc: Missile digit graphics
   label: MissileDigitGfx
   addr:
@@ -32,8 +70,105 @@
     U: 0x32FBC8
   size: 0x900
 -
+  desc: Blank room sprite data
+  type: RoomSpriteEntry
+  addr:
+    U: 0x33DFD8
+-
+  desc: Tileset entries
+  label: TilesetEntries
+  type: TilesetEntry
+  addr:
+    U: 0x33DFDC
+  count: 0x4F
+-
+  desc: Brinstar doors
+  type: DoorEntry
+  addr:
+    U: 0x33E608
+  count: 0x63
+-
+  desc: Kraid doors
+  type: DoorEntry
+  addr:
+    U: 0x33EAAC
+  count: 0x6B
+-
+  desc: Norfair doors
+  type: DoorEntry
+  addr:
+    U: 0x33EFB0
+  count: 0x85
+-
+  desc: Ridley doors
+  type: DoorEntry
+  addr:
+    U: 0x33F5EC
+  count: 0x4D
+-
+  desc: Tourian doors
+  type: DoorEntry
+  addr:
+    U: 0x33F988
+  count: 0x2C
+-
+  desc: Crateria doors
+  type: DoorEntry
+  addr:
+    U: 0x33FB98
+  count: 0x35
+-
+  desc: Chozodia doors
+  type: DoorEntry
+  addr:
+    U: 0x33FE14
+  count: 0xF6
+-
+  desc: Brinstar room entries
+  type: RoomEntry
+  addr:
+    U: 0x340AD4
+  count: 0x2A
+-
+  desc: Kraid room entries
+  type: RoomEntry
+  addr:
+    U: 0x3414AC
+  count: 0x2A
+-
+  desc: Norfair room entries
+  type: RoomEntry
+  addr:
+    U: 0x341E84
+  count: 0x39
+-
+  desc: Ridley room entries
+  type: RoomEntry
+  addr:
+    U: 0x342BE0
+  count: 0x21
+-
+  desc: Tourian room entries
+  type: RoomEntry
+  addr:
+    U: 0x34339C
+  count: 0x14
+-
+  desc: Crateria room entries
+  type: RoomEntry
+  addr:
+    U: 0x34384C
+  count: 0x16
+-
+  desc: Chozodia room entries
+  type: RoomEntry
+  addr:
+    U: 0x343D74
+  count: 0x73
+-
   desc: Elevator room pairs
   label: ElevatorRoomPairs
+  type: ElevatorRoomPair
   addr:
     U: 0x345934
   size: 0x8
@@ -66,13 +201,42 @@
   size: 0x8
   count: 0xC
 -
+  desc: Animated graphics entries
+  label: AnimatedGraphicsEntries
+  type: AnimatedGraphicsEntry
+  addr:
+    U: 0x35F948
+  count: 0x26
+-
+  desc: Animated tileset entries
+  label: AnimatedTilesetEntries
+  addr:
+    U: 0x35FA78
+  size: 0x30
+  count: 0x8
+-
+  desc: Animated palette entries
+  label: AnimatedPaletteEntries
+  type: AnimatedPaletteEntry
+  addr:
+    U: 0x35FBFC
+  count: 0x12
+-
   desc: Hatch lock events
   type: HatchLockEvent
   addr:
     U: 0x360138
   count: 0x13
 -
+  desc: Area connections
+  label: AreaConnections
+  type: AreaConnection
+  addr:
+    U: 0x360274
+  count: 0x1A
+-
   desc: Number of hatch lock events per area
+  label: NumOfHatchLockEventsPerArea
   type: u16
   addr:
     U: 0x3602D8
@@ -99,14 +263,16 @@
   type: u16
   addr:
     U: 0x3655A0
-  count: 0x340?
+  count: 0x340
 -
   desc: Debug menu tile parts
+  label: DebugMenuTileParts
   addr:
     U: 0x4078EC
   size: 0x2BC
 -
   desc: Chozo statue targets
+  label: ChozoStatueTargets
   type: ChozoStatueTarget
   addr:
     U: 0x40DF78
@@ -136,19 +302,234 @@
   count: 0xB0
   enum: ClipdataBehaviorType
 -
+  desc: Graphics for animated graphics
+  addr:
+    U: 0x74F8B4
+  size: 0x5200
+-
+  desc: Primary sprite AI pointers
+  label: PrimarySpriteAIPtrs
+  type: pointer
+  addr:
+    U: 0x75E8C0
+  count: 0xCE
+-
+  desc: Sprite graphics pointers
+  label: SpriteGraphicsPtrs
+  type: pointer
+  addr:
+    U: 0x75EBF8
+  count: 0xBE
+-
+  desc: Sprite palette pointers
+  label: SpritePalettePtrs
+  type: pointer
+  addr:
+    U: 0x75EEF0
+  count: 0xBE
+-
+  desc: Secondary sprite AI pointers
+  label: SecondarySpriteAIPtrs
+  type: pointer
+  addr:
+    U: 0x75F1E8
+  count: 0x4D
+-
+  desc: Spriteset pointers
+  label: SpritesetPtrs
+  type: pointer
+  addr:
+    U: 0x75F31C
+  count: 0x72
+-
+  desc: Process projectile pointers
+  label: ProcessProjectilePtrs
+  type: pointer
+  addr:
+    U: 0x75F974
+  count: 0x10
+-
+  desc: Area doors pointers
+  label: AreaDoorsPtrs
+  type: pointer
+  addr:
+    U: 0x75FAA8
+  count: 0x7
+-
+  desc: Area room entry pointers
+  label: AreaRoomEntryPtrs
+  type: pointer
+  addr:
+    U: 0x75FAC4
+  count: 0x7
+-
+  desc: Room scrolls pointers
+  type: pointer
+  addr:
+    U: 0x75FAE0
+  count: 0x92
+-
+  desc: Area scrolls pointers
+  label: AreaScrollsPtrs
+  type: pointer
+  addr:
+    U: 0x75FD28
+  count: 0xB
+-
   desc: Hatch lock events pointers
+  label: HatchLockEventPtrs
   type: pointer
   addr:
     U: 0x75FDE0
   count: 0x7
 -
+  desc: Story text pointers
+  label: StoryTextPtrs
+  type: pointer
+  addr:
+    U: 0x75FEE0
+  count: 0x7
+-
+  desc: Minimap data pointers
+  label: MinimapDataPtrs
+  type: pointer
+  addr:
+    U: 0x7601EC
+  count: 0xB
+-
+  desc: Explored minimap bit flags
+  label: ExploredMinimapBitFlags
+  addr:
+    U: 0x760218
+  size: 0x80
+-
+  desc: Description text pointers
+  label: DescriptionTextPtrs
+  type: pointer
+  addr:
+    U: 0x7602D4
+  count: 0x7
+-
+  desc: Japanese message text pointers
+  type: pointer
+  addr:
+    U: 0x760458
+  count: 0x27
+-
+  desc: Japanese location text pointers
+  type: pointer
+  addr:
+    U: 0x7604F4
+  count: 0x1A
+-
+  desc: Hiragana message text pointers
+  type: pointer
+  addr:
+    U: 0x76055C
+  count: 0x27
+-
+  desc: Hiragana location text pointers
+  type: pointer
+  addr:
+    U: 0x7605F8
+  count: 0x1A
+-
+  desc: English message text pointers
+  type: pointer
+  addr:
+    U: 0x760660
+  count: 0x27
+-
+  desc: English location text pointers
+  type: pointer
+  addr:
+    U: 0x7606FC
+  count: 0x1A
+-
+  desc: Location text pointers
+  label: LocationTextPtrs
+  type: pointer
+  addr:
+    U: 0x760764
+  count: 0x7
+-
+  desc: Message text pointers
+  label: MessageTextPtrs
+  type: pointer
+  addr:
+    U: 0x760780
+  count: 0x7
+-
+  desc: File screen text pointers
+  label: FileScreenTextPtrs
+  type: pointer
+  addr:
+    U: 0x76079C
+  count: 0x7
+-
+  desc: Japanese description text pointers
+  type: pointer
+  addr:
+    U: 0x7607B8
+  count: 0x13
+-
+  desc: Japanese story text pointers
+  type: pointer
+  addr:
+    U: 0x760804
+  count: 0x6
+-
+  desc: Japanese file screen text pointers
+  type: pointer
+  addr:
+    U: 0x76081C
+  count: 0x25
+-
+  desc: Hiragana description text pointers
+  type: pointer
+  addr:
+    U: 0x7608B0
+  count: 0x13
+-
+  desc: Hiragana story text pointers
+  type: pointer
+  addr:
+    U: 0x7608FC
+  count: 0x6
+-
+  desc: Hiragana file screen text pointers
+  type: pointer
+  addr:
+    U: 0x760914
+  count: 0x25
+-
+  desc: English description text pointers
+  type: pointer
+  addr:
+    U: 0x7609A8
+  count: 0x13
+-
+  desc: English story text pointers
+  type: pointer
+  addr:
+    U: 0x7609F4
+  count: 0x6
+-
+  desc: English file screen text pointers
+  type: pointer
+  addr:
+    U: 0x760A0C
+  count: 0x25
+-
   desc: Chozo statue target path pointers
+  label: ChozoStatueTargetPathPtrs
   type: pointer
   addr:
     U: 0x7603F0
   count: 0x6
 -
   desc: Sound test sound IDs
+  label: SoundTestSoundIDs
   type: u16
   addr:
     U: 0x760BAC

@@ -1738,6 +1738,28 @@
   - Effect number
   return: null
 -
+  desc: Start vertical screen shake
+  label: StartVerticalScreenShake
+  addr:
+    U: 0x55344
+  size: 0x34
+  mode: thumb
+  params:
+  - Duration
+  - '?'
+  return: null
+-
+  desc: Start horizontal screen shake
+  label: StartHorizontalScreenShake
+  addr:
+    U: 0x55378
+  size: 0x34
+  mode: thumb
+  params:
+  - Duration
+  - '?'
+  return: null
+-
   desc: Load room
   label: LoadRoom
   addr:
@@ -1756,11 +1778,29 @@
   params: null
   return: null
 -
+  desc: Load room entry
+  label: LoadRoomEntry
+  addr:
+    U: 0x56404
+  size: 0x168
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Load room backgrounds
   label: LoadRoomBackgrounds
   addr:
     U: 0x5656C
   size: 0x158
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Remove never reform blocks and collected tanks
+  label: RemoveNeverReformBlocksTanks
+  addr:
+    U: 0x566C4
+  size: 0x10
   mode: thumb
   params: null
   return: null
@@ -1784,6 +1824,15 @@
   mode: thumb
   params: null
   return: 1 if can't be used, 0 otherwise
+-
+  desc: Remove never reform blocks
+  label: RemoveNeverReformBlocks
+  addr:
+    U: 0x59500
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Set BG1 block value
   label: SetBG1BlockValue
