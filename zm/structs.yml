@@ -667,16 +667,16 @@ InGameTime:
 InGameTimeAtBosses:
   size: 0x10
   vars:
-  - desc: In-game time when Kraid killed
+  - desc: When Kraid killed
     type: InGameTime
     offset: 0x0
-  - desc: In-game time when Mother Brain killed
+  - desc: When Mother Brain killed
     type: InGameTime
     offset: 0x4
-  - desc: In-game time when fully powered suit obtained
+  - desc: When fully powered suit obtained
     type: InGameTime
     offset: 0x8
-  - desc: In-game time when Mecha Ridley killed
+  - desc: When Mecha Ridley killed
     type: InGameTime
     offset: 0xC
 LastElevatorUsed:
@@ -686,8 +686,9 @@ LastElevatorUsed:
     type: u16
     offset: 0x0
   - desc: Elevator number
-    type: Elevator
+    type: u8
     offset: 0x2
+    enum: Elevator
   - desc: Travel direction
     type: u8
     offset: 0x3
@@ -893,16 +894,19 @@ RoomEntry:
   - desc: BG0 properties
     type: u8
     offset: 0x1
-    enum: BG0Property
+    enum: BGProperty
   - desc: BG1 properties
     type: u8
     offset: 0x2
+    enum: BGProperty
   - desc: BG2 properties
     type: u8
     offset: 0x3
+    enum: BGProperty
   - desc: BG3 properties
     type: u8
     offset: 0x4
+    enum: BGProperty
   - desc: BG0 pointer
     type: pointer
     offset: 0x8
@@ -1394,6 +1398,21 @@ StartingHealthAmmo:
   - desc: Power bombs
     type: u8
     offset: 0x3
+TankCollectionInfo:
+  size: 0x8
+  vars:
+  - desc: '?'
+    type: u8
+    offset: 0x0
+  - desc: Underwater flag
+    type: u8
+    offset: 0x1
+  - desc: '?'
+    type: u8
+    offset: 0x2
+  - desc: Revealed clipdata
+    type: u16
+    offset: 0x4
 TankIncreaseAmounts:
   size: 0x4
   vars:
