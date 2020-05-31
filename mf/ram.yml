@@ -658,10 +658,12 @@
 -
   desc: Spriteset sprite IDs
   label: SpritesetSpriteIDs
+  type: u8
   addr:
     U: 0x3000680
     J: 0x30006B4
-  size: 0xF
+  count: 0xF
+  enum: PrimarySpriteID
 -
   desc: Spriteset sprite graphics slots
   label: SpritesetSpriteGfxSlots
@@ -713,18 +715,20 @@
     J: 0x30006DE
 -
   desc: Boss formation sprite ID
-  label: BossFormationSpriteId
+  label: BossFormationSpriteID
   type: u8
   addr:
     U: 0x30006AC
     J: 0x30006E0
+  enum: PrimarySpriteID
 -
   desc: Core-X formation sprite ID
-  label: CoreXFormationSpriteId
+  label: CoreXFormationSpriteID
   type: u8
   addr:
     U: 0x30006AD
     J: 0x30006E1
+  enum: PrimarySpriteID
 -
   desc: Atmospheric stabilizers destroyed
   label: AtmosphericStabilizersDestroyed
