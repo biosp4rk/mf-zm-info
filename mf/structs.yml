@@ -780,6 +780,9 @@ MusicInfo:
     type: u8
     offset: 0x1
   - desc: '?'
+    type: u16
+    offset: 0x2
+  - desc: '?'
     type: u8
     offset: 0x4
   - desc: '?'
@@ -1274,6 +1277,18 @@ SamusData:
   - desc: Bottom boundry offset
     type: u16
     offset: 0x2A
+SamusEcho:
+  size: 0xC
+  vars:
+  - desc: Echo flag
+    type: u8
+    offset: 0x0
+  - desc: Timer
+    type: u8
+    offset: 0x1
+  - desc: Position
+    type: u8
+    offset: 0x2
 SamusGraphicsInfo:
   size: 0x3C
   vars:
@@ -1379,6 +1394,182 @@ SamusTimersAndCounters:
   - desc: Constant damage sound timer
     type: u8
     offset: 0x15
+SaveFileRam:
+  size: 0x1200
+  vars:
+  - desc: MetroidEpisode4A text
+    offset: 0x0
+    size: 0x10
+  - desc: Checksum
+    type: u32
+    offset: 0x10
+  - desc: Bitwise NOT of checksum
+    type: u32
+    offset: 0x14
+  - desc: Game completion
+    type: GameCompletion
+    offset: 0x18
+  - desc: '?'
+    type: u8
+    offset: 0x1C
+  - desc: Current area
+    type: u8
+    offset: 0x1D
+    enum: AreaID
+  - desc: Current room
+    type: u8
+    offset: 0x1E
+  - desc: Last door used
+    type: u8
+    offset: 0x1F
+  - desc: Ability count
+    type: u8
+    offset: 0x20
+    enum: AbilityCount
+  - desc: Event counter
+    type: u8
+    offset: 0x21
+    enum: Event
+  - desc: Previous navigation conversation
+    type: u8
+    offset: 0x22
+  - desc: Previous cutscene
+    type: u8
+    offset: 0x23
+  - desc: Minimap X coordinate
+    type: u8
+    offset: 0x24
+  - desc: Minimap Y coordinate
+    type: u8
+    offset: 0x25
+  - desc: Sub-event counter
+    type: u16
+    offset: 0x26
+  - desc: Previous sub-event
+    type: u16
+    offset: 0x28
+  - desc: Current flashing sector number
+    type: u8
+    offset: 0x2A
+  - desc: Back-up of security hatch flash level during power outage
+    type: u8
+    offset: 0x2B
+    enum: SecurityLevel
+  - desc: Screen position and velocity
+    type: ScreenPositionAndVelocity
+    offset: 0x2C
+  - desc: BG0 X position
+    type: u16
+    offset: 0x40
+  - desc: BG0 Y position
+    type: u16
+    offset: 0x42
+  - desc: BG1 X position
+    type: u16
+    offset: 0x44
+  - desc: BG1 Y position
+    type: u16
+    offset: 0x46
+  - desc: BG2 X position
+    type: u16
+    offset: 0x48
+  - desc: BG2 Y position
+    type: u16
+    offset: 0x4A
+  - desc: BG3 X position
+    type: u16
+    offset: 0x4C
+  - desc: BG3 Y position
+    type: u16
+    offset: 0x4E
+  - desc: Number of never reform blocks broken
+    type: NumNeverReformBlocksBroken
+    offset: 0x50
+  - desc: Number of tanks collected
+    type: NumTanksCollected
+    offset: 0x58
+  - desc: Samus data
+    type: SamusData
+    offset: 0x60
+  - desc: Samus animation info
+    type: SamusAnimationInfo
+    offset: 0x8C
+  - desc: Samus echo
+    type: SamusEcho
+    offset: 0x98
+  - desc: Samus timers/counters
+    type: SamusTimersAndCounters
+    offset: 0xA4
+  - desc: Equipment
+    type: Equipment
+    offset: 0xC4
+  - desc: Freeze movement timer
+    type: u16
+    offset: 0xD4
+  - desc: Disable drawing Samus and scrolling flag
+    type: u8
+    offset: 0xD6
+  - desc: Atmospheric stabilizers destroyed
+    type: flags16
+    offset: 0xD8
+  - desc: Normal X-barrier cores destroyed
+    type: flags16
+    offset: 0xDA
+  - desc: Super X-barrier cores destroyed
+    type: flags16
+    offset: 0xDC
+  - desc: Power X-barrier cores destroyed
+    type: flags16
+    offset: 0xDE
+  - desc: Eyedoors destroyed
+    type: flags16
+    offset: 0xE0
+  - desc: Missile hatch destroyed
+    type: u8
+    offset: 0xE2
+  - desc: Water lowered flag
+    type: u8
+    offset: 0xE3
+  - desc: In-game timer
+    type: InGameTime
+    offset: 0xE4
+  - desc: Music slot 1
+    type: u16
+    offset: 0xE8
+  - desc: Music slot 2
+    type: u16
+    offset: 0xEA
+  - desc: Music slot switch?
+    type: u8
+    offset: 0xEC
+  - desc: Event based music flag?
+    type: u8
+    offset: 0xED
+  - desc: Music related?
+    type: u8
+    offset: 0xEE
+  - desc: Difficulty
+    type: u8
+    offset: 0xF0
+    enum: Difficulty
+  - desc: Best completion times (unused?)
+    type: InGameTime
+    offset: 0xF4
+    count: 0xC
+  - desc: SAVE_END text
+    offset: 0x124
+    size: 0x8
+  - desc: Minimap visited tiles
+    offset: 0x300
+    size: 0x380
+  - desc: Never reform blocks
+    type: NeverReformBlock
+    offset: 0x680
+    count: 0x300
+  - desc: Tanks collected
+    type: CollectedTank
+    offset: 0xF80
+    count: 0xA0
 SaxData:
   size: 0x24
   vars:

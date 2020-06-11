@@ -142,10 +142,11 @@
 -
   desc: SRAM
   label: Sram
+  type: SaveFileRam
   addr:
     U: 0x2038200
     J: 0x2038200
-  size: 0x6C00
+  count: 0x6
 -
   desc: Debug flag
   label: DebugFlag
@@ -494,6 +495,13 @@
     J: 0x3000051
   enum: EventBasedEffect
 -
+  desc: Current flashing sector number
+  label: CurrFlashingSectorNum
+  type: u8
+  addr:
+    U: 0x300004D
+    J: 0x3000053
+-
   desc: Screen shake X offset
   label: ScreenShakeXOffset
   type: u8
@@ -544,8 +552,8 @@
     U: 0x3000060
     J: 0x3000066
 -
-  desc: Previous sub-event value
-  label: PrevSubEventValue
+  desc: Previous sub-event
+  label: PrevSubEvent
   type: u16
   addr:
     U: 0x3000062
@@ -647,6 +655,13 @@
   addr:
     U: 0x300013C
     J: 0x3000140
+-
+  desc: Best completion times (unused?)
+  label: BestCompletionTimes
+  type: InGameTime
+  addr:
+    J: 0x3000144
+  count: 0xC
 -
   desc: Sprite data
   label: SpriteDataSlot0
@@ -1224,6 +1239,13 @@
   addr:
     U: 0x30012D8
     J: 0x300130C
+-
+  desc: Samus echo
+  label: SamusEcho
+  type: SamusEcho
+  addr:
+    U: 0x30012E4
+    J: 0x3001318
 -
   desc: Samus timers/counters
   label: SamusTimersAndCounters

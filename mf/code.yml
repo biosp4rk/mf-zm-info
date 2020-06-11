@@ -2630,6 +2630,16 @@
   - Check backup flag
   return: 1 if invalid checksum or invalid header, 2 if both, 0 otherwise
 -
+  desc: Write minimap, never reform blocks, and tanks collected to save
+  label: Write_Minimap_Blocks_Tanks_ToSave
+  addr:
+    U: '?'
+    J: 0x80900
+  size: 0xD8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Check amount of projectiles
   label: CheckAmountOfProjectiles
   addr:
