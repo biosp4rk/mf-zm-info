@@ -431,6 +431,34 @@ CurrScrolls:
   - desc: Second scroll Y end
     type: u16
     offset: 0x14
+CutsceneInfo:
+  size: 0x10
+  vars:
+  - desc: Cutscene type
+    type: u8
+    offset: 0x0
+  - desc: Bit flags?
+    type: flags8
+    offset: 0x1
+  - desc: Story text number
+    type: u8
+    offset: 0x2
+  - desc: Pointer to cutscene code?
+    type: pointer
+    offset: 0x4
+  - desc: '?'
+    type: u8
+    offset: 0x8
+  - desc: '?'
+    type: u8
+    offset: 0xA
+  - desc: '?'
+    type: u8
+    offset: 0xC
+  - desc: Event
+    type: u8
+    offset: 0xD
+    enum: Event
 DoorEntry:
   size: 0xC
   vars:
@@ -700,6 +728,18 @@ LavaDamageTimer:
     offset: 0x0
   - desc: Counter?
     type: u8
+    offset: 0x4
+LockScreenPosition:
+  size: 0xC
+  vars:
+  - desc: Lock position flag
+    type: u16
+    offset: 0x0
+  - desc: X position of screen center
+    type: u16
+    offset: 0x2
+  - desc: Y position of screen center
+    type: u16
     offset: 0x4
 MusicInfo:
   size: 0xC24
@@ -1080,11 +1120,17 @@ SamusPhysics:
   size: 0x78
   vars:
   - desc: Arm cannon X position offset
-    type: u16
+    type: s16
     offset: 0x4A
   - desc: Arm cannon Y position offset
-    type: u16
+    type: s16
     offset: 0x4C
+  - desc: '?'
+    type: s16
+    offset: 0x50
+  - desc: '?'
+    type: s16
+    offset: 0x54
   - desc: X acceleration
     type: u16
     offset: 0x5E
@@ -1109,6 +1155,12 @@ SamusPhysics:
   - desc: Mid-air morphed X velocity cap
     type: u16
     offset: 0x6C
+  - desc: '?'
+    type: s16
+    offset: 0x6E
+  - desc: '?'
+    type: s16
+    offset: 0x70
 SamusWeaponInfo:
   size: 0x8
   vars:

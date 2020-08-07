@@ -1738,6 +1738,16 @@
   params: null
   return: null
 -
+  desc: Reset room RAM values
+  label: ResetRoomRamValues
+  addr:
+    U: 0x64AEC
+    J: 0x650F0
+  size: 0x448
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Load scrolls and event based effects
   label: LoadScrollsAndEventBasedEffects
   addr:
@@ -1797,6 +1807,38 @@
     U: 0x680C0
     J: 0x686C4
   size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Start power bomb explosion?
+  label: StartPowerBombExplosion?
+  addr:
+    U: 0x683B4
+    J: 0x689D8
+  size: 0x48
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  - CurrPowerBomb attribute?
+  return: null
+-
+  desc: Current power bomb related?
+  addr:
+    U: 0x683FC
+    J: 0x68A20
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Initialize power bomb explosion
+  label: InitPowerBombExplosion
+  addr:
+    U: 0x68408
+    J: 0x68A2C
+  size: 0x60
   mode: thumb
   params: null
   return: null
@@ -2633,7 +2675,7 @@
   desc: Write minimap, never reform blocks, and tanks collected to save
   label: Write_Minimap_Blocks_Tanks_ToSave
   addr:
-    U: '?'
+    U: 0x7FEA4
     J: 0x80900
   size: 0xD8
   mode: thumb
@@ -2867,8 +2909,8 @@
   params: null
   return: null
 -
-  desc: Check sprite makes debris when hit?
-  label: CheckSpriteMakesDebrisWhenHit?
+  desc: Check sprite makes debris when hit
+  label: CheckSpriteMakesDebrisWhenHit
   addr:
     U: 0x82FEC
     J: 0x83C4C

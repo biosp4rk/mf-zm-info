@@ -1752,6 +1752,19 @@
   - '?'
   return: null
 -
+  desc: Update BLDALPHA?
+  label: UpdateBLDALPHA?
+  addr:
+    U: 0x55BD0
+  size: 0x54
+  mode: thumb
+  params:
+  - EVA coefficient
+  - EVB coefficient
+  - '?'
+  - '?'
+  return: null
+-
   desc: Load room
   label: LoadRoom
   addr:
@@ -1849,6 +1862,16 @@
   - Y position
   - X position
   return: null
+-
+  desc: Check clipdata behavior value changes BLDALPHA
+  label: CheckBehaviorValueChangesBLDALPHA
+  addr:
+    U: 0x5A770
+  size: 0x30
+  mode: thumb
+  params:
+  - Clipdata behavior value
+  return: BLDALPHA
 -
   desc: Check touching transition or tank
   label: CheckTouchingTransitionOrTank
@@ -2068,6 +2091,15 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Main loop for erase SRAM menu
+  label: MainLoopForEraseSramMenu
+  addr:
+    U: 0x75C30
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: 1 if option was selected, 0 otherwise?
 -
   desc: Check unlock time attack?
   label: CheckUnlockTimeAttack?

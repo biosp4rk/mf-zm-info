@@ -216,6 +216,12 @@
   addr:
     U: 0x3000024
 -
+  desc: Completed game flag copy
+  label: CompletedGameFlagCopy
+  type: u8
+  addr:
+    U: 0x3000028
+-
   desc: Fades backgrounds to black or white
   label: FadeBGBlackWhite
   type: u8
@@ -254,6 +260,12 @@
   addr:
     U: 0x300002E
 -
+  desc: Skip cutscene related?
+  label: SkipCutsceneRelated?
+  type: u8
+  addr:
+    U: 0x300002F
+-
   desc: Room's music track
   label: RoomMusicTrack
   type: u16
@@ -265,6 +277,24 @@
   type: u8
   addr:
     U: 0x3000038
+-
+  desc: Reboot game flag
+  label: RebootGameFlag
+  type: u8
+  addr:
+    U: 0x300003C
+-
+  desc: Disable scrolling flag
+  label: DisableScrollingFlag
+  type: u8
+  addr:
+    U: 0x300003D
+-
+  desc: Slow scrolling timer?
+  label: SlowScrollingTimer?
+  type: u16
+  addr:
+    U: 0x300003E
 -
   desc: Skip door transition flag
   label: SkipDoorTransitionFlag
@@ -319,6 +349,12 @@
   type: u8
   addr:
     U: 0x300004B
+-
+  desc: Disable clipdata changing transparency flag
+  label: DisableClipdataChangingTransparencyFlag
+  type: u8
+  addr:
+    U: 0x300004C
 -
   desc: Chozodia alarm flag
   label: ChozodiaAlarmFlag
@@ -448,6 +484,12 @@
   type: BGPositions
   addr:
     U: 0x30000E4
+-
+  desc: Lock screen position
+  label: LockScreenPosition
+  type: LockScreenPosition
+  addr:
+    U: 0x3000100
 -
   desc: Screen shake Y
   label: ScreenShakeY
@@ -1181,6 +1223,11 @@
   type: u8
   addr:
     U: 0x30056A8
+-
+  desc: BG0 transparency related?
+  label: BG0TransparencyRelated?
+  addr:
+    U: 0x30056C4
 -
   desc: Animated palette timing
   label: AnimatedPaletteTiming
