@@ -2265,12 +2265,192 @@
   params: null
   return: null
 -
+  desc: Movable initialize
+  label: MovablePlatform_Init
+  addr:
+    U: 0x1E6B0
+    J: 0x1E830
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Movable platform idle
+  label: MovablePlatform_Idle
+  addr:
+    U: 0x1E700
+    J: 0x1E880
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Movable platform AI
   label: MovablePlatform_AI
   addr:
     U: 0x1E770
     J: 0x1E8F0
   size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto spawning from X
+  label: Moto_SpawningFromX
+  addr:
+    U: 0x1E794
+    J: 0x1E914
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto initialize
+  label: Moto_Init
+  addr:
+    U: 0x1E7E8
+    J: 0x1E968
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto falling start
+  label: Moto_Falling
+  addr:
+    U: 0x1E918
+    J: 0x1EA98
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto idle start
+  label: Moto_IdleStart
+  addr:
+    U: 0x1E93C
+    J: 0x1EABC
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto idle
+  label: Moto_Idle
+  addr:
+    U: 0x1E958
+    J: 0x1EAD8
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto hitting wall
+  label: Moto_HittingWall
+  addr:
+    U: 0x1E9AC
+    J: 0x1EB2C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto hit wall
+  label: Moto_HitWall
+  addr:
+    U: 0x1E9C8
+    J: 0x1EB48
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto walking start
+  label: Moto_Walking
+  addr:
+    U: 0x1EA00
+    J: 0x1EB80
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto moving
+  label: Moto_Moving
+  addr:
+    U: 0x1EA20
+    J: 0x1EBA0
+  size: 0x2F4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto preparing to charge start
+  label: Moto_PreparingToChargeStart
+  addr:
+    U: 0x1ED14
+    J: 0x1EE94
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto preparing to charge
+  label: Moto_PreparingToCharge
+  addr:
+    U: 0x1ED34
+    J: 0x1EEB4
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto turning start
+  label: Moto_TurningStart
+  addr:
+    U: 0x1EDD8
+    J: 0x1EF58
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto turning
+  label: Moto_Turning
+  addr:
+    U: 0x1EDF8
+    J: 0x1EF78
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto turning end
+  label: Moto_TurningEnd
+  addr:
+    U: 0x1EE2C
+    J: 0x1EFAC
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto front initialize
+  label: MotoFront_Init
+  addr:
+    U: 0x1EE48
+    J: 0x1EFC8
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Moto front idle
+  label: MotoFront_Idle
+  addr:
+    U: 0x1EEDC
+    J: 0x1F05C
+  size: 0xF4
   mode: thumb
   params: null
   return: null
@@ -2305,11 +2485,122 @@
   params: null
   return: null
 -
-  desc: Empty function?
+  desc: Save pad idle
+  label: SavePad_Idle
   addr:
     U: 0x1F384
     J: 0x1F504
   size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform initialize
+  label: SavePlatform_Init
+  addr:
+    U: 0x1F388
+    J: 0x1F508
+  size: 0x110
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform floating
+  label: SavePlatform_Floating
+  addr:
+    U: 0x1F498
+    J: 0x1F618
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform sinking
+  label: SavePlatform_Sinking
+  addr:
+    U: 0x1F514
+    J: 0x1F694
+  size: 0x114
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform save prompt
+  label: SavePlatform_SavePrompt
+  addr:
+    U: 0x1F628
+    J: 0x1F7A8
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform idle after prompt
+  label: SavePlatform_IdleAfterPrompt
+  addr:
+    U: 0x1F6E8
+    J: 0x1F868
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform rising
+  label: SavePlatform_Rising
+  addr:
+    U: 0x1F778
+    J: 0x1F8F8
+  size: 0x98
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save platform rising after prompt
+  label: SavePlatform_RisingAfterPrompt
+  addr:
+    U: 0x1F810
+    J: 0x1F990
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save pad hologram initialize
+  label: SavePadHologram_Init
+  addr:
+    U: 0x1F870
+    J: 0x1F9F0
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save pad hologram opening
+  label: SavePadHologram_Opening
+  addr:
+    U: 0x1F8F8
+    J: 0x1FA78
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save pad hologram flashing
+  label: SavePadHologram_Flashing
+  addr:
+    U: 0x1F920
+    J: 0x1FAA0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Save pad hologram closing
+  label: SavePadHologram_Closing
+  addr:
+    U: 0x1F958
+    J: 0x1FAD8
+  size: 0x18
   mode: thumb
   params: null
   return: null
@@ -2340,6 +2631,176 @@
     U: 0x1FA90
     J: 0x1FC10
   size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check spawn gunship beam
+  label: CheckSpawnGunshipBeam
+  addr:
+    U: '?'
+    J: 0x1FC58
+  size: 0x140
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship initialize
+  label: Gunship_Init
+  addr:
+    U: '?'
+    J: 0x1FD98
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship navigation
+  label: Gunship_Navigation
+  addr:
+    U: '?'
+    J: 0x1FEA0
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship idle
+  label: Gunship_Idle
+  addr:
+    U: '?'
+    J: 0x1FEEC
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship locking Samus
+  label: Gunship_LockingSamus
+  addr:
+    U: '?'
+    J: 0x1FF78
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship moving Samus up
+  label: Gunship_MovingSamusUp
+  addr:
+    U: '?'
+    J: 0x1FFAC
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship save prompt start
+  label: Gunship_SavePromptStart
+  addr:
+    U: '?'
+    J: 0x1FFF8
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship save prompt
+  label: Gunship_SavePromptStart
+  addr:
+    U: '?'
+    J: 0x20040
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship saved message start
+  label: Gunship_SavedMessageStart
+  addr:
+    U: '?'
+    J: 0x200A8
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship saved message
+  label: Gunship_SavedMessage
+  addr:
+    U: '?'
+    J: 0x200D4
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship moving Samus down
+  label: Gunship_MovingSamusDown
+  addr:
+    U: '?'
+    J: 0x20124
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship moved Samus down
+  label: Gunship_MovedSamusDown
+  addr:
+    U: '?'
+    J: 0x20188
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship pose 1A
+  label: Gunship_Pose1A
+  addr:
+    U: '?'
+    J: 0x201EC
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam initialize
+  label: GunshipBeam_Init
+  addr:
+    U: '?'
+    J: 0x20230
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam moving down
+  label: GunshipBeam_MovingDown
+  addr:
+    U: '?'
+    J: 0x202A4
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam moving up
+  label: GunshipBeam_MovingUp
+  addr:
+    U: '?'
+    J: 0x2034C
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update gunship glow animation
+  label: UpdateGunshipGlowAnimation
+  addr:
+    U: '?'
+    J: 0x203A0
+  size: 0x64
   mode: thumb
   params: null
   return: null
@@ -2448,6 +2909,186 @@
   params: null
   return: null
 -
+  desc: Security pad idle (inactive)
+  label: SecurityPad_Idle_Inactive
+  addr:
+    U: '?'
+    J: 0x20FB8
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad initialize
+  label: SecurityPad_Init
+  addr:
+    U: '?'
+    J: 0x21078
+  size: 0x1C8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad idle (active) start
+  label: SecurityPad_Idle_Active_Start
+  addr:
+    U: '?'
+    J: 0x21240
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad idle (active)
+  label: SecurityPad_Idle_Active
+  addr:
+    U: '?'
+    J: 0x21264
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad pressing switch
+  label: SecurityPad_PressingSwitch
+  addr:
+    U: '?'
+    J: 0x212B4
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad switch pressed
+  label: SecurityPad_SwitchPressed
+  addr:
+    U: '?'
+    J: 0x212E0
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad releasing switch
+  label: SecurityPad_ReleasingSwitch
+  addr:
+    U: '?'
+    J: 0x213AC
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad idle before unlocking
+  label: SecurityPad_IdleBeforeUnlocking
+  addr:
+    U: '?'
+    J: 0x213C0
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad unlocking
+  label: SecurityPad_Unlocking
+  addr:
+    U: '?'
+    J: 0x213E8
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad finished unlocking
+  label: SecurityPad_FinishedUnlocking
+  addr:
+    U: '?'
+    J: 0x21410
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad monitor initialize
+  label: SecurityPadMonitor_Init
+  addr:
+    U: '?'
+    J: 0x21464
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad monitor idle
+  label: SecurityPadMonitor_Idle
+  addr:
+    U: '?'
+    J: 0x214E8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad monitor arm extending
+  label: SecurityPadMonitor_ArmExtending
+  addr:
+    U: '?'
+    J: 0x2152C
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad monitor unlocking
+  label: SecurityPadMonitor_Unlocking
+  addr:
+    U: '?'
+    J: 0x2157C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad monitor arm retracting
+  label: SecurityPadMonitor_ArmRetracting
+  addr:
+    U: '?'
+    J: 0x215C0
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad screen initialize
+  label: SecurityPadScreen_Init
+  addr:
+    U: '?'
+    J: 0x215E8
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad screen idle
+  label: SecurityPadScreen_Idle
+  addr:
+    U: '?'
+    J: 0x21678
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Security pad screen unlocking
+  label: SecurityPadScreen_Unlocking
+  addr:
+    U: '?'
+    J: 0x216C4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Security pad AI
   label: SecurityPad_AI
   addr:
@@ -2478,12 +3119,182 @@
   params: null
   return: null
 -
+  desc: Area banner initialize
+  label: AreaBanner_Init
+  addr:
+    U: '?'
+    J: 0x21958
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Area banner moving up
+  label: AreaBanner_MovingUp
+  addr:
+    U: '?'
+    J: 0x219D0
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Area banner displaying
+  label: AreaBanner_Displaying
+  addr:
+    U: '?'
+    J: 0x21A40
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Area banner moving down
+  label: AreaBanner_MovingDown
+  addr:
+    U: '?'
+    J: 0x21A80
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Area banner AI
   label: AreaBanner_AI
   addr:
     U: 0x2191C
     J: 0x21A98
   size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree pose initialize
+  label: Skree_Init
+  addr:
+    U: '?'
+    J: 0x21AFC
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree idle start
+  label: Skree_Idle
+  addr:
+    U: '?'
+    J: 0x21BA4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree idle
+  label: Skree_Idle
+  addr:
+    U: '?'
+    J: 0x21BC0
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree preparing to lunge down start
+  label: Skree_PreparingToLungeDownStart
+  addr:
+    U: '?'
+    J: 0x21C04
+  size: 0x10
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree preparing to lunge down
+  label: Skree_PreparingToLungeDown
+  addr:
+    U: '?'
+    J: 0x21C14
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree lunging down start
+  label: Skree_LungingDownStart
+  addr:
+    U: '?'
+    J: 0x21C30
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree lunging down
+  label: Skree_LungingDown
+  addr:
+    U: '?'
+    J: 0x21C68
+  size: 0x148
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree idle after lunging start
+  label: Skree_IdleAfterLungingStart
+  addr:
+    U: '?'
+    J: 0x21DB0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree idle after lunging
+  label: Skree_IdleAfterLunging
+  addr:
+    U: '?'
+    J: 0x21DD4
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree preparing to lunge up start
+  label: Skree_PreparingToLungeUpStart
+  addr:
+    U: '?'
+    J: 0x21E18
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree preparing to lunge up
+  label: Skree_PreparingToLungeUp
+  addr:
+    U: '?'
+    J: 0x21E48
+  size: 0x1B0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree lunging up start
+  label: Skree_LungingUpStart
+  addr:
+    U: '?'
+    J: 0x21FF8
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Skree lunging up
+  label: Skree_LungingUp
+  addr:
+    U: '?'
+    J: 0x22014
+  size: 0x48
   mode: thumb
   params: null
   return: null
@@ -2498,12 +3309,372 @@
   params: null
   return: null
 -
+  desc: Check zombie should lunge
+  label: CheckZombieShouldLunge
+  addr:
+    U: '?'
+    J: 0x22268
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set zombie waiting to form
+  label: SetZombieWaitingToForm
+  addr:
+    U: '?'
+    J: 0x222C0
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set zombie upright hitbox
+  label: SetZombieUprightHitbox
+  addr:
+    U: '?'
+    J: 0x222F4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie dying start
+  label: Zombie_DyingStart
+  addr:
+    U: '?'
+    J: 0x22310
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie dying
+  label: Zombie_Dying
+  addr:
+    U: '?'
+    J: 0x22344
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie initialize
+  label: Zombie_Init
+  addr:
+    U: '?'
+    J: 0x223CC
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie waiting to form
+  label: Zombie_WaitingToForm
+  addr:
+    U: '?'
+    J: 0x224A8
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie forming
+  label: Zombie_Forming
+  addr:
+    U: '?'
+    J: 0x225D8
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie idle start
+  label: Zombie_IdleStart
+  addr:
+    U: '?'
+    J: 0x22654
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie idle
+  label: Zombie_Idle
+  addr:
+    U: '?'
+    J: 0x22678
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie moving start
+  label: Zombie_MovingStart
+  addr:
+    U: '?'
+    J: 0x226B4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie moving
+  label: Zombie_Moving
+  addr:
+    U: '?'
+    J: 0x226D0
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie turning start
+  label: Zombie_TurningStart
+  addr:
+    U: '?'
+    J: 0x227C8
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie turning
+  label: Zombie_Turning
+  addr:
+    U: '?'
+    J: 0x227E4
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie turning end
+  label: Zombie_TurningEnd
+  addr:
+    U: '?'
+    J: 0x22810
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie lunging start
+  label: Zombie_LungingStart
+  addr:
+    U: '?'
+    J: 0x2282C
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie lunging
+  label: Zombie_Lunging
+  addr:
+    U: '?'
+    J: 0x22860
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie lunging end
+  label: Zombie_LungingEnd
+  addr:
+    U: '?'
+    J: 0x2297C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie falling start
+  label: Zombie_FallingStart
+  addr:
+    U: '?'
+    J: 0x22998
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zombie falling
+  label: Zombie_Falling
+  addr:
+    U: '?'
+    J: 0x229D4
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Zombie AI
   label: Zombie_AI
   addr:
     U: 0x228E0
     J: 0x22A5C
   size: 0x21C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check Geemer collision
+  label: CheckGeemerCollision
+  addr:
+    U: '?'
+    J: 0x22C78
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set Geemer uncovered hitbox
+  label: SetGeemerUncoveredHitbox
+  addr:
+    U: '?'
+    J: 0x22CC8
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set Geemer animation crawling
+  label: SetGeemerAnimationCrawling
+  addr:
+    U: '?'
+    J: 0x22D54
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set Geemer animation idle
+  label: SetGeemerAnimationIdle
+  addr:
+    U: '?'
+    J: 0x22D84
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check Geemer should hide
+  label: CheckGeemerShouldHide
+  addr:
+    U: '?'
+    J: 0x22DB4
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer hiding start
+  label: Geemer_HidingStart
+  addr:
+    U: '?'
+    J: 0x22E54
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer hiding
+  label: Geemer_Hiding
+  addr:
+    U: '?'
+    J: 0x22E78
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer uncovering
+  label: Geemer_Uncovering
+  addr:
+    U: '?'
+    J: 0x22F04
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer turning into X
+  label: Geemer_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x22F28
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer initialize
+  label: Geemer_Init
+  addr:
+    U: '?'
+    J: 0x22F70
+  size: 0x1B4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer crawling start
+  label: Geemer_CrawlingStart
+  addr:
+    U: '?'
+    J: 0x23124
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer crawling
+  label: Geemer_Crawling
+  addr:
+    U: '?'
+    J: 0x2313C
+  size: 0x2D4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer idle start
+  label: Geemer_IdleStart
+  addr:
+    U: '?'
+    J: 0x23410
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer idle
+  label: Geemer_Idle
+  addr:
+    U: '?'
+    J: 0x23428
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer falling start
+  label: Geemer_FallingStart
+  addr:
+    U: '?'
+    J: 0x23464
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Geemer falling
+  label: Geemer_Falling
+  addr:
+    U: '?'
+    J: 0x23488
+  size: 0x150
   mode: thumb
   params: null
   return: null
@@ -2834,6 +4005,136 @@
   params: null
   return: null
 -
+  desc: Make X parasites flee
+  label: MakeXParasitesFlee
+  addr:
+    U: '?'
+    J: 0x25424
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability transformation
+  label: CoreXAbility_Transformation
+  addr:
+    U: '?'
+    J: 0x25478
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability initialize
+  label: CoreXAbility_Init
+  addr:
+    U: '?'
+    J: 0x254FC
+  size: 0x21C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability idle start
+  label: CoreXAbility_IdleStart
+  addr:
+    U: '?'
+    J: 0x25718
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability idle
+  label: CoreXAbility_Idle
+  addr:
+    U: '?'
+    J: 0x2573C
+  size: 0x210
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability moving to spawn point
+  label: CoreXAbility_MovingToSpawnPoint
+  addr:
+    U: '?'
+    J: 0x2594C
+  size: 0x168
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability spawning boss
+  label: CoreXAbility_SpawningBoss
+  addr:
+    U: '?'
+    J: 0x25AB4
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability moving start
+  label: CoreXAbility_MovingStart
+  addr:
+    U: '?'
+    J: 0x25B48
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability moving
+  label: CoreXAbility_Moving
+  addr:
+    U: '?'
+    J: 0x25C28
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability moving to target start
+  label: CoreXAbility_MovingToTargetStart
+  addr:
+    U: '?'
+    J: 0x25C54
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability moving to target
+  label: CoreXAbility_MovingToTarget
+  addr:
+    U: '?'
+    J: 0x25C98
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability waiting at target
+  label: CoreXAbility_WaitingAtTarget
+  addr:
+    U: '?'
+    J: 0x25D34
+  size: 0x1A4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability obtained by Samus
+  label: CoreXAbility_ObtainedBySamus
+  addr:
+    U: '?'
+    J: 0x25ED8
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Core-X ability AI
   label: CoreXAbility_AI
   addr:
@@ -2862,6 +4163,46 @@
     U: 0x26348
     J: 0x26508
   size: 0x300
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability (before Mega-X) initialize
+  label: CoreXAbility_BeforeMegaX_Init
+  addr:
+    U: '?'
+    J: 0x26808
+  size: 0x13C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability (before Mega-X) idle
+  label: CoreXAbility_BeforeMegaX_Idle
+  addr:
+    U: '?'
+    J: 0x26944
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability (before Mega-X) exploding data pad
+  label: CoreXAbility_BeforeMegaX_ExplodingDataPad
+  addr:
+    U: '?'
+    J: 0x26970
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Core-X ability (before Mega-X) floating away
+  label: CoreXAbility_BeforeMegaX_FloatingAway
+  addr:
+    U: '?'
+    J: 0x269D4
+  size: 0x74
   mode: thumb
   params: null
   return: null
@@ -2896,6 +4237,126 @@
   params: null
   return: null
 -
+  desc: Waver initialize
+  label: Waver_Init
+  addr:
+    U: '?'
+    J: 0x26E98
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver flying start
+  label: Waver_FlyingStart
+  addr:
+    U: '?'
+    J: 0x26F58
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver flying
+  label: Waver_Flying
+  addr:
+    U: '?'
+    J: 0x26F70
+  size: 0x1B0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver charging
+  label: Waver_Charging
+  addr:
+    U: '?'
+    J: 0x27120
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver crashing start
+  label: Waver_CrashingStart
+  addr:
+    U: '?'
+    J: 0x27214
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver crashing
+  label: Waver_Crashing
+  addr:
+    U: '?'
+    J: 0x2722C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver backing out
+  label: Waver_BackingOut
+  addr:
+    U: '?'
+    J: 0x2725C
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver backed out
+  label: Waver_BackedOut
+  addr:
+    U: '?'
+    J: 0x272B0
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver turned around
+  label: Waver_TurnedAround
+  addr:
+    U: '?'
+    J: 0x272E4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver debris initialize
+  label: WaverDebris_Init
+  addr:
+    U: '?'
+    J: 0x27300
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver debris falling
+  label: WaverDebris_Falling
+  addr:
+    U: '?'
+    J: 0x27384
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Waver debris exploding
+  label: WaverDebris_Exploding
+  addr:
+    U: '?'
+    J: 0x27420
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Waver AI
   label: Waver_AI
   addr:
@@ -2912,6 +4373,136 @@
     U: 0x27488
     J: 0x27648
   size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser shooting
+  label: Sciser_Shooting
+  addr:
+    U: '?'
+    J: 0x278E0
+  size: 0x1B8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser turning into X
+  label: Sciser_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x27A98
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser initialize
+  label: Sciser_Init
+  addr:
+    U: '?'
+    J: 0x27AE0
+  size: 0x184
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser crawling start
+  label: Sciser_CrawlingStart
+  addr:
+    U: '?'
+    J: 0x27C64
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser crawling
+  label: Sciser_Crawling
+  addr:
+    U: '?'
+    J: 0x27C7C
+  size: 0x3C8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser idle start
+  label: Sciser_IdleStart
+  addr:
+    U: '?'
+    J: 0x28044
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser idle
+  label: Sciser_Idle
+  addr:
+    U: '?'
+    J: 0x2805C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser falling start
+  label: Sciser_FallingStart
+  addr:
+    U: '?'
+    J: 0x2808C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser falling
+  label: Sciser_Falling
+  addr:
+    U: '?'
+    J: 0x280AC
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser projectile initialize
+  label: SciserProjectile_Init
+  addr:
+    U: '?'
+    J: 0x281C8
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser projectile falling
+  label: SciserProjectile_Falling
+  addr:
+    U: '?'
+    J: 0x2823C
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser projectile exploding start
+  label: SciserProjectile_ExplodingStart
+  addr:
+    U: '?'
+    J: 0x28318
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sciser projectile exploding
+  label: SciserProjectile_Exploding
+  addr:
+    U: '?'
+    J: 0x28360
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -2936,12 +4527,292 @@
   params: null
   return: null
 -
+  desc: Check Samus near Sidehopper
+  label: CheckSamusNearSidehopper
+  addr:
+    U: '?'
+    J: 0x285E0
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if Samus near Sidehopper, 0 otherwise
+-
+  desc: Sidehopper initialize
+  label: Sidehopper_Init
+  addr:
+    U: '?'
+    J: 0x28600
+  size: 0x110
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper preparing to jump start
+  label: Sidehopper_PreparingToJumpStart
+  addr:
+    U: '?'
+    J: 0x28710
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper preparing to jump (floor)
+  label: Sidehopper_PreparingToJump_Floor
+  addr:
+    U: '?'
+    J: 0x28838
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper preparing to jump (ceiling)
+  label: Sidehopper_PreparingToJump_Ceiling
+  addr:
+    U: '?'
+    J: 0x28894
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper jumping (floor)
+  label: Sidehopper_Jumping_Floor
+  addr:
+    U: '?'
+    J: 0x288B8
+  size: 0x1E0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper jumping (ceiling)
+  label: Sidehopper_Jumping_Ceiling
+  addr:
+    U: '?'
+    J: 0x28A98
+  size: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper landing
+  label: Sidehopper_Landing
+  addr:
+    U: '?'
+    J: 0x28C8C
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper falling (floor)
+  label: Sidehopper_Falling_Floor
+  addr:
+    U: '?'
+    J: 0x28CA0
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper falling (ceiling)
+  label: Sidehopper_Falling_Ceiling
+  addr:
+    U: '?'
+    J: 0x28D44
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper idle (floor)
+  label: Sidehopper_Idle_Floor
+  addr:
+    U: '?'
+    J: 0x28DEC
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sidehopper idle (ceiling)
+  label: Sidehopper_Idle_Ceiling
+  addr:
+    U: '?'
+    J: 0x28E7C
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Sidehopper AI
   label: Sidehopper_AI
   addr:
     U: 0x28D0C
     J: 0x28ECC
   size: 0x288
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check Samus near Dessgeega
+  label: CheckSamusNearDessgeega
+  addr:
+    U: '?'
+    J: 0x29154
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if Samus near Dessgeega, 0 otherwise
+-
+  desc: Dessgeega initialize
+  label: Dessgeega_Init
+  addr:
+    U: '?'
+    J: 0x29174
+  size: 0x110
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega preparing to jump start
+  label: Dessgeega_PreparingToJumpStart
+  addr:
+    U: '?'
+    J: 0x29284
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega preparing to jump (floor)
+  label: Dessgeega_PreparingToJump_Floor
+  addr:
+    U: '?'
+    J: 0x293AC
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega preparing to jump (ceiling)
+  label: Dessgeega_PreparingToJump_Ceiling
+  addr:
+    U: '?'
+    J: 0x29408
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega jumping (floor)
+  label: Dessgeega_Jumping_Floor
+  addr:
+    U: '?'
+    J: 0x2942C
+  size: 0x1E0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega jumping (ceiling)
+  label: Dessgeega_Jumping_Ceiling
+  addr:
+    U: '?'
+    J: 0x2960C
+  size: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega landing
+  label: Dessgeega_Landing
+  addr:
+    U: '?'
+    J: 0x29800
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega falling (floor)
+  label: Dessgeega_Falling_Floor
+  addr:
+    U: '?'
+    J: 0x29814
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega falling (ceiling)
+  label: Dessgeega_Falling_Ceiling
+  addr:
+    U: '?'
+    J: 0x298B8
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega idle (floor)
+  label: Dessgeega_Idle_Floor
+  addr:
+    U: '?'
+    J: 0x29960
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega idle (ceiling)
+  label: Dessgeega_Idle_Ceiling
+  addr:
+    U: '?'
+    J: 0x299F0
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega spike initialize
+  label: DessgeegaSpike_Init
+  addr:
+    U: '?'
+    J: 0x29A40
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega spike moving
+  label: DessgeegaSpike_Moving
+  addr:
+    U: '?'
+    J: 0x29AB4
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega spike exploding start
+  label: DessgeegaSpike_ExplodingStart
+  addr:
+    U: '?'
+    J: 0x29B0C
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Dessgeega spike exploding
+  label: DessgeegaSpike_Exploding
+  addr:
+    U: '?'
+    J: 0x29B30
+  size: 0x2C
   mode: thumb
   params: null
   return: null
@@ -2966,11 +4837,53 @@
   params: null
   return: null
 -
-  desc: Empty function?
+  desc: Set X-barrier clipdata
+  label: SetXBarrierClipdata
   addr:
-    U: 0x29E98
+    U: '?'
+    J: 0x29EB0
+  size: 0x5C
+  mode: thumb
+  params:
+  - Clipdata affecting action
+  return: null
+-
+  desc: X-barrier core (normal) initialize
+  label: XBarrierCore_Normal_Init
+  addr:
+    U: '?'
+    J: 0x29F0C
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (normal) idle start
+  label: XBarrierCore_Normal_IdleStart
+  addr:
+    U: '?'
+    J: 0x2A038
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (normal) idle
+  label: XBarrierCore_Normal_Idle
+  addr:
+    U: '?'
     J: 0x2A058
   size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (normal) dying start
+  label: XBarrierCore_Normal_DyingStart
+  addr:
+    U: '?'
+    J: 0x2A05C
+  size: 0x30
   mode: thumb
   params: null
   return: null
@@ -2995,11 +4908,182 @@
   params: null
   return: null
 -
-  desc: Empty function?
+  desc: Navigation pad initialize
+  label: NavigationPad_Init
+  addr:
+    U: '?'
+    J: 0x2A2DC
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad idle start (active)
+  label: NavigationPad_IdleStart_Active
+  addr:
+    U: '?'
+    J: 0x2A37C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad idle (active)
+  label: NavigationPad_Idle_Active
+  addr:
+    U: '?'
+    J: 0x2A3C0
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad pressing switch
+  label: NavigationPad_PressingSwitch
+  addr:
+    U: '?'
+    J: 0x2A414
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad switch pressed
+  label: NavigationPad_SwitchPressed
+  addr:
+    U: '?'
+    J: 0x2A440
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad releasing switch
+  label: NavigationPad_ReleasingSwitch
+  addr:
+    U: '?'
+    J: 0x2A4BC
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad conversation
+  label: NavigationPad_Conversation
+  addr:
+    U: '?'
+    J: 0x2A4D0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad after conversation
+  label: NavigationPad_AfterConversation
+  addr:
+    U: '?'
+    J: 0x2A508
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad using console
+  label: NavigationPad_UsingConsole
+  addr:
+    U: '?'
+    J: 0x2A53C
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation pad looking at screen
+  label: NavigationPad_LookingAtScreen
+  addr:
+    U: '?'
+    J: 0x2A5B0
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation console initialize
+  label: NavigationConsole_Init
+  addr:
+    U: '?'
+    J: 0x2A5EC
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation console idle
+  label: NavigationConsole_Idle
   addr:
     U: 0x2A490
     J: 0x2A650
   size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation console screen initialize
+  label: NavigationConsoleScreen_Init
+  addr:
+    U: '?'
+    J: 0x2A654
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation console screen idle
+  label: NavigationConsoleScreen_Idle
+  addr:
+    U: '?'
+    J: 0x2A6C4
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation screen initialize
+  label: NavigationScreen_Init
+  addr:
+    U: '?'
+    J: 0x2A700
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation screen turning on
+  label: NavigationScreen_TurningOn
+  addr:
+    U: '?'
+    J: 0x2A774
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation screen displaying grid
+  label: NavigationScreen_DisplayingGrid
+  addr:
+    U: '?'
+    J: 0x2A79C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation screen turning off
+  label: NavigationScreen_TurningOff
+  addr:
+    U: '?'
+    J: 0x2A7E0
+  size: 0x18
   mode: thumb
   params: null
   return: null
@@ -3040,6 +5124,77 @@
     U: 0x2A7E0
     J: 0x2A9A0
   size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Try spawn message box
+  label: TrySpawnMessageBox
+  addr:
+    U: '?'
+    J: 0x2A9E8
+  size: 0x74
+  mode: thumb
+  params:
+  - Message number
+  return: Assigned sprite RAM slot, 0x18 otherwise
+-
+  desc: Message box initialize
+  label: MessageBox_Init
+  addr:
+    U: '?'
+    J: 0x2AA5C
+  size: 0x114
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Message box opening start
+  label: MessageBox_OpeningStart
+  addr:
+    U: '?'
+    J: 0x2AB70
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Message box opening
+  label: MessageBox_Opening
+  addr:
+    U: '?'
+    J: 0x2ABC0
+  size: 0x118
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Message box displaying
+  label: MessageBox_Displaying
+  addr:
+    U: '?'
+    J: 0x2ACD8
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Message box closing start
+  label: MessageBox_ClosingStart
+  addr:
+    U: '?'
+    J: 0x2AD60
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Message box closing
+  label: MessageBox_Closing
+  addr:
+    U: '?'
+    J: 0x2ADA4
+  size: 0x40
   mode: thumb
   params: null
   return: null
@@ -3152,6 +5307,36 @@
   mode: thumb
   params: null
   return: 1 if an atmospheric stabilizer exists, 0 otherwise
+-
+  desc: Atmospheric stabilizer initialize
+  label: AtmosphericStabilizer_Init
+  addr:
+    U: '?'
+    J: 0x2C960
+  size: 0x29C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Atmospheric stabilizer returning online start
+  label: AtmosphericStabilizer_ReturningOnlineStart
+  addr:
+    U: '?'
+    J: 0x2CBFC
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Atmospheric stabilizer returning online
+  label: AtmosphericStabilizer_ReturningOnline
+  addr:
+    U: '?'
+    J: 0x2CC40
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Atmospheric stabilizer AI
   label: AtmosphericStabilizer_AI
@@ -3676,6 +5861,126 @@
   params: null
   return: null
 -
+  desc: Kago turning into X
+  label: Kago_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x2F8F0
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago initialize
+  label: Kago_Init
+  addr:
+    U: '?'
+    J: 0x2F934
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago spawning from X
+  label: Kago_SpawningFromX
+  addr:
+    U: '?'
+    J: 0x2FA3C
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago idle (short)
+  label: Kago_Idle_Short
+  addr:
+    U: '?'
+    J: 0x2FAA4
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago idle (tall)
+  label: Kago_Idle_Tall
+  addr:
+    U: '?'
+    J: 0x2FAC4
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago dying start
+  label: Kago_DyingStart
+  addr:
+    U: '?'
+    J: 0x2FAE4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect exploding start
+  label: KagoInsect_ExplodingStart
+  addr:
+    U: '?'
+    J: 0x2FB24
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect exploding
+  label: KagoInsect_Exploding
+  addr:
+    U: '?'
+    J: 0x2FB54
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect initialize
+  label: KagoInsect_Init
+  addr:
+    U: '?'
+    J: 0x2FB78
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect standing
+  label: KagoInsect_Standing
+  addr:
+    U: '?'
+    J: 0x2FD10
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect jumping
+  label: KagoInsect_Jumping
+  addr:
+    U: '?'
+    J: 0x2FD70
+  size: 0x224
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Kago insect falling
+  label: KagoInsect_Falling
+  addr:
+    U: '?'
+    J: 0x2FF94
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Kago AI
   label: Kago_AI
   addr:
@@ -3714,6 +6019,86 @@
     U: 0x30568
     J: 0x30728
   size: 0x2B0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate initialize
+  label: Gate_Init
+  addr:
+    U: '?'
+    J: 0x30A28
+  size: 0x138
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate closed
+  label: Gate_Closed
+  addr:
+    U: '?'
+    J: 0x30B60
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate opening start
+  label: Gate_OpeningStart
+  addr:
+    U: '?'
+    J: 0x30B98
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate opening
+  label: Gate_Opening
+  addr:
+    U: '?'
+    J: 0x30C08
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate switch initialize
+  label: GateSwitch_Init
+  addr:
+    U: '?'
+    J: 0x30C4C
+  size: 0xB4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate switch idle
+  label: GateSwitch_Idle
+  addr:
+    U: '?'
+    J: 0x30D00
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate switch pressing
+  label: GateSwitch_Pressing
+  addr:
+    U: '?'
+    J: 0x30D5C
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gate switch pressed
+  label: GateSwitch_Pressed
+  addr:
+    U: '?'
+    J: 0x30DE8
+  size: 0x10
   mode: thumb
   params: null
   return: null
@@ -5801,6 +8186,176 @@
   params: null
   return: null
 -
+  desc: Evir spawning from X
+  label: Evir_SpawningFromX
+  addr:
+    U: '?'
+    J: 0x3DA60
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir turning into X
+  label: Evir_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x3DAB4
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir initialize
+  label: Evir_Init
+  addr:
+    U: '?'
+    J: 0x3DB24
+  size: 0x154
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir shooting start
+  label: Evir_ShootingStart
+  addr:
+    U: '?'
+    J: 0x3DC78
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir shooting
+  label: Evir_Shooting
+  addr:
+    U: '?'
+    J: 0x3DC9C
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir moving start
+  label: Evir_MovingStart
+  addr:
+    U: '?'
+    J: 0x3DD44
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir moving
+  label: Evir_Moving
+  addr:
+    U: '?'
+    J: 0x3DD64
+  size: 0x140
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir turning start
+  label: Evir_TurningStart
+  addr:
+    U: '?'
+    J: 0x3DEA4
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir turning
+  label: Evir_Turning
+  addr:
+    U: '?'
+    J: 0x3DEC4
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir turning end
+  label: Evir_TurningEnd
+  addr:
+    U: '?'
+    J: 0x3DEF8
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir collision initialize
+  label: EvirCollision_Init
+  addr:
+    U: '?'
+    J: 0x3DF14
+  size: 0xB4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir collision idle
+  label: EvirCollision_Idle
+  addr:
+    U: '?'
+    J: 0x3DFC8
+  size: 0x10C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir projectile initialize
+  label: EvirProjectile_Init
+  addr:
+    U: '?'
+    J: 0x3E0D4
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir projectile moving start
+  label: EvirProjectile_MovingStart
+  addr:
+    U: '?'
+    J: 0x3E154
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir projectile moving
+  label: EvirProjectile_Moving
+  addr:
+    U: '?'
+    J: 0x3E180
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir projectile exploding start
+  label: EvirProjectile_ExplodingStart
+  addr:
+    U: '?'
+    J: 0x3E26C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Evir projectile exploding
+  label: EvirProjectile_Exploding
+  addr:
+    U: '?'
+    J: 0x3E2A8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Evir AI
   label: Evir_AI
   addr:
@@ -5891,6 +8446,276 @@
   params: null
   return: null
 -
+  desc: Zebesian (ground) initialize
+  label: Zebesian_Ground_Init
+  addr:
+    U: '?'
+    J: 0x400A4
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) spawning from X
+  label: Zebesian_Ground_SpawningFromX
+  addr:
+    U: '?'
+    J: 0x40184
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (pre-aqua) turning into X
+  label: Zebesian_PreAqua_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x4020C
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) turning into X
+  label: Zebesian_Ground_TurningIntoX
+  addr:
+    U: '?'
+    J: 0x402C8
+  size: 0x120
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) falling start
+  label: Zebesian_Ground_FallingStart
+  addr:
+    U: '?'
+    J: 0x403E8
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) walking start
+  label: Zebesian_Ground_WalkingStart
+  addr:
+    U: '?'
+    J: 0x40414
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) walking
+  label: Zebesian_Ground_Walking
+  addr:
+    U: '?'
+    J: 0x40440
+  size: 0x1E0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) turning start
+  label: Zebesian_Ground_TurningStart
+  addr:
+    U: '?'
+    J: 0x40620
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) turning
+  label: Zebesian_Ground_Turning
+  addr:
+    U: '?'
+    J: 0x40640
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) turning end
+  label: Zebesian_Ground_TurningEnd
+  addr:
+    U: '?'
+    J: 0x40674
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) preparing to jump start
+  label: Zebesian_Ground_PreparingToJumpStart
+  addr:
+    U: '?'
+    J: 0x406A4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) preparing to jump
+  label: Zebesian_Ground_PreparingToJump
+  addr:
+    U: '?'
+    J: 0x406C0
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) jumping
+  label: Zebesian_Ground_Jumping
+  addr:
+    U: '?'
+    J: 0x40710
+  size: 0x178
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set Zebesian (ground) landing
+  label: SetZebesianLanding
+  addr:
+    U: '?'
+    J: 0x40888
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) landing
+  label: Zebesian_Ground_Landing
+  addr:
+    U: '?'
+    J: 0x408BC
+  size: 0xD0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) idle start
+  label: Zebesian_Ground_IdleStart
+  addr:
+    U: '?'
+    J: 0x4098C
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) idle
+  label: Zebesian_Ground_Idle
+  addr:
+    U: '?'
+    J: 0x409B0
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) standing start
+  label: Zebesian_Ground_StandingStart
+  addr:
+    U: '?'
+    J: 0x409CC
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) standing
+  label: Zebesian_Ground_Standing
+  addr:
+    U: '?'
+    J: 0x409FC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) shooting start
+  label: Zebesian_Ground_ShootingStart
+  addr:
+    U: '?'
+    J: 0x40A30
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) shooting
+  label: Zebesian_Ground_Shooting
+  addr:
+    U: '?'
+    J: 0x40A80
+  size: 0x140
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) finished shooting start
+  label: Zebesian_Ground_FinishedShootingStart
+  addr:
+    U: '?'
+    J: 0x40BC0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian (ground) finished shooting
+  label: Zebesian_Ground_FinishedShooting
+  addr:
+    U: '?'
+    J: 0x40BE4
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian beam (ground) initialize
+  label: ZebesianBeam_Ground_Init
+  addr:
+    U: '?'
+    J: 0x40C80
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian beam (ground) being fired
+  label: ZebesianBeam_Ground_BeingFired
+  addr:
+    U: '?'
+    J: 0x40D28
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Zebesian beam (ground) moving
+  label: ZebesianBeam_Ground_Moving
+  addr:
+    U: '?'
+    J: 0x40D70
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check Zebesian (ground) should skip movement
+  label: CheckZebesianShouldSkipMovement
+  addr:
+    U: '?'
+    J: 0x40DB8
+  size: 0x30
+  mode: thumb
+  params: null
+  return: 1 if movement should be skipped, 0 otherwise
+-
   desc: Zebesian (ground) AI
   label: Zebesian_Ground_AI
   addr:
@@ -5907,6 +8732,126 @@
     U: 0x40F00
     J: 0x41104
   size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X initialize
+  label: BlueX_Init
+  addr:
+    U: '?'
+    J: 0x412B4
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X hiding
+  label: BlueX_Hiding
+  addr:
+    U: '?'
+    J: 0x41394
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X swaying start
+  label: BlueX_SwayingStart
+  addr:
+    U: '?'
+    J: 0x413E8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X swaying
+  label: BlueX_Swaying
+  addr:
+    U: '?'
+    J: 0x4140C
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X moving start
+  label: BlueX_MovingStart
+  addr:
+    U: '?'
+    J: 0x41494
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X moving
+  label: BlueX_Moving
+  addr:
+    U: '?'
+    J: 0x41504
+  size: 0x210
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X being absorbed
+  label: BlueX_BeingAbsorbed
+  addr:
+    U: '?'
+    J: 0x41714
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X stunned
+  label: BlueX_Stunned
+  addr:
+    U: '?'
+    J: 0x417D4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X fleeing
+  label: BlueX_Fleeing
+  addr:
+    U: '?'
+    J: 0x41814
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X absorption initialize
+  label: BlueXAbsorption_Init
+  addr:
+    U: '?'
+    J: 0x418B0
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X absorption absorbing
+  label: BlueXAbsorption_Absorbing
+  addr:
+    U: '?'
+    J: 0x4192C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Blue X absorption fading away
+  label: BlueXAbsorption_FadingAway
+  addr:
+    U: '?'
+    J: 0x4195C
+  size: 0x18
   mode: thumb
   params: null
   return: null
@@ -5931,6 +8876,56 @@
   params: null
   return: null
 -
+  desc: Missile hatch initialize
+  label: MissileHatch_Init
+  addr:
+    U: '?'
+    J: 0x41B18
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Missile hatch idle
+  label: MissileHatch_Idle
+  addr:
+    U: '?'
+    J: 0x41BB4
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Missile hatch exploding
+  label: MissileHatch_Exploding
+  addr:
+    U: '?'
+    J: 0x41BEC
+  size: 0x234
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Missile hatch debris initialize
+  label: MissileHatchDebris_Init
+  addr:
+    U: '?'
+    J: 0x41E20
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Missile hatch debris falling
+  label: MissileHatchDebris_Falling
+  addr:
+    U: '?'
+    J: 0x41EC4
+  size: 0x180
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Missile hatch AI
   label: MissileHatch_AI
   addr:
@@ -5951,11 +8946,42 @@
   params: null
   return: null
 -
-  desc: Empty function?
+  desc: X-barrier core (super) initialize
+  label: XBarrierCore_Super_Init
   addr:
-    U: 0x41FD0
+    U: '?'
+    J: 0x420B4
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (super) idle start
+  label: XBarrierCore_Super_IdleStart
+  addr:
+    U: '?'
+    J: 0x421E0
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (super) idle
+  label: XBarrierCore_Super_Idle
+  addr:
+    U: '?'
     J: 0x42200
   size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (super) dying start
+  label: XBarrierCore_Super_DyingStart
+  addr:
+    U: '?'
+    J: 0x42204
+  size: 0x30
   mode: thumb
   params: null
   return: null
@@ -5976,6 +9002,46 @@
     U: 0x420B4
     J: 0x422E4
   size: 0x13C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (power) initialize
+  label: XBarrierCore_Power_Init
+  addr:
+    U: '?'
+    J: 0x42420
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (power) idle start
+  label: XBarrierCore_Power_IdleStart
+  addr:
+    U: '?'
+    J: 0x42550
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (power) idle
+  label: XBarrierCore_Power_Idle
+  addr:
+    U: '?'
+    J: 0x42570
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: X-barrier core (power) dying start
+  label: XBarrierCore_Power_DyingStart
+  addr:
+    U: '?'
+    J: 0x42590
+  size: 0x30
   mode: thumb
   params: null
   return: null
@@ -6028,6 +9094,28 @@
   size: 0x20
   mode: thumb
   params: null
+  return: null
+-
+  desc: Set Gadora clipdata
+  label: SetGadoraClipdata
+  addr:
+    U: '?'
+    J: 0x42FA4
+  size: 0x50
+  mode: thumb
+  params:
+  - Clipdata affecting action
+  return: null
+-
+  desc: Set Gadora direction, position, and clipdata
+  label: SetGadoraDirectionPositionClipdata
+  addr:
+    U: '?'
+    J: 0x42FF4
+  size: 0xB4
+  mode: thumb
+  params:
+  - Clipdata affecting action
   return: null
 -
   desc: Gadora dying start
@@ -7322,8 +10410,8 @@
   params: null
   return: null
 -
-  desc: Splash related?
-  label: '?'
+  desc: Check Serris entered water
+  label: CheckSerrisEnteredWater
   addr:
     U: 0x48E68
     J: 0x490F0
@@ -7446,6 +10534,156 @@
   params: null
   return: null
 -
+  desc: Genesis initialize
+  label: Genesis_Init
+  addr:
+    U: '?'
+    J: 0x4B0E8
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis crawling start
+  label: Genesis_CrawlingStart
+  addr:
+    U: '?'
+    J: 0x4B1A8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis crawling
+  label: Genesis_Crawling
+  addr:
+    U: '?'
+    J: 0x4B1E4
+  size: 0x170
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis idle start
+  label: Genesis_IdleStart
+  addr:
+    U: '?'
+    J: 0x4B354
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis idle
+  label: Genesis_Idle
+  addr:
+    U: '?'
+    J: 0x4B374
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis reached wall start
+  label: Genesis_ReachedWallStart
+  addr:
+    U: '?'
+    J: 0x4B3B8
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis reached wall
+  label: Genesis_ReachedWall
+  addr:
+    U: '?'
+    J: 0x4B3D8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis turning start
+  label: Genesis_TurningStart
+  addr:
+    U: '?'
+    J: 0x4B41C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis turning
+  label: Genesis_Turning
+  addr:
+    U: '?'
+    J: 0x4B43C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis turning end
+  label: Genesis_TurningEnd
+  addr:
+    U: '?'
+    J: 0x4B46C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis spitting
+  label: Genesis_Spitting
+  addr:
+    U: '?'
+    J: 0x4B488
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis spit initialize
+  label: GenesisSpit_Init
+  addr:
+    U: '?'
+    J: 0x4B554
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis spit hanging
+  label: GenesisSpit_Hanging
+  addr:
+    U: '?'
+    J: 0x4B5E0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis spit splashing start
+  label: GenesisSpit_SplashingStart
+  addr:
+    U: '?'
+    J: 0x4B610
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Genesis spit splashing
+  label: GenesisSpit_Splashing
+  addr:
+    U: '?'
+    J: 0x4B648
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Genesis AI
   label: Genesis_AI
   addr:
@@ -7539,6 +10777,16 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Check have Dachora do head movement
+  label: CheckHaveDachoraDoHeadMovement
+  addr:
+    U: '?'
+    J: 0x4D40C
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: 1 if Dachora will do head movement, 0 otherwise
 -
   desc: Dachora initialize
   label: Dachora_Init
@@ -7829,6 +11077,26 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Can Etecoon grab tire swing
+  label: CanEtecoonGrabTireSwing
+  addr:
+    U: '?'
+    J: 0x4DDAC
+  size: 0xE4
+  mode: thumb
+  params: null
+  return: 1 if Etecoon can grab a tire swing, 0 otherwise
+-
+  desc: Check have Etecoon face foreground
+  label: CheckHaveEtecoonFaceForeground
+  addr:
+    U: '?'
+    J: 0x4DE90
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: 1 if Etecoon will face foreground, 0 otherwise
 -
   desc: Etecoon initialize
   label: Etecoon_Init
@@ -8136,6 +11404,56 @@
     U: 0x4EA14
     J: 0x4EDE8
   size: 0xD8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid initialize
+  label: Metroid_Init
+  addr:
+    U: '?'
+    J: 0x4EEC0
+  size: 0x228
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid swaying
+  label: Metroid_Swaying
+  addr:
+    U: '?'
+    J: 0x4F0E8
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid floating in tube
+  label: Metroid_FloatingInTube
+  addr:
+    U: '?'
+    J: 0x4F14C
+  size: 0x2E4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid floating near SA-X
+  label: Metroid_FloatingNearSax
+  addr:
+    U: '?'
+    J: 0x4F430
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid floating toward SA-X
+  label: Metroid_FloatingTowardSax
+  addr:
+    U: '?'
+    J: 0x4F4F0
+  size: 0x348
   mode: thumb
   params: null
   return: null
@@ -8924,6 +12242,126 @@
   params: null
   return: null
 -
+  desc: BOX 2 part initialize
+  label: Box2Part_Init
+  addr:
+    U: '?'
+    J: 0x52FF0
+  size: 0x1C8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 missile initialize
+  label: Box2Missile_Init
+  addr:
+    U: '?'
+    J: 0x537C0
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 missile launching
+  label: Box2Missile_Launching
+  addr:
+    U: '?'
+    J: 0x5386C
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 missile moving toward Samus
+  label: Box2Missile_MovingTowardSamus
+  addr:
+    U: '?'
+    J: 0x538F4
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 missile exploding
+  label: Box2Missile_Exploding
+  addr:
+    U: '?'
+    J: 0x539C8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain top initialize
+  label: Box2BrainTop_Init
+  addr:
+    U: '?'
+    J: 0x539EC
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain top rising
+  label: Box2BrainTop_Rising
+  addr:
+    U: '?'
+    J: 0x53A90
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain top floating
+  label: Box2BrainTop_Floating
+  addr:
+    U: '?'
+    J: 0x53B10
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain top transformation start
+  label: Box2BrainTop_TransformationStart
+  addr:
+    U: '?'
+    J: 0x53BC0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain top transformation
+  label: Box2BrainTop_Transformation
+  addr:
+    U: '?'
+    J: 0x53BEC
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain bottom initialize
+  label: Box2BrainBottom_Init
+  addr:
+    U: '?'
+    J: 0x53C64
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX 2 brain bottom idle
+  label: Box2BrainBottom_Idle
+  addr:
+    U: '?'
+    J: 0x53CE4
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
   desc: BOX 2 AI
   label: Box2_AI
   addr:
@@ -8970,6 +12408,26 @@
     U: 0x53D14
     J: 0x540DC
   size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update Omega Metroid palette based on health
+  label: UpdateOmegaMetroidPaletteBasedOnHealth
+  addr:
+    U: '?'
+    J: 0x541F0
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Omega Metroid and SA-X beam collision
+  label: OmegaMetroidAndSaxBeamCollision
+  addr:
+    U: '?'
+    J: 0x54294
+  size: 0xDC
   mode: thumb
   params: null
   return: null
@@ -9434,11 +12892,162 @@
   params: null
   return: null
 -
-  desc: Empty function?
+  desc: Gunship (end) initialize
+  label: Gunship_End_Init
   addr:
-    U: 0x56898
+    U: '?'
+    J: 0x56650
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) waiting at start
+  label: Gunship_End_WaitingAtStart
+  addr:
+    U: '?'
+    J: 0x566DC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) moving up
+  label: Gunship_End_MovingUp
+  addr:
+    U: '?'
+    J: 0x56710
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) waiting to enter
+  label: Gunship_End_WaitingToEnter
+  addr:
+    U: '?'
+    J: 0x567C0
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) entering
+  label: Gunship_End_Entering
+  addr:
+    U: '?'
+    J: 0x5681C
+  size: 0x158
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) waiting for Samus
+  label: Gunship_End_WaitingForSamus
+  addr:
+    U: '?'
+    J: 0x56974
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) locking Samus
+  label: Gunship_End_LockingSamus
+  addr:
+    U: '?'
+    J: 0x56A1C
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) moving Samus up
+  label: Gunship_End_MovingSamusUp
+  addr:
+    U: '?'
+    J: 0x56A44
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) starting engine 1
+  label: Gunship_End_StartingEngine1
+  addr:
+    U: '?'
+    J: 0x56A80
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) starting engine 2
+  label: Gunship_End_StartingEngine2
+  addr:
+    U: '?'
+    J: 0x56B10
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) taking off
+  label: Gunship_End_TakingOff
+  addr:
+    U: '?'
+    J: 0x56BDC
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship (end) done
+  label: Gunship_End_Done
+  addr:
+    U: '?'
     J: 0x56C70
   size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship bottom (end)
+  label: GunshipBottom_End
+  addr:
+    U: '?'
+    J: 0x56C74
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam (end) initialize
+  label: GunshipBeam_End_Init
+  addr:
+    U: '?'
+    J: 0x56CE8
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam (end) moving down
+  label: GunshipBeam_End_MovingDown
+  addr:
+    U: '?'
+    J: 0x56D5C
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Gunship beam (end) moving up
+  label: GunshipBeam_End_MovingUp
+  addr:
+    U: '?'
+    J: 0x56DCC
+  size: 0x54
   mode: thumb
   params: null
   return: null
@@ -9600,6 +13209,16 @@
     U: 0x59054
     J: 0x594E4
   size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update Ridley palette based on health
+  label: UpdateRidleyPaletteBasedOnHealth
+  addr:
+    U: '?'
+    J: 0x599F0
+  size: 0x98
   mode: thumb
   params: null
   return: null
@@ -10551,7 +14170,7 @@
   return: null
 -
   desc: Update Nightmare OAM and position
-  label: UpdateNightmareOAMAndPosition
+  label: UpdateNightmareOamAndPosition
   addr:
     U: 0x5DCA0
     J: 0x5E180
@@ -10742,6 +14361,16 @@
   size:
     U: 0xB8
     J: 0xD8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Make Nightmare flash during death
+  label: MakeNightmareFlashDuringDeath
+  addr:
+    U: '?'
+    J: 0x5E9F0
+  size: 0x44
   mode: thumb
   params: null
   return: null

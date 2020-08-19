@@ -119,39 +119,6 @@ BG3Movement:
   - desc: X position offset
     type: u16
     offset: 0x4
-BackupOfIoRegisters:
-  size: 0x12
-  vars:
-  - desc: Backup of DISPCNT (LCD control) during non-gameplay
-    type: u16
-    offset: 0x0
-  - desc: Backup of BLDCNT (color special effects selection) during non-gameplay
-    type: u16
-    offset: 0x2
-  - desc: Backup of BLDALPHA (alpha blending coefficients) during non-gameplay
-    type: u16
-    offset: 0x4
-  - desc: Backup of WININ_H (inside of window 1) during non-gameplay
-    type: u8
-    offset: 0x6
-  - desc: Backup of WINOUT_L (outside of windows) during non-gameplay
-    type: u8
-    offset: 0x7
-  - desc: Backup of BG0CNT (BG0 control), written to only
-    type: u16
-    offset: 0x8
-  - desc: Backup of BG1CNT (BG1 control)
-    type: u16
-    offset: 0xA
-  - desc: Backup of BG2CNT (BG2 control)
-    type: u16
-    offset: 0xC
-  - desc: Backup of BG3CNT (BG3 control)
-    type: u16
-    offset: 0xE
-  - desc: Backup of BG0CNT (BG0 control)
-    type: u16
-    offset: 0x10
 BGPositions:
   size: 0x14
   vars:
@@ -224,6 +191,39 @@ BGPtrsAndDimensions:
   - desc: Height of clipdata in blocks
     type: u16
     offset: 0x1E
+BackupOfIoRegisters:
+  size: 0x12
+  vars:
+  - desc: Backup of DISPCNT (LCD control) during non-gameplay
+    type: u16
+    offset: 0x0
+  - desc: Backup of BLDCNT (color special effects selection) during non-gameplay
+    type: u16
+    offset: 0x2
+  - desc: Backup of BLDALPHA (alpha blending coefficients) during non-gameplay
+    type: u16
+    offset: 0x4
+  - desc: Backup of WININ_H (inside of window 1) during non-gameplay
+    type: u8
+    offset: 0x6
+  - desc: Backup of WINOUT_L (outside of windows) during non-gameplay
+    type: u8
+    offset: 0x7
+  - desc: Backup of BG0CNT (BG0 control), written to only
+    type: u16
+    offset: 0x8
+  - desc: Backup of BG1CNT (BG1 control)
+    type: u16
+    offset: 0xA
+  - desc: Backup of BG2CNT (BG2 control)
+    type: u16
+    offset: 0xC
+  - desc: Backup of BG3CNT (BG3 control)
+    type: u16
+    offset: 0xE
+  - desc: Backup of BG0CNT (BG0 control)
+    type: u16
+    offset: 0x10
 BrokenReformBlock:
   size: 0x4
   vars:

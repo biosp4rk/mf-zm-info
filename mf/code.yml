@@ -1030,6 +1030,16 @@
   - X position
   return: null
 -
+  desc: Enemy falling
+  label: EnemyFalling
+  addr:
+    U: '?'
+    J: 0x11564
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Make sprite face Samus (X-flip)
   label: MakeSpriteFaceSamus_XFlip
   addr:
@@ -1412,8 +1422,8 @@
   - Sprite ID
   return: Sprite RAM slot, 0xFF otherwise
 -
-  desc: Find secondary sprite with primary sprite slot
-  label: FindSecondarySpriteWithPrimarySlot
+  desc: Count secondary sprites with primary sprite slot
+  label: CountSecondarySpritesWithPrimarySlot
   addr:
     U: 0x12990
     J: 0x12AFC
@@ -1422,7 +1432,7 @@
   params:
   - Sprite ID
   - Primary sprite RAM slot
-  return: Sprite RAM slot, 0xFF otherwise
+  return: Secondary sprite count
 -
   desc: Move Eye Core-X beam
   addr:
@@ -1843,6 +1853,28 @@
   params: null
   return: null
 -
+  desc: Copy clipdata handling code
+  label: CopyClipdataHandlingCode
+  addr:
+    U: '?'
+    J: 0x69114
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update clipdata at position
+  label: UpdateClipdataAtPosition
+  addr:
+    U: '?'
+    J: 0x691E4
+  size: 0x108
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: '?'
+-
   desc: Clipdata related?
   addr:
     U: 0x68E70
@@ -1926,6 +1958,17 @@
   size: 0xDC
   mode: thumb
   params: null
+  return: null
+-
+  desc: Clipdata related?
+  addr:
+    U: '?'
+    J: 0x6BA48
+  size: 0x164
+  mode: thumb
+  params:
+  - X position
+  - Y position
   return: null
 -
   desc: Break reform block

@@ -560,8 +560,8 @@
     J: 0x3000068
 -
   desc: Backup of I/O registers
-  label: BackupOfIoRegisters
-  type: BackupOfIoRegisters
+  label: BackupOfIORegisters
+  type: BackupOfIORegisters
   addr:
     U: 0x3000070
     J: 0x3000074
@@ -1353,19 +1353,13 @@
     U: 0x3001458
     J: 0x300148C
 -
-  desc: Text RAM?
-  label: TextRam?
-  type: pointer
+  desc: Clipdata handling code
+  label: ClipdataHandlingCode
+  type: u16
   addr:
     U: 0x3001484
     J: 0x30014B8
--
-  desc: Current text character column?
-  label: CurrTextCharacterColumn?
-  type: u8
-  addr:
-    U: 0x3001490
-    J: 0x30014C4
+  count: 0x140
 -
   desc: Ending image tier
   type: u8
