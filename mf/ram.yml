@@ -86,17 +86,19 @@
 -
   desc: Background palette
   label: BackgroundPalette
+  type: palette
   addr:
     U: 0x2035400
     J: 0x2035400
-  size: 0x200
+  size: 0x10
 -
   desc: Sprite palette
   label: SpritePalette
+  type: palette
   addr:
     U: 0x2035600
     J: 0x2035600
-  size: 0x200
+  size: 0x10
 -
   desc: Text related?
   label: TextRelated?
@@ -1394,21 +1396,21 @@
 -
   desc: Pointer to V-Blank code
   label: VBlankCodePtr
-  type: pointer
+  type: ptr.thumb
   addr:
     U: 0x30019C4
     J: 0x30019F8
 -
   desc: Pointer to H-Blank code
   label: HBlankCodePtr
-  type: pointer
+  type: ptr.thumb
   addr:
     U: 0x30019C8
     J: 0x30019FC
 -
   desc: Pointer to V-Count code
   label: VCountCodePtr
-  type: pointer
+  type: ptr.thumb
   addr:
     U: 0x30019CC
     J: 0x3001A00
@@ -1422,7 +1424,7 @@
 -
   desc: Pointer to sound code A
   label: SoundCodeAPtr
-  type: pointer
+  type: ptr.arm
   addr:
     U: 0x3003654
     J: 0x3003688
@@ -1435,7 +1437,7 @@
 -
   desc: Pointer to sound code B
   label: SoundCodeBPtr
-  type: pointer
+  type: ptr.arm
   addr:
     U: 0x3003CB0
     J: 0x3003CE4
@@ -1448,7 +1450,7 @@
 -
   desc: Pointer to sound code C
   label: SoundCodeCPtr
-  type: pointer
+  type: ptr.arm
   addr:
     U: 0x3003D58
     J: 0x3003D8C
@@ -1461,10 +1463,11 @@
 -
   desc: Suit palette
   label: SuitPalette
+  type: palette
   addr:
     U: 0x3004D28
     J: 0x3004D58
-  size: 0x60
+  size: 0x3
 -
   desc: Demo input number
   label: DemoInputNumber
@@ -1503,10 +1506,11 @@
 -
   desc: SA-X suit palette
   label: SaxSuitPalette
+  type: palette
   addr:
     U: 0x3004D90
     J: 0x3004DC0
-  size: 0x20
+  size: 0x1
 -
   desc: Tilemap and clipdata pointers
   label: TilemapAndClipdataPtrs
@@ -1589,7 +1593,7 @@
 -
   desc: Pointer to clipdata handling code
   label: ClipdataHandlingCodePtr
-  type: pointer
+  type: ptr.thumb
   addr:
     U: 0x3005318
     J: 0x3005348
@@ -1603,7 +1607,7 @@
 -
   desc: Pointer to room scrolls
   label: RoomScrollsPtr
-  type: pointer
+  type: ptr
   addr:
     U: 0x30053E8
     J: 0x3005418
@@ -1617,7 +1621,7 @@
 -
   desc: Pointer to interrupt code
   label: InterruptCodePtr
-  type: pointer
+  type: ptr.arm
   addr:
     U: 0x3007FFC
     J: 0x3007FFC

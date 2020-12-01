@@ -51,7 +51,7 @@ AnimatedGraphicsEntry:
     type: u8
     offset: 0x2
   - desc: Pointer to graphics
-    type: pointer
+    type: ptr.gfx
     offset: 0x4
 AnimatedPaletteAndTilesetNum:
   size: 0x2
@@ -76,7 +76,7 @@ AnimatedPaletteEntry:
     type: u8
     offset: 0x2
   - desc: Pointer to palette
-    type: pointer
+    type: ptr.palette
     offset: 0x4
 AnimatedPaletteTiming:
   size: 0x3
@@ -156,7 +156,7 @@ BGPtrsAndDimensions:
   size: 0x20
   vars:
   - desc: Pointer to decompressed BG0
-    type: pointer
+    type: ptr.u16
     offset: 0x0
   - desc: Width of BG0 in blocks
     type: u16
@@ -165,7 +165,7 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0x6
   - desc: Pointer to decompressed BG1
-    type: pointer
+    type: ptr.u16
     offset: 0x8
   - desc: Width of BG1 in blocks
     type: u16
@@ -174,7 +174,7 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0xE
   - desc: Pointer to decompressed BG2
-    type: pointer
+    type: ptr.u16
     offset: 0x10
   - desc: Width of BG2 in blocks
     type: u16
@@ -183,7 +183,7 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0x16
   - desc: Pointer to decompressed clipdata
-    type: pointer
+    type: ptr.u16
     offset: 0x18
   - desc: Width of clipdata in blocks
     type: u16
@@ -343,7 +343,7 @@ CurrRoomEntry:
     type: u8
     offset: 0x7
   - desc: Pointer to room's enemy data
-    type: pointer
+    type: ptr.RoomSpriteEntry
     offset: 0x8
   - desc: Event to use the first spriteset
     type: u8
@@ -455,13 +455,13 @@ DemoInputPtrs:
   size: 0x10
   vars:
   - desc: Pointer to inputs
-    type: pointer
+    type: ptr.ButtonInput
     offset: 0x0
   - desc: Number of inputs
     type: u16
     offset: 0x4
   - desc: Pointer to durations
-    type: pointer
+    type: ptr.u16
     offset: 0x8
   - desc: Number of durations
     type: u16
@@ -1024,7 +1024,7 @@ ProjectileData:
     offset: 0x0
     enum: ProjectileStatus
   - desc: OAM pointer
-    type: pointer
+    type: ptr.oam
     offset: 0x4
   - desc: Y position
     type: u16
@@ -1096,19 +1096,19 @@ RoomEntry:
     type: u8
     offset: 0x4
   - desc: BG0 pointer
-    type: pointer
+    type: ptr
     offset: 0x8
   - desc: BG1 pointer
-    type: pointer
+    type: ptr
     offset: 0xC
   - desc: BG2 pointer
-    type: pointer
+    type: ptr
     offset: 0x10
   - desc: Clipdata pointer
-    type: pointer
+    type: ptr
     offset: 0x14
   - desc: BG3 pointer
-    type: pointer
+    type: ptr.lz.tilemap
     offset: 0x18
   - desc: BG3 scrolling
     type: u8
@@ -1117,7 +1117,7 @@ RoomEntry:
     type: u8
     offset: 0x1D
   - desc: Default sprite data pointer
-    type: pointer
+    type: ptr.RoomSpriteEntry
     offset: 0x20
   - desc: Default spriteset
     type: u8
@@ -1127,7 +1127,7 @@ RoomEntry:
     offset: 0x25
     enum: Event
   - desc: First sprite data pointer
-    type: pointer
+    type: ptr.RoomSpriteEntry
     offset: 0x28
   - desc: First spriteset
     type: u8
@@ -1137,7 +1137,7 @@ RoomEntry:
     offset: 0x2D
     enum: Event
   - desc: Second sprite data pointer
-    type: pointer
+    type: ptr.RoomSpriteEntry
     offset: 0x30
   - desc: Second spriteset
     type: u8
@@ -1302,28 +1302,28 @@ SamusGraphicsInfo:
   size: 0x3C
   vars:
   - desc: Samus OAM pointer
-    type: pointer
+    type: ptr.oam
     offset: 0x0
   - desc: Pointer to 0x6010000 (body top half)
-    type: pointer
+    type: ptr.gfx
     offset: 0x4
   - desc: Graphics length at 0x6010000 (body top half)
     type: u16
     offset: 0x8
   - desc: Pointer to 0x6010400 (body bottom half)
-    type: pointer
+    type: ptr.gfx
     offset: 0xC
   - desc: Graphics length at 0x6010400 (body bottom half)
     type: u16
     offset: 0x10
   - desc: Pointer to 0x6010280 (legs top half)
-    type: pointer
+    type: ptr.gfx
     offset: 0x14
   - desc: Graphics length at 0x6010280 (legs top half)
     type: u16
     offset: 0x18
   - desc: Pointer to 0x6010680 (legs bottom half)
-    type: pointer
+    type: ptr.gfx
     offset: 0x1C
   - desc: Graphics length at 0x6010680 (legs bottom half)
     type: u16
@@ -1332,16 +1332,16 @@ SamusGraphicsInfo:
     type: u16
     offset: 0x24
   - desc: Arm cannon OAM pointer?
-    type: pointer
+    type: ptr.oam
     offset: 0x28
   - desc: Pointer to 0x6010800 (cannon top half)
-    type: pointer
+    type: ptr.gfx
     offset: 0x2C
   - desc: Graphics length at 0x6010800 (cannon top half)
     type: u16
     offset: 0x30
   - desc: Pointer to 0x6010C00 (cannon bottom half)
-    type: pointer
+    type: ptr.gfx
     offset: 0x34
   - desc: Graphics length at 0x6010C00 (cannon bottom half)
     type: u16
@@ -1690,7 +1690,7 @@ SoundDataEntry:
   size: 0x8
   vars:
   - desc: Sound header pointer
-    type: pointer
+    type: ptr
     offset: 0x0
   - desc: Track group number
     type: u16
@@ -1739,7 +1739,7 @@ SpriteData:
     type: u16
     offset: 0x16
   - desc: OAM pointer
-    type: pointer
+    type: ptr.oam
     offset: 0x18
   - desc: Animation duration counter
     type: u8
@@ -1828,7 +1828,7 @@ SpriteDebris:
   size: 0x10
   vars:
   - desc: OAM pointer
-    type: pointer
+    type: ptr.oam
     offset: 0x0
   - desc: '?'
     type: u16
@@ -1892,28 +1892,28 @@ TilemapAndClipdataPtrs:
   size: 0xC
   vars:
   - desc: Pointer to tilemap
-    type: pointer
+    type: ptr.tilemap
     offset: 0x0
   - desc: Pointer to clipdata collision types
-    type: pointer
+    type: ptr.ClipdataCollisionType
     offset: 0x4
   - desc: Pointer to clipdata behavior types
-    type: pointer
+    type: ptr.ClipdataBehaviorType
     offset: 0x8
 TilesetEntry:
   size: 0x14
   vars:
   - desc: RLE background graphics pointer
-    type: pointer
+    type: ptr.lz.gfx
     offset: 0x0
   - desc: Background palette pointer
-    type: pointer
+    type: ptr.palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
-    type: pointer
+    type: ptr.lz.gfx
     offset: 0x8
   - desc: Tilemap pointer
-    type: pointer
+    type: ptr.tilemap
     offset: 0xC
   - desc: Animated tileset
     type: u8
