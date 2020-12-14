@@ -2029,6 +2029,28 @@
   - X position
   return: null
 -
+  desc: Update hatch data
+  label: UpdateHatchData
+  addr:
+    U: 0x6C854
+    J: 0x6CEF0
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check projectile hit hatch
+  label: CheckProjectileHitHatch
+  addr:
+    U: 0x6CB44
+    J: '?'
+  size: 0xB0
+  mode: thumb
+  params:
+  - X position
+  - Y position
+  return: 1 if a hatch should open, 0 otherwise
+-
   desc: Update BG1 and sub-event during SA-X elevator cutscene
   label: UpdateBG1AndSubEvent_SaxElevatorScene
   addr:
