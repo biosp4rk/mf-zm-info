@@ -164,7 +164,7 @@ BGPtrsAndDimensions:
   - desc: Height of clipdata in blocks
     type: u16
     offset: 0x1E
-BackupOfIoRegisters:
+BackupOfIORegisters:
   size: 0x12
   vars:
   - desc: Backup of DISPCNT (LCD control) during non-gameplay
@@ -1125,6 +1125,9 @@ SamusEcho:
   - desc: Previous position counter
     type: u16
     offset: 0x108
+  - desc: '?'
+    type: u8
+    offset: 0x10A
 SamusPhysics:
   size: 0x78
   vars:
@@ -1140,6 +1143,9 @@ SamusPhysics:
   - desc: '?'
     type: s16
     offset: 0x54
+  - desc: Slowed by liquid flag
+    type: u8
+    offset: 0x5B
   - desc: X acceleration
     type: u16
     offset: 0x5E
