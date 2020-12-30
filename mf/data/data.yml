@@ -944,10 +944,43 @@
 -
   desc: Missile speeds
   label: MissileSpeeds
+  type: s16
   addr:
     U: 0x58B40C
     J: 0x58BB9C
-  size: 0x38
+  count: 0x7
+-
+  desc: Super missile speeds
+  label: SuperMissileSpeeds
+  type: s16
+  addr:
+    U: 0x58B41A
+    J: 0x58BBAA
+  count: 0x7
+-
+  desc: Ice missile speeds
+  label: IceMissileSpeeds
+  type: s16
+  addr:
+    U: 0x58B428
+    J: 0x58BBB8
+  count: 0x7
+-
+  desc: Diffusion missile speeds
+  label: DiffusionMissileSpeeds
+  type: s16
+  addr:
+    U: 0x58B436
+    J: 0x58BBC6
+  count: 0x7
+-
+  desc: Tumbling missile speeds
+  label: TumblingMissileSpeeds
+  type: s16
+  addr:
+    U: 0x58B444
+    J: 0x58BBD4
+  count: 0x10
 -
   desc: Normal beam palette
   label: NormalBeamPalette
@@ -1052,13 +1085,6 @@
     U: 0x58EB78
     J: 0x58F308
   size: 0x1E00
--
-  desc: All in-game text
-  type: char
-  addr:
-    U: 0x6B2FAC
-    J: 0x6B0AD8
-  count: 0x3FF38
 -
   desc: Credits text (ASCII)
   label: CreditsText
@@ -1166,11 +1192,11 @@
 -
   desc: Explored minimap bit flags
   label: ExploredMinimapBitFlags
-  type: u8
+  type: u32
   addr:
     U: 0x79BDDC
     J: 0x7EE48C
-  count: 0x80
+  count: 0x20
 -
   desc: Minimap data pointers
   label: MinimapDataPtrs
@@ -1352,7 +1378,9 @@
   addr:
     U: 0x79D35C
     J: 0x7EF9F8
-  count: 0x6F
+  count:
+    U: 0x6C
+    J: 0x6F
 -
   desc: English navigation text pointers
   type: ptr.char
