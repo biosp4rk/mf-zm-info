@@ -423,6 +423,18 @@
   - Sound ID
   return: null
 -
+  desc: Play character appearing sound
+  label: PlayCharacterAppearingSound
+  addr:
+    U: 0x3D28
+    J: 0x3D8C
+  size: 0x40
+  mode: thumb
+  params:
+  - Character value
+  - Sound type
+  return: null
+-
   desc: Call sound code B
   label: CallSoundCodeB
   addr:
@@ -930,6 +942,17 @@
   - X position
   - Status
   return: Assigned sprite RAM slot, 0xFF otherwise
+-
+  desc: Modify damage taken based on difficulty
+  label: ModifyDamageTaken
+  addr:
+    J: 0xFECC
+  size:
+    J: 0x2C
+  mode: thumb
+  params:
+  - Damage
+  return: New damage
 -
   desc: Take damage from sprite
   label: TakeDamageFromSprite
@@ -2498,6 +2521,7 @@
   - Graphics position
   - Character width
   - X offset
+  - Color
   return: null
 -
   desc: Draw character (debug menu)
@@ -2523,6 +2547,17 @@
   params:
   - Spriteset GFX row
   - Stage
+  return: null
+-
+  desc: Clear text VRAM
+  label: ClearTextVram
+  addr:
+    U: 0x79A38
+    J: 0x7A20C
+  size: 0xC4
+  mode: thumb
+  params:
+  - '?'
   return: null
 -
   desc: Navigation event related?

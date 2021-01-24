@@ -529,6 +529,16 @@
   params: null
   return: null
 -
+  desc: Set Samus pose
+  label: SetSamusPose
+  addr:
+    U: 0x74E8
+  size: 0xD4
+  mode: thumb
+  params:
+  - Samus pose
+  return: null
+-
   desc: Copy Samus palette
   label: CopySamusPalette
   addr:
@@ -554,7 +564,7 @@
   label: UpdateSamusGfx
   addr:
     U: 0xA688
-  size: 0x?
+  size: 0xDE4
   mode: thumb
   params:
   - Samus data pointer
@@ -2095,6 +2105,16 @@
   size: 0x118
   mode: thumb
   params: null
+  return: null
+-
+  desc: Update suit type
+  label: UpdateSuitType
+  addr:
+    U: 0x6FEE4
+  size: 0x68
+  mode: thumb
+  params:
+  - New suit type
   return: null
 -
   desc: Draw status screen items
