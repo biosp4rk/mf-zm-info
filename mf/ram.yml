@@ -3,6 +3,7 @@
   label: PauseBG0Map
   addr:
     U: 0x200F800
+    E: 0x200F800
     J: 0x200F800
   size: 0x800
 -
@@ -10,6 +11,7 @@
   label: SleepModeBG0Map
   addr:
     U: 0x2010000
+    E: 0x2010000
     J: 0x2010000
   size: 0x800
 -
@@ -18,6 +20,7 @@
   type: gfx
   addr:
     U: 0x201C000
+    E: 0x201C000
     J: 0x201C000
   size: 0x4000
 -
@@ -26,6 +29,7 @@
   type: gfx
   addr:
     U: 0x2020000
+    E: 0x2020000
     J: 0x2020000
   size: 0x4000
 -
@@ -34,6 +38,7 @@
   type: u16
   addr:
     U: 0x2026000
+    E: 0x2026000
     J: 0x2026000
   count: 0x1800
 -
@@ -42,6 +47,7 @@
   type: u16
   addr:
     U: 0x2029000
+    E: 0x2029000
     J: 0x2029000
   count: 0x1800
 -
@@ -50,6 +56,7 @@
   type: u16
   addr:
     U: 0x202C000
+    E: 0x202C000
     J: 0x202C000
   count: 0x1800
 -
@@ -58,6 +65,7 @@
   type: u16
   addr:
     U: 0x202F000
+    E: 0x202F000
     J: 0x202F000
   count: 0x1800
 -
@@ -65,6 +73,7 @@
   label: DecompBG3Data
   addr:
     U: 0x2032000
+    E: 0x2032000
     J: 0x2032000
   size: 0x2000
 -
@@ -73,6 +82,7 @@
   type: u16
   addr:
     U: 0x2034000
+    E: 0x2034000
     J: 0x2034000
   count: 0x400
 -
@@ -81,6 +91,7 @@
   type: u16
   addr:
     U: 0x2034800
+    E: 0x2034800
     J: 0x2034800
   count: 0x400
 -
@@ -89,6 +100,7 @@
   type: palette
   addr:
     U: 0x2035400
+    E: 0x2035400
     J: 0x2035400
   count: 0x10
 -
@@ -97,6 +109,7 @@
   type: palette
   addr:
     U: 0x2035600
+    E: 0x2035600
     J: 0x2035600
   count: 0x10
 -
@@ -104,6 +117,7 @@
   label: TextRelated?
   addr:
     U: 0x2035DA0
+    E: 0x2035DA0
     J: 0x2035DA0
   size: 0x40
 -
@@ -112,6 +126,7 @@
   type: NeverReformBlock
   addr:
     U: 0x2036000
+    E: 0x2036000
     J: 0x2036000
   count: 0x600
 -
@@ -120,6 +135,7 @@
   type: CollectedTank
   addr:
     U: 0x2037200
+    E: 0x2037200
     J: 0x2037200
   count: 0x280
 -
@@ -127,6 +143,7 @@
   label: MinimapVisitedTiles
   addr:
     U: 0x2037C00
+    E: 0x2037C00
     J: 0x2037C00
   size: 0x400
 -
@@ -134,6 +151,7 @@
   label: SramHeader
   addr:
     U: 0x2038000
+    E: 0x2038000
     J: 0x2038000
   size: 0x80
 -
@@ -141,6 +159,7 @@
   label: SramHeaderCopy
   addr:
     U: 0x2038080
+    E: 0x2038080
     J: 0x2038080
   size: 0x80
 -
@@ -149,6 +168,7 @@
   type: SaveFileRam
   addr:
     U: 0x2038200
+    E: 0x2038200
     J: 0x2038200
   count: 0x6
 -
@@ -157,6 +177,7 @@
   type: u8
   addr:
     U: 0x3000000
+    E: 0x3000000
     J: 0x3000000
 -
   desc: 16-bit frame counter
@@ -164,6 +185,7 @@
   type: u16
   addr:
     U: 0x3000002
+    E: 0x3000002
     J: 0x3000002
 -
   desc: Stereo flag
@@ -177,6 +199,7 @@
   type: u16
   addr:
     U: 0x3000004
+    E: 0x3000004
     J: 0x3000006
 -
   desc: Written to BLDCNT (color special effects selection)
@@ -184,6 +207,7 @@
   type: u16
   addr:
     U: 0x3000006
+    E: 0x3000006
     J: 0x3000008
 -
   desc: Written to DISPCNT (LCD control)
@@ -191,6 +215,7 @@
   type: u16
   addr:
     U: 0x3000008
+    E: 0x3000008
     J: 0x300000A
 -
   desc: Written to BG3CNT (BG3 control)
@@ -198,6 +223,7 @@
   type: u16
   addr:
     U: 0x300000A
+    E: 0x300000A
     J: 0x300000C
 -
   desc: Written to WININ_H (inside of window 1)
@@ -205,6 +231,7 @@
   type: u8
   addr:
     U: 0x300000C
+    E: 0x300000C
     J: 0x300000E
 -
   desc: Written to WINOUT_L (outside of windows)
@@ -212,6 +239,7 @@
   type: u8
   addr:
     U: 0x300000D
+    E: 0x300000D
     J: 0x300000F
 -
   desc: Written to 0x05000000 (transparent color)
@@ -219,6 +247,7 @@
   type: u16
   addr:
     U: 0x300000E
+    E: 0x300000E
     J: 0x3000010
 -
   desc: Copied to 0x0203800C
@@ -226,6 +255,7 @@
   type: u16
   addr:
     U: 0x3000010
+    E: 0x3000010
     J: 0x3000012
 -
   desc: Language
@@ -233,6 +263,7 @@
   type: u8
   addr:
     U: 0x3000011
+    E: 0x3000011
     J: 0x3000014
   enum: Language
 -
@@ -241,6 +272,7 @@
   type: GameCompletion
   addr:
     U: 0x3000014
+    E: 0x3000014
     J: 0x3000018
 -
   desc: Fades backgrounds to black or white
@@ -248,6 +280,7 @@
   type: u8
   addr:
     U: 0x3000018
+    E: 0x3000018
     J: 0x300001C
   enum: BackgroundFade
 -
@@ -256,6 +289,7 @@
   type: u8
   addr:
     U: 0x3000019
+    E: 0x3000019
     J: 0x300001D
 -
   desc: Samus on top of backgrounds flag
@@ -263,6 +297,7 @@
   type: u8
   addr:
     U: 0x300001A
+    E: 0x300001A
     J: 0x300001E
 -
   desc: Ability count
@@ -270,6 +305,7 @@
   type: u8
   addr:
     U: 0x300001B
+    E: 0x300001B
     J: 0x300001F
   enum: AbilityCount
 -
@@ -285,6 +321,7 @@
   type: u8
   addr:
     U: 0x300001C
+    E: 0x300001C
     J: 0x3000021
   enum: SecurityLevel
 -
@@ -293,6 +330,7 @@
   type: u8
   addr:
     U: 0x300001D
+    E: 0x300001D
     J: 0x3000022
   enum: SecurityLevel
 -
@@ -301,6 +339,7 @@
   type: u8
   addr:
     U: 0x300001E
+    E: 0x300001E
     J: 0x3000023
   enum: Demo
 -
@@ -309,6 +348,7 @@
   type: u8
   addr:
     U: 0x300001F
+    E: 0x300001F
     J: 0x3000024
 -
   desc: Reboot game flag
@@ -316,6 +356,7 @@
   type: u8
   addr:
     U: 0x3000020
+    E: 0x3000020
     J: 0x3000025
 -
   desc: Disable scrolling flag
@@ -323,6 +364,7 @@
   type: u8
   addr:
     U: 0x3000021
+    E: 0x3000021
     J: 0x3000026
 -
   desc: Disable music flag
@@ -330,6 +372,7 @@
   type: u8
   addr:
     U: 0x3000022
+    E: 0x3000022
     J: 0x3000027
 -
   desc: Skip door transition flag
@@ -337,6 +380,7 @@
   type: u8
   addr:
     U: 0x3000024
+    E: 0x3000024
     J: 0x3000029
 -
   desc: Disable soft-reset flag
@@ -344,6 +388,7 @@
   type: u8
   addr:
     U: 0x3000025
+    E: 0x3000025
     J: 0x300002A
 -
   desc: Collecting tank flag
@@ -351,6 +396,7 @@
   type: u8
   addr:
     U: 0x3000026
+    E: 0x3000026
     J: 0x300002B
 -
   desc: Disable animated graphics timer
@@ -358,6 +404,7 @@
   type: u8
   addr:
     U: 0x3000027
+    E: 0x3000027
     J: 0x300002C
 -
   desc: Animated graphics to update
@@ -365,6 +412,7 @@
   type: flags16
   addr:
     U: 0x3000028
+    E: 0x3000028
     J: 0x300002E
 -
   desc: Disable doors and tanks flag
@@ -372,6 +420,7 @@
   type: u8
   addr:
     U: 0x300002A
+    E: 0x300002A
     J: 0x3000030
 -
   desc: Disable pause flag
@@ -379,6 +428,7 @@
   type: u8
   addr:
     U: 0x300002B
+    E: 0x300002B
     J: 0x3000031
 -
   desc: Current area
@@ -386,6 +436,7 @@
   type: u8
   addr:
     U: 0x300002C
+    E: 0x300002C
     J: 0x3000032
   enum: AreaID
 -
@@ -394,6 +445,7 @@
   type: u8
   addr:
     U: 0x300002D
+    E: 0x300002D
     J: 0x3000033
 -
   desc: Last door used
@@ -401,6 +453,7 @@
   type: u8
   addr:
     U: 0x300002E
+    E: 0x300002E
     J: 0x3000034
 -
   desc: Last door properties
@@ -408,6 +461,7 @@
   type: u8
   addr:
     U: 0x300002F
+    E: 0x300002F
     J: 0x3000035
 -
   desc: Bit 6 of door properties, displays location pop-up
@@ -415,6 +469,7 @@
   type: u8
   addr:
     U: 0x3000030
+    E: 0x3000030
     J: 0x3000036
 -
   desc: Minimap X coordinate
@@ -422,6 +477,7 @@
   type: u8
   addr:
     U: 0x3000031
+    E: 0x3000031
     J: 0x3000037
 -
   desc: Minimap Y coordinate
@@ -429,6 +485,7 @@
   type: u8
   addr:
     U: 0x3000032
+    E: 0x3000032
     J: 0x3000038
 -
   desc: Number of never reform blocks broken
@@ -436,6 +493,7 @@
   type: NumNeverReformBlocksBroken
   addr:
     U: 0x3000033
+    E: 0x3000033
     J: 0x3000039
 -
   desc: Number of tanks collected
@@ -443,6 +501,7 @@
   type: NumTanksCollected
   addr:
     U: 0x300003B
+    E: 0x300003B
     J: 0x3000041
 -
   desc: Foreground effect
@@ -450,6 +509,7 @@
   type: u8
   addr:
     U: 0x3000043
+    E: 0x3000043
     J: 0x3000049
   enum: ForegroundEffect
 -
@@ -458,6 +518,7 @@
   type: u16
   addr:
     U: 0x3000044
+    E: 0x3000044
     J: 0x300004A
 -
   desc: Door unlock timer
@@ -465,6 +526,7 @@
   type: u8
   addr:
     U: 0x3000046
+    E: 0x3000046
     J: 0x300004C
 -
   desc: Current navigation room
@@ -472,6 +534,7 @@
   type: u8
   addr:
     U: 0x3000048
+    E: 0x3000048
     J: 0x300004E
   enum: NavRoom
 -
@@ -480,6 +543,7 @@
   type: u8
   addr:
     U: 0x3000049
+    E: 0x3000049
     J: 0x300004F
   enum: Elevator
 -
@@ -488,6 +552,7 @@
   type: u8
   addr:
     U: 0x300004A
+    E: 0x300004A
     J: 0x3000050
   enum: EventBasedEffect
 -
@@ -496,6 +561,7 @@
   type: u8
   addr:
     U: 0x300004B
+    E: 0x300004B
     J: 0x3000051
   enum: EventBasedEffect
 -
@@ -504,6 +570,7 @@
   type: u8
   addr:
     U: 0x300004D
+    E: 0x300004D
     J: 0x3000053
 -
   desc: Screen shake X offset
@@ -511,6 +578,7 @@
   type: u8
   addr:
     U: 0x300004E
+    E: 0x300004E
     J: 0x3000054
 -
   desc: Screen shake Y offset
@@ -518,6 +586,7 @@
   type: u8
   addr:
     U: 0x300004F
+    E: 0x300004F
     J: 0x3000055
 -
   desc: Spriteset number
@@ -525,6 +594,7 @@
   type: u8
   addr:
     U: 0x3000052
+    E: 0x3000052
     J: 0x3000058
 -
   desc: Current clipdata affecting action
@@ -532,6 +602,7 @@
   type: u8
   addr:
     U: 0x3000053
+    E: 0x3000053
     J: 0x3000059
   enum: ClipdataAffectingAction
 -
@@ -540,12 +611,14 @@
   type: u8
   addr:
     U: 0x3000054
+    E: 0x3000054
     J: 0x300005A
 -
   desc: Use alternate animated tileset flag
   label: UseAltAnimatedTilesetFlag
   addr:
     U: 0x3000058
+    E: 0x3000058
     J: 0x300005E
   size: 0x5
 -
@@ -554,6 +627,7 @@
   type: u16
   addr:
     U: 0x3000060
+    E: 0x3000060
     J: 0x3000066
 -
   desc: Previous sub-event
@@ -561,6 +635,7 @@
   type: u16
   addr:
     U: 0x3000062
+    E: 0x3000062
     J: 0x3000068
 -
   desc: Backup of I/O registers
@@ -568,6 +643,7 @@
   type: BackupOfIORegisters
   addr:
     U: 0x3000070
+    E: 0x3000070
     J: 0x3000074
 -
   desc: Background pointers and dimensions
@@ -575,6 +651,7 @@
   type: BGPtrsAndDimensions
   addr:
     U: 0x3000084
+    E: 0x3000084
     J: 0x3000088
 -
   desc: Current room entry
@@ -582,6 +659,7 @@
   type: CurrRoomEntry
   addr:
     U: 0x30000A4
+    E: 0x30000A4
     J: 0x30000A8
 -
   desc: Current clipdata behavior type?
@@ -589,6 +667,7 @@
   type: u8
   addr:
     U: 0x30000C0
+    E: 0x30000C0
     J: 0x30000C4
   enum: ClipdataBehaviorType
 -
@@ -597,18 +676,21 @@
   type: BGPositions
   addr:
     U: 0x30000C8
+    E: 0x30000C8
     J: 0x30000CC
 -
   desc: SA-X spotlight X position?
   type: u16
   addr:
     U: 0x30000DC
+    E: 0x30000DC
     J: 0x30000E0
 -
   desc: SA-X spotlight Y position?
   type: u16
   addr:
     U: 0x30000DE
+    E: 0x30000DE
     J: 0x30000E2
 -
   desc: Screen shake Y
@@ -616,6 +698,7 @@
   type: ScreenShake
   addr:
     U: 0x30000F0
+    E: 0x30000F0
     J: 0x30000F4
 -
   desc: Screen shake X
@@ -623,6 +706,7 @@
   type: ScreenShake
   addr:
     U: 0x30000F4
+    E: 0x30000F4
     J: 0x30000F8
 -
   desc: Current scrolls
@@ -630,6 +714,7 @@
   type: CurrScrolls
   addr:
     U: 0x30000F8
+    E: 0x30000F8
     J: 0x30000FC
 -
   desc: Current power bomb
@@ -637,6 +722,7 @@
   type: CurrPowerBomb
   addr:
     U: 0x3000110
+    E: 0x3000110
     J: 0x3000114
 -
   desc: Screen position and velocity
@@ -644,6 +730,7 @@
   type: ScreenPositionAndVelocity
   addr:
     U: 0x3000124
+    E: 0x3000124
     J: 0x3000128
 -
   desc: In-game timer
@@ -651,6 +738,7 @@
   type: InGameTime
   addr:
     U: 0x3000138
+    E: 0x3000138
     J: 0x300013C
 -
   desc: Max in-game time flag
@@ -658,6 +746,7 @@
   type: u8
   addr:
     U: 0x300013C
+    E: 0x300013C
     J: 0x3000140
 -
   desc: Best completion times (unused?)
@@ -672,6 +761,7 @@
   type: SpriteData
   addr:
     U: 0x3000140
+    E: 0x3000140
     J: 0x3000174
   count: 0x18
 -
@@ -680,6 +770,7 @@
   type: u8
   addr:
     U: 0x3000680
+    E: 0x3000680
     J: 0x30006B4
   count: 0xF
   enum: PrimarySpriteID
@@ -688,6 +779,7 @@
   label: SpritesetSpriteGfxSlots
   addr:
     U: 0x300068F
+    E: 0x300068F
     J: 0x30006C3
   size: 0xF
 -
@@ -696,6 +788,7 @@
   type: u16
   addr:
     U: 0x30006A0
+    E: 0x30006A0
     J: 0x30006D4
 -
   desc: X-parasite target X position
@@ -703,6 +796,7 @@
   type: u16
   addr:
     U: 0x30006A2
+    E: 0x30006A2
     J: 0x30006D6
 -
   desc: Ability resting Y position
@@ -710,6 +804,7 @@
   type: u16
   addr:
     U: 0x30006A4
+    E: 0x30006A4
     J: 0x30006D8
 -
   desc: Ability resting X position
@@ -717,6 +812,7 @@
   type: u16
   addr:
     U: 0x30006A6
+    E: 0x30006A6
     J: 0x30006DA
 -
   desc: Serris spawn Y position
@@ -724,6 +820,7 @@
   type: u16
   addr:
     U: 0x30006A8
+    E: 0x30006A8
     J: 0x30006DC
 -
   desc: Serris spawn X position
@@ -731,6 +828,7 @@
   type: u16
   addr:
     U: 0x30006AA
+    E: 0x30006AA
     J: 0x30006DE
 -
   desc: Boss formation sprite ID
@@ -738,6 +836,7 @@
   type: u8
   addr:
     U: 0x30006AC
+    E: 0x30006AC
     J: 0x30006E0
   enum: PrimarySpriteID
 -
@@ -746,6 +845,7 @@
   type: u8
   addr:
     U: 0x30006AD
+    E: 0x30006AD
     J: 0x30006E1
   enum: PrimarySpriteID
 -
@@ -754,6 +854,7 @@
   type: flags16
   addr:
     U: 0x30006AE
+    E: 0x30006AE
     J: 0x30006E2
 -
   desc: Normal X-barrier cores destroyed
@@ -761,6 +862,7 @@
   type: flags16
   addr:
     U: 0x30006B0
+    E: 0x30006B0
     J: 0x30006E4
 -
   desc: Super X-barrier cores destroyed
@@ -768,6 +870,7 @@
   type: flags16
   addr:
     U: 0x30006B2
+    E: 0x30006B2
     J: 0x30006E6
 -
   desc: Power X-barrier cores destroyed
@@ -775,6 +878,7 @@
   type: flags16
   addr:
     U: 0x30006B4
+    E: 0x30006B4
     J: 0x30006E8
 -
   desc: Eyedoors destroyed
@@ -782,6 +886,7 @@
   type: flags16
   addr:
     U: 0x30006B6
+    E: 0x30006B6
     J: 0x30006EA
 -
   desc: Missile hatch destroyed
@@ -789,6 +894,7 @@
   type: u8
   addr:
     U: 0x30006B8
+    E: 0x30006B8
     J: 0x30006EC
 -
   desc: Water lowered flag
@@ -796,6 +902,7 @@
   type: u8
   addr:
     U: 0x30006B9
+    E: 0x30006B9
     J: 0x30006ED
 -
   desc: Current sprite being processed
@@ -803,6 +910,7 @@
   type: SpriteData
   addr:
     U: 0x30006BC
+    E: 0x30006BC
     J: 0x30006F0
 -
   desc: Sprite debris
@@ -810,6 +918,7 @@
   type: SpriteDebris
   addr:
     U: 0x30006F4
+    E: 0x30006F4
     J: 0x3000728
   count: 0x8
 -
@@ -818,6 +927,7 @@
   type: SpriteDebris
   addr:
     U: 0x3000774
+    E: 0x3000774
     J: 0x30007A8
 -
   desc: Previous vertical collision check
@@ -825,6 +935,7 @@
   type: u8
   addr:
     U: 0x30007A4
+    E: 0x30007A4
     J: 0x30007D8
   enum: CollisionCheck
 -
@@ -833,6 +944,7 @@
   type: u8
   addr:
     U: 0x30007A5
+    E: 0x30007A5
     J: 0x30007D9
   enum: CollisionCheck
 -
@@ -841,6 +953,7 @@
   type: u8
   addr:
     U: 0x30007A7
+    E: 0x30007A7
     J: 0x30007DB
   count: 0x18
 -
@@ -849,6 +962,7 @@
   type: u8
   addr:
     U: 0x30007F0
+    E: 0x30007F0
     J: 0x3000824
 -
   desc: Current boss pattern?
@@ -856,6 +970,7 @@
   type: u8
   addr:
     U: 0x30007F3
+    E: 0x30007F3
     J: 0x3000827
 -
   desc: Current boss direction?
@@ -863,6 +978,7 @@
   type: u8
   addr:
     U: 0x30007F4
+    E: 0x30007F4
     J: 0x3000828
 -
   desc: Particle effects
@@ -870,6 +986,7 @@
   type: ParticleEffect
   addr:
     U: 0x30007F8
+    E: 0x30007F8
     J: 0x300082C
   count: 0x10
 -
@@ -878,6 +995,7 @@
   type: ParticleEffect
   addr:
     U: 0x30008B8
+    E: 0x30008B8
     J: 0x30008EC
 -
   desc: Missiles highlight status
@@ -885,6 +1003,7 @@
   type: u8
   addr:
     U: 0x30008C4
+    E: 0x30008C4
     J: 0x30008F8
 -
   desc: Power bombs highlight status
@@ -892,6 +1011,7 @@
   type: u8
   addr:
     U: 0x30008C5
+    E: 0x30008C5
     J: 0x30008F9
 -
   desc: Update corner map flag
@@ -899,6 +1019,7 @@
   type: u8
   addr:
     U: 0x30008C6
+    E: 0x30008C6
     J: 0x30008FA
 -
   desc: Energy digits
@@ -906,6 +1027,7 @@
   type: AmmoDigits
   addr:
     U: 0x30008C7
+    E: 0x30008C7
     J: 0x30008FB
 -
   desc: Max energy digits
@@ -913,6 +1035,7 @@
   type: AmmoDigits
   addr:
     U: 0x30008CB
+    E: 0x30008CB
     J: 0x30008FF
 -
   desc: Missiles digits
@@ -920,6 +1043,7 @@
   type: AmmoDigits
   addr:
     U: 0x30008CF
+    E: 0x30008CF
     J: 0x3000903
 -
   desc: Power bombs digits
@@ -927,6 +1051,7 @@
   type: AmmoDigits
   addr:
     U: 0x30008D3
+    E: 0x30008D3
     J: 0x3000907
 -
   desc: Escape timer status?
@@ -934,6 +1059,7 @@
   type: u8
   addr:
     U: 0x30008D7
+    E: 0x30008D7
     J: 0x300090B
 -
   desc: Escape timer digits
@@ -941,6 +1067,7 @@
   type: EscapeTimerDigits
   addr:
     U: 0x30008D9
+    E: 0x30008D9
     J: 0x300090D
 -
   desc: Projectile data
@@ -948,6 +1075,7 @@
   type: ProjectileData
   addr:
     U: 0x3000960
+    E: 0x3000960
     J: 0x3000994
   count: 0x10
 -
@@ -956,6 +1084,7 @@
   type: ProjectileData
   addr:
     U: 0x3000B60
+    E: 0x3000B60
     J: 0x3000B94
 -
   desc: Arm cannon Y position
@@ -963,6 +1092,7 @@
   type: u16
   addr:
     U: 0x3000B80
+    E: 0x3000B80
     J: 0x3000BB4
 -
   desc: Arm cannon X position
@@ -970,6 +1100,7 @@
   type: u16
   addr:
     U: 0x3000B82
+    E: 0x3000B82
     J: 0x3000BB6
 -
   desc: Non-gameplay flag
@@ -977,6 +1108,7 @@
   type: u8
   addr:
     U: 0x3000B84
+    E: 0x3000B84
     J: 0x3000BB8
   enum: NonGameplayFlag
 -
@@ -985,6 +1117,7 @@
   type: u8
   addr:
     U: 0x3000B87
+    E: 0x3000B87
     J: 0x3000BBB
   enum: Event
 -
@@ -993,6 +1126,7 @@
   type: u8
   addr:
     U: 0x3000B88
+    E: 0x3000B88
     J: 0x3000BBC
 -
   desc: Previous cutscene
@@ -1000,6 +1134,7 @@
   type: u8
   addr:
     U: 0x3000B89
+    E: 0x3000B89
     J: 0x3000BBD
 -
   desc: Most recent save file
@@ -1007,6 +1142,7 @@
   type: u8
   addr:
     U: 0x3000B8D
+    E: 0x3000B8D
     J: 0x3000BC1
 -
   desc: SRAM corrupt flag
@@ -1014,12 +1150,14 @@
   type: u8
   addr:
     U: 0x3000B8E
+    E: 0x3000B8E
     J: 0x3000BC2
 -
   desc: Save file data
   label: SaveFileData
   addr:
     U: 0x3000B94
+    E: 0x3000B94
     J: 0x3000BC8
   size: 0x3C
 -
@@ -1028,6 +1166,7 @@
   type: DebugMenuOptions
   addr:
     U: 0x3000BD0
+    E: 0x3000BD0
     J: 0x3000C04
 -
   desc: Current cutscene
@@ -1035,6 +1174,7 @@
   type: u8
   addr:
     U: 0x3000BDC
+    E: 0x3000BDC
     J: 0x3000C10
 -
   desc: Game mode
@@ -1042,6 +1182,7 @@
   type: u16
   addr:
     U: 0x3000BDE
+    E: 0x3000BDE
     J: 0x3000C12
   enum: GameMode
 -
@@ -1050,6 +1191,7 @@
   type: u16
   addr:
     U: 0x3000BE0
+    E: 0x3000BE0
     J: 0x3000C14
 -
   desc: Sub-game mode 2
@@ -1057,6 +1199,7 @@
   type: u16
   addr:
     U: 0x3000BE2
+    E: 0x3000BE2
     J: 0x3000C16
 -
   desc: Cleared every frame
@@ -1064,6 +1207,7 @@
   type: u8
   addr:
     U: 0x3000BE4
+    E: 0x3000BE4
     J: 0x3000C18
 -
   desc: 8-bit frame counter
@@ -1071,6 +1215,7 @@
   type: u8
   addr:
     U: 0x3000BE5
+    E: 0x3000BE5
     J: 0x3000C19
 -
   desc: V-Blank request flag
@@ -1078,12 +1223,14 @@
   type: u16
   addr:
     U: 0x3000BE6
+    E: 0x3000BE6
     J: 0x3000C1A
 -
   desc: Interrupt code
   label: InterruptCode
   addr:
     U: 0x3000BE8
+    E: 0x3000BE8
     J: 0x3000C1C
   size: 0x200
 -
@@ -1091,6 +1238,7 @@
   label: OamData
   addr:
     U: 0x3000DE8
+    E: 0x3000DE8
     J: 0x3000E1C
   size: 0x400
 -
@@ -1099,6 +1247,7 @@
   type: flags16
   addr:
     U: 0x30011E8
+    E: 0x30011E8
     J: 0x300121C
   enum: ButtonInput
 -
@@ -1107,6 +1256,7 @@
   type: flags16
   addr:
     U: 0x30011EA
+    E: 0x30011EA
     J: 0x300121E
   enum: ButtonInput
 -
@@ -1115,6 +1265,7 @@
   type: flags16
   addr:
     U: 0x30011EC
+    E: 0x30011EC
     J: 0x3001220
   enum: ButtonInput
 -
@@ -1123,6 +1274,7 @@
   type: u8
   addr:
     U: 0x30011EE
+    E: 0x30011EE
     J: 0x3001222
 -
   desc: Written to MOSAIC_H (mosaic size)
@@ -1130,6 +1282,7 @@
   type: u16
   addr:
     U: 0x300120C
+    E: 0x300120C
     J: 0x3001240
 -
   desc: Written to MOSAIC_L (mosaic size)
@@ -1137,6 +1290,7 @@
   type: u16
   addr:
     U: 0x300120E
+    E: 0x300120E
     J: 0x3001242
 -
   desc: Written to BLDY (brightness coefficient)
@@ -1144,6 +1298,7 @@
   type: u16
   addr:
     U: 0x300121E
+    E: 0x300121E
     J: 0x3001252
 -
   desc: BG0 X position
@@ -1151,6 +1306,7 @@
   type: u16
   addr:
     U: 0x3001224
+    E: 0x3001224
     J: 0x3001258
 -
   desc: BG0 Y position
@@ -1158,6 +1314,7 @@
   type: u16
   addr:
     U: 0x3001226
+    E: 0x3001226
     J: 0x300125A
 -
   desc: BG1 X position
@@ -1165,6 +1322,7 @@
   type: u16
   addr:
     U: 0x3001228
+    E: 0x3001228
     J: 0x300125C
 -
   desc: BG1 Y position
@@ -1172,6 +1330,7 @@
   type: u16
   addr:
     U: 0x300122A
+    E: 0x300122A
     J: 0x300125E
 -
   desc: BG2 X position
@@ -1179,6 +1338,7 @@
   type: u16
   addr:
     U: 0x300122C
+    E: 0x300122C
     J: 0x3001260
 -
   desc: BG2 Y position
@@ -1186,6 +1346,7 @@
   type: u16
   addr:
     U: 0x300122E
+    E: 0x300122E
     J: 0x3001262
 -
   desc: BG3 X position
@@ -1193,6 +1354,7 @@
   type: u16
   addr:
     U: 0x3001230
+    E: 0x3001230
     J: 0x3001264
 -
   desc: BG3 Y position
@@ -1200,6 +1362,7 @@
   type: u16
   addr:
     U: 0x3001232
+    E: 0x3001232
     J: 0x3001266
 -
   desc: Demo playing flag?
@@ -1207,6 +1370,7 @@
   type: u8
   addr:
     U: 0x3001242
+    E: 0x3001242
     J: 0x3001276
 -
   desc: Pose lock
@@ -1214,6 +1378,7 @@
   type: u8
   addr:
     U: 0x3001243
+    E: 0x3001243
     J: 0x3001277
 -
   desc: Samus data
@@ -1221,6 +1386,7 @@
   type: SamusData
   addr:
     U: 0x3001244
+    E: 0x3001244
     J: 0x3001278
 -
   desc: Samus data copy when changing pose
@@ -1228,6 +1394,7 @@
   type: SamusData
   addr:
     U: 0x3001270
+    E: 0x3001270
     J: 0x30012A4
 -
   desc: Samus graphics info
@@ -1235,6 +1402,7 @@
   type: SamusGraphicsInfo
   addr:
     U: 0x300129C
+    E: 0x300129C
     J: 0x30012D0
 -
   desc: Samus animation info
@@ -1242,6 +1410,7 @@
   type: SamusAnimationInfo
   addr:
     U: 0x30012D8
+    E: 0x30012D8
     J: 0x300130C
 -
   desc: Samus echo
@@ -1249,6 +1418,7 @@
   type: SamusEcho
   addr:
     U: 0x30012E4
+    E: 0x30012E4
     J: 0x3001318
 -
   desc: Samus timers/counters
@@ -1256,6 +1426,7 @@
   type: SamusTimersAndCounters
   addr:
     U: 0x30012F0
+    E: 0x30012F0
     J: 0x3001324
 -
   desc: Equipment
@@ -1263,12 +1434,14 @@
   type: Equipment
   addr:
     U: 0x3001310
+    E: 0x3001310
     J: 0x3001344
 -
   desc: Horizontal movement direction
   type: flags16
   addr:
     U: 0x3001320
+    E: 0x3001320
     J: 0x3001354
   enum: HorizontalDirection
 -
@@ -1276,6 +1449,7 @@
   type: flags16
   addr:
     U: 0x3001322
+    E: 0x3001322
     J: 0x3001356
   enum: VerticalDirection
 -
@@ -1283,6 +1457,7 @@
   type: u8
   addr:
     U: 0x3001329
+    E: 0x3001329
     J: 0x300135D
   enum: SamusCollisionType
 -
@@ -1291,6 +1466,7 @@
   type: SamusPhysics
   addr:
     U: 0x3001330
+    E: 0x3001330
     J: 0x3001364
 -
   desc: Previous X position
@@ -1298,6 +1474,7 @@
   type: u16
   addr:
     U: 0x3001342
+    E: 0x3001342
     J: 0x3001376
 -
   desc: Previous Y position
@@ -1305,6 +1482,7 @@
   type: u16
   addr:
     U: 0x3001344
+    E: 0x3001344
     J: 0x3001378
 -
   desc: Underwater flag
@@ -1312,6 +1490,7 @@
   type: u8
   addr:
     U: 0x3001346
+    E: 0x3001346
     J: 0x300137A
 -
   desc: Freeze movement timer
@@ -1319,6 +1498,7 @@
   type: u16
   addr:
     U: 0x3001348
+    E: 0x3001348
     J: 0x300137C
 -
   desc: Disable drawing Samus and scrolling flag
@@ -1326,6 +1506,7 @@
   type: u8
   addr:
     U: 0x300134A
+    E: 0x300134A
     J: 0x300137E
 -
   desc: Previous 64 positions
@@ -1333,6 +1514,7 @@
   type: u16
   addr:
     U: 0x300134C
+    E: 0x300134C
     J: 0x3001380
   count: 0x80
 -
@@ -1341,6 +1523,7 @@
   type: u16
   addr:
     U: 0x300144C
+    E: 0x300144C
     J: 0x3001480
 -
   desc: Button assignments
@@ -1348,6 +1531,7 @@
   type: ButtonAssignments
   addr:
     U: 0x3001450
+    E: 0x3001450
     J: 0x3001484
 -
   desc: SA-X data
@@ -1355,6 +1539,7 @@
   type: SaxData
   addr:
     U: 0x3001458
+    E: 0x3001458
     J: 0x300148C
 -
   desc: Clipdata handling code
@@ -1362,43 +1547,58 @@
   type: u16
   addr:
     U: 0x3001484
+    E: 0x3001484
     J: 0x30014B8
   count: 0x140
+-
+  desc: Non-gameplay RAM
+  label: NonGameplayRam
+  addr:
+    U: 0x3001484
+    E: 0x3001484
+    J: 0x30014B8
+  size: '?'
 -
   desc: Ending image tier
   type: u8
   addr:
     U: 0x300151D
+    E: 0x300151D
     J: 0x3001551
 -
   desc: Ending percent
   type: u8
   addr:
     U: 0x300151E
+    E: 0x300151E
     J: 0x3001552
 -
   desc: Map target X position
   type: u8
   addr:
     U: 0x3001690
+    E: 0x3001690
     J: 0x30016C4
 -
   desc: Map target Y position
   type: u8
   addr:
     U: 0x3001691
+    E: 0x3001691
     J: 0x30016C5
 -
   desc: Stereo flag
   type: u8
   addr:
     U: 0x30016F1
+    E: 0x30016F1
 -
   desc: Pointer to V-Blank code
   label: VBlankCodePtr
   type: ptr.thumb
   addr:
     U: 0x30019C4
+    E: 0x30019C4
     J: 0x30019F8
 -
   desc: Pointer to H-Blank code
@@ -1406,6 +1606,7 @@
   type: ptr.thumb
   addr:
     U: 0x30019C8
+    E: 0x30019C8
     J: 0x30019FC
 -
   desc: Pointer to V-Count code
@@ -1413,6 +1614,7 @@
   type: ptr.thumb
   addr:
     U: 0x30019CC
+    E: 0x30019CC
     J: 0x3001A00
 -
   desc: Music info
@@ -1420,6 +1622,7 @@
   type: MusicInfo
   addr:
     U: 0x30019D0
+    E: 0x30019D0
     J: 0x3001A04
 -
   desc: Pointer to sound code A
@@ -1427,11 +1630,13 @@
   type: ptr.arm
   addr:
     U: 0x3003654
+    E: 0x3003654
     J: 0x3003688
 -
   desc: Sound code A
   addr:
     U: 0x3003658
+    E: 0x3003658
     J: 0x300368C
   size: 0x658
 -
@@ -1440,11 +1645,13 @@
   type: ptr.arm
   addr:
     U: 0x3003CB0
+    E: 0x3003CB0
     J: 0x3003CE4
 -
   desc: Sound code B
   addr:
     U: 0x3003CB4
+    E: 0x3003CB4
     J: 0x3003CE8
   size: 0xA4
 -
@@ -1453,11 +1660,13 @@
   type: ptr.arm
   addr:
     U: 0x3003D58
+    E: 0x3003D58
     J: 0x3003D8C
 -
   desc: Sound code C
   addr:
     U: 0x3003D5C
+    E: 0x3003D5C
     J: 0x3003D90
   size: 0xAC
 -
@@ -1466,6 +1675,7 @@
   type: u16
   addr:
     U: 0x3004C12
+    E: 0x3004C12
     J: 0x3004C42
 -
   desc: Demo input timer
@@ -1473,6 +1683,7 @@
   type: u16
   addr:
     U: 0x3004C14
+    E: 0x3004C14
     J: 0x3004C44
 -
   desc: Demo button input
@@ -1480,6 +1691,7 @@
   type: u16
   addr:
     U: 0x3004C16
+    E: 0x3004C16
     J: 0x3004C46
   enum: ButtonInput
 -
@@ -1487,6 +1699,7 @@
   type: u16
   addr:
     U: 0x3004C18
+    E: 0x3004C18
     J: 0x3004C48
 -
   desc: Suit palette
@@ -1494,6 +1707,7 @@
   type: palette
   addr:
     U: 0x3004D28
+    E: 0x3004D28
     J: 0x3004D58
   count: 0x3
 -
@@ -1502,6 +1716,7 @@
   type: u16
   addr:
     U: 0x3004D88
+    E: 0x3004D88
     J: 0x3004DB8
 -
   desc: SA-X suit palette
@@ -1509,6 +1724,7 @@
   type: palette
   addr:
     U: 0x3004D90
+    E: 0x3004D90
     J: 0x3004DC0
   count: 0x1
 -
@@ -1517,6 +1733,7 @@
   type: TilemapAndClipdataPtrs
   addr:
     U: 0x3004DDC
+    E: 0x3004DDC
     J: 0x3004E0C
 -
   desc: Current music track
@@ -1524,6 +1741,7 @@
   type: u16
   addr:
     U: 0x3004DE8
+    E: 0x3004DE8
     J: 0x3004E18
 -
   desc: Hatch data
@@ -1531,6 +1749,7 @@
   type: HatchData
   addr:
     U: 0x3004DEC
+    E: 0x3004DEC
     J: 0x3004E1C
   count: 0x6
 -
@@ -1539,6 +1758,7 @@
   type: DoorPositionStart
   addr:
     U: 0x3004E0C
+    E: 0x3004E0C
     J: 0x3004E3C
 -
   desc: BG3 movement
@@ -1546,6 +1766,7 @@
   type: BG3Movement
   addr:
     U: 0x3004E18
+    E: 0x3004E18
     J: 0x3004E48
 -
   desc: Tileset's transparent color
@@ -1553,6 +1774,7 @@
   type: u16
   addr:
     U: 0x3004E28
+    E: 0x3004E28
     J: 0x3004E58
 -
   desc: Door locked flag?
@@ -1560,6 +1782,7 @@
   type: u8
   addr:
     U: 0x3004E3B
+    E: 0x3004E3B
     J: 0x3004E6B
 -
   desc: Destination room
@@ -1567,6 +1790,7 @@
   type: u8
   addr:
     U: 0x3004E3C
+    E: 0x3004E3C
     J: 0x3004E6C
 -
   desc: Broken reform blocks
@@ -1574,6 +1798,7 @@
   type: BrokenReformBlock
   addr:
     U: 0x3004E60
+    E: 0x3004E60
     J: 0x3004E90
   count: 0x20
 -
@@ -1582,6 +1807,7 @@
   type: AnimatedPaletteTiming
   addr:
     U: 0x3004FC0
+    E: 0x3004FC0
     J: 0x3004FF0
 -
   desc: Animated palette and tileset number
@@ -1589,6 +1815,7 @@
   type: AnimatedPaletteAndTilesetNum
   addr:
     U: 0x3004FC8
+    E: 0x3004FC8
     J: 0x3004FF8
 -
   desc: Pointer to clipdata handling code
@@ -1596,12 +1823,14 @@
   type: ptr.thumb
   addr:
     U: 0x3005318
+    E: 0x3005318
     J: 0x3005348
 -
   desc: Animated tileset data
   label: AnimTilesetData
   addr:
     U: 0x300531C
+    E: 0x300531C
     J: 0x300534C
   size: 0x30
 -
@@ -1610,6 +1839,7 @@
   type: ptr
   addr:
     U: 0x30053E8
+    E: 0x30053E8
     J: 0x3005418
 -
   desc: Space cutscene random number
@@ -1617,6 +1847,7 @@
   type: u16
   addr:
     U: 0x3005404
+    E: 0x3005404
     J: 0x3005434
 -
   desc: Pointer to interrupt code
@@ -1624,4 +1855,5 @@
   type: ptr.arm
   addr:
     U: 0x3007FFC
+    E: 0x3007FFC
     J: 0x3007FFC
