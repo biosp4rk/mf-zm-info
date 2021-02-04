@@ -609,6 +609,23 @@ EscapeTimerDigits:
   - desc: Minutes tens place
     type: u8
     offset: 0x5
+EventBasedConnection:
+  size: 0x4
+  vars:
+  - desc: Source area
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - desc: Source door
+    type: u8
+    offset: 0x1
+  - desc: Event
+    type: u8
+    offset: 0x2
+    enum: Event
+  - desc: Destination door
+    type: u8
+    offset: 0x3
 FileScreenOptionsUnlocked:
   size: 0xC
   vars:
