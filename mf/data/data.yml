@@ -52,7 +52,6 @@
   size: 0x10
 -
   desc: Samus pose hitbox related?
-  label: SamusPoseHitboxRelated?
   addr:
     U: 0x28D794
     E: 0x28DDF0
@@ -528,6 +527,24 @@
     J: 0x3E6698
   count: 0xC
 -
+  desc: Common sprite palette
+  label: CommonSpritePalette
+  type: palette
+  addr:
+    U: 0x3E40DC
+    E: 0x3E4738
+    J: 0x3E66B8
+  count: 0x6
+-
+  desc: Common sprite graphics
+  label: CommonSpriteGraphics
+  type: gfx
+  addr:
+    U: 0x3E419C
+    E: 0x3E47F8
+    J: 0x3E6778
+  size: 0x3800
+-
   desc: Debug RLE BG graphics
   type: lz.gfx
   addr:
@@ -950,6 +967,14 @@
     E: 0x559B04
     J: 0x55BB84
   size: 0x8B00
+-
+  desc: Tank graphics
+  type: gfx
+  addr:
+    U: 0x5609A8
+    E: 0x561004
+    J: 0x563084
+  size: 0x600
 -
   desc: Event location and navigation info
   label: EventLocationAndNavInfo

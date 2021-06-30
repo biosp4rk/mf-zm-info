@@ -2400,6 +2400,18 @@
   - X position
   return: 1 if door found, 0 otherwise
 -
+  desc: Find event based door number
+  label: FindEventBasedDoor
+  addr:
+    U: 0x5EFA8
+    E: 0x5F09C
+    J: 0x5EFA8
+  size: 0x5C
+  mode: thumb
+  params:
+  - Source door number
+  return: Target door number if found, 0xFF otherwise
+-
   desc: Set hatch as opened
   label: SetHatchAsOpened
   addr:

@@ -314,16 +314,16 @@ CurrPowerBomb:
     type: u16
     offset: 0x6
   - desc: Hitbox left offset
-    type: u16
+    type: s16
     offset: 0x8
   - desc: Hitbox right offset
-    type: u16
+    type: s16
     offset: 0xA
   - desc: Hitbox top offset
-    type: u16
+    type: s16
     offset: 0xC
   - desc: Hitbox bottom offset
-    type: u16
+    type: s16
     offset: 0xE
 CurrRoomEntry:
   size: 0x20
@@ -944,16 +944,16 @@ ProjectileData:
     type: u8
     offset: 0x13
   - desc: Hitbox top offset
-    type: u16
+    type: s16
     offset: 0x14
   - desc: Hitbox bottom offset
-    type: u16
+    type: s16
     offset: 0x16
   - desc: Hitbox left offset
-    type: u16
+    type: s16
     offset: 0x18
   - desc: Hitbox right offset
-    type: u16
+    type: s16
     offset: 0x1A
 RoomEntry:
   size: 0x3C
@@ -1158,10 +1158,13 @@ SamusPhysics:
   - desc: Arm cannon Y position offset
     type: s16
     offset: 0x4C
-  - desc: '?'
+  - desc: Hitbox left offset
     type: s16
     offset: 0x50
-  - desc: '?'
+  - desc: Hitbox right offset
+    type: s16
+    offset: 0x52
+  - desc: Hitbox top offset
     type: s16
     offset: 0x54
   - desc: Slowed by liquid flag
@@ -1297,16 +1300,16 @@ SpriteData:
     type: u16
     offset: 0x8
   - desc: Hitbox top offset
-    type: u16
+    type: s16
     offset: 0xA
   - desc: Hitbox bottom offset
-    type: u16
+    type: s16
     offset: 0xC
   - desc: Hitbox left offset
-    type: u16
+    type: s16
     offset: 0xE
   - desc: Hitbox right offset
-    type: u16
+    type: s16
     offset: 0x10
   - desc: OAM scaling
     type: u16
