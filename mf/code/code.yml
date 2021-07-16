@@ -1446,7 +1446,8 @@
   params: null
   return: 1 if morphed, 0 otherwise
 -
-  desc: Check Samus pose pauses background activity?
+  desc: Check Samus movement is prevented
+  label: CheckSamusMovementIsPrevented
   addr:
     U: 0x12644
     E: 0x12644
@@ -1454,7 +1455,7 @@
   size: 0xB4
   mode: thumb
   params: null
-  return: '?'
+  return: 1 if Samus cannot move, 0 otherwise
 -
   desc: Check screw attacking/shinesparking/speed boosting
   label: CheckScrewingOrSparkingOrBoosting
@@ -1621,15 +1622,534 @@
   - X position
   return: null
 -
-  desc: Event checks
+  desc: Check Main Deck room displays location
+  label: CheckMainDeckRoomDisplaysLocation
+  addr:
+    U: 0x14310
+    E: 0x14310
+    J: 0x1447C
+  size: 0x190
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 1 room displays location
+  label: CheckSector1RoomDisplaysLocation
+  addr:
+    U: 0x144A0
+    E: 0x144A0
+    J: 0x1460C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 2 room displays location
+  label: CheckSector2RoomDisplaysLocation
+  addr:
+    U: 0x144CC
+    E: 0x144CC
+    J: 0x14638
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 3 room displays location
+  label: CheckSector3RoomDisplaysLocation
+  addr:
+    U: 0x1456C
+    E: 0x1456C
+    J: 0x146D8
+  size: 0x88
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 4 room displays location
+  label: CheckSector4RoomDisplaysLocation
+  addr:
+    U: 0x145F4
+    E: 0x145F4
+    J: 0x14760
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 5 room displays location
+  label: CheckSector5RoomDisplaysLocation
+  addr:
+    U: 0x14620
+    E: 0x14620
+    J: 0x1478C
+  size: 0x84
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Check Sector 6 room displays location
+  label: CheckSector6RoomDisplaysLocation
+  addr:
+    U: 0x146A4
+    E: 0x146A4
+    J: 0x14810
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: 1 if room displays location, 0xFF otherwise
+-
+  desc: Get location banner graphics slot
+  label: GetLocationBannerGfxSlot
+  addr:
+    U: 0x146D0
+    E: 0x146D0
+    J: 0x1483C
+  size: 0x84
+  mode: thumb
+  params: null
+  return: Location banner graphics slot, 0xFF if none
+-
+  desc: Check display location
+  label: CheckDisplayLocation
+  addr:
+    U: 0x14754
+    E: 0x14754
+    J: 0x148C0
+  size: 0x130
+  mode: thumb
+  params: null
+  return: Location banner graphics slot, 0xFF if none
+-
+  desc: Check advance event
+  label: CheckAdvanceEvent
   addr:
     U: 0x60940
     E: 0x60940
     J: 0x60F7C
   size: 0x214
   mode: thumb
+  params:
+  - Event number
+  return: 1 if event was set, 0 otherwise
+-
+  desc: Check on event 4B (nav after Yakuza)
+  label: CheckOnEvent4B
+  addr:
+    U: 0x60B54
+    E: 0x60B54
+    J: 0x61190
+  size: 0x18
+  mode: thumb
   params: null
-  return: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 4C (engaged TRO SA-X 2)
+  label: CheckOnEvent4C
+  addr:
+    U: 0x60B6C
+    E: 0x60B6C
+    J: 0x611A8
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 6B (Ice beam recovered)
+  label: CheckAfterEvent6B
+  addr:
+    U: 0x60B84
+    E: 0x60B84
+    J: 0x611C0
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check after event 6A (SA-X killed by Omega)
+  label: CheckAfterEvent6A
+  addr:
+    U: 0x60B9C
+    E: 0x60B9C
+    J: 0x611D8
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check on event 65 (entered operations deck)
+  label: CheckOnEvent65
+  addr:
+    U: 0x60BB4
+    E: 0x60BB4
+    J: 0x611F0
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 5A (triggered BOX 2 rumble)
+  label: CheckOnEvent5A
+  addr:
+    U: 0x60BCC
+    E: 0x60BCC
+    J: 0x61208
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 59 (Restricted Zone warning)
+  label: CheckOnEvent59
+  addr:
+    U: 0x60BE4
+    E: 0x60BE4
+    J: 0x61220
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 34 (Blue X flee)
+  label: CheckAfterEvent34
+  addr:
+    U: 0x60BFC
+    E: 0x60BFC
+    J: 0x61238
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check event 46 (power outage)
+  label: CheckEvent46
+  addr:
+    U: 0x60C14
+    E: 0x60C14
+    J: 0x61250
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: 0 if before event, 1 if on event, 2 if after event
+-
+  desc: Check on event 5B (wave beam recovered)
+  label: CheckOnEvent5B
+  addr:
+    U: 0x60C30
+    E: 0x60C30
+    J: 0x6126C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 5C (restricted lab explosion)
+  label: CheckOnEvent5C
+  addr:
+    U: 0x60C48
+    E: 0x60C48
+    J: 0x61284
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 17 (earthquake after bombs)
+  label: CheckOnEvent17
+  addr:
+    U: 0x60C60
+    E: 0x60C60
+    J: 0x6129C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 16 (bomb data downloaded)
+  label: CheckOnEvent16
+  addr:
+    U: 0x60C78
+    E: 0x60C78
+    J: 0x612B4
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 31 (escaped NOC SA-X)
+  label: CheckOnEvent31
+  addr:
+    U: 0x60C90
+    E: 0x60C90
+    J: 0x612CC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 43 (ARC SA-X encounter)
+  label: CheckOnEvent43
+  addr:
+    U: 0x60CA8
+    E: 0x60CA8
+    J: 0x612E4
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 42 (power bomb data downloaded)
+  label: CheckOnEvent42
+  addr:
+    U: 0x60CC0
+    E: 0x60CC0
+    J: 0x612FC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 30 (NOC SA-X encounter)
+  label: CheckOnEvent30
+  addr:
+    U: 0x60CD8
+    E: 0x60CD8
+    J: 0x61314
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 2F (NOC 1 nav conversation)
+  label: CheckOnEvent2F
+  addr:
+    U: 0x60CF0
+    E: 0x60CF0
+    J: 0x6132C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 19 (hi-jump recovered)
+  label: CheckOnEvent19
+  addr:
+    U: 0x60D08
+    E: 0x60D08
+    J: 0x61344
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 1A (escaped TRO SA-X 1)
+  label: CheckAfterEvent1A
+  addr:
+    U: 0x60D20
+    E: 0x60D20
+    J: 0x6135C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check after event 28 (BOX 1 defeated)
+  label: CheckAfterEvent28
+  addr:
+    U: 0x60D38
+    E: 0x60D38
+    J: 0x61374
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check on event 27 (triggered BOX 1 rumble)
+  label: CheckOnEvent27
+  addr:
+    U: 0x60D50
+    E: 0x60D50
+    J: 0x6138C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 26 (super missile data downloaded)
+  label: CheckOnEvent26
+  addr:
+    U: 0x60D68
+    E: 0x60D68
+    J: 0x613A4
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 25 (entered super missile data room)
+  label: CheckOnEvent25
+  addr:
+    U: 0x60D80
+    E: 0x60D80
+    J: 0x613BC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 20 (water level lowered)
+  label: CheckAfterEvent20
+  addr:
+    U: 0x60D98
+    E: 0x60D98
+    J: 0x613D4
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check on event 1 (nav before quarantine bay)
+  label: CheckOnEvent01
+  addr:
+    U: 0x60DB0
+    E: 0x60DB0
+    J: 0x613EC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event with save disabled
+  label: CheckOnEventWithSaveDisabled
+  addr:
+    U: 0x60DC8
+    E: 0x60DC8
+    J: 0x61404
+  size: 0x30
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event with nav disabled
+  label: CheckOnEventWithNavDisabled
+  addr:
+    U: 0x60DF8
+    E: 0x60DF8
+    J: 0x61434
+  size: 0x24
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event with recharge disabled
+  label: CheckOnEventWithRechargeDisabled
+  addr:
+    U: 0x60E1C
+    E: 0x60E1C
+    J: 0x61458
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 1F (entered pump control unit)
+  label: CheckOnEvent1F
+  addr:
+    U: 0x60E3C
+    E: 0x60E3C
+    J: 0x61478
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check event 3B/3C (meltdown)
+  label: CheckOnEventMeltdown
+  addr:
+    U: 0x60E54
+    E: 0x60E54
+    J: 0x61490
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if on 3B, 2 if on 3C, 0 otherwise
+-
+  desc: Check on event 3E (to animals)
+  label: CheckOnEvent3E
+  addr:
+    U: 0x60E74
+    E: 0x60E74
+    J: 0x614B0
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 3F (animals released)
+  label: CheckAfterEvent3F
+  addr:
+    U: 0x60E8C
+    E: 0x60E8C
+    J: 0x614C8
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check on event 49 (space jump recovered)
+  label: CheckOnEvent49
+  addr:
+    U: 0x60EA4
+    E: 0x60EA4
+    J: 0x614E0
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check on event 66 (SA-X defeated)
+  label: CheckOnEvent66
+  addr:
+    U: 0x60EBC
+    E: 0x60EBC
+    J: 0x614F8
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
+-
+  desc: Check after event 66 (SA-X defeated)
+  label: CheckAfterEvent66
+  addr:
+    U: 0x60ED4
+    E: 0x60ED4
+    J: 0x61510
+  size: 0x18
+  mode: thumb
+  params: null
+  return: 1 if after event, 0 otherwise
+-
+  desc: Check on event with timer displayed
+  label: CheckOnEventWithTimerDisplayed
+  addr:
+    U: 0x60EEC
+    E: 0x60EEC
+    J: 0x61528
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: 1 for meltdown, 2 for restricted lab, 3 for escape, 0 otherwise
+-
+  desc: Check on event with timer stopped
+  label: CheckOnEventWithTimerStopped
+  addr:
+    U: 0x60FE4
+    E: 0x60FE4
+    J: 0x61620
+  size: 0x20
+  mode: thumb
+  params: null
+  return: 1 if on event, 0 otherwise
 -
   desc: Enemy dying start
   label: EnemyDyingStart
@@ -1651,6 +2171,18 @@
   size: 0x90
   mode: thumb
   params: null
+  return: null
+-
+  desc: Determine X-parasite type?
+  addr:
+    U: 0x617C4
+    E: 0x617C4
+    J: 0x61E00
+  size: 0x174
+  mode: thumb
+  params:
+  - Y position
+  - X position
   return: null
 -
   desc: Initialize X-parasite
@@ -1962,8 +2494,8 @@
   - Background number
   return: null
 -
-  desc: RLE decompression
-  label: RleDecompression
+  desc: RLE decompress
+  label: RleDecompress
   addr:
     U: 0x658A4
     E: 0x658A4
