@@ -872,6 +872,17 @@
   params: null
   return: null
 -
+  desc: Main loop for in-game demo
+  label: MainLoopForInGameDemo
+  addr:
+    U: 0xE420
+    E: 0xE420
+    J: 0xE4D4
+  size: 0x264
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Update sprite random number
   label: UpdateSpriteRandomNumber
   addr:
@@ -893,6 +904,17 @@
   mode: thumb
   params:
   - Sprite slot number
+  return: null
+-
+  desc: Load sprites for demo
+  label: LoadSpritesForDemo
+  addr:
+    U: 0xF6B4
+    E: 0xF6B4
+    J: 0xF768
+  size: 0xB8
+  mode: thumb
+  params: null
   return: null
 -
   desc: Load spriteset
@@ -2173,7 +2195,8 @@
   params: null
   return: null
 -
-  desc: Determine X-parasite type?
+  desc: Determine X-parasite type
+  label: DetermineXParasiteType
   addr:
     U: 0x617C4
     E: 0x617C4
