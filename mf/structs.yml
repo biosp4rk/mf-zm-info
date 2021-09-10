@@ -1178,13 +1178,13 @@ RoomSpriteEntry:
 SamusAnimationInfo:
   size: 0xC
   vars:
-  - desc: Loading save animation related?
+  - desc: Loading save flag?
     type: u8
     offset: 0x0
-  - desc: Animation related?
+  - desc: Palette animation counter
     type: u8
     offset: 0x1
-  - desc: Animation related?
+  - desc: Current palette row
     type: u8
     offset: 0x2
   - desc: Space jump spin counter
@@ -1243,7 +1243,7 @@ SamusData:
   - desc: Arm running animation flag
     type: u8
     offset: 0xE
-  - desc: Speed boost/knock-back counter
+  - desc: Misc counter (speed boost, knockback, dying)
     type: u8
     offset: 0xF
   - desc: Wall-jump direction
