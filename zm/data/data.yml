@@ -63,6 +63,7 @@
   count: 0x4D
 -
   desc: Spriteset entries
+  label: SpritesetEntries
   addr:
     U: 0x2B2150
     E: 0x2B2DDC
@@ -70,6 +71,7 @@
   size: 0x3D4
 -
   desc: Sprite graphics
+  label: SpriteGfx
   addr:
     U: 0x2B2870
     E: 0x2B34FC
@@ -84,6 +86,24 @@
     E: 0x327934
     J: 0x326D04
   count: 0x10
+-
+  desc: Common sprite palette
+  label: CommonSpritePalette
+  type: palette
+  addr:
+    U: 0x32BA08
+    E: 0x32C694
+    J: 0x32BA64
+  count: 0x6
+-
+  desc: Common sprite graphics
+  label: CommonSpriteGfx
+  type: gfx
+  addr:
+    U: 0x32BAC8
+    E: 0x32C754
+    J: 0x32BB24
+  size: 0x3800
 -
   desc: Missile digit graphics
   label: MissileDigitGfx
@@ -104,6 +124,7 @@
   size: 0x900
 -
   desc: Blank room sprite data
+  label: BlankRoomSpriteData
   type: RoomSpriteEntry
   addr:
     U: 0x33DFD8
@@ -120,6 +141,7 @@
   count: 0x4F
 -
   desc: Brinstar doors
+  label: BrinstarDoors
   type: DoorEntry
   addr:
     U: 0x33E608
@@ -128,6 +150,7 @@
   count: 0x63
 -
   desc: Kraid doors
+  label: KraidDoors
   type: DoorEntry
   addr:
     U: 0x33EAAC
@@ -136,6 +159,7 @@
   count: 0x6B
 -
   desc: Norfair doors
+  label: NorfairDoors
   type: DoorEntry
   addr:
     U: 0x33EFB0
@@ -144,6 +168,7 @@
   count: 0x85
 -
   desc: Ridley doors
+  label: RidleyDoors
   type: DoorEntry
   addr:
     U: 0x33F5EC
@@ -152,6 +177,7 @@
   count: 0x4D
 -
   desc: Tourian doors
+  label: TourianDoors
   type: DoorEntry
   addr:
     U: 0x33F988
@@ -160,6 +186,7 @@
   count: 0x2C
 -
   desc: Crateria doors
+  label: CrateriaDoors
   type: DoorEntry
   addr:
     U: 0x33FB98
@@ -168,6 +195,7 @@
   count: 0x35
 -
   desc: Chozodia doors
+  label: ChozodiaDoors
   type: DoorEntry
   addr:
     U: 0x33FE14
@@ -176,6 +204,7 @@
   count: 0xF6
 -
   desc: Brinstar room entries
+  label: BrinstarRoomEntries
   type: RoomEntry
   addr:
     U: 0x340AD4
@@ -184,6 +213,7 @@
   count: 0x2A
 -
   desc: Kraid room entries
+  label: KraidRoomEntries
   type: RoomEntry
   addr:
     U: 0x3414AC
@@ -192,6 +222,7 @@
   count: 0x2A
 -
   desc: Norfair room entries
+  label: NorfairRoomEntries
   type: RoomEntry
   addr:
     U: 0x341E84
@@ -200,6 +231,7 @@
   count: 0x39
 -
   desc: Ridley room entries
+  label: RidleyRoomEntries
   type: RoomEntry
   addr:
     U: 0x342BE0
@@ -208,6 +240,7 @@
   count: 0x21
 -
   desc: Tourian room entries
+  label: TourianRoomEntries
   type: RoomEntry
   addr:
     U: 0x34339C
@@ -216,6 +249,7 @@
   count: 0x14
 -
   desc: Crateria room entries
+  label: CrateriaRoomEntries
   type: RoomEntry
   addr:
     U: 0x34384C
@@ -224,6 +258,7 @@
   count: 0x16
 -
   desc: Chozodia room entries
+  label: ChozodiaRoomEntries
   type: RoomEntry
   addr:
     U: 0x343D74
@@ -278,7 +313,7 @@
   count: 0xC
 -
   desc: BLDALPHA values?
-  label: BLDALPHA_Values?
+  label: BLDALPHA_Values
   type: u16
   addr:
     U: 0x345CC8
@@ -314,6 +349,7 @@
   count: 0x12
 -
   desc: Hatch lock events
+  label: HatchLockEvents
   type: HatchLockEvent
   addr:
     U: 0x360138
@@ -403,6 +439,24 @@
     J: 0x40DFD4
   count: 0xA
 -
+  desc: Chozo target checks
+  label: ChozoTargetChecks
+  type: ChozoTargetCheck
+  addr:
+    U: 0x40E038
+    E: 0x40EE6C
+    J: 0x40E094
+  count: 0x10
+-
+  desc: Chozo target trigger events?
+  type: u8
+  addr:
+    U: 0x40E058
+    E: 0x40EE8C
+    J: 0x40E0B4
+  count: 0x10
+  enum: Event
+-
   desc: Time attack button code
   label: TimeAttackButtonCode
   type: u16
@@ -433,7 +487,26 @@
   count: 0xB0
   enum: ClipdataBehaviorType
 -
+  desc: Common BG graphics
+  label: CommonBGGfx
+  type: gfx
+  addr:
+    U: 0x5D940C
+    E: 0x5EC460
+    J: 0x5D951C
+  size: 0x1000
+-
+  desc: Common BG palette
+  label: CommonBGPalette
+  type: palette
+  addr:
+    U: 0x5DFE20
+    E: 0x5F2E74
+    J: 0x5DFF30
+  count: 0xA
+-
   desc: Graphics for animated graphics
+  label: GfxForAnimGraphics
   type: gfx
   addr:
     U: 0x74F8B4
@@ -522,6 +595,7 @@
   count: 0x7
 -
   desc: Room scrolls pointers
+  label: RoomScrollsPtrs
   type: ptr
   addr:
     U: 0x75FAE0
@@ -592,6 +666,7 @@
   count: 0x6
 -
   desc: Japanese message text pointers
+  label: JapaneseMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x760458
@@ -600,6 +675,7 @@
   count: 0x27
 -
   desc: Japanese location text pointers
+  label: JapaneseLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x7604F4
@@ -608,6 +684,7 @@
   count: 0x1A
 -
   desc: Hiragana message text pointers
+  label: HiraganaMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x76055C
@@ -616,6 +693,7 @@
   count: 0x27
 -
   desc: Hiragana location text pointers
+  label: HiraganaLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x7605F8
@@ -624,6 +702,7 @@
   count: 0x1A
 -
   desc: English message text pointers
+  label: EnglishMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x760660
@@ -632,6 +711,7 @@
   count: 0x27
 -
   desc: English location text pointers
+  label: EnglishLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x7606FC
@@ -640,48 +720,56 @@
   count: 0x1A
 -
   desc: German message text pointers
+  label: GermanMessageTextPtrs
   type: ptr.char
   addr:
     E: 0x77460C
   count: 0x27
 -
   desc: German location text pointers
+  label: GermanLocationTextPtrs
   type: ptr.char
   addr:
     E: 0x7746A8
   count: 0x1A
 -
   desc: French message text pointers
+  label: FrenchMessageTextPtrs
   type: ptr.char
   addr:
     E: 0x774710
   count: 0x27
 -
   desc: French location text pointers
+  label: FrenchLocationTextPtrs
   type: ptr.char
   addr:
     E: 0x7747AC
   count: 0x1A
 -
   desc: Italian message text pointers
+  label: ItalianMessageTextPtrs
   type: ptr.char
   addr:
     E: 0x774814
   count: 0x27
 -
   desc: Italian location text pointers
+  label: ItalianLocationTextPtrs
   type: ptr.char
   addr:
     E: 0x7748B0
   count: 0x1A
 -
   desc: Spanish message text pointers
+  label: SpanishMessageTextPtrs
   type: ptr.char
   addr:
     E: 0x774918
   count: 0x27
 -
   desc: Spanish location text pointers
+  label: SpanishLocationTextPtrs
   type: ptr.char
   addr:
     E: 0x7749B4
@@ -715,6 +803,7 @@
   count: 0x7
 -
   desc: Japanese description text pointers
+  label: JapaneseDescriptionTextPtrs
   type: ptr.char
   addr:
     U: 0x7607B8
@@ -723,6 +812,7 @@
   count: 0x13
 -
   desc: Japanese story text pointers
+  label: JapaneseStoryTextPtrs
   type: ptr.char
   addr:
     U: 0x760804
@@ -731,6 +821,7 @@
   count: 0x6
 -
   desc: Japanese file screen text pointers
+  label: JapaneseFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x76081C
@@ -739,6 +830,7 @@
   count: 0x25
 -
   desc: Hiragana description text pointers
+  label: HiraganaDescriptionTextPtrs
   type: ptr.char
   addr:
     U: 0x7608B0
@@ -747,6 +839,7 @@
   count: 0x13
 -
   desc: Hiragana story text pointers
+  label: HiraganaStoryTextPtrs
   type: ptr.char
   addr:
     U: 0x7608FC
@@ -755,6 +848,7 @@
   count: 0x6
 -
   desc: Hiragana file screen text pointers
+  label: HiraganaFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x760914
@@ -763,6 +857,7 @@
   count: 0x25
 -
   desc: English description text pointers
+  label: EnglishDescriptionTextPtrs
   type: ptr.char
   addr:
     U: 0x7609A8
@@ -771,6 +866,7 @@
   count: 0x13
 -
   desc: English story text pointers
+  label: EnglishStoryTextPtrs
   type: ptr.char
   addr:
     U: 0x7609F4
@@ -779,6 +875,7 @@
   count: 0x6
 -
   desc: English file screen text pointers
+  label: EnglishFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x760A0C
@@ -787,72 +884,84 @@
   count: 0x25
 -
   desc: German description text pointers
+  label: GermanDescriptionTextPtrs
   type: ptr.char
   addr:
     E: 0x774D58
   count: 0x13
 -
   desc: German story text pointers
+  label: GermanStoryTextPtrs
   type: ptr.char
   addr:
     E: 0x774DA4
   count: 0x6
 -
   desc: German file screen text pointers
+  label: GermanFileScreenTextPtrs
   type: ptr.char
   addr:
     E: 0x774DBC
   count: 0x25
 -
   desc: French description text pointers
+  label: FrenchDescriptionTextPtrs
   type: ptr.char
   addr:
     E: 0x774E50
   count: 0x13
 -
   desc: French story text pointers
+  label: FrenchStoryTextPtrs
   type: ptr.char
   addr:
     E: 0x774E9C
   count: 0x6
 -
   desc: French file screen text pointers
+  label: FrenchFileScreenTextPtrs
   type: ptr.char
   addr:
     E: 0x774EB4
   count: 0x25
 -
   desc: Italian description text pointers
+  label: ItalianDescriptionTextPtrs
   type: ptr.char
   addr:
     E: 0x774F48
   count: 0x13
 -
   desc: Italian story text pointers
+  label: ItalianStoryTextPtrs
   type: ptr.char
   addr:
     E: 0x774F94
   count: 0x6
 -
   desc: Italian file screen text pointers
+  label: ItalianFileScreenTextPtrs
   type: ptr.char
   addr:
     E: 0x774FAC
   count: 0x25
 -
   desc: Spanish description text pointers
+  label: SpanishDescriptionTextPtrs
   type: ptr.char
   addr:
     E: 0x775040
   count: 0x13
 -
   desc: Spanish story text pointers
+  label: SpanishStoryTextPtrs
   type: ptr.char
   addr:
     E: 0x77508C
   count: 0x6
 -
   desc: Spanish file screen text pointers
+  label: SpanishFileScreenTextPtrs
   type: ptr.char
   addr:
     E: 0x7750A4

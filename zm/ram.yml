@@ -53,6 +53,16 @@
   addr: 0x200A000
   size: 0x800
 -
+  desc: Effect offset related?
+  type: u16
+  addr: 0x2026300
+  count: 0x500
+-
+  desc: Effect offset related?
+  type: u16
+  addr: 0x2026D00
+  count: 0x500
+-
   desc: Decompressed clipdata
   label: DecompClipdata
   type: u16
@@ -221,7 +231,6 @@
   addr: 0x300002E
 -
   desc: Skip cutscene related?
-  label: SkipCutsceneRelated?
   type: u8
   addr: 0x300002F
 -
@@ -246,7 +255,6 @@
   addr: 0x300003D
 -
   desc: Slow scrolling timer?
-  label: SlowScrollingTimer?
   type: u16
   addr: 0x300003E
 -
@@ -266,12 +274,12 @@
   addr: 0x3000044
 -
   desc: Disable animated graphics timer
-  label: DisableAnimGfxTimer
+  label: DisableAnimatedGfxTimer
   type: u8
   addr: 0x3000045
 -
   desc: Animated graphics to update
-  label: AnimGfxToUpdate
+  label: AnimatedGfxToUpdate
   type: flags16
   addr: 0x3000046
 -
@@ -291,7 +299,6 @@
   addr: 0x300004A
 -
   desc: Ship landing cutscene flag?
-  label: ShipLandingCutsceneFlag?
   type: u8
   addr: 0x300004B
 -
@@ -300,8 +307,8 @@
   type: u8
   addr: 0x300004C
 -
-  desc: Chozodia alarm flag
-  label: ChozodiaAlarmFlag
+  desc: Disable animated palette flag
+  label: DisableAnimatedPaletteFlag
   type: u8
   addr: 0x300004D
 -
@@ -398,7 +405,6 @@
   addr: 0x30000BC
 -
   desc: Current clipdata behavior type?
-  label: CurrClipdataBehaviorType?
   type: u8
   addr: 0x30000DC
   enum: ClipdataBehaviorType
@@ -448,7 +454,7 @@
   type: InGameTime
   addr: 0x3000150
 -
-  desc: Best completion times (unused?)
+  desc: Best completion times (unused)
   label: BestCompletionTimes
   type: InGameTime
   addr: 0x3000154
@@ -465,7 +471,6 @@
   addr: 0x3000198
 -
   desc: Cutscene related?
-  label: CutsceneRelated?
   addr: 0x300019C
   size: 0xC
 -
@@ -494,17 +499,14 @@
   count: 0xF
 -
   desc: Sprite OAM related?
-  label: SpriteOamRelated?
   addr: 0x300070C
   size: 0x14
 -
   desc: Sprite OAM related?
-  label: SpriteOamRelated?
   addr: 0x3000720
   size: 0x14
 -
   desc: Parasite related?
-  label: ParasiteRelated?
   type: u8
   addr: 0x3000734
 -
@@ -532,7 +534,6 @@
   enum: CollisionCheck
 -
   desc: Collision related?
-  label: CollisionRelated?
   type: u8
   addr: 0x30007F2
 -
@@ -599,7 +600,6 @@
   addr: 0x3000914
 -
   desc: OAM pointer?
-  label: OamPtr?
   type: ptr.oam
   addr: 0x3000918
 -
@@ -610,7 +610,6 @@
   size: 0x40
 -
   desc: Escape timer status?
-  label: EscapeTimerStatus?
   type: u8
   addr: 0x300095C
 -
@@ -643,7 +642,6 @@
   label: ProjectileDataSlot0
   type: ProjectileData
   addr: 0x3000A2C
-  size: 0x1C
   count: 0x10
 -
   desc: Arm cannon Y position
@@ -833,7 +831,6 @@
   addr: 0x30013C2
 -
   desc: Demo playing flag?
-  label: DemoPlayingFlag?
   type: u8
   addr: 0x30013D2
 -
@@ -871,6 +868,12 @@
   label: LavaDamageTimer
   type: u8
   addr: 0x3001544
+-
+  desc: Samus ground effects
+  label: SamusGroundEffects
+  type: SamusGroundEffect
+  addr: 0x300154C
+  count: 0x5
 -
   desc: Samus physics
   label: SamusPhysics
@@ -1003,7 +1006,6 @@
   addr: 0x30054EC
 -
   desc: BG3 starts from bottom flag?
-  label: BG3StartsFromBottomFlag?
   type: u8
   addr: 0x30054F4
 -
@@ -1018,7 +1020,6 @@
   addr: 0x300550E
 -
   desc: Rain sound effect flag?
-  label: RainSoundEffectFlag?
   type: u16
   addr: 0x3005518
 -
@@ -1034,7 +1035,6 @@
   addr: 0x30056A8
 -
   desc: BG0 transparency related?
-  label: BG0TransparencyRelated?
   addr: 0x30056C4
   size: 0x8
 -
@@ -1047,6 +1047,10 @@
   label: AnimatedPaletteAndTilesetNum
   type: AnimatedPaletteAndTilesetNum
   addr: 0x30056F4
+-
+  desc: Wavy background effect related?
+  type: u8
+  addr: 0x3005729
 -
   desc: Animated tileset data
   label: AnimatedTilesetData

@@ -52,6 +52,7 @@
   size: 0x10
 -
   desc: Samus pose hitbox related?
+  label: SamusPoseHitboxRelated
   addr:
     U: 0x28D794
     E: 0x28DDF0
@@ -186,18 +187,12 @@
   count: 0x82
 -
   desc: Spriteset entries
+  label: SpritesetEntries
   addr:
     U: 0x2E5CB0
     E: 0x2E630C
     J: 0x2E7FB8
   size: 0x4B0
--
-  desc: Sprite graphics
-  addr:
-    U: 0x2E6384
-    E: 0x2E69E0
-    J: 0x2E868C
-  size: 0xD6348
 -
   desc: Clipdata behavior types (0x8000)
   label: ClipdataBehaviorTypes_8000
@@ -220,6 +215,7 @@
   enum: ClipdataCollisionType
 -
   desc: Blank room sprite data
+  label: BlankRoomSpriteData
   type: RoomSpriteEntry
   addr:
     U: 0x3BF884
@@ -236,6 +232,7 @@
   count: 0x62
 -
   desc: Main Deck doors
+  label: MainDeckDoors
   type: DoorEntry
   addr:
     U: 0x3C0030
@@ -244,6 +241,7 @@
   count: 0xCE
 -
   desc: Sector 1 doors
+  label: Sector1Doors
   type: DoorEntry
   addr:
     U: 0x3C09D8
@@ -252,6 +250,7 @@
   count: 0x74
 -
   desc: Sector 2 doors
+  label: Sector2Doors
   type: DoorEntry
   addr:
     U: 0x3C0F48
@@ -260,6 +259,7 @@
   count: 0x93
 -
   desc: Sector 3 doors
+  label: Sector3Doors
   type: DoorEntry
   addr:
     U: 0x3C162C
@@ -268,6 +268,7 @@
   count: 0x5B
 -
   desc: Sector 5 doors
+  label: Sector5Doors
   type: DoorEntry
   addr:
     U: 0x3C1A70
@@ -276,6 +277,7 @@
   count: 0x7D
 -
   desc: Sector 4 doors
+  label: Sector4Doors
   type: DoorEntry
   addr:
     U: 0x3C204C
@@ -284,6 +286,7 @@
   count: 0x77
 -
   desc: Sector 6 doors
+  label: Sector6Doors
   type: DoorEntry
   addr:
     U: 0x3C25E0
@@ -292,6 +295,7 @@
   count: 0x5E
 -
   desc: Debug 1 doors
+  label: Debug1Doors
   type: DoorEntry
   addr:
     U: 0x3C2A48
@@ -300,6 +304,7 @@
   count: 0xC
 -
   desc: Debug 2 doors
+  label: Debug2Doors
   type: DoorEntry
   addr:
     U: 0x3C2AD8
@@ -308,6 +313,7 @@
   count: 0xC
 -
   desc: Debug 3 doors
+  label: Debug3Doors
   type: DoorEntry
   addr:
     U: 0x3C2B68
@@ -316,6 +322,7 @@
   count: 0xC
 -
   desc: Debug rooms spriteset data
+  label: DebugRoomsSpritesetData
   addr:
     U: 0x3C2C10
     E: 0x3C326C
@@ -323,6 +330,7 @@
   size: 0x3C
 -
   desc: Main Deck room entries
+  label: MainDeckRoomEntries
   type: RoomEntry
   addr:
     U: 0x3C2C4C
@@ -331,6 +339,7 @@
   count: 0x57
 -
   desc: Sector 1 room entries
+  label: Sector1RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C40B0
@@ -339,6 +348,7 @@
   count: 0x36
 -
   desc: Sector 2 room entries
+  label: Sector2RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C4D58
@@ -347,6 +357,7 @@
   count: 0x3D
 -
   desc: Sector 3 room entries
+  label: Sector3RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C5BA4
@@ -355,6 +366,7 @@
   count: 0x27
 -
   desc: Sector 5 room entries
+  label: Sector5RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C64C8
@@ -363,6 +375,7 @@
   count: 0x34
 -
   desc: Sector 4 room entries
+  label: Sector4RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C70F8
@@ -371,6 +384,7 @@
   count: 0x30
 -
   desc: Sector 6 room entries
+  label: Sector6RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C7C38
@@ -379,6 +393,7 @@
   count: 0x29
 -
   desc: Debug 1 room entries
+  label: Debug1RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C85D4
@@ -387,6 +402,7 @@
   count: 0x4
 -
   desc: Debug 2 room entries
+  label: Debug2RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C86C4
@@ -395,6 +411,7 @@
   count: 0x4
 -
   desc: Debug 3 room entries
+  label: Debug3RoomEntries
   type: RoomEntry
   addr:
     U: 0x3C87B4
@@ -494,6 +511,7 @@
     J: 0x22
 -
   desc: Demo inputs and durations
+  label: DemoInputsAndDurations
   addr:
     U: 0x3E392C
     E: 0x3E3F88
@@ -528,7 +546,7 @@
   count: 0xC
 -
   desc: Common sprite graphics
-  label: CommonSpriteGraphics
+  label: CommonSpriteGfx
   type: gfx
   addr:
     U: 0x3E419C
@@ -555,7 +573,8 @@
     J: 0x3F2EC0
   count: 0x100
 -
-  desc: Debug tilemap
+  desc: Debug rooms tilemap
+  label: DebugRoomsTilemap
   type: u16
   addr:
     U: 0x3F09E4
@@ -583,6 +602,7 @@
   count: 0x100
 -
   desc: Debug rooms block data
+  label: DebugRoomsBlockData
   addr:
     U: 0x3F1548
     E: 0x3F1BA4
@@ -590,6 +610,7 @@
   size: 0xC56
 -
   desc: Debug rooms BG tilemaps
+  label: DebugRoomsBGTilemaps
   addr:
     U: 0x3F2350
     E: 0x3F29AC
@@ -597,7 +618,7 @@
   size: 0x578
 -
   desc: Common BG graphics
-  label: CommonBGGraphics
+  label: CommonBGGfx
   type: gfx
   addr:
     U: 0x3F28C8
@@ -606,6 +627,7 @@
   size: 0x1000
 -
   desc: Shared tilemaps
+  label: SharedTilemaps
   type: u16
   addr:
     U: 0x40841C
@@ -614,6 +636,7 @@
   count: 0x4A16
 -
   desc: Shared BG tilemaps
+  label: SharedBGTilemaps
   addr:
     U: 0x411848
     E: 0x411EA4
@@ -621,6 +644,7 @@
   size: 0x22B4
 -
   desc: Main Deck tilemaps
+  label: MainDeckTilemaps
   addr:
     U: 0x458038
     E: 0x458694
@@ -628,6 +652,7 @@
   size: 0x12EDC
 -
   desc: Main Deck room data
+  label: MainDeckRoomData
   addr:
     U: 0x46F2F4
     E: 0x46F950
@@ -635,6 +660,7 @@
   size: 0x1BED8
 -
   desc: Sector 1 tilemaps
+  label: Sector1Tilemaps
   addr:
     U: 0x4949F4
     E: 0x495050
@@ -642,6 +668,7 @@
   size: 0x3A94
 -
   desc: Sector 1 room data
+  label: Sector1RoomData
   addr:
     U: 0x498E48
     E: 0x4994A4
@@ -649,6 +676,7 @@
   size: 0xAAA4
 -
   desc: Sector 2 tilemaps
+  label: Sector2Tilemaps
   addr:
     U: 0x4C7128
     E: 0x4C7784
@@ -656,6 +684,7 @@
   size: 0x5498
 -
   desc: Sector 2 room data
+  label: Sector2RoomData
   addr:
     U: 0x4CD200
     E: 0x4CD85C
@@ -663,6 +692,7 @@
   size: 0x12F28
 -
   desc: Sector 3 tilemaps
+  label: Sector3Tilemaps
   addr:
     U: 0x4F2D18
     E: 0x4F3374
@@ -670,6 +700,7 @@
   size: 0x6018
 -
   desc: Sector 3 room data
+  label: Sector3RoomData
   addr:
     U: 0x4F8D30
     E: 0x4F938C
@@ -677,6 +708,7 @@
   size: 0xBF94
 -
   desc: Sector 5 tilemaps
+  label: Sector5Tilemaps
   addr:
     U: 0x510DA8
     E: 0x511404
@@ -684,6 +716,7 @@
   size: 0x308C
 -
   desc: Sector 5 room data
+  label: Sector5RoomData
   addr:
     U: 0x513E34
     E: 0x514490
@@ -691,6 +724,7 @@
   size: 0xD1B0
 -
   desc: Sector 4 tilemaps
+  label: Sector4Tilemaps
   addr:
     U: 0x52FA5C
     E: 0x5300B8
@@ -698,6 +732,7 @@
   size: 0x5894
 -
   desc: Sector 4 room data
+  label: Sector4RoomData
   addr:
     U: 0x535CD0
     E: 0x53632C
@@ -705,6 +740,7 @@
   size: 0xDC28
 -
   desc: Sector 6 tilemaps
+  label: Sector6Tilemaps
   addr:
     U: 0x54D6FC
     E: 0x54DD58
@@ -712,6 +748,7 @@
   size: 0x300C
 -
   desc: Sector 6 room data
+  label: Sector6RoomData
   addr:
     U: 0x550708
     E: 0x550D64
@@ -719,6 +756,7 @@
   size: 0x8DA0
 -
   desc: Graphics for animated graphics
+  label: GfxForAnimGfx
   type: gfx
   addr:
     U: 0x5594A8
@@ -727,6 +765,7 @@
   size: 0x8B00
 -
   desc: Tank graphics
+  label: TankGfx
   type: gfx
   addr:
     U: 0x5609A8
@@ -790,6 +829,7 @@
   count: 0x6
 -
   desc: Security unlock events
+  label: SecurityUnlockEvents
   type: SecurityUnlockEvent
   addr:
     U: 0x5760C8
@@ -1037,6 +1077,7 @@
   count: 0xA
 -
   desc: Room scrolls pointers
+  label: RoomScrollsPointers
   type: ptr
   addr:
     U: 0x79B8E4
@@ -1127,6 +1168,7 @@
   count: 0x7
 -
   desc: Japanese message text pointers
+  label: JapaneseMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79C5C0
@@ -1135,6 +1177,7 @@
   count: 0x30
 -
   desc: Japanese location text pointers
+  label: JapaneseLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79C680
@@ -1143,6 +1186,7 @@
   count: 0x1A
 -
   desc: Hiragana message text pointers
+  label: HiraganaMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79C6E8
@@ -1151,6 +1195,7 @@
   count: 0x30
 -
   desc: Hiragana location text pointers
+  label: HiraganaLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79C7A8
@@ -1159,6 +1204,7 @@
   count: 0x1A
 -
   desc: English message text pointers
+  label: EnglishMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79C810
@@ -1167,6 +1213,7 @@
   count: 0x30
 -
   desc: English location text pointers
+  label: EnglishLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79C8D0
@@ -1175,6 +1222,7 @@
   count: 0x1A
 -
   desc: German message text pointers
+  label: GermanMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79C938
@@ -1183,6 +1231,7 @@
   count: 0x30
 -
   desc: German location text pointers
+  label: GermanLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79C9F8
@@ -1191,6 +1240,7 @@
   count: 0x1A
 -
   desc: French message text pointers
+  label: FrenchMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79CA60
@@ -1199,6 +1249,7 @@
   count: 0x30
 -
   desc: French location text pointers
+  label: FrenchLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79CB20
@@ -1207,6 +1258,7 @@
   count: 0x1A
 -
   desc: Italian message text pointers
+  label: ItalianMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79CB88
@@ -1215,6 +1267,7 @@
   count: 0x30
 -
   desc: Italian location text pointers
+  label: ItalianLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79CC48
@@ -1223,6 +1276,7 @@
   count: 0x1A
 -
   desc: Spanish message text pointers
+  label: SpanishMessageTextPtrs
   type: ptr.char
   addr:
     U: 0x79CCB0
@@ -1231,6 +1285,7 @@
   count: 0x30
 -
   desc: Spanish location text pointers
+  label: SpanishLocationTextPtrs
   type: ptr.char
   addr:
     U: 0x79CD70
@@ -1257,6 +1312,7 @@
   count: 0x7
 -
   desc: Japanese navigation text pointers
+  label: JapaneseNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79CE10
@@ -1265,6 +1321,7 @@
   count: 0x72
 -
   desc: Japanese pause screen text pointers
+  label: JapanesePauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79CFD8
@@ -1273,6 +1330,7 @@
   count: 0x6F
 -
   desc: Hiragana navigation text pointers
+  label: HiraganaNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79D194
@@ -1281,6 +1339,7 @@
   count: 0x72
 -
   desc: Hiragana pause screen text pointers
+  label: HiraganaPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79D35C
@@ -1292,6 +1351,7 @@
     J: 0x6F
 -
   desc: English navigation text pointers
+  label: EnglishNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79D50C
@@ -1300,6 +1360,7 @@
   count: 0x72
 -
   desc: English pause screen text pointers
+  label: EnglishPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79D6D4
@@ -1308,6 +1369,7 @@
   count: 0x6F
 -
   desc: German navigation text pointers
+  label: GermanNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79D890
@@ -1316,6 +1378,7 @@
   count: 0x72
 -
   desc: German pause screen text pointers
+  label: GermanPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79DA58
@@ -1324,6 +1387,7 @@
   count: 0x6F
 -
   desc: French navigation text pointers
+  label: FrenchNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79DC14
@@ -1332,6 +1396,7 @@
   count: 0x72
 -
   desc: French pause screen text pointers
+  label: FrenchPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79DDDC
@@ -1340,6 +1405,7 @@
   count: 0x6F
 -
   desc: Italian navigation text pointers
+  label: ItalianNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79DF98
@@ -1348,6 +1414,7 @@
   count: 0x72
 -
   desc: Italian pause screen text pointers
+  label: ItalianPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79E160
@@ -1356,6 +1423,7 @@
   count: 0x6F
 -
   desc: Spanish navigation text pointers
+  label: SpanishNavTextPtrs
   type: ptr.char
   addr:
     U: 0x79E31C
@@ -1364,6 +1432,7 @@
   count: 0x72
 -
   desc: Spanish pause screen text pointers
+  label: SpanishPauseScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79E4E4
@@ -1372,6 +1441,7 @@
   count: 0x6F
 -
   desc: Japanese monologue text pointers
+  label: JapaneseMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E6A0
@@ -1380,12 +1450,14 @@
   count: 0x13
 -
   desc: Hiragana monologue text pointers
+  label: HiraganaMonologueTextPtrs
   type: ptr.char
   addr:
     J: 0x7F0D94
   count: 0x13
 -
   desc: English monologue text pointers
+  label: EnglishMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E6EC
@@ -1394,6 +1466,7 @@
   count: 0x13
 -
   desc: German monologue text pointers
+  label: GermanMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E738
@@ -1402,6 +1475,7 @@
   count: 0x13
 -
   desc: French monologue text pointers
+  label: FrenchMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E784
@@ -1410,6 +1484,7 @@
   count: 0x13
 -
   desc: Italian monologue text pointers
+  label: ItalianMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E7D0
@@ -1418,6 +1493,7 @@
   count: 0x13
 -
   desc: Spanish monologue text pointers
+  label: SpanishMonologueTextPtrs
   type: ptr.char
   addr:
     U: 0x79E81C
@@ -1426,6 +1502,7 @@
   count: 0x13
 -
   desc: Japanese file screen text pointers
+  label: JapaneseFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EA08
@@ -1434,12 +1511,14 @@
   count: 0xB
 -
   desc: Hiragana file screen text pointers
+  label: HiraganaFileScreenTextPtrs
   type: ptr.char
   addr:
     J: 0x7F118C
   count: 0xB
 -
   desc: English file screen text pointers
+  label: EnglishFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EA6C
@@ -1448,6 +1527,7 @@
   count: 0xB
 -
   desc: German file screen text pointers
+  label: GermanFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EAD0
@@ -1456,6 +1536,7 @@
   count: 0xB
 -
   desc: French file screen text pointers
+  label: FrenchFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EB34
@@ -1464,6 +1545,7 @@
   count: 0xB
 -
   desc: Italian file screen text pointers
+  label: ItalianFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EB98
@@ -1472,6 +1554,7 @@
   count: 0xB
 -
   desc: Spanish file screen text pointers
+  label: SpanishFileScreenTextPtrs
   type: ptr.char
   addr:
     U: 0x79EBFC
@@ -1498,6 +1581,7 @@
   count: 0x7
 -
   desc: Unused space
+  label: UnusedSpace
   addr:
     U: 0x79ECC8
     E: 0x79F524

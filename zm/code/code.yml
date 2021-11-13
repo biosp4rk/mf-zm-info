@@ -2231,6 +2231,21 @@
   params: null
   return: null
 -
+  desc: Load exploding room during Zebes escape
+  label: LoadExplodingRoomDuringZebesEscape
+  addr:
+    U: 0x57D04
+    E: 0x57DCC
+    J: 0x57D04
+  size: 0xC8
+  mode: thumb
+  params:
+    - Area ID
+    - Room ID + 1
+    - Background X position
+    - Background Y position
+  return: null
+-
   desc: Clipdata related?
   label: ClipdataRelated?
   addr:
@@ -2295,7 +2310,7 @@
   return: null
 -
   desc: Check clipdata behavior value changes BLDALPHA
-  label: CheckBehaviorValueChangesBLDALPHA
+  label: CheckClipBehaviorValueChangesBLDALPHA
   addr:
     U: 0x5A770
     E: 0x5A838
@@ -2364,6 +2379,18 @@
   params: null
   return: null
 -
+  desc: Set yellow tint for power bomb explosion
+  label: SetYellowTintForPowerBombExplosion
+  addr:
+    U: 0x5B584
+    E: 0x5B64C
+    J: 0x5B584
+  size: 0xA0
+  mode: thumb
+  params:
+  - '?'
+  return: null
+-
   desc: Play cutscene
   label: PlayCutscene
   addr:
@@ -2383,6 +2410,28 @@
     E: 0x5E224
     J: 0x5E130
   size: 0xF4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update animated palette
+  label: UpdateAnimatedPalette
+  addr:
+    U: 0x5E2B4
+    E: 0x5E3A8
+    J: 0x5E2B4
+  size: 0x170
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load animated palette
+  label: LoadAnimatedPalette
+  addr:
+    U: 0x5E424
+    E: 0x5E518
+    J: 0x5E424
+  size: 0xDC
   mode: thumb
   params: null
   return: null
@@ -2425,6 +2474,29 @@
     source
   - Door number
   return: 1 if hatch never opened, 0 otherwise
+-
+  desc: Lock hatches
+  label: LockHatches
+  addr:
+    U: 0x5F120
+    E: 0x5F214
+    J: 0x5F120
+  size: 0x174
+  mode: thumb
+  params:
+  - Is hatch lock event flag
+  return: null
+-
+  desc: Lock hatches with timer
+  label: LockHatchesWithTimer
+  addr:
+    U: 0x5F5B4
+    E: 0x5F6A8
+    J: 0x5F5B4
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Check play cutscene during transition
   label: CheckPlayCutsceneDuringTransition

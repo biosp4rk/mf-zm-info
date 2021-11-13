@@ -274,6 +274,16 @@ ChozoStatueTarget:
     type: u8
     offset: 0x9
     enum: ChozoTargetIcon
+ChozoTargetCheck:
+  size: 0x2
+  vars:
+  - desc: Check type
+    type: u8
+    offset: 0x0
+    enum: ChozoTargetCheckType
+  - desc: Equipment bit flag or event number
+    type: u8
+    offset: 0x1
 CurrMessage:
   size: 0x10
   vars:
@@ -799,6 +809,10 @@ NonGameplayRam:
   - desc: Chozo statue target Y position
     type: u8
     offset: 0x16
+  - desc: Activated chozo statue targets
+    type: flags16
+    offset: 0x44
+    enum: ChozoTargetLoc
   - desc: Sound test sound ID
     type: u8
     offset: 0x63
@@ -815,7 +829,7 @@ NonGameplayRam:
     type: u8
     offset: 0x98
 NumItemsCollected:
-  size: 0x8
+  size: 0x7
   vars:
   - desc: Number of items collected in Brinstar
     type: u8
@@ -1149,6 +1163,28 @@ SamusEcho:
   - desc: '?'
     type: u8
     offset: 0x10A
+SamusGroundEffect:
+  size: 0xC
+  vars:
+  - desc: Effect type
+    type: u8
+    offset: 0x0
+    enum: GroundEffect
+  - desc: Animation counter
+    type: u8
+    offset: 0x1
+  - desc: Animation frame
+    type: u8
+    offset: 0x2
+  - desc: X position
+    type: u16
+    offset: 0x4
+  - desc: Y position
+    type: u16
+    offset: 0x6
+  - desc: OAM pointer
+    type: ptr.oam
+    offset: 0x8
 SamusPhysics:
   size: 0x78
   vars:
@@ -1357,13 +1393,13 @@ SpriteData:
   - desc: Ignore Samus collision timer
     type: u8
     offset: 0x26
-  - desc: Drawing related?
+  - desc: Draw distance top offset
     type: u8
     offset: 0x27
-  - desc: Drawing related?
+  - desc: Draw distance bottom offset
     type: u8
     offset: 0x28
-  - desc: Drawing related?
+  - desc: Draw distance horizontal offset
     type: u8
     offset: 0x29
   - desc: OAM rotation
