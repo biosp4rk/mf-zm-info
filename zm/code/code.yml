@@ -1580,8 +1580,7 @@
   - Distance
   return: null
 -
-  desc: Check projectile hit block?
-  label: CheckProjectileHitBlock?
+  desc: Check projectile hit block (position)?
   addr:
     U: 0x4FA18
     E: 0x4FAE4
@@ -1593,8 +1592,7 @@
   - Projectile X position
   return: '?'
 -
-  desc: Check projectile hit block?
-  label: CheckProjectileHitBlock?
+  desc: Check projectile hit block (pointer)?
   addr:
     U: 0x4FA3C
     E: 0x4FB08
@@ -1605,8 +1603,8 @@
   - Projectile data pointer
   return: '?'
 -
-  desc: Handle charged beam trail
-  label: HandleChargedBeamTrail
+  desc: Handle projectile trail
+  label: HandleProjectileTrail
   addr:
     U: 0x4FC38
     E: 0x4FD04
@@ -1619,8 +1617,8 @@
   - Frequency (ANDed with frame counter)
   return: null
 -
-  desc: Missile tumble related?
-  label: MissileTumbleRelated?
+  desc: Move tumbling missile
+  label: MoveTumblingMissile
   addr:
     U: 0x4FCE0
     E: 0x4FDAC
@@ -1734,8 +1732,8 @@
   - Graphics effect
   return: null
 -
-  desc: Move tumbling missile
-  label: MoveTumblingMissile
+  desc: Start missile tumble
+  label: StartMissileTumble
   addr:
     U: 0x50914
     E: 0x509E0
@@ -1814,9 +1812,9 @@
   - Projectile data pointer
   return: null
 -
-  desc: Wave beam related?
-  label: WaveBeamRelated?
-  addr:
+  desc: Handle wave beam collision
+  label: Handle wave beam collision
+  addr: 
     U: 0x50E6C
     E: 0x50F38
     J: 0x50E6C
@@ -1824,7 +1822,7 @@
   mode: thumb
   params:
   - Projectile data pointer
-  return: '?'
+  return: Number of blocks touched (0-3)
 -
   desc: Process wave beam
   label: ProcessWaveBeam
