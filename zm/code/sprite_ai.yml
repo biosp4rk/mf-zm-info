@@ -120,6 +120,19 @@
   params: null
   return: null
 -
+  desc: Set Chozo statue event/equipment flags
+  label: SetChozoStatueEventAndEquipmentFlags
+  addr:
+    U: 0x138D8
+    E: 0x1398C
+    J: 0x138D8
+  size: 0x30C
+  mode: thumb
+  params:
+  - Sprite ID
+  return: null
+  notes: Sets event and equipment flags according to the statue's Sprite ID
+-
   desc: Set Chozo statue direction
   label: SetChozoStatueDirection
   addr:
@@ -139,8 +152,10 @@
     J: 0x13DE0
   size: 0x2BC
   mode: thumb
-  params: null
-  return: null
+  params:
+  - Sprite ID
+  return: Chozo statue behavior (0 = Item, 1 = Refill, 2 = Hint, 3 = Hint taken)
+  notes: Checks for events/equipment flags to determine the behavior of a chozo statue
 -
   desc: Chozo statue AI
   label: ChozoStatue_AI

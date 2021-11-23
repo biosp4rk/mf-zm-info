@@ -80,6 +80,21 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
+BG0WaterMovement:
+  size: 0x4
+  vars:
+  - desc: Moving flag
+    type: u8
+    offset: 0x0
+  - desc: Stage
+    type: u8
+    offset: 0x1
+  - desc: Loop counter
+    type: u8
+    offset: 0x2
+  - desc: Y position offset
+    type: s8
+    offset: 0x3
 BG3Movement:
   size: 0x6
   vars:
@@ -335,6 +350,9 @@ CurrPowerBomb:
   - desc: Hitbox bottom offset
     type: s16
     offset: 0xE
+  - desc: '?'
+    type: u8
+    offset: 0x12
 CurrRoomEntry:
   size: 0x20
   vars:
@@ -829,7 +847,7 @@ NonGameplayRam:
     type: u8
     offset: 0x98
 NumItemsCollected:
-  size: 0x7
+  size: 0x8
   vars:
   - desc: Number of items collected in Brinstar
     type: u8
@@ -1163,13 +1181,13 @@ SamusEcho:
   - desc: '?'
     type: u8
     offset: 0x10A
-SamusGroundEffect:
+SamusEnvironmentEffect:
   size: 0xC
   vars:
   - desc: Effect type
     type: u8
     offset: 0x0
-    enum: GroundEffect
+    enum: SamusEnvironmentEffect
   - desc: Animation counter
     type: u8
     offset: 0x1

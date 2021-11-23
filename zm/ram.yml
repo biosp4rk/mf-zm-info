@@ -358,6 +358,19 @@
   type: NumItemsCollected
   addr: 0x3000063
 -
+  desc: Haze related?
+  type: u8
+  addr: 0x300006B
+-
+  desc: Room effect actual Y position
+  label: RoomEffectActualYPosition
+  type: u16
+  addr: 0x300006C
+-
+  desc: Acid worm lava Y position?
+  type: u16
+  addr: 0x300006E
+-
   desc: Spriteset
   label: SpritesetNum
   type: u8
@@ -408,6 +421,10 @@
   type: u8
   addr: 0x30000DC
   enum: ClipdataBehaviorType
+-
+  desc: Current liquid?
+  type: u8
+  addr: 0x30000DE
 -
   desc: Background positions
   label: BGPositions
@@ -869,9 +886,9 @@
   type: u8
   addr: 0x3001544
 -
-  desc: Samus ground effects
-  label: SamusGroundEffects
-  type: SamusGroundEffect
+  desc: Samus environment effects
+  label: SamusEnvironmentEffects
+  type: SamusEnvironmentEffect
   addr: 0x300154C
   count: 0x5
 -

@@ -332,8 +332,8 @@
   - Bit size
   return: null
 -
-  desc: 16-bit fill
-  label: 16BitFill
+  desc: FillBytes
+  label: FillBytes
   addr:
     U: 0x32B4
     E: 0x3308
@@ -345,6 +345,7 @@
   - Value
   - Destination address
   - Length
+  - Bit size
   return: null
 -
   desc: Check set new music track
@@ -2229,6 +2230,77 @@
   params: null
   return: null
 -
+  desc: Process power bomb explosion
+  label: ProcessPowerBombExplosion
+  addr:
+    U: 0x5745C
+    E: 0x57524
+    J: 0x5745C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Start power bomb explosion
+  label: StartPowerBombExplosion
+  addr:
+    U: 0x576EC
+    E: 0x577B4
+    J: 0x576EC
+  size: 0x48
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  - '?'
+  return: null
+-
+  desc: Power bomb explosion begin
+  label: PowerBombExplosionBegin
+  addr:
+    U: 0x57740
+    E: 0x57808
+    J: 0x57740
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Power bomb explosion end
+  label: PowerBombExplosionEnd
+  addr:
+    U: 0x577B8
+    E: 0x57880
+    J: 0x577B8
+  size: 0x154
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update Gadora hatch
+  label: UpdateGadoraHatch
+  addr:
+    U: 0x5790C
+    E: 0x579D4
+    J: 0x5790C
+  size: 0xAC
+  mode: thumb
+  params:
+  - X Position
+  - Y Position
+  - Action (0 = close, 1 = open)
+  return: null
+-
+  desc: Update in-game timer
+  addr:
+    U: 0x579B8
+    E: 0x57A80
+    J: 0x579B8
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Load exploding room during Zebes escape
   label: LoadExplodingRoomDuringZebesEscape
   addr:
@@ -2257,6 +2329,18 @@
   - X position
   return: '?'
 -
+  desc: Check liquid at position
+  addr:
+    U: 0x58080
+    E: 0x58148
+    J: 0x58080
+  size: 0x40
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: 1 if water, 2 if strong lava, 3 if weak lava, 4 if acid, 0 otherwise
+-
   desc: Check can use elevator
   label: CheckCanUseElevator
   addr:
@@ -2268,6 +2352,110 @@
   params: null
   return: 1 if can't be used, 0 otherwise
 -
+  desc: Check for Samus environment effect clipdata
+  label: CheckForSamusEnvironmentEffectClipdata
+  addr:
+    U: 0x58260
+    E: 0x58328
+    J: 0x58260
+  size: 0x64
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if ?, 5 if bubbly ground, 0 otherwise
+-
+  desc: Scroll screen
+  label: ScrollScreen
+  addr:
+    U: 0x58328
+    E: 0x583F0
+    J: 0x58328
+  size: 0xBC
+  mode: thumb
+  params:
+  - X position
+  - Y position
+  return: null
+-
+  desc: Load room scrolls
+  label: LoadRoomScrolls
+  addr:
+    U: 0x58478
+    E: 0x58540
+    J: 0x58478
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update room effect and haze position
+  label: UpdateRoomEffectAndHazePosition
+  addr:
+    U: 0x58A18
+    E: 0x58AE0
+    J: 0x58A18
+  size: 0x2A8
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+-
+  desc: Handle moving BG0
+  label: HandleMovingBG0
+  addr:
+    U: 0x58CC0
+    E: 0x58D88
+    J: 0x58CC0
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Get BG3 scrolling values
+  label: GetBG3ScrollingValues
+  addr:
+    U: 0x58D20
+    E: 0x58DE8
+    J: 0x58D20
+  size: 0x80
+  mode: thumb
+  params: null
+  return: X/Y scrolling value
+-
+  desc: Scroll BG3
+  label: ScrollBG3
+  addr:
+    U: 0x58DA0
+    E: 0x58E68
+    J: 0x58DA0
+  size: 0x124
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Handle moving BG3
+  label: HandleMovingBG3
+  addr:
+    U: 0x58F14
+    E: 0x58FDC
+    J: 0x58F14
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Scroll BG2
+  label: ScrollBG2
+  addr:
+    U: 0x58F40
+    E: 0x59008
+    J: 0x58F40
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Remove never reform blocks
   label: RemoveNeverReformBlocks
   addr:
@@ -2278,6 +2466,30 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Update broken reform blocks
+  label: UpdateBrokenReformBlocks
+  addr:
+    U: 0x59B54
+    E: 0x59C1C
+    J: 0x59B54
+  size: 0x120
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check Samus in reforming block
+  label: CheckSamusInReformingBlock
+  addr:
+    U: 0x59F70
+    E: 0x5A038
+    J: 0x59F70
+  size: 0x70
+  mode: thumb
+  params:
+  - Block X position (blocks)
+  - Block Y position (blocks)
+  return: 1 if in block, 0 otherwise
 -
   desc: Set BG1 block value
   label: SetBG1BlockValue
@@ -2307,6 +2519,29 @@
   - X position
   return: null
 -
+  desc: Check Samus touching code-triggering clipdata
+  label: CheckSamusTouchingCodeTriggeringClipdata
+  addr:
+    U: 0x5A670
+    E: 0x5A738
+    J: 0x5A670
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+  notes: Checks if Samus is touching transitions, tanks, transparency triggers, or crumble blocks
+-
+  desc: Apply clipdata changing transparency
+  label: ApplyClipdataChangingTransparency
+  addr:
+    U: 0x5A6C8
+    E: 0x5A790
+    J: 0x5A6C8
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Check clipdata behavior value changes BLDALPHA
   label: CheckClipBehaviorValueChangesBLDALPHA
   addr:
@@ -2318,6 +2553,28 @@
   params:
   - Clipdata behavior value
   return: BLDALPHA
+-
+  desc: Check Samus on crumble block
+  label: CheckSamusOnCrumbleBlock
+  addr:
+    U: 0x5A7A0
+    E: 0x5A868
+    J: 0x5A7A0
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check touching transition on elevator
+  label: CheckTouchingTransitionOnElevator
+  addr:
+    U: 0x5A8A8
+    E: 0x5A970
+    J: 0x5A8A8
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Check touching transition or tank
   label: CheckTouchingTransitionOrTank
@@ -2352,6 +2609,31 @@
   params: null
   return: null
 -
+  desc: Check grabbing crumble block
+  label: CheckGrabbingCrumbleBlock
+  addr:
+    U: 0x5AE1C
+    E: 0x5AEE4
+    J: 0x5AE1C
+  size: 0x104
+  mode: thumb
+  params:
+  - Always 0
+  return: null
+-
+  desc: Check opening hatch
+  label: CheckOpeningHatch
+  addr:
+    U: 0x5AF20
+    E: 0x5AFE8
+    J: 0x5AF20
+  size: 0x180
+  mode: thumb
+  params:
+  - X position (blocks)
+  - Y position (blocks)
+  return: Door behavior (0 = not opening, 1 = opening, 2 = locked)
+-
   desc: Set item as collected
   label: SetItemAsCollected
   addr:
@@ -2377,6 +2659,18 @@
   params: null
   return: null
 -
+  desc: Call Mother Brain update glass
+  label: CallMotherBrainUpdateGlass
+  addr:
+    U: 0x5B1D8
+    E: 0x5B2A0
+    J: 0x5B1D8
+  size: 0x74
+  mode: thumb
+  params:
+  - Stage
+  return: null
+-
   desc: Set yellow tint for power bomb explosion
   label: SetYellowTintForPowerBombExplosion
   addr:
@@ -2399,6 +2693,17 @@
   mode: thumb
   params:
   - Cutscene number
+  return: null
+-
+  desc: Update animated graphics
+  label: UpdateAnimatedGraphics
+  addr:
+    U: 0x5DFCC
+    E: 0x5E0C0
+    J: 0x5DFCC
+  size: 0x164
+  mode: thumb
+  params: null
   return: null
 -
   desc: Load animated tileset
@@ -2433,6 +2738,18 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Check play lightning effect
+  label: CheckPlayLightningEffect
+  addr:
+    U: 0x5E500
+    E: 0x5E5F4
+    J: 0x5E500
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+  notes: Checks if the lightning effect should play, hardcoded to play in Crateria room 5
 -
   desc: Check enter door
   label: CheckEnterDoor
