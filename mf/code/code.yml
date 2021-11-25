@@ -2644,6 +2644,19 @@
   - '?'
   return: '?'
 -
+  desc: Check ground type under Samus
+  label: CheckGroundTypeUnderSamus
+  addr:
+    U: 0x69100
+    E: 0x69100
+    J: 0x69724
+  size: 0x84
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior 0x52 (unused), 5 if bubbly ground, 0 otherwise
+-
   desc: Check enter door
   label: CheckEnterDoor
   addr:
@@ -2655,7 +2668,7 @@
   params:
   - Y position
   - X position
-  return: 1 if door found?
+  return: 1 if door found, 0 otherwise
 -
   desc: Find event based door number
   label: FindEventBasedDoor
@@ -2772,8 +2785,22 @@
   mode: thumb
   params:
   - Value
-  - Y position
-  - X position
+  - Y position (blocks)
+  - X position (blocks)
+  return: null
+-
+  desc: Set BG1 block value (0x8000)
+  label: SetBG1BlockValue_8000
+  addr:
+    U: 0x6C6E4
+    E: 0x6C6E4
+    J: 0x6CD80
+  size: 0xD0
+  mode: thumb
+  params:
+  - Value
+  - Y position (blocks)
+  - X position (blocks)
   return: null
 -
   desc: Set clipdata block value

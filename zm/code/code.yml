@@ -2352,8 +2352,8 @@
   params: null
   return: 1 if can't be used, 0 otherwise
 -
-  desc: Check for Samus environment effect clipdata
-  label: CheckForSamusEnvironmentEffectClipdata
+  desc: Check ground type under Samus
+  label: CheckGroundTypeUnderSamus
   addr:
     U: 0x58260
     E: 0x58328
@@ -2363,7 +2363,7 @@
   params:
   - Y position
   - X position
-  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if ?, 5 if bubbly ground, 0 otherwise
+  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior 0x52 (unused), 5 if bubbly ground, 0 otherwise
 -
   desc: Scroll screen
   label: ScrollScreen
@@ -2751,6 +2751,19 @@
   return: null
   notes: Checks if the lightning effect should play, hardcoded to play in Crateria room 5
 -
+  desc: Update hatch animation
+  label: UpdateHatchAnimation
+  addr:
+    U: 0x5E8F8
+    E: 0x5E9EC
+    J: 0x5E8F8
+  size: 0x15C
+  mode: thumb
+  params:
+  - '?'
+  - Hatch number
+  return: null
+-
   desc: Check enter door
   label: CheckEnterDoor
   addr:
@@ -2763,6 +2776,31 @@
   - Y position
   - X position
   return: 1 if door found, 0 otherwise
+-
+  desc: Check area connection
+  label: CheckAreaConnection
+  addr:
+    U: 0x5ED94
+    E: 0x5EE88
+    J: 0x5ED94
+  size: 0x1B0
+  mode: thumb
+  params:
+  - Y position (blocks)
+  - X position (blocks)
+  return: 1 if door found, 0 otherwise
+-
+  desc: Process door type
+  label: ProcessDoorType
+  addr:
+    U: 0x5EF44
+    E: 0x5F038
+    J: 0x5EF44
+  size: 0x64
+  mode: thumb
+  params:
+  - Door type
+  return: null
 -
   desc: Find event based door number
   label: FindEventBasedDoor
@@ -2790,6 +2828,16 @@
   - Door number
   return: 1 if hatch never opened, 0 otherwise
 -
+  desc: Check unlock hatches
+  addr:
+    U: 0x5F0A4
+    E: 0x5F198
+    J: 0x5F0A4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Lock hatches
   label: LockHatches
   addr:
@@ -2802,6 +2850,17 @@
   - Is hatch lock event flag
   return: null
 -
+  desc: Load room doors
+  label: LoadRoomDoors
+  addr:
+    U: 0x5F294
+    E: 0x5F388
+    J: 0x5F294
+  size: 0x320
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Lock hatches with timer
   label: LockHatchesWithTimer
   addr:
@@ -2809,6 +2868,17 @@
     E: 0x5F6A8
     J: 0x5F5B4
   size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check hatch lock events
+  label: CheckHatchLockEvents
+  addr:
+    U: 0x5F5D8
+    E: 0x5F6CC
+    J: 0x5F5D8
+  size: 0x16C
   mode: thumb
   params: null
   return: null
@@ -2861,8 +2931,30 @@
   - Event
   return: 1 if event is set, 0 otherwise
 -
-  desc: Cutscene related?
-  label: CutsceneRelated?
+  desc: Main loop for Zebes escape cutscene
+  label: MainLoopForZebesEscapeCutscene
+  addr:
+    U: 0x60E2C
+    E: 0x60F14
+    J: 0x60E2C
+  size: 0x94
+  mode: thumb
+  params: null
+  return: 1 if cutscene ended, 0 otherwise
+-
+  desc: End cutscene
+  label: EndCutscene
+  addr:
+    U: 0x60EF4
+    E: 0x60FDC
+    J: 0x60EF4
+  size: 0x150
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Main loop for cutscenes
+  label: MainLoopForCutscenes
   addr:
     U: 0x61044
     E: 0x6112C
@@ -2870,7 +2962,41 @@
   size: 0x1E4
   mode: thumb
   params: null
-  return: '?'
+  return: 1 if cutscene ended, 0 otherwise
+-
+  desc: Check draw in-game time and tanks
+  label: CheckDrawTimeAndTanks
+  addr:
+    U: 0x6895C
+    E: 0x68A78
+    J: 0x6895C
+  size: 0xFC
+  mode: thumb
+  params:
+  - Don't draw flag
+  return: null
+-
+  desc: Main loop for map screen
+  label: MainLoopForMapScreen
+  addr:
+    U: 0x6A180
+    E: 0x6A29C
+    J: 0x6A180
+  size: 0x178
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
+  desc: Determine viewable area maps
+  label: DetermineViewableAreaMaps
+  addr:
+    U: 0x6AED4
+    E: 0x6AFF0
+    J: 0x6AEF0
+  size: 0x138
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Get minimap data
   label: GetMinimapData
@@ -2885,6 +3011,116 @@
   - Destination address
   return: null
 -
+  desc: Check sustained input for scrolling
+  label: CheckSustainedInputForScrolling
+  addr:
+    U: 0x6C0E0
+    E: 0x6C204
+    J: 0x6C0FC
+  size:
+    U: 0x74
+    E: 0x88
+    J: 0x74
+  mode: thumb
+  params: null
+  return: null
+  notes: Checks for sustained input on the map screen, equipment screen, and easy sleep screen
+-
+  desc: Update minimap
+  label: UpdateMinimap
+  addr:
+    U: 0x6C154
+    E: 0x6C28C
+    J: 0x6C170
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set minimap square explored
+  label: SetMinimapSquareExplored
+  addr:
+    U: 0x6C178
+    E: 0x6C2B0
+    J: 0x6C194
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check for unexplored minimap square
+  label: CheckForUnexploredMinimapSquare
+  addr:
+    U: 0x6C39C
+    E: 0x6C4D4
+    J: 0x6C3B8
+  size: 0xD8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check update minimap on door transition
+  label: CheckUpdateMinimapOnDoorTransition
+  addr:
+    U: 0x6C474
+    E: 0x6C5AC
+    J: 0x6C490
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update corner minimap new square entered
+  label: UpdateCornerMinimapNewSquareEntered
+  addr:
+    U: 0x6C518
+    E: 0x6C650
+    J: 0x6C534
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw corner minimap
+  label: DrawCornerMinimap
+  addr:
+    U: 0x6C5B4
+    E: 0x6C6EC
+    J: 0x6C5D0
+  size:
+    U: 0x100
+    E: 0xD4
+    J: 0x100
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set minimap squares with obtained items
+  label: SetMinimapSquaresWithObtainedItems
+  addr:
+    U: 0x6CA44
+    E: 0x6CB50
+    J: 0x6CA60
+  size: 0x6C
+  mode: thumb
+  params:
+  - Area ID
+  - Destination address
+  return: null
+-
+  desc: Minimap set downloaded squares
+  label: MinimapSetDownloadedSquares
+  addr:
+    U: 0x6CAB0
+    E: 0x6CBBC
+    J: 0x6CACC
+  size: 0x128
+  mode: thumb
+  params:
+  - Area ID
+  - Destination address
+  return: null
+-
   desc: Update minimap square for collected item
   label: UpdateMinimapSquareForCollectedItem
   addr:
@@ -2896,6 +3132,29 @@
   params:
   - Item X position
   - Item Y position
+  return: null
+-
+  desc: Load minimap squares with obtained items
+  label: LoadMinimapSquaresWithObtainedItems
+  addr:
+    U: 0x6CCCC
+    E: 0x6CDD8
+    J: 0x6CCE8
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update minimap chunk
+  label: UpdateMinimapChunk
+  addr:
+    U: 0x6CD84
+    E: 0x6CE90
+    J: 0x6CDA0
+  size: 0x174
+  mode: thumb
+  params:
+  - Event
   return: null
 -
   desc: Count tanks in area
@@ -2920,6 +3179,119 @@
   params:
   - '?'
   - '?'
+  return: null
+-
+  desc: Check explored areas
+  label: CheckExploredAreas
+  addr:
+    U: 0x6DFFC
+    E: 0x6E0EC
+    J: 0x6E018
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Map screen change area
+  label: MapScreenChangeArea
+  addr:
+    U: 0x6E2D0
+    E: 0x6E3C0
+    J: 0x6E2EC
+  size: 0x190
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Get character width
+  label: GetCharacterWidth
+  addr:
+    U: 0x6E460
+    E: 0x6E550
+    J: 0x6E47C
+  size: 0x24
+  mode: thumb
+  params:
+  - Character ID
+  return: Character width (0xA if invalid)
+-
+  desc: Draw character for text
+  label: DrawCharacterForText
+  addr:
+    U: 0x6E484
+    E: 0x6E574
+    J: 0x6E4A0
+  size:
+    U: 0x4B8
+    E: 0x4E4
+    J: 0x4B8
+  mode: thumb
+  params:
+  - Character ID
+  - '?'
+  - '?'
+  - Graphics slot
+  return: null
+  notes: Draws a character for text (description in equipment screen and story text)
+-
+  desc: Draw character for message
+  label: DrawCharacterForMessage
+  addr:
+    U: 0x6E93C
+    E: 0x6EA58
+    J: 0x6E958
+  size:
+    U: 0x5F0
+    E: 0x614
+    J: 0x5F0
+  mode: thumb
+  params:
+  - Character ID
+  - '?'
+  - '?'
+  - Graphics slot
+  return: null
+  notes: Draws a character for a message (item pop up, location name, map screen area name)
+-
+  desc: Draw character for location text
+  label: DrawCharacterForLocationText
+  addr:
+    U: 0x6EF2C
+    E: 0x6F06C
+    J: 0x6EF48
+  size: 0xEC
+  mode: thumb
+  params:
+  - '?'
+  - Pointer to text pointer
+  return: null
+-
+  desc: Draw location text
+  label: DrawLocationText
+  addr:
+    U: 0x6F018
+    E: 0x6F158
+    J: 0x6F034
+  size:
+    U: 0x90
+    E: 0x9C
+    J: 0x90
+  mode: thumb
+  params:
+  - Location text ID
+  - Graphics slot
+  return: null
+-
+  desc: Start story text
+  label: StartStoryText
+  addr:
+    U: 0x6F404
+    E: 0x6F550
+    J: 0x6F420
+  size: 0x20
+  mode: thumb
+  params:
+  - Story text ID
   return: null
 -
   desc: Update minimap animated palettes
@@ -2968,6 +3340,50 @@
   params:
   - Tilemap offset
   return: null
+-
+  desc: Main loop for easy sleep menu
+  label: MainLoopForEasySleepMenu
+  addr:
+    U: 0x71F70
+    E: 0x720BC
+    J: 0x71F8C
+  size: 0x1D4
+  mode: thumb
+  params: null
+  return: 1 if leaving with input, 2 if leaving with "no" option, 0 otherwise
+-
+  desc: Chozo statue hint movement
+  label: ChozoStatueHintMovement
+  addr:
+    U: 0x72204
+    E: 0x72350
+    J: 0x72220
+  size: 0x46C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Chozo statue hint scrolling
+  label: ChozoStatueHintScrolling
+  addr:
+    U: 0x72670
+    E: 0x727BC
+    J: 0x7268C
+  size: 0x248
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Main loop for Chozo statue hint
+  label: MainLoopForChozoStatueHint
+  addr:
+    U: 0x728B8
+    E: 0x72A04
+    J: 0x728D4
+  size: 0x25C
+  mode: thumb
+  params: null
+  return: 1 if ended, 0 otherwise
 -
   desc: Write SRAM
   label: WriteSram
