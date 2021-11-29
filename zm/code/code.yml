@@ -46,7 +46,7 @@
   params: null
   return: null
 -
-  desc: Soft-reset check
+  desc: Soft reset check
   label: SoftResetCheck
   addr:
     U: 0x7D0
@@ -57,7 +57,7 @@
   params: null
   return: null
 -
-  desc: Soft-reset
+  desc: Soft reset
   label: SoftReset
   addr:
     U: 0x804
@@ -371,6 +371,17 @@
   params: null
   return: null
 -
+  desc: Update music after alarm stops
+  label: UpdateMusicAfterAlarmStops
+  addr:
+    U: 0x3930
+    E: 0x3984
+    J: 0x3930
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Play music?
   label: PlayMusic?
   addr:
@@ -380,19 +391,6 @@
   size: 0x78
   mode: thumb
   params:
-  - Music track
-  - '?'
-  return: null
--
-  desc: Music related?
-  addr:
-    U: 0x3B30
-    E: 0x3B84
-    J: 0x3B30
-  size: 0x4C
-  mode: thumb
-  params:
-  - '?'
   - Music track
   - '?'
   return: null
@@ -632,8 +630,105 @@
   params: null
   return: null
 -
-  desc: Set Samus pose
-  label: SetSamusPose
+  desc: Samus check set environment effect
+  label: SamusCheckSetEnvironmentEffect
+  addr:
+    U: 0x6214
+    E: 0x6268
+    J: 0x6214
+  size: 0x3DC
+  mode: thumb
+  params:
+  - Samus data pointer
+  - '?'
+  - '?'
+  return: null
+-
+  desc: Samus update environment effects
+  label: SamusUpdateEnvironmentEffects
+  addr:
+    U: 0x65F0
+    E: 0x6644
+    J: 0x65F0
+  size: 0x360
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: null
+-
+  desc: Samus update jump velocity
+  label: SamusUpdateJumpVelocity
+  addr:
+    U: 0x6950
+    E: 0x69A4
+    J: 0x6950
+  size: 0x2DC
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus data copy pointer
+  - Samus weapon info pointer
+  return: null
+  notes: Updates the velocity of samus mid-air (spin breaking, starting to spin, forced movements)
+-
+  desc: Samus set landing pose
+  label: SamusSetLandingPose
+  addr:
+    U: 0x6C2C
+    E: 0x6C80
+    J: 0x6C2C
+  size: 0x280
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus data copy pointer
+  return: null
+-
+  desc: Samus set hurt pose
+  label: SamusSetHurtPose
+  addr:
+    U: 0x6EAC
+    E: 0x6F00
+    J: 0x6EAC
+  size: 0x19C
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus data copy pointer
+  - Samus weapon info pointer
+  return: null
+-
+  desc: Samus set knockback pose
+  label: SamusSetKnockbackPose
+  addr:
+    U: 0x7048
+    E: 0x709C
+    J: 0x7048
+  size: 0x11C
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus data copy pointer
+  - Samus weapon info pointer
+  return: null
+-
+  desc: Samus turn around arm cannon
+  label: SamusTurnAroundArmCannon
+  addr:
+    U: 0x7164
+    E: 0x71B8
+    J: 0x7164
+  size: 0x384
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus data copy pointer
+  - Samus weapon info pointer
+  return: null
+  notes: Handles arm cannon direction when Samus turns around (except when spinning), shinespark direction selection and samus using an elevator
+-
+  desc: Samus set pose
+  label: SamusSetPose
   addr:
     U: 0x74E8
     E: 0x753C
@@ -644,8 +739,31 @@
   - Samus pose
   return: null
 -
-  desc: Copy Samus palette
-  label: CopySamusPalette
+  desc: Samus copy data
+  label: SamusCopyData
+  addr:
+    U: 0x75BC
+    E: 0x7610
+    J: 0x75BC
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Samus get X velocity on slope
+  label: SamusGetXVelocityOnSlope
+  addr:
+    U: 0x772C
+    E: 0x7780
+    J: 0x772C
+  size: 0x44
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: New X velocity
+-
+  desc: Samus copy palette
+  label: SamusCopyPalette
   addr:
     U: 0x7770
     E: 0x77C4
@@ -658,8 +776,55 @@
   - Number of colors
   return: null
 -
-  desc: Call update arm cannon position offset
-  label: CallUpdateArmCannonPositionOffset
+  desc: Samus update
+  label: SamusUpdate
+  addr:
+    U: 0x779C
+    E: 0x77F0
+    J: 0x779C
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Samus update hitbox
+  label: SamusUpdateHitbox
+  addr:
+    U: 0x77E8
+    E: 0x783C
+    J: 0x77E8
+  size:
+    U: 0xF8
+    E: 0x100
+    J: 0xF8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Samus update graphics
+  label: SamusUpdateGfx
+  addr:
+    U: 0x78E0
+    E: 0x793C
+    J: 0x78E0
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call check play low health sound
+  label: CallCheckPlayLowHealthSound
+  addr:
+    U: 0x791C
+    E: 0x7978
+    J: 0x791C
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Call update arm cannon offset
+  label: CallUpdateArmCannonOffset
   addr:
     U: 0x7928
     E: 0x7984
@@ -669,8 +834,168 @@
   params: null
   return: null
 -
-  desc: Update Samus graphics
-  label: UpdateSamusGfx
+  desc: Samus bomb jump
+  label: SamusBombJump
+  addr:
+    U: 0x7948
+    E: 0x79A4
+    J: 0x7948
+  size: 0x5C
+  mode: thumb
+  params:
+  - Direction (0xA = right, 0xB = up, 0xC = left, 0x80 = Bomb above Samus flag)
+  return: null
+-
+  desc: Samus aim cannon
+  label: SamusAimCannon
+  addr:
+    U: 0x79A4
+    E: 0x7A00
+    J: 0x79A4
+  size: 0x354
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: null
+-
+  desc: Samus fire beam or missile
+  label: SamusFireBeamOrMissile
+  addr:
+    U: 0x7CF8
+    E: 0x7D54
+    J: 0x7CF8
+  size: 0xBC
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus weapon info pointer
+  - Samus equipment pointer
+  return: 1 if fired beam or missile, 0 otherwise
+  notes: Checks if Samus is firing a beam or a missile, also handles the charge counter going up
+-
+  desc: Samus check fire pistol
+  label: SamusCheckFirePistol
+  addr:
+    U: 0x7DB4
+    E: 0x7E10
+    J: 0x7DB4
+  size: 0x6C
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus weapon info pointer
+  return: New projectile (0 = none, 1 = pistol, 2 = charged pistol)
+-
+  desc: Samus spawn new projectile
+  label: SamusSpawnNewProjectile
+  addr:
+    U: 0x7E20
+    E: 0x7E7C
+    J: 0x7E20
+  size: 0x23C
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus weapon info pointer
+  - Samus equipment pointer
+  return: null
+-
+  desc: Samus check A button pressed
+  label: SamusCheckAButtonPressed
+  addr:
+    U: 0x805C
+    E: 0x80B8
+    J: 0x805C
+  size: 0x24
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: 1 if A is pressed, 0 otherwise
+  notes: Checks if A is pressed and if so sets forced movement flag to 1, used in the standing pose subroutines (morphball, turning around and standing)
+-
+  desc: Samus set highlighted weapon
+  label: SamusSetHighlightedWeapon
+  addr:
+    U: 0x8080
+    E: 0x80DC
+    J: 0x8080
+  size: 0x140
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus weapon info pointer
+  - Samus equipment pointer
+  return: null
+-
+  desc: Samus set spinning pose
+  label: SamusSetSpinningPose
+  addr:
+    U: 0x81C0
+    E: 0x821C
+    J: 0x81C0
+  size: 0xB8
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus equipment pointer
+  return: null
+-
+  desc: Samus check hazard damage
+  label: SamusCheckHazardDamage
+  addr:
+    U: 0x82B8
+    E: 0x8314
+    J: 0x82B8
+  size: 0x168
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus equipment pointer
+  - Samus hazard damage pointer
+  return: 1 if Samus died, 0 otherwise
+-
+  desc: Samus check shinesparking pose
+  label: SamusCheckShinesparkingPose
+  addr:
+    U: 0x8420
+    E: 0x847C
+    J: 0x8420
+  size: 0x58
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: null
+-
+  desc: Samus execute pose subroutine
+  label: SamusExecutePoseSubroutine
+  addr:
+    U: 0xA444
+    E: 0xA4A0
+    J: 0xA444
+  size:
+    U: 0xBC
+    E: 0xD8
+    J: 0xBC
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: New pose
+  notes: Executes the subroutine for the current pose, calls Samus check hazard damage, Samus set highlighted weapon, Samus check shinesparking pose, Samus set spinning pose and Samus spawn new projectile
+-
+  desc: Samus update velocity and position
+  label: SamusUpdateVelocityAndPosition
+  addr:
+    U: 0xA500
+    E: 0xA578
+    J: 0xA500
+  size: 0x188
+  mode: thumb
+  params:
+  - Samus data pointer
+  return: null
+-
+  desc: Samus update graphics RAM
+  label: SamusUpdateGraphicsRam
   addr:
     U: 0xA688
     E: 0xA700
@@ -679,7 +1004,19 @@
   mode: thumb
   params:
   - Samus data pointer
-  - '?'
+  - 0 if facing right, 1 if facing left
+  return: null
+-
+  desc: Samus update animation timers and palette
+  label: SamusUpdateAnimationTimersAndPalette
+  addr:
+    U: 0xB46C
+    E: 0xB4E4
+    J: 0xB46C
+  size: 0x3FC
+  mode: thumb
+  params:
+  - Samus data pointer
   return: null
 -
   desc: Check play low health sound
@@ -693,8 +1030,8 @@
   params: null
   return: null
 -
-  desc: Update arm cannon position offset
-  label: UpdateArmCannonPositionOffset
+  desc: Update arm cannon offset
+  label: UpdateArmCannonOffset
   addr:
     U: 0xB910
     E: 0xB988
@@ -716,6 +1053,17 @@
   params: null
   return: null
 -
+  desc: Draw Samus
+  label: DrawSamus
+  addr:
+    U: 0xBDE8
+    E: 0xBE60
+    J: 0xBDE8
+  size: 0x4F0
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Copy demo button input
   label: CopyDemoButtonInput
   addr:
@@ -727,8 +1075,8 @@
   params: null
   return: null
 -
-  desc: Main loop for in-game
-  label: MainLoopForInGame
+  desc: In-game subroutine
+  label: InGameSubroutine
   addr:
     U: 0xC4B4
     E: 0xC52C
@@ -761,8 +1109,8 @@
   size: 0x160
   mode: thumb
   params:
-  - Update palette flag
-  - Samus graphics info
+  - Samus data pointer
+  - Samus physics pointer
   return: null
 -
   desc: V-Blank code during in-game loads
@@ -783,6 +1131,76 @@
     E: 0xCB20
     J: 0xCA6C
   size: 0x134
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update sprites
+  label: UpdateSprites
+  addr:
+    U: 0xCF00
+    E: 0xCFB4
+    J: 0xCF00
+  size: 0x42C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update sprite animation
+  label: UpdateSpriteAnimation
+  addr:
+    U: 0xD32C
+    E: 0xD3E0
+    J: 0xD32C
+  size: 0x40
+  mode: thumb
+  params:
+  - Sprite date pointer
+  return: null
+-
+  desc: Draw on-screen sprites
+  label: DrawOnScreenSprites
+  addr:
+    U: 0xD430
+    E: 0xD4E4
+    J: 0xD430
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw sprite
+  label: DrawSprite
+  addr:
+    U: 0xD544
+    E: 0xD5F8
+    J: 0xD544
+  size: 0x890
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - RAM slot?
+  return: null
+-
+  desc: Check sprite is on-screen
+  label: CheckSpriteIsOnScreen
+  addr:
+    U: 0xDDD4
+    E: 0xDE88
+    J: 0xDDD4
+  size: 0x150
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: null
+-
+  desc: Load sprite data for room
+  label: LoadSpriteDataForRoom
+  addr:
+    U: 0xDF24
+    E: 0xDFD8
+    J: 0xDF24
+  size: 0x60
   mode: thumb
   params: null
   return: null
@@ -836,8 +1254,8 @@
   params: null
   return: null
 -
-  desc: Load room sprites
-  label: LoadRoomSprites
+  desc: Initialize sprites in room
+  label: InitSpritesInRoom
   addr:
     U: 0xE134
     E: 0xE1E8
@@ -896,6 +1314,35 @@
   - X position
   - Status
   return: Assigned sprite RAM slot, 0xFF otherwise
+-
+  desc: Spawn drops and followers
+  label: SpawnDropsAndFollowers
+  addr:
+    U: 0xE3D4
+    E: 0xE488
+    J: 0xE3D4
+  size: 0xC4
+  mode: thumb
+  params:
+  - Sprite ID
+  - Room slot
+  - Spriteset graphics row
+  - Primary sprite RAM slot
+  - Y position
+  - X position
+  - Status
+  return: Assigned sprite RAM slot, 0xFF otherwise
+-
+  desc: Load location text sprite
+  label: LoadLocationTextSprite
+  addr:
+    U: 0xE498
+    E: 0xE54C
+    J: 0xE498
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Take damage from sprite
   label: TakeDamageFromSprite
@@ -978,6 +1425,39 @@
   params:
   - Y position
   - X position
+  return: null
+-
+  desc: Current sprite falling (unused?)
+  label: CurrSpriteFalling
+  addr:
+    U: 0xF79C
+    E: 0xF850
+    J: 0xF79C
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sprite choose random X flip
+  label: SpriteChooseRandomXFlip
+  addr:
+    U: 0xF80C
+    E: 0xF8C0
+    J: 0xF80C
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sprite choose random X direction
+  label: SpriteChooseRandomXDirection
+  addr:
+    U: 0xF844
+    E: 0xF8F8
+    J: 0xF844
+  size: 0x3C
+  mode: thumb
+  params: null
   return: null
 -
   desc: Make sprite face Samus (X-flip)
@@ -1581,29 +2061,6 @@
   - Distance
   return: null
 -
-  desc: Check projectile hit block (position)?
-  addr:
-    U: 0x4FA18
-    E: 0x4FAE4
-    J: 0x4FA18
-  size: 0x24
-  mode: thumb
-  params:
-  - Projectile Y position
-  - Projectile X position
-  return: '?'
--
-  desc: Check projectile hit block (pointer)?
-  addr:
-    U: 0x4FA3C
-    E: 0x4FB08
-    J: 0x4FA3C
-  size: 0x1FC
-  mode: thumb
-  params:
-  - Projectile data pointer
-  return: '?'
--
   desc: Handle projectile trail
   label: HandleProjectileTrail
   addr:
@@ -2017,16 +2474,6 @@
   - Projectile data pointer
   return: null
 -
-  desc: Empty function?
-  addr:
-    U: 0x521F0
-    E: 0x522BC
-    J: 0x521F0
-  size: 0x4
-  mode: thumb
-  params: null
-  return: null
--
   desc: Process power bomb
   label: ProcessPowerBomb
   addr:
@@ -2292,6 +2739,7 @@
   return: null
 -
   desc: Update in-game timer
+  label: UpdateInGameTimer
   addr:
     U: 0x579B8
     E: 0x57A80
@@ -2330,6 +2778,7 @@
   return: '?'
 -
   desc: Check liquid at position
+  label: CheckLiquidAtPosition
   addr:
     U: 0x58080
     E: 0x58148
@@ -2829,6 +3278,7 @@
   return: 1 if hatch never opened, 0 otherwise
 -
   desc: Check unlock hatches
+  label: CheckUnlockHatches
   addr:
     U: 0x5F0A4
     E: 0x5F198
@@ -2931,8 +3381,8 @@
   - Event
   return: 1 if event is set, 0 otherwise
 -
-  desc: Main loop for Zebes escape cutscene
-  label: MainLoopForZebesEscapeCutscene
+  desc: Zebes escape cutscene subroutine
+  label: ZebesEscapeCutsceneSubroutine
   addr:
     U: 0x60E2C
     E: 0x60F14
@@ -2953,8 +3403,8 @@
   params: null
   return: null
 -
-  desc: Main loop for cutscenes
-  label: MainLoopForCutscenes
+  desc: Cutscenes subroutine
+  label: CutscenesSubroutine
   addr:
     U: 0x61044
     E: 0x6112C
@@ -2976,8 +3426,8 @@
   - Don't draw flag
   return: null
 -
-  desc: Main loop for map screen
-  label: MainLoopForMapScreen
+  desc: Map screen subroutine
+  label: MapScreenSubroutine
   addr:
     U: 0x6A180
     E: 0x6A29C
@@ -3341,8 +3791,8 @@
   - Tilemap offset
   return: null
 -
-  desc: Main loop for easy sleep menu
-  label: MainLoopForEasySleepMenu
+  desc: Easy sleep menu subroutine
+  label: EasySleepMenuSubroutine
   addr:
     U: 0x71F70
     E: 0x720BC
@@ -3374,8 +3824,8 @@
   params: null
   return: null
 -
-  desc: Main loop for Chozo statue hint
-  label: MainLoopForChozoStatueHint
+  desc: Chozo statue hint subroutine
+  label: ChozoStatueHintSubroutine
   addr:
     U: 0x728B8
     E: 0x72A04
@@ -3384,6 +3834,80 @@
   mode: thumb
   params: null
   return: 1 if ended, 0 otherwise
+-
+  desc: Chozo statue hint change area
+  label: ChozoStatueHintChangeArea
+  addr:
+    U: 0x72B14
+    E: 0x72C60
+    J: 0x72B30
+  size: 0xA4
+  mode: thumb
+  params:
+  - Chozo statue X position pointer
+  - Chozo statue Y position pointer
+  - '?'
+  - Chozo statue target path pointer?
+  return: null
+-
+  desc: Chozo statue hint check events
+  label: ChozoStatueHintCheckEvents
+  addr:
+    U: 0x73050
+    E: 0x7319C
+    J: 0x7306C
+  size: 0x7C
+  mode: thumb
+  params:
+  - Array offset?
+  return: -1 if not activated, 0 if activated, 1 if de-activated
+-
+  desc: Check activated Chozo statue targets
+  label: CheckActivatedChozoStatueTargets
+  addr:
+    U: 0x730CC
+    E: 0x73218
+    J: 0x730E8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check unvisited area has Chozo hint
+  label: CheckUnvisitedAreaHasChozoHint
+  addr:
+    U: 0x73108
+    E: 0x73254
+    J: 0x73124
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw map screen boss flames
+  label: DrawMapScreenBossFlames
+  addr:
+    U: 0x73150
+    E: 0x7329C
+    J: 0x7316C
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Read SRAM
+  label: ReadSram
+  addr:
+    U: 0x7329C
+    E: 0x733E8
+    J: 0x732B8
+  size:
+    U: 0x64
+    E: 0x50
+    J: 0x64
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Write SRAM
   label: WriteSram
@@ -3396,8 +3920,22 @@
   params: null
   return: null
 -
-  desc: Main loop for erase SRAM menu
-  label: MainLoopForEraseSramMenu
+  desc: Write ASCII string
+  label: WriteAsciiString
+  addr:
+    U: 0x742E0
+    E: 0x74418
+    J: 0x742FC
+  size: 0x24
+  mode: thumb
+  params:
+  - Destination address
+  - String pointer
+  - Length
+  return: null
+-
+  desc: Erase SRAM menu subroutine
+  label: EraseSramMenuSubroutine
   addr:
     U: 0x75C30
     E: 0x75D74
@@ -3405,7 +3943,57 @@
   size: 0x14C
   mode: thumb
   params: null
-  return: 1 if option was selected, 0 otherwise?
+  return: 1 if leaving, 0 otherwise
+-
+  desc: Title screen subroutine
+  label: TitleScreenSubroutine
+  addr:
+    U: 0x771A0
+    E: 0x77354
+    J: 0x771BC
+  size:
+    U: 0x178
+    E: 0x188
+    J: 0x178
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
+  desc: Game over subroutine
+  label: GameOverSubroutine
+  addr:
+    U: 0x778C4
+    E: 0x77BD0
+    J: 0x778E0
+  size: 0x210
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
+  desc: Soft reset subroutine
+  label: SoftResetSubroutine
+  addr:
+    U: 0x7EF9C
+    E: 0x7F2D4
+    J: 0x7EFF8
+  size:
+    U: 0x54
+    E: 0x160
+    J: 0x54
+  mode: thumb
+  params: null
+  return: 1 if ended, 0 otherwise
+-
+  desc: Is save file invalid
+  label: IsSaveFileInvalid
+  addr:
+    U: 0x7F370
+    E: 0x7FA68
+    J: 0x7F3CC
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: 1 if invalid, 0 if valid
 -
   desc: Check unlock time attack?
   label: CheckUnlockTimeAttack?
@@ -3421,6 +4009,51 @@
   params: null
   return: null
 -
+  desc: Title intro subroutine
+  label: TitleIntroSubroutine
+  addr:
+    U: 0x8117C
+    E: 0x81888
+    J: 0x811D8
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: 1 if ended, 0 otherwise
+-
+  desc: Fusion gallery subroutine
+  label: FusionGallerySubroutine
+  addr:
+    U: 0x84B60
+    E: 0x851EC
+    J: 0x84BBC
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
+  desc: Credits subroutine
+  label: CreditsSubroutine
+  addr:
+    U: 0x871DC
+    E: 0x87E7C
+    J: 0x87238
+  size: 0x208
+  mode: thumb
+  params: null
+  return: 1 if ended, 0 otherwise
+  notes: Subroutine for the credits (goes up to the unlocked options)
+-
+  desc: Gallery subroutine
+  label: GallerySubroutine
+  addr:
+    U: 0x87778
+    E: 0x88418
+    J: 0x877D4
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
   desc: Get percent and ending number
   label: GetPercentAndEndingNum
   addr:
@@ -3431,6 +4064,17 @@
   mode: thumb
   params: null
   return: Item counts and ending number
+-
+  desc: Chozodia escape subroutine
+  label: ChozodiaEscapeSubroutine
+  addr:
+    U: 0x88D5C
+    E: 0x899E8
+    J: 0x88DB8
+  size: 0x144
+  mode: thumb
+  params: null
+  return: 1 if ended, 0 otherwise
 -
   desc: bx r0
   label: bx_r0

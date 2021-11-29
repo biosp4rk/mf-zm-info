@@ -60,7 +60,7 @@
   params: null
   return: null
 -
-  desc: Soft-reset check
+  desc: Soft reset check
   label: SoftResetCheck
   addr:
     U: 0x8B4
@@ -71,7 +71,7 @@
   params: null
   return: null
 -
-  desc: Empty function
+  desc: Empty function (soft reset)
   label: EmptyFunction_SoftReset
   addr:
     U: 0x8E8
@@ -82,7 +82,7 @@
   params: null
   return: null
 -
-  desc: Soft-reset
+  desc: Soft reset
   label: SoftReset
   addr:
     U: 0x8EC
@@ -816,8 +816,8 @@
   - SA-X pose
   return: null
 -
-  desc: Main loop for in-game
-  label: MainLoopForInGame
+  desc: In-game subroutine
+  label: InGameSubroutine
   addr:
     U: 0xDD24
     E: 0xDD24
@@ -872,8 +872,8 @@
   params: null
   return: null
 -
-  desc: Main loop for in-game demo
-  label: MainLoopForInGameDemo
+  desc: Start title screen demo
+  label: StartTitleScreenDemo
   addr:
     U: 0xE420
     E: 0xE420
@@ -3246,8 +3246,8 @@
   - Y position
   return: null
 -
-  desc: Main loop for downloading map
-  label: MainLoopForDownloadingMap
+  desc: Downloading map subroutine
+  label: DownloadingMapSubroutine
   addr:
     U: 0x761D8
     E: 0x761D8
@@ -4756,8 +4756,8 @@
   params: null
   return: null
 -
-  desc: Main loop for intro
-  label: MainLoopForIntro
+  desc: New file intro subroutine
+  label: NewFileIntroSubroutine
   addr:
     U: 0x87708
     E: 0x877C8
@@ -4770,8 +4770,8 @@
   params: null
   return: 1 if intro finished, 0 otherwise
 -
-  desc: Main loop for intro (Samus found)
-  label: MainLoopForIntro_SamusFound
+  desc: New file intro Samus found subroutine
+  label: NewFileIntroSamusFoundSubroutine
   addr:
     U: 0x8E140
     E: 0x8E200
@@ -4781,8 +4781,8 @@
   params: null
   return: '?'
 -
-  desc: Main loop for intro (Samus cured)
-  label: MainLoopForIntro_SamusCured
+  desc: New file intro Samus cured subroutine
+  label: NewIntroSamusCuredSubroutine
   addr:
     U: 0x8EDD0
     E: 0x8EE90
@@ -4792,8 +4792,8 @@
   params: null
   return: '?'
 -
-  desc: Main loop for intro (approaching BSL)
-  label: MainLoopForIntro_ApproachingBsl
+  desc: New file intro approaching BSL subroutine
+  label: NewFileIntroApproachingBslSubroutine
   addr:
     U: 0x8F7F4
     E: 0x8F8B4
@@ -4803,7 +4803,7 @@
   params: null
   return: '?'
 -
-  desc: Update intro sprites?
+  desc: Update new file intro sprites?
   addr:
     U: 0x98DA0
     E: 0x98E60
@@ -4835,8 +4835,8 @@
   params: null
   return: null
 -
-  desc: Main loop for file select
-  label: MainLoopForFileSelect
+  desc: File select subroutine
+  label: FileSelectSubroutine
   addr:
     U: 0x9E598
     E: 0x9E658
@@ -4850,8 +4850,8 @@
   return: 1 if starting new game, 2 if loading game, 3 if returning to title, 0
     otherwise
 -
-  desc: Main loop for file select input
-  label: MainLoopForFileSelectInput
+  desc: File select input
+  label: FileSelectInput
   addr:
     U: 0x9EAB0
     E: 0x9EB70
