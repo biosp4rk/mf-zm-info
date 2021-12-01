@@ -1460,6 +1460,17 @@
   params: null
   return: null
 -
+  desc: Sprite choose random X direction with room slot
+  label: SpriteChooseRandomXDirection_RoomSlot
+  addr:
+    U: 0xF880
+    E: 0xF934
+    J: 0xF880
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Make sprite face Samus (X-flip)
   label: MakeSpriteFaceSamus_XFlip
   addr:
@@ -1503,6 +1514,22 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Mecha Ridley missile rotation
+  label: MechaRidleyMissileRotation
+  addr:
+    U: 0xFA78
+    E: 0xFB2C
+    J: 0xFA78
+  size: 0x150
+  mode: thumb
+  params:
+  - OAM rotation
+  - Samus Y position
+  - Samus X position
+  - Sprite Y position
+  - Sprite X position
+  return: New OAM rotation
 -
   desc: Check end of sprite animation (current)
   label: CheckEndOfSpriteAnimation_Curr
@@ -1550,6 +1577,63 @@
   - Sprite slot number
   return: 1 if animation is near end, 0 otherwise
 -
+  desc: Check end of sub-sprite data 1 animation
+  label: CheckEndOfSubSpriteData1Animation
+  addr:
+    U: 0xFCD0
+    E: 0xFD84
+    J: 0xFCD0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: 1 if animation ended, 0 otherwise
+-
+  desc: Check near end of sub-sprite data 1 animation
+  label: CheckNearEndOfSubSpriteData1Animation
+  addr:
+    U: 0xFD08
+    E: 0xFDBC
+    J: 0xFD08
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: 1 if animation near end, 0 otherwise
+-
+  desc: Check end of sub-sprite data 2 animation
+  label: CheckEndOfSubSpriteData2Animation
+  addr:
+    U: 0xFD44
+    E: 0xFDF8
+    J: 0xFD44
+  size: 0x38
+  mode: thumb
+  params: null
+  return: 1 if animation ended, 0 otherwise
+-
+  desc: Check end of sub-sprite animation with pointer
+  label: CheckEndOfSubSpriteAnimation_Ptr
+  addr:
+    U: 0xFD7C
+    E: 0xFE30
+    J: 0xFD7C
+  size: 0x30
+  mode: thumb
+  params:
+  - Sub-sprite data pointer
+  return: 1 if animation ended, 0 otherwise
+-
+  desc: Check near end of sub-sprite animation with pointer
+  label: CheckNearEndOfSubSpriteAnimation_Ptr 
+  addr:
+    U: 0xFDAC
+    E: 0xFE60
+    J: 0xFDAC
+  size: 0x34
+  mode: thumb
+  params:
+  - Sub-sprite data pointer
+  return: 1 if animation near end, 0 otherwise
+-
   desc: Check Samus near sprite (left/right)
   label: CheckSamusNearSprite_LeftRight
   addr:
@@ -1590,6 +1674,18 @@
   - X range (behind)
   return: 3 if in range in front, 0xC if in range behind, 0 if out of range
 -
+  desc: Samus standing on sprite
+  label: SamusStandingOnSprite
+  addr:
+    U: 0xFF60
+    E: 0x10014
+    J: 0xFF60
+  size: 0x88
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: null
+-
   desc: Update sprite freeze timer
   label: UpdateSpriteFreezeTimer
   addr:
@@ -1601,15 +1697,39 @@
   params: null
   return: null
 -
-  desc: Update secondary sprites freeze timer
-  label: UpdateSecondarySpritesFreezeTimer
+  desc: Sprite unfreeze animation easy mode
+  label: SpriteUnfreezeAnimation_EasyMode
+  addr:
+    U: 0x1004C
+    E: 0x10100
+    J: 0x1004C
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Metroid unfreeze animation
+  label: MetroidUnfreezeAnimation
+  addr:
+    U: 0x100A4
+    E: 0x10158
+    J: 0x100A4
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update secondary sprite freeze timer
+  label: UpdateSecondarySpriteFreezeTimer
   addr:
     U: 0x100FC
     E: 0x101B0
     J: 0x100FC
   size: 0x9C
   mode: thumb
-  params: null
+  params:
+  - Sprite ID
+  - Primary RAM slot
   return: null
 -
   desc: Update primary sprite freeze timer
@@ -1711,8 +1831,8 @@
   params: null
   return: 1 if morphed, 0 otherwise
 -
-  desc: Check Samus pose pauses background activity?
-  label: CheckSamusPosePausesBackground?
+  desc: Check Samus pose pauses sprites
+  label: CheckSamusPosePausesSprites
   addr:
     U: 0x104CC
     E: 0x10580
@@ -1720,7 +1840,20 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: '?'
+  return: 1 if paused, 0 otherwise
+-
+  desc: Sprite take damage from Samus contact
+  label: SpriteTakeDamageFromSamusContact
+  addr:
+    U: 0x104F8
+    E: 0x105AC
+    J: 0x104F8
+  size: 0x1B0
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Samus data pointer
+  return: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3 = screw attack, 4 = pseudo screw)
 -
   desc: Check pulling self up
   label: CheckPullingSelfUp
@@ -1827,6 +1960,49 @@
   params: null
   return: Enemy drop count
 -
+  desc: Move Mecha Ridley missile
+  label: MoveMechaRidleyMissile
+  addr:
+    U: 0x10944
+    E: 0x109F8
+    J: 0x10944
+  size: 0x254
+  mode: thumb
+  params:
+  - Samus Y position
+  - Samus X position
+  - Missile Y speed
+  - Missile X speed
+  - Speed divisor
+  return: null
+-
+  desc: Update sprite stun timer
+  label: UpdateSpriteStunTimer
+  addr:
+    U: 0x10CF0
+    E: 0x10DA4
+    J: 0x10CF0
+  size: 0x78
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: null
+-
+  desc: Random sprite debris
+  label: RandomSpriteDebris
+  addr:
+    U: 0x10D68
+    E: 0x10E1C
+    J: 0x10D68
+  size: 0x128
+  mode: thumb
+  params:
+  - Cloud type
+  - Number of debris
+  - Y position
+  - X position
+  return: null
+-
   desc: Get ammo drop sprite ID
   label: GetAmmoDropSpriteID
   addr:
@@ -1849,6 +2025,170 @@
   params: null
   return: Enemy drop sprite ID, 0 otherwise
 -
+  desc: Sprite death
+  label: SpriteDeath
+  addr:
+    U: 0x11084
+    E: 0x11138
+    J: 0x11084
+  size: 0x1FC
+  mode: thumb
+  params:
+  - Death type (0 = normal, 1 = respawning, 2 = already has drop) 
+  - Y position
+  - X position
+  - Play sound flag
+  - Particle effect
+  return: null
+-
+  desc: Is sprite stunned
+  label: IsSpriteStunned
+  addr:
+    U: 0x11280
+    E: 0x11334
+    J: 0x11280
+  size: 0x48
+  mode: thumb
+  params: null
+  return: 1 if sprite is stunned, 0 otherwise
+-
+  desc: Is sprite on-screen and shaking
+  label: IsSpriteOnScreenAndShaking
+  addr:
+    U: 0x112C8
+    E: 0x1137C
+    J: 0x112C8
+  size: 0x38
+  mode: thumb
+  params: null
+  return: 1 if sprite on-screen and screen shake is active, 0 otherwise
+-
+  desc: Update sub-sprite 1 animation
+  label: UpdateSubSprite1Animation
+  addr:
+    U: 0x11330
+    E: 0x113E4
+    J: 0x11330
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sync current sprite position with sub-sprite 1 position
+  label: SyncCurrSpritePositionWithSubSprite1Position
+  addr:
+    U: 0x1136C
+    E: 0x11420
+    J: 0x1136C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update sub-sprite 2 animation
+  label: UpdateSubSprite2Animation
+  addr:
+    U: 0x11410
+    E: 0x114C4
+    J: 0x11410
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update sub-sprite animation
+  label: UpdateSubSpriteAnimation
+  addr:
+    U: 0x114AC
+    E: 0x11560
+    J: 0x114AC
+  size: 0x38
+  mode: thumb
+  params:
+  - Sub-sprite data pointer
+  return: null
+-
+  desc: Sync current sprite position with sub-sprite position
+  label: SyncCurrSpritePositionWithSubSpritePosition
+  addr:
+    U: 0x114E4
+    E: 0x11598
+    J: 0x114E4
+  size: 0x3C
+  mode: thumb
+  params:
+  - Sub-sprite data pointer
+  return: null
+-
+  desc: Set sprite splash effect
+  label: SetSpriteSplashEffect
+  addr:
+    U: 0x11620
+    E: 0x116D4
+    J: 0x11620
+  size: 0xAC
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  - Splash size (0 = none, 1 = small, 2 = big, 3 = huge)
+  return: null
+-
+  desc: Check sprite leaving liquid
+  label: CheckSpriteLeavingLiquid
+  addr:
+    U: 0x116CC
+    E: 0x11780
+    J: 0x116CC
+  size: 0x4C
+  mode: thumb
+  params:
+  - Previous Y position
+  - Y position
+  - X position
+  - Splash size
+  return: 1 if leaving liquid, 0 otherwise
+-
+  desc: Check sprite entering liquid
+  label: CheckSpriteEnteringLiquid
+  addr:
+    U: 0x11718
+    E: 0x117CC
+    J: 0x11718
+  size: 0x44
+  mode: thumb
+  params:
+  - Previous Y position
+  - Y position
+  - X position
+  - Splash size
+  return: 1 if entering liquid, 0 otherwise
+-
+  desc: Get number of items collected
+  label: GetNumOfItemsCollected
+  addr:
+    U: 0x1175C
+    E: 0x11810
+    J: 0x1175C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: Number of items collected
+-
+  desc: Set debris splash effect
+  label: SetDebrisSplashEffect
+  addr:
+    U: 0x11788
+    E: 0x1183C
+    J: 0x11788
+  size: 0x2C
+  mode: thumb
+  params:
+  - Previous Y position
+  - Y position
+  - X position
+  return: null
+-
   desc: Process sprite debris
   label: ProcessSpriteDebris
   addr:
@@ -1859,6 +2199,41 @@
   mode: thumb
   params:
   - Debris data pointer
+  return: null
+-
+  desc: Update all sprite debris
+  label: UpdateAllSpriteDebris
+  addr:
+    U: 0x11C88
+    E: 0x11D3C
+    J: 0x11C88
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+  notes: Loops through all sprite debris and calls Process sprite debris, also updates the animation related info
+-
+  desc: Draw sprite debris
+  label: DrawSpriteDebris
+  addr:
+    U: 0x11CF4
+    E: 0x11DA8
+    J: 0x11CF4
+  size: 0x110
+  mode: thumb
+  params:
+  - Sprite debris pointer
+  return: void
+-
+  desc: Draw all sprite debris
+  label: DrawAllSpriteDebris
+  addr:
+    U: 0x11E04
+    E: 0x11EB8
+    J: 0x11E04
+  size: 0x44
+  mode: thumb
+  params: null
   return: null
 -
   desc: Initialize sprite debris
@@ -1952,6 +2327,28 @@
   mode: thumb
   params: null
   return: Location text number, 0xFF otherwise
+-
+  desc: Load area banner graphics
+  label: LoadAreaBannerGfx
+  addr:
+    U: 0x12484
+    E: 0x12538
+    J: 0x12484
+  size: 0x58
+  mode: thumb
+  params: null
+  return: Graphics slot
+-
+  desc: Get location text graphics slot
+  label: GetLocationTextGfxSlot
+  addr:
+    U: 0x124DC
+    E: 0x12590
+    J: 0x124DC
+  size: 0x10C
+  mode: thumb
+  params: null
+  return: Graphics slot
 -
   desc: Set beam particle effect
   label: SetBeamParticleEffect
