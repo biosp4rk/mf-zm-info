@@ -95,6 +95,15 @@ BG0WaterMovement:
   - desc: Y position offset
     type: s8
     offset: 0x3
+BG2Movement:
+  size: 0x4
+  vars:
+  - desc: X position offset
+    type: u16
+    offset: 0x0
+  - desc: Y position offset
+    type: u16
+    offset: 0x2
 BG3Movement:
   size: 0x6
   vars:
@@ -409,6 +418,9 @@ CurrRoomEntry:
   - desc: Room effect Y position
     type: u16
     offset: 0x12
+  - desc: Haze related?
+    type: u8
+    offset: 0x14
   - desc: Music track
     type: u16
     offset: 0x16
@@ -420,7 +432,7 @@ CurrRoomEntry:
     type: u8
     offset: 0x19
     enum: LZ77BackgroundSize
-  - desc: '?'
+  - desc: BG3 starts from bottom flag?
     type: u8
     offset: 0x1A
   - desc: Animated tileset number
@@ -1236,6 +1248,9 @@ SamusPhysics:
   - desc: Slowed by liquid flag
     type: u8
     offset: 0x5B
+  - desc: Weapon type (0 = none, 1 = beam, missile, or pistol, 2 = charged pistol)
+    type: u8
+    offset: 0x5C
   - desc: X acceleration
     type: u16
     offset: 0x5E
@@ -1555,6 +1570,48 @@ StartingHealthAmmo:
   - desc: Power bombs
     type: u8
     offset: 0x3
+SubSpriteData:
+  size: 0x14
+  vars:
+  - desc: OAM pointer
+    type: ptr.oam
+    offset: 0x0
+  - desc: Current animation frame
+    type: u16
+    offset: 0x4
+  - desc: Y position
+    type: u16
+    offset: 0x6
+  - desc: X position
+    type: u16
+    offset: 0x8
+  - desc: Health?
+    type: u16
+    offset: 0xA
+  - desc: Animation duration counter
+    type: u8
+    offset: 0xC
+  - desc: Status?
+    type: u8
+    offset: 0xD
+  - desc: Timer?
+    type: u8
+    offset: 0xE
+  - desc: '?'
+    type: u8
+    offset: 0xF
+  - desc: Room slot?
+    type: u8
+    offset: 0x10
+  - desc: RAM slot?
+    type: u8
+    offset: 0x11
+  - desc: '?'
+    type: u8
+    offset: 0x12
+  - desc: '?'
+    type: u8
+    offset: 0x13
 TankCollectionInfo:
   size: 0x8
   vars:

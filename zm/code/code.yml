@@ -2411,6 +2411,18 @@
   - Projectile data pointer
   return: null
 -
+  desc: Draw projectile
+  label: DrawProjectile
+  addr:
+    U: 0x4F3C4
+    E: 0x4F490
+    J: 0x4F3C4
+  size: 0x1B4
+  mode: thumb
+  params:
+  - Projectile data pointer
+  return: null
+-
   desc: Check despawn projectile
   label: CheckDespawnProjectile
   addr:
@@ -2559,6 +2571,18 @@
   - Sprite data pointer
   return: null
 -
+  desc: Power bomb deal damage
+  label: PowerBombDealDamage
+  addr:
+    U: 0x504EC
+    E: 0x505B8
+    J: 0x504EC
+  size: 0xC0
+  mode: thumb
+  params: 
+  - Sprite data pointer
+  return: null
+-
   desc: Projectile hit solid sprite
   label: ProjectileHitSolidSprite
   addr:
@@ -2584,7 +2608,68 @@
   - Projectile Y position
   - Projectile X position
   - Damage
-  - Graphics effect
+  - Particle effect
+  return: null
+-
+  desc: Charged beam hit sprite
+  label: ChargedBeamHitSprite
+  addr:
+    U: 0x50654
+    E: 0x50720
+    J: 0x50654
+  size: 0xA8
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile Y position
+  - Projectile X position
+  - Damage
+  - Particle effect
+  return: '?'
+-
+  desc: Freeze sprite
+  label: FreezeSprite
+  addr:
+    U: 0x506FC
+    E: 0x507C8
+    J: 0x506FC
+  size: 0x28
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Freeze timer
+  return: null
+-
+  desc: Ice beam hit sprite
+  label: IceBeamHitSprite
+  addr:
+    U: 0x50724
+    E: 0x507F0
+    J: 0x50724
+  size: 0x104
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile Y position
+  - Projectile X position
+  - Damage
+  - Particle effect
+  return: null
+-
+  desc: Charged ice beam hit sprite
+  label: ChargedIceBeamHitSprite
+  addr:
+    U: 0x50828
+    E: 0x508F4
+    J: 0x50828
+  size: 0xEC
+  mode: thumb
+  params:
+  - Sprite data pointer
+  - Projectile Y position
+  - Projectile X position
+  - Damage
+  - Particle effect
   return: null
 -
   desc: Start missile tumble
@@ -2597,6 +2682,19 @@
   mode: thumb
   params:
   - Sprite data pointer
+  - Projectile data pointer
+  - Projectile type
+  return: null
+-
+  desc: Start missile tumble for Kraid head
+  label: StartMissileTumble_KraidHead
+  addr:
+    U: 0x50974
+    E: 0x50A40
+    J: 0x50974
+  size: 0x68
+  mode: thumb
+  params:
   - Projectile data pointer
   - Projectile type
   return: null
@@ -2629,6 +2727,18 @@
   - Projectile data pointer
   - Projectile Y position
   - Projectile X position
+  return: null
+-
+  desc: Bomb hit sprite
+  label: BombHitSprite
+  addr:
+    U: 0x50B18
+    E: 0x50BE4
+    J: 0x50B18
+  size: 0x4C
+  mode: thumb
+  params:
+  - Sprite data pointer
   return: null
 -
   desc: Process normal beam
@@ -2835,8 +2945,8 @@
   - Projectile data pointer
   return: null
 -
-  desc: Ball launcher related?
-  label: BallLauncherRelated?
+  desc: Morph ball launcher launch Samus
+  label: MorphBallLauncherLaunchSamus
   addr:
     U: 0x51E14
     E: 0x51EE0
@@ -2847,8 +2957,8 @@
   - Projectile data pointer
   return: null
 -
-  desc: Bomb explosion related?
-  label: BombExplosionRelated?
+  desc: Check Samus bomb jump
+  label: CheckSamusBombJump
   addr:
     U: 0x51ECC
     E: 0x51F98
@@ -2942,6 +3052,40 @@
   - Skip updating number flag?
   return: null
 -
+  desc: Draw HUD weapon highlight
+  label: DrawHudWeaponHighlight
+  addr:
+    U: 0x5352C
+    E: 0x535F8
+    J: 0x5352C
+  size: 0x3BC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw HUD pistol bar
+  label: DrawHudPistolBar
+  addr:
+    U: 0x538E8
+    E: 0x539B4
+    J: 0x538E8
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Draw HUD
+  label: DrawHud
+  addr:
+    U: 0x53930
+    E: 0x539FC
+    J: 0x53930
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+  notes: Calls Draw HUD energy, missiles, super missiles, power bombs, weapon highlight, pistol bar, and OAM
+-
   desc: Check timer displayed
   label: CheckTimerDisplayed
   addr:
@@ -2953,6 +3097,28 @@
   params: null
   return: 1 for Mother Brain, 2 for Mecha Ridley, 0 otherwise
 -
+  desc: Check timer should stop
+  label: CheckTimerShouldStop
+  addr:
+    U: 0x539A8
+    E: 0x53A74
+    J: 0x539A8
+  size: 0x38
+  mode: thumb
+  params: null
+  return: 1 if timer should stop, 0 otherwise
+-
+  desc: Start timed escape
+  label: StartTimedEscape
+  addr:
+    U: 0x53A48
+    E: 0x53B14
+    J: 0x53A48
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Set timer digits
   label: SetTimerDigits
   addr:
@@ -2960,6 +3126,85 @@
     E: 0x53B74
     J: 0x53AA8
   size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update escape timer
+  label: UpdateEscapeTimer
+  addr:
+    U: 0x53B64
+    E: 0x53C30
+    J: 0x53B64
+  size: 0x104
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load common sprite graphics
+  label: LoadCommonSpriteGfx
+  addr:
+    U: 0x53C68
+    E: 0x53D34
+    J: 0x53C68
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Reset refill animations
+  label: ResetRefillAnimations
+  addr:
+    U: 0x53C8C
+    E: 0x53D58
+    J: 0x53C8C
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Reset HUD digits animation
+  label: ResetHudDigitsAnimation
+  addr:
+    U: 0x53CB0
+    E: 0x53D7C
+    J: 0x53CB0
+  size: 0x120
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check particle effect on screen
+  label: CheckParticleEffectOnScreen
+  addr:
+    U: 0x53DD0
+    E: 0x53E9C
+    J: 0x53DD0
+  size: 0x98
+  mode: thumb
+  params:
+  - Particle effect pointer
+  return: null
+-
+  desc: Draw particle effect
+  label: DrawParticleEffect
+  addr:
+    U: 0x53E68
+    E: 0x53F34
+    J: 0x53E68
+  size: 0x170
+  mode: thumb
+  params:
+  - Particle effect pointer
+  return: null
+-
+  desc: Process particle effects
+  label: ProcessParticleEffects
+  addr:
+    U: 0x53FD8
+    E: 0x540A4
+    J: 0x53FD8
+  size: 0x114
   mode: thumb
   params: null
   return: null
@@ -2977,6 +3222,19 @@
   - X position
   - Effect number
   return: null
+-
+  desc: Update particle effect animation
+  label: UpdateParticleEffectAnimation
+  addr:
+    U: 0x5418C
+    E: 0x54258
+    J: 0x5418C
+  size: 0x50
+  mode: thumb
+  params:
+  - Particle effect pointer
+  - OAM pointer
+  return: 1 if animation ended, 0 otherwise
 -
   desc: Start vertical screen shake
   label: StartVerticalScreenShake
@@ -3003,6 +3261,50 @@
   - Duration
   - '?'
   return: null
+-
+  desc: Update vertical screen shake
+  label: UpdateVerticalScreenShake
+  addr:
+    U: 0x553DC
+    E: 0x554A8
+    J: 0x553DC
+  size: 0x68
+  mode: thumb
+  params: null
+  return: Y position offset
+-
+  desc: Update horizontal screen shake
+  label: UpdateHorizontalScreenShake
+  addr:
+    U: 0x55444
+    E: 0x55510
+    J: 0x55444
+  size: 0x68
+  mode: thumb
+  params: null
+  return: '?'
+-
+  desc: Set transparency and background effects
+  label: SetTransparencyAndBGEffects
+  addr:
+    U: 0x554AC
+    E: 0x55578
+    J: 0x554AC
+  size: 0x54C
+  mode: thumb
+  params: null
+  return: null
+  notes: Sets the BLDALPHA for the current room transparency and does some hardware registers magic for the background effects (gradient and dark room)
+-
+  desc: Check room is dark
+  addr:
+    U: 0x55A24
+    E: 0x55AF0
+    J: 0x55A24
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: 0xFFFF if room is dark, 0 otherwise
 -
   desc: Update BLDALPHA?
   label: UpdateBLDALPHA?
@@ -3070,6 +3372,51 @@
     E: 0x56790
     J: 0x566C4
   size: 0x10
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Reset room info on transition
+  label: ResetRoomInfoOnTransition
+  addr:
+    U: 0x566D4
+    E: 0x567A0
+    J: 0x566D4
+  size: 0x3F4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set automatic background movement
+  label: SetAutomaticBGMovement
+  addr:
+    U: 0x56AC8
+    E: 0x56B94
+    J: 0x56AC8
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+  notes: Sets the automatic BG0 and BG3 scrolling depending on the room effect/BG3 scrolling method
+-
+  desc: Update room info
+  label: UpdateRoomInfo
+  addr:
+    U: 0x56FD0
+    E: 0x57098
+    J: 0x56FD0
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update backgrounds positions
+  label: UpdateBGPositions
+  addr:
+    U: 0x570AC
+    E: 0x57174
+    J: 0x570AC
+  size: 0x128
   mode: thumb
   params: null
   return: null
@@ -3174,8 +3521,8 @@
   - X position
   return: '?'
 -
-  desc: Check liquid at position
-  label: CheckLiquidAtPosition
+  desc: Check hazard at position
+  label: CheckHazardAtPosition
   addr:
     U: 0x58080
     E: 0x58148
@@ -3185,7 +3532,7 @@
   params:
   - Y position
   - X position
-  return: 1 if water, 2 if strong lava, 3 if weak lava, 4 if acid, 0 otherwise
+  return: Hazard type
 -
   desc: Check can use elevator
   label: CheckCanUseElevator

@@ -59,15 +59,16 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
+  desc: Erase SRAM?
   addr:
     U: 0xC04
     E: 0xC58
     J: 0xC04
   size: 0x44
   mode: thumb
-  params: '?'
-  return: '?'
+  params: null
+  return: null
+  notes: Fills SRAM with 0xFFFF
 -
   desc: '?'
   addr:
@@ -1433,15 +1434,18 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
+  desc: Samus apply X acceleration?
   addr:
     U: 0x8278
     E: 0x82D4
     J: 0x8278
   size: 0x40
   mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - X acceleration
+  - X velocity
+  - Samus data pointer
+  return: null
 -
   desc: '?'
   addr:
@@ -13445,16 +13449,6 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
-  addr:
-    U: 0x4F3C4
-    E: 0x4F490
-    J: 0x4F3C4
-  size: 0x1B4
-  mode: thumb
-  params: '?'
-  return: '?'
--
   desc: Check projectile hit block (position)?
   addr:
     U: 0x4FA18
@@ -13476,76 +13470,6 @@
   mode: thumb
   params:
   - Projectile data pointer
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x504EC
-    E: 0x505B8
-    J: 0x504EC
-  size: 0xC0
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x50654
-    E: 0x50720
-    J: 0x50654
-  size: 0xA8
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x506FC
-    E: 0x507C8
-    J: 0x506FC
-  size: 0x28
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x50724
-    E: 0x507F0
-    J: 0x50724
-  size: 0x104
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x50828
-    E: 0x508F4
-    J: 0x50828
-  size: 0xEC
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x50974
-    E: 0x50A40
-    J: 0x50974
-  size: 0x68
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x50B18
-    E: 0x50BE4
-    J: 0x50B18
-  size: 0x4C
-  mode: thumb
-  params: '?'
   return: '?'
 -
   desc: Empty function?
@@ -13600,46 +13524,6 @@
 -
   desc: '?'
   addr:
-    U: 0x5352C
-    E: 0x535F8
-    J: 0x5352C
-  size: 0x3BC
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x538E8
-    E: 0x539B4
-    J: 0x538E8
-  size: 0x48
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53930
-    E: 0x539FC
-    J: 0x53930
-  size: 0x38
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x539A8
-    E: 0x53A74
-    J: 0x539A8
-  size: 0x38
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
     U: 0x539E0
     E: 0x53AAC
     J: 0x539E0
@@ -13654,96 +13538,6 @@
     E: 0x53AE4
     J: 0x53A18
   size: 0x30
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53A48
-    E: 0x53B14
-    J: 0x53A48
-  size: 0x60
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53B64
-    E: 0x53C30
-    J: 0x53B64
-  size: 0x104
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53C68
-    E: 0x53D34
-    J: 0x53C68
-  size: 0x24
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53C8C
-    E: 0x53D58
-    J: 0x53C8C
-  size: 0x24
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53CB0
-    E: 0x53D7C
-    J: 0x53CB0
-  size: 0x120
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53DD0
-    E: 0x53E9C
-    J: 0x53DD0
-  size: 0x98
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53E68
-    E: 0x53F34
-    J: 0x53E68
-  size: 0x170
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x53FD8
-    E: 0x540A4
-    J: 0x53FD8
-  size: 0x114
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x5418C
-    E: 0x54258
-    J: 0x5418C
-  size: 0x50
   mode: thumb
   params: '?'
   return: '?'
@@ -14408,55 +14202,16 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
-  addr:
-    U: 0x553DC
-    E: 0x554A8
-    J: 0x553DC
-  size: 0x68
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x55444
-    E: 0x55510
-    J: 0x55444
-  size: 0x68
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x554AC
-    E: 0x55578
-    J: 0x554AC
-  size: 0x54C
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
+  desc: Get background size coefficient?
   addr:
     U: 0x559F8
     E: 0x55AC4
     J: 0x559F8
   size: 0x2C
   mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x55A24
-    E: 0x55AF0
-    J: 0x55A24
-  size: 0x1C
-  mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - Background size (0 = 256x256, 1 = 512*256, 2 = 256*512)
+  return: Coeffecient? (0, 0x4000, 0x8000)
 -
   desc: '?'
   addr:
@@ -14548,45 +14303,31 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
-  addr:
-    U: 0x566D4
-    E: 0x567A0
-    J: 0x566D4
-  size: 0x3F4
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x56AC8
-    E: 0x56B94
-    J: 0x56AC8
-  size: 0x60
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
+  desc: Render background after transition?
   addr:
     U: 0x56B28
     E: 0x56BF4
     J: 0x56B28
   size: 0x1F0
   mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - Background number (0-2)
+  return: null
+  notes: Related to drawing a background after taking a transition, cancel the call at 560e0 and see the effects
 -
-  desc: '?'
+  desc: Background loading related
   addr:
     U: 0x56D18
     E: 0x56DE4
     J: 0x56D18
   size: 0x110
   mode: thumb
-  params: '?'
+  params:
+  - Is decompressed flag
+  - Source address
+  - Destination address
   return: '?'
+  notes: Related to background loading, possibly responsible for actually putting the BG data in the Decompressed Maps in the WRAM
 -
   desc: '?'
   addr:
@@ -14617,26 +14358,6 @@
     U: 0xDC
     E: 0xD8
     J: 0xDC
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x56FD0
-    E: 0x57098
-    J: 0x56FD0
-  size: 0xDC
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0x570AC
-    E: 0x57174
-    J: 0x570AC
-  size: 0x128
   mode: thumb
   params: '?'
   return: '?'
@@ -14761,15 +14482,19 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
+  desc: Check current affecting hazard and very special clipdata
   addr:
     U: 0x580C0
     E: 0x58188
     J: 0x580C0
   size: 0xDC
   mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - Y position (actual)
+  - Y position (blocks)
+  - X position (blocks)
+  - '?'
+  return: Hazard type
 -
   desc: '?'
   addr:

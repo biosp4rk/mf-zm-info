@@ -158,10 +158,14 @@ ClipdataAffectingAction:
   val: 0xA
 - desc: Power bomb
   val: 0xB
-- desc: Speed boost
+- desc: Speed boost 1
   val: 0xC
-- desc: Screw attack
+- desc: Speed boost 2
   val: 0xD
+- desc: Screw attack
+  val: 0xE
+- desc: Bomb chain related?
+  val: 0xF
 ClipdataBehaviorType:
 - desc: Air/solid
   val: 0x0
@@ -442,6 +446,13 @@ Elevator:
   val: 0x6
 - desc: Crateria to Norfair
   val: 0x7
+EscapeTimerStatus:
+- desc: None
+  val: 0x0
+- desc: Escape happening
+  val: 0x1
+- desc: Escape failed
+  val: 0x2
 ForcedMovement:
 - desc: None/Sparking upwards
   val: 0x0
@@ -495,41 +506,23 @@ GraphicsAnimationType:
   val: 0x1
 - desc: Alternate
   val: 0x4
-SamusEnvironmentEffect:
+HazardType:
 - desc: None
   val: 0x0
-- desc: Running on wet ground
+- desc: Water
   val: 0x1
-- desc: Running on dusty ground
+- desc: Strong lava
   val: 0x2
-- desc: Running on very dusty ground
+- desc: Weak lava
   val: 0x3
-- desc: Exiting water
+- desc: Acid
   val: 0x4
-- desc: Running into water
+- desc: Heat
   val: 0x5
-- desc: Exiting lava
+- desc: Cold + knockback
   val: 0x6
-- desc: Running into lava
+- desc: Cold
   val: 0x7
-- desc: Exiting acid
-  val: 0x8
-- desc: Running into acid
-  val: 0x9
-- desc: Taking damage in lava
-  val: 0xA
-- desc: Taking damage in acid
-  val: 0xB
-- desc: Landing on wet ground
-  val: 0xC
-- desc: Landing on bubbly ground
-  val: 0xD
-- desc: Landing on dusty ground
-  val: 0xE
-- desc: Landing on very dusty ground
-  val: 0xF
-- desc: Breathing bubbles
-  val: 0x12
 HorizontalDirection:
 - desc: Right
   val: 0x10
@@ -582,6 +575,129 @@ PaletteAnimationType:
   val: 0x1
 - desc: Alternate
   val: 0x2
+ParticleEffect:
+- desc: Sprite splash water small
+  val: 0x0
+- desc: Sprite splash water big
+  val: 0x1
+- desc: Sprite splash water huge
+  val: 0x2
+- desc: Sprite splash lava small
+  val: 0x3
+- desc: Sprite splash lava big
+  val: 0x4
+- desc: Sprite splash lava huge
+  val: 0x5
+- desc: Sprite splash acid small
+  val: 0x6
+- desc: Sprite splash acid big
+  val: 0x7
+- desc: Sprite splash acid huge
+  val: 0x8
+- desc: Shooting beam left
+  val: 0x9
+- desc: Shooting beam diagonally up left
+  val: 0xA
+- desc: Shooting beam diagonally down left
+  val: 0xB
+- desc: Shooting beam up left
+  val: 0xC
+- desc: Shooting beam down left
+  val: 0xD
+- desc: Shooting beam right
+  val: 0xE
+- desc: Shooting beam diagonally up right
+  val: 0xF
+- desc: Shooting beam diagonally down right
+  val: 0x10
+- desc: Shooting beam up right
+  val: 0x11
+- desc: Shooting beam down right
+  val: 0x12
+- desc: Bomb
+  val: 0x13
+- desc: Missile trail
+  val: 0x14
+- desc: Super missile trail
+  val: 0x15
+- desc: Beam trailing right
+  val: 0x16
+- desc: Beam trailing left
+  val: 0x17
+- desc: Charged long beam trail
+  val: 0x18
+- desc: Charged ice beam trail
+  val: 0x19
+- desc: Charged wave beam trail
+  val: 0x1A
+- desc: Charged plasma beam
+  val: 0x1B
+- desc: Charged full beam trail
+  val: 0x1C
+- desc: Charged pistol trail
+  val: 0x1D
+- desc: Sprite explosion huge
+  val: 0x1E
+- desc: Sprite explosion small
+  val: 0x1F
+- desc: Sprite explosion medium
+  val: 0x20
+- desc: Sprite explosion big
+  val: 0x21
+- desc: Sprite explosion single then big
+  val: 0x22
+- desc: Screw attack destroyed
+  val: 0x23
+- desc: Shinespark destroyed
+  val: 0x24
+- desc: Sudo screw attack destroyed
+  val: 0x25
+- desc: Speedbooster destroyed
+  val: 0x26
+- desc: Main boss death
+  val: 0x27
+- desc: Freezing sprite with ice
+  val: 0x28
+- desc: Freezing sprite with charged ice
+  val: 0x29
+- desc: Hitting something with base beam or charged base
+  val: 0x2A
+- desc: Hitting something with long beam or charged long
+  val: 0x2B
+- desc: Hitting something with ice beam
+  val: 0x2C
+- desc: Hitting something with wave beam
+  val: 0x2D
+- desc: Hitting something with plasma beam
+  val: 0x2E
+- desc: Hitting something invincible
+  val: 0x2F
+- desc: Hitting something with missile
+  val: 0x30
+- desc: Hitting something with super missile
+  val: 0x31
+- desc: Hitting something with full beam no plasma
+  val: 0x32
+- desc: Hitting something with full beam
+  val: 0x33
+- desc: Small dust 1
+  val: 0x34
+- desc: Medium dust 1
+  val: 0x35
+- desc: Two medium dust 1
+  val: 0x36
+- desc: Small dust 2
+  val: 0x37
+- desc: Medium dust 2
+  val: 0x38
+- desc: Two medium dust 2
+  val: 0x39
+- desc: Samus reflection
+  val: 0x3A
+- desc: Charging beam
+  val: 0x3B
+- desc: Escape
+  val: 0x3C
 PauseScreenFlag:
 - desc: Unknown
   val: 0x1
@@ -685,6 +801,41 @@ RoomEffect:
   val: 0xA
 - desc: Gradient (BG2)
   val: 0xB
+SamusEnvironmentEffect:
+- desc: None
+  val: 0x0
+- desc: Running on wet ground
+  val: 0x1
+- desc: Running on dusty ground
+  val: 0x2
+- desc: Running on very dusty ground
+  val: 0x3
+- desc: Exiting water
+  val: 0x4
+- desc: Running into water
+  val: 0x5
+- desc: Exiting lava
+  val: 0x6
+- desc: Running into lava
+  val: 0x7
+- desc: Exiting acid
+  val: 0x8
+- desc: Running into acid
+  val: 0x9
+- desc: Taking damage in lava
+  val: 0xA
+- desc: Taking damage in acid
+  val: 0xB
+- desc: Landing on wet ground
+  val: 0xC
+- desc: Landing on bubbly ground
+  val: 0xD
+- desc: Landing on dusty ground
+  val: 0xE
+- desc: Landing on very dusty ground
+  val: 0xF
+- desc: Breathing bubbles
+  val: 0x12
 SamusPose:
 - desc: Running
   val: 0x0
