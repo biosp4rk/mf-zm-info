@@ -3944,6 +3944,29 @@
   return: null
   notes: Checks if the lightning effect should play, hardcoded to play in Crateria room 5
 -
+  desc: Process special background effect
+  label: ProcessSpecialBGEffect
+  addr:
+    U: 0x5E5CC
+    E: 0x5E6C0
+    J: 0x5E5CC
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: '?'
+-
+  desc: Start special background effect
+  label: StartSpecialBGEffect
+  addr:
+    U: 0x5E6F8
+    E: 0x5E7EC
+    J: 0x5E6F8
+  size: 0x68
+  mode: thumb
+  params:
+  - Effect
+  return: 1 if effect started, 0 otherwise
+-
   desc: Update hatch animation
   label: UpdateHatchAnimation
   addr:

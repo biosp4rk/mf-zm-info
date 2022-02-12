@@ -1073,14 +1073,20 @@
   type: BG3Movement
   addr: 0x30054EC
 -
-  desc: BG3 starts from bottom flag?
-  type: u8
+  desc: BG0 movement
+  label: BG0Movement
+  type: BG0Movement
   addr: 0x30054F4
 -
   desc: Tileset's transparent color
   label: TilesetTransparentColor
   type: u16
   addr: 0x30054FC
+-
+  desc: Door transition Y position offset
+  label: DoorTransitionYPositionOffset
+  type: u16
+  addr: 0x300550C
 -
   desc: Destination room
   label: DestinationRoom
@@ -1102,6 +1108,16 @@
   type: u8
   addr: 0x30056A8
 -
+  desc: Last tank collected X position
+  label: LastTankCollectedXPosition
+  type: u8
+  addr: 0x30056AA
+-
+  desc: Last tank collected Y position
+  label: LastTankCollectedYPosition
+  type: u8
+  addr: 0x30056AB
+-
   desc: BG0 transparency related?
   addr: 0x30056C4
   size: 0x8
@@ -1116,6 +1132,11 @@
   type: AnimatedPaletteAndTilesetNum
   addr: 0x30056F4
 -
+  desc: Current special background effect
+  label: CurrSpecialBGEffect
+  type: SpecialBGEffect
+  addr: 0x30056F8
+-
   desc: Wavy background effect related?
   type: u8
   addr: 0x3005729
@@ -1125,6 +1146,12 @@
   addr: 0x3005730
   size: 0xC
   count: 0x10
+-
+  desc: Error flags
+  label: ErrorFlags
+  type: u32
+  addr: 0x30058BC
+  enum: ErrorFlags
 -
   desc: Pointer to interrupt code
   label: InterruptCodePtr

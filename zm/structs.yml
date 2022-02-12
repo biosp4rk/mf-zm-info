@@ -80,6 +80,27 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
+BG0Movement:
+  size: 0x8
+  vars:
+  - desc: Type (0 = none, 1 = water/clouds, 4 = snowflakes)
+    type: u8
+    offset: 0x0
+  - desc: Y position offset
+    type: u8
+    offset: 0x1
+  - desc: Unused
+    type: u8
+    offset: 0x2
+  - desc: Unused
+    type: u8
+    offset: 0x3
+  - desc: X position offset
+    type: u16
+    offset: 0x4
+  - desc: Snowflakes related?
+    type: u16
+    offset: 0x6
 BG0WaterMovement:
   size: 0x4
   vars:
@@ -221,6 +242,25 @@ BackupOfIORegisters:
   - desc: Backup of BG0CNT (BG0 control)
     type: u16
     offset: 0x10
+BossMapIcon:
+  size: 0x5
+  vars:
+  - desc: Event number
+    type: u8
+    offset: 0x0
+    enum: Event
+  - desc: Boss icon number (1 = Kraid, 2 = Ridley, 3 = Boss dead, 4 = Unused ship)
+    type: u8
+    offset: 0x1
+  - desc: Map X coordinate
+    type: u8
+    offset: 0x2
+  - desc: Map Y coordinate
+    type: u8
+    offset: 0x3
+  - desc: Pixel offset
+    type: u8
+    offset: 0x4
 BreakingOrReformingBlock:
   size: 0x8
   vars:
@@ -1361,6 +1401,31 @@ SoundDataEntry:
   - desc: Track group number
     type: u16
     offset: 0x6
+SpecialBGEffect:
+  size: 0x8
+  vars:
+  - desc: Unused?
+    type: u8
+    offset: 0x0
+  - desc: Unused?
+    type: u8
+    offset: 0x1
+  - desc: '?'
+    type: u16
+    offset: 0x2
+  - desc: Effect
+    type: u8
+    offset: 0x4
+    enum: SpecialBGEffect
+  - desc: Stage
+    type: u8
+    offset: 0x5
+  - desc: '?'
+    type: u8
+    offset: 0x6
+  - desc: '?'
+    type: u8
+    offset: 0x7
 SpriteData:
   size: 0x38
   vars:

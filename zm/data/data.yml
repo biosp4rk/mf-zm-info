@@ -44,6 +44,33 @@
     J: 0x2B0D08
   count: 0x20
 -
+  desc: Dessgeega/Sidehopper jump speeds
+  label: DessgeegaAndSidehopperJumpSpeeds
+  type: s16
+  addr:
+    U: 0x2B0CE4
+    E: 0x2B1970
+    J: 0x2B0D40
+  count: 0x10
+-
+  desc: Enemy fall speeds
+  label: EnemyFallSpeeds
+  type: s16
+  addr:
+    U: 0x2B0D04
+    E: 0x2B1990
+    J: 0x2B0D60
+  count: 0x28
+-
+  desc: Worker robot falling while sleeping speeds
+  label: WorkerRobotFallingWhileSleepingSpeeds
+  type: s16
+  addr:
+    U: 0x2B0D54
+    E: 0x2B19E0
+    J: 0x2B0DB0
+  count: 0xA
+-
   desc: Primary sprite stats
   label: PrimarySpriteStats
   type: SpriteStats
@@ -77,6 +104,60 @@
     E: 0x2B34FC
     J: 0x2B28CC
   size: 0x71238
+-
+  desc: Charge beam sprite Y position offsets
+  label: ChargeBeamSpriteYPositionOffsets
+  type: s16
+  addr:
+    U: 0x2B31AC
+    E: 0x2B3E38
+    J: 0x2B3208
+  count: 0x42
+-
+  desc: Zeela eyes falling from top speeds
+  label: ZeelaEyesFallingFromTopSpeeds
+  type: s16
+  addr:
+    U: 0x2C4B88
+    E: 0x2C5814
+    J: 0x2C4BE4
+  count: 0x10
+-
+  desc: Zeela eyes falling from bottom speeds
+  label: ZeelaEyesFallingFromBottomSpeeds
+  type: s16
+  addr:
+    U: 0x2C4BA8
+    E: 0x2C5834
+    J: 0x2C4C04
+  count: 0xC
+-
+  desc: Skree diving speeds
+  label: Skree diving speeds
+  type: s16
+  addr:
+    U: 0x2CCA7C
+    E: 0x2CD708
+    J: 0x2CCAD8
+  count: 0x8
+-
+  desc: Metroid spawning Y position offsets
+  label: MetroidSpawningYPositionOffsets
+  type: s16
+  addr:
+    U: 0x2ECB60
+    E: 0x2ED7EC
+    J: 0x2ECBBC
+  count: 0x41
+-
+  desc: Metroid spawning X position offsets
+  label: MetroidSpawningXPositionOffsets
+  type: s16
+  addr:
+    U: 0x2ECBE2
+    E: 0x2ED86E
+    J: 0x2ECC3E
+  count: 0x52
 -
   desc: Tumbling missile speeds
   label: TumblingMissileSpeeds
@@ -302,6 +383,15 @@
     J: 0x345A20
   count: 0x3
 -
+  desc: Reform blocks time to reform
+  label: ReformBlocksTimeToReform
+  type: u8
+  addr:
+    U: 0x345B08
+    E: 0x346794
+    J: 0x345B64
+  count: 0x120
+-
   desc: Tank collection info
   label: TankCollectionInfo
   type: TankCollectionInfo
@@ -312,8 +402,8 @@
   size: 0x8
   count: 0xC
 -
-  desc: BLDALPHA values?
-  label: BLDALPHA_Values
+  desc: BLDALPHA values for clipdata
+  label: BLDALPHA_ValuesForClipadata
   type: u16
   addr:
     U: 0x345CC8
@@ -421,6 +511,15 @@
     J: 0x407948
   size: 0x2BC
 -
+  desc: Boss map icons
+  label: BossMapIcons
+  type: BossMapIcon
+  addr:
+    U: 0x40D7B0
+    E: 0x40E5E4
+    J: 0x40D80C
+  count: 0x7
+-
   desc: Character widths
   label: CharacterWidths
   type: u8
@@ -522,14 +621,23 @@
     E: 0x767910
     J: 0x754CD4
 -
-  desc: Primary sprite AI pointers
-  label: PrimarySpriteAIPtrs
+  desc: Samus pose function pointers
+  label: SamusPoseFunctionPtrs
   type: ptr.thumb
   addr:
-    U: 0x75E8C0
-    E: 0x772760
-    J: 0x75E9D0
-  count: 0xCE
+    U: 0x75E6A8
+    E: 0x772548
+    J: 0x75E7B8
+  count: 0x43
+-
+  desc: Samus pose graphics function pointers
+  label: SamusPoseGfxFunctionPtrs
+  type: ptr.thumb
+  addr:
+    U: 0x75E7B4
+    E: 0x772654
+    J: 0x75E8C4
+  count: 0x43
 -
   desc: Sprite graphics pointers
   label: SpriteGraphicsPtrs
@@ -575,6 +683,15 @@
     E: 0x773814
     J: 0x75FA84
   count: 0x10
+-
+  desc: Process particle effect pointers
+  label: ProcessParticleEffectPtrs
+  type: ptr.thumb
+  addr:
+    U: 0x75F9B4
+    E: 0x773854
+    J: 0x75FAC4
+  count: 0x3D
 -
   desc: Area doors pointers
   label: AreaDoorsPtrs
