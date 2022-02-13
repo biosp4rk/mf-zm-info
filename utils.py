@@ -3,14 +3,9 @@ import json
 import os
 import re
 import yaml
-from typing import Dict
+from typing import Dict, List, Union
 
-
-def hexint_presenter(dumper, data):
-    return dumper.represent_int(f"0x{data:X}")
-
-
-yaml.add_representer(int, hexint_presenter)
+InfoFile = Union[Dict, List]
 
 YAML_PATH = "yaml"
 YAML_EXT = ".yml"
@@ -74,12 +69,17 @@ PRIMITIVES = {
 }
 
 
-def load_yaml(path):
+def hexint_presenter(dumper, data):
+    return dumper.represent_int(f"0x{data:X}")
+yaml.add_representer(int, hexint_presenter)
+
+
+def load_yaml(path: str) -> InfoFile:
     with open(path) as f:
         return yaml.full_load(f)
 
 
-def load_yamls(game, name):
+def load_yamls(game: str, name: str) -> InfoFile:
     dir_path = os.path.join(YAML_PATH, game, name)
     file_path = dir_path + YAML_EXT
     data_dict = None
@@ -94,7 +94,7 @@ def load_yamls(game, name):
     return combine_yamls(list(data_dict.values()))
 
 
-def combine_yamls(data_list):
+def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
     combined = data_list[0]
     for data in data_list[1:]:
         if isinstance(combined, list) and isinstance(data, list):
@@ -106,7 +106,7 @@ def combine_yamls(data_list):
     return combined
 
 
-def check_refs():
+def check_refs() -> None:
     for game in GAMES:
         # load yaml files
         # TODO: check code too
@@ -134,7 +134,7 @@ def check_refs():
     print("No reference errors found")
 
 
-def ints_to_strs(data):
+def ints_to_strs(data: InfoFile) -> None:
     stack = [data]
     while len(stack) > 0:
         entry = stack.pop()
@@ -150,7 +150,7 @@ def ints_to_strs(data):
                     stack.append(v)
 
 
-def output_yaml(path, data, name):
+def output_yaml(path: str, data: InfoFile, name: str) -> None:
     # create stack of entries
     if isinstance(data, dict):
         stack = [(v, name) for v in data.values()]
@@ -187,13 +187,27 @@ def output_yaml(path, data, name):
         f.write(output)
 
 
-def output_yamls():
+def output_yamls() -> None:
+    yaml_files = []
     for game in GAMES:
-        for name in NAMES:
-            output_yaml("", {}, name)
+        game_dir = os.path.join(YAML_PATH, game)
+        # find all yaml files
+        for root, _, files in os.walk(game_dir):
+            for f in files:
+                name, ext = os.path.splitext(f)
+                if ext == YAML_EXT:
+                    if name not in NAMES:
+                        name = os.path.basename(root)
+                    assert name in NAMES
+                    path = os.path.join(root, f)
+                    yaml_files.append((path, name))
+    # parse files and output
+    for path, name in yaml_files:
+        data = load_yaml(path)
+        output_yaml(path, data, name)
 
 
-def output_jsons():
+def output_jsons() -> None:
     for game in GAMES:
         json_dir = os.path.join(JSON_PATH, game)
         # convert each to json
@@ -208,11 +222,13 @@ def output_jsons():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("-r", "--refs", action="store_true")
     parser.add_argument("-y", "--yaml", action="store_true")
     parser.add_argument("-j", "--json", action="store_true")
     args = parser.parse_args()
 
-    check_refs()
+    if args.refs:
+        check_refs()
     if args.yaml:
         output_yamls()
     if args.json:
