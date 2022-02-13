@@ -669,7 +669,8 @@
   - Samus data copy pointer
   - Samus weapon info pointer
   return: null
-  notes: Updates the velocity of samus mid-air (spin breaking, starting to spin, forced movements)
+  notes: Updates the velocity of samus mid-air (spin breaking, starting to spin, forced
+    movements)
 -
   desc: Samus set landing pose
   label: SamusSetLandingPose
@@ -725,7 +726,8 @@
   - Samus data copy pointer
   - Samus weapon info pointer
   return: null
-  notes: Handles arm cannon direction when Samus turns around (except when spinning), shinespark direction selection and samus using an elevator
+  notes: Handles arm cannon direction when Samus turns around (except when spinning),
+    shinespark direction selection and samus using an elevator
 -
   desc: Samus set pose
   label: SamusSetPose
@@ -871,7 +873,8 @@
   - Samus weapon info pointer
   - Samus equipment pointer
   return: 1 if fired beam or missile, 0 otherwise
-  notes: Checks if Samus is firing a beam or a missile, also handles the charge counter going up
+  notes: Checks if Samus is firing a beam or a missile, also handles the charge counter
+    going up
 -
   desc: Samus check fire pistol
   label: SamusCheckFirePistol
@@ -911,7 +914,8 @@
   params:
   - Samus data pointer
   return: 1 if A is pressed, 0 otherwise
-  notes: Checks if A is pressed and if so sets forced movement flag to 1, used in the standing pose subroutines (morphball, turning around and standing)
+  notes: Checks if A is pressed and if so sets forced movement flag to 1, used in
+    the standing pose subroutines (morphball, turning around and standing)
 -
   desc: Samus set highlighted weapon
   label: SamusSetHighlightedWeapon
@@ -980,7 +984,9 @@
   params:
   - Samus data pointer
   return: New pose
-  notes: Executes the subroutine for the current pose, calls Samus check hazard damage, Samus set highlighted weapon, Samus check shinesparking pose, Samus set spinning pose and Samus spawn new projectile
+  notes: Executes the subroutine for the current pose, calls Samus check hazard damage,
+    Samus set highlighted weapon, Samus check shinesparking pose, Samus set spinning
+    pose and Samus spawn new projectile
 -
   desc: Samus update velocity and position
   label: SamusUpdateVelocityAndPosition
@@ -1623,7 +1629,7 @@
   return: 1 if animation ended, 0 otherwise
 -
   desc: Check near end of sub-sprite animation with pointer
-  label: CheckNearEndOfSubSpriteAnimation_Ptr 
+  label: CheckNearEndOfSubSpriteAnimation_Ptr
   addr:
     U: 0xFDAC
     E: 0xFE60
@@ -1853,7 +1859,8 @@
   params:
   - Sprite data pointer
   - Samus data pointer
-  return: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3 = screw attack, 4 = pseudo screw)
+  return: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3 =
+    screw attack, 4 = pseudo screw)
 -
   desc: Check pulling self up
   label: CheckPullingSelfUp
@@ -2034,7 +2041,7 @@
   size: 0x1FC
   mode: thumb
   params:
-  - Death type (0 = normal, 1 = respawning, 2 = already has drop) 
+  - Death type (0 = normal, 1 = respawning, 2 = already has drop)
   - Y position
   - X position
   - Play sound flag
@@ -2211,7 +2218,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all sprite debris and calls Process sprite debris, also updates the animation related info
+  notes: Loops through all sprite debris and calls Process sprite debris, also updates
+    the animation related info
 -
   desc: Draw sprite debris
   label: DrawSpriteDebris
@@ -2579,7 +2587,7 @@
     J: 0x504EC
   size: 0xC0
   mode: thumb
-  params: 
+  params:
   - Sprite data pointer
   return: null
 -
@@ -2779,7 +2787,7 @@
 -
   desc: Handle wave beam collision
   label: Handle wave beam collision
-  addr: 
+  addr:
     U: 0x50E6C
     E: 0x50F38
     J: 0x50E6C
@@ -3084,7 +3092,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls Draw HUD energy, missiles, super missiles, power bombs, weapon highlight, pistol bar, and OAM
+  notes: Calls Draw HUD energy, missiles, super missiles, power bombs, weapon highlight,
+    pistol bar, and OAM
 -
   desc: Check timer displayed
   label: CheckTimerDisplayed
@@ -3294,7 +3303,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the BLDALPHA for the current room transparency and does some hardware registers magic for the background effects (gradient and dark room)
+  notes: Sets the BLDALPHA for the current room transparency and does some hardware
+    registers magic for the background effects (gradient and dark room)
 -
   desc: Check room is dark
   addr:
@@ -3397,7 +3407,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the automatic BG0 and BG3 scrolling depending on the room effect/BG3 scrolling method
+  notes: Sets the automatic BG0 and BG3 scrolling depending on the room effect/BG3
+    scrolling method
 -
   desc: Update room info
   label: UpdateRoomInfo
@@ -3556,7 +3567,8 @@
   params:
   - Y position
   - X position
-  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior 0x52 (unused), 5 if bubbly ground, 0 otherwise
+  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior
+    0x52 (unused), 5 if bubbly ground, 0 otherwise
 -
   desc: Scroll screen
   label: ScrollScreen
@@ -3722,7 +3734,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if Samus is touching transitions, tanks, transparency triggers, or crumble blocks
+  notes: Checks if Samus is touching transitions, tanks, transparency triggers, or
+    crumble blocks
 -
   desc: Apply clipdata changing transparency
   label: ApplyClipdataChangingTransparency
@@ -3942,7 +3955,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the lightning effect should play, hardcoded to play in Crateria room 5
+  notes: Checks if the lightning effect should play, hardcoded to play in Crateria
+    room 5
 -
   desc: Process special background effect
   label: ProcessSpecialBGEffect
@@ -4241,7 +4255,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks for sustained input on the map screen, equipment screen, and easy sleep screen
+  notes: Checks for sustained input on the map screen, equipment screen, and easy
+    sleep screen
 -
   desc: Update minimap
   label: UpdateMinimap
@@ -4468,7 +4483,8 @@
   - '?'
   - Graphics slot
   return: null
-  notes: Draws a character for a message (item pop up, location name, map screen area name)
+  notes: Draws a character for a message (item pop up, location name, map screen area
+    name)
 -
   desc: Draw character for location text
   label: DrawCharacterForLocationText
