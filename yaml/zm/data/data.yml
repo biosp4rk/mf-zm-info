@@ -35,6 +35,15 @@
     J: 0x8F31C
   count: 0x2C4
 -
+  desc: Samus pulling self up Y velocity
+  label: SamusPullingSelfUpYVelocity
+  type: s16
+  addr:
+    U: 0x23A5B4
+    E: 0x23B240
+    J: 0x23A610
+  count: 0x4
+-
   desc: Random number table (0-F)
   label: RandomNumTable_0_F
   type: u8
@@ -141,6 +150,24 @@
     J: 0x2CCAD8
   count: 0x8
 -
+  desc: Reo idle animation Y position offsets
+  label: ReoIdleAnimYPositionOffsets
+  type: s16
+  addr:
+    U: 0x2CD604
+    E: 0x2CE290
+    J: 0x2CD660
+  count: 0x41
+-
+  desc: Reo idle animation X position offsets
+  label: ReoIdleAnimXPositionOffsets
+  type: s16
+  addr:
+    U: 0x2CD686
+    E: 0x2CE312
+    J: 0x2CD6E2
+  count: 0x51
+-
   desc: Metroid spawning Y position offsets
   label: MetroidSpawningYPositionOffsets
   type: s16
@@ -158,6 +185,33 @@
     E: 0x2ED86E
     J: 0x2ECC3E
   count: 0x52
+-
+  desc: Metroid (Samus grabbed) palette
+  label: MetroidSamusGrabbedPalette
+  type: palette
+  addr:
+    U: 0x2ED988
+    E: 0x2EE614
+    J: 0x2ED9E4
+  count: 0x5
+-
+  desc: Gunship taking off Y velocity
+  label: GunshipTakingOffYVelocity
+  type: s16
+  addr:
+    U: 0x309470
+    E: 0x30A0FC
+    J: 0x3094CC
+  count: 0x99
+-
+  desc: Gunship flying Y velocity
+  label: GunshipFlyingYVelocity
+  type: s16
+  addr:
+    U: 0x3095A2
+    E: 0x30A22E
+    J: 0x3095FE
+  count: 0x17
 -
   desc: Tumbling missile speeds
   label: TumblingMissileSpeeds
@@ -503,6 +557,14 @@
     J: 0x3655FC
   count: 0x340
 -
+  desc: Return one pointer
+  label: ReturnOnePtr
+  type: ptr.thumb
+  addr:
+    U: 0x36BDB0
+    E: 0x36CA3C
+    J: 0x36BE0C
+-
   desc: Debug menu tile parts
   label: DebugMenuTileParts
   addr:
@@ -547,7 +609,8 @@
     J: 0x40E094
   count: 0x10
 -
-  desc: Chozo target trigger events?
+  desc: Chozo target trigger events
+  label: ChozoTargetTriggerEvents
   type: u8
   addr:
     U: 0x40E058
@@ -1092,3 +1155,8 @@
     E: 0x775288
     J: 0x760CBC
   count: 0x18
+-
+  desc: NES Metroid data
+  label: NesMetroidData
+  addr: 0x7D8000
+  size: 0x1F734

@@ -124,8 +124,9 @@
 -
   desc: SRAM
   label: Sram
+  type: SaveFileRam
   addr: 0x2038000
-  size: 0x1220
+  count: 0x6
 -
   desc: Debug flag
   label: DebugFlag
@@ -630,6 +631,11 @@
   type: AmmoDigits
   addr: 0x3000914
 -
+  desc: Current particle effect OAM frame pointer
+  label: CurrParticleEffectOamFramePtr
+  type: ptr.oam
+  addr: 0x3000918
+-
   desc: Ammo digit graphics
   label: AmmoDigitGfx
   type: gfx
@@ -652,6 +658,12 @@
   type: EscapeTimerDigits
   addr: 0x300095E
 -
+  desc: Particle escape OAM frames
+  label: ParticleEscapeOamFrames
+  addr: 0x3000964
+  size: 0x2
+  count: 0x19
+-
   desc: Energy refill animation
   label: EnergyRefillAnimation
   type: u8
@@ -671,6 +683,12 @@
   label: PowerBombRefillAnimation
   type: u8
   addr: 0x3000999
+-
+  desc: Particle Samus reflection OAM frames
+  label: ParticleSamusReflectionOamFrames
+  addr: 0x300099A
+  size: 0x2
+  count: 0x49
 -
   desc: Projectile data
   label: ProjectileDataSlot0
@@ -1146,6 +1164,31 @@
   addr: 0x3005730
   size: 0xC
   count: 0x10
+-
+  desc: IME backup
+  label: IME_Backup
+  type: u16
+  addr: 0x30058B2
+-
+  desc: IE backup
+  label: IE_Backup
+  type: u16
+  addr: 0x30058B4
+-
+  desc: TM3CNT_H backup
+  label: TM3CNT_H_Backup
+  type: u16
+  addr: 0x30058B6
+-
+  desc: SIOCNT backup
+  label: SIOCNT_Backup
+  type: u16
+  addr: 0x30058B8
+-
+  desc: RCNT backup
+  label: RCNT_Backup
+  type: u16
+  addr: 0x30058BA
 -
   desc: Error flags
   label: ErrorFlags

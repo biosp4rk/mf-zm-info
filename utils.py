@@ -64,7 +64,7 @@ FIELDS = {
 PRIMITIVES = {
     "u8", "s8", "flags8",
     "u16", "s16", "flags16",
-    "u32", "s32", "ptr",
+    "u32", "s32", "ptr", "ascii",
     "char", "lz", "gfx", "palette"
 }
 
@@ -205,6 +205,7 @@ def output_yamls() -> None:
     for path, name in yaml_files:
         data = load_yaml(path)
         output_yaml(path, data, name)
+    print("Output YAML files")
 
 
 def output_jsons() -> None:

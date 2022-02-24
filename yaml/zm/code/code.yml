@@ -3245,6 +3245,19 @@
   - OAM pointer
   return: 1 if animation ended, 0 otherwise
 -
+  desc: Set current particle effect OAM frame pointer
+  label: SetCurrParticleEffectOamFramePtr
+  addr:
+    U: 0x541DC
+    E: 0x542A8
+    J: 0x541DC
+  size: 0x14
+  mode: thumb
+  params:
+  - Particle efffect pointer
+  - OAM pointer
+  return: null
+-
   desc: Start vertical screen shake
   label: StartVerticalScreenShake
   addr:
@@ -4162,6 +4175,19 @@
   - Event
   return: 1 if event is set, 0 otherwise
 -
+  desc: Setup next room?
+  label: SetupNextRoom
+  addr:
+    U: 0x60928
+    E: 0x60A0C
+    J: 0x60928
+  size: 0xBC
+  mode: thumb
+  params:
+  - Area ID
+  - Room ID
+  return: null
+-
   desc: Zebes escape cutscene subroutine
   label: ZebesEscapeCutsceneSubroutine
   addr:
@@ -4692,8 +4718,8 @@
   params: null
   return: null
 -
-  desc: Write SRAM
-  label: WriteSram
+  desc: Write SRAM data
+  label: WriteSramData
   addr:
     U: 0x73CE4
     E: 0x73E1C
@@ -4702,6 +4728,18 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Load SRAM data
+  label: LoadSramData
+  addr:
+    U: 0x74034
+    E: 0x7416C
+    J: 0x74050
+  size: 0x2AC
+  mode: thumb
+  params: null
+  return: null
+  notes: Loads the SRAM data of the current save file to RAM
 -
   desc: Write ASCII string
   label: WriteAsciiString
@@ -4752,6 +4790,17 @@
   mode: thumb
   params: null
   return: 1 if leaving, 0 otherwise
+-
+  desc: Start NES Metroid
+  label: StartNesMetroid
+  addr:
+    U: 0x7AA74
+    E: 0x7AD64
+    J: 0x7AA90
+  size: 0x150
+  mode: thumb
+  params: null
+  return: 1 if pressed B to cancel, 0 otherwise
 -
   desc: Soft reset subroutine
   label: SoftResetSubroutine
@@ -5086,3 +5135,17 @@
   - Dividend
   - Divisor
   return: Remainder
+-
+  desc: Copy bytes
+  label: CopyBytes
+  addr:
+    U: 0x8C6BC
+    E: 0x8D348
+    J: 0x8C718
+  size: 0x60
+  mode: thumb
+  params:
+  - Destination address
+  - Source address
+  - Size
+  return: null
