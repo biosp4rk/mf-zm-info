@@ -274,6 +274,18 @@ CollectedTank:
   - desc: Y position
     type: u8
     offset: 0x3
+CollectibleTankAnimation:
+  size: 0x4
+  vars:
+  - desc: Delay
+    type: u8
+    offset: 0x0
+  - desc: Frame
+    type: u8
+    offset: 0x1
+  - desc: Unused?
+    type: u16
+    offset: 0x2    
 CurrPowerBomb:
   size: 0x14
   vars:
@@ -1284,6 +1296,9 @@ SamusData:
   - desc: Current animation
     type: u8
     offset: 0x22
+  - desc: Shooting flag
+    type: u8
+    offset: 0x23
   - desc: Left boundry offset
     type: u16
     offset: 0x24

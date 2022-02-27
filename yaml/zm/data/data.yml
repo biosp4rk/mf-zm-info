@@ -123,6 +123,15 @@
     J: 0x2B3208
   count: 0x42
 -
+  desc: Chozo statue hint flashing palette rows
+  label: ChozoStatueHintFlashingPaletteRows
+  type: u8
+  addr:
+    U: 0x2B3BD4
+    E: 0x2B4860
+    J: 0x2B3C30
+  count: 0x4
+-
   desc: Zeela eyes falling from top speeds
   label: ZeelaEyesFallingFromTopSpeeds
   type: s16
@@ -167,6 +176,33 @@
     E: 0x2CE312
     J: 0x2CD6E2
   count: 0x51
+-
+  desc: Mellow idle Y velocity
+  label: MellowIdleYVelocity
+  type: s16
+  addr:
+    U: 0x2D88E4
+    E: 0x2D9570
+    J: 0x2D8940
+  count: 0x41
+-
+  desc: Mellow idle X velocity
+  label: MellowIdleXVelocity
+  type: s16
+  addr:
+    U: 0x2D8966
+    E: 0x2D95F2
+    J: 0x2D89C2
+  count: 0x51
+-
+  desc: Imago larva flashing belly palette rows
+  label: ImagoLarvaFlashingBellyPaletteRows
+  type: u8
+  addr:
+    U: 0x2DB248
+    E: 0x2DBED4
+    J: 0x2DB2A4
+  count: 0x4
 -
   desc: Metroid spawning Y position offsets
   label: MetroidSpawningYPositionOffsets
@@ -401,6 +437,15 @@
     J: 0x343DD0
   count: 0x73
 -
+  desc: Movement preventing clipdata values
+  label: MovementPreventingClipdataValues
+  type: u16
+  addr:
+    U: 0x3458E4
+    E: 0x346570
+    J: 0x345940
+  count: 0xF
+-
   desc: Elevator room pairs
   label: ElevatorRoomPairs
   type: ElevatorRoomPair
@@ -565,6 +610,15 @@
     E: 0x36CA3C
     J: 0x36BE0C
 -
+  desc: Cutscene data
+  label: CutsceneData
+  type: CutsceneData
+  addr:
+    U: 0x36BDB4
+    E: 0x36CA40
+    J: 0x36BE10
+  count: 0xF
+-
   desc: Debug menu tile parts
   label: DebugMenuTileParts
   addr:
@@ -628,6 +682,51 @@
     J: 0x45F4AE
   count: 0x5
   enum: ButtonInput
+-
+  desc: Ending images top half graphics pointers
+  label: EndingImagesTopHalfGfxPtrs
+  type: ptr.lz.gfx
+  addr:
+    U: 0x54C06C
+    E: 0x55A34C
+    J: 0x54C0C8
+  count: 0x8
+-
+  desc: Ending images bottom half graphics pointers
+  label: EndingImagesBottomHalfGfxPtrs
+  type: ptr.lz.gfx
+  addr:
+    U: 0x54C08C
+    E: 0x55A36C
+    J: 0x54C0E8
+  count: 0x8
+-
+  desc: Ending images top half tilemap pointers
+  label: EndingImagesTopHalfTilemapPtrs
+  type: ptr.lz.tilemap
+  addr:
+    U: 0x54C0AC
+    E: 0x55A38C
+    J: 0x54C108
+  count: 0x8
+-
+  desc: Ending images bottom half tilemap pointers
+  label: EndingImagesBottomHalfTilemapPtrs
+  type: ptr.lz.tilemap
+  addr:
+    U: 0x54C0CC
+    E: 0x55A3AC
+    J: 0x54C128
+  count: 0x8
+-
+  desc: Ending images palette pointers
+  label: EndingImagesPalettePtrs
+  type: ptr.palette
+  addr:
+    U: 0x54C0EC
+    E: 0x55A3CC
+    J: 0x54C148
+  count: 0x8
 -
   desc: Clipdata collision types
   label: ClipdataCollisionTypes
@@ -791,6 +890,15 @@
     E: 0x773BC8
     J: 0x75FE38
   count: 0xB
+-
+  desc: No/never reform destroy function pointers
+  label: NoNeverReformDestroyFunctionPtrs
+  type: ptr.thumb
+  addr:
+    U: 0x75FD64
+    E: 0x773C04
+    J: 0x75FE74
+  count: 0x5
 -
   desc: Hatch lock events pointers
   label: HatchLockEventPtrs

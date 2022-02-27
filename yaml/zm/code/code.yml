@@ -630,6 +630,32 @@
   params: null
   return: null
 -
+  desc: Samus check screw attack or speedbooster affecting environment
+  label: SamusCheckScrewSpeedAffectingEnvironment
+  addr:
+    U: 0x5368
+    E: 0x53BC
+    J: 0x5368
+  size: 0x10C
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus physics pointer
+  return: null
+-
+  desc: Samus check collision
+  label: SamusCheckCollision
+  addr:
+    U: 0x5F38
+    E: 0x5F8C
+    J: 0x5F38
+  size: 0x2DC
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus physics pointer
+  return: null
+-
   desc: Samus check set environment effect
   label: SamusCheckSetEnvironmentEffect
   addr:
@@ -1066,6 +1092,28 @@
     E: 0xBE60
     J: 0xBDE8
   size: 0x4F0
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Demo main loop
+  label: DemoMainLoop
+  addr:
+    U: 0xC2D8
+    E: 0xC350
+    J: 0xC2D8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Update demo input
+  label: UpdateDemoInput
+  addr:
+    U: 0xC384
+    E: 0xC3FC
+    J: 0xC384
+  size: 0x90
   mode: thumb
   params: null
   return: null
@@ -2577,19 +2625,7 @@
   mode: thumb
   params:
   - Sprite data pointer
-  return: null
--
-  desc: Power bomb deal damage
-  label: PowerBombDealDamage
-  addr:
-    U: 0x504EC
-    E: 0x505B8
-    J: 0x504EC
-  size: 0xC0
-  mode: thumb
-  params:
-  - Sprite data pointer
-  return: null
+  return: Sprite data pointer
 -
   desc: Projectile hit solid sprite
   label: ProjectileHitSolidSprite
@@ -2598,6 +2634,18 @@
     E: 0x50598
     J: 0x504CC
   size: 0x20
+  mode: thumb
+  params:
+  - Sprite data pointer
+  return: Sprite data pointer
+-
+  desc: Power bomb deal damage
+  label: PowerBombDealDamage
+  addr:
+    U: 0x504EC
+    E: 0x505B8
+    J: 0x504EC
+  size: 0xC0
   mode: thumb
   params:
   - Sprite data pointer
@@ -3674,6 +3722,42 @@
   params: null
   return: null
 -
+  desc: Destroy non-reform blocks
+  label: DestroyNonReformBlocks
+  addr:
+    U: 0x592C4
+    E: 0x5938C
+    J: 0x592C4
+  size: 0x6C
+  mode: thumb
+  params:
+  - Coordinates pointer?
+  return: 1 if valid block, 0 otherwise?
+-
+  desc: Destroy single breakable block
+  label: DestroySingleBreakableBlock
+  addr:
+    U: 0x5936C
+    E: 0x59434
+    J: 0x5936C
+  size: 0x3C
+  mode: thumb
+  params:
+  - Coordinates pointer?
+  return: always 1
+-
+  desc: Destroy 2x2 block
+  label: Destroy2x2Block
+  addr:
+    U: 0x593A8
+    E: 0x59470
+    J: 0x593A8
+  size: 0xD8
+  mode: thumb
+  params:
+  - Coordinates pointer?
+  return: always 1
+-
   desc: Remove never reform blocks
   label: RemoveNeverReformBlocks
   addr:
@@ -3685,6 +3769,34 @@
   params: null
   return: null
 -
+  desc: Apply current clipdata affecting action
+  label: ApplyCurrClipdataAffectingAction
+  addr:
+    U: 0x5987C
+    E: 0x59944
+    J: 0x5987C
+  size: 0x164
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  - Clipdata block value
+  return: Unused?
+-
+  desc: Samus apply screw attack or speedbooster damage to environment
+  label: SamusApplyScrewSpeedDamageToEnvironment
+  addr:
+    U: 0x59A9C
+    E: 0x59B64
+    J: 0x59A9C
+  size: 0xB8
+  mode: thumb
+  params:
+  - X position
+  - Y position
+  - Destructing action (0 = none, 1 = speedbooster, 2 = screw attack, 3 = both)
+  return: Clipdata value?
+-
   desc: Update broken reform blocks
   label: UpdateBrokenReformBlocks
   addr:
@@ -3694,6 +3806,47 @@
   size: 0x120
   mode: thumb
   params: null
+  return: null
+-
+  desc: Breaking or reforming block animation
+  label: BreakingOrReformingBlockAnimation
+  addr:
+    U: 0x59C74
+    E: 0x59D3C
+    J: 0x59C74
+  size: 0x134
+  mode: thumb
+  params:
+  - Broken reform block pointer
+  return: null
+-
+  desc: Store broken reform block
+  label: StoreBrokenReformBlock
+  addr:
+    U: 0x59DA8
+    E: 0x59E70
+    J: 0x59DA8
+  size: 0xAC
+  mode: thumb
+  params:
+  - Block type
+  - X position
+  - Y position
+  - '?'
+  return: 1 if could store, 0 otherwise
+-
+  desc: Store broken non-reform block
+  label: StoreBrokenNonReformBlock
+  addr:
+    U: 0x59E54
+    E: 0x59F1C
+    J: 0x59E54
+  size: 0xA4
+  mode: thumb
+  params:
+  - X position
+  - Y position
+  - Block type
   return: null
 -
   desc: Check Samus in reforming block
@@ -3709,6 +3862,31 @@
   - Block Y position (blocks)
   return: 1 if in block, 0 otherwise
 -
+  desc: Start bomb chain
+  label: StartBombChain
+  addr:
+    U: 0x59FE0
+    E: 0x5A0A8
+    J: 0x59FE0
+  size: 0xB8
+  mode: thumb
+  params:
+  - Direction?
+  - X position
+  - Y position
+  return: 1 if chain started, 0 otherwise
+-
+  desc: Process bomb chains
+  label: ProcessBombChains
+  addr:
+    U: 0x5A098
+    E: 0x5A160
+    J: 0x5A098
+  size: 0x298
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Set BG1 block value
   label: SetBG1BlockValue
   addr:
@@ -3722,6 +3900,21 @@
   - Y position
   - X position
   return: null
+-
+  desc: Set raw BG1 block value
+  label: SetRawBG1BlockValue
+  addr:
+    U: 0x5A628
+    E: 0x5A6F0
+    J: 0x5A628
+  size: 0x24
+  mode: thumb
+  params:
+  - Value
+  - Y position
+  - X position
+  return: null
+  notes: Does not update tilemap or VRAM
 -
   desc: Set clipdata block value
   label: SetClipdataBlockValue
@@ -3913,6 +4106,29 @@
   params:
   - Cutscene number
   return: null
+-
+  desc: Start special background fading
+  label: StartSpecialBGFading
+  addr:
+    U: 0x5C074
+    E: 0x5C13C
+    J: 0x5C074
+  size: 0x18
+  mode: thumb
+  params:
+  - Fade type
+  return: null
+-
+  desc: Process special fading effect
+  label: ProcessSpecialFadingEffect
+  addr:
+    U: 0x5C460
+    E: 0x5C528
+    J: 0x5C460
+  size: 0x60
+  mode: thumb
+  params: null
+  return: 1 if ?, 0 otherwise
 -
   desc: Update animated graphics
   label: UpdateAnimatedGraphics
@@ -4221,6 +4437,18 @@
   params: null
   return: 1 if cutscene ended, 0 otherwise
 -
+  desc: End cutscene functions
+  label: EndCutsceneFunctions
+  addr:
+    U: 0x61228
+    E: 0x61310
+    J: 0x61228
+  size: 0x4
+  mode: thumb
+  params: null
+  return: 1 to indicate end of functions
+  notes: Returns one, always used (except for story text cutscenes) as the last function in an array of cutscene subroutine data, marking the end of the cutscene
+-
   desc: Check draw in-game time and tanks
   label: CheckDrawTimeAndTanks
   addr:
@@ -4437,6 +4665,18 @@
   params:
   - '?'
   - '?'
+  return: null
+-
+  desc: Get all minimap data
+  label: GetAllMinimapData
+  addr:
+    U: 0x6DF80
+    E: 0x6E070
+    J: 0x6DF9C
+  size: 0x7C
+  mode: thumb
+  params:
+  - Always 0xFF?
   return: null
 -
   desc: Check explored areas
@@ -4754,6 +4994,50 @@
   - String pointer
   - Length
   return: null
+-
+  desc: Write SRAM arrays
+  label: WriteSramArrays
+  addr:
+    U: 0x747BC
+    E: 0x748F4
+    J: 0x747D8
+  size: 0x100
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Load SRAM arrays
+  label: LoadSramArrays
+  addr:
+    U: 0x748BC
+    E: 0x749F4
+    J: 0x748D8
+  size: 0x128
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Check load save file
+  addr:
+    U: 0x7596C
+    E: 0x75AB0
+    J: 0x75990
+  size: 0x128
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Initialize save file
+  label: InitSaveFile
+  addr:
+    U: 0x75A94
+    E: 0x75BD8
+    J: 0x75AB8
+  size: 0x164
+  mode: thumb
+  params: null
+  return: null
+  notes: Initializes a new, blank save file
 -
   desc: Erase SRAM menu subroutine
   label: EraseSramMenuSubroutine

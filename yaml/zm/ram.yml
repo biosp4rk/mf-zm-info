@@ -419,10 +419,10 @@
   type: CurrRoomEntry
   addr: 0x30000BC
 -
-  desc: Current clipdata behavior type?
+  desc: Current movement preventing clipdata
   type: u8
   addr: 0x30000DC
-  enum: ClipdataBehaviorType
+  enum: MovementPreventingClipdata
 -
   desc: Current affecting hazard
   label: CurrAffectingHazard
@@ -1115,6 +1115,11 @@
   type: u16
   addr: 0x3005518
 -
+  desc: Current special background effect
+  label: CurrSpecialBGEffect
+  type: SpecialBGEffect
+  addr: 0x3005520
+-
   desc: Breaking and reforming blocks
   label: BreakingAndReformingBlocks
   type: BreakingOrReformingBlock
@@ -1135,6 +1140,12 @@
   label: LastTankCollectedYPosition
   type: u8
   addr: 0x30056AB
+-
+  desc: Bomb chain data
+  label: BombChainData
+  type: BombChainData
+  addr: 0x30056AC
+  count: 0x4
 -
   desc: BG0 transparency related?
   addr: 0x30056C4

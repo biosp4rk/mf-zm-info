@@ -242,6 +242,21 @@ BackupOfIORegisters:
   - desc: Backup of BG0CNT (BG0 control)
     type: u16
     offset: 0x10
+BombChainData:
+  size: 0x4
+  vars:
+  - desc: Stage?
+    type: u8
+    offset: 0x0
+  - desc: Starting X position
+    type: u8
+    offset: 0x1
+  - desc: Starting Y position
+    type: u8
+    offset: 0x2
+  - desc: Direction?
+    type: u8
+    offset: 0x3
 BossMapIcon:
   size: 0x5
   vars:
@@ -514,6 +529,26 @@ CurrScrolls:
   - desc: Second scroll Y end
     type: u16
     offset: 0x14
+CutsceneData:
+  size: 0x10
+  vars:
+  - desc: Cutscene number?
+    type: u8
+    offset: 0x0
+  - desc: Music related?
+    type: u16
+    offset: 0x2
+  - desc: Special background fade
+    type: u8
+    offset: 0x4
+    enum: SpecialBGFadeType
+  - desc: Event
+    type: u8
+    offset: 0x5
+    enum: Event
+  - desc: Pointer to subroutine
+    type: ptr.thumb
+    offset: 0xC
 CutsceneInfo:
   size: 0x10
   vars:
@@ -542,6 +577,15 @@ CutsceneInfo:
     type: u8
     offset: 0xD
     enum: Event
+CutsceneSubroutineData:
+  size: 0x8
+  vars:
+  - desc: Function pointer
+    type: ptr.thumb
+    offset: 0x0
+  - desc: OAM related number
+    type: u8
+    offset: 0x4
 DoorEntry:
   size: 0xC
   vars:
@@ -761,6 +805,15 @@ HatchData:
   - desc: Animation counter
     type: u8
     offset: 0x4
+  - desc: X position
+    type: u8
+    offset: 0x5
+  - desc: Y position
+    type: u8
+    offset: 0x6
+  - desc: Source door number
+    type: u8
+    offset: 0x7
 HatchLockEvent:
   size: 0x8
   vars:
@@ -1021,7 +1074,7 @@ ProjectileData:
   - desc: Movement stage
     type: u8
     offset: 0x11
-  - desc: Category?
+  - desc: Draw distance offset
     type: u8
     offset: 0x12
   - desc: Timer/counter
@@ -1246,6 +1299,9 @@ SamusEnvironmentEffect:
   - desc: Animation frame
     type: u8
     offset: 0x2
+  - desc: Breathing bubbles timer
+    type: u8
+    offset: 0x3
   - desc: X position
     type: u16
     offset: 0x4
@@ -1270,12 +1326,22 @@ SamusHazardDamage:
 SamusPhysics:
   size: 0x78
   vars:
+  - desc: Samus OAM frame pointers
+    type: ptr.oam
+    offset: 0x0
+    count: 0x12
   - desc: Arm cannon X position offset
     type: s16
     offset: 0x4A
   - desc: Arm cannon Y position offset
     type: s16
     offset: 0x4C
+  - desc: Horizontal movement direction (0 = none, 1 = left, 2 = right)
+    type: u8
+    offset: 0x4E
+  - desc: Vertical movement direction (0 = none, 1 = up, 2 = down)
+    type: u8
+    offset: 0x4F
   - desc: Hitbox left offset
     type: s16
     offset: 0x50
@@ -1618,6 +1684,31 @@ SpecialBGEffect:
   - desc: '?'
     type: u8
     offset: 0x7
+SpecialBGFade:
+  size: 0x8
+  vars:
+  - desc: Type
+    type: u8
+    offset: 0x0
+    enum: SpecialBGFadeType
+  - desc: Stage
+    type: u8
+    offset: 0x1
+  - desc: Timer?
+    type: u8
+    offset: 0x2
+  - desc: Fade in/out timer?
+    type: u8
+    offset: 0x3
+  - desc: '?'
+    type: u8
+    offset: 0x4
+  - desc: Flag?
+    type: u8
+    offset: 0x5
+  - desc: '?'
+    type: u16
+    offset: 0x6
 SpriteData:
   size: 0x38
   vars:
