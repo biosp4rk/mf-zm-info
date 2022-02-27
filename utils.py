@@ -64,7 +64,8 @@ FIELDS = {
 PRIMITIVES = {
     "u8", "s8", "flags8",
     "u16", "s16", "flags16",
-    "u32", "s32", "ptr", "ascii",
+    "u32", "s32", "ptr",
+    "thumb", "ascii",
     "char", "lz", "gfx", "palette"
 }
 

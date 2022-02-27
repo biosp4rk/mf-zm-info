@@ -209,6 +209,30 @@ BGPtrsAndDimensions:
   - desc: Height of clipdata in blocks
     type: u16
     offset: 0x1E
+BLDALPHAData:
+  size: 0x8
+  vars:
+  - desc: '?'
+    type: u16
+    offset: 0x0
+  - desc: '?'
+    type: u8
+    offset: 0x2
+  - desc: EVB coefficient
+    type: u8
+    offset: 0x3
+  - desc: EVA coefficient
+    type: u8
+    offset: 0x4
+  - desc: '?'
+    type: u8
+    offset: 0x5
+  - desc: '?'
+    type: u8
+    offset: 0x6
+  - desc: Fading related
+    type: u8
+    offset: 0x7
 BackupOfIORegisters:
   size: 0x12
   vars:
@@ -363,6 +387,22 @@ ChozoTargetCheck:
   - desc: Equipment bit flag or event number
     type: u8
     offset: 0x1
+CurrDemo:
+  size: 0x4
+  vars:
+  - desc: Number
+    type: u8
+    offset: 0x0
+  - desc: Playing flag
+    type: u8
+    offset: 0x1
+  - desc: Status
+    type: u8
+    offset: 0x2
+    enum: DemoStatus
+  - desc: '?'
+    type: u8
+    offset: 0x3
 CurrMessage:
   size: 0x10
   vars:
@@ -390,7 +430,7 @@ CurrPowerBomb:
   - desc: Animation state
     type: u8
     offset: 0x0
-  - desc: '?'
+  - desc: Stage?
     type: u8
     offset: 0x1
   - desc: Semi-minor axis
@@ -414,7 +454,13 @@ CurrPowerBomb:
   - desc: Hitbox bottom offset
     type: s16
     offset: 0xE
-  - desc: '?'
+  - desc: Power bomb placed flag
+    type: u8
+    offset: 0x10
+  - desc: Always 0 (unused)
+    type: u8
+    offset: 0x11
+  - desc: Always 0 (unused)
     type: u8
     offset: 0x12
 CurrRoomEntry:
@@ -473,7 +519,7 @@ CurrRoomEntry:
   - desc: Room effect Y position
     type: u16
     offset: 0x12
-  - desc: Haze related?
+  - desc: Room effect copy
     type: u8
     offset: 0x14
   - desc: Music track
@@ -831,6 +877,56 @@ HatchLockEvent:
   - desc: Hatches to lock
     type: flags8
     offset: 0x3
+HatchesLocked:
+  size: 0x6
+  vars:
+  - desc: Hatches locked with timer
+    type: u16
+    offset: 0x0
+  - desc: Hatches locked with event or door type 7
+    type: u16
+    offset: 0x2
+  - desc: Unused?
+    type: u16
+    offset: 0x4
+HazeData:
+  size: 0x4
+  vars:
+  - desc: Haze value
+    type: u8
+    offset: 0x0
+    enum: HazeType
+  - desc: Room effect
+    type: u8
+    offset: 0x1
+    enum: RoomEffect
+  - desc: BG0 water moving flag
+    type: u8
+    offset: 0x2
+  - desc: Power bomb related
+    type: u8
+    offset: 0x3
+HazeLoops:
+  size: 0x8
+  vars:
+  - desc: Speed?
+    type: u16
+    offset: 0x0
+  - desc: '?'
+    type: u8
+    offset: 0x2
+  - desc: Flag?
+    type: u8
+    offset: 0x3
+  - desc: Sub-data
+    type: u16
+    offset: 0x4
+  - desc: '?'
+    type: u8
+    offset: 0x6
+  - desc: Flag?
+    type: u8
+    offset: 0x7
 InGameTime:
   size: 0x4
   vars:
@@ -884,10 +980,10 @@ LavaDamageTimer:
     type: u8
     offset: 0x4
 LockScreenPosition:
-  size: 0xC
+  size: 0x6
   vars:
   - desc: Lock position flag
-    type: u16
+    type: u8
     offset: 0x0
   - desc: X position of screen center
     type: u16

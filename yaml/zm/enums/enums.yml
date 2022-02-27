@@ -398,6 +398,13 @@ Cutscene:
   val: 0xD
 - desc: Activating escape ship
   val: 0xE
+DemoStatus:
+- desc: None
+  val: 0x0
+- desc: Playing
+  val: 0x1
+- desc: Loading
+  val: 0x10
 DiagonalAim:
 - desc: None
   val: 0x0
@@ -535,6 +542,23 @@ GraphicsAnimationType:
   val: 0x1
 - desc: Alternate
   val: 0x4
+HatchType:
+- desc: None
+  val: 0x0
+- desc: Unused?
+  val: 0x1
+- desc: Normal
+  val: 0x2
+- desc: Missile
+  val: 0x3
+- desc: Super missile
+  val: 0x4
+- desc: Power bomb
+  val: 0x5
+- desc: Locked
+  val: 0x6
+- desc: Locked (not gray)
+  val: 0x7
 HazardType:
 - desc: None
   val: 0x0
@@ -552,6 +576,29 @@ HazardType:
   val: 0x6
 - desc: Cold
   val: 0x7
+HazeType:
+- desc: None
+  val: 0x0
+- desc: Gradient related?
+  val: 0x1
+- desc: BG3
+  val: 0x2
+- desc: BG3 (strong in effect, weak outside)
+  val: 0x3
+- desc: BG3 (none in effect, weak outside)
+  val: 0x4
+- desc: BG3/BG2 (strong in effect, weak outside for BG3)
+  val: 0x5
+- desc: '? (used by room effect 0xC)'
+  val: 0x6
+- desc: Power bomb expanding
+  val: 0x7
+- desc: Power bomb retracting
+  val: 0x8
+- desc: After power bomb
+  val: 0x9
+- desc: Cold/snowflakes (no effect)
+  val: 0xA
 HorizontalDirection:
 - desc: Right
   val: 0x10
@@ -878,6 +925,10 @@ SamusEnvironmentEffect:
   val: 0xE
 - desc: Landing on very dusty ground
   val: 0xF
+- desc: Skidding on wet ground
+  val: 0x10
+- desc: Skidding on dusty ground
+  val: 0x11
 - desc: Breathing bubbles
   val: 0x12
 SamusPose:

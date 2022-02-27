@@ -1016,6 +1016,33 @@
   params: null
   return: null
 -
+  desc: Metroid move
+  label: MetroidMove
+  addr:
+    U: 0x353DC
+    E: 0x354A8
+    J: 0x353DC
+  size: 0x30C
+  mode: thumb
+  params:
+  - Samus Y position
+  - Samus X position
+  - Y speed
+  - X speed
+  - Speed divisor
+  return: null
+-
+  desc: Metroid check Samus grabbed
+  label: MetroidCheckSamusGrabbed
+  addr:
+    U: 0x3595C
+    E: 0x35A28
+    J: 0x3595C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: 1 if Samus already grabbed, 0 otherwise
+-
   desc: Metroid AI
   label: Metroid_AI
   addr:

@@ -242,7 +242,7 @@
 -
   desc: Current demo
   label: CurrDemo
-  type: u8
+  type: CurrDemo
   addr: 0x3000038
 -
   desc: Reboot game flag
@@ -359,9 +359,11 @@
   type: NumItemsCollected
   addr: 0x3000063
 -
-  desc: Haze related?
+  desc: Current haze value
+  label: CurrHazeValue
   type: u8
   addr: 0x300006B
+  enum: HazeType
 -
   desc: Room effect actual Y position
   label: RoomEffectActualYPosition
@@ -372,6 +374,11 @@
   label: RoomEffectYPositionOffset
   type: u16
   addr: 0x300006E
+-
+  desc: DISPCNT backup
+  label: DISPCNTBackup
+  type: u16
+  addr: 0x3000076
 -
   desc: Spriteset
   label: SpritesetNum
@@ -996,6 +1003,12 @@
   addr: 0x300177E
   enum: AreaBitFlags
 -
+  desc: Haze process code
+  label: HazeProcessCode
+  type: thumb
+  addr: 0x3001944
+  size: 0x200
+-
   desc: Pointer to V-Blank code
   label: VBlankCodePtr
   type: ptr.thumb
@@ -1076,6 +1089,11 @@
   addr: 0x300545C
   count: 0x10
 -
+  desc: Number of valid hatches in current room
+  label: NumValidHatchesInCurrRoom
+  type: u8
+  addr: 0x30054DC
+-
   desc: Door position start
   label: DoorPositionStart
   type: DoorPositionStart
@@ -1085,6 +1103,11 @@
   label: DoorsUnlockedFlag
   type: u8
   addr: 0x30054E4
+-
+  desc: Hatches locked
+  label: HatchesLocked
+  type: HatchesLocked
+  addr: 0x30054E6
 -
   desc: BG3 movement
   label: BG3Movement
@@ -1151,6 +1174,16 @@
   addr: 0x30056C4
   size: 0x8
 -
+  desc: BLDALPHA related data 1
+  label: BLDALPHARelatedData1
+  type: BLDALPHAData
+  addr: 0x30056CC
+-
+  desc: BLDALPHA related data 2
+  label: BLDALPHARelatedData2
+  type: BLDALPHAData
+  addr: 0x30056D4
+-
   desc: Animated palette timing
   label: AnimatedPaletteTiming
   type: AnimatedPaletteTiming
@@ -1166,9 +1199,20 @@
   type: SpecialBGEffect
   addr: 0x30056F8
 -
-  desc: Wavy background effect related?
-  type: u8
-  addr: 0x3005729
+  desc: Haze loops 1
+  label: HazeLoops1
+  type: HazeLoops
+  addr: 0x300571C
+-
+  desc: Haze loops 2
+  label: HazeLoops2
+  type: HazeLoops
+  addr: 0x3005724
+-
+  desc: Haze process code pointer
+  label: HazeProcessCodePtr
+  type: ptr.thumb
+  addr: 0x300572C
 -
   desc: Animated tileset data
   label: AnimatedTilesetData
