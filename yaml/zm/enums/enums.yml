@@ -419,6 +419,15 @@ Difficulty:
   val: 0x1
 - desc: Hard
   val: 0x2
+Direction:
+- desc: Right
+  val: 0x10
+- desc: Left
+  val: 0x20
+- desc: Up
+  val: 0x40
+- desc: Down
+  val: 0x80
 DoorType:
 - desc: Area connection
   val: 0x1
@@ -453,6 +462,19 @@ Elevator:
   val: 0x6
 - desc: Crateria to Norfair
   val: 0x7
+EndingFlags:
+- desc: None
+  val: 0x0
+- desc: New time attack record
+  val: 0x1
+- desc: Unused?
+  val: 0x10
+- desc: First time attack clear
+  val: 0x20
+- desc: First hard mode clear
+  val: 0x40
+- desc: First clear
+  val: 0x80
 ErrorFlags:
 - desc: None
   val: 0x0
@@ -599,11 +621,6 @@ HazeType:
   val: 0x9
 - desc: Cold/snowflakes (no effect)
   val: 0xA
-HorizontalDirection:
-- desc: Right
-  val: 0x10
-- desc: Left
-  val: 0x20
 LZ77BackgroundSize:
 - desc: 256x256
   val: 0x0
@@ -789,6 +806,23 @@ ParticleEffect:
   val: 0x3B
 - desc: Escape
   val: 0x3C
+ParticleEffectStatus:
+- desc: Exists
+  val: 0x1
+- desc: On screen
+  val: 0x2
+- desc: Is explosion
+  val: 0x4
+- desc: Not drawn
+  val: 0x8
+- desc: Special effect
+  val: 0x10
+- desc: Low background priority
+  val: 0x20
+- desc: Absolute position
+  val: 0x40
+- desc: X flip
+  val: 0x80
 PauseScreenFlag:
 - desc: Unknown
   val: 0x1
@@ -822,7 +856,7 @@ ProjectileStatus:
   val: 0x1
 - desc: On-screen
   val: 0x2
-- desc: Exploding?
+- desc: Not drawn
   val: 0x4
 - desc: Ignore collision?
   val: 0x8
@@ -1080,6 +1114,10 @@ SamusStandingStatus:
   val: 0x2
 - desc: Not in control of Samus
   val: 0x3
+- desc: Forced pose
+  val: 0x4
+- desc: Hanging
+  val: 0x5
 ScrollsFlag:
 - desc: No scrolls
   val: 0x2
@@ -1156,17 +1194,17 @@ SpecialBGFadeType:
 - desc: '?'
   val: 0x18
 SpriteProperties:
-- desc: No collision?
+- desc: Always active (ignores prevent movement timer)
   val: 0x1
 - desc: '?'
   val: 0x2
-- desc: Projectile?
+- desc: Projectile
   val: 0x4
 - desc: Solid for projectiles
   val: 0x8
 - desc: Destroyed?
   val: 0x10
-- desc: Message banner?
+- desc: Absolute position
   val: 0x20
 - desc: Immune to projectiles
   val: 0x40

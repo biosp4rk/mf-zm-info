@@ -43,9 +43,11 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 - `flags16` - 16 bit integer used for bit flags
 - `u32` - Unsigned 32 bit integer
 - `s32` - Signed 32 bit integer
-- `ptr` - Pointer to an address
-- `char` - Text character
+- `ptr` - 32 bit pointer to an address
+- `ascii` - 8 bit ASCII character
+- `char` - 16 bit in-game text character
 - `lz` - LZ77 compressed
 - `gfx` - Graphics, 32 bytes per tile
 - `palette` - Palette, 32 bytes per row
+- `thumb` - 16 bit THUMB code
     

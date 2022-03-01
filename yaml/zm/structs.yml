@@ -1,3 +1,21 @@
+ActiveScroll:
+  size: 0xC
+  vars:
+  - desc: Samus within scroll flag
+    type: u8
+    offset: 0x0
+  - desc: X end
+    type: u16
+    offset: 0x2
+  - desc: X start
+    type: u16
+    offset: 0x4
+  - desc: Y start
+    type: u16
+    offset: 0x6
+  - desc: Y end
+    type: u16
+    offset: 0x8
 AmmoDigits:
   size: 0x4
   vars:
@@ -300,6 +318,21 @@ BossMapIcon:
   - desc: Pixel offset
     type: u8
     offset: 0x4
+BoxBounds:
+  size: 0x8
+  vars:
+  - desc: Left offset
+    type: s16
+    offset: 0x0
+  - desc: Top offset
+    type: s16
+    offset: 0x2
+  - desc: Right offset
+    type: s16
+    offset: 0x4
+  - desc: Bottom offset
+    type: s16
+    offset: 0x6
 BreakingOrReformingBlock:
   size: 0x8
   vars:
@@ -387,6 +420,17 @@ ChozoTargetCheck:
   - desc: Equipment bit flag or event number
     type: u8
     offset: 0x1
+CurrAffectingClipdata:
+  size: 0x4
+  vars:
+  - desc: Movement preventing clipdata
+    type: u16
+    offset: 0x0
+    enum: MovementPreventingClipdata
+  - desc: Current affecting hazard
+    type: u16
+    offset: 0x2
+    enum: HazardType
 CurrDemo:
   size: 0x4
   vars:
@@ -406,24 +450,63 @@ CurrDemo:
 CurrMessage:
   size: 0x10
   vars:
-  - desc: '?'
+  - desc: Sub data 1
+    type: CurrMessageSubData1
+    offset: 0x0
+  - desc: Sub data 2
+    type: CurrMessageSubData2
+    offset: 0x4
+  - desc: Sub data 3
+    type: CurrMessageSubData3
+    offset: 0x8
+  - desc: Sub data 4
+    type: CurrMessageSubData4
+    offset: 0xC
+CurrMessageSubData1:
+  size: 0x4
+  vars:
+  - desc: Current character index
     type: u16
     offset: 0x2
-  - desc: '?'
+  - desc: Current indent
     type: u16
-    offset: 0x4
-  - desc: '?'
+    offset: 0x2
+CurrMessageSubData2:
+  size: 0x4
+  vars:
+  - desc: Letter delay
+    type: u16
+    offset: 0x0
+  - desc: Character ID (unused?)
     type: u8
-    offset: 0x7
+    offset: 0x2
+  - desc: Current line
+    type: u8
+    offset: 0x3
+CurrMessageSubData3:
+  size: 0x4
+  vars:
+  - desc: Sub data
+    type: u16
+    offset: 0x0
   - desc: Message number
     type: u8
-    offset: 0xA
+    offset: 0x2
   - desc: Graphics slot
     type: u8
-    offset: 0xB
+    offset: 0x3
+CurrMessageSubData4:
+  size: 0x4
+  vars:
   - desc: '?'
     type: u8
-    offset: 0xC
+    offset: 0x0
+  - desc: Is message flag
+    type: u8
+    offset: 0x1
+  - desc: '?'
+    type: u8
+    offset: 0x2
 CurrPowerBomb:
   size: 0x14
   vars:
@@ -545,36 +628,12 @@ CurrRoomEntry:
 CurrScrolls:
   size: 0x18
   vars:
-  - desc: Within scroll flag
-    type: u8
+  - desc: First scroll
+    type: ActiveScroll
     offset: 0x0
-  - desc: Current scroll X end
-    type: u16
-    offset: 0x2
-  - desc: Current scroll X start
-    type: u16
-    offset: 0x4
-  - desc: Current scroll Y start
-    type: u16
-    offset: 0x6
-  - desc: Current scroll Y end
-    type: u16
-    offset: 0x8
-  - desc: Within overlapping scrolls flag
-    type: u8
+  - desc: Second scroll
+    type: ActiveScroll
     offset: 0xC
-  - desc: Second scroll X end
-    type: u16
-    offset: 0xE
-  - desc: Second scroll X start
-    type: u16
-    offset: 0x10
-  - desc: Second scroll Y start
-    type: u16
-    offset: 0x12
-  - desc: Second scroll Y end
-    type: u16
-    offset: 0x14
 CutsceneData:
   size: 0x10
   vars:
@@ -991,6 +1050,24 @@ LockScreenPosition:
   - desc: Y position of screen center
     type: u16
     offset: 0x4
+MetroidFusionGalleryData:
+  size: 0x14
+  vars:
+  - desc: Top half graphics pointer
+    type: ptr.gfx
+    offset: 0x0
+  - desc: Bottom half graphics pointer
+    type: ptr.gfx
+    offset: 0x4
+  - desc: Top half tilemap pointer
+    type: ptr.tilemap
+    offset: 0x8
+  - desc: Bottom half tilemap pointer
+    type: ptr.tilemap
+    offset: 0xC
+  - desc: Palette pointer
+    type: ptr.palette
+    offset: 0x10
 MusicInfo:
   size: 0xC24
   vars:
@@ -1116,6 +1193,7 @@ ParticleEffect:
   - desc: Status
     type: flags8
     offset: 0x0
+    enum: ParticleEffectStatus
   - desc: Animation frame counter
     type: u8
     offset: 0x1
@@ -1327,10 +1405,14 @@ SamusData:
   - desc: Last wall touched mid-air
     type: u16
     offset: 0xC
-  - desc: Direction
+  - desc: Left/right direction
     type: u16
     offset: 0xE
-    enum: HorizontalDirection
+    enum: Direction
+  - desc: Elevator direction
+    type: u16
+    offset: 0x10
+    enum: Direction
   - desc: X position
     type: u16
     offset: 0x12
@@ -1413,11 +1495,23 @@ SamusHazardDamage:
   - desc: Hazard damage timer
     type: u8
     offset: 0x0
-  - desc: '?'
+  - desc: Knockback timer
     type: u16
     offset: 0x2
-  - desc: Timer?
+  - desc: Palette timer
     type: u8
+    offset: 0x4
+SamusHitbox:
+  size: 0x6
+  vars:
+  - desc: Left offset
+    type: s16
+    offset: 0x0
+  - desc: Right offset
+    type: s16
+    offset: 0x2
+  - desc: Top offset
+    type: s16
     offset: 0x4
 SamusPhysics:
   size: 0x78
@@ -1447,6 +1541,19 @@ SamusPhysics:
   - desc: Hitbox top offset
     type: s16
     offset: 0x54
+  - desc: Standing status
+    type: u8
+    offset: 0x56
+    enum: SamusStandingStatus
+  - desc: Hitbox array offset
+    type: u8
+    offset: 0x57
+  - desc: Is touching side of block flag
+    type: u8
+    offset: 0x58
+  - desc: Is touching top of block flag
+    type: u8
+    offset: 0x59
   - desc: Slowed by liquid flag
     type: u8
     offset: 0x5B
@@ -1477,12 +1584,31 @@ SamusPhysics:
   - desc: Mid-air morphed X velocity cap
     type: u16
     offset: 0x6C
-  - desc: '?'
+  - desc: Draw distance left offset
     type: s16
     offset: 0x6E
-  - desc: '?'
+  - desc: Draw distance top offset
     type: s16
     offset: 0x70
+  - desc: Draw distance right offset
+    type: s16
+    offset: 0x72
+  - desc: Draw distance bottom offset
+    type: s16
+    offset: 0x74
+SamusPoseDrawInfo:
+  size: 0x3
+  vars:
+  - desc: Draw distance array offset
+    type: u8
+    offset: 0x0
+  - desc: Hitbox array offset
+    type: u8
+    offset: 0x1
+  - desc: Standing status
+    type: u8
+    offset: 0x2
+    enum: SamusStandingStatus
 SamusWeaponInfo:
   size: 0x8
   vars:
@@ -1600,8 +1726,8 @@ SaveFileRam:
   - desc: Samus echo
     type: SamusEcho
     offset: 0x88
-  - desc: Screw attack animation
-    type: ScrewAttackAnimation
+  - desc: Screw attack and speed booster animation
+    type: ScrewAttackSpeedBoosterAnimation
     offset: 0x194
   - desc: Equipment
     type: Equipment
@@ -1683,10 +1809,10 @@ ScreenShake:
   - desc: '?'
     type: u8
     offset: 0x3
-ScrewAttackAnimation:
+ScrewAttackSpeedBoosterAnimation:
   size: 0x8
   vars:
-  - desc: Screw attacking flag
+  - desc: Flag (0 = None, 1 = screw attacking/speedboosting, 8 = storing shinespark)
     type: u8
     offset: 0x0
   - desc: Animation counter
@@ -1863,7 +1989,7 @@ SpriteData:
   - desc: Palette row
     type: u8
     offset: 0x20
-  - desc: Background priority?
+  - desc: Background priority
     type: u8
     offset: 0x21
   - desc: Draw order
@@ -1903,10 +2029,10 @@ SpriteData:
   - desc: Timer 2?
     type: u8
     offset: 0x2D
-  - desc: '?'
+  - desc: Work variable?
     type: u8
     offset: 0x2E
-  - desc: '?'
+  - desc: Current array index
     type: u8
     offset: 0x2F
   - desc: Freeze timer
@@ -1918,8 +2044,11 @@ SpriteData:
   - desc: Properties
     type: flags8
     offset: 0x32
+  - desc: Frozen palette row offset
+    type: u8
+    offset: 0x33
     enum: SpriteProperties
-  - desc: '?'
+  - desc: Absolute palette row
     type: u8
     offset: 0x34
   - desc: '?'
@@ -2119,3 +2248,56 @@ TilesetEntry:
   - desc: Animated palette
     type: u8
     offset: 0x11
+TimeAttackData:
+  size: 0x62
+  vars:
+  - desc: Copy of 3000014 + 8 (time attack related?)
+    type: u32
+    offset: 0x0
+  - desc: In-game hours
+    type: u8
+    offset: 0x4
+  - desc: In-game minutes
+    type: u8
+    offset: 0x5
+  - desc: In-game seconds
+    type: u8
+    offset: 0x6
+  - desc: '?'
+    type: u8
+    offset: 0x7
+  - desc: Ending number?
+    type: u8
+    offset: 0x8
+  - desc: Completion percentage
+    type: u8
+    offset: 0x9
+  - desc: '?'
+    type: u8
+    offset: 0xA
+  - desc: '?'
+    type: u8
+    offset: 0xB
+  - desc: '?'
+    type: u8
+    offset: 0xC
+  - desc: Random number based on in-game time at bosses (Kraid + Ruins Test)
+    type: u8
+    offset: 0xD
+  - desc: Random number based on in-game time at bosses (Mother Brain + Mecha Ridley)
+    type: u8
+    offset: 0xE
+  - desc: Random number based on 8-bit frame counter
+    type: u8
+    offset: 0xF
+  - desc: Password
+    type: u8
+    offset: 0x10
+    count: 0x14
+  - desc: '?'
+    type: u8
+    offset: 0x24
+  - desc: Password seed
+    type: u8
+    offset: 0x25
+    count: 0x3E

@@ -35,6 +35,33 @@
     J: 0x8F31C
   count: 0x2C4
 -
+  desc: Samus pose draw info
+  label: SamusPoseDrawInfo
+  type: SamusPoseDrawInfo
+  addr:
+    U: 0x239464
+    E: 0x23A0F0
+    J: 0x2394C0
+  count: 0x3
+-
+  desc: Samus draw distance offsets
+  label: SamusDrawDistanceOffsets
+  type: BoxBounds
+  addr:
+    U: 0x23A534
+    E: 0x23B1C0
+    J: 0x23A590
+  count: 0x4
+-
+  desc: Samus hitbox data
+  label: SamusHitboxData
+  type: SamusHitbox
+  addr:
+    U: 0x23A554
+    E: 0x23B1E0
+    J: 0x23A5B0
+  count: 0x4
+-
   desc: Samus pulling self up Y velocity
   label: SamusPullingSelfUpYVelocity
   type: s16
@@ -293,6 +320,15 @@
     E: 0x330854
     J: 0x32FC24
   size: 0x900
+-
+  desc: Suitless HUD charged bar graphics
+  label: SuitlessHudChargedBarGfx
+  type: gfx
+  addr:
+    U: 0x3362A8
+    E: 0x336F34
+    J: 0x336304
+  size: 0x100
 -
   desc: Blank room sprite data
   label: BlankRoomSpriteData
@@ -692,6 +728,24 @@
   count: 0x5
   enum: ButtonInput
 -
+  desc: Time attack button code
+  label: TimeAttackButtonCode
+  type: ascii
+  addr:
+    U: 0x45FCF4
+    E: 0x46D808
+    J: 0x45FD50
+  size: 0x20
+-
+  desc: Metroid Fusion gallery data
+  label: MetroidFusionGalleryData
+  type: MetroidFusionGalleryData
+  addr:
+    U: 0x4C18E4
+    E: 0x4CF3F8
+    J: 0x4C1940
+  count: 0xD
+-
   desc: Ending images top half graphics pointers
   label: EndingImagesTopHalfGfxPtrs
   type: ptr.lz.gfx
@@ -1033,6 +1087,15 @@
     E: 0x7745A4
     J: 0x76080C
   count: 0x1A
+-
+  desc: Time attack password seed function pointers
+  label: TimeAttackPasswordSeedFunctionPtrs
+  type: ptr.thumb
+  addr:
+    U: 0x760C68
+    E: 0x775344
+    J: 0x760D78
+  count: 0xF
 -
   desc: German message text pointers
   label: GermanMessageTextPtrs

@@ -426,15 +426,10 @@
   type: CurrRoomEntry
   addr: 0x30000BC
 -
-  desc: Current movement preventing clipdata
-  type: u8
+  desc: Current affecting clipdata
+  label: CurrAffectingClipdata
+  type: CurrAffectingClipdata
   addr: 0x30000DC
-  enum: MovementPreventingClipdata
--
-  desc: Current affecting hazard
-  label: CurrAffectingHazard
-  type: u16
-  addr: 0x30000DE
 -
   desc: Background positions
   label: BGPositions
@@ -725,6 +720,11 @@
   addr: 0x3000BF1
   enum: AreaID
 -
+  desc: File select options cursor index
+  label: FileSelectOptionsCursorIndex
+  type: u8
+  addr: 0x3000BF3
+-
   desc: Current message
   label: CurrMessage
   type: CurrMessage
@@ -924,9 +924,9 @@
   type: SamusEcho
   addr: 0x300141C
 -
-  desc: Screw attack animation
-  label: ScrewAttackAnimation
-  type: ScrewAttackAnimation
+  desc: Screw attack and speed booster animation
+  label: ScrewAttackSpeedBoosterAnimation
+  type: ScrewAttackSpeedBoosterAnimation
   addr: 0x3001528
 -
   desc: Equipment
@@ -960,6 +960,12 @@
   type: u16
   addr: 0x3001602
 -
+  desc: Ending flags
+  label: EndingFlags
+  type: u8
+  addr: 0x3001604
+  enum: EndingFlags
+-
   desc: Prevent movement timer
   label: PreventMovementTimer
   type: u16
@@ -974,6 +980,28 @@
   label: ButtonAssignments
   type: ButtonAssignments
   addr: 0x300168C
+-
+  desc: Time attack best time password
+  label: TimeAttackBestTimePassword
+  type: u8
+  addr: 0x3001694
+  count: 0x14
+-
+  desc: Time attack best in-game time
+  label: TimeAttackBestInGameTime
+  type: InGameTime
+  addr: 0x30016A8
+-
+  desc: Time attack best 100% time password
+  label: TimeAttackBest100pTimePassword
+  type: u8
+  addr: 0x30016AC
+  count: 0x14
+-
+  desc: Time attack best 100% in-game time
+  label: TimeAttackBest100pInGameTime
+  type: InGameTime
+  addr: 0x30016C0
 -
   desc: Non-gameplay RAM
   label: NonGameplayRam
@@ -1019,10 +1047,20 @@
   type: ptr.thumb
   addr: 0x3001CF0
 -
+  desc: Serial communication code pointer
+  label: SerialCommunicationCodePtr
+  type: ptr.thumb
+  addr: 0x3001CF4
+-
   desc: Pointer to V-Count code
   label: VCountCodePtr
   type: ptr.thumb
-  addr: 0x3001CF4
+  addr: 0x3001CF8
+-
+  desc: Timer 3 overflow code pointer
+  label: Timer3OverflowCodePtr
+  type: ptr.thumb
+  addr: 0x3001CFC
 -
   desc: Music info
   label: MusicInfo
@@ -1198,6 +1236,11 @@
   label: CurrSpecialBGEffect
   type: SpecialBGEffect
   addr: 0x30056F8
+-
+  desc: Current room scrolls data pointer
+  label: CurrRoomScrollsDataPtr
+  type: ptr
+  addr: 0x3005708
 -
   desc: Haze loops 1
   label: HazeLoops1

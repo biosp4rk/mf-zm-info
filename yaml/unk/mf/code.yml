@@ -9552,19 +9552,6 @@
 -
   desc: '?'
   addr:
-    U: 0x6C930
-    E: 0x6C930
-    J: 0x6CFCC
-  size:
-    U: 0x14C
-    E: 0x14C
-    J: 0x15C
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
     U: 0x6CA7C
     E: 0x6CA7C
     J: 0x6D128
@@ -16649,20 +16636,7 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
-  addr:
-    U: 0xA13E0
-    E: 0xA1538
-    J: 0xA364C
-  size:
-    U: 0x98
-    E: 0x14C
-    J: 0x98
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
+  desc: Language select menu draw OAM?
   addr:
     U: 0xA1478
     E: 0xA1684
@@ -16672,10 +16646,10 @@
     E: 0x2C
     J: 0x4
   mode: thumb
-  params: '?'
-  return: '?'
+  params: null
+  return: null
 -
-  desc: '?'
+  desc: Return one (language select related?)
   addr:
     U: 0xA147C
     E: 0xA16B0
@@ -16685,71 +16659,36 @@
     E: 0xC
     J: 0x4
   mode: thumb
-  params: '?'
-  return: '?'
+  params: null
+  return: U and J return 1, E calls 0x47A8 (music related)
 -
-  desc: '?'
+  desc: First boot language select menu (selecting)?
   addr:
     E: 0xA16BC
   size:
     E: 0x5C
   mode: thumb
-  params: '?'
+  params: null
   return: '?'
 -
-  desc: '?'
-  addr:
-    E: 0xA1718
-  size:
-    E: 0x8C
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
+  desc: Language select menu load text?
   addr:
     E: 0xA17A4
   size:
     E: 0x108
   mode: thumb
-  params: '?'
+  params: null
   return: '?'
 -
-  desc: '?'
+  desc: First boot language select menu handle input?
   addr:
     E: 0xA18AC
   size:
     E: 0xE0
   mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    E: 0xA198C
-  size:
-    E: 0xF4
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    E: 0xA1A80
-  size:
-    E: 0x38
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    E: 0xA1AB8
-  size:
-    E: 0x24
-  mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - RAM pointer?
+  return: 
 -
   desc: '?'
   addr:

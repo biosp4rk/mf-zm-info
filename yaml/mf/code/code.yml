@@ -2890,6 +2890,21 @@
   params: null
   return: null
 -
+  desc: Update opening/closing hatch
+  label: UpdateOpeningClosingHatch
+  addr:
+    U: 0x6C930
+    E: 0x6C930
+    J: 0x6CFCC
+  size:
+    U: 0x14C
+    E: 0x14C
+    J: 0x15C
+  mode: thumb
+  params:
+  - Hatch index
+  return: null
+-
   desc: Check projectile hit hatch
   label: CheckProjectileHitHatch
   addr:
@@ -4939,7 +4954,62 @@
     J: 0x4
   mode: thumb
   params: null
-  return: '1'
+  return: 1 when a language has been chosen (U and J versions return 1 right away)
+-
+  desc: Setup BG control for language select menu
+  label: SetupBGControlForLanguageSelectMenu
+  addr:
+    U: 0xA13E0
+    E: 0xA1538
+    J: 0xA364C
+  size:
+    U: 0x98
+    E: 0x14C
+    J: 0x98
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Language select menu subroutine
+  label: LanguageSelectMenuSubroutine
+  addr:
+    E: 0xA1718
+  size:
+    E: 0x8C
+  mode: thumb
+  params: null
+  return: 1 if ?
+-
+  desc: Language select menu handle input
+  label: LanguageSelectMenuHandleInput
+  addr:
+    E: 0xA198C
+  size:
+    E: 0xF4
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Language select menu language selected
+  label: LanguageSelectMenuLanguageSelected
+  addr:
+    E: 0xA1A80
+  size:
+    E: 0x38
+  mode: thumb
+  params:
+  - Pointer to non-gameplay RAM
+  return: null
+-
+  desc: Check valid European language
+  label: CheckValidEuropeanLanguage
+  addr:
+    E: 0xA1AB8
+  size:
+    E: 0x24
+  mode: thumb
+  params: null
+  return: 1 if language is valid, 0 otherwise (if Japanese)
 -
   desc: Draw ending time and percent in VRAM
   label: DrawEndingTimeAndPercentInVram

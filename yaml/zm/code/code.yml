@@ -292,6 +292,52 @@
   - V-Count code pointer
   return: null
 -
+  desc: Call serial communication code
+  label: CallSerialCommunicationCode
+  addr:
+    U: 0xB80
+    E: 0xBD4
+    J: 0xB80
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set serial communication code
+  label: SetSerialCommunicationCode
+  addr:
+    U: 0xBA4
+    E: 0xBF8
+    J: 0xBA4
+  size: 0x1C
+  mode: thumb
+  params:
+  - Function pointer
+  return: null
+-
+  desc: Call timer 3 overflow code
+  label: CallTimer3OverflowCode
+  addr:
+    U: 0xBC0
+    E: 0xC14
+    J: 0xBC0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Set timer 3 overflow code
+  label: SetTimer3OverflowCode
+  addr:
+    U: 0xBE4
+    E: 0xC38
+    J: 0xBE4
+  size: 0x1C
+  mode: thumb
+  params:
+  - Function pointer
+  return: null
+-
   desc: Initialize sound
   label: InitSound
   addr:
@@ -325,6 +371,19 @@
   mode: thumb
   params:
   - Sound ID
+  return: null
+-
+  desc: Call play sound
+  label: CallPlaySound
+  addr:
+    U: 0x2C80
+    E: 0x2CD4
+    J: 0x2C80
+  size: 0x14
+  mode: thumb
+  params:
+  - Sound ID
+  - Action? (0 = play, 4 = stop)
   return: null
 -
   desc: DMA transfer
@@ -653,6 +712,31 @@
   - Samus data pointer
   - Samus physics pointer
   return: null
+-
+  desc: Samus walking check sides collision
+  addr:
+    U: 0x58A0
+    E: 0x58F4
+    J: 0x58A0
+  size: 0x238
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus physics pointer
+  return: null
+-
+  desc: Samus standing check ground collision
+  label: SamusStandingCheckGroundCollision
+  addr:
+    U: 0x5B8C
+    E: 0x5BE0
+    J: 0x5B8C
+  size: 0xC0
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus physics pointer
+  return: New pose
 -
   desc: Samus check landing collision
   label: SamusCheckLandingCollision
@@ -1019,7 +1103,7 @@
   - Samus data pointer
   - Samus equipment pointer
   - Samus hazard damage pointer
-  return: 1 if Samus died, 0 otherwise
+  return: 1 if getting knocked back or dying, 0 otherwise
 -
   desc: Samus check shinesparking pose
   label: SamusCheckShinesparkingPose
@@ -1097,6 +1181,19 @@
   size: 0x40
   mode: thumb
   params: null
+  return: null
+-
+  desc: Samus update draw distance and standing status
+  label: SamusUpdateDrawDistanceAndStandingStatus
+  addr:
+    U: 0xB8A8
+    E: 0xB920
+    J: 0xB8A8
+  size: 0x68
+  mode: thumb
+  params:
+  - Samus data pointer
+  - Samus physics pointer
   return: null
 -
   desc: Update arm cannon offset
@@ -1517,6 +1614,19 @@
   - Y position
   - X position
   return: null
+-
+  desc: Get collision at position
+  label: GetCollisionAtPosition
+  addr:
+    U: 0xF720
+    E: 0xF7D4
+    J: 0xF720
+  size: 0x7C
+  mode: thumb
+  params:
+  - Y position
+  - X position
+  return: Collision check
 -
   desc: Current sprite falling (unused?)
   label: CurrSpriteFalling
@@ -3097,6 +3207,22 @@
   params: null
   return: null
 -
+  desc: Draw HUD energy tanks
+  label: DrawHudEnergyTanks
+  addr:
+    U: 0x52664
+    E: 0x52730
+    J: 0x52664
+  size: 0x70
+  mode: thumb
+  params:
+  - Destination address
+  - Normal graphics source address
+  - Refill graphics source address
+  - Number of energy tanks
+  - Refill animation stage
+  return: null
+-
   desc: Draw HUD energy
   label: DrawHudEnergy
   addr:
@@ -3106,7 +3232,50 @@
   size: 0x598
   mode: thumb
   params:
-  - Skip updating number flag?
+  - File number (0 = in-game, 1 = file A, 2 = file B, 3 = file C)
+  return: null
+-
+  desc: Draw HUD missile digits
+  label: DrawHudMissileDigits
+  addr:
+    U: 0x52C6C
+    E: 0x52D38
+    J: 0x52C6C
+  size: 0x100
+  mode: thumb
+  params:
+  - Hundreds place
+  - Tens place
+  - Ones place
+  - Highlight flag
+  return: null
+-
+  desc: Draw HUD super missile digits
+  label: DrawHudSuperMissileDigits
+  addr:
+    U: 0x52D6C
+    E: 0x52E38
+    J: 0x52D6C
+  size: 0xD8
+  mode: thumb
+  params:
+  - Tens place
+  - Ones place
+  - Highlight flag
+  return: null
+-
+  desc: Draw HUD power bomb digits
+  label: DrawHudPowerBombDigits
+  addr:
+    U: 0x52E44
+    E: 0x52F10
+    J: 0x52E44
+  size: 0xD8
+  mode: thumb
+  params:
+  - Tens place
+  - Ones place
+  - Highlight flag
   return: null
 -
   desc: Draw HUD missiles
@@ -3118,7 +3287,7 @@
   size: 0x220
   mode: thumb
   params:
-  - Skip updating number flag?
+  - Update highlight flag
   return: null
 -
   desc: Draw HUD power bombs
@@ -3130,7 +3299,7 @@
   size: 0x1F8
   mode: thumb
   params:
-  - Skip updating number flag?
+  - Update highlight flag
   return: null
 -
   desc: Draw HUD super missiles
@@ -3142,7 +3311,7 @@
   size: 0x1F8
   mode: thumb
   params:
-  - Skip updating number flag?
+  - Update highlight flag
   return: null
 -
   desc: Draw HUD weapon highlight
@@ -3201,6 +3370,17 @@
   mode: thumb
   params: null
   return: 1 if timer should stop, 0 otherwise
+-
+  desc: Update escape timer OAM
+  label: UpdateEscapeTimerOam
+  addr:
+    U: 0x539E0
+    E: 0x53AAC
+    J: 0x539E0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Start timed escape
   label: StartTimedEscape
@@ -3416,7 +3596,21 @@
   notes: Sets the BLDALPHA for the current room transparency and does some hardware
     registers magic for the background effects (gradient and dark room)
 -
+  desc: Get background size flag
+  label: GetBGSizeFlag
+  addr:
+    U: 0x559F8
+    E: 0x55AC4
+    J: 0x559F8
+  size: 0x2C
+  mode: thumb
+  params:
+  - Background size
+  return: Size flag
+  notes: Returns the corresponding size flag for the BG control registers
+-
   desc: Check room is dark
+  label: CheckRoomIsDark
   addr:
     U: 0x55A24
     E: 0x55AF0
@@ -3721,6 +3915,18 @@
   return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior
     0x52 (unused), 5 if bubbly ground, 0 otherwise
 -
+  desc: Process scrolls
+  label: ProcessScrolls
+  addr:
+    U: 0x582C4
+    E: 0x5838C
+    J: 0x582C4
+  size: 0x64
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+-
   desc: Scroll screen
   label: ScrollScreen
   addr:
@@ -3734,6 +3940,32 @@
   - Y position
   return: null
 -
+  desc: Process scroll X
+  label: ProcessScrollX
+  addr:
+    U: 0x583E4
+    E: 0x584AC
+    J: 0x583E4
+  size: 0x40
+  mode: thumb
+  params:
+  - Active scroll pointer
+  - Coordinates pointer
+  return: Screen X position
+-
+  desc: Process scroll Y
+  label: ProcessScrollY
+  addr:
+    U: 0x58424
+    E: 0x584EC
+    J: 0x58424
+  size: 0x54
+  mode: thumb
+  params:
+  - Active scroll pointer
+  - Coordinates pointer
+  return: Screen Y position
+-
   desc: Load room scrolls
   label: LoadRoomScrolls
   addr:
@@ -3744,6 +3976,71 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Update current scrolls
+  label: UpdateCurrScrolls
+  addr:
+    U: 0x584D8
+    E: 0x585A0
+    J: 0x584D8
+  size: 0x168
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+  notes: Updates the 2 current scrolls, also checks for extended bounds (when taking
+    an elevator and when triggered by a breakable block)
+-
+  desc: Process general scrolling
+  label: ProcessGeneralScrolling
+  addr:
+    U: 0x58640
+    E: 0x58708
+    J: 0x58640
+  size: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+  notes: Processes scrolling in general (automatic, slow, scrolls, lock screen)
+-
+  desc: Default scroll
+  label: DefaultScroll
+  addr:
+    U: 0x58834
+    E: 0x588FC
+    J: 0x58834
+  size: 0x14
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+  notes: Handles the automatic scrolling on a room with no scrolls
+-
+  desc: Default scroll Y
+  label: DefaultScrollY
+  addr:
+    U: 0x58848
+    E: 0x58910
+    J: 0x58848
+  size: 0x100
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+  notes: Handles the automatic Y scrolling on a room with no scrolls
+-
+  desc: Default scroll X
+  label: DefaultScrollX
+  addr:
+    U: 0x58948
+    E: 0x58A10
+    J: 0x58948
+  size: 0xD0
+  mode: thumb
+  params:
+  - Coordinates pointer
+  return: null
+  notes: Handles the automatic X scrolling on a room with no scrolls
 -
   desc: Update room effect and haze position
   label: UpdateRoomEffectAndHazePosition
@@ -4499,6 +4796,20 @@
   params: null
   return: null
 -
+  desc: Intro Samus close-up
+  label: IntroSamusCloseUp
+  addr:
+    U: 0x5F8F4
+    E: 0x5F9E8
+    J: 0x5F8F4
+  size:
+    U: 0x464
+    E: 0x460
+    J: 0x464
+  mode: thumb
+  params: null
+  return: 5 if ended, 0 otherwise
+-
   desc: Load first room?
   label: LoadFirstRoom?
   addr:
@@ -4523,8 +4834,8 @@
   - Event
   return: 1 if event is set, 0 otherwise
 -
-  desc: Setup next room?
-  label: SetupNextRoom
+  desc: Check play room music track
+  label: CheckPlayRoomMusicTrack
   addr:
     U: 0x60928
     E: 0x60A0C
@@ -4892,9 +5203,9 @@
   mode: thumb
   params:
   - Character ID
+  - Destination address
+  - Indent
   - '?'
-  - '?'
-  - Graphics slot
   return: null
   notes: Draws a character for text (description in equipment screen and story text)
 -
@@ -4911,9 +5222,9 @@
   mode: thumb
   params:
   - Character ID
+  - Destination address
+  - Indent
   - '?'
-  - '?'
-  - Graphics slot
   return: null
   notes: Draws a character for a message (item pop up, location name, map screen area
     name)
@@ -4958,6 +5269,20 @@
   params:
   - Story text ID
   return: null
+-
+  desc: Process current message
+  label: ProcessCurrMessage
+  addr:
+    U: 0x6F98C
+    E: 0x6FAD8
+    J: 0x6F9A8
+  size: 0x140
+  mode: thumb
+  params:
+  - Current message pointer
+  - Text pointer
+  - Destination address
+  return: Line state (0 = No new line, 1 = new line, 2 = message end)
 -
   desc: Update minimap animated palettes
   label: UpdateMinimapAnimatedPalettes
@@ -5254,6 +5579,17 @@
   params: null
   return: 1 if leaving, 0 otherwise
 -
+  desc: File select options subroutine
+  label: FileSelectOptionsSubroutine
+  addr:
+    U: 0x7A7E4
+    E: 0x7AAD4
+    J: 0x7A800
+  size: 0x248
+  mode: thumb
+  params: null
+  return: 1 if leaving, 0 otherwise
+-
   desc: Start NES Metroid
   label: StartNesMetroid
   addr:
@@ -5279,6 +5615,33 @@
   params: null
   return: 1 if ended, 0 otherwise
 -
+  desc: Get value from time attack seed
+  label: GetValueFromTimeAttackSeed
+  addr:
+    U: 0x7F148
+    E: 0x7F840
+    J: 0x7F1A4
+  size: 0x24
+  mode: thumb
+  params:
+  - Seed
+  - Value
+  return: Seed value
+-
+  desc: Generate time attack password
+  label: GenerateTimeAttackPassword
+  addr:
+    U: 0x7F2B0
+    E: 0x7F9A8
+    J: 0x7F30C
+  size: 0xC0
+  mode: thumb
+  params:
+  - Seed
+  - Destination array
+  - Size
+  return: null
+-
   desc: Is save file invalid
   label: IsSaveFileInvalid
   addr:
@@ -5303,6 +5666,144 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Time attack password seed function 1
+  label: TimeAttackPasswordSeedFunction1
+  addr:
+    U: 0x7F694
+    E: 0x7FD90
+    J: 0x7F6F0
+  size: 0x44
+  mode: thumb
+  params: '?'
+  return: '?'
+-
+  desc: Time attack password seed function 2
+  label: TimeAttackPasswordSeedFunction2
+  addr:
+    U: 0x7F6D8
+    E: 0x7FDD4
+    J: 0x7F734
+  size: 0x44
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 3
+  label: TimeAttackPasswordSeedFunction3
+  addr:
+    U: 0x7F71C
+    E: 0x7FE18
+    J: 0x7F778
+  size: 0x44
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 4
+  label: TimeAttackPasswordSeedFunction4
+  addr:
+    U: 0x7F760
+    E: 0x7FE5C
+    J: 0x7F7BC
+  size: 0x50
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 5
+  label: TimeAttackPasswordSeedFunction5
+  addr:
+    U: 0x7F7B0
+    E: 0x7FEAC
+    J: 0x7F80C
+  size: 0x44
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 6
+  label: TimeAttackPasswordSeedFunction6
+  addr:
+    U: 0x7F7F4
+    E: 0x7FEF0
+    J: 0x7F850
+  size: 0x50
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 7
+  label: TimeAttackPasswordSeedFunction7
+  addr:
+    U: 0x7F844
+    E: 0x7FF40
+    J: 0x7F8A0
+  size: 0x58
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Time attack password seed function 8
+  label: TimeAttackPasswordSeedFunction8
+  addr:
+    U: 0x7F89C
+    E: 0x7FF98
+    J: 0x7F8F8
+  size: 0x60
+  mode: thumb
+  params:
+  - Seed
+  - '?'
+  return: null
+-
+  desc: Randomize time attack password seed
+  label: RandomizeTimeAttackPasswordSeed
+  addr:
+    U: 0x7F8FC
+    E: 0x7FFF8
+    J: 0x7F958
+  size: 0x84
+  mode: thumb
+  params:
+  - Seed
+  - Random number
+  return: null
+-
+  desc: Generate time attack password seed
+  label: GenerateTimeAttackPasswordSeed
+  addr:
+    U: 0x7F980
+    E: 0x8007C
+    J: 0x7F9DC
+  size: 0x1C8
+  mode: thumb
+  params:
+  - Time attack data pointer
+  return: always 0
+-
+  desc: Check set new time attack record
+  label: CheckSetNewTimeAttackRecord
+  addr:
+    U: 0x7FB48
+    E: 0x80244
+    J: 0x7FBA4
+  size: 0x21C
+  mode: thumb
+  params: null
+  return: 1 if new record set, 0 otherwise
 -
   desc: Title intro subroutine
   label: TitleIntroSubroutine
