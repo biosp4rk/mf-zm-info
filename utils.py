@@ -3,7 +3,8 @@ import json
 import os
 import re
 import yaml
-from typing import Dict, List, Union
+from typing import Dict, List, Literal, Optional, Union
+
 
 InfoFile = Union[Dict, List]
 
@@ -14,64 +15,68 @@ JSON_EXT = ".json"
 
 GAMES = ("mf", "zm")
 NAMES = ("code", "data", "enums", "ram", "structs")
+REGIONS = ("U", "E", "J")
+ASM_MODES = ("thumb", "arm")
 
 DATA = (
-    ("desc", True),
-    ("label", False),
-    ("type", False),
-    ("addr", True),
-    ("size", False),
-    ("count", False),
-    ("enum", False)
+    "desc",
+    "label",
+    "type",
+    "addr",
+    "size",
+    "count",
+    "enum"
 )
-REGIONS = (
-    ("U", False),
-    ("E", False),
-    ("J", False)
-)
+CODE_VAR = ("desc", "type", "enum")
 FIELDS = {
-    "structs": (
-        ("size", True),
-        ("vars", True)
-    ),
-    "vars":  (
-        ("desc", True),
-        ("type", False),
-        ("offset", True),
-        ("size", False),
-        ("count", False),
-        ("enum", False)
-    ),
     "enums": (
-        ("desc", True),
-        ("val", True)
+        "desc",
+        "val"
+    ),
+    "structs": (
+        "size",
+        "vars"
     ),
     "code": (
-        ("desc", True),
-        ("label", False),
-        ("addr", True),
-        ("size", True),
-        ("mode", True),
-        ("params", True),
-        ("return", True)
+        "desc",
+        "label",
+        "addr",
+        "size",
+        "mode",
+        "params",
+        "return"
     ),
     "ram": DATA,
     "data": DATA,
     "addr": REGIONS,
     "size": REGIONS,
-    "count": REGIONS
+    "count": REGIONS,
+    "vars":  (
+        "desc",
+        "type",
+        "offset",
+        "size",
+        "count",
+        "enum"
+    ),
+    "params": CODE_VAR,
+    "return": CODE_VAR
 }
+
 PRIMITIVES = {
-    "u8", "s8", "flags8",
+    "u8", "s8", "flags8", "bool",
     "u16", "s16", "flags16",
     "u32", "s32", "ptr",
-    "thumb", "ascii",
-    "char", "lz", "gfx", "palette"
+    "ascii", "char",
+    "lz", "gfx", "tilemap", "palette",
+    "thumb", "arm"
 }
 
 
 def hexint_presenter(dumper, data):
     return dumper.represent_int(f"0x{data:X}")
+
+
 yaml.add_representer(int, hexint_presenter)
 
 
@@ -107,32 +112,193 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
     return combined
 
 
-def check_refs() -> None:
-    for game in GAMES:
-        # load yaml files
-        # TODO: check code too
-        data = load_yamls(game, "data")
-        enums = load_yamls(game, "enums")
-        ram = load_yamls(game, "ram")
-        structs = load_yamls(game, "structs")
-        # check if enum/struct references match
-        data_list = data + ram
-        for s in structs.values():
-            data_list += s["vars"]
-        for entry in data_list:
-            if "type" in entry:
-                t = entry["type"].split(".")[0]
-                if t not in PRIMITIVES and t not in structs:
-                    desc = entry["desc"]
-                    raise ValueError(
-                        f"{game}: Struct {t} in entry {desc} was not found")
-            if "enum" in entry:
-                en = entry["enum"]
-                if en not in enums:
-                    desc = entry["desc"]
-                    raise ValueError(
-                        f"{game}: Enum {en} in entry {desc} was not found")
-    print("No reference errors found")
+class Validator(object):
+    def __init__(self):
+        self.game = None
+        self.name = None
+        self.entry = None
+        self.enums = None
+        self.structs = None
+
+    def validate(self):
+        try:
+            for game in GAMES:
+                self.game = game
+                # get all info
+                infos = [load_yamls(game, name) for name in NAMES]
+                code, data, enums, ram, structs = infos
+                self.enums = enums
+                self.structs = structs
+
+                # check enums
+                self.name = "enums"
+                for key, vals in enums.items():
+                    self.entry = key
+                    assert re.match(r"\w+", key), "enum name must be alphanumeric"
+                    self.check_vals(vals)
+
+                # check structs
+                self.name = "structs"
+                for key, st in structs.items():
+                    self.entry = key
+                    assert re.match(r"\w+", key), "struct name must be alphanumeric"
+                    self.check_size(st, True)
+                    self.check_vars(st)
+
+                # check code
+                self.name = "code"
+                for entry in code:
+                    self.entry = entry
+                    self.check_desc(entry)
+                    self.check_label(entry)
+                    self.check_addr(entry, 4)
+                    self.check_size(entry, True, 2)
+                    self.check_mode(entry)
+                    self.check_params(entry)
+                    self.check_return(entry)
+
+                # check data and ram
+                ram_rom = [("data", data), ("ram", ram)]
+                for name, entries in ram_rom:
+                    self.name = name
+                    for entry in entries:
+                        self.entry = entry
+                        self.check_desc(entry)
+                        self.check_label(entry)
+                        # TODO: should type be required?
+                        self.check_type(entry)
+                        # TODO: check if address is aligned with type
+                        self.check_addr(entry)
+                        self.check_count(entry)
+                        size_req = "type" not in entry
+                        self.check_size(entry, size_req)
+                        self.check_enum(entry)
+
+        except AssertionError as e:
+            print(self.game, self.name)
+            print(self.entry)
+            print(e)
+            return
+
+        print("No validation errors")
+
+    def check_desc(self, entry) -> None:
+        assert "desc" in entry, "desc is required"
+        desc = entry["desc"]
+        assert isinstance(desc, str), "desc must be a string"
+        assert len(desc.strip()) > 0, "desc cannot be empty"
+
+    def check_label(self, entry) -> None:
+        assert "label" in entry, "label is required"
+        label = entry["label"]
+        assert re.match(r"\w+", label), "label must be alphanumeric"
+
+    def check_versioned_int(self, entry, align=None) -> None:
+        nums = None
+        assert isinstance(entry, (int, dict)), "Expected integer or dictionary"
+        if isinstance(entry, int):
+            nums = [entry]
+        else:
+            for k, v in entry.items():
+                assert k in REGIONS, "Invalid region"
+                assert isinstance(v, int), "Value must be an integer"
+            nums = list(entry.values())
+        if align is not None:
+            for num in nums:
+                assert num % align == 0, f"Number must be {align} byte aligned"
+
+    def check_addr(self, entry, align: int = None) -> None:
+        assert "addr" in entry, "addr is required"
+        addr = entry["addr"]
+        self.check_versioned_int(addr, align)
+
+    def check_offset(self, entry) -> None:
+        assert "offset" in entry, "offset is required"
+        offset = entry["offset"]
+        assert isinstance(offset, int), "offset must be an integer"
+
+    def check_count(self, entry, required: bool = False) -> None:
+        if "count" not in entry:
+            assert required is False, "count is required"
+            return
+        addr = entry["count"]
+        self.check_versioned_int(addr)
+
+    def check_size(self, entry, required: bool = False, align: int = None) -> None:
+        if "size" not in entry:
+            assert required is False, "size is required"
+            return
+        size = entry["size"]
+        self.check_versioned_int(size, align)
+
+    def check_vals(self, entry) -> None:
+        assert isinstance(entry, list), "enum entry must be a list"
+        prev = -0x80000001
+        for val_dict in entry:
+            self.check_desc(val_dict)
+            # check val
+            assert "val" in val_dict, "val is required"
+            val = val_dict["val"]
+            assert isinstance(val, int), "val must be an integer"
+            assert prev < val, "vals should be in ascending order"
+            prev = val
+
+    def check_vars(self, entry):
+        assert "vars" in entry, "vars is required"
+        vars = entry["vars"]
+        assert isinstance(vars, list), "vars must be a list"
+        prev = -1
+        for var in vars:
+            self.check_desc(var)
+            self.check_type(var)
+            self.check_offset(var)
+            self.check_count(var)
+            size_req = "type" not in var
+            self.check_size(var, size_req)
+            self.check_enum(var)
+            # check offset
+            offset = var["offset"]
+            assert prev < offset, "offsets should be in ascending order"
+            prev = offset
+
+    def check_mode(self, entry) -> None:
+        assert "mode" in entry, "mode is required"
+        mode = entry["mode"]
+        assert mode in ASM_MODES, "Invalid mode"
+
+    def check_params(self, entry):
+        assert "params" in entry, "params is required"
+        params = entry["params"]
+        assert params is None or isinstance(
+            params, list), "params must be null or list"
+        if isinstance(params, list):
+            for param in params:
+                self.check_desc(param)
+                self.check_type(param, True)
+                self.check_enum(param)
+
+    def check_return(self, entry):
+        assert "return" in entry, "return is required"
+        ret = entry["return"]
+        assert ret is None or isinstance(
+            ret, dict), "return must be null or dictionary"
+        if isinstance(ret, dict):
+            self.check_desc(ret)
+            self.check_type(ret, True)
+            self.check_enum(ret)
+
+    def check_type(self, entry, required=False):
+        if "type" not in entry:
+            assert required is False, "type is required"
+            return
+        type_parts = entry["type"].split(".")
+        for t in type_parts:
+            assert t in PRIMITIVES or t in self.structs, "Invalid type"
+
+    def check_enum(self, entry):
+        if "enum" in entry:
+            n = entry["enum"]
+            assert n in self.enums, "Invalid enum"
 
 
 def ints_to_strs(data: InfoFile) -> None:
@@ -165,20 +331,18 @@ def output_yaml(path: str, data: InfoFile, name: str) -> None:
         if isinstance(entry, dict):
             fields = FIELDS[k]
             for i, field in enumerate(fields):
-                name, required = field
-                if name in entry:
-                    v = entry.pop(name)
+                if field in entry:
+                    v = entry.pop(field)
                     # add index to keep fields in order
-                    entry[f"{i:02}~{name}"] = v
-                    stack.append((v, name))
-                elif required:
-                    raise ValueError(entry)
+                    entry[f"{i:03}~{field}"] = v
+                    stack.append((v, field))
         elif isinstance(entry, list):
             stack += [(e, k) for e in entry]
+
     # get output
     output = yaml.dump(data)
     # remove index from fields
-    output = re.sub(r"\d\d~", "", output)
+    output = re.sub(r"\d+~", "", output)
     if isinstance(data, list):
         # add extra line breaks for lists
         output = re.sub(r"^- ", "-\n  ", output, flags=re.MULTILINE)
@@ -224,13 +388,14 @@ def output_jsons() -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-r", "--refs", action="store_true")
+    parser.add_argument("-v", "--validate", action="store_true")
     parser.add_argument("-y", "--yaml", action="store_true")
     parser.add_argument("-j", "--json", action="store_true")
     args = parser.parse_args()
 
-    if args.refs:
-        check_refs()
+    if args.validate:
+        v = Validator()
+        v.validate()
     if args.yaml:
         output_yamls()
     if args.json:

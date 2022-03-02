@@ -105,8 +105,10 @@
   size: 0xC
   mode: thumb
   params:
-  - Source address
-  - Destination address
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
   return: null
 -
   desc: Call LZ77UnComp8Bit
@@ -118,8 +120,10 @@
   size: 0xC
   mode: thumb
   params:
-  - Source address
-  - Destination address
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
   return: null
 -
   desc: Call DivArm
@@ -197,9 +201,13 @@
   size: 0x1C
   mode: thumb
   params:
-  - Multiplicand
-  - Multiplier (0x100 = 1)
-  return: Product
+  - desc: Multiplicand
+    type: u16
+  - desc: Multiplier (0x100 = 1)
+    type: u16
+  return:
+    desc: Product
+    type: u16
 -
   desc: Divide dividend times 4
   label: DivideDividendTimes4
@@ -210,9 +218,13 @@
   size: 0x18
   mode: thumb
   params:
-  - Dividend
-  - Divisor
-  return: Quotient
+  - desc: Dividend
+    type: u16
+  - desc: Divisor
+    type: u16
+  return:
+    desc: Quotient
+    type: u16
 -
   desc: Divide from 0x10000
   label: DivideFrom10000
@@ -223,8 +235,11 @@
   size: 0x18
   mode: thumb
   params:
-  - Divisor
-  return: Quotient
+  - desc: Divisor
+    type: u16
+  return:
+    desc: Quotient
+    type: u16
 -
   desc: Call V-Blank code
   label: CallVBlankCode
@@ -246,7 +261,8 @@
   size: 0x1C
   mode: thumb
   params:
-  - V-Blank code pointer
+  - desc: V-Blank code pointer
+    type: ptr.thumb
   return: null
 -
   desc: Call H-Blank code
@@ -269,7 +285,8 @@
   size: 0x1C
   mode: thumb
   params:
-  - H-Blank code pointer
+  - desc: H-Blank code pointer
+    type: ptr.thumb
   return: null
 -
   desc: Call V-Count code
@@ -292,7 +309,8 @@
   size: 0x1C
   mode: thumb
   params:
-  - V-Count code pointer
+  - desc: V-Count code pointer
+    type: ptr.thumb
   return: null
 -
   desc: Empty function for blanking code
@@ -326,7 +344,8 @@
   size: 0x2C
   mode: thumb
   params:
-  - Sound ID
+  - desc: Sound ID
+    type: u16
   return: null
 -
   desc: Play sound 2
@@ -338,7 +357,8 @@
   size: 0x3C
   mode: thumb
   params:
-  - Sound ID
+  - desc: Sound ID
+    type: u16
   return: null
 -
   desc: Play sound 3
@@ -350,7 +370,8 @@
   size: 0x40
   mode: thumb
   params:
-  - Sound ID
+  - desc: Sound ID
+    type: u16
   return: null
 -
   desc: Play sound 4
@@ -362,7 +383,8 @@
   size: 0x68
   mode: thumb
   params:
-  - Sound ID
+  - desc: Sound ID
+    type: u16
   return: null
 -
   desc: DMA transfer
@@ -374,11 +396,16 @@
   size: 0xD0
   mode: thumb
   params:
-  - DMA channel
-  - Source address
-  - Destination address
-  - Length
-  - Bit size
+  - desc: DMA channel
+    type: u8
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
+  - desc: Length
+    type: u16
+  - desc: Bit size
+    type: u8
   return: null
 -
   desc: Empty function (music related?)
@@ -401,7 +428,8 @@
   size: 0x5C
   mode: thumb
   params:
-  - Music track
+  - desc: Music track
+    type: u16
   return: null
 -
   desc: Check play new music track
@@ -424,8 +452,10 @@
   size: 0x18C
   mode: thumb
   params:
-  - Music track
-  - Event related flag?
+  - desc: Music track
+    type: u16
+  - desc: Event related flag?
+    type: u8
   return: null
 -
   desc: Fade out music
@@ -437,30 +467,8 @@
   size: 0x3C
   mode: thumb
   params:
-  - Fade duration
-  return: null
--
-  desc: Play sound before music?
-  addr:
-    U: 0x38A8
-    E: 0x38A8
-    J: 0x390C
-  size: 0x124
-  mode: thumb
-  params:
-  - Sound ID
-  - '?'
-  return: null
--
-  desc: Play sound 5?
-  addr:
-    U: 0x3B78
-    E: 0x3B78
-    J: 0x3BDC
-  size: 0x5C
-  mode: thumb
-  params:
-  - Sound ID
+  - desc: Fade duration
+    type: u16
   return: null
 -
   desc: Play character appearing sound
@@ -472,8 +480,10 @@
   size: 0x40
   mode: thumb
   params:
-  - Character value
-  - Sound type
+  - desc: Character value
+    type: u16
+  - desc: Sound type (1 = Adam, 21 = Samus, 41 = Federation)
+    type: u8
   return: null
 -
   desc: Call sound code B
@@ -485,11 +495,17 @@
   size: 0x10
   mode: thumb
   params:
-  - '?'
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Source RAM address
+    type: ptr
+  - desc: Source RAM address copy
+    type: ptr
+  - desc: Destination RAM address
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End destination address
+    type: ptr
 -
   desc: Sound code B
   label: SoundCodeB
@@ -500,11 +516,17 @@
   size: 0x94
   mode: arm
   params:
-  - '?'
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Source RAM address
+    type: ptr
+  - desc: Source RAM address copy
+    type: ptr
+  - desc: Destination RAM address
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End destination address
+    type: ptr
 -
   desc: Call sound code C
   label: CallSoundCodeC
@@ -515,10 +537,15 @@
   size: 0x10
   mode: thumb
   params:
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Destination RAM address
+    type: ptr
+  - desc: Source RAM address
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End source address
+    type: ptr
 -
   desc: Sound code C
   label: SoundCodeC
@@ -529,10 +556,15 @@
   size: 0xA0
   mode: arm
   params:
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Destination RAM address
+    type: ptr
+  - desc: Source RAM address
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End source address
+    type: ptr
 -
   desc: Call sound code A
   label: CallSoundCodeA
@@ -543,10 +575,15 @@
   size: 0x10
   mode: thumb
   params:
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Source address?
+    type: ptr
+  - desc: Destination address?
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End source address?
+    type: ptr
 -
   desc: Sound code A
   label: SoundCodeA
@@ -557,10 +594,15 @@
   size: 0x6DC
   mode: arm
   params:
-  - '?'
-  - '?'
-  - '?'
-  return: '?'
+  - desc: Source address?
+    type: ptr
+  - desc: Destination address?
+    type: ptr
+  - desc: '?'
+    type: u8
+  return:
+    desc: End source address?
+    type: ptr
 -
   desc: CpuFastSet
   label: CpuFastSet
@@ -571,9 +613,12 @@
   size: 0x4
   mode: thumb
   params:
-  - Source address
-  - Destination address
-  - Length
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
+  - desc: Length
+    type: u32
   return: null
 -
   desc: CpuSet
@@ -585,9 +630,12 @@
   size: 0x4
   mode: thumb
   params:
-  - Source address
-  - Destination address
-  - Length
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
+  - desc: Length
+    type: u32
   return: null
 -
   desc: DivArm quotient
@@ -599,9 +647,13 @@
   size: 0x4
   mode: thumb
   params:
-  - Denominator
-  - Numerator
-  return: Quotient
+  - desc: Denominator
+    type: s32
+  - desc: Numerator
+    type: s32
+  return:
+    desc: Quotient
+    type: s32
 -
   desc: DivArm remainder
   label: DivArmRemainder
@@ -612,9 +664,13 @@
   size: 0x8
   mode: thumb
   params:
-  - Denominator
-  - Numerator
-  return: Remainder
+  - desc: Denominator
+    type: s32
+  - desc: Numerator
+    type: s32
+  return:
+    desc: Remainder
+    type: s32
 -
   desc: LZ77 uncompress 16-bit
   label: LZ77UnComp16Bit
@@ -625,8 +681,10 @@
   size: 0x4
   mode: thumb
   params:
-  - Source address
-  - Destination address
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
   return: null
 -
   desc: LZ77 uncompress 8-bit
@@ -638,8 +696,10 @@
   size: 0x4
   mode: thumb
   params:
-  - Source address
-  - Destination address
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
   return: null
 -
   desc: MidiKey2Freq
@@ -651,10 +711,15 @@
   size: 0x4
   mode: thumb
   params:
-  - Source address
-  - Midi key
-  - Adjustment value
-  return: Frequency
+  - desc: Source address
+    type: ptr
+  - desc: Midi key
+    type: u8
+  - desc: Adjustment value
+    type: u8
+  return:
+    desc: Frequency
+    type: u16
 -
   desc: SoundBias 0
   label: SoundBias0
@@ -698,10 +763,14 @@
   size: 0x44
   mode: thumb
   params:
-  - Palette address
-  - VRAM offset
-  - Length
-  - SA-X flag
+  - desc: Palette address
+    type: ptr
+  - desc: VRAM offset
+    type: u32
+  - desc: Length
+    type: u32
+  - desc: SA-X flag
+    type: bool
   return: null
 -
   desc: Set Samus gravity-based velocity and SA-X suit colors
@@ -750,7 +819,9 @@
   size: 0x74
   mode: thumb
   params: null
-  return: 1 if Samus standing on drop-through clipdata, 0 otherwise
+  return:
+    desc: Samus standing on drop-through clipdata flag
+    type: bool
 -
   desc: Set forced movement flag for jumping or dropping through clipdata
   label: SetForcedMovementFlagForJumpingDroppingThroughClipdata
@@ -761,7 +832,9 @@
   size: 0x4C
   mode: thumb
   params: null
-  return: 1 if new forced movement flag set, 0 otherwise
+  return:
+    desc: New forced movement flag set
+    type: bool
 -
   desc: Samus pose handler for diffusion charging, missiles, and weapon icons
   label: SamusPoseHandler_DiffusionCharging_Missiles_WeaponIcons
@@ -776,40 +849,6 @@
   notes: Updates the HUD status of missiles/power Bombs based on the R button. Updates
     diffusion charge counter while holding R.
 -
-  desc: Changing pose related?
-  addr:
-    U: 0x8FA0
-    E: 0x8FA0
-    J: 0x9018
-  size: 0xE0
-  mode: thumb
-  params:
-  - New pose?
-  return: null
--
-  desc: Jump related?
-  addr:
-    U: 0x9080
-    E: 0x9080
-    J: 0x90F8
-  size:
-    U: 0x3A0
-    E: 0x3A0
-    J: 0x3C8
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Set RAM for new pose?
-  addr:
-    U: 0x9A3C
-    E: 0x9A3C
-    J: 0x9ADC
-  size: 0x33C
-  mode: thumb
-  params: null
-  return: null
--
   desc: Check play low health sound
   label: CheckPlayLowHealthSound
   addr:
@@ -817,16 +856,6 @@
     E: 0xC134
     J: 0xC1D4
   size: 0x40
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Update Samus hitbox size?
-  addr:
-    U: 0xC174
-    E: 0xC174
-    J: 0xC214
-  size: 0x78
   mode: thumb
   params: null
   return: null
@@ -840,7 +869,8 @@
   size: 0x264
   mode: thumb
   params:
-  - 0 if facing right, 1 if facing left
+  - desc: 0 if facing right, 1 if facing left
+    type: u8
   return: null
 -
   desc: Initialize Samus data
@@ -874,7 +904,9 @@
   size: 0xAC
   mode: thumb
   params:
-  - SA-X pose
+  - desc: SA-X pose
+    type: u8
+    enum: SaxPose
   return: null
 -
   desc: In-game subroutine
@@ -886,7 +918,9 @@
   size: 0x234
   mode: thumb
   params: null
-  return: 1 if paused, 0 otherwise
+  return:
+    desc: Paused
+    type: bool
 -
   desc: Set V-Blank code for in-game
   label: SetVBlankCodeForInGame
@@ -908,7 +942,8 @@
   size: 0x188
   mode: thumb
   params:
-  - Update palette flag
+  - desc: Update palette flag
+    type: bool
   return: null
 -
   desc: V-Blank code during in-game loads
@@ -953,18 +988,8 @@
   size: 0x40
   mode: thumb
   params:
-  - Sprite slot number
-  return: null
--
-  desc: Draw sprite?
-  addr:
-    U: 0xECC8
-    E: 0xECC8
-    J: 0xED7C
-  size: 0x8A0
-  mode: thumb
-  params:
-  - Sprite slot number
+  - desc: Sprite slot number
+    type: u8
   return: null
 -
   desc: Load sprites for demo
@@ -998,9 +1023,13 @@
   size: 0x44
   mode: thumb
   params:
-  - Sprite ID
-  - Sprite graphics row
-  - Source offset (0x200)
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  - desc: Sprite graphics row
+    type: u8
+  - desc: Source offset (0x200)
+    type: u8
   return: null
 -
   desc: Load new sprite palette
@@ -1012,9 +1041,13 @@
   size: 0x40
   mode: thumb
   params:
-  - Sprite ID
-  - Sprite graphics row
-  - Length (rows)
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  - desc: Sprite graphics row
+    type: u8
+  - desc: Length (rows)
+    type: u8
   return: null
 -
   desc: Clear sprite data
@@ -1048,10 +1081,14 @@
   size: 0x12C
   mode: thumb
   params:
-  - Sprite property/spriteset slot
-  - Sprite Y position
-  - Sprite X position
-  - Room sprite number
+  - desc: Sprite property/spriteset slot
+    type: u8
+  - desc: Sprite Y position
+    type: u16
+  - desc: Sprite X position
+    type: u16
+  - desc: Room sprite number
+    type: u8
   return: null
 -
   desc: Spawn new secondary sprite
@@ -1063,14 +1100,25 @@
   size: 0xE8
   mode: thumb
   params:
-  - Sprite ID
-  - Sprite data 1E
-  - Spriteset graphics row
-  - Primary sprite RAM slot
-  - Y position
-  - X position
-  - Status
-  return: Assigned sprite RAM slot, 0xFF otherwise
+  - desc: Sprite ID
+    type: u8
+    enum: SecondarySpriteID
+  - desc: Part number
+    type: u8
+  - desc: Spriteset graphics row
+    type: u8
+  - desc: Primary sprite RAM slot
+    type: u8
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  - desc: Status
+    type: flags16
+    enum: SpriteStatus
+  return:
+    desc: Assigned sprite RAM slot (0xFF if not assigned)
+    type: u8
 -
   desc: Spawn new primary sprite
   label: SpawnNewPrimarySprite
@@ -1081,14 +1129,24 @@
   size: 0xDC
   mode: thumb
   params:
-  - Sprite ID
-  - Sprite data 1E
-  - Spriteset graphics row
-  - Property/spriteset slot
-  - Y position
-  - X position
-  - Status
-  return: Assigned sprite RAM slot, 0xFF otherwise
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  - desc: Room slot
+    type: u8
+  - desc: Spriteset graphics row
+    type: u8
+  - desc: Property/spriteset slot
+    type: u8
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  - desc: Status
+    type: flags16
+  return:
+    desc: Assigned sprite RAM slot (0xFF if not assigned)
+    type: u8
 -
   desc: Spawn new X parasite
   label: SpawnNewXParasite
@@ -1099,15 +1157,27 @@
   size: 0xEC
   mode: thumb
   params:
-  - Sprite ID
-  - Sprite data 1E
-  - Spriteset graphics row
-  - Creator sprite RAM slot
-  - Property/spriteset slot
-  - Y position
-  - X position
-  - Status
-  return: Assigned sprite RAM slot, 0xFF otherwise
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  - desc: Room slot
+    type: u8
+  - desc: Spriteset graphics row
+    type: u8
+  - desc: Creator sprite RAM slot
+    type: u8
+  - desc: Property/spriteset slot
+    type: u8
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  - desc: Status
+    type: flags16
+    enum: SpriteStatus
+  return:
+    desc: Assigned sprite RAM slot (0xFF if not assigned)
+    type: u8
 -
   desc: Modify damage taken based on difficulty
   label: ModifyDamageTaken
@@ -1117,8 +1187,11 @@
     J: 0x2C
   mode: thumb
   params:
-  - Damage
-  return: New damage
+  - desc: Damage
+    type: u16
+  return:
+    desc: New damage
+    type: u16
 -
   desc: Take damage from sprite
   label: TakeDamageFromSprite
@@ -1132,9 +1205,12 @@
     J: 0x124
   mode: thumb
   params:
-  - Knockback flag
-  - Sprite slot number
-  - Damage multiplier
+  - desc: Knockback flag
+    type: bool
+  - desc: Sprite slot number
+    type: u8
+  - desc: Damage multiplier
+    type: u16
   return: null
 -
   desc: Check objects touching
@@ -1146,15 +1222,25 @@
   size: 0x50
   mode: thumb
   params:
-  - Object 1 top position
-  - Object 1 bottom position
-  - Object 1 left position
-  - Object 1 right position
-  - Object 2 top position
-  - Object 2 bottom position
-  - Object 2 left position
-  - Object 2 right position
-  return: 1 if objects are touching, 0 otherwise
+  - desc: Object 1 top position
+    type: u16
+  - desc: Object 1 bottom position
+    type: u16
+  - desc: Object 1 left position
+    type: u16
+  - desc: Object 1 right position
+    type: u16
+  - desc: Object 2 top position
+    type: u16
+  - desc: Object 2 bottom position
+    type: u16
+  - desc: Object 2 left position
+    type: u16
+  - desc: Object 2 right position
+    type: u16
+  return:
+    desc: Objects are touching flag
+    type: bool
 -
   desc: Samus and sprite collision
   label: SamusAndSpriteCollision
@@ -1176,9 +1262,13 @@
   size: 0x11C
   mode: thumb
   params:
-  - Y position
-  - X position
-  return: Block top edge Y position
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Block top edge Y position
+    type: u16
 -
   desc: Check vertical collision at position (account for slopes)
   label: CheckVerticalCollisionAtPosition_Slopes
@@ -1189,29 +1279,13 @@
   size: 0x128
   mode: thumb
   params:
-  - Y position
-  - X position
-  return: Block top edge Y position
--
-  desc: Sprite collision related?
-  addr:
-    U: 0x1129C
-    E: 0x1129C
-    J: 0x113D8
-  size: 0x74
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Sprite collision related?
-  addr:
-    U: 0x11310
-    E: 0x11310
-    J: 0x1144C
-  size: 0x80
-  mode: thumb
-  params: null
-  return: null
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Block top edge Y position
+    type: u16
 -
   desc: Check collision at position
   label: CheckCollisionAtPosition
@@ -1222,8 +1296,10 @@
   size: 0x98
   mode: thumb
   params:
-  - Y position
-  - X position
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
   return: null
 -
   desc: Enemy falling
@@ -1290,7 +1366,9 @@
   size: 0x38
   mode: thumb
   params: null
-  return: 1 if animation has ended, 0 otherwise
+  return:
+    desc: Animation ended
+    type: bool
 -
   desc: Check near end of sprite animation (current)
   label: CheckNearEndOfSpriteAnimation_Curr
@@ -1301,7 +1379,9 @@
   size: 0x3C
   mode: thumb
   params: null
-  return: 1 if animation is near end, 0 otherwise
+  return:
+    desc: Animation near end
+    type: bool
 -
   desc: Check end of sprite animation (slot)
   label: CheckEndOfSpriteAnimation_Slot
@@ -1312,8 +1392,11 @@
   size: 0x48
   mode: thumb
   params:
-  - Sprite slot number
-  return: 1 if animation has ended, 0 otherwise
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: Animation ended
+    type: bool
 -
   desc: Check near end of sprite animation (slot)
   label: CheckNearEndOfSpriteAnimation_Slot
@@ -1324,8 +1407,11 @@
   size: 0x4C
   mode: thumb
   params:
-  - Sprite slot number
-  return: 1 if animation is near end, 0 otherwise
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: Animation near end
+    type: bool
 -
   desc: Check end of boss round?
   label: CheckEndBossRound
@@ -1336,7 +1422,9 @@
   size: 0x3C
   mode: thumb
   params: null
-  return: 1 if round has ended, 0 otherwise
+  return:
+    desc: Round ended
+    type: bool
 -
   desc: Check Samus near sprite (left/right)
   label: CheckSamusNearSprite_LeftRight
@@ -1347,9 +1435,13 @@
   size: 0x60
   mode: thumb
   params:
-  - Y range
-  - X range
-  return: 4 if left of sprite, 8 if right of sprite, 0 if out of range
+  - desc: Y range
+    type: u16
+  - desc: X range
+    type: u16
+  return:
+    desc: 4 if left of sprite, 8 if right of sprite, 0 if out of range
+    type: u8
 -
   desc: Check Samus near sprite (above/below)
   label: CheckSamusNearSprite_AboveBelow
@@ -1360,9 +1452,13 @@
   size: 0x60
   mode: thumb
   params:
-  - Y range
-  - X range
-  return: 1 if above sprite, 2 if below sprite, 0 if out of range
+  - desc: Y range
+    type: u16
+  - desc: X range
+    type: u16
+  return:
+    desc: 1 if above sprite, 2 if below sprite, 0 if out of range
+    type: u8
 -
   desc: Check Samus near sprite (front/behind X)
   label: CheckSamusNearSprite_FrontBehindX
@@ -1373,10 +1469,15 @@
   size: 0xA8
   mode: thumb
   params:
-  - Y range
-  - X range (front)
-  - X range (behind)
-  return: 3 if in range in front, 0xC if in range behind, 0 if out of range
+  - desc: Y range
+    type: u16
+  - desc: X range (front)
+    type: u16
+  - desc: X range (behind)
+    type: u16
+  return:
+    desc: 3 if in range in front, 0xC if in range behind, 0 if out of range
+    type: u8
 -
   desc: Check Samus near sprite (front/behind Y)
   label: CheckSamusNearSprite_FrontBehindY
@@ -1387,10 +1488,15 @@
   size: 0xAC
   mode: thumb
   params:
-  - X range
-  - Y range (front)
-  - Y range (behind)
-  return: 3 if in range in front, 0xC if in range behind, 0 if out of range
+  - desc: X range
+    type: u16
+  - desc: Y range (front)
+    type: u16
+  - desc: Y range (behind)
+    type: u16
+  return:
+    desc: 3 if in range in front, 0xC if in range behind, 0 if out of range
+    type: u8
 -
   desc: Check Samus near sprite (above/below, separate ranges)
   label: CheckSamusNearSprite_AboveBelowSeparate
@@ -1401,10 +1507,15 @@
   size: 0x64
   mode: thumb
   params:
-  - X range
-  - Y range (below)
-  - Y range (above)
-  return: 1 if in range above, 2 if in range below, 0 if out of range
+  - desc: X range
+    type: u16
+  - desc: Y range (below)
+    type: u16
+  - desc: Y range (above)
+    type: u16
+  return:
+    desc: 1 if in range above, 2 if in range below, 0 if out of range
+    type: u8
 -
   desc: Update sprite freeze timer
   label: UpdateSpriteFreezeTimer
@@ -1459,7 +1570,8 @@
   size: 0x28
   mode: thumb
   params:
-  - OAM pointer
+  - desc: OAM pointer
+    type: ptr.thumb
   return: null
 -
   desc: Set energy and ammo to full
@@ -1473,8 +1585,8 @@
   params: null
   return: null
 -
-  desc: Check full energy and not full missiles
-  label: CheckFullEnergyAndNotFullMissiles
+  desc: Check energy full and missiles not full
+  label: CheckEnergyFullAndMissilesNotFull
   addr:
     U: 0x124A0
     E: 0x124A0
@@ -1482,10 +1594,12 @@
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if full energy and not full missiles, 0 otherwise
+  return:
+    desc: Energy full and missiles not full
+    type: bool
 -
-  desc: Check full missiles and not full energy
-  label: CheckFullMissilesAndNotFullEnergy
+  desc: Check missiles full and energy not full
+  label: CheckMissilesFullAndEnergyNotFull
   addr:
     U: 0x124D0
     E: 0x124D0
@@ -1493,7 +1607,9 @@
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if full missiles and not full energy, 0 otherwise
+  return:
+    desc: Missiles full and energy not full
+    type: bool
 -
   desc: Check Samus passes through frozen sprite
   label: CheckSamusPassesThroughFrozenSprite
@@ -1504,8 +1620,11 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  return: 1 if Samus passes through sprite, 0 otherwise
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: Samus passes through sprite
+    type: bool
 -
   desc: Check crouching or morphed
   label: CheckCrouchingOrMorphed
@@ -1516,7 +1635,9 @@
   size: 0x5C
   mode: thumb
   params: null
-  return: 1 if crouching or morphed, 0 otherwise
+  return:
+    desc: Crouching or morphed
+    type: bool
 -
   desc: Check morphed
   label: CheckMorphed
@@ -1527,7 +1648,9 @@
   size: 0x24
   mode: thumb
   params: null
-  return: 1 if morphed, 0 otherwise
+  return:
+    desc: Morphed
+    type: bool
 -
   desc: Check Samus movement is prevented
   label: CheckSamusMovementIsPrevented
@@ -1538,10 +1661,12 @@
   size: 0xB4
   mode: thumb
   params: null
-  return: 1 if Samus cannot move, 0 otherwise
+  return:
+    desc: Samus cannot move
+    type: bool
 -
   desc: Check screw attacking/shinesparking/speed boosting
-  label: CheckScrewingOrSparkingOrBoosting
+  label: CheckScrewingSparkingBoosting
   addr:
     U: 0x126F8
     E: 0x126F8
@@ -1549,7 +1674,9 @@
   size: 0x24
   mode: thumb
   params: null
-  return: 1 if screw attacking/shinesparking/speed boosting, 0 otherwise
+  return:
+    desc: Screw attacking, shinesparking, or speed boosting
+    type: bool
 -
   desc: Check pseudo screw attacking
   label: CheckPseudoScrewing
@@ -1560,8 +1687,11 @@
   size: 0xA0
   mode: thumb
   params:
-  - Sprite slot number or 0x80
-  return: 1 if pseudo screw attacking, 0 otherwise
+  - desc: Sprite slot number or 0x80
+    type: u8
+  return:
+    desc: Pseudo screw attacking
+    type: bool
 -
   desc: Check hanging from ledge
   label: CheckHangingFromLedge
@@ -1572,7 +1702,9 @@
   size: 0x1C
   mode: thumb
   params: null
-  return: 1 if hanging from ledge, 0 otherwise
+  return:
+    desc: Hanging from ledge
+    type: bool
 -
   desc: Check hanging from ceiling ladder
   label: CheckHangingFromCeilingLadder
@@ -1583,7 +1715,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if hanging from ceiling, 0 otherwise
+  return:
+    desc: Hanging from ceiling
+    type: bool
 -
   desc: Check pulling self up
   label: CheckPullingSelfUp
@@ -1594,7 +1728,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if pulling self up, 0 otherwise
+  return:
+    desc: Pulling self up
+    type: bool
 -
   desc: Try set absorb X flag on new sprite
   label: TrySetAbsorbXFlagOnNewSprite
@@ -1616,8 +1752,12 @@
   size: 0x50
   mode: thumb
   params:
-  - Sprite ID
-  return: Secondary sprite count
+  - desc: Sprite ID
+    type: u8
+    enum: SecondarySpriteID
+  return:
+    desc: Secondary sprite count
+    type: u8
 -
   desc: Count primary sprites
   label: CountPrimarySprites
@@ -1628,8 +1768,12 @@
   size: 0x50
   mode: thumb
   params:
-  - Sprite ID
-  return: Primary sprite count
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  return:
+    desc: Primary sprite count
+    type: u8
 -
   desc: Find primary sprite
   label: FindPrimarySprite
@@ -1640,8 +1784,12 @@
   size: 0x4C
   mode: thumb
   params:
-  - Sprite ID
-  return: Sprite RAM slot, 0xFF otherwise
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  return:
+    desc: Sprite RAM slot (0xFF if not found)
+    type: u8
 -
   desc: Find secondary sprite
   label: FindSecondarySprite
@@ -1652,8 +1800,12 @@
   size: 0x4C
   mode: thumb
   params:
-  - Sprite ID
-  return: Sprite RAM slot, 0xFF otherwise
+  - desc: Sprite ID
+    type: u8
+    enum: SecondarySpriteID
+  return:
+    desc: Sprite RAM slot (0xFF if not found)
+    type: u8
 -
   desc: Count secondary sprites with primary sprite slot
   label: CountSecondarySpritesWithPrimarySlot
@@ -1664,11 +1816,17 @@
   size: 0x5C
   mode: thumb
   params:
-  - Sprite ID
-  - Primary sprite RAM slot
-  return: Secondary sprite count
+  - desc: Sprite ID
+    type: u8
+    enum: SecondarySpriteID
+  - desc: Primary sprite RAM slot
+    type: u8
+  return:
+    desc: Secondary sprite count
+    type: u8
 -
   desc: Move Eye Core-X beam
+  label: MoveEyeCoreXBeam
   addr:
     U: 0x129EC
     E: 0x129EC
@@ -1676,7 +1834,8 @@
   size: 0x9C
   mode: thumb
   params:
-  - Distance
+  - desc: Distance
+    type: u8
   return: null
 -
   desc: Process sprite debris
@@ -1699,10 +1858,16 @@
   size: 0xC0
   mode: thumb
   params:
-  - Cloud type
-  - Debris type
-  - Y position
-  - X position
+  - desc: Cloud type
+    type: u8
+    enum: DebrisCloudType
+  - desc: Debris type
+    type: u8
+    enum: SpriteDebrisType
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
   return: null
 -
   desc: Check Main Deck room displays location
@@ -1714,7 +1879,9 @@
   size: 0x190
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 1 room displays location
   label: CheckSector1RoomDisplaysLocation
@@ -1725,7 +1892,9 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 2 room displays location
   label: CheckSector2RoomDisplaysLocation
@@ -1736,7 +1905,9 @@
   size: 0xA0
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 3 room displays location
   label: CheckSector3RoomDisplaysLocation
@@ -1747,7 +1918,9 @@
   size: 0x88
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 4 room displays location
   label: CheckSector4RoomDisplaysLocation
@@ -1758,7 +1931,9 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 5 room displays location
   label: CheckSector5RoomDisplaysLocation
@@ -1769,7 +1944,9 @@
   size: 0x84
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Check Sector 6 room displays location
   label: CheckSector6RoomDisplaysLocation
@@ -1780,7 +1957,9 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: 1 if room displays location, 0xFF otherwise
+  return:
+    desc: 1 if room displays location, -1 otherwise
+    type: s8
 -
   desc: Get location banner graphics slot
   label: GetLocationBannerGfxSlot
@@ -1791,7 +1970,9 @@
   size: 0x84
   mode: thumb
   params: null
-  return: Location banner graphics slot, 0xFF if none
+  return:
+    desc: Location banner graphics slot (0xFF if none)
+    type: u8
 -
   desc: Check display location
   label: CheckDisplayLocation
@@ -1802,7 +1983,9 @@
   size: 0x130
   mode: thumb
   params: null
-  return: Location banner graphics slot, 0xFF if none
+  return:
+    desc: Location banner graphics slot (0xFF if none)
+    type: u8
 -
   desc: Check advance event
   label: CheckAdvanceEvent
@@ -1813,8 +1996,12 @@
   size: 0x214
   mode: thumb
   params:
-  - Event number
-  return: 1 if event was set, 0 otherwise
+  - desc: Event number
+    type: u8
+    enum: Event
+  return:
+    desc: Event was set
+    type: bool
 -
   desc: Check on event 4B (nav after Yakuza)
   label: CheckOnEvent4B
@@ -1825,7 +2012,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 4C (engaged TRO SA-X 2)
   label: CheckOnEvent4C
@@ -1836,7 +2025,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 6B (Ice beam recovered)
   label: CheckAfterEvent6B
@@ -1847,7 +2038,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check after event 6A (SA-X killed by Omega)
   label: CheckAfterEvent6A
@@ -1858,7 +2051,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check on event 65 (entered operations deck)
   label: CheckOnEvent65
@@ -1869,7 +2064,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 5A (triggered BOX 2 rumble)
   label: CheckOnEvent5A
@@ -1880,7 +2077,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 59 (Restricted Zone warning)
   label: CheckOnEvent59
@@ -1891,7 +2090,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 34 (Blue X flee)
   label: CheckAfterEvent34
@@ -1902,7 +2103,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check event 46 (power outage)
   label: CheckEvent46
@@ -1913,7 +2116,9 @@
   size: 0x1C
   mode: thumb
   params: null
-  return: 0 if before event, 1 if on event, 2 if after event
+  return:
+    desc: 0 if before event, 1 if on event, 2 if after event
+    type: u8
 -
   desc: Check on event 5B (wave beam recovered)
   label: CheckOnEvent5B
@@ -1924,7 +2129,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 5C (restricted lab explosion)
   label: CheckOnEvent5C
@@ -1935,7 +2142,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 17 (earthquake after bombs)
   label: CheckOnEvent17
@@ -1946,7 +2155,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 16 (bomb data downloaded)
   label: CheckOnEvent16
@@ -1957,7 +2168,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 31 (escaped NOC SA-X)
   label: CheckOnEvent31
@@ -1968,7 +2181,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 43 (ARC SA-X encounter)
   label: CheckOnEvent43
@@ -1979,7 +2194,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 42 (power bomb data downloaded)
   label: CheckOnEvent42
@@ -1990,7 +2207,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 30 (NOC SA-X encounter)
   label: CheckOnEvent30
@@ -2001,7 +2220,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 2F (NOC 1 nav conversation)
   label: CheckOnEvent2F
@@ -2012,7 +2233,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 19 (hi-jump recovered)
   label: CheckOnEvent19
@@ -2023,7 +2246,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 1A (escaped TRO SA-X 1)
   label: CheckAfterEvent1A
@@ -2034,7 +2259,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check after event 28 (BOX 1 defeated)
   label: CheckAfterEvent28
@@ -2045,7 +2272,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check on event 27 (triggered BOX 1 rumble)
   label: CheckOnEvent27
@@ -2056,7 +2285,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 26 (super missile data downloaded)
   label: CheckOnEvent26
@@ -2067,7 +2298,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 25 (entered super missile data room)
   label: CheckOnEvent25
@@ -2078,7 +2311,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 20 (water level lowered)
   label: CheckAfterEvent20
@@ -2089,7 +2324,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check on event 1 (nav before quarantine bay)
   label: CheckOnEvent01
@@ -2100,7 +2337,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event with save disabled
   label: CheckOnEventWithSaveDisabled
@@ -2111,7 +2350,9 @@
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event with nav disabled
   label: CheckOnEventWithNavDisabled
@@ -2122,7 +2363,9 @@
   size: 0x24
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event with recharge disabled
   label: CheckOnEventWithRechargeDisabled
@@ -2133,7 +2376,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 1F (entered pump control unit)
   label: CheckOnEvent1F
@@ -2144,7 +2389,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check event 3B/3C (meltdown)
   label: CheckOnEventMeltdown
@@ -2155,7 +2402,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if on 3B, 2 if on 3C, 0 otherwise
+  return:
+    desc: 1 if on 3B, 2 if on 3C, 0 otherwise
+    type: u8
 -
   desc: Check on event 3E (to animals)
   label: CheckOnEvent3E
@@ -2166,7 +2415,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 3F (animals released)
   label: CheckAfterEvent3F
@@ -2177,7 +2428,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 49 (space jump recovered)
   label: CheckOnEvent49
@@ -2188,7 +2441,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check on event 66 (SA-X defeated)
   label: CheckOnEvent66
@@ -2199,7 +2454,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Check after event 66 (SA-X defeated)
   label: CheckAfterEvent66
@@ -2210,7 +2467,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if after event, 0 otherwise
+  return:
+    desc: After event
+    type: bool
 -
   desc: Check on event with timer displayed
   label: CheckOnEventWithTimerDisplayed
@@ -2221,7 +2480,9 @@
   size: 0xF8
   mode: thumb
   params: null
-  return: 1 for meltdown, 2 for restricted lab, 3 for escape, 0 otherwise
+  return:
+    desc: 1 for meltdown, 2 for restricted lab, 3 for escape, 0 otherwise
+    type: u8
 -
   desc: Check on event with timer stopped
   label: CheckOnEventWithTimerStopped
@@ -2232,7 +2493,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if on event, 0 otherwise
+  return:
+    desc: On event
+    type: bool
 -
   desc: Enemy dying start
   label: EnemyDyingStart
@@ -2265,8 +2528,10 @@
   size: 0x174
   mode: thumb
   params:
-  - Y position
-  - X position
+  - desc: Y position
+    type: u8
+  - desc: X position
+    type: u8
   return: null
 -
   desc: Initialize X-parasite
@@ -2300,8 +2565,10 @@
   size: 0x34
   mode: thumb
   params:
-  - Duration
-  - '?'
+  - desc: Duration
+    type: u8
+  - desc: '?'
+    type: u8
   return: null
 -
   desc: Start horizontal screen shake
@@ -2313,8 +2580,10 @@
   size: 0x34
   mode: thumb
   params:
-  - Duration
-  - '?'
+  - desc: Duration
+    type: u8
+  - desc: '?'
+    type: u8
   return: null
 -
   desc: Check room should be dim
@@ -2326,7 +2595,9 @@
   size: 0x70
   mode: thumb
   params: null
-  return: 1 if dim, 0 otherwise
+  return:
+    desc: Room is dim
+    type: bool
 -
   desc: Check main elevator is active
   label: CheckMainElevatorActive
@@ -2337,7 +2608,9 @@
   size: 0x48
   mode: thumb
   params: null
-  return: 1 if active, 0 otherwise
+  return:
+    desc: Elevator is active
+    type: bool
 -
   desc: Check set meltdown effect
   label: CheckSetMeltdownEffect
@@ -2348,7 +2621,9 @@
   size: 0x28
   mode: thumb
   params: null
-  return: 1 if during meltdown, 0 otherwise
+  return:
+    desc: During meltdown
+    type: bool
 -
   desc: Check room should be dark
   label: CheckRoomShouldBeRoomDark
@@ -2359,7 +2634,9 @@
   size: 0x18
   mode: thumb
   params: null
-  return: 1 if dark, 0 otherwise
+  return:
+    desc: Room is dark
+    type: bool
 -
   desc: Lock hatches
   label: LockHatches
@@ -2370,17 +2647,8 @@
   size: 0x90
   mode: thumb
   params:
-  - Hatches to lock
-  return: null
--
-  desc: Obtain suit animation related?
-  addr:
-    U: 0x63190
-    E: 0x63190
-    J: 0x63794
-  size: 0x40
-  mode: thumb
-  params: null
+  - desc: Hatches to lock
+    type: flags8
   return: null
 -
   desc: Set current navigation room
@@ -2403,7 +2671,9 @@
   size: 0x1CC
   mode: thumb
   params: null
-  return: 1 if not a navigation room, 0 otherwise
+  return:
+    desc: Not a navigation room
+    type: bool
 -
   desc: Check lock hatches and process event based effect
   label: CheckLockHatchesAndProcessEventBasedEffect
@@ -2427,16 +2697,6 @@
   params: null
   return: null
 -
-  desc: Event based effect related?
-  addr:
-    U: 0x636B4
-    E: 0x636B4
-    J: 0x63CB8
-  size: 0x28
-  mode: thumb
-  params: null
-  return: null
--
   desc: Check set event based effect bit 7
   label: CheckSetEventBasedEffectBit7
   addr:
@@ -2444,16 +2704,6 @@
     E: 0x636DC
     J: 0x63CE0
   size: 0x144
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Event based effect related?
-  addr:
-    U: 0x63820
-    E: 0x63820
-    J: 0x63E24
-  size: 0x46C
   mode: thumb
   params: null
   return: null
@@ -2467,17 +2717,9 @@
   size: 0xA8
   mode: thumb
   params: null
-  return: 1 if any hatches were locked, 0 otherwise
--
-  desc: Event based effect and ability related?
-  addr:
-    U: 0x63EE8
-    E: 0x63EE8
-    J: 0x644EC
-  size: 0x588
-  mode: thumb
-  params: null
-  return: '?'
+  return:
+    desc: Any hatches were locked
+    type: bool
 -
   desc: Update animated palette for Omega Metroid room
   label: UpdateAnimatedPaletteForOmegaRoom
@@ -2567,17 +2809,6 @@
   params: null
   return: null
 -
-  desc: Draw initial map for background?
-  addr:
-    U: 0x65654
-    E: 0x65654
-    J: 0x65C58
-  size: 0x250
-  mode: thumb
-  params:
-  - Background number
-  return: null
--
   desc: RLE decompress
   label: RleDecompress
   addr:
@@ -2587,65 +2818,15 @@
   size: 0xFC
   mode: thumb
   params:
-  - Option
-  - Source address
-  - Destination address
-  return: Size
--
-  desc: Update backgrounds related?
-  addr:
-    U: 0x65E78
-    E: 0x65E78
-    J: 0x6647C
-  size: 0xDEC
-  mode: thumb
-  params:
-  - '?'
-  return: null
--
-  desc: Update backgrounds related?
-  addr:
-    U: 0x672A8
-    E: 0x672A8
-    J: 0x678AC
-  size: 0xAFC
-  mode: thumb
-  params:
-  - '?'
-  return: null
--
-  desc: Check DMA3 finished?
-  addr:
-    U: 0x680C0
-    E: 0x680C0
-    J: 0x686C4
-  size: 0x20
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Start power bomb explosion?
-  addr:
-    U: 0x683B4
-    E: 0x683B4
-    J: 0x689D8
-  size: 0x48
-  mode: thumb
-  params:
-  - Y position
-  - X position
-  - CurrPowerBomb attribute?
-  return: null
--
-  desc: Current power bomb related?
-  addr:
-    U: 0x683FC
-    E: 0x683FC
-    J: 0x68A20
-  size: 0xC
-  mode: thumb
-  params: null
-  return: null
+  - desc: Option
+    type: u8
+  - desc: Source address
+    type: ptr
+  - desc: Destination address
+    type: ptr
+  return:
+    desc: Size
+    type: u32
 -
   desc: Initialize power bomb explosion
   label: InitPowerBombExplosion
@@ -2678,32 +2859,13 @@
   size: 0x108
   mode: thumb
   params:
-  - Y position
-  - X position
-  return: '?'
--
-  desc: Clipdata related?
-  addr:
-    U: 0x68E70
-    E: 0x68E70
-    J: 0x69494
-  size: 0x154
-  mode: thumb
-  params:
-  - Y position
-  - X position
-  return: '?'
--
-  desc: Elevator event related?
-  addr:
-    U: 0x68FC4
-    E: 0x68FC4
-    J: 0x695E8
-  size: 0x13C
-  mode: thumb
-  params:
-  - '?'
-  return: '?'
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Collision flags?
+    type: u32
 -
   desc: Check ground type under Samus
   label: CheckGroundTypeUnderSamus
@@ -2714,10 +2876,14 @@
   size: 0x84
   mode: thumb
   params:
-  - Y position
-  - X position
-  return: 1 if wet ground, 2 if dusty ground, 3 if very dusty ground, 4 if behavior
-    0x52 (unused), 5 if bubbly ground, 0 otherwise
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Ground type
+    type: u8
+    enum: GroundTypeUnderSamus
 -
   desc: Check enter door
   label: CheckEnterDoor
@@ -2728,9 +2894,13 @@
   size: 0x1F8
   mode: thumb
   params:
-  - Y position
-  - X position
-  return: 1 if door found, 0 otherwise
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Door found
+    type: bool
 -
   desc: Find event based door number
   label: FindEventBasedDoor
@@ -2741,8 +2911,11 @@
   size: 0x64
   mode: thumb
   params:
-  - Source door number
-  return: Target door number if found, 0xFF otherwise
+  - desc: Source door number
+    type: u8
+  return:
+    desc: Target door number (0xFF if none found)
+    type: u8
 -
   desc: Get room scrolls pointer
   label: GetRoomScrollsPtr
@@ -2751,16 +2924,6 @@
     E: 0x69CF0
     J: 0x6A314
   size: 0x60
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Nightmare silhouette related?
-  addr:
-    U: 0x6A978
-    E: 0x6A978
-    J: 0x6AF9C
-  size: 0x29C
   mode: thumb
   params: null
   return: null
@@ -2774,9 +2937,13 @@
   size: 0x84
   mode: thumb
   params:
-  - X position
-  - Y position
-  return: 1 if list was full, 0 otherwise
+  - desc: X position (blocks)
+    type: u16
+  - desc: Y position (blocks)
+    type: u16
+  return:
+    desc: List was full
+    type: bool
 -
   desc: Remove never reform blocks
   label: RemoveNeverReformBlocks
@@ -2787,18 +2954,6 @@
   size: 0xDC
   mode: thumb
   params: null
-  return: null
--
-  desc: Clipdata related?
-  addr:
-    U: 0x6B424
-    E: 0x6B424
-    J: 0x6BA48
-  size: 0x164
-  mode: thumb
-  params:
-  - X position
-  - Y position
   return: null
 -
   desc: Break reform block
@@ -2846,9 +3001,12 @@
   size: 0xD0
   mode: thumb
   params:
-  - Value
-  - Y position (blocks)
-  - X position (blocks)
+  - desc: Value
+    type: u16
+  - desc: Y position (blocks)
+    type: u16
+  - desc: X position (blocks)
+    type: u16
   return: null
 -
   desc: Set BG1 block value (0x8000)
@@ -2860,9 +3018,12 @@
   size: 0xD0
   mode: thumb
   params:
-  - Value
-  - Y position (blocks)
-  - X position (blocks)
+  - desc: Value
+    type: u16
+  - desc: Y position (blocks)
+    type: u16
+  - desc: X position (blocks)
+    type: u16
   return: null
 -
   desc: Set clipdata block value
@@ -2874,9 +3035,12 @@
   size: 0x28
   mode: thumb
   params:
-  - Value
-  - Y position
-  - X position
+  - desc: Value
+    type: u16
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
   return: null
 -
   desc: Update hatch data
@@ -2902,7 +3066,8 @@
     J: 0x15C
   mode: thumb
   params:
-  - Hatch index
+  - desc: Hatch index
+    type: u32
   return: null
 -
   desc: Check projectile hit hatch
@@ -2914,9 +3079,13 @@
   size: 0xB0
   mode: thumb
   params:
-  - X position
-  - Y position
-  return: 1 if a hatch should open, 0 otherwise
+  - desc: X position
+    type: u16
+  - desc: Y position
+    type: u16
+  return:
+    desc: Hatch should open
+    type: bool
 -
   desc: Update BG1 and sub-event during SA-X elevator cutscene
   label: UpdateBG1AndSubEvent_SaxElevatorScene
@@ -2927,7 +3096,8 @@
   size: 0xAC
   mode: thumb
   params:
-  - 0 if blowing up wall, 1 if blowing up hatch
+  - desc: 0 if blowing up wall, 1 if blowing up hatch
+    type: u8
   return: null
 -
   desc: Set tank as collected
@@ -2952,36 +3122,6 @@
   params: null
   return: null
 -
-  desc: SA-X elevator close-up related?
-  addr:
-    U: 0x6E1AC
-    E: 0x6E1AC
-    J: 0x6E858
-  size: 0xB8
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Cutscene related?
-  addr:
-    U: 0x6E9A8
-    E: 0x6E9A8
-    J: 0x6F054
-  size: 0x98
-  mode: thumb
-  params: null
-  return: '?'
--
-  desc: Get foreground effect based on event?
-  addr:
-    U: 0x6EDF4
-    E: 0x6EDF4
-    J: 0x6F4A0
-  size: 0x30
-  mode: thumb
-  params: null
-  return: Foreground effect
--
   desc: Update animated palette
   label: UpdateAnimatedPalette
   addr:
@@ -3002,7 +3142,9 @@
   size: 0x44
   mode: thumb
   params: null
-  return: 1 if animated palette should be set to 0, 0 otherwise
+  return:
+    desc: Set to 0
+    type: bool
 -
   desc: Update sub-event for SA-X encounter
   label: UpdateSubEventForSaxEncounter
@@ -3046,8 +3188,12 @@
   size: 0x1C
   mode: thumb
   params:
-  - Sub-event value
-  - Sub-event trigger type
+  - desc: Sub-event value
+    type: u8
+    enum: SubEvent
+  - desc: Sub-event trigger type
+    type: u8
+    enum: SubEventTrigger
   return: null
 -
   desc: Check update sub-event and music
@@ -3059,17 +3205,9 @@
   size: 0x142C
   mode: thumb
   params:
-  - Sub-event trigger type
-  return: null
--
-  desc: Load room music related?
-  addr:
-    U: 0x715F0
-    E: 0x715F0
-    J: 0x71C9C
-  size: 0xE0
-  mode: thumb
-  params: null
+  - desc: Sub-event trigger type
+    type: u8
+    enum: SubEventTrigger
   return: null
 -
   desc: Initialize Demo RAM
@@ -3081,7 +3219,8 @@
   size: 0x110
   mode: thumb
   params:
-  - Address group to initialize (0 or 1)
+  - desc: Address group to initialize (0 or 1)
+    type: u8
   return: null
 -
   desc: Draw HUD OAM
@@ -3115,7 +3254,8 @@
   size: 0x1F8
   mode: thumb
   params:
-  - Skip updating number flag
+  - desc: Skip updating number flag
+    type: bool
   return: null
 -
   desc: Draw HUD power bombs
@@ -3127,7 +3267,8 @@
   size: 0x1F8
   mode: thumb
   params:
-  - Skip updating number flag
+  - desc: Skip updating number flag
+    type: bool
   return: null
 -
   desc: Draw HUD
@@ -3161,9 +3302,13 @@
   size: 0x98
   mode: thumb
   params:
-  - Y position
-  - X position
-  - Effect number
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  - desc: Effect number
+    type: u8
+    enum: ParticleEffect
   return: null
 -
   desc: Play beam charging sound
@@ -3208,7 +3353,9 @@
   size: 0x318
   mode: thumb
   params:
-  - Event number
+  - desc: Event number
+    type: u8
+    enum: Event
   return: null
 -
   desc: Check play cutscene during transition
@@ -3220,50 +3367,14 @@
   size: 0x14C
   mode: thumb
   params:
-  - Destination room
-  - Destination door
-  return: Cutscene number
--
-  desc: Load room after cutscene?
-  addr:
-    U: 0x74CF4
-    E: 0x74CF4
-    J: 0x75480
-  size: 0x60
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Navigation event related?
-  addr:
-    U: 0x74D54
-    E: 0x74D54
-    J: 0x754E0
-  size: 0xD4
-  mode: thumb
-  params:
-  - '?'
-  return: null
--
-  desc: Restricted lab related?
-  addr:
-    U: 0x74E28
-    E: 0x74E28
-    J: 0x755B4
-  size: 0x84
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Navigation event related?
-  addr:
-    U: 0x74EAC
-    E: 0x74EAC
-    J: 0x75638
-  size: 0x84
-  mode: thumb
-  params: null
-  return: 1 if area map downloaded
+  - desc: Destination room
+    type: u8
+  - desc: Destination door
+    type: u8
+  return:
+    desc: Cutscene number
+    type: u8
+    enum: Cutscene
 -
   desc: Check/download data item
   label: CheckOrDownloadDataItem
@@ -3274,8 +3385,11 @@
   size: 0x40
   mode: thumb
   params:
-  - Download flag
-  return: 1 if data was downloaded, 0 otherwise
+  - desc: Download flag
+    type: bool
+  return:
+    desc: Data was downloaded
+    type: bool
 -
   desc: Check/unlock security level
   label: CheckOrUnlockSecurityLevel
@@ -3286,8 +3400,11 @@
   size: 0x8C
   mode: thumb
   params:
-  - Unlock flag
-  return: New security level
+  - desc: Unlock flag
+    type: bool
+  return:
+    desc: New security level
+    type: u8
 -
   desc: Set minimap square explored
   label: SetMinimapSquareExplored
@@ -3296,16 +3413,6 @@
     E: 0x750A8
     J: 0x75834
   size: 0x44
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Update corner map?
-  addr:
-    U: 0x75274
-    E: 0x75274
-    J: 0x75A00
-  size: 0xF4
   mode: thumb
   params: null
   return: null
@@ -3319,8 +3426,10 @@
   size: 0x64
   mode: thumb
   params:
-  - X position
-  - Y position
+  - desc: X position
+    type: u8
+  - desc: Y position
+    type: u8
   return: null
 -
   desc: Downloading map subroutine
@@ -3332,27 +3441,9 @@
   size: 0x420
   mode: thumb
   params: null
-  return: '?'
--
-  desc: Load pause menu related?
-  addr:
-    U: 0x765F8
-    E: 0x765F8
-    J: 0x76DB4
-  size: 0x2AC
-  mode: thumb
-  params: null
-  return: '?'
--
-  desc: Load pause menu related?
-  addr:
-    U: 0x76990
-    E: 0x76990
-    J: 0x7714C
-  size: 0x6F4
-  mode: thumb
-  params: null
-  return: '?'
+  return:
+    desc: Done downloading
+    type: bool
 -
   desc: Get minimap data
   label: GetMinimapData
@@ -3363,19 +3454,10 @@
   size: 0x30
   mode: thumb
   params:
-  - Minimap number
-  - Destination address
-  return: null
--
-  desc: Pause screen graphics related?
-  addr:
-    U: 0x77E40
-    E: 0x77E40
-    J: 0x78614
-  size: 0x2CC
-  mode: thumb
-  params:
-  - '?'
+  - desc: Minimap number
+    type: u8
+  - desc: Destination address
+    type: ptr
   return: null
 -
   desc: Get character width
@@ -3387,8 +3469,11 @@
   size: 0x24
   mode: thumb
   params:
-  - Character value
-  return: Character width
+  - desc: Character value
+    type: u16
+  return:
+    desc: Character width
+    type: u8
 -
   desc: Draw character
   label: DrawCharacter
@@ -3399,11 +3484,16 @@
   size: 0x1CC
   mode: thumb
   params:
-  - Character value
-  - Graphics position
-  - Character width
-  - X offset
-  - Color
+  - desc: Character value
+    type: u16
+  - desc: Graphics position
+    type: ptr
+  - desc: Character width
+    type: u8
+  - desc: X offset
+    type: u8
+  - desc: Color
+    type: u8
   return: null
 -
   desc: Draw character (debug menu)
@@ -3415,9 +3505,12 @@
   size: 0x130
   mode: thumb
   params:
-  - Character value
-  - Graphics position
-  - Color
+  - desc: Character value
+    type: u16
+  - desc: Graphics position
+    type: ptr
+  - desc: Color
+    type: u8
   return: null
 -
   desc: Display message
@@ -3429,8 +3522,10 @@
   size: 0x158
   mode: thumb
   params:
-  - Spriteset GFX row
-  - Stage
+  - desc: Spriteset GFX row
+    type: u8
+  - desc: Stage
+    type: u8
   return: null
 -
   desc: Clear text VRAM
@@ -3442,38 +3537,9 @@
   size: 0xC4
   mode: thumb
   params:
-  - '?'
+  - desc: '?'
+    type: u8
   return: null
--
-  desc: Navigation event related?
-  addr:
-    U: 0x7A2DC
-    E: 0x7A2DC
-    J: 0x7AAB0
-  size: 0xC8
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Display pause screen text?
-  addr:
-    U: 0x7B8D4
-    E: 0x7B8D4
-    J: 0x7C0A8
-  size: 0x11C
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Navigation event related?
-  addr:
-    U: 0x7BBF0
-    E: 0x7BBF0
-    J: 0x7C3C4
-  size: 0xA8
-  mode: thumb
-  params: null
-  return: '?'
 -
   desc: Debug menu handle input and update timer
   label: DebugMenuHandleInputAndUpdateTimer
@@ -3520,7 +3586,8 @@
   size: 0x38C
   mode: thumb
   params:
-  - Section number, FF for all
+  - desc: Section number, 0xFF for all
+    type: u8
   return: null
 -
   desc: Set ability count
@@ -3532,7 +3599,8 @@
   size: 0x60
   mode: thumb
   params:
-  - Ability count
+  - desc: Ability count
+    type: u8
   return: null
 -
   desc: Draw debug menu ability count
@@ -3597,7 +3665,8 @@
   size: 0xA8
   mode: thumb
   params:
-  - Section number, FF for all
+  - desc: Section number, 0xFF for all
+    type: u8
   return: null
 -
   desc: Draw debug menu values
@@ -3651,8 +3720,10 @@
   size: 0x1C
   mode: thumb
   params:
-  - Text address
-  - RAM address
+  - desc: Text address
+    type: ptr
+  - desc: RAM address
+    type: ptr
   return: null
 -
   desc: Write "SAVE_END" to save
@@ -3664,8 +3735,10 @@
   size: 0x1C
   mode: thumb
   params:
-  - Text address
-  - RAM address
+  - desc: Text address
+    type: ptr
+  - desc: RAM address
+    type: ptr
   return: null
 -
   desc: Verify save data checksum
@@ -3677,8 +3750,11 @@
   size: 0xB0
   mode: thumb
   params:
-  - Check backup flag
-  return: 1 if invalid checksum or invalid header, 2 if both, 0 otherwise
+  - desc: Check backup flag
+    type: bool
+  return:
+    desc: 1 if invalid checksum or invalid header, 2 if both, 0 otherwise
+    type: u8
 -
   desc: Write minimap, never reform blocks, and tanks collected to save
   label: Write_Minimap_Blocks_Tanks_ToSave
@@ -3700,9 +3776,14 @@
   size: 0x50
   mode: thumb
   params:
-  - Projectile type
-  - Projectile limit
-  return: 1 if under limit, 0 otherwise
+  - desc: Projectile type
+    type: u8
+    enum: ProjectileType
+  - desc: Projectile limit
+    type: u8
+  return:
+    desc: Within limit
+    type: bool
 -
   desc: Initialize projectile
   label: InitProjectile
@@ -3713,11 +3794,18 @@
   size: 0xA0
   mode: thumb
   params:
-  - Projectile type
-  - Projectile Y position
-  - Projectile X position
-  - Projectile part
-  return: Projectile slot number, FF otherwise
+  - desc: Projectile type
+    type: u8
+    enum: ProjectileType
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
+  - desc: Projectile part
+    type: u8
+  return:
+    desc: Projectile slot number, 0xFF otherwise
+    type: u8
 -
   desc: Initialize secondary projectile
   label: InitSecondaryProjectile
@@ -3728,13 +3816,23 @@
   size: 0x94
   mode: thumb
   params:
-  - Projectile type
-  - Projectile Y position
-  - Projectile X position
-  - Projectile part
-  - Projectile status
-  - Projectile direction
-  - Primary projectile RAM slot
+  - desc: Projectile type
+    type: u8
+    enum: ProjectileType
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
+  - desc: Projectile part
+    type: u8
+  - desc: Projectile status
+    type: flags8
+    enum: ProjectileStatus
+  - desc: Projectile direction
+    type: u8
+    enum: ProjectileDirection
+  - desc: Primary projectile RAM slot
+    type: u8
   return: null
 -
   desc: Update arm cannon and weapons
@@ -3856,18 +3954,9 @@
   size: 0xCC
   mode: thumb
   params:
-  - Distance
+  - desc: Distance
+    type: u8
   return: null
--
-  desc: Check projectile affected block?
-  addr:
-    U: 0x8222C
-    E: 0x8222C
-    J: 0x82E8C
-  size: 0x238
-  mode: thumb
-  params: null
-  return: '?'
 -
   desc: Move wide beam parts
   label: MoveWideBeamParts
@@ -3911,8 +4000,11 @@
   size: 0xBC
   mode: thumb
   params:
-  - Effect number
-  - Frequency
+  - desc: Effect number
+    type: u8
+    enum: ParticleEffect
+  - desc: Frequency
+    type: u32
   return: null
 -
   desc: Set beam trail graphics
@@ -3924,8 +4016,11 @@
   size: 0xA8
   mode: thumb
   params:
-  - Effect number
-  - Frequency
+  - desc: Effect number
+    type: u8
+    enum: ParticleEffect
+  - desc: Frequency
+    type: u32
   return: null
 -
   desc: Check weapon hit sprite
@@ -3948,8 +4043,11 @@
   size: 0x58
   mode: thumb
   params:
-  - Sprite slot number
-  return: 10 if sprite makes debris, 0 otherwise
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: 10 if sprite makes debris, 0 otherwise
+    type: u8
 -
   desc: Get sprite weakness
   label: GetSpriteWeakness
@@ -3960,8 +4058,12 @@
   size: 0x4C
   mode: thumb
   params:
-  - Sprite slot number
-  return: Sprite weakness
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: Sprite weakness
+    type: flags8
+    enum: SpriteWeakness
 -
   desc: Create sprite debris
   label: CreateSpriteDebris
@@ -3972,10 +4074,15 @@
   size: 0x134
   mode: thumb
   params:
-  - Cloud type
-  - Sprite flash timer
-  - Projectile Y position
-  - Projectile X position
+  - desc: Cloud type
+    type: u8
+    enum: DebrisCloudType
+  - desc: Sprite flash timer
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Create sprite debris (piercing beam)
@@ -3987,59 +4094,15 @@
   size: 0xF8
   mode: thumb
   params:
-  - Cloud type
-  - Sprite flash timer
-  - Projectile Y position
-  - Projectile X position
-  return: null
--
-  desc: Sprite flash related?
-  addr:
-    U: 0x832BC
-    E: 0x832BC
-    J: 0x83F1C
-  size: 0x30
-  mode: thumb
-  params:
-  - '?'
-  return: null
--
-  desc: Power bomb related?
-  addr:
-    U: 0x832EC
-    E: 0x832EC
-    J: 0x83F4C
-  size: 0x84
-  mode: thumb
-  params:
-  - '?'
-  return: null
--
-  desc: Power bomb hit sprite related?
-  addr:
-    U: 0x83370
-    E: 0x83370
-    J: 0x83FD0
-  size:
-    U: 0x104
-    E: 0x104
-    J: 0x108
-  mode: thumb
-  params:
-  - Sprite slot number
-  return: null
--
-  desc: Speed boost/screw attack hit sprite related?
-  addr:
-    U: 0x83474
-    E: 0x83474
-    J: 0x840D8
-  size: 0x184
-  mode: thumb
-  params:
-  - Sprite slot number
-  - Y position
-  - X position
+  - desc: Cloud type
+    type: u8
+    enum: DebrisCloudType
+  - desc: Sprite flash timer
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Lower sprite health
@@ -4054,9 +4117,13 @@
     J: 0xC8
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile damage
-  return: Sprite flash timer
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile damage
+    type: u16
+  return:
+    desc: Sprite flash timer
+    type: u8
 -
   desc: Pseudo screw attack hit sprite
   label: PseudoScrewAttackHitSprite
@@ -4067,9 +4134,12 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  - Y position
-  - X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
   return: null
 -
   desc: Lower sprite health (ice missile)
@@ -4084,10 +4154,15 @@
     J: 0x164
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile damage
-  return: Sprite flash timer
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile damage
+    type: u16
+  return:
+    desc: Sprite flash timer
+    type: u8
 -
   desc: Lower sprite health (diffusion flake)
   label: LowerSpriteHealth_DiffusionFlake
@@ -4101,9 +4176,13 @@
     J: 0x154
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  return: Sprite flash timer
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  return:
+    desc: Sprite flash timer
+    type: u8
 -
   desc: Lower sprite health (ice beam)
   label: LowerSpriteHealth_IceBeam
@@ -4117,21 +4196,15 @@
     J: 0x134
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile damage
-  return: Sprite flash timer
--
-  desc: Update sprite flash timer?
-  addr:
-    U: 0x83B78
-    E: 0x83B78
-    J: 0x847D4
-  size: 0x34
-  mode: thumb
-  params:
-  - Sprite slot number
-  return: '?'
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile damage
+    type: u16
+  return:
+    desc: Sprite flash timer
+    type: u8
 -
   desc: Normal beam hit sprite
   label: NormalBeamHitSprite
@@ -4142,10 +4215,14 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charged normal beam hit sprite
@@ -4157,10 +4234,14 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charge beam hit sprite
@@ -4172,10 +4253,14 @@
   size: 0xE0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charged charge beam hit sprite
@@ -4187,10 +4272,14 @@
   size: 0xE0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Wide beam hit sprite
@@ -4202,10 +4291,14 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charged wide beam hit sprite
@@ -4217,10 +4310,14 @@
   size: 0xC4
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Plasma beam hit sprite
@@ -4232,10 +4329,14 @@
   size: 0xE0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charged plasma beam hit sprite
@@ -4247,10 +4348,14 @@
   size: 0xE0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Wave beam hit sprite
@@ -4262,10 +4367,14 @@
   size: 0x164
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Charged wave beam hit sprite
@@ -4277,10 +4386,14 @@
   size: 0x194
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Flare hit sprite
@@ -4292,10 +4405,14 @@
   size: 0x12C
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Start missile tumble
@@ -4307,8 +4424,10 @@
   size: 0x64
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
   return: null
 -
   desc: Normal missile hit sprite
@@ -4320,10 +4439,14 @@
   size: 0xD8
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Super missile hit sprite
@@ -4335,10 +4458,14 @@
   size: 0xD0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Ice missile hit sprite
@@ -4350,10 +4477,14 @@
   size: 0x118
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Diffusion missile hit sprite
@@ -4365,10 +4496,14 @@
   size: 0x1DC
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Diffusion flake hit sprite
@@ -4380,10 +4515,14 @@
   size: 0xD0
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Bomb hit sprite
@@ -4395,9 +4534,12 @@
   size: 0x7C
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Set sprite flash timer for non-charge beams and bombs
@@ -4409,10 +4551,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Set sprite flash timer for charge beam
@@ -4424,10 +4570,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Set sprite flash timer for missiles
@@ -4439,10 +4589,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - Sprite slot number
-  - Projectile slot number
-  - Projectile Y position
-  - Projectile X position
+  - desc: Sprite slot number
+    type: u8
+  - desc: Projectile slot number
+    type: u8
+  - desc: Projectile Y position
+    type: u16
+  - desc: Projectile X position
+    type: u16
   return: null
 -
   desc: Lower Zazabi health
@@ -4454,7 +4608,8 @@
   size: 0x74
   mode: thumb
   params:
-  - Projectile damage
+  - desc: Projectile damage
+    type: u16
   return: null
 -
   desc: Initialize charged normal beam
@@ -4510,7 +4665,8 @@
   size: 0xF4
   mode: thumb
   params:
-  - 1 for ice, 2 for diffusion, 0 otherwise
+  - desc: 1 for ice, 2 for diffusion, 0 otherwise
+    type: u8
   return: null
 -
   desc: Move tumbling missile
@@ -4808,7 +4964,8 @@
   size: 0xD0
   mode: thumb
   params:
-  - Animation stage
+  - desc: Animation stage
+    type: u8
   return: null
 -
   desc: Initialize flare
@@ -4845,7 +5002,9 @@
     J: 0x26C
   mode: thumb
   params: null
-  return: 1 if intro finished, 0 otherwise
+  return:
+    desc: Intro finished
+    type: bool
 -
   desc: New file intro Samus found subroutine
   label: NewFileIntroSamusFoundSubroutine
@@ -4856,7 +5015,9 @@
   size: 0x594
   mode: thumb
   params: null
-  return: '?'
+  return:
+    desc: '?'
+    type: bool
 -
   desc: New file intro Samus cured subroutine
   label: NewIntroSamusCuredSubroutine
@@ -4867,7 +5028,9 @@
   size: 0x428
   mode: thumb
   params: null
-  return: '?'
+  return:
+    desc: '?'
+    type: bool
 -
   desc: New file intro approaching BSL subroutine
   label: NewFileIntroApproachingBslSubroutine
@@ -4878,18 +5041,9 @@
   size: 0x750
   mode: thumb
   params: null
-  return: '?'
--
-  desc: Update new file intro sprites?
-  addr:
-    U: 0x98DA0
-    E: 0x98E60
-    J: 0x99D20
-  size: 0xA04
-  mode: thumb
-  params:
-  - '?'
-  return: null
+  return:
+    desc: '?'
+    type: bool
 -
   desc: Generate random number for title intro
   label: GenerateRandomNumForTitleIntro
@@ -4900,17 +5054,9 @@
   size: 0x48
   mode: thumb
   params: null
-  return: Random number
--
-  desc: SA-X close-up related?
-  addr:
-    U: 0x9DBE8
-    E: 0x9DCA8
-    J: 0x9EB68
-  size: 0x180
-  mode: thumb
-  params: null
-  return: null
+  return:
+    desc: Random number
+    type: u8
 -
   desc: File select subroutine
   label: FileSelectSubroutine
@@ -4924,8 +5070,10 @@
     J: 0x1BC
   mode: thumb
   params: null
-  return: 1 if starting new game, 2 if loading game, 3 if returning to title, 0
-    otherwise
+  return:
+    desc: 1 if starting new game, 2 if loading game, 3 if returning to title,
+      0 otherwise
+    type: u8
 -
   desc: File select input
   label: FileSelectInput
@@ -4939,8 +5087,10 @@
     J: 0x11EC
   mode: thumb
   params: null
-  return: 1 if starting new game, 2 if loading game, 3 if returning to title, 0
-    otherwise
+  return:
+    desc: 1 if starting new game, 2 if loading game, 3 if returning to title,
+      0 otherwise
+    type: u8
 -
   desc: Set language
   label: SetLanguage
@@ -4954,7 +5104,9 @@
     J: 0x4
   mode: thumb
   params: null
-  return: 1 when a language has been chosen (U and J versions return 1 right away)
+  return:
+    desc: Language chosen (U and J versions return 1 right away)
+    type: bool
 -
   desc: Setup BG control for language select menu
   label: SetupBGControlForLanguageSelectMenu
@@ -4978,7 +5130,9 @@
     E: 0x8C
   mode: thumb
   params: null
-  return: 1 if ?
+  return:
+    desc: '?'
+    type: bool
 -
   desc: Language select menu handle input
   label: LanguageSelectMenuHandleInput
@@ -4998,7 +5152,8 @@
     E: 0x38
   mode: thumb
   params:
-  - Pointer to non-gameplay RAM
+  - desc: Pointer to non-gameplay RAM
+    type: ptr
   return: null
 -
   desc: Check valid European language
@@ -5009,7 +5164,9 @@
     E: 0x24
   mode: thumb
   params: null
-  return: 1 if language is valid, 0 otherwise (if Japanese)
+  return:
+    desc: Language is valid
+    type: bool
 -
   desc: Draw ending time and percent in VRAM
   label: DrawEndingTimeAndPercentInVram
@@ -5196,9 +5353,13 @@
   size: 0x94
   mode: thumb
   params:
-  - Dividend
-  - Divisor
-  return: Quotient
+  - desc: Dividend
+    type: s32
+  - desc: Divisor
+    type: s32
+  return:
+    desc: Quotient
+    type: s32
 -
   desc: Divide by 0 handler (empty)
   label: DivideBy0Handler
@@ -5220,9 +5381,13 @@
   size: 0xD0
   mode: thumb
   params:
-  - Dividend
-  - Divisor
-  return: Remainder
+  - desc: Dividend
+    type: s32
+  - desc: Divisor
+    type: s32
+  return:
+    desc: Remainder
+    type: s32
 -
   desc: Divide (unsigned)
   label: Divide_Unsigned
@@ -5233,9 +5398,13 @@
   size: 0x78
   mode: thumb
   params:
-  - Dividend
-  - Divisor
-  return: Quotient
+  - desc: Dividend
+    type: u32
+  - desc: Divisor
+    type: u32
+  return:
+    desc: Quotient
+    type: u32
 -
   desc: Modulo (unsigned)
   label: Modulo_Unsigned
@@ -5246,9 +5415,13 @@
   size: 0x88
   mode: thumb
   params:
-  - Dividend
-  - Divisor
-  return: Remainder
+  - desc: Dividend
+    type: u32
+  - desc: Divisor
+    type: u32
+  return:
+    desc: Remainder
+    type: u32
 -
   desc: Copy bytes
   label: CopyBytes
@@ -5259,7 +5432,10 @@
   size: 0x60
   mode: thumb
   params:
-  - Destination address
-  - Source address
-  - Length
+  - desc: Destination address
+    type: ptr
+  - desc: Source address
+    type: ptr
+  - desc: Length
+    type: u32
   return: null

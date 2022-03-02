@@ -8,7 +8,8 @@
   size: 0x160
   mode: thumb
   params:
-  - Stage
+  - desc: Stage
+    type: u8
   return: null
 -
   desc: Chozo statue movement AI
@@ -141,7 +142,9 @@
   size: 0x30C
   mode: thumb
   params:
-  - Sprite ID
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
   return: null
   notes: Sets event and equipment flags according to the statue's Sprite ID
 -
@@ -165,8 +168,12 @@
   size: 0x2BC
   mode: thumb
   params:
-  - Sprite ID
-  return: Chozo statue behavior (0 = Item, 1 = Refill, 2 = Hint, 3 = Hint taken)
+  - desc: Sprite ID
+    type: u8
+    enum: PrimarySpriteID
+  return:
+    desc: Chozo statue behavior (0 = Item, 1 = Refill, 2 = Hint, 3 = Hint taken)
+    type: u8
   notes: Checks for events/equipment flags to determine the behavior of a chozo statue
 -
   desc: Chozo statue AI
@@ -1025,11 +1032,16 @@
   size: 0x30C
   mode: thumb
   params:
-  - Samus Y position
-  - Samus X position
-  - Y speed
-  - X speed
-  - Speed divisor
+  - desc: Samus Y position
+    type: u16
+  - desc: Samus X position
+    type: u16
+  - desc: Y speed
+    type: u8
+  - desc: X speed
+    type: u8
+  - desc: Speed divisor
+    type: u8
   return: null
 -
   desc: Metroid check Samus grabbed
@@ -1041,7 +1053,9 @@
   size: 0x48
   mode: thumb
   params: null
-  return: 1 if Samus already grabbed, 0 otherwise
+  return:
+    desc: Samus grabbed
+    type: bool
 -
   desc: Metroid AI
   label: Metroid_AI

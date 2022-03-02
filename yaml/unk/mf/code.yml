@@ -844,6 +844,20 @@
   params: '?'
   return: '?'
 -
+  desc: Play sound before music?
+  addr:
+    U: 0x38A8
+    E: 0x38A8
+    J: 0x390C
+  size: 0x124
+  mode: thumb
+  params:
+  - desc: Sound ID
+    type: u16
+  - desc: '?'
+    type: u8
+  return: null
+-
   desc: '?'
   addr:
     U: 0x39CC
@@ -883,6 +897,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Play sound 5?
+  addr:
+    U: 0x3B78
+    E: 0x3B78
+    J: 0x3BDC
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: Sound ID
+    type: u16
+  return: null
 -
   desc: '?'
   addr:
@@ -2157,6 +2183,32 @@
   params: '?'
   return: '?'
 -
+  desc: Changing pose related?
+  addr:
+    U: 0x8FA0
+    E: 0x8FA0
+    J: 0x9018
+  size: 0xE0
+  mode: thumb
+  params:
+  - desc: New pose?
+    type: u8
+    enum: SamusPose
+  return: null
+-
+  desc: Jump related?
+  addr:
+    U: 0x9080
+    E: 0x9080
+    J: 0x90F8
+  size:
+    U: 0x3A0
+    E: 0x3A0
+    J: 0x3C8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x9420
@@ -2216,6 +2268,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Set RAM for new pose?
+  addr:
+    U: 0x9A3C
+    E: 0x9A3C
+    J: 0x9ADC
+  size: 0x33C
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -2346,6 +2408,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Update Samus hitbox size?
+  addr:
+    U: 0xC174
+    E: 0xC174
+    J: 0xC214
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -2770,6 +2842,18 @@
   params: '?'
   return: '?'
 -
+  desc: Draw sprite?
+  addr:
+    U: 0xECC8
+    E: 0xECC8
+    J: 0xED7C
+  size: 0x8A0
+  mode: thumb
+  params:
+  - desc: Sprite slot number
+    type: u8
+  return: null
+-
   desc: '?'
   addr:
     U: 0xF568
@@ -2864,6 +2948,26 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Sprite collision related?
+  addr:
+    U: 0x1129C
+    E: 0x1129C
+    J: 0x113D8
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Sprite collision related?
+  addr:
+    U: 0x11310
+    E: 0x11310
+    J: 0x1144C
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -4748,6 +4852,26 @@
   params: '?'
   return: '?'
 -
+  desc: Update boss animation?
+  addr:
+    U: 0x35ACC
+    E: 0x35ACC
+    J: 0x35C8C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: BOX update position?
+  addr:
+    U: 0x35B08
+    E: 0x35B08
+    J: 0x35CC8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x35B4C
@@ -5018,6 +5142,16 @@
   params: '?'
   return: '?'
 -
+  desc: Empty function?
+  addr:
+    U: 0x3967C
+    E: 0x3967C
+    J: 0x39880
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x39680
@@ -5137,6 +5271,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Empty function?
+  addr:
+    U: 0x39CC4
+    E: 0x39CC4
+    J: 0x39EC8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -6400,6 +6544,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Empty function?
+  addr:
+    U: 0x455A0
+    E: 0x455A0
+    J: 0x457F8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -7811,6 +7965,16 @@
   params: '?'
   return: '?'
 -
+  desc: Empty function?
+  addr:
+    U: 0x5792C
+    E: 0x5792C
+    J: 0x57D10
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x57930
@@ -8727,6 +8891,16 @@
   params: '?'
   return: '?'
 -
+  desc: Obtain suit animation related?
+  addr:
+    U: 0x63190
+    E: 0x63190
+    J: 0x63794
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x633FC
@@ -8746,6 +8920,26 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Event based effect related?
+  addr:
+    U: 0x636B4
+    E: 0x636B4
+    J: 0x63CB8
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Event based effect related?
+  addr:
+    U: 0x63820
+    E: 0x63820
+    J: 0x63E24
+  size: 0x46C
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -8776,6 +8970,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Event based effect and ability related?
+  addr:
+    U: 0x63EE8
+    E: 0x63EE8
+    J: 0x644EC
+  size: 0x588
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: u8
 -
   desc: '?'
   addr:
@@ -8816,6 +9022,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Draw initial map for background?
+  addr:
+    U: 0x65654
+    E: 0x65654
+    J: 0x65C58
+  size: 0x250
+  mode: thumb
+  params:
+  - desc: Background number
+    type: u8
+  return: null
 -
   desc: '?'
   addr:
@@ -8897,6 +9115,18 @@
   params: '?'
   return: '?'
 -
+  desc: Update backgrounds related?
+  addr:
+    U: 0x65E78
+    E: 0x65E78
+    J: 0x6647C
+  size: 0xDEC
+  mode: thumb
+  params:
+  - desc: '?'
+    type: s16
+  return: null
+-
   desc: '?'
   addr:
     U: 0x66C64
@@ -8907,6 +9137,18 @@
   params: '?'
   return: '?'
 -
+  desc: Update backgrounds related?
+  addr:
+    U: 0x672A8
+    E: 0x672A8
+    J: 0x678AC
+  size: 0xAFC
+  mode: thumb
+  params:
+  - desc: '?'
+    type: s16
+  return: null
+-
   desc: '?'
   addr:
     U: 0x67DA4
@@ -8916,6 +9158,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Check DMA3 finished?
+  addr:
+    U: 0x680C0
+    E: 0x680C0
+    J: 0x686C4
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -8939,6 +9191,32 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Start power bomb explosion?
+  addr:
+    U: 0x683B4
+    E: 0x683B4
+    J: 0x689D8
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  - desc: CurrPowerBomb attribute?
+    type: u8
+  return: null
+-
+  desc: Current power bomb related?
+  addr:
+    U: 0x683FC
+    E: 0x683FC
+    J: 0x68A20
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -9039,6 +9317,36 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Clipdata related?
+  addr:
+    U: 0x68E70
+    E: 0x68E70
+    J: 0x69494
+  size: 0x154
+  mode: thumb
+  params:
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return:
+    desc: Collision flags?
+    type: u32
+-
+  desc: Elevator event related?
+  addr:
+    U: 0x68FC4
+    E: 0x68FC4
+    J: 0x695E8
+  size: 0x13C
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u16
+  return:
+    desc: Elevator disabled flag?
+    type: bool
 -
   desc: '?'
   addr:
@@ -9300,6 +9608,16 @@
   params: '?'
   return: '?'
 -
+  desc: Nightmare silhouette related?
+  addr:
+    U: 0x6A978
+    E: 0x6A978
+    J: 0x6AF9C
+  size: 0x29C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x6AC14
@@ -9379,6 +9697,22 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Clipdata related?
+  addr:
+    U: 0x6B424
+    E: 0x6B424
+    J: 0x6BA48
+  size: 0x164
+  mode: thumb
+  params:
+  - desc: X position
+    type: u16
+  - desc: Y position
+    type: u16
+  - desc: '?'
+    type: u16
+  return: null
 -
   desc: '?'
   addr:
@@ -9900,6 +10234,16 @@
   params: '?'
   return: '?'
 -
+  desc: SA-X elevator close-up related?
+  addr:
+    U: 0x6E1AC
+    E: 0x6E1AC
+    J: 0x6E858
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x6E264
@@ -9970,6 +10314,18 @@
   params: '?'
   return: '?'
 -
+  desc: Cutscene related?
+  addr:
+    U: 0x6E9A8
+    E: 0x6E9A8
+    J: 0x6F054
+  size: 0x98
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: bool
+-
   desc: '?'
   addr:
     U: 0x6EA40
@@ -10019,6 +10375,19 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Get foreground effect based on event?
+  addr:
+    U: 0x6EDF4
+    E: 0x6EDF4
+    J: 0x6F4A0
+  size: 0x30
+  mode: thumb
+  params: null
+  return:
+    desc: Foreground effect
+    type: u8
+    enum: ForegroundEffect
 -
   desc: '?'
   addr:
@@ -10209,6 +10578,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Load room music related?
+  addr:
+    U: 0x715F0
+    E: 0x715F0
+    J: 0x71C9C
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -11138,6 +11517,50 @@
   params: '?'
   return: '?'
 -
+  desc: Load room after cutscene?
+  addr:
+    U: 0x74CF4
+    E: 0x74CF4
+    J: 0x75480
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation event related?
+  addr:
+    U: 0x74D54
+    E: 0x74D54
+    J: 0x754E0
+  size: 0xD4
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u8
+  return: null
+-
+  desc: Restricted lab related?
+  addr:
+    U: 0x74E28
+    E: 0x74E28
+    J: 0x755B4
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Navigation event related?
+  addr:
+    U: 0x74EAC
+    E: 0x74EAC
+    J: 0x75638
+  size: 0x84
+  mode: thumb
+  params: null
+  return:
+    desc: Area map downloaded
+    type: bool
+-
   desc: '?'
   addr:
     J: 0x74FD8
@@ -11186,6 +11609,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Update corner map?
+  addr:
+    U: 0x75274
+    E: 0x75274
+    J: 0x75A00
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:
@@ -11330,6 +11763,18 @@
   params: '?'
   return: '?'
 -
+  desc: Load pause menu related?
+  addr:
+    U: 0x765F8
+    E: 0x765F8
+    J: 0x76DB4
+  size: 0x2AC
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: bool
+-
   desc: '?'
   addr:
     U: 0x768A4
@@ -11359,6 +11804,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Load pause menu related?
+  addr:
+    U: 0x76990
+    E: 0x76990
+    J: 0x7714C
+  size: 0x6F4
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: bool
 -
   desc: '?'
   addr:
@@ -11481,6 +11938,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Pause screen graphics related?
+  addr:
+    U: 0x77E40
+    E: 0x77E40
+    J: 0x78614
+  size: 0x2CC
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u8
+  return: null
 -
   desc: '?'
   addr:
@@ -11612,6 +12081,16 @@
   params: '?'
   return: '?'
 -
+  desc: Navigation event related?
+  addr:
+    U: 0x7A2DC
+    E: 0x7A2DC
+    J: 0x7AAB0
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x7A3A4
@@ -11692,6 +12171,16 @@
   params: '?'
   return: '?'
 -
+  desc: Display pause screen text?
+  addr:
+    U: 0x7B8D4
+    E: 0x7B8D4
+    J: 0x7C0A8
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: '?'
   addr:
     U: 0x7B9F0
@@ -11701,6 +12190,18 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Navigation event related?
+  addr:
+    U: 0x7BBF0
+    E: 0x7BBF0
+    J: 0x7C3C4
+  size: 0xA8
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: u8
 -
   desc: '?'
   addr:
@@ -12475,6 +12976,87 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: Check projectile affected block?
+  addr:
+    U: 0x8222C
+    E: 0x8222C
+    J: 0x82E8C
+  size: 0x238
+  mode: thumb
+  params: null
+  return:
+    desc: '?'
+    type: u8
+-
+  desc: Sprite flash related?
+  addr:
+    U: 0x832BC
+    E: 0x832BC
+    J: 0x83F1C
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u8
+  return: null
+-
+  desc: Power bomb related?
+  addr:
+    U: 0x832EC
+    E: 0x832EC
+    J: 0x83F4C
+  size: 0x84
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u8
+  return: null
+-
+  desc: Power bomb hit sprite related?
+  addr:
+    U: 0x83370
+    E: 0x83370
+    J: 0x83FD0
+  size:
+    U: 0x104
+    E: 0x104
+    J: 0x108
+  mode: thumb
+  params:
+  - desc: Sprite slot number
+    type: u8
+  return: null
+-
+  desc: Speed boost/screw attack hit sprite related?
+  addr:
+    U: 0x83474
+    E: 0x83474
+    J: 0x840D8
+  size: 0x184
+  mode: thumb
+  params:
+  - desc: Sprite slot number
+    type: u8
+  - desc: Y position
+    type: u16
+  - desc: X position
+    type: u16
+  return: null
+-
+  desc: Update sprite flash timer?
+  addr:
+    U: 0x83B78
+    E: 0x83B78
+    J: 0x847D4
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Sprite slot number
+    type: u8
+  return:
+    desc: Sprite slot number
+    type: u8
 -
   desc: '?'
   addr:
@@ -15147,6 +15729,18 @@
 -
   desc: '?'
   addr:
+    U: 0x98DA0
+    E: 0x98E60
+    J: 0x99D20
+  size: 0xA04
+  mode: thumb
+  params:
+  - desc: RAM pointer
+    type: ptr
+  return: null
+-
+  desc: '?'
+  addr:
     U: 0x997A4
     E: 0x99864
     J: 0x9A724
@@ -16054,6 +16648,16 @@
   mode: thumb
   params: '?'
   return: '?'
+-
+  desc: SA-X close-up related?
+  addr:
+    U: 0x9DBE8
+    E: 0x9DCA8
+    J: 0x9EB68
+  size: 0x180
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   addr:

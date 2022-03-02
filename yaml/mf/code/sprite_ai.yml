@@ -129,7 +129,9 @@
   size: 0x48
   mode: thumb
   params: null
-  return: 1 if there's any living enemy that can absorb X, 0 otherwise
+  return:
+    desc: At least one living enemy can absorb X
+    type: bool
 -
   desc: X parasite in room waiting to move
   label: XParasiteInRoom_WaitingToMove
@@ -4996,7 +4998,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if Samus near Sidehopper, 0 otherwise
+  return:
+    desc: Samus near Sidehopper
+    type: bool
 -
   desc: Sidehopper initialize
   label: Sidehopper_Init
@@ -5139,7 +5143,9 @@
   size: 0x20
   mode: thumb
   params: null
-  return: 1 if Samus near Dessgeega, 0 otherwise
+  return:
+    desc: Samus near Dessgeega
+    type: bool
 -
   desc: Dessgeega initialize
   label: Dessgeega_Init
@@ -5337,7 +5343,9 @@
   size: 0x5C
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: X-barrier core (normal) initialize
@@ -5657,8 +5665,11 @@
   size: 0x74
   mode: thumb
   params:
-  - Message number
-  return: Assigned sprite RAM slot, 0x18 otherwise
+  - desc: Message number
+    type: u8
+  return:
+    desc: Assigned sprite RAM slot, 0x18 otherwise
+    type: u8
 -
   desc: Message box initialize
   label: MessageBox_Init
@@ -5999,7 +6010,9 @@
   size: 0x68
   mode: thumb
   params: null
-  return: 1 if an infected atmospheric stabilizer exists, 0 otherwise
+  return:
+    desc: Infected atmospheric stabilizer exists
+    type: bool
 -
   desc: Atmospheric stabilizer initialize
   label: AtmosphericStabilizer_Init
@@ -6164,7 +6177,9 @@
   size: 0xC0
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: Chozo statue initialize
@@ -7601,7 +7616,9 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: 1 if Samus is close enough, 0 otherwise
+  return:
+    desc: Samus is close enough
+    type: bool
 -
   desc: Fune idle start
   label: Fune_IdleStart
@@ -7766,7 +7783,9 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: 1 if Samus is close enough, 0 otherwise
+  return:
+    desc: Samus is close enough
+    type: bool
 -
   desc: Namihe idle start
   label: Namihe_IdleStart
@@ -7929,26 +7948,6 @@
     E: 0x35A90
     J: 0x35C50
   size: 0x3C
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Update boss animation?
-  addr:
-    U: 0x35ACC
-    E: 0x35ACC
-    J: 0x35C8C
-  size: 0x3C
-  mode: thumb
-  params: null
-  return: null
--
-  desc: BOX update position?
-  addr:
-    U: 0x35B08
-    E: 0x35B08
-    J: 0x35CC8
-  size: 0x44
   mode: thumb
   params: null
   return: null
@@ -8512,7 +8511,8 @@
   params: null
   return: null
 -
-  desc: BOX part *
+  desc: BOX part default
+  label: BoxPartDefault
   addr:
     U: 0x37494
     E: 0x37494
@@ -8663,7 +8663,9 @@
   size: 0x44
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: BOX debris initialize
@@ -8831,16 +8833,6 @@
   params: null
   return: null
 -
-  desc: Empty function?
-  addr:
-    U: 0x3967C
-    E: 0x3967C
-    J: 0x39880
-  size: 0x4
-  mode: thumb
-  params: null
-  return: null
--
   desc: Miscellaneous pad AI
   label: MiscellaneousPad_AI
   addr:
@@ -8859,16 +8851,6 @@
     E: 0x39980
     J: 0x39B84
   size: 0x30
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Empty function?
-  addr:
-    U: 0x39CC4
-    E: 0x39CC4
-    J: 0x39EC8
-  size: 0x4
   mode: thumb
   params: null
   return: null
@@ -9839,7 +9821,9 @@
   size: 0x30
   mode: thumb
   params: null
-  return: 1 if movement should be skipped, 0 otherwise
+  return:
+    desc: Movement should be skipped
+    type: bool
 -
   desc: Zebesian (ground) AI
   label: Zebesian_Ground_AI
@@ -10271,7 +10255,9 @@
   size: 0x50
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: Set Gadora direction, position, and clipdata
@@ -10283,7 +10269,9 @@
   size: 0xB4
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: Gadora dying start
@@ -10907,16 +10895,6 @@
     E: 0x453CC
     J: 0x45624
   size: 0x154
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Empty function?
-  addr:
-    U: 0x455A0
-    E: 0x455A0
-    J: 0x457F8
-  size: 0x4
   mode: thumb
   params: null
   return: null
@@ -11676,7 +11654,9 @@
   size: 0x1C
   mode: thumb
   params:
-  - Clipdata affecting action
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 -
   desc: Serris block initialize
@@ -11801,7 +11781,9 @@
   size: 0x134
   mode: thumb
   params: null
-  return: 1 if a projectile hit the pillar, 0 otherwise
+  return:
+    desc: Projectile hit pillar
+    type: bool
 -
   desc: Pillar initialize
   label: Pillar_Init
@@ -12145,7 +12127,9 @@
   size: 0xC0
   mode: thumb
   params: null
-  return: 1 if Dachora will do head movement, 0 otherwise
+  return:
+    desc: Do head movement
+    type: bool
 -
   desc: Dachora initialize
   label: Dachora_Init
@@ -12475,7 +12459,9 @@
   size: 0xE4
   mode: thumb
   params: null
-  return: 1 if Etecoon can grab a tire swing, 0 otherwise
+  return:
+    desc: Can grab tire swing
+    type: bool
 -
   desc: Check have Etecoon face foreground
   label: CheckHaveEtecoonFaceForeground
@@ -12486,7 +12472,9 @@
   size: 0xA8
   mode: thumb
   params: null
-  return: 1 if Etecoon will face foreground, 0 otherwise
+  return:
+    desc: Face foreground
+    type: bool
 -
   desc: Etecoon initialize
   label: Etecoon_Init
@@ -14726,16 +14714,6 @@
     E: 0x57378
     J: 0x57750
   size: 0x94
-  mode: thumb
-  params: null
-  return: null
--
-  desc: Empty function?
-  addr:
-    U: 0x5792C
-    E: 0x5792C
-    J: 0x57D10
-  size: 0x4
   mode: thumb
   params: null
   return: null

@@ -40,28 +40,16 @@
   count: 0x1000
 -
   desc: Pause screen background palette
+  label: PauseScreenBGPalette
   type: palette
   addr: 0x2006C00
   count: 0x10
 -
   desc: Pause overlay tilemap
+  label: PauseOverlayTilemap
   type: u16
   addr: 0x2009800
   count: 0x400
--
-  desc: Pause overlay?
-  addr: 0x200A000
-  size: 0x800
--
-  desc: Effect offset related?
-  type: u16
-  addr: 0x2026300
-  count: 0x500
--
-  desc: Effect offset related?
-  type: u16
-  addr: 0x2026D00
-  count: 0x500
 -
   desc: Decompressed clipdata
   label: DecompClipdata
@@ -231,10 +219,6 @@
   type: u8
   addr: 0x300002E
 -
-  desc: Skip cutscene related?
-  type: u8
-  addr: 0x300002F
--
   desc: Room's music track
   label: RoomMusicTrack
   type: u16
@@ -254,10 +238,6 @@
   label: DisableScrollingFlag
   type: u8
   addr: 0x300003D
--
-  desc: Slow scrolling timer?
-  type: u16
-  addr: 0x300003E
 -
   desc: Skip door transition flag
   label: SkipDoorTransitionFlag
@@ -300,6 +280,7 @@
   addr: 0x300004A
 -
   desc: Ship landing cutscene flag
+  label: ShipLandingCutsceneFlag
   type: u8
   addr: 0x300004B
 -
@@ -497,10 +478,6 @@
   type: LastElevatorUsed
   addr: 0x3000198
 -
-  desc: Cutscene related?
-  addr: 0x300019C
-  size: 0xC
--
   desc: Alarm timer
   label: AlarmTimer
   type: u16
@@ -535,10 +512,6 @@
   type: SubSpriteData
   addr: 0x3000720
 -
-  desc: Parasite related?
-  type: u8
-  addr: 0x3000734
--
   desc: Current sprite being processed
   label: CurrSpriteData
   type: SpriteData
@@ -561,10 +534,6 @@
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
--
-  desc: Collision related?
-  type: u8
-  addr: 0x30007F2
 -
   desc: Sprite draw order
   label: SpriteDrawOrder
@@ -635,7 +604,7 @@
 -
   desc: Current particle effect OAM frame pointer
   label: CurrParticleEffectOamFramePtr
-  type: ptr.oam
+  type: ptr
   addr: 0x3000918
 -
   desc: Ammo digit graphics
@@ -900,10 +869,6 @@
   type: u16
   addr: 0x30013C2
 -
-  desc: Demo playing flag?
-  type: u8
-  addr: 0x30013D2
--
   desc: Samus data
   label: SamusData
   type: SamusData
@@ -1073,6 +1038,7 @@
   addr: 0x3003B8C
 -
   desc: Sound code A
+  label: SoundCodeARam
   addr: 0x3003B90
   size: 0x658
 -
@@ -1082,6 +1048,7 @@
   addr: 0x30041E8
 -
   desc: Sound code B
+  label: SoundCodeBRam
   addr: 0x30041EC
   size: 0xA4
 -
@@ -1091,6 +1058,7 @@
   addr: 0x3004290
 -
   desc: Sound code C
+  label: SoundCodeCRam
   addr: 0x3004294
   size: 0xAC
 -
@@ -1172,10 +1140,6 @@
   type: u8
   addr: 0x300550E
 -
-  desc: Rain sound effect flag?
-  type: u16
-  addr: 0x3005518
--
   desc: Current special background effect
   label: CurrSpecialBGEffect
   type: SpecialBGEffect
@@ -1207,10 +1171,6 @@
   type: BombChainData
   addr: 0x30056AC
   count: 0x4
--
-  desc: BG0 transparency related?
-  addr: 0x30056C4
-  size: 0x8
 -
   desc: BLDALPHA related data 1
   label: BLDALPHARelatedData1

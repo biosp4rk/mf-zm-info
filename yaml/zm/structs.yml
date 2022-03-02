@@ -467,7 +467,7 @@ CurrMessageSubData1:
   vars:
   - desc: Current character index
     type: u16
-    offset: 0x2
+    offset: 0x0
   - desc: Current indent
     type: u16
     offset: 0x2
@@ -1223,7 +1223,7 @@ ProjectileData:
     offset: 0x0
     enum: ProjectileStatus
   - desc: OAM pointer
-    type: ptr.oam
+    type: ptr
     offset: 0x4
   - desc: Y position
     type: u16
@@ -1487,7 +1487,7 @@ SamusEnvironmentEffect:
     type: u16
     offset: 0x6
   - desc: OAM pointer
-    type: ptr.oam
+    type: ptr
     offset: 0x8
 SamusHazardDamage:
   size: 0x8
@@ -1517,7 +1517,7 @@ SamusPhysics:
   size: 0x78
   vars:
   - desc: Samus OAM frame pointers
-    type: ptr.oam
+    type: ptr
     offset: 0x0
     count: 0x12
   - desc: Arm cannon X position offset
@@ -1757,7 +1757,7 @@ SaveFileRam:
     count: 0xC
   - desc: In-game time at bosses
     type: InGameTimeAtBosses
-    offset: 0x1FC
+    offset: 0x230
   - desc: Music related?
     type: u16
     offset: 0x244
@@ -1972,7 +1972,7 @@ SpriteData:
     type: u16
     offset: 0x16
   - desc: OAM pointer
-    type: ptr.oam
+    type: ptr
     offset: 0x18
   - desc: Animation duration counter
     type: u8
@@ -2061,7 +2061,7 @@ SpriteDebris:
   size: 0x10
   vars:
   - desc: OAM pointer
-    type: ptr.oam
+    type: ptr
     offset: 0x0
   - desc: Current animation frame
     type: u16
@@ -2147,7 +2147,7 @@ SubSpriteData:
   size: 0x14
   vars:
   - desc: OAM pointer
-    type: ptr.oam
+    type: ptr
     offset: 0x0
   - desc: Current animation frame
     type: u16
@@ -2222,10 +2222,10 @@ TilemapAndClipdataPtrs:
     type: ptr.tilemap
     offset: 0x0
   - desc: Pointer to clipdata collision types
-    type: ptr.ClipdataCollisionType
+    type: ptr
     offset: 0x4
   - desc: Pointer to clipdata behavior types
-    type: ptr.ClipdataBehaviorType
+    type: ptr
     offset: 0x8
 TilesetEntry:
   size: 0x14
@@ -2284,7 +2284,8 @@ TimeAttackData:
   - desc: Random number based on in-game time at bosses (Kraid + Ruins Test)
     type: u8
     offset: 0xD
-  - desc: Random number based on in-game time at bosses (Mother Brain + Mecha Ridley)
+  - desc: Random number based on in-game time at bosses (Mother Brain + Mecha
+      Ridley)
     type: u8
     offset: 0xE
   - desc: Random number based on 8-bit frame counter
