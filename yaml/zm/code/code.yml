@@ -366,8 +366,8 @@
     J: 0xC00
   size: 0x4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: Empty function
   label: Music_EmptyFunction
@@ -377,8 +377,8 @@
     J: 0x24BC
   size: 0x4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: Initialize sound
   label: InitSound
@@ -399,8 +399,8 @@
     J: 0x28F4
   size: 0x124
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: Play sound 1
   label: PlaySound1
@@ -546,7 +546,7 @@
   params:
   - desc: Fade time
     type: u16
-  return: void
+  return: null
 -
   desc: Call sound code B
   label: CallSoundCodeB
@@ -696,8 +696,8 @@
     U: 0x4AD8
   size: 0x4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: Update music and sounds
   label: UpdateAudio
@@ -705,8 +705,8 @@
     U: 0x4ADC
   size: 0xC8
   mode: arm
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: CpuFastSet
   label: CpuFastSet
@@ -1148,7 +1148,7 @@
   params:
   - desc: Samus data pointer
     type: ptr.SamusData
-  return: void
+  return: null
   notes: Sets Samus physics default values and check if slowed by liquid
 -
   desc: Samus get X velocity on slope
@@ -1387,7 +1387,7 @@
     type: s16
   - desc: Samus data pointer
     type: ptr.SamusData
-  return: void
+  return: null
 -
   desc: Samus check hazard damage
   label: SamusCheckHazardDamage
@@ -2867,8 +2867,8 @@
     J: 0xCBAC
   size: 0x23C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
 -
   desc: Update sprites
   label: UpdateSprites
@@ -3920,7 +3920,7 @@
     type: u8
   - desc: Speed divisor
     type: u8
-  return: void
+  return: null
 -
   desc: Update sprite stun timer
   label: UpdateSpriteStunTimer
@@ -4098,7 +4098,7 @@
     J: 0x1157C
   size: 0xA4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Overlapping
     type: bool
@@ -4462,8 +4462,8 @@
     J: 0x4F33C
   size: 0x44
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Loops through all the projectiles and calls DrawProjectile if the 80
     status flag isn't set
 -
@@ -4475,8 +4475,8 @@
     J: 0x4F380
   size: 0x44
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Loops through all the projectiles and calls DrawProjectile if the 80
     status flag is set
 -
@@ -5155,8 +5155,8 @@
     J: 0x521F0
   size: 0x4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Empty function
 -
   desc: Process power bomb
@@ -5545,7 +5545,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash water small subroutine
 -
   desc: Particle sprite splash water big
@@ -5559,7 +5559,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash water big subroutine
 -
   desc: Particle sprite splash water huge
@@ -5573,7 +5573,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash water huge subroutine
 -
   desc: Particle sprite splash lava small
@@ -5587,7 +5587,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash lava small subroutine
 -
   desc: Particle sprite splash lava big
@@ -5601,7 +5601,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash lava big subroutine
 -
   desc: Particle sprite splash lava huge
@@ -5615,7 +5615,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash lava huge subroutine
 -
   desc: Particle sprite splash acid small
@@ -5629,7 +5629,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash acid small subroutine
 -
   desc: Particle sprite splash acid big
@@ -5643,7 +5643,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash acid big subroutine
 -
   desc: Particle particle sprite splash acid huge
@@ -5657,7 +5657,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite splash acid huge subroutine
 -
   desc: Particle shooting beam left
@@ -5671,7 +5671,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam left subroutine
 -
   desc: Particle shooting beam right
@@ -5685,7 +5685,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam right subroutine
 -
   desc: Particle shooting beam diagonally up left
@@ -5699,7 +5699,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam diagonally up left subroutine
 -
   desc: Particle shooting beam diagonally up right
@@ -5713,7 +5713,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam diagonally up right subroutine
 -
   desc: Particle shooting beam diagonally down left
@@ -5727,7 +5727,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam diagonally down left subroutine
 -
   desc: Particle shooting beam diagonally down right
@@ -5741,7 +5741,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam diagonally down right subroutine
 -
   desc: Particle shooting beam up left
@@ -5755,7 +5755,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam up left subroutine
 -
   desc: Particle shooting beam up right
@@ -5769,7 +5769,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam up right subroutine
 -
   desc: Particle shooting beam down left
@@ -5783,7 +5783,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam down left subroutine
 -
   desc: Particle shooting beam down right
@@ -5797,7 +5797,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shooting beam down right subroutine
 -
   desc: Particle bomb
@@ -5811,7 +5811,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Bomb subroutine
 -
   desc: Particle missile trail
@@ -5825,7 +5825,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Missile trail subroutine
 -
   desc: Particle super missile trail
@@ -5839,7 +5839,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Super missile trail subroutine
 -
   desc: Particle beam trailing right
@@ -5853,7 +5853,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Beam trailing right subroutine
 -
   desc: Particle beam trailing left
@@ -5867,7 +5867,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Beam trailing left subroutine
 -
   desc: Particle charged long beam trail
@@ -5881,7 +5881,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged long beam trail subroutine
 -
   desc: Particle charged ice beam trail
@@ -5895,7 +5895,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged ice beam trail subroutine
 -
   desc: Particle charged wave beam trail
@@ -5909,7 +5909,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged wave beam trail subroutine
 -
   desc: Particle charged plasma beam trail
@@ -5923,7 +5923,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged plasma beam trail subroutine
 -
   desc: Particle charged full beam trail
@@ -5937,7 +5937,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged full beam trail subroutine
 -
   desc: Particle charged pistol trail
@@ -5951,7 +5951,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Charged pistol trail subroutine
 -
   desc: Particle sprite explosion huge
@@ -5965,7 +5965,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite explosion huge subroutine
 -
   desc: Particle sprite explosion small
@@ -5979,7 +5979,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite explosion small subroutine
 -
   desc: Particle sprite explosion medium
@@ -5993,7 +5993,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite explosion medium subroutine
 -
   desc: Particle sprite explosion big
@@ -6007,7 +6007,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite explosion big subroutine
 -
   desc: Particle sprite explosion single then big
@@ -6021,7 +6021,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sprite explosion single then big subroutine
 -
   desc: Particle screw attack destroyed
@@ -6035,7 +6035,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Screw attack destroyed subroutine
 -
   desc: Particle shinespark destroyed
@@ -6049,7 +6049,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Shinespark destroyed subroutine
 -
   desc: Particle sudo screw destroyed
@@ -6063,7 +6063,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Sudo screw destroyed subroutine
 -
   desc: Particle speedbooster destroyed
@@ -6077,7 +6077,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Speedbooster destroyed subroutine
 -
   desc: Particle main boss death
@@ -6091,7 +6091,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Main boss death subroutine
 -
   desc: Particle freezing sprite with ice
@@ -6105,7 +6105,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Freezing sprite with ice subroutine
 -
   desc: Particle freezing sprite with charged ice
@@ -6119,7 +6119,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Freezing sprite with charged ice subroutine
 -
   desc: Particle hitting something with base beam
@@ -6133,7 +6133,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with base beam or charged base beam
     subroutine
 -
@@ -6148,7 +6148,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with long beam or charged long beam
     subroutine
 -
@@ -6163,7 +6163,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with ice beam subroutine
 -
   desc: Particle hitting something with wave beam
@@ -6177,7 +6177,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with wave beam subroutine
 -
   desc: Particle hitting something with full beam no plasma
@@ -6191,7 +6191,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with full beam no plasma subroutine
 -
   desc: Particle hitting something with plasma beam
@@ -6205,7 +6205,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with plasma beam subroutine
 -
   desc: Particle hitting something with full beam
@@ -6219,7 +6219,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with full beam subroutine
 -
   desc: Particle hitting something invicible
@@ -6233,7 +6233,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something invicible subroutine
 -
   desc: Particle hitting something with missile
@@ -6247,7 +6247,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with missile subroutine
 -
   desc: Particle hitting something with super missile
@@ -6261,7 +6261,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Hitting something with super missile subroutine
 -
   desc: Particle small dust
@@ -6275,7 +6275,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Small dust subroutine
 -
   desc: Particle medium dust
@@ -6289,7 +6289,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Medium dust subroutine
 -
   desc: Particle two medium dust
@@ -6303,7 +6303,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Two medium dust subroutine
 -
   desc: Particle second small dust
@@ -6317,7 +6317,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Second Small dust subroutine
 -
   desc: Particle second medium dust
@@ -6331,7 +6331,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Second medium dust subroutine
 -
   desc: Particle second two medium dust
@@ -6345,7 +6345,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle effect Second two medium dust subroutine
 -
   desc: Play begin to charge beam sound
@@ -6356,8 +6356,8 @@
     J: 0x54F70
   size: 0x88
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Plays a sound depending on the beams activated when beginning to charge
     a beam
 -
@@ -6369,8 +6369,8 @@
     J: 0x54FF8
   size: 0x88
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Plays a sound depending on the beams activated when shooting a charged
     beam
 -
@@ -6382,8 +6382,8 @@
     J: 0x55080
   size: 0x88
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Plays a sound depending on the beams activated when charging a fully
     charged beam
 -
@@ -6398,7 +6398,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle Charging beam subroutine
 -
   desc: Particle escape
@@ -6412,7 +6412,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle Escape subroutine
 -
   desc: Particle Samus reflection
@@ -6426,7 +6426,7 @@
   params:
   - desc: Particle effect pointer
     type: ptr.ParticleEffect
-  return: void
+  return: null
   notes: Particle Samus relfection subroutine
 -
   desc: Start vertical screen shake
@@ -6557,7 +6557,7 @@
     type: u8
   - desc: BLDCNT Value
     type: u16
-  return: void
+  return: null
   notes: Updates the BLDCNT register value with r1
 -
   desc: Update BLDALPHA
@@ -6587,8 +6587,8 @@
     J: 0x55C24
   size: 0xB8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Applies the new transparency effects (BLDALPHA and BLDCNT?)
 -
   desc: Apply new BLDALPHA
@@ -6732,8 +6732,8 @@
     J: 0x5743C
   size: 0x20
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Checks if the DMA operation on the third channel has ended (probably
     unused)
 -
@@ -6756,8 +6756,8 @@
     J: 0x574A4
   size: 0x248
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the power bomb explosion
 -
   desc: Start power bomb explosion
@@ -6785,8 +6785,8 @@
     J: 0x57734
   size: 0xC
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Sets Current Power Bomb + 0x12 to 0
 -
   desc: Power bomb explosion begin
@@ -6884,8 +6884,8 @@
     J: 0x57DCC
   size: 0x2C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Copies to clipdata code to non gameplay RAM
 -
   desc: Check hazard at position
@@ -7258,7 +7258,7 @@
     type: u8
   - desc: Y position
     type: u8
-  return: void
+  return: null
   notes: Removes the never reform block from the clipdata/background
 -
   desc: Apply current clipdata affecting action
@@ -7426,7 +7426,7 @@
     type: u16
   - desc: '?'
     type: u16
-  return: void
+  return: null
   notes: Updates the graphics for the Mother Brain glass
 -
   desc: Set BG1 block value
@@ -7696,8 +7696,8 @@
     J: 0x5C158
   size: 0x38
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Changes the Which Background Position Is Written To BG3OFS global variable
 -
   desc: Process special fading effect
@@ -7721,7 +7721,7 @@
     J: 0x5C77C
   size: 0x98
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7735,7 +7735,7 @@
     J: 0x5C814
   size: 0x98
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -7749,7 +7749,7 @@
     J: 0x5C924
   size: 0x78
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7763,7 +7763,7 @@
     J: 0x5C99C
   size: 0xBC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7777,7 +7777,7 @@
     J: 0x5CA58
   size: 0x80
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7791,7 +7791,7 @@
     J: 0x5CAD8
   size: 0xA0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7805,7 +7805,7 @@
     J: 0x5CB78
   size: 0xA4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7851,8 +7851,8 @@
     J: 0x5D3D8
   size: 0x3C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Resets the haze loops
 -
   desc: Process haze
@@ -7878,8 +7878,8 @@
     J: 0x5D768
   size: 0xC0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Haze BG3 code
 -
   desc: Haze BG3 strong effect weak outside
@@ -7890,8 +7890,8 @@
     J: 0x5D828
   size: 0x118
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Haze BG3 (strong in effect, weak outside) code
 -
   desc: Haze BG3 none effect weak outside
@@ -7902,8 +7902,8 @@
     J: 0x5D940
   size: 0x70
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Haze BG3 (none in effect, weak outside) code
 -
   desc: Haze BG3 BG2 strong effect weak outside medium everywhere
@@ -7914,8 +7914,8 @@
     J: 0x5D9B0
   size: 0x90
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Haze BG3/BG2 (Strong In Effect, Weak Outside For BG3 And Medium Everywhere
     For BG2) code
 -
@@ -7927,7 +7927,7 @@
     J: 0x5DB2C
   size: 0x118
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -7941,7 +7941,7 @@
     J: 0x5DC44
   size: 0x118
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8241,7 +8241,7 @@
   - desc: Flash type (0 = slight yellow flash, 1 = transparency change for statue
       long, 2 = heavy yellow flash 3 = quick flash)
     type: u8
-  return: void
+  return: null
   notes: Starts a flash background effect
 -
   desc: Set 300019F
@@ -8255,7 +8255,7 @@
   params:
   - desc: Value
     type: u8
-  return: void
+  return: null
   notes: Sets 300019F to r0 if 300019F is different than 0
 -
   desc: Load first room?
@@ -8345,7 +8345,7 @@
     J: 0x60E28
   size: 0x4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 1
     type: bool
@@ -8411,7 +8411,7 @@
     J: 0x6240C
   size: 0x2EC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8425,7 +8425,7 @@
     J: 0x6280C
   size: 0x188
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8439,7 +8439,7 @@
     J: 0x62994
   size: 0x190
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8453,7 +8453,7 @@
     J: 0x62B24
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8467,7 +8467,7 @@
     J: 0x62B90
   size: 0xFC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8481,7 +8481,7 @@
     J: 0x62FD8
   size: 0x30
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8496,7 +8496,7 @@
     J: 0x63008
   size: 0x234
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8511,7 +8511,7 @@
     J: 0x63284
   size: 0x23C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8525,7 +8525,7 @@
     J: 0x634C0
   size: 0xC4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8540,7 +8540,7 @@
     J: 0x63584
   size: 0xB8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8554,7 +8554,7 @@
     J: 0x6363C
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8568,7 +8568,7 @@
     J: 0x63884
   size: 0x298
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8582,7 +8582,7 @@
     J: 0x63BE0
   size: 0x1B0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8596,7 +8596,7 @@
     J: 0x63D90
   size: 0x1C4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8610,7 +8610,7 @@
     J: 0x63FB4
   size: 0x1B4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8625,7 +8625,7 @@
     J: 0x642BC
   size: 0x15C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8639,7 +8639,7 @@
     J: 0x64418
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8653,7 +8653,7 @@
     J: 0x647D0
   size: 0x178
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8667,7 +8667,7 @@
     J: 0x649B4
   size: 0x5A8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8681,7 +8681,7 @@
     J: 0x64FE0
   size: 0x108
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8695,7 +8695,7 @@
     J: 0x650E8
   size: 0x19C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0?
     type: bool
@@ -8709,7 +8709,7 @@
     J: 0x65284
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8723,7 +8723,7 @@
     J: 0x65304
   size: 0x19C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8738,7 +8738,7 @@
     J: 0x65540
   size: 0x12C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8753,7 +8753,7 @@
     J: 0x6566C
   size: 0x7C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8767,7 +8767,7 @@
     J: 0x656E8
   size: 0x1BC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8781,7 +8781,7 @@
     J: 0x658A4
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8795,7 +8795,7 @@
     J: 0x65924
   size: 0x100
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8810,7 +8810,7 @@
     J: 0x65A24
   size: 0x148
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8824,7 +8824,7 @@
     J: 0x65B6C
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8838,7 +8838,7 @@
     J: 0x65BD8
   size: 0x204
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8853,7 +8853,7 @@
     J: 0x66020
   size: 0x33C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8867,7 +8867,7 @@
     J: 0x6635C
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8881,7 +8881,7 @@
     J: 0x663C8
   size: 0x270
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8895,7 +8895,7 @@
     J: 0x66638
   size: 0x2D8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8910,7 +8910,7 @@
     J: 0x66A30
   size: 0x70
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8925,7 +8925,7 @@
     J: 0x66AA0
   size: 0x130
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8939,7 +8939,7 @@
     J: 0x66BD0
   size: 0x30
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -8953,7 +8953,7 @@
     J: 0x66C00
   size: 0x164
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -8967,8 +8967,8 @@
     J: 0x66D64
   size: 0x2B0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initialize the statue opening cutscene
 -
   desc: Statue opening subroutine
@@ -8979,7 +8979,7 @@
     J: 0x67014
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: '?'
     type: u8
@@ -8993,7 +8993,7 @@
     J: 0x67080
   size: 0x310
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -9008,7 +9008,7 @@
     J: 0x6794C
   size: 0x3C0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -9022,7 +9022,7 @@
     J: 0x67D0C
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -9036,7 +9036,7 @@
     J: 0x67D8C
   size: 0xF8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -9051,7 +9051,7 @@
     J: 0x67F90
   size: 0x12C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -9065,7 +9065,7 @@
     J: 0x680BC
   size: 0x34
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -9092,8 +9092,8 @@
     J: 0x695BC
   size: 0xF0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: OAM stuff related to the map screen
 -
   desc: Map screen subroutine
@@ -9120,8 +9120,8 @@
     E: 0xAA0
     J: 0xABC
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the map screen
 -
   desc: Determine viewable area maps
@@ -9365,8 +9365,8 @@
     J: 0x6E068
   size: 0x1A8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Checks for input on the map screen
 -
   desc: Map screen change area
@@ -9500,7 +9500,7 @@
   params:
   - desc: Message number
     type: u8
-  return: void
+  return: null
   notes: Starts a file screen text
 -
   desc: Process current message
@@ -9570,8 +9570,8 @@
     J: 0x7019C
   size: 0x1A4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Draws all the status screen tank amouts
 -
   desc: Draw status screen single tank amount
@@ -9591,7 +9591,7 @@
     type: u8
   - desc: Is at max flag
     type: bool
-  return: void
+  return: null
   notes: Draws a single status screen tank amount
 -
   desc: Set status screen bomb visibility
@@ -9632,8 +9632,8 @@
     J: 0x7181C
   size: 0x94
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: To check
 -
   desc: Get current equipment selected
@@ -9852,8 +9852,8 @@
     J: 0x74F74
   size: 0xB8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Backups the time attack IGT and passwords in WRAM, and saves them in
     the SRAM
 -
@@ -9916,7 +9916,7 @@
     J: 0x75DA0
   size: 0x54
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Return value of EraseSramMenuCheckForInput
     type: u8
@@ -9930,7 +9930,7 @@
     J: 0x75EA0
   size: 0x10C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Input (0 = none, 1 = erasing, 2 = no first window)
     type: u8
@@ -9947,8 +9947,8 @@
     E: 0x244
     J: 0x244
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the SRAM Menu
 -
   desc: Erase SRAM menu process OAM
@@ -9959,8 +9959,8 @@
     J: 0x76380
   size: 0x2C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff
 -
   desc: Load special graphics data
@@ -9974,7 +9974,7 @@
   params:
   - desc: Special graphics data pointer
     type: ptr.lz.gfx
-  return: void
+  return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0
 -
   desc: Load special graphics data_Copy
@@ -9988,7 +9988,7 @@
   params:
   - desc: Special graphics data pointer
     type: ptr.lz.gfx
-  return: void
+  return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0,
     copy of above
 -
@@ -10000,8 +10000,8 @@
     J: 0x76468
   size: 0x2C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff
 -
   desc: Title screen fading in
@@ -10012,7 +10012,7 @@
     J: 0x764E4
   size: 0x118
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10042,7 +10042,7 @@
     J: 0x77334
   size: 0xB0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Action (0 = none, 1 = input detected 2 = starting demo)
     type: u8
@@ -10059,8 +10059,8 @@
     E: 0x300
     J: 0x2A0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the title screen
 -
   desc: Game over subroutine
@@ -10084,7 +10084,7 @@
     J: 0x77AF0
   size: 0x78
   mode: thumb
-  params: void
+  params: null
   return:
     desc: An option was selected
     type: bool
@@ -10098,8 +10098,8 @@
     J: 0x77B68
   size: 0x5C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Updates the text graphics depending on if it's selected
 -
   desc: Game over menu initialize
@@ -10113,8 +10113,8 @@
     E: 0x228
     J: 0x230
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the game over menu
 -
   desc: Game over menu letters animationation
@@ -10125,8 +10125,8 @@
     J: 0x78010
   size: 0x180
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the animationation of the GAME OVER letters
 -
   desc: Game over menu process OAM
@@ -10137,8 +10137,8 @@
     J: 0x78218
   size: 0x2C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff
 -
   desc: File select menu process OAM
@@ -10149,8 +10149,8 @@
     J: 0x78268
   size: 0x60
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff
 -
   desc: Copy time attack time
@@ -10161,8 +10161,8 @@
     J: 0x7A1C0
   size: 0x118
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Copies the time attack time to non gameplay RAM
 -
   desc: File select options subroutine
@@ -10186,8 +10186,8 @@
     J: 0x7AA48
   size: 0x48
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Resets the IO transfer info
 -
   desc: Start NES Metroid
@@ -10211,7 +10211,7 @@
     J: 0x7AC70
   size: 0xBC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -10228,7 +10228,7 @@
     E: 0x300
     J: 0x2F8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -10242,7 +10242,7 @@
     J: 0x7B160
   size: 0x5D8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -10260,7 +10260,7 @@
   - desc: Part (0 = Normal First Half, 1 = Normal Second Half 2 = 100% First Half,
       3 = 100% Second Half)
     type: u8
-  return: void
+  return: null
   notes: Loads a part of a time attack password in VRAM for the time attack record
     menu
 -
@@ -10272,7 +10272,7 @@
     J: 0x7BA04
   size: 0x73C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -10289,7 +10289,7 @@
     E: 0x1DC
     J: 0x1EC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -10303,7 +10303,7 @@
     J: 0x7C32C
   size: 0x1B0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10320,8 +10320,8 @@
     E: 0x480
     J: 0x414
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the file select menu
 -
   desc: Display save file info
@@ -10332,8 +10332,8 @@
     J: 0x7CB2C
   size: 0x224
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Main function that displays the info on the save files
 -
   desc: Display save file health
@@ -10347,7 +10347,7 @@
   params:
   - desc: File number
     type: u8
-  return: void
+  return: null
   notes: Display health on a save file
 -
   desc: Check inputting time attack code
@@ -10358,7 +10358,7 @@
     J: 0x7D610
   size: 0xA4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Fully entered
     type: bool
@@ -10598,8 +10598,8 @@
     J: 0x801E0
   size: 0x58
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during intro fuzz
 -
   desc: Intro initialize
@@ -10613,8 +10613,8 @@
     E: 0x1E0
     J: 0x1D4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the intro
 -
   desc: Intro text process OAM
@@ -10625,8 +10625,8 @@
     J: 0x8040C
   size: 0x1A0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff for the text of the intro
 -
   desc: Intro emergency order
@@ -10637,7 +10637,7 @@
     J: 0x8072C
   size: 0xE8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10651,8 +10651,8 @@
     J: 0x80814
   size: 0x134
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff for the ship flying towards the camera
 -
   desc: Intro ship flying towards camera
@@ -10663,7 +10663,7 @@
     J: 0x80948
   size: 0x9C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10677,7 +10677,7 @@
     J: 0x809E4
   size: 0x100
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10691,7 +10691,7 @@
     J: 0x80AE4
   size: 0xF0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10705,8 +10705,8 @@
     J: 0x80BD4
   size: 0x154
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff for the view of zebes
 -
   desc: Intro view of zebes
@@ -10720,7 +10720,7 @@
     E: 0x134
     J: 0x12C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10734,7 +10734,7 @@
     J: 0x80E54
   size: 0x100
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10748,7 +10748,7 @@
     J: 0x80F54
   size: 0x120
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Always 0
     type: bool
@@ -10762,8 +10762,8 @@
     J: 0x81074
   size: 0x88
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Handles the OAM related stuff for the fuzz
 -
   desc: Intro fuzz
@@ -10777,7 +10777,7 @@
     E: 0xD4
     J: 0xDC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10804,8 +10804,8 @@
     J: 0x812A4
   size: 0xD8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during intro
 -
   desc: Tourian escape Samus surrounded calculate BG2 position
@@ -10816,8 +10816,8 @@
     J: 0x816E0
   size: 0x104
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Calculates the new position and size of the BG2 for the camera zooming
     out effect
 -
@@ -10832,8 +10832,8 @@
     E: 0x120
     J: 0x12C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the tourian escape
 -
   desc: Tourian escape zebes exploding
@@ -10847,7 +10847,7 @@
     E: 0x830
     J: 0x834
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10865,7 +10865,7 @@
     E: 0x354
     J: 0x36C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10882,7 +10882,7 @@
     E: 0x280
     J: 0x288
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10899,7 +10899,7 @@
     E: 0x174
     J: 0x178
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10913,7 +10913,7 @@
     J: 0x82E2C
   size: 0x1D0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10930,7 +10930,7 @@
     E: 0x420
     J: 0x424
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10947,7 +10947,7 @@
     E: 0x488
     J: 0x49C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10965,7 +10965,7 @@
     E: 0x4A8
     J: 0x4B0
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10982,7 +10982,7 @@
     E: 0x194
     J: 0x198
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -10999,7 +10999,7 @@
     E: 0x250
     J: 0x25C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11016,7 +11016,7 @@
     E: 0x28C
     J: 0x288
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11033,7 +11033,7 @@
     E: 0x378
     J: 0x388
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11047,7 +11047,7 @@
     J: 0x84770
   size: 0xE4
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11065,8 +11065,8 @@
     E: 0x1D4
     J: 0x1D0
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the fusion gallery
 -
   desc: Fusion gallery display
@@ -11077,7 +11077,7 @@
     J: 0x84A9C
   size: 0x120
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -11107,8 +11107,8 @@
     E: 0x234
     J: 0x204
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Loads the graphics for the in game timer display at the end of the game
 -
   desc: VBlank code during gallery
@@ -11119,8 +11119,8 @@
     J: 0x85210
   size: 0x164
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during gallery and ending image
 -
   desc: VBlank code during end screen
@@ -11131,8 +11131,8 @@
     J: 0x85374
   size: 0xA8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during end screen
 -
   desc: VBlank code during unlocked options
@@ -11143,8 +11143,8 @@
     J: 0x8541C
   size: 0xA4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during unlocked options
 -
   desc: Credits initialize
@@ -11158,8 +11158,8 @@
     E: 0x1F4
     J: 0x1F8
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the credits
 -
   desc: Display credit line
@@ -11189,7 +11189,7 @@
     J: 0x85A50
   size: 0x18C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11203,7 +11203,7 @@
     J: 0x85BDC
   size: 0x90
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11220,7 +11220,7 @@
     E: 0x1F0
     J: 0x1F8
   mode: thumb
-  params: void
+  params: null
   return:
     desc: 2 if ended, 0 otherwise
     type: u8
@@ -11237,8 +11237,8 @@
     E: 0x244
     J: 0x248
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the end screen (before the ending image and after the credits)
 -
   desc: End screen Samus posing
@@ -11252,7 +11252,7 @@
     E: 0x77C
     J: 0x764
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11269,8 +11269,8 @@
     E: 0x320
     J: 0x29C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the ending image
 -
   desc: Ending image display text
@@ -11284,8 +11284,8 @@
     E: 0x244
     J: 0x23C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Displays the text on an ending image (IGT and completion percentage)
 -
   desc: Ending image display
@@ -11296,7 +11296,7 @@
     J: 0x86CE8
   size: 0x1EC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11313,8 +11313,8 @@
     E: 0x148
     J: 0x158
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the unlocked options pop up after the ending image
 -
   desc: Unlocked options pop up
@@ -11325,7 +11325,7 @@
     J: 0x8702C
   size: 0x20C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Action (0 = nothing, 1 = changing pop-up, 2 = leaving)
     type: u8
@@ -11354,8 +11354,8 @@
     J: 0x87440
   size: 0x238
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the gallery
 -
   desc: Gallery display
@@ -11366,7 +11366,7 @@
     J: 0x87678
   size: 0x15C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Leaving
     type: bool
@@ -11393,8 +11393,8 @@
     J: 0x878A8
   size: 0xEC
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Vblank code during the Chozodia escape
 -
   desc: Get percent and ending number
@@ -11418,8 +11418,8 @@
     J: 0x87C64
   size: 0xF4
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Processes a part of the OAM related stuff (ship exploding, escape ship
     leaving the planet and mission accomplished text)
 -
@@ -11431,8 +11431,8 @@
     J: 0x87D58
   size: 0x150
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Processes a part of the OAM related stuff (ship opening/escape ship leaving
     and escape ship arriving)
 -
@@ -11447,8 +11447,8 @@
     E: 0x308
     J: 0x30C
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Initializes the Chozodia escape
 -
   desc: Chozodia escape escape ship leaving
@@ -11459,7 +11459,7 @@
     J: 0x881B4
   size: 0x184
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11473,7 +11473,7 @@
     J: 0x88338
   size: 0x22C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11490,7 +11490,7 @@
     E: 0x3E4
     J: 0x3EC
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11507,7 +11507,7 @@
     E: 0x31C
     J: 0x30C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: Ended
     type: bool
@@ -11524,7 +11524,7 @@
     E: 0x144
     J: 0x15C
   mode: thumb
-  params: void
+  params: null
   return:
     desc: 2 if ended, 0 otherwise
     type: u8
@@ -11551,8 +11551,8 @@
     J: 0x89DC0
   size: 0x10
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Sets the "Start Bit" flag of SIOCNT
 -
   desc: Check error
@@ -11563,7 +11563,7 @@
     J: 0x89FF0
   size: 0x198
   mode: thumb
-  params: void
+  params: null
   return:
     desc: '?'
     type: u32
@@ -11597,8 +11597,8 @@
     J: 0x8A89C
   size: 0x10
   mode: thumb
-  params: void
-  return: void
+  params: null
+  return: null
   notes: Sets the "Start Bit" flag of SIOCNT (duplicate)
 -
   desc: bx r0
