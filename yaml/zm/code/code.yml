@@ -358,6 +358,28 @@
     type: ptr.thumb
   return: null
 -
+  desc: Empty function
+  label: EmptyFunction_C00
+  addr:
+    U: 0xC00
+    E: 0xC54
+    J: 0xC00
+  size: 0x4
+  mode: thumb
+  params: void
+  return: void
+-
+  desc: Empty function
+  label: Music_EmptyFunction
+  addr:
+    U: 0x24BC
+    E: 0x2510
+    J: 0x24BC
+  size: 0x4
+  mode: thumb
+  params: void
+  return: void
+-
   desc: Initialize sound
   label: InitSound
   addr:
@@ -368,6 +390,17 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Transfer sound data to FIFO channels
+  label: TransferSound
+  addr:
+    U: 0x28F4
+    E: 0x2948
+    J: 0x28F4
+  size: 0x124
+  mode: thumb
+  params: void
+  return: void
 -
   desc: Play sound 1
   label: PlaySound1
@@ -502,6 +535,19 @@
     type: u8
   return: null
 -
+  desc: Fades the current music track
+  label: FadeMusic
+  addr:
+    U: 0x3A98
+    E: 0x3AEC
+    J: 0x3A98
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Fade time
+    type: u16
+  return: void
+-
   desc: Call sound code B
   label: CallSoundCodeB
   addr:
@@ -601,7 +647,7 @@
   label: SoundCodeA
   addr:
     U: 0x4474
-  size: 0x6DC
+  size: 0x648
   mode: arm
   params:
   - desc: Source address?
@@ -613,6 +659,54 @@
   return:
     desc: End source address?
     type: ptr
+-
+  desc: Call get note frequency
+  label: CallGetNoteFrenquency
+  addr:
+    U: 0x4ABC
+  size: 0x4
+  mode: thumb
+  params:
+  - desc: Frequency
+    type: u32
+  - desc: Music Pitch
+    type: u32
+  return:
+    desc: Frequency
+    type: u32
+-
+  desc: Get note frequency
+  label: GetNoteFrequency
+  addr:
+    U: 0x4AC0
+  size: 0x18
+  mode: arm
+  params:
+  - desc: Frequency
+    type: u32
+  - desc: Music Pitch
+    type: u32
+  return:
+    desc: Frequency
+    type: u32
+-
+  desc: Call update music and sounds
+  label: CallUpdateAudio
+  addr:
+    U: 0x4AD8
+  size: 0x4
+  mode: thumb
+  params: void
+  return: void
+-
+  desc: Update music and sounds
+  label: UpdateAudio
+  addr:
+    U: 0x4ADC
+  size: 0xC8
+  mode: arm
+  params: void
+  return: void
 -
   desc: CpuFastSet
   label: CpuFastSet
@@ -947,8 +1041,8 @@
   - desc: Samus weapon info pointer
     type: ptr.SamusWeaponInfo
   return: null
-  notes: Updates the velocity of samus mid-air (spin breaking, starting to spin, forced
-    movements)
+  notes: Updates the velocity of samus mid-air (spin breaking, starting to spin,
+    forced movements)
 -
   desc: Samus set landing pose
   label: SamusSetLandingPose
@@ -1042,6 +1136,20 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Samus update physics
+  label: SamusUpdatePhysics
+  addr:
+    U: 0x761C
+    E: 0x7670
+    J: 0x761C
+  size: 0x110
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return: void
+  notes: Sets Samus physics default values and check if slowed by liquid
 -
   desc: Samus get X velocity on slope
   label: SamusGetXVelocityOnSlope
@@ -1178,8 +1286,8 @@
   return:
     desc: Fired beam or missile
     type: bool
-  notes: Checks if Samus is firing a beam or a missile, also handles the charge counter
-    going up
+  notes: Checks if Samus is firing a beam or a missile, also handles the charge
+    counter going up
 -
   desc: Samus check fire pistol
   label: SamusCheckFirePistol
@@ -1229,8 +1337,8 @@
   return:
     desc: A button pressed
     type: bool
-  notes: Checks if A is pressed and if so sets forced movement flag to 1, used in
-    the standing pose subroutines (morphball, turning around and standing)
+  notes: Checks if A is pressed and if so sets forced movement flag to 1, used
+    in the standing pose subroutines (morphball, turning around and standing)
 -
   desc: Samus set highlighted weapon
   label: SamusSetHighlightedWeapon
@@ -1264,6 +1372,23 @@
     type: ptr.Equipment
   return: null
 -
+  desc: Apply X acceleration to Samus
+  label: SamusApplyXAcceleration
+  addr:
+    U: 0x8278
+    E: 0x82D4
+    J: 0x8278
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: X Acceleration
+    type: s16
+  - desc: X Velocity
+    type: s16
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return: void
+-
   desc: Samus check hazard damage
   label: SamusCheckHazardDamage
   addr:
@@ -1296,6 +1421,1223 @@
     type: ptr.SamusData
   return: null
 -
+  desc: Samus inactive pose
+  label: SamusInactivity
+  addr:
+    U: 0x8478
+    E: 0x84D4
+    J: 0x8478
+  size: 0x4
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: Always 0xFF
+    type: u8
+  notes: Default function used for pose subroutines that don't have any behavior
+    (generally when the player isn't in control of Samus)
+-
+  desc: Samus running pose
+  label: SamusRunning
+  addr:
+    U: 0x84DC
+    E: 0x8538
+    J: 0x84DC
+  size: 0xD4
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus running pose graphics update
+  label: SamusRunningGfx
+  addr:
+    U: 0x85B0
+    E: 0x860C
+    J: 0x85B0
+  size: 0x124
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus standing pose
+  label: SamusStanding
+  addr:
+    U: 0x86D4
+    E: 0x8730
+    J: 0x86D4
+  size: 0x148
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus standing pose graphics update
+  label: SamusStandingGfx
+  addr:
+    U: 0x881C
+    E: 0x8878
+    J: 0x881C
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around pose
+  label: SamusTurningAround
+  addr:
+    U: 0x883C
+    E: 0x8898
+    J: 0x883C
+  size: 0xBC
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around pose graphics update
+  label: SamusTurningAroundGfx
+  addr:
+    U: 0x88F8
+    E: 0x8954
+    J: 0x88F8
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shooting pose graphics update
+  label: SamusShootingGfx
+  addr:
+    U: 0x8940
+    E: 0x899C
+    J: 0x8940
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus crouching pose
+  label: SamusCrouching
+  addr:
+    U: 0x895C
+    E: 0x89B8
+    J: 0x895C
+  size: 0x1B8
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around and crouching pose
+  label: SamusTurningAroundAndCrouching
+  addr:
+    U: 0x8B14
+    E: 0x8B70
+    J: 0x8B14
+  size: 0x110
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around and crouching pose graphics update
+  label: SamusTurningAroundAndCrouchingGfx
+  addr:
+    U: 0x8C24
+    E: 0x8C80
+    J: 0x8C24
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shooting and crouching pose graphics update
+  label: SamusShootingAndCrouchingGfx
+  addr:
+    U: 0x8C50
+    E: 0x8CAC
+    J: 0x8C50
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus skidding pose
+  label: SamusSkidding
+  addr:
+    U: 0x8C6C
+    E: 0x8CC8
+    J: 0x8C6C
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus jumping/falling pose
+  label: SamusMidair
+  addr:
+    U: 0x8CF8
+    E: 0x8D54
+    J: 0x8CF8
+  size: 0x100
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus jumping/falling pose graphics update
+  label: SamusMidAirGfx
+  addr:
+    U: 0x8DF8
+    E: 0x8E54
+    J: 0x8DF8
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around and jumping/falling pose
+  label: SamusTurningAroundMidAir
+  addr:
+    U: 0x8E38
+    E: 0x8E94
+    J: 0x8E38
+  size: 0x80
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around and jumping/falling pose graphics update
+  label: SamusTurningAroundMidAirGfx
+  addr:
+    U: 0x8EB8
+    E: 0x8F14
+    J: 0x8EB8
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus starting a spin jump pose graphics update
+  label: SamusStartingSpinJumpGfx
+  addr:
+    U: 0x8ED8
+    E: 0x8F34
+    J: 0x8ED8
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus spinning pose
+  label: SamusSpinning
+  addr:
+    U: 0x8EFC
+    E: 0x8F58
+    J: 0x8EFC
+  size: 0x144
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus spinning pose graphics update
+  label: SamusSpinningGfx
+  addr:
+    U: 0x9040
+    E: 0x909C
+    J: 0x9040
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus starting wall jump pose
+  label: SamusStartingWallJump
+  addr:
+    U: 0x909C
+    E: 0x90F8
+    J: 0x909C
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus starting wall jump pose graphics update
+  label: SamusStartingWallJumpGfx
+  addr:
+    U: 0x90E0
+    E: 0x913C
+    J: 0x90E0
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus space jumping pose graphics update
+  label: SamusSpaceJumpingGfx
+  addr:
+    U: 0x9104
+    E: 0x9160
+    J: 0x9104
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus screw attacking pose graphics update
+  label: SamusScrewAttackingGfx
+  addr:
+    U: 0x9150
+    E: 0x91AC
+    J: 0x9150
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus morphing pose
+  label: SamusMorphing
+  addr:
+    U: 0x9210
+    E: 0x926C
+    J: 0x9210
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus morphing pose graphics update
+  label: SamusMorphingGfx
+  addr:
+    U: 0x9230
+    E: 0x928C
+    J: 0x9230
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus morphball pose
+  label: SamusMorphball
+  addr:
+    U: 0x924C
+    E: 0x92A8
+    J: 0x924C
+  size: 0x170
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus rolling pose
+  label: SamusRolling
+  addr:
+    U: 0x93BC
+    E: 0x9418
+    J: 0x93BC
+  size: 0xCC
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus rolling pose graphics update
+  label: SamusRollingGfx
+  addr:
+    U: 0x9488
+    E: 0x94E4
+    J: 0x9488
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus unmorphing pose
+  label: SamusUnmorphing
+  addr:
+    U: 0x94C0
+    E: 0x951C
+    J: 0x94C0
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus unmorphing pose graphics update
+  label: SamusUnmorphingGfx
+  addr:
+    U: 0x9508
+    E: 0x9564
+    J: 0x9508
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus jumping/falling in morphball pose
+  label: SamusMorphballMidAir
+  addr:
+    U: 0x952C
+    E: 0x9588
+    J: 0x952C
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus hanging on ledge pose
+  label: SamusHangingOnLedge
+  addr:
+    U: 0x9604
+    E: 0x9660
+    J: 0x9604
+  size: 0x16C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus hanging on ledge pose graphics update
+  label: SamusHangingOnLedgeGfx
+  addr:
+    U: 0x9770
+    E: 0x97CC
+    J: 0x9770
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning to aim while hanging pose
+  label: SamusTurningToAimWhileHanging
+  addr:
+    U: 0x9798
+    E: 0x97F4
+    J: 0x9798
+  size: 0xC8
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning to aim while hanging pose graphics update
+  label: SamusTurningToAimWhileHangingGfx
+  addr:
+    U: 0x9860
+    E: 0x98BC
+    J: 0x9860
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus hiding arm cannon while hanging pose graphics update
+  label: SamusHidingArmCannonWhileHangingGfx
+  addr:
+    U: 0x9884
+    E: 0x98E0
+    J: 0x9884
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus aiming while hanging pose
+  label: SamusAimingWhileHanging
+  addr:
+    U: 0x98B4
+    E: 0x9910
+    J: 0x98B4
+  size: 0x18C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus pulling self up from hanging pose
+  label: SamusPullingSelfUp
+  addr:
+    U: 0x9A40
+    E: 0x9A9C
+    J: 0x9A40
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus pulling self up pose graphics update
+  label: SamusPullingSelfUpGfx
+  addr:
+    U: 0x9A68
+    E: 0x9AC4
+    J: 0x9A68
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus pulling self forward from hanging pose
+  label: SamusPullingSelfForward
+  addr:
+    U: 0x9A94
+    E: 0x9AF0
+    J: 0x9A94
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus pulling self forward pose graphics update
+  label: SamusPullingSelfForwardGfx
+  addr:
+    U: 0x9AB4
+    E: 0x9B10
+    J: 0x9AB4
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus pulling self into morphball tunnel pose graphics update
+  label: SamusPullingSelfIntoMorphballTunnelGfx
+  addr:
+    U: 0x9AE0
+    E: 0x9B3C
+    J: 0x9AE0
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus using an elevator pose
+  label: SamusUsingAnElevator
+  addr:
+    U: 0x9B28
+    E: 0x9B84
+    J: 0x9B28
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus using an elevator pose graphics update
+  label: SamusUsingAnElevatorGfx
+  addr:
+    U: 0x9BB4
+    E: 0x9C10
+    J: 0x9BB4
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus facing the foreground pose
+  label: SamusFacingTheForeground
+  addr:
+    U: 0x9C04
+    E: 0x9C60
+    J: 0x9C04
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning from facing the foreground pose graphics update
+  label: SamusTurningFromFacingForegroundGfx
+  addr:
+    U: 0x9C2C
+    E: 0x9C88
+    J: 0x9C2C
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus delay before shinesparking pose graphics update
+  label: SamusDelayBeforeShinesparkingGfx
+  addr:
+    U: 0x9C68
+    E: 0x9CC4
+    J: 0x9C68
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shinesparking pose
+  label: SamusShinesparking
+  addr:
+    U: 0x9CA0
+    E: 0x9CFC
+    J: 0x9CA0
+  size: 0xB0
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shinesparking pose graphics update
+  label: SamusShinesparkingGfx
+  addr:
+    U: 0x9D50
+    E: 0x9DAC
+    J: 0x9D50
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shinesparking collision pose graphics update
+  label: SamusShinesparkCollisionGfx
+  addr:
+    U: 0x9DDC
+    E: 0x9E38
+    J: 0x9DDC
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus delay after Shinesparking pose graphics update
+  label: SamusDelayAfterShinesparkingGfx
+  addr:
+    U: 0x9DF0
+    E: 0x9E4C
+    J: 0x9DF0
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus delay before ballsparking pose
+  label: SamusDelayBeforeBallsparking
+  addr:
+    U: 0x9E0C
+    E: 0x9E68
+    J: 0x9E0C
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus delay before ballparking pose graphics update
+  label: SamusDelayBeforeBallsparkingGfx
+  addr:
+    U: 0x9E34
+    E: 0x9E90
+    J: 0x9E34
+  size: 0x88
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus ballparking pose graphics update
+  label: SamusBallsparkingGfx
+  addr:
+    U: 0x9EBC
+    E: 0x9F18
+    J: 0x9EBC
+  size: 0x7C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus ballparking collision pose graphics update
+  label: SamusBallsparkCollisionGfx
+  addr:
+    U: 0x9F38
+    E: 0x9F94
+    J: 0x9F38
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus on zipline pose
+  label: SamusOnZipline
+  addr:
+    U: 0x9F4C
+    E: 0x9FA8
+    J: 0x9F4C
+  size: 0x58
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus shooting on zipline pose graphics update
+  label: SamusShootingOnZiplineGfx
+  addr:
+    U: 0x9FA4
+    E: 0xA000
+    J: 0x9FA4
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus morphball on zipline pose
+  label: SamusMorphballOnZipline
+  addr:
+    U: 0x9FC0
+    E: 0xA01C
+    J: 0x9FC0
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus saving/loading game pose
+  label: SamusSavingLoadingGame
+  addr:
+    U: 0x9FF0
+    E: 0xA04C
+    J: 0x9FF0
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around to download map data pose graphics update
+  label: SamusTurningAroundToDowloadMapDataGfx
+  addr:
+    U: 0xA008
+    E: 0xA064
+    J: 0xA008
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus getting hurt pose
+  label: SamusGettingHurt
+  addr:
+    U: 0xA024
+    E: 0xA080
+    J: 0xA024
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus getting hurt pose graphics update
+  label: SamusGettingHurtGfx
+  addr:
+    U: 0xA08C
+    E: 0xA0E8
+    J: 0xA08C
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus getting knocked back pose
+  label: SamusGettingKnockedBack
+  addr:
+    U: 0xA0AC
+    E: 0xA108
+    J: 0xA0AC
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus dying pose
+  label: SamusDying
+  addr:
+    U: 0xA0DC
+    E: 0xA138
+    J: 0xA0DC
+  size: 0x10C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus crouching to crawl pose graphics update
+  label: SamusCrouchingToCrawlGfx
+  addr:
+    U: 0xA1E8
+    E: 0xA244
+    J: 0xA1E8
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus crawling stopped pose
+  label: SamusCrawlingStopped
+  addr:
+    U: 0xA21C
+    E: 0xA278
+    J: 0xA21C
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus starting to crawl pose graphics update
+  label: SamusStartingToCrawlGfx
+  addr:
+    U: 0xA284
+    E: 0xA2E0
+    J: 0xA284
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus crawling pose
+  label: SamusCrawling
+  addr:
+    U: 0xA2A0
+    E: 0xA2FC
+    J: 0xA2A0
+  size: 0x74
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus dying pose graphics update
+  label: SamusDyingGfx
+  addr:
+    U: 0xA314
+    E: 0xA370
+    J: 0xA314
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning around while crawling pose
+  label: SamusTurningAroundWhileCrawling
+  addr:
+    U: 0xA358
+    E: 0xA3B4
+    J: 0xA358
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus crawling pose graphics update
+  label: SamusCrawlingGfx
+  addr:
+    U: 0xA374
+    E: 0xA3D0
+    J: 0xA374
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus grabbing a ledge suitless pose graphics update
+  label: SamusGrabbingALedgeSuitlessGfx
+  addr:
+    U: 0xA390
+    E: 0xA3EC
+    J: 0xA390
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus facing the background pose
+  label: SamusFacingTheBackground
+  addr:
+    U: 0xA3AC
+    E: 0xA408
+    J: 0xA3AC
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning from facing the background pose graphics update
+  label: SamusTurningFromFacingBackgroundGfx
+  addr:
+    U: 0xA3D4
+    E: 0xA430
+    J: 0xA3D4
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
+  desc: Samus turning to enter escape ship pose graphics update
+  label: SamusTurningToEnterEscapeShipGfx
+  addr:
+    U: 0xA428
+    E: 0xA484
+    J: 0xA428
+  size: 0x1C
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    type: ptr.SamusData
+  return:
+    desc: New Samus pose (0xFF if none)
+    type: u8
+    enum: SamusPose
+-
   desc: Samus execute pose subroutine
   label: SamusExecutePoseSubroutine
   addr:
@@ -1314,9 +2656,9 @@
     desc: New pose
     type: u8
     enum: SamusPose
-  notes: Executes the subroutine for the current pose, calls Samus check hazard damage,
-    Samus set highlighted weapon, Samus check shinesparking pose, Samus set spinning
-    pose and Samus spawn new projectile
+  notes: Executes the subroutine for the current pose, calls Samus check hazard
+    damage, Samus set highlighted weapon, Samus check shinesparking pose, Samus set
+    spinning pose and Samus spawn new projectile
 -
   desc: Samus update velocity and position
   label: SamusUpdateVelocityAndPosition
@@ -1517,6 +2859,17 @@
   params: null
   return: null
 -
+  desc: Loads and initializes generic data
+  label: InitAndLoadGenerics
+  addr:
+    U: 0xCBAC
+    E: 0xCC60
+    J: 0xCBAC
+  size: 0x23C
+  mode: thumb
+  params: void
+  return: void
+-
   desc: Update sprites
   label: UpdateSprites
   addr:
@@ -1689,7 +3042,7 @@
   - desc: Sprite ID
     type: u8
     enum: SecondarySpriteID
-  - desc: Sprite data 1E
+  - desc: Part number
     type: u8
   - desc: Spriteset graphics row
     type: u8
@@ -1718,7 +3071,7 @@
   - desc: Sprite ID
     type: u8
     enum: PrimarySpriteID
-  - desc: Sprite data 1E
+  - desc: Room slot
     type: u8
   - desc: Spriteset graphics row
     type: u8
@@ -2260,7 +3613,7 @@
   params: null
   return: null
 -
-  desc: Unfreeze secondary sprites
+  desc: Unfreeze secondary sprites (unused?)
   label: UnfreezeSecondarySprites
   addr:
     U: 0x101F4
@@ -2548,6 +3901,27 @@
     type: u8
   return: null
 -
+  desc: Ridley fireball move
+  label: RidleyFireballMove
+  addr:
+    U: 0x10B98
+    E: 0x10C4C
+    J: 0x10B98
+  size: 0x158
+  mode: thumb
+  params:
+  - desc: Samus Y position
+    type: u16
+  - desc: Samus X position
+    type: u16
+  - desc: Y speed
+    type: u8
+  - desc: X speed
+    type: u8
+  - desc: Speed divisor
+    type: u8
+  return: void
+-
   desc: Update sprite stun timer
   label: UpdateSpriteStunTimer
   addr:
@@ -2716,6 +4090,21 @@
     type: ptr.SubSpriteData
   return: null
 -
+  desc: Sprite check overlapping with Samus
+  label: SpriteCheckOverlappingSamus
+  addr:
+    U: 0x1157C
+    E: 0x11630
+    J: 0x1157C
+  size: 0xA4
+  mode: thumb
+  params: void
+  return:
+    desc: Overlapping
+    type: bool
+  notes: Calls CheckObjectsTouching to detect collision between the current sprite
+    and Samus' draw distance offsets
+-
   desc: Set sprite splash effect
   label: SetSpriteSplashEffect
   addr:
@@ -2828,8 +4217,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all sprite debris and calls Process sprite debris, also updates
-    the animation related info
+  notes: Loops through all sprite debris and calls Process sprite debris, also
+    updates the animation related info
 -
   desc: Draw sprite debris
   label: DrawSpriteDebris
@@ -3064,6 +4453,32 @@
   - desc: Projectile data pointer
     type: ptr.ProjectileData
   return: null
+-
+  desc: Call draw projectile 8 bit false
+  label: CallDrawProjectile8BitFalse
+  addr:
+    U: 0x4F33C
+    E: 0x4F408
+    J: 0x4F33C
+  size: 0x44
+  mode: thumb
+  params: void
+  return: void
+  notes: Loops through all the projectiles and calls DrawProjectile if the 80
+    status flag isn't set
+-
+  desc: Call draw projectile 8 bit true
+  label: CallDrawProjectile8BitTrue
+  addr:
+    U: 0x4F380
+    E: 0x4F44C
+    J: 0x4F380
+  size: 0x44
+  mode: thumb
+  params: void
+  return: void
+  notes: Loops through all the projectiles and calls DrawProjectile if the 80
+    status flag is set
 -
   desc: Draw projectile
   label: DrawProjectile
@@ -3732,6 +5147,18 @@
     type: ptr.ProjectileData
   return: null
 -
+  desc: Process projectile_Empty
+  label: ProcessProjectile_Empty
+  addr:
+    U: 0x521F0
+    E: 0x522BC
+    J: 0x521F0
+  size: 0x4
+  mode: thumb
+  params: void
+  return: void
+  notes: Empty function
+-
   desc: Process power bomb
   label: ProcessPowerBomb
   addr:
@@ -3914,8 +5341,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls Draw HUD energy, missiles, super missiles, power bombs, weapon highlight,
-    pistol bar, and OAM
+  notes: Calls Draw HUD energy, missiles, super missiles, power bombs, weapon
+    highlight, pistol bar, and OAM
 -
   desc: Check timer displayed
   label: CheckTimerDisplayed
@@ -4107,6 +5534,901 @@
     type: ptr
   return: null
 -
+  desc: Particle sprite splash water small
+  label: ParticleSpriteSplashWaterSmall
+  addr:
+    U: 0x541F0
+    E: 0x542BC
+    J: 0x541F0
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash water small subroutine
+-
+  desc: Particle sprite splash water big
+  label: ParticleSpriteSplashWaterBig
+  addr:
+    U: 0x54234
+    E: 0x54300
+    J: 0x54234
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash water big subroutine
+-
+  desc: Particle sprite splash water huge
+  label: ParticleSpriteSplashWaterHuge
+  addr:
+    U: 0x54278
+    E: 0x54344
+    J: 0x54278
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash water huge subroutine
+-
+  desc: Particle sprite splash lava small
+  label: ParticleSpriteSplashLavaSmall
+  addr:
+    U: 0x542BC
+    E: 0x54388
+    J: 0x542BC
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash lava small subroutine
+-
+  desc: Particle sprite splash lava big
+  label: ParticleSpriteSplashLavaBig
+  addr:
+    U: 0x54300
+    E: 0x543CC
+    J: 0x54300
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash lava big subroutine
+-
+  desc: Particle sprite splash lava huge
+  label: ParticleSpriteSplashLavaHuge
+  addr:
+    U: 0x54344
+    E: 0x54410
+    J: 0x54344
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash lava huge subroutine
+-
+  desc: Particle sprite splash acid small
+  label: ParticleSpriteSplashAcidSmall
+  addr:
+    U: 0x54388
+    E: 0x54454
+    J: 0x54388
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash acid small subroutine
+-
+  desc: Particle sprite splash acid big
+  label: ParticleSpriteSplashAcidBig
+  addr:
+    U: 0x543CC
+    E: 0x54498
+    J: 0x543CC
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash acid big subroutine
+-
+  desc: Particle particle sprite splash acid huge
+  label: ParticleParticleSpriteSplashAcidHuge
+  addr:
+    U: 0x54410
+    E: 0x544DC
+    J: 0x54410
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite splash acid huge subroutine
+-
+  desc: Particle shooting beam left
+  label: ParticleShootingBeamLeft
+  addr:
+    U: 0x54454
+    E: 0x54520
+    J: 0x54454
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam left subroutine
+-
+  desc: Particle shooting beam right
+  label: ParticleShootingBeamRight
+  addr:
+    U: 0x5448C
+    E: 0x54558
+    J: 0x5448C
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam right subroutine
+-
+  desc: Particle shooting beam diagonally up left
+  label: ParticleShootingBeamDiagonallyUpLeft
+  addr:
+    U: 0x544C4
+    E: 0x54590
+    J: 0x544C4
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam diagonally up left subroutine
+-
+  desc: Particle shooting beam diagonally up right
+  label: ParticleShootingBeamDiagonallyUpRight
+  addr:
+    U: 0x544FC
+    E: 0x545C8
+    J: 0x544FC
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam diagonally up right subroutine
+-
+  desc: Particle shooting beam diagonally down left
+  label: ParticleShootingBeamDiagonallyDownLeft
+  addr:
+    U: 0x54534
+    E: 0x54600
+    J: 0x54534
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam diagonally down left subroutine
+-
+  desc: Particle shooting beam diagonally down right
+  label: ParticleShootingBeamDiagonallyDownRight
+  addr:
+    U: 0x5456C
+    E: 0x54638
+    J: 0x5456C
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam diagonally down right subroutine
+-
+  desc: Particle shooting beam up left
+  label: ParticleShootingBeamUpLeft
+  addr:
+    U: 0x545A4
+    E: 0x54670
+    J: 0x545A4
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam up left subroutine
+-
+  desc: Particle shooting beam up right
+  label: ParticleShootingBeamUpRight
+  addr:
+    U: 0x545DC
+    E: 0x546A8
+    J: 0x545DC
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam up right subroutine
+-
+  desc: Particle shooting beam down left
+  label: ParticleShootingBeamDownLeft
+  addr:
+    U: 0x54614
+    E: 0x546E0
+    J: 0x54614
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam down left subroutine
+-
+  desc: Particle shooting beam down right
+  label: ParticleShootingBeamDownRight
+  addr:
+    U: 0x5464C
+    E: 0x54718
+    J: 0x5464C
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shooting beam down right subroutine
+-
+  desc: Particle bomb
+  label: ParticleBomb
+  addr:
+    U: 0x54684
+    E: 0x54750
+    J: 0x54684
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Bomb subroutine
+-
+  desc: Particle missile trail
+  label: ParticleMissileTrail
+  addr:
+    U: 0x546C8
+    E: 0x54794
+    J: 0x546C8
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Missile trail subroutine
+-
+  desc: Particle super missile trail
+  label: ParticleSuperMissileTrail
+  addr:
+    U: 0x54700
+    E: 0x547CC
+    J: 0x54700
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Super missile trail subroutine
+-
+  desc: Particle beam trailing right
+  label: ParticleBeamTrailingRight
+  addr:
+    U: 0x54738
+    E: 0x54804
+    J: 0x54738
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Beam trailing right subroutine
+-
+  desc: Particle beam trailing left
+  label: ParticleBeamTrailingLeft
+  addr:
+    U: 0x54780
+    E: 0x5484C
+    J: 0x54780
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Beam trailing left subroutine
+-
+  desc: Particle charged long beam trail
+  label: ParticleChargedLongBeamTrail
+  addr:
+    U: 0x547C8
+    E: 0x54894
+    J: 0x547C8
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged long beam trail subroutine
+-
+  desc: Particle charged ice beam trail
+  label: ParticleChargedIceBeamTrail
+  addr:
+    U: 0x547FC
+    E: 0x548C8
+    J: 0x547FC
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged ice beam trail subroutine
+-
+  desc: Particle charged wave beam trail
+  label: ParticleChargedWaveBeamTrail
+  addr:
+    U: 0x54830
+    E: 0x548FC
+    J: 0x54830
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged wave beam trail subroutine
+-
+  desc: Particle charged plasma beam trail
+  label: ParticleChargedPlasmaBeamTrail
+  addr:
+    U: 0x54864
+    E: 0x54930
+    J: 0x54864
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged plasma beam trail subroutine
+-
+  desc: Particle charged full beam trail
+  label: ParticleChargedFullBeamTrail
+  addr:
+    U: 0x54898
+    E: 0x54964
+    J: 0x54898
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged full beam trail subroutine
+-
+  desc: Particle charged pistol trail
+  label: ParticleChargedPistolTrail
+  addr:
+    U: 0x548CC
+    E: 0x54998
+    J: 0x548CC
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Charged pistol trail subroutine
+-
+  desc: Particle sprite explosion huge
+  label: ParticleSpriteExplosionHuge
+  addr:
+    U: 0x54900
+    E: 0x549CC
+    J: 0x54900
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite explosion huge subroutine
+-
+  desc: Particle sprite explosion small
+  label: ParticleSpriteExplosionSmall
+  addr:
+    U: 0x54938
+    E: 0x54A04
+    J: 0x54938
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite explosion small subroutine
+-
+  desc: Particle sprite explosion medium
+  label: ParticleSpriteExplosionMedium
+  addr:
+    U: 0x54970
+    E: 0x54A3C
+    J: 0x54970
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite explosion medium subroutine
+-
+  desc: Particle sprite explosion big
+  label: ParticleSpriteExplosionBig
+  addr:
+    U: 0x549A8
+    E: 0x54A74
+    J: 0x549A8
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite explosion big subroutine
+-
+  desc: Particle sprite explosion single then big
+  label: ParticleSpriteExplosionSingleThenBig
+  addr:
+    U: 0x549E0
+    E: 0x54AAC
+    J: 0x549E0
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sprite explosion single then big subroutine
+-
+  desc: Particle screw attack destroyed
+  label: ParticleScrewAttackDestroyed
+  addr:
+    U: 0x54A18
+    E: 0x54AE4
+    J: 0x54A18
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Screw attack destroyed subroutine
+-
+  desc: Particle shinespark destroyed
+  label: ParticleShinesparkDestroyed
+  addr:
+    U: 0x54A50
+    E: 0x54B1C
+    J: 0x54A50
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Shinespark destroyed subroutine
+-
+  desc: Particle sudo screw destroyed
+  label: ParticleSudoScrewDestroyed
+  addr:
+    U: 0x54A88
+    E: 0x54B54
+    J: 0x54A88
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Sudo screw destroyed subroutine
+-
+  desc: Particle speedbooster destroyed
+  label: ParticleSpeedboosterDestroyed
+  addr:
+    U: 0x54AC0
+    E: 0x54B8C
+    J: 0x54AC0
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Speedbooster destroyed subroutine
+-
+  desc: Particle main boss death
+  label: ParticleMainBossDeath
+  addr:
+    U: 0x54AF8
+    E: 0x54BC4
+    J: 0x54AF8
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Main boss death subroutine
+-
+  desc: Particle freezing sprite with ice
+  label: ParticleFreezingSpriteWithIce
+  addr:
+    U: 0x54B30
+    E: 0x54BFC
+    J: 0x54B30
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Freezing sprite with ice subroutine
+-
+  desc: Particle freezing sprite with charged ice
+  label: ParticleFreezingSpriteWithChargedIce
+  addr:
+    U: 0x54B70
+    E: 0x54C3C
+    J: 0x54B70
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Freezing sprite with charged ice subroutine
+-
+  desc: Particle hitting something with base beam
+  label: ParticleHittingSomethingWithBaseBeam
+  addr:
+    U: 0x54BB0
+    E: 0x54C7C
+    J: 0x54BB0
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with base beam or charged base beam
+    subroutine
+-
+  desc: Particle hitting something with long beam
+  label: ParticleHittingSomethingWithLongBeam
+  addr:
+    U: 0x54BEC
+    E: 0x54CB8
+    J: 0x54BEC
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with long beam or charged long beam
+    subroutine
+-
+  desc: Particle hitting something with ice beam
+  label: ParticleHittingSomethingWithIceBeam
+  addr:
+    U: 0x54C2C
+    E: 0x54CF8
+    J: 0x54C2C
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with ice beam subroutine
+-
+  desc: Particle hitting something with wave beam
+  label: ParticleHittingSomethingWithWaveBeam
+  addr:
+    U: 0x54C68
+    E: 0x54D34
+    J: 0x54C68
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with wave beam subroutine
+-
+  desc: Particle hitting something with full beam no plasma
+  label: ParticleHittingSomethingWithFullBeamNoPlasma
+  addr:
+    U: 0x54CA8
+    E: 0x54D74
+    J: 0x54CA8
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with full beam no plasma subroutine
+-
+  desc: Particle hitting something with plasma beam
+  label: ParticleHittingSomethingWithPlasmaBeam
+  addr:
+    U: 0x54CE4
+    E: 0x54DB0
+    J: 0x54CE4
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with plasma beam subroutine
+-
+  desc: Particle hitting something with full beam
+  label: ParticleHittingSomethingWithFullBeam
+  addr:
+    U: 0x54D20
+    E: 0x54DEC
+    J: 0x54D20
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with full beam subroutine
+-
+  desc: Particle hitting something invicible
+  label: ParticleHittingSomethingInvicible
+  addr:
+    U: 0x54D5C
+    E: 0x54E28
+    J: 0x54D5C
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something invicible subroutine
+-
+  desc: Particle hitting something with missile
+  label: ParticleHittingSomethingWithMissile
+  addr:
+    U: 0x54D9C
+    E: 0x54E68
+    J: 0x54D9C
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with missile subroutine
+-
+  desc: Particle hitting something with super missile
+  label: ParticleHittingSomethingWithSuperMissile
+  addr:
+    U: 0x54DDC
+    E: 0x54EA8
+    J: 0x54DDC
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Hitting something with super missile subroutine
+-
+  desc: Particle small dust
+  label: ParticleSmallDust
+  addr:
+    U: 0x54E2C
+    E: 0x54EF8
+    J: 0x54E2C
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Small dust subroutine
+-
+  desc: Particle medium dust
+  label: ParticleMediumDust
+  addr:
+    U: 0x54E60
+    E: 0x54F2C
+    J: 0x54E60
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Medium dust subroutine
+-
+  desc: Particle two medium dust
+  label: ParticleTwoMediumDust
+  addr:
+    U: 0x54E94
+    E: 0x54F60
+    J: 0x54E94
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Two medium dust subroutine
+-
+  desc: Particle second small dust
+  label: ParticleSecondSmallDust
+  addr:
+    U: 0x54EC8
+    E: 0x54F94
+    J: 0x54EC8
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Second Small dust subroutine
+-
+  desc: Particle second medium dust
+  label: ParticleSecondMediumDust
+  addr:
+    U: 0x54F00
+    E: 0x54FCC
+    J: 0x54F00
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Second medium dust subroutine
+-
+  desc: Particle second two medium dust
+  label: ParticleSecondTwoMediumDust
+  addr:
+    U: 0x54F38
+    E: 0x55004
+    J: 0x54F38
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle effect Second two medium dust subroutine
+-
+  desc: Play begin to charge beam sound
+  label: PlayBeginToChargeBeamSound
+  addr:
+    U: 0x54F70
+    E: 0x5503C
+    J: 0x54F70
+  size: 0x88
+  mode: thumb
+  params: void
+  return: void
+  notes: Plays a sound depending on the beams activated when beginning to charge
+    a beam
+-
+  desc: Play shooting charged beam sound
+  label: PlayShootingChargedBeamSound
+  addr:
+    U: 0x54FF8
+    E: 0x550C4
+    J: 0x54FF8
+  size: 0x88
+  mode: thumb
+  params: void
+  return: void
+  notes: Plays a sound depending on the beams activated when shooting a charged
+    beam
+-
+  desc: Play beam fully charged sound
+  label: PlayBeamFullyChargedSound
+  addr:
+    U: 0x55080
+    E: 0x5514C
+    J: 0x55080
+  size: 0x88
+  mode: thumb
+  params: void
+  return: void
+  notes: Plays a sound depending on the beams activated when charging a fully
+    charged beam
+-
+  desc: Particle charging beam
+  label: ParticleChargingBeam
+  addr:
+    U: 0x55108
+    E: 0x551D4
+    J: 0x55108
+  size: 0x100
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle Charging beam subroutine
+-
+  desc: Particle escape
+  label: ParticleEscape
+  addr:
+    U: 0x55208
+    E: 0x552D4
+    J: 0x55208
+  size: 0xA8
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle Escape subroutine
+-
+  desc: Particle Samus reflection
+  label: ParticleSamusReflection
+  addr:
+    U: 0x552B0
+    E: 0x5537C
+    J: 0x552B0
+  size: 0x94
+  mode: thumb
+  params:
+  - desc: Particle effect pointer
+    type: ptr.ParticleEffect
+  return: void
+  notes: Particle Samus relfection subroutine
+-
   desc: Start vertical screen shake
   label: StartVerticalScreenShake
   addr:
@@ -4222,6 +6544,22 @@
     desc: 0xFFFF if room is dark, 0 otherwise
     type: u16
 -
+  desc: Update BLDCNT
+  label: UpdateBLDCNT
+  addr:
+    U: 0x55A40
+    E: 0x55B0C
+    J: 0x55A40
+  size: 0x9C
+  mode: thumb
+  params:
+  - desc: Action
+    type: u8
+  - desc: BLDCNT Value
+    type: u16
+  return: void
+  notes: Updates the BLDCNT register value with r1
+-
   desc: Update BLDALPHA
   label: UpdateBLDALPHA
   addr:
@@ -4240,6 +6578,18 @@
   - desc: Fading related
     type: u8
   return: null
+-
+  desc: Apply new transparency effects
+  label: ApplyNewTransparencyEffects
+  addr:
+    U: 0x55C24
+    E: 0x55CF0
+    J: 0x55C24
+  size: 0xB8
+  mode: thumb
+  params: void
+  return: void
+  notes: Applies the new transparency effects (BLDALPHA and BLDCNT?)
 -
   desc: Apply new BLDALPHA
   label: ApplyNewBLDALPHA
@@ -4374,6 +6724,19 @@
   params: null
   return: null
 -
+  desc: Check DMA3 ended
+  label: CheckDMA3Ended
+  addr:
+    U: 0x5743C
+    E: 0x57504
+    J: 0x5743C
+  size: 0x20
+  mode: thumb
+  params: void
+  return: void
+  notes: Checks if the DMA operation on the third channel has ended (probably
+    unused)
+-
   desc: Process power bomb explosion
   label: ProcessPowerBombExplosion
   addr:
@@ -4384,6 +6747,18 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Power bomb explosion
+  label: PowerBombExplosion
+  addr:
+    U: 0x574A4
+    E: 0x5756C
+    J: 0x574A4
+  size: 0x248
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the power bomb explosion
 -
   desc: Start power bomb explosion
   label: StartPowerBombExplosion
@@ -4401,6 +6776,18 @@
   - desc: '?'
     type: u8
   return: null
+-
+  desc: Set current power bomb 0x12 to 0
+  label: SetCurrentPowerBomb0x12To0
+  addr:
+    U: 0x57734
+    E: 0x577FC
+    J: 0x57734
+  size: 0xC
+  mode: thumb
+  params: void
+  return: void
+  notes: Sets Current Power Bomb + 0x12 to 0
 -
   desc: Power bomb explosion begin
   label: PowerBombExplosionBegin
@@ -4466,8 +6853,8 @@
   - desc: Value
     type: u16
   return: null
-  notes: Updates the DISPCNT register value with r1 (used by Kraid at the end of the
-    fight with r1 = 0x400, disables BG2)
+  notes: Updates the DISPCNT register value with r1 (used by Kraid at the end
+    of the fight with r1 = 0x400, disables BG2)
 -
   desc: Load exploding room during Zebes escape
   label: LoadExplodingRoomDuringZebesEscape
@@ -4489,22 +6876,17 @@
     type: u16
   return: null
 -
-  desc: Clipdata related?
-  label: ClipdataRelated?
+  desc: Setup clipdata code
+  label: SetupClipdataCode
   addr:
-    U: 0x57E7C
-    E: 0x57F44
-    J: 0x57E7C
-  size: 0x100
+    U: 0x57DCC
+    E: 0x57E94
+    J: 0x57DCC
+  size: 0x2C
   mode: thumb
-  params:
-  - desc: Y position
-    type: u16
-  - desc: X position
-    type: u16
-  return:
-    desc: '?'
-    type: u32
+  params: void
+  return: void
+  notes: Copies to clipdata code to non gameplay RAM
 -
   desc: Check hazard at position
   label: CheckHazardAtPosition
@@ -4523,6 +6905,30 @@
     desc: Hazard type
     type: u8
     enum: HazardType
+-
+  desc: Check current affecting hazard and very special clipdata
+  label: CheckCurrentAffectingHazardAndVerySpecialClipdata
+  addr:
+    U: 0x580C0
+    E: 0x58188
+    J: 0x580C0
+  size: 0xDC
+  mode: thumb
+  params:
+  - desc: Y position
+    type: u16
+  - desc: Block Y position
+    type: u16
+  - desc: Block X position
+    type: u16
+  - desc: '?'
+    type: u8
+  return:
+    desc: Hazard type
+    type: u8
+    enum: HazardType
+  notes: Sets the current affecting hazard, ; r3 = 1 when called in ClipdataRelated
+    and 0 when called in CheckHazardAtPosition
 -
   desc: Check can use elevator
   label: CheckCanUseElevator
@@ -4640,8 +7046,8 @@
   - desc: Coordinates pointer
     type: ptr
   return: null
-  notes: Updates the 2 current scrolls, also checks for extended bounds (when taking
-    an elevator and when triggered by a breakable block)
+  notes: Updates the 2 current scrolls, also checks for extended bounds (when
+    taking an elevator and when triggered by a breakable block)
 -
   desc: Process general scrolling
   label: ProcessGeneralScrolling
@@ -4782,6 +7188,22 @@
     desc: Valid block?
     type: bool
 -
+  desc: Bomb chain block related
+  label: BombChainBlockRelated
+  addr:
+    U: 0x59330
+    E: 0x593F8
+    J: 0x59330
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Coordinates pointer?
+    type: ptr
+  return:
+    desc: Always 1
+    type: bool
+  notes: Called when a bomb chain is getting destroyed
+-
   desc: Destroy single breakable block
   label: DestroySingleBreakableBlock
   addr:
@@ -4822,6 +7244,22 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Remove never reform block in clipdata BG
+  label: RemoveNeverReformBlockInClipdataBG
+  addr:
+    U: 0x59580
+    E: 0x59648
+    J: 0x59580
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: X position
+    type: u8
+  - desc: Y position
+    type: u8
+  return: void
+  notes: Removes the never reform block from the clipdata/background
 -
   desc: Apply current clipdata affecting action
   label: ApplyCurrClipdataAffectingAction
@@ -4971,6 +7409,26 @@
   params: null
   return: null
 -
+  desc: Mother brain update glass
+  label: MotherBrainUpdateGlass
+  addr:
+    U: 0x5A484
+    E: 0x5A54C
+    J: 0x5A484
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Always 0?
+    type: u8
+  - desc: '?'
+    type: u16
+  - desc: '?'
+    type: u16
+  - desc: '?'
+    type: u16
+  return: void
+  notes: Updates the graphics for the Mother Brain glass
+-
   desc: Set BG1 block value
   label: SetBG1BlockValue
   addr:
@@ -5033,8 +7491,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if Samus is touching transitions, tanks, transparency triggers, or
-    crumble blocks
+  notes: Checks if Samus is touching transitions, tanks, transparency triggers,
+    or crumble blocks
 -
   desc: Apply clipdata changing transparency
   label: ApplyClipdataChangingTransparency
@@ -5213,7 +7671,7 @@
   params:
   - desc: Cutscene number
     type: u8
-    label: Cutscene
+    enum: Cutscene
   return: null
 -
   desc: Start special background fading
@@ -5230,6 +7688,18 @@
     enum: SpecialBGFadeType
   return: null
 -
+  desc: BG3OFS related
+  label: BG3OFSRelated
+  addr:
+    U: 0x5C158
+    E: 0x5C220
+    J: 0x5C158
+  size: 0x38
+  mode: thumb
+  params: void
+  return: void
+  notes: Changes the Which Background Position Is Written To BG3OFS global variable
+-
   desc: Process special fading effect
   label: ProcessSpecialFadingEffect
   addr:
@@ -5243,6 +7713,104 @@
     desc: '?'
     type: bool
 -
+  desc: Escape failed fade
+  label: EscapeFailedFade
+  addr:
+    U: 0x5C77C
+    E: 0x5C844
+    J: 0x5C77C
+  size: 0x98
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the escape failed fade
+-
+  desc: Before Chozodia escape fade
+  label: BeforeChozodiaEscapeFade
+  addr:
+    U: 0x5C814
+    E: 0x5C8DC
+    J: 0x5C814
+  size: 0x98
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Subroutine for the before Chozodia escape fade
+-
+  desc: Before tourian escape fade
+  label: BeforeTourianEscapeFade
+  addr:
+    U: 0x5C924
+    E: 0x5C9EC
+    J: 0x5C924
+  size: 0x78
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before tourian escape fade
+-
+  desc: Before getting fully powered fade
+  label: BeforeGettingFullyPoweredFade
+  addr:
+    U: 0x5C99C
+    E: 0x5CA64
+    J: 0x5C99C
+  size: 0xBC
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before getting fully powered fade
+-
+  desc: Before Ridley spawn fade
+  label: BeforeRidleySpawnFade
+  addr:
+    U: 0x5CA58
+    E: 0x5CB20
+    J: 0x5CA58
+  size: 0x80
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before Ridley spawn fade
+-
+  desc: Before statue opening fade
+  label: BeforeStatueOpeningFade
+  addr:
+    U: 0x5CAD8
+    E: 0x5CBA0
+    J: 0x5CAD8
+  size: 0xA0
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before statue opening fade
+-
+  desc: Before intro text fade
+  label: BeforeIntroTextFade
+  addr:
+    U: 0x5CB78
+    E: 0x5CC40
+    J: 0x5CB78
+  size: 0xA4
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before intro text fade
+-
   desc: Set background haze effect
   label: SetBGHazeEffect
   addr:
@@ -5253,8 +7821,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the background haze effect depending on the Haze Data table and the
-    room effect
+  notes: Sets the background haze effect depending on the Haze Data table and
+    the room effect
 -
   desc: Setup haze code
   label: SetupHazeCode
@@ -5272,8 +7840,20 @@
     type: u8
     enum: HazeType
   return: null
-  notes: Sets current haze value to r0 and copies a function to RAM depending on the
-    haze value (also sets the haze effect code pointer)
+  notes: Sets current haze value to r0 and copies a function to RAM depending
+    on the haze value (also sets the haze effect code pointer)
+-
+  desc: Reset haze loops
+  label: ResetHazeLoops
+  addr:
+    U: 0x5D3D8
+    E: 0x5D4AC
+    J: 0x5D3D8
+  size: 0x3C
+  mode: thumb
+  params: void
+  return: void
+  notes: Resets the haze loops
 -
   desc: Process haze
   label: ProcessHaze
@@ -5287,8 +7867,85 @@
   return:
     desc: Power bomb ended and room has haze
     type: bool
-  notes: Calls the haze process code, if a power bomb ended and the room has a haze
-    effect, set background haze effect is called and the function returns 1
+  notes: Calls the haze process code, if a power bomb ended and the room has a
+    haze effect, set background haze effect is called and the function returns 1
+-
+  desc: Haze BG3
+  label: HazeBG3
+  addr:
+    U: 0x5D768
+    E: 0x5D83C
+    J: 0x5D768
+  size: 0xC0
+  mode: thumb
+  params: void
+  return: void
+  notes: Haze BG3 code
+-
+  desc: Haze BG3 strong effect weak outside
+  label: HazeBG3StrongEffectWeakOutside
+  addr:
+    U: 0x5D828
+    E: 0x5D8FC
+    J: 0x5D828
+  size: 0x118
+  mode: thumb
+  params: void
+  return: void
+  notes: Haze BG3 (strong in effect, weak outside) code
+-
+  desc: Haze BG3 none effect weak outside
+  label: HazeBG3NoneEffectWeakOutside
+  addr:
+    U: 0x5D940
+    E: 0x5DA14
+    J: 0x5D940
+  size: 0x70
+  mode: thumb
+  params: void
+  return: void
+  notes: Haze BG3 (none in effect, weak outside) code
+-
+  desc: Haze BG3 BG2 strong effect weak outside medium everywhere
+  label: HazeBG3BG2StrongEffectWeakOutsideMediumEverywhere
+  addr:
+    U: 0x5D9B0
+    E: 0x5DA84
+    J: 0x5D9B0
+  size: 0x90
+  mode: thumb
+  params: void
+  return: void
+  notes: Haze BG3/BG2 (Strong In Effect, Weak Outside For BG3 And Medium Everywhere
+    For BG2) code
+-
+  desc: Haze power bomb expanding
+  label: HazePowerBombExpanding
+  addr:
+    U: 0x5DB2C
+    E: 0x5DC00
+    J: 0x5DB2C
+  size: 0x118
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Haze Power Bomb Expanding code
+-
+  desc: Haze power bomb retracting
+  label: HazePowerBombRetracting
+  addr:
+    U: 0x5DC44
+    E: 0x5DD18
+    J: 0x5DC44
+  size: 0x118
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Haze Power Bomb Retracting code
 -
   desc: Update animated graphics
   label: UpdateAnimatedGraphics
@@ -5572,6 +8229,35 @@
     desc: 5 if ended, 0 otherwise
     type: u8
 -
+  desc: Make background flash
+  label: MakeBackgroundFlash
+  addr:
+    U: 0x603C4
+    E: 0x604A8
+    J: 0x603C4
+  size: 0x58
+  mode: thumb
+  params:
+  - desc: Flash type (0 = slight yellow flash, 1 = transparency change for statue
+      long, 2 = heavy yellow flash 3 = quick flash)
+    type: u8
+  return: void
+  notes: Starts a flash background effect
+-
+  desc: Set 300019F
+  label: Set300019F
+  addr:
+    U: 0x6041C
+    E: 0x60500
+    J: 0x6041C
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Value
+    type: u8
+  return: void
+  notes: Sets 300019F to r0 if 300019F is different than 0
+-
   desc: Load first room?
   label: LoadFirstRoom?
   addr:
@@ -5651,6 +8337,20 @@
   params: null
   return: null
 -
+  desc: Return one
+  label: ReturnOne
+  addr:
+    U: 0x60E28
+    E: 0x60F10
+    J: 0x60E28
+  size: 0x4
+  mode: thumb
+  params: void
+  return:
+    desc: Always 1
+    type: bool
+  notes: Returns 1
+-
   desc: Zebes escape cutscene subroutine
   label: ZebesEscapeCutsceneSubroutine
   addr:
@@ -5700,8 +8400,676 @@
   return:
     desc: 1 to indicate end of functions
     type: bool
-  notes: Returns one, always used (except for story text cutscenes) as the last function
-    in an array of cutscene subroutine data, marking the end of the cutscene
+  notes: Returns one, always used (except for story text cutscenes) as the last
+    function in an array of cutscene subroutine data, marking the end of the cutscene
+-
+  desc: Kraid rising rising
+  label: KraidRisingRising
+  addr:
+    U: 0x6240C
+    E: 0x62528
+    J: 0x6240C
+  size: 0x2EC
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Kraid rising part of the Kraid rising cutscene
+-
+  desc: Kraid rising opening eyes
+  label: KraidRisingOpeningEyes
+  addr:
+    U: 0x6280C
+    E: 0x62928
+    J: 0x6280C
+  size: 0x188
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles Kraid opening his eyes part of the Kraid rising cutscene
+-
+  desc: Kraid rising initialize
+  label: KraidRisingInit
+  addr:
+    U: 0x62994
+    E: 0x62AB0
+    J: 0x62994
+  size: 0x190
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the Kraid rising cutscene
+-
+  desc: Kraid rising subroutine
+  label: KraidRisingSubroutine
+  addr:
+    U: 0x62B24
+    E: 0x62C40
+    J: 0x62B24
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the Kraid rising cutscene
+-
+  desc: Story text cutscenes initialize
+  label: StoryTextCutscenesInit
+  addr:
+    U: 0x62B90
+    E: 0x62CAC
+    J: 0x62B90
+  size: 0xFC
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize a story text cutscene
+-
+  desc: Story text cutscenes subroutine
+  label: StoryTextCutscenesSubroutine
+  addr:
+    U: 0x62FD8
+    E: 0x630F4
+    J: 0x62FD8
+  size: 0x30
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the story text cutscenes (intro, after landing on Chozodia
+    and another one?)
+-
+  desc: Mother brain close up looking at Samus
+  label: MotherBrainCloseUpLookingAtSamus
+  addr:
+    U: 0x63008
+    E: 0x63124
+    J: 0x63008
+  size: 0x234
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Mother Brain looking at Samus part of the Mother Brain close
+    up cutscene
+-
+  desc: Mother brain close up eye opening
+  label: MotherBrainCloseUpEyeOpening
+  addr:
+    U: 0x63284
+    E: 0x633A0
+    J: 0x63284
+  size: 0x23C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the eye opening part of the Mother Brain close up cutscene
+-
+  desc: Mother brain close up tank view
+  label: MotherBrainCloseUpTankView
+  addr:
+    U: 0x634C0
+    E: 0x635DC
+    J: 0x634C0
+  size: 0xC4
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the view of Mother Brain in her tank from up top (beginning)
+    part of the Mother Brain close up cutscene
+-
+  desc: Mother brain close up initialize
+  label: MotherBrainCloseUpInit
+  addr:
+    U: 0x63584
+    E: 0x636A0
+    J: 0x63584
+  size: 0xB8
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the Mother Brain close up cutscene
+-
+  desc: Mother brain close up subroutine
+  label: MotherBrainCloseUpSubroutine
+  addr:
+    U: 0x6363C
+    E: 0x63758
+    J: 0x6363C
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Mother brain close up cutscene subroutine
+-
+  desc: Ridley in space ship leaving
+  label: RidleyInSpaceShipLeaving
+  addr:
+    U: 0x63884
+    E: 0x639A0
+    J: 0x63884
+  size: 0x298
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the ship leaving (end) part of the Ridley in space cutscene
+-
+  desc: Ridley in space Ridley suspicious
+  label: RidleyInSpaceRidleySuspicious
+  addr:
+    U: 0x63BE0
+    E: 0x63CFC
+    J: 0x63BE0
+  size: 0x1B0
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Ridley being suspicious part of the Ridley in space cutscene
+-
+  desc: Ridley in space red alert
+  label: RidleyInSpaceRedAlert
+  addr:
+    U: 0x63D90
+    E: 0x63EAC
+    J: 0x63D90
+  size: 0x1C4
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the red alert part of the Ridley in space cutscene
+-
+  desc: Ridley in space view of ship
+  label: RidleyInSpaceViewOfShip
+  addr:
+    U: 0x63FB4
+    E: 0x640D0
+    J: 0x63FB4
+  size: 0x1B4
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the view on the ship in space (beginning) part of the Ridley
+    in space cutscene
+-
+  desc: Ridley in space cutscene initialize
+  label: RidleyInSpaceCutsceneInit
+  addr:
+    U: 0x642BC
+    E: 0x643D8
+    J: 0x642BC
+  size: 0x15C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the Ridley in space cutscene
+-
+  desc: Ridley in space subroutine
+  label: RidleyInSpaceSubroutine
+  addr:
+    U: 0x64418
+    E: 0x64534
+    J: 0x64418
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the Ridley in space cutscene
+-
+  desc: Ridley landing Ridley flying
+  label: RidleyLandingRidleyFlying
+  addr:
+    U: 0x647D0
+    E: 0x648EC
+    J: 0x647D0
+  size: 0x178
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Ridley flying part of the Ridley landing cutscene
+-
+  desc: Ridley landing ship landing
+  label: RidleyLandingShipLanding
+  addr:
+    U: 0x649B4
+    E: 0x64AD0
+    J: 0x649B4
+  size: 0x5A8
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the shi landing part of the Ridley landing cutscene
+-
+  desc: Ridley landing ship in space
+  label: RidleyLandingShipInSpace
+  addr:
+    U: 0x64FE0
+    E: 0x650FC
+    J: 0x64FE0
+  size: 0x108
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the ship in space part of the Ridley landing cutscene
+-
+  desc: Ridley landing initialize
+  label: RidleyLandingInit
+  addr:
+    U: 0x650E8
+    E: 0x65204
+    J: 0x650E8
+  size: 0x19C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0?
+    type: bool
+  notes: Initialize the Ridley landing cutscene
+-
+  desc: Ridley landing subroutine
+  label: RidleyLandingSubroutine
+  addr:
+    U: 0x65284
+    E: 0x653A0
+    J: 0x65284
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the Ridley landing cutscene
+-
+  desc: Ridley spawn Ridley flying in
+  label: RidleySpawnRidleyFlyingIn
+  addr:
+    U: 0x65304
+    E: 0x65420
+    J: 0x65304
+  size: 0x19C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Ridley flying towards the camera part of the Ridley spawn
+    cutscene
+-
+  desc: Ridley spawn helmet reflection
+  label: RidleySpawnHelmetReflection
+  addr:
+    U: 0x65540
+    E: 0x6565C
+    J: 0x65540
+  size: 0x12C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Ridley in the helmet reflection part of the Ridley spawn
+    cutscene
+-
+  desc: Ridley spawn Samus looking up
+  label: RidleySpawnSamusLookingUp
+  addr:
+    U: 0x6566C
+    E: 0x65788
+    J: 0x6566C
+  size: 0x7C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Samus looking up part of the Ridley spawn cutscene
+-
+  desc: Ridley spawn cutscene initialize
+  label: RidleySpawnCutsceneInit
+  addr:
+    U: 0x656E8
+    E: 0x65804
+    J: 0x656E8
+  size: 0x1BC
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the Ridley spawn cutscene
+-
+  desc: Ridley spawn subroutine
+  label: RidleySpawnSubroutine
+  addr:
+    U: 0x658A4
+    E: 0x659C0
+    J: 0x658A4
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the Ridley spawn cutscene
+-
+  desc: Mecha Ridley sees Samus eye open
+  label: MechaRidleySeesSamusEyeOpen
+  addr:
+    U: 0x65924
+    E: 0x65A40
+    J: 0x65924
+  size: 0x100
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the eye opening part (the entire cutscene) of the mecha Ridley
+    sees Samus cutscene
+-
+  desc: Mecha Ridley sees Samus initialize
+  label: MechaRidleySeesSamusInit
+  addr:
+    U: 0x65A24
+    E: 0x65B40
+    J: 0x65A24
+  size: 0x148
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the mecha Ridley sees Samus cutscene
+-
+  desc: Mecha Ridley sees Samus subroutine
+  label: MechaRidleySeesSamusSubroutine
+  addr:
+    U: 0x65B6C
+    E: 0x65C88
+    J: 0x65B6C
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the mecha Ridley sees Samus cutscene
+-
+  desc: Getting fully powered suit animationation
+  label: GettingFullyPoweredSuitAnimation
+  addr:
+    U: 0x65BD8
+    E: 0x65CF4
+    J: 0x65BD8
+  size: 0x204
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the animationation (entire cutscene) part of the getting fully
+    powered suit cutscene
+-
+  desc: Getting fully powered suit initialize
+  label: GettingFullyPoweredSuitInit
+  addr:
+    U: 0x66020
+    E: 0x6613C
+    J: 0x66020
+  size: 0x33C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the getting fully powered suit cutscene
+-
+  desc: Getting fully powered suit subroutine
+  label: GettingFullyPoweredSuitSubroutine
+  addr:
+    U: 0x6635C
+    E: 0x66478
+    J: 0x6635C
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the getting fully powered suit cutscene
+-
+  desc: Before Ruins Test Samus close up
+  label: BeforeRuinsTestSamusCloseUp
+  addr:
+    U: 0x663C8
+    E: 0x664E4
+    J: 0x663C8
+  size: 0x270
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Samus close up part of the before Ruins Test cutscene
+-
+  desc: Before Ruins Test wall and grey voice
+  label: BeforeRuinsTestWallAndGreyVoice
+  addr:
+    U: 0x66638
+    E: 0x66754
+    J: 0x66638
+  size: 0x2D8
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the wall view and the grey voice part of the before Ruins Test
+    cutscene
+-
+  desc: Before Ruins Test Chozo wall sides
+  label: BeforeRuinsTestChozoWallSides
+  addr:
+    U: 0x66A30
+    E: 0x66B4C
+    J: 0x66A30
+  size: 0x70
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the view on the sides of the Chozo wall part of the before Ruins
+    Test cutscene
+-
+  desc: Before Ruins Test initialize
+  label: BeforeRuinsTestInit
+  addr:
+    U: 0x66AA0
+    E: 0x66BBC
+    J: 0x66AA0
+  size: 0x130
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the before Ruins Test cutscene
+-
+  desc: Before Ruins Test subroutine
+  label: BeforeRuinsTestSubroutine
+  addr:
+    U: 0x66BD0
+    E: 0x66CEC
+    J: 0x66BD0
+  size: 0x30
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the before Ruins Test cutscene
+-
+  desc: Statue opening opening
+  label: StatueOpeningOpening
+  addr:
+    U: 0x66C00
+    E: 0x66D1C
+    J: 0x66C00
+  size: 0x164
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the statue opening cutscene
+-
+  desc: Statue opening initialize
+  label: StatueOpeningInit
+  addr:
+    U: 0x66D64
+    E: 0x66E80
+    J: 0x66D64
+  size: 0x2B0
+  mode: thumb
+  params: void
+  return: void
+  notes: Initialize the statue opening cutscene
+-
+  desc: Statue opening subroutine
+  label: StatueOpeningSubroutine
+  addr:
+    U: 0x67014
+    E: 0x67130
+    J: 0x67014
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: '?'
+    type: u8
+  notes: Subroutine for the statue opening cutscene
+-
+  desc: Enter tourian animationation
+  label: EnterTourianAnimation
+  addr:
+    U: 0x67080
+    E: 0x6719C
+    J: 0x67080
+  size: 0x310
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the animationation of the metroids (entire cutscene) part of
+    the enter tourian cutscene
+-
+  desc: Enter tourian initialize
+  label: EnterTourianInit
+  addr:
+    U: 0x6794C
+    E: 0x67A68
+    J: 0x6794C
+  size: 0x3C0
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the entering tourian cutscene
+-
+  desc: Enter tourian subroutine
+  label: EnterTourianSubroutine
+  addr:
+    U: 0x67D0C
+    E: 0x67E28
+    J: 0x67D0C
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the enter tourian cutscene
+-
+  desc: Samus in blue ship powering up
+  label: SamusInBlueShipPoweringUp
+  addr:
+    U: 0x67D8C
+    E: 0x67EA8
+    J: 0x67D8C
+  size: 0xF8
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the blue ship powering up (entire cutscene) part of the Samus
+    in blue ship cutscene
+-
+  desc: Samus in blue ship initialize
+  label: SamusInBlueShipInit
+  addr:
+    U: 0x67F90
+    E: 0x680AC
+    J: 0x67F90
+  size: 0x12C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Initialize the Samus in blue ship cutscene
+-
+  desc: Samus in blue ship subroutine
+  label: SamusInBlueShipSubroutine
+  addr:
+    U: 0x680BC
+    E: 0x681D8
+    J: 0x680BC
+  size: 0x34
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Subroutine for the Samus in blue ship cutscene
 -
   desc: Check draw in-game time and tanks
   label: CheckDrawTimeAndTanks
@@ -5716,6 +9084,18 @@
     type: bool
   return: null
 -
+  desc: Map screen OAM related
+  label: MapScreenOamRelated
+  addr:
+    U: 0x695BC
+    E: 0x696D8
+    J: 0x695BC
+  size: 0xF0
+  mode: thumb
+  params: void
+  return: void
+  notes: OAM stuff related to the map screen
+-
   desc: Map screen subroutine
   label: MapScreenSubroutine
   addr:
@@ -5728,6 +9108,21 @@
   return:
     desc: Leaving map screen
     type: bool
+-
+  desc: Map screen initialize
+  label: MapScreenInit
+  addr:
+    U: 0x6A434
+    E: 0x6A550
+    J: 0x6A434
+  size:
+    U: 0xAA0
+    E: 0xAA0
+    J: 0xABC
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the map screen
 -
   desc: Determine viewable area maps
   label: DetermineViewableAreaMaps
@@ -5962,6 +9357,18 @@
   params: null
   return: null
 -
+  desc: Map screen check input
+  label: MapScreenCheckInput
+  addr:
+    U: 0x6E04C
+    E: 0x6E13C
+    J: 0x6E068
+  size: 0x1A8
+  mode: thumb
+  params: void
+  return: void
+  notes: Checks for input on the map screen
+-
   desc: Map screen change area
   label: MapScreenChangeArea
   addr:
@@ -6009,7 +9416,8 @@
   - desc: Color
     type: u8
   return: null
-  notes: Draws a character for text (description in equipment screen and story text)
+  notes: Draws a character for text (description in equipment screen and story
+    text)
 -
   desc: Draw character for message
   label: DrawCharacterForMessage
@@ -6032,8 +9440,8 @@
   - desc: Color
     type: u8
   return: null
-  notes: Draws a character for a message (item pop up, location name, map screen area
-    name)
+  notes: Draws a character for a message (item pop up, location name, map screen
+    area name)
 -
   desc: Draw character for location text
   label: DrawCharacterForLocationText
@@ -6080,6 +9488,20 @@
   - desc: Story text ID
     type: u8
   return: null
+-
+  desc: Start file screen text
+  label: StartFileScreenText
+  addr:
+    U: 0x6F5A4
+    E: 0x6F6F0
+    J: 0x6F5C0
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Message number
+    type: u8
+  return: void
+  notes: Starts a file screen text
 -
   desc: Process current message
   label: ProcessCurrMessage
@@ -6140,6 +9562,38 @@
     desc: Done drawing
     type: bool
 -
+  desc: Draw status screen tanks amounts
+  label: DrawStatusScreenTanksAmounts
+  addr:
+    U: 0x70180
+    E: 0x702CC
+    J: 0x7019C
+  size: 0x1A4
+  mode: thumb
+  params: void
+  return: void
+  notes: Draws all the status screen tank amouts
+-
+  desc: Draw status screen single tank amount
+  label: DrawStatusScreenSingleTankAmount
+  addr:
+    U: 0x70414
+    E: 0x70560
+    J: 0x70430
+  size: 0x120
+  mode: thumb
+  params:
+  - desc: Row to draw?
+    type: u8
+  - desc: Amount
+    type: u16
+  - desc: Always 0xB?
+    type: u8
+  - desc: Is at max flag
+    type: bool
+  return: void
+  notes: Draws a single status screen tank amount
+-
   desc: Set status screen bomb visibility
   label: SetStatusScreenBombVisibility
   addr:
@@ -6152,6 +9606,52 @@
   - desc: Tilemap offset
     type: u32
   return: null
+-
+  desc: Check select pressed on status screen
+  label: CheckSelectPressedOnStatusScreen
+  addr:
+    U: 0x70F58
+    E: 0x710A4
+    J: 0x70F74
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Always 0x4 (select flag)
+    type: u8
+    enum: ButtonInput
+  return:
+    desc: Select pressed
+    type: bool
+  notes: Checks if the select button is pressed when on the status screen
+-
+  desc: Status screen input related
+  label: StatusScreenInputRelated
+  addr:
+    U: 0x71800
+    E: 0x7194C
+    J: 0x7181C
+  size: 0x94
+  mode: thumb
+  params: void
+  return: void
+  notes: To check
+-
+  desc: Get current equipment selected
+  label: GetCurrentEquipmentSelected
+  addr:
+    U: 0x71894
+    E: 0x719E0
+    J: 0x718B0
+  size: 0x1A8
+  mode: thumb
+  params:
+  - desc: Status Slot
+    type: u8
+  return:
+    desc: Equipment ID (Enum in order starting with long beam = 0 and ending with
+      space jump = 10, unknown item = 11, pistol = 12 and none = 80)
+    type: u8
+  notes: Gets the ID of the current equipment selected on the status screen
 -
   desc: Easy sleep menu subroutine
   label: EasySleepMenuSubroutine
@@ -6344,6 +9844,19 @@
   params: null
   return: null
 -
+  desc: Backup time attack for SRAM
+  label: BackupTimeAttackForSram
+  addr:
+    U: 0x74F58
+    E: 0x75090
+    J: 0x74F74
+  size: 0xB8
+  mode: thumb
+  params: void
+  return: void
+  notes: Backups the time attack IGT and passwords in WRAM, and saves them in
+    the SRAM
+-
   desc: Load demo RAM values
   label: LoadDemoRamValues
   addr:
@@ -6395,6 +9908,116 @@
     desc: Leaving
     type: bool
 -
+  desc: Erase SRAM menu process input
+  label: EraseSramMenuProcessInput
+  addr:
+    U: 0x75D7C
+    E: 0x75EC0
+    J: 0x75DA0
+  size: 0x54
+  mode: thumb
+  params: void
+  return:
+    desc: Return value of EraseSramMenuCheckForInput
+    type: u8
+  notes: Processes the inputs
+-
+  desc: Erase SRAM menu check for input
+  label: EraseSramMenuCheckForInput
+  addr:
+    U: 0x75E7C
+    E: 0x75FC0
+    J: 0x75EA0
+  size: 0x10C
+  mode: thumb
+  params: void
+  return:
+    desc: Input (0 = none, 1 = erasing, 2 = no first window)
+    type: u8
+  notes: Checks for input
+-
+  desc: Erase SRAM menu initialize
+  label: EraseSramMenuInit
+  addr:
+    U: 0x75F88
+    E: 0x760CC
+    J: 0x75FAC
+  size:
+    U: 0x24C
+    E: 0x244
+    J: 0x244
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the SRAM Menu
+-
+  desc: Erase SRAM menu process OAM
+  label: EraseSramMenuProcessOAM
+  addr:
+    U: 0x76364
+    E: 0x764A0
+    J: 0x76380
+  size: 0x2C
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff
+-
+  desc: Load special graphics data
+  label: LoadSpecialGraphicsData
+  addr:
+    U: 0x763F0
+    E: 0x7652C
+    J: 0x7640C
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Special graphics data pointer
+    type: ptr.lz.gfx
+  return: void
+  notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0
+-
+  desc: Load special graphics data_Copy
+  label: LoadSpecialGraphicsData_Copy
+  addr:
+    U: 0x76408
+    E: 0x76544
+    J: 0x76424
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Special graphics data pointer
+    type: ptr.lz.gfx
+  return: void
+  notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0,
+    copy of above
+-
+  desc: Title screen process OAM
+  label: TitleScreenProcessOAM
+  addr:
+    U: 0x7644C
+    E: 0x76588
+    J: 0x76468
+  size: 0x2C
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff
+-
+  desc: Title screen fading in
+  label: TitleScreenFadingIn
+  addr:
+    U: 0x764C8
+    E: 0x76604
+    J: 0x764E4
+  size: 0x118
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the fading in part of the title screen
+-
   desc: Title screen subroutine
   label: TitleScreenSubroutine
   addr:
@@ -6411,6 +10034,35 @@
     desc: Leaving
     type: bool
 -
+  desc: Title screen idle
+  label: TitleScreenIdle
+  addr:
+    U: 0x77318
+    E: 0x774DC
+    J: 0x77334
+  size: 0xB0
+  mode: thumb
+  params: void
+  return:
+    desc: Action (0 = none, 1 = input detected 2 = starting demo)
+    type: u8
+  notes: Handles the sparkles and the logo glow animationations
+-
+  desc: Title screen initialize
+  label: TitleScreenInit
+  addr:
+    U: 0x7745C
+    E: 0x77620
+    J: 0x77478
+  size:
+    U: 0x2A0
+    E: 0x300
+    J: 0x2A0
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the title screen
+-
   desc: Game over subroutine
   label: GameOverSubroutine
   addr:
@@ -6423,6 +10075,95 @@
   return:
     desc: Leaving
     type: bool
+-
+  desc: Game over menu detect input
+  label: GameOverMenuDetectInput
+  addr:
+    U: 0x77AD4
+    E: 0x77DE0
+    J: 0x77AF0
+  size: 0x78
+  mode: thumb
+  params: void
+  return:
+    desc: An option was selected
+    type: bool
+  notes: Checks for input
+-
+  desc: Game over menu update text graphics
+  label: GameOverMenuUpdateTextGfx
+  addr:
+    U: 0x77B4C
+    E: 0x77E58
+    J: 0x77B68
+  size: 0x5C
+  mode: thumb
+  params: void
+  return: void
+  notes: Updates the text graphics depending on if it's selected
+-
+  desc: Game over menu initialize
+  label: GameOverMenuInit
+  addr:
+    U: 0x77BA8
+    E: 0x77EB4
+    J: 0x77BC4
+  size:
+    U: 0x230
+    E: 0x228
+    J: 0x230
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the game over menu
+-
+  desc: Game over menu letters animationation
+  label: GameOverMenuLettersAnimation
+  addr:
+    U: 0x77FF4
+    E: 0x782F4
+    J: 0x78010
+  size: 0x180
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the animationation of the GAME OVER letters
+-
+  desc: Game over menu process OAM
+  label: GameOverMenuProcessOAM
+  addr:
+    U: 0x781FC
+    E: 0x784FC
+    J: 0x78218
+  size: 0x2C
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff
+-
+  desc: File select menu process OAM
+  label: FileSelectMenuProcessOAM
+  addr:
+    U: 0x7824C
+    E: 0x7854C
+    J: 0x78268
+  size: 0x60
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff
+-
+  desc: Copy time attack time
+  label: CopyTimeAttackTime
+  addr:
+    U: 0x7A1A4
+    E: 0x7A494
+    J: 0x7A1C0
+  size: 0x118
+  mode: thumb
+  params: void
+  return: void
+  notes: Copies the time attack time to non gameplay RAM
 -
   desc: File select options subroutine
   label: FileSelectOptionsSubroutine
@@ -6437,6 +10178,18 @@
     desc: Leaving
     type: bool
 -
+  desc: Reset IO transfter info
+  label: ResetIOTransfterInfo
+  addr:
+    U: 0x7AA2C
+    E: 0x7AD1C
+    J: 0x7AA48
+  size: 0x48
+  mode: thumb
+  params: void
+  return: void
+  notes: Resets the IO transfer info
+-
   desc: Start NES Metroid
   label: StartNesMetroid
   addr:
@@ -6449,6 +10202,167 @@
   return:
     desc: Pressed B to cancel
     type: bool
+-
+  desc: Stereo selection subroutine
+  label: StereoSelectionSubroutine
+  addr:
+    U: 0x7AC54
+    E: 0x7AF44
+    J: 0x7AC70
+  size: 0xBC
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Subroutine for the stereo selection
+-
+  desc: Sound test subroutine
+  label: SoundTestSubroutine
+  addr:
+    U: 0x7AD10
+    E: 0x7B000
+    J: 0x7AD2C
+  size:
+    U: 0x2F8
+    E: 0x300
+    J: 0x2F8
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Subroutine for the sound test
+-
+  desc: Time attack records subroutine
+  label: TimeAttackRecordsSubroutine
+  addr:
+    U: 0x7B144
+    E: 0x7B43C
+    J: 0x7B160
+  size: 0x5D8
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Subroutine for the time attack records
+-
+  desc: Load time attack password for record
+  label: LoadTimeAttackPasswordForRecord
+  addr:
+    U: 0x7B92C
+    E: 0x7BC24
+    J: 0x7B948
+  size: 0xBC
+  mode: thumb
+  params:
+  - desc: Part (0 = Normal First Half, 1 = Normal Second Half 2 = 100% First Half,
+      3 = 100% Second Half)
+    type: u8
+  return: void
+  notes: Loads a part of a time attack password in VRAM for the time attack record
+    menu
+-
+  desc: Metroid fusion link subroutine
+  label: MetroidFusionLinkSubroutine
+  addr:
+    U: 0x7B9E8
+    E: 0x7BCE0
+    J: 0x7BA04
+  size: 0x73C
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Subroutine for the metroid fusion link
+-
+  desc: File select menu subroutine
+  label: FileSelectMenuSubroutine
+  addr:
+    U: 0x7C124
+    E: 0x7C41C
+    J: 0x7C140
+  size:
+    U: 0x1DC
+    E: 0x1DC
+    J: 0x1EC
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Subroutine for the file select menu
+-
+  desc: File select fading
+  label: FileSelectFading
+  addr:
+    U: 0x7C300
+    E: 0x7C5F8
+    J: 0x7C32C
+  size: 0x1B0
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the fadings for the file select menu
+-
+  desc: File select menu initialize
+  label: FileSelectMenuInit
+  addr:
+    U: 0x7C5E0
+    E: 0x7C8DC
+    J: 0x7C614
+  size:
+    U: 0x448
+    E: 0x480
+    J: 0x414
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the file select menu
+-
+  desc: Display save file info
+  label: DisplaySaveFileInfo
+  addr:
+    U: 0x7CB2C
+    E: 0x7CE60
+    J: 0x7CB2C
+  size: 0x224
+  mode: thumb
+  params: void
+  return: void
+  notes: Main function that displays the info on the save files
+-
+  desc: Display save file health
+  label: DisplaySaveFileHealth
+  addr:
+    U: 0x7CD50
+    E: 0x7D084
+    J: 0x7CD50
+  size: 0x74
+  mode: thumb
+  params:
+  - desc: File number
+    type: u8
+  return: void
+  notes: Display health on a save file
+-
+  desc: Check inputting time attack code
+  label: CheckInputtingTimeAttackCode
+  addr:
+    U: 0x7D588
+    E: 0x7D8C0
+    J: 0x7D610
+  size: 0xA4
+  mode: thumb
+  params: void
+  return:
+    desc: Fully entered
+    type: bool
+  notes: Checks for the time attack input, to test
 -
   desc: Soft reset subroutine
   label: SoftResetSubroutine
@@ -6512,20 +10426,6 @@
   return:
     desc: Invalid
     type: bool
--
-  desc: Check unlock time attack?
-  label: CheckUnlockTimeAttack?
-  addr:
-    U: 0x7F3FC
-    E: 0x7FAF4
-    J: 0x7F458
-  size:
-    U: 0x210
-    E: 0x214
-    J: 0x210
-  mode: thumb
-  params: null
-  return: null
 -
   desc: Time attack password seed function 1
   label: TimeAttackPasswordSeedFunction1
@@ -6690,6 +10590,199 @@
     desc: New record set
     type: bool
 -
+  desc: VBlank code during intro fuzz
+  label: VBlankCodeDuringIntroFuzz
+  addr:
+    U: 0x80184
+    E: 0x80884
+    J: 0x801E0
+  size: 0x58
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during intro fuzz
+-
+  desc: Intro initialize
+  label: IntroInit
+  addr:
+    U: 0x801DC
+    E: 0x808DC
+    J: 0x80238
+  size:
+    U: 0x1D4
+    E: 0x1E0
+    J: 0x1D4
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the intro
+-
+  desc: Intro text process OAM
+  label: IntroTextProcessOAM
+  addr:
+    U: 0x803B0
+    E: 0x80ABC
+    J: 0x8040C
+  size: 0x1A0
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff for the text of the intro
+-
+  desc: Intro emergency order
+  label: IntroEmergencyOrder
+  addr:
+    U: 0x806D0
+    E: 0x80DDC
+    J: 0x8072C
+  size: 0xE8
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the "Emergency Order" part of the intro
+-
+  desc: Intro ship flying towards camera process OAM
+  label: IntroShipFlyingTowardsCameraProcessOAM
+  addr:
+    U: 0x807B8
+    E: 0x80EC4
+    J: 0x80814
+  size: 0x134
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff for the ship flying towards the camera
+-
+  desc: Intro ship flying towards camera
+  label: IntroShipFlyingTowardsCamera
+  addr:
+    U: 0x808EC
+    E: 0x80FF8
+    J: 0x80948
+  size: 0x9C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the ship flying towards the camera part of the intro
+-
+  desc: Intro Samus in her ship
+  label: IntroSamusInHerShip
+  addr:
+    U: 0x80988
+    E: 0x81094
+    J: 0x809E4
+  size: 0x100
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Samus in her ship part of the intro
+-
+  desc: Intro exterminate
+  label: IntroExterminate
+  addr:
+    U: 0x80A88
+    E: 0x81194
+    J: 0x80AE4
+  size: 0xF0
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the "Exterminate..." part of the intro
+-
+  desc: Intro view of zebes process OAM
+  label: IntroViewOfZebesProcessOAM
+  addr:
+    U: 0x80B78
+    E: 0x81284
+    J: 0x80BD4
+  size: 0x154
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff for the view of zebes
+-
+  desc: Intro view of zebes
+  label: IntroViewOfZebes
+  addr:
+    U: 0x80CCC
+    E: 0x813D8
+    J: 0x80D28
+  size:
+    U: 0x12C
+    E: 0x134
+    J: 0x12C
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the view of zebes part of the intro
+-
+  desc: Intro defeat
+  label: IntroDefeat
+  addr:
+    U: 0x80DF8
+    E: 0x8150C
+    J: 0x80E54
+  size: 0x100
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the "And defeat..." part of the intro
+-
+  desc: Intro Mother Brain
+  label: IntroMotherBrain
+  addr:
+    U: 0x80EF8
+    E: 0x8160C
+    J: 0x80F54
+  size: 0x120
+  mode: thumb
+  params: void
+  return:
+    desc: Always 0
+    type: bool
+  notes: Handles the Mother Brain view part of the intro
+-
+  desc: Intro fuzz process OAM
+  label: IntroFuzzProcessOAM
+  addr:
+    U: 0x81018
+    E: 0x8172C
+    J: 0x81074
+  size: 0x88
+  mode: thumb
+  params: void
+  return: void
+  notes: Handles the OAM related stuff for the fuzz
+-
+  desc: Intro fuzz
+  label: IntroFuzz
+  addr:
+    U: 0x810A0
+    E: 0x817B4
+    J: 0x810FC
+  size:
+    U: 0xDC
+    E: 0xD4
+    J: 0xDC
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the fuzz part of the intro
+-
   desc: Title intro subroutine
   label: TitleIntroSubroutine
   addr:
@@ -6703,6 +10796,293 @@
     desc: Ended
     type: bool
 -
+  desc: VBlank code during intro
+  label: VBlankCodeDuringIntro
+  addr:
+    U: 0x81248
+    E: 0x81954
+    J: 0x812A4
+  size: 0xD8
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during intro
+-
+  desc: Tourian escape Samus surrounded calculate BG2 position
+  label: TourianEscapeSamusSurroundedCalculateBG2Position
+  addr:
+    U: 0x81684
+    E: 0x81D90
+    J: 0x816E0
+  size: 0x104
+  mode: thumb
+  params: void
+  return: void
+  notes: Calculates the new position and size of the BG2 for the camera zooming
+    out effect
+-
+  desc: Tourian escape initialize
+  label: TourianEscapeInit
+  addr:
+    U: 0x81D04
+    E: 0x823FC
+    J: 0x81D60
+  size:
+    U: 0x12C
+    E: 0x120
+    J: 0x12C
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the tourian escape
+-
+  desc: Tourian escape zebes exploding
+  label: TourianEscapeZebesExploding
+  addr:
+    U: 0x81E30
+    E: 0x8251C
+    J: 0x81E8C
+  size:
+    U: 0x834
+    E: 0x830
+    J: 0x834
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the rooms exploding and the ship leaving the planet with zebes
+    exploding in the background part of the cutscene
+-
+  desc: Tourian escape Samus in her ship
+  label: TourianEscapeSamusInHerShip
+  addr:
+    U: 0x82664
+    E: 0x82D4C
+    J: 0x826C0
+  size:
+    U: 0x36C
+    E: 0x354
+    J: 0x36C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus in her ship part of the cutscene
+-
+  desc: Tourian escape Samus looking around
+  label: TourianEscapeSamusLookingAround
+  addr:
+    U: 0x829D0
+    E: 0x830A0
+    J: 0x82A2C
+  size:
+    U: 0x288
+    E: 0x280
+    J: 0x288
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus looking left and right in her ship part of the cutscene
+-
+  desc: Tourian escape Samus surrounded
+  label: TourianEscapeSamusSurrounded
+  addr:
+    U: 0x82C58
+    E: 0x83320
+    J: 0x82CB4
+  size:
+    U: 0x178
+    E: 0x174
+    J: 0x178
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus being surrounded by space pirates part of the cutscene
+-
+  desc: Tourian escape Samus flying in
+  label: TourianEscapeSamusFlyingIn
+  addr:
+    U: 0x82DD0
+    E: 0x83494
+    J: 0x82E2C
+  size: 0x1D0
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus flying towards the camera part of the cutscene
+-
+  desc: Tourian escape Samus chased by pirates
+  label: TourianEscapeSamusChasedByPirates
+  addr:
+    U: 0x82FA0
+    E: 0x83664
+    J: 0x82FFC
+  size:
+    U: 0x424
+    E: 0x420
+    J: 0x424
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus being chased by pirates part of the cutscene
+-
+  desc: Tourian escape Samus chased pirates firing
+  label: TourianEscapeSamusChasedPiratesFiring
+  addr:
+    U: 0x833C4
+    E: 0x83A84
+    J: 0x83420
+  size:
+    U: 0x49C
+    E: 0x488
+    J: 0x49C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus being chased by pirates that shoots beams part of the
+    cutscene
+-
+  desc: Tourian escape Samus getting shot
+  label: TourianEscapeSamusGettingShot
+  addr:
+    U: 0x83860
+    E: 0x83F0C
+    J: 0x838BC
+  size:
+    U: 0x4B0
+    E: 0x4A8
+    J: 0x4B0
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus flying in space and getting shot down part of the cutscene
+-
+  desc: Tourian escape Samus going to crash
+  label: TourianEscapeSamusGoingToCrash
+  addr:
+    U: 0x83D10
+    E: 0x843B4
+    J: 0x83D6C
+  size:
+    U: 0x198
+    E: 0x194
+    J: 0x198
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus going to crash on zebes part of the cutscene
+-
+  desc: Tourian escape Samus crashing
+  label: TourianEscapeSamusCrashing
+  addr:
+    U: 0x83EA8
+    E: 0x84548
+    J: 0x83F04
+  size:
+    U: 0x25C
+    E: 0x250
+    J: 0x25C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus crashing on zebes part of the cutscene
+-
+  desc: Tourian escape Samus looking at sky
+  label: TourianEscapeSamusLookingAtSky
+  addr:
+    U: 0x84104
+    E: 0x84798
+    J: 0x84160
+  size:
+    U: 0x288
+    E: 0x28C
+    J: 0x288
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus looking at the sky part of the cutscene
+-
+  desc: Tourian escape Samus looking at mother ship
+  label: TourianEscapeSamusLookingAtMotherShip
+  addr:
+    U: 0x8438C
+    E: 0x84A24
+    J: 0x843E8
+  size:
+    U: 0x388
+    E: 0x378
+    J: 0x388
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the Samus looking at the mother ship part of the cutscene
+-
+  desc: Tourian escape call subroutines
+  label: TourianEscapeCallSubroutines
+  addr:
+    U: 0x84714
+    E: 0x84D9C
+    J: 0x84770
+  size: 0xE4
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Calls the other subroutines for the tourian escape cutscene, ends when
+    the big monologue text ended
+-
+  desc: Fusion gallery initialize
+  label: FusionGalleryInit
+  addr:
+    U: 0x84870
+    E: 0x84EF8
+    J: 0x848CC
+  size:
+    U: 0x1D0
+    E: 0x1D4
+    J: 0x1D0
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the fusion gallery
+-
+  desc: Fusion gallery display
+  label: FusionGalleryDisplay
+  addr:
+    U: 0x84A40
+    E: 0x850CC
+    J: 0x84A9C
+  size: 0x120
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Handles the gallery displaying the fusion images
+-
   desc: Fusion gallery subroutine
   label: FusionGallerySubroutine
   addr:
@@ -6715,6 +11095,242 @@
   return:
     desc: Leaving
     type: bool
+-
+  desc: Load in game timer ending graphics
+  label: LoadInGameTimerEndingGraphics
+  addr:
+    U: 0x84FB0
+    E: 0x85B44
+    J: 0x8500C
+  size:
+    U: 0x204
+    E: 0x234
+    J: 0x204
+  mode: thumb
+  params: void
+  return: void
+  notes: Loads the graphics for the in game timer display at the end of the game
+-
+  desc: VBlank code during gallery
+  label: VBlankCodeDuringGallery
+  addr:
+    U: 0x851B4
+    E: 0x85D78
+    J: 0x85210
+  size: 0x164
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during gallery and ending image
+-
+  desc: VBlank code during end screen
+  label: VBlankCodeDuringEndScreen
+  addr:
+    U: 0x85318
+    E: 0x85EDC
+    J: 0x85374
+  size: 0xA8
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during end screen
+-
+  desc: VBlank code during unlocked options
+  label: VBlankCodeDuringUnlockedOptions
+  addr:
+    U: 0x853C0
+    E: 0x85F84
+    J: 0x8541C
+  size: 0xA4
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during unlocked options
+-
+  desc: Credits initialize
+  label: CreditsInit
+  addr:
+    U: 0x85464
+    E: 0x86028
+    J: 0x854C0
+  size:
+    U: 0x1F8
+    E: 0x1F4
+    J: 0x1F8
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the credits
+-
+  desc: Display credit line
+  label: DisplayCreditLine
+  addr:
+    U: 0x8565C
+    E: 0x8621C
+    J: 0x856B8
+  size:
+    U: 0x398
+    E: 0x3F0
+    J: 0x398
+  mode: thumb
+  params:
+  - desc: Line Number
+    type: u32
+  return:
+    desc: '?'
+    type: u32
+  notes: Displays a line of text in the credits
+-
+  desc: Display credits
+  label: DisplayCredits
+  addr:
+    U: 0x859F4
+    E: 0x8660C
+    J: 0x85A50
+  size: 0x18C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Displays the credits
+-
+  desc: Credits Chozo wall movement
+  label: CreditsChozoWallMovement
+  addr:
+    U: 0x85B80
+    E: 0x86798
+    J: 0x85BDC
+  size: 0x90
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the scrolling of the wall at the end of the credits
+-
+  desc: Credits Chozo wall zoom
+  label: CreditsChozoWallZoom
+  addr:
+    U: 0x85C10
+    E: 0x86828
+    J: 0x85C6C
+  size:
+    U: 0x1F8
+    E: 0x1F0
+    J: 0x1F8
+  mode: thumb
+  params: void
+  return:
+    desc: 2 if ended, 0 otherwise
+    type: u8
+  notes: Handles the zooming on the Chozo wall at the end of the credits
+-
+  desc: End screen initialize
+  label: EndScreenInit
+  addr:
+    U: 0x85E08
+    E: 0x86A18
+    J: 0x85E64
+  size:
+    U: 0x248
+    E: 0x244
+    J: 0x248
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the end screen (before the ending image and after the credits)
+-
+  desc: End screen Samus posing
+  label: EndScreenSamusPosing
+  addr:
+    U: 0x86050
+    E: 0x86C5C
+    J: 0x860AC
+  size:
+    U: 0x764
+    E: 0x77C
+    J: 0x764
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles Samus posing before the ending image
+-
+  desc: Ending image initialize
+  label: EndingImageInit
+  addr:
+    U: 0x867B4
+    E: 0x873D8
+    J: 0x86810
+  size:
+    U: 0x29C
+    E: 0x320
+    J: 0x29C
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the ending image
+-
+  desc: Ending image display text
+  label: EndingImageDisplayText
+  addr:
+    U: 0x86A50
+    E: 0x876F8
+    J: 0x86AAC
+  size:
+    U: 0x23C
+    E: 0x244
+    J: 0x23C
+  mode: thumb
+  params: void
+  return: void
+  notes: Displays the text on an ending image (IGT and completion percentage)
+-
+  desc: Ending image display
+  label: EndingImageDisplay
+  addr:
+    U: 0x86C8C
+    E: 0x8793C
+    J: 0x86CE8
+  size: 0x1EC
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the display of the ending image
+-
+  desc: Unlocked options initialize
+  label: UnlockedOptionsInit
+  addr:
+    U: 0x86E78
+    E: 0x87B28
+    J: 0x86ED4
+  size:
+    U: 0x158
+    E: 0x148
+    J: 0x158
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the unlocked options pop up after the ending image
+-
+  desc: Unlocked options pop up
+  label: UnlockedOptionsPopUp
+  addr:
+    U: 0x86FD0
+    E: 0x87C70
+    J: 0x8702C
+  size: 0x20C
+  mode: thumb
+  params: void
+  return:
+    desc: Action (0 = nothing, 1 = changing pop-up, 2 = leaving)
+    type: u8
+  notes: Handles the pop up displaying what has been unlocked after beating the
+    game
 -
   desc: Credits subroutine
   label: CreditsSubroutine
@@ -6730,6 +11346,32 @@
     type: bool
   notes: Subroutine for the credits (goes up to the unlocked options)
 -
+  desc: Gallery initialize
+  label: GalleryInit
+  addr:
+    U: 0x873E4
+    E: 0x88084
+    J: 0x87440
+  size: 0x238
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the gallery
+-
+  desc: Gallery display
+  label: GalleryDisplay
+  addr:
+    U: 0x8761C
+    E: 0x882BC
+    J: 0x87678
+  size: 0x15C
+  mode: thumb
+  params: void
+  return:
+    desc: Leaving
+    type: bool
+  notes: Handles the gallery displaying the ending images
+-
   desc: Gallery subroutine
   label: GallerySubroutine
   addr:
@@ -6742,6 +11384,18 @@
   return:
     desc: Leaving
     type: bool
+-
+  desc: VBlank during Chozodia escape
+  label: VBlankDuringChozodiaEscape
+  addr:
+    U: 0x8784C
+    E: 0x884EC
+    J: 0x878A8
+  size: 0xEC
+  mode: thumb
+  params: void
+  return: void
+  notes: Vblank code during the Chozodia escape
 -
   desc: Get percent and ending number
   label: GetPercentAndEndingNum
@@ -6756,6 +11410,126 @@
     desc: Item counts and ending number
     type: u32
 -
+  desc: Chozodia escape process OAM
+  label: ChozodiaEscapeProcessOAM
+  addr:
+    U: 0x87C08
+    E: 0x888A8
+    J: 0x87C64
+  size: 0xF4
+  mode: thumb
+  params: void
+  return: void
+  notes: Processes a part of the OAM related stuff (ship exploding, escape ship
+    leaving the planet and mission accomplished text)
+-
+  desc: Chozodia escape process OAM2
+  label: ChozodiaEscapeProcessOAM2
+  addr:
+    U: 0x87CFC
+    E: 0x8899C
+    J: 0x87D58
+  size: 0x150
+  mode: thumb
+  params: void
+  return: void
+  notes: Processes a part of the OAM related stuff (ship opening/escape ship leaving
+    and escape ship arriving)
+-
+  desc: Chozodia escape initialize
+  label: ChozodiaEscapeInit
+  addr:
+    U: 0x87E4C
+    E: 0x88AEC
+    J: 0x87EA8
+  size:
+    U: 0x30C
+    E: 0x308
+    J: 0x30C
+  mode: thumb
+  params: void
+  return: void
+  notes: Initializes the Chozodia escape
+-
+  desc: Chozodia escape escape ship leaving
+  label: ChozodiaEscapeEscapeShipLeaving
+  addr:
+    U: 0x88158
+    E: 0x88DF4
+    J: 0x881B4
+  size: 0x184
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the escape ship leaving part
+-
+  desc: Chozodia escape mother ship heating up
+  label: ChozodiaEscapeMotherShipHeatingUp
+  addr:
+    U: 0x882DC
+    E: 0x88F78
+    J: 0x88338
+  size: 0x22C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the mother ship heating up part
+-
+  desc: Chozodia escape mother ship blowing up
+  label: ChozodiaEscapeMotherShipBlowingUp
+  addr:
+    U: 0x88508
+    E: 0x891A4
+    J: 0x88564
+  size:
+    U: 0x3EC
+    E: 0x3E4
+    J: 0x3EC
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the mother ship blowing up part
+-
+  desc: Chozodia escape escape ship leaving planet
+  label: ChozodiaEscapeEscapeShipLeavingPlanet
+  addr:
+    U: 0x888F4
+    E: 0x89588
+    J: 0x88950
+  size:
+    U: 0x30C
+    E: 0x31C
+    J: 0x30C
+  mode: thumb
+  params: void
+  return:
+    desc: Ended
+    type: bool
+  notes: Handles the escape ship leaving the planet part
+-
+  desc: Chozodia escape mission accomplished
+  label: ChozodiaEscapeMissionAccomplished
+  addr:
+    U: 0x88C00
+    E: 0x898A4
+    J: 0x88C5C
+  size:
+    U: 0x15C
+    E: 0x144
+    J: 0x15C
+  mode: thumb
+  params: void
+  return:
+    desc: 2 if ended, 0 otherwise
+    type: u8
+  notes: Handles the mission accomplished part
+-
   desc: Chozodia escape subroutine
   label: ChozodiaEscapeSubroutine
   addr:
@@ -6768,6 +11542,64 @@
   return:
     desc: Ended
     type: bool
+-
+  desc: Set SIOCNT start bit active
+  label: SetSIOCNTStartBitActive
+  addr:
+    U: 0x89D64
+    E: 0x8A9F0
+    J: 0x89DC0
+  size: 0x10
+  mode: thumb
+  params: void
+  return: void
+  notes: Sets the "Start Bit" flag of SIOCNT
+-
+  desc: Check error
+  label: CheckError
+  addr:
+    U: 0x89F94
+    E: 0x8AC20
+    J: 0x89FF0
+  size: 0x198
+  mode: thumb
+  params: void
+  return:
+    desc: '?'
+    type: u32
+  notes: Checks if an error has occured and calls DisplayError? If yes
+-
+  desc: Detect error
+  label: DetectError
+  addr:
+    U: 0x8A3AC
+    E: 0x8B038
+    J: 0x8A408
+  size: 0x120
+  mode: thumb
+  params:
+  - desc: '?'
+    type: u32
+  - desc: '?'
+    type: u32
+  - desc: '?'
+    type: u32
+  return:
+    desc: Error flag
+    type: bool
+  notes: Detects if an error has occured
+-
+  desc: Set SIOCNT start bit active_Duplicate
+  label: SetSIOCNTStartBitActive_Duplicate
+  addr:
+    U: 0x8A840
+    E: 0x8B4CC
+    J: 0x8A89C
+  size: 0x10
+  mode: thumb
+  params: void
+  return: void
+  notes: Sets the "Start Bit" flag of SIOCNT (duplicate)
 -
   desc: bx r0
   label: bx_r0

@@ -3,7 +3,7 @@ import json
 import os
 import re
 import yaml
-from typing import Dict, List, Literal, Optional, Union
+from typing import Dict, List, Union
 
 
 InfoFile = Union[Dict, List]
@@ -13,8 +13,14 @@ YAML_EXT = ".yml"
 JSON_PATH = "json"
 JSON_EXT = ".json"
 
+MAP_CODE = "code"
+MAP_DATA = "data"
+MAP_ENUMS = "enums"
+MAP_RAM = "ram"
+MAP_STRUCTS = "structs"
+
 GAMES = ("mf", "zm")
-NAMES = ("code", "data", "enums", "ram", "structs")
+MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS)
 REGIONS = ("U", "E", "J")
 ASM_MODES = ("thumb", "arm")
 
@@ -29,25 +35,26 @@ DATA = (
 )
 CODE_VAR = ("desc", "type", "enum")
 FIELDS = {
-    "enums": (
+    MAP_ENUMS: (
         "desc",
         "val"
     ),
-    "structs": (
+    MAP_STRUCTS: (
         "size",
         "vars"
     ),
-    "code": (
+    MAP_CODE: (
         "desc",
         "label",
         "addr",
         "size",
         "mode",
         "params",
-        "return"
+        "return",
+        "notes"
     ),
-    "ram": DATA,
-    "data": DATA,
+    MAP_RAM: DATA,
+    MAP_DATA: DATA,
     "addr": REGIONS,
     "size": REGIONS,
     "count": REGIONS,
@@ -85,8 +92,8 @@ def load_yaml(path: str) -> InfoFile:
         return yaml.full_load(f)
 
 
-def load_yamls(game: str, name: str) -> InfoFile:
-    dir_path = os.path.join(YAML_PATH, game, name)
+def load_yamls(game: str, map_type: str) -> InfoFile:
+    dir_path = os.path.join(YAML_PATH, game, map_type)
     file_path = dir_path + YAML_EXT
     data_dict = None
     if os.path.isfile(file_path):
@@ -115,7 +122,7 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
 class Validator(object):
     def __init__(self):
         self.game = None
-        self.name = None
+        self.map_type = None
         self.entry = None
         self.enums = None
         self.structs = None
@@ -125,20 +132,20 @@ class Validator(object):
             for game in GAMES:
                 self.game = game
                 # get all info
-                infos = [load_yamls(game, name) for name in NAMES]
+                infos = [load_yamls(game, map_type) for map_type in MAP_TYPES]
                 code, data, enums, ram, structs = infos
                 self.enums = enums
                 self.structs = structs
 
                 # check enums
-                self.name = "enums"
+                self.map_type = MAP_ENUMS
                 for key, vals in enums.items():
                     self.entry = key
                     assert re.match(r"\w+", key), "enum name must be alphanumeric"
                     self.check_vals(vals)
 
                 # check structs
-                self.name = "structs"
+                self.map_type = "structs"
                 for key, st in structs.items():
                     self.entry = key
                     assert re.match(r"\w+", key), "struct name must be alphanumeric"
@@ -146,7 +153,7 @@ class Validator(object):
                     self.check_vars(st)
 
                 # check code
-                self.name = "code"
+                self.map_type = MAP_CODE
                 for entry in code:
                     self.entry = entry
                     self.check_desc(entry)
@@ -158,9 +165,9 @@ class Validator(object):
                     self.check_return(entry)
 
                 # check data and ram
-                ram_rom = [("data", data), ("ram", ram)]
-                for name, entries in ram_rom:
-                    self.name = name
+                ram_rom = [(MAP_DATA, data), (MAP_RAM, ram)]
+                for map_type, entries in ram_rom:
+                    self.map_type = map_type
                     for entry in entries:
                         self.entry = entry
                         self.check_desc(entry)
@@ -175,7 +182,7 @@ class Validator(object):
                         self.check_enum(entry)
 
         except AssertionError as e:
-            print(self.game, self.name)
+            print(self.game, self.map_type)
             print(self.entry)
             print(e)
             return
@@ -317,12 +324,12 @@ def ints_to_strs(data: InfoFile) -> None:
                     stack.append(v)
 
 
-def output_yaml(path: str, data: InfoFile, name: str) -> None:
+def output_yaml(path: str, data: InfoFile, map_type: str) -> None:
     # create stack of entries
     if isinstance(data, dict):
-        stack = [(v, name) for v in data.values()]
+        stack = [(v, map_type) for v in data.values()]
     elif isinstance(data, list):
-        stack = [(d, name) for d in data]
+        stack = [(d, map_type) for d in data]
     else:
         raise ValueError("Bad format")
     # check for required fields
@@ -361,15 +368,15 @@ def output_yamls() -> None:
             for f in files:
                 name, ext = os.path.splitext(f)
                 if ext == YAML_EXT:
-                    if name not in NAMES:
+                    if name not in MAP_TYPES:
                         name = os.path.basename(root)
-                    assert name in NAMES
+                    assert name in MAP_TYPES
                     path = os.path.join(root, f)
                     yaml_files.append((path, name))
     # parse files and output
-    for path, name in yaml_files:
+    for path, map_type in yaml_files:
         data = load_yaml(path)
-        output_yaml(path, data, name)
+        output_yaml(path, data, map_type)
     print("Output YAML files")
 
 
@@ -377,10 +384,10 @@ def output_jsons() -> None:
     for game in GAMES:
         json_dir = os.path.join(JSON_PATH, game)
         # convert each to json
-        for name in NAMES:
-            data = load_yamls(game, name)
+        for map_type in MAP_TYPES:
+            data = load_yamls(game, map_type)
             ints_to_strs(data)
-            p = os.path.join(json_dir, name + JSON_EXT)
+            p = os.path.join(json_dir, map_type + JSON_EXT)
             with open(p, "w") as f:
                 json.dump(data, f)
     print("Output JSON files")
