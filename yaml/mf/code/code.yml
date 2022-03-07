@@ -192,8 +192,8 @@
   params: null
   return: null
 -
-  desc: Multiply decimal
-  label: MultiplyDecimal
+  desc: Fixed-point multiply
+  label: FixedPointMultipy
   addr:
     U: 0xB10
     E: 0xB10
@@ -202,15 +202,16 @@
   mode: thumb
   params:
   - desc: Multiplicand
-    type: u16
-  - desc: Multiplier (0x100 = 1)
-    type: u16
+    type: s16
+  - desc: Multiplier (1/256)
+    type: s16
   return:
     desc: Product
-    type: u16
+    type: s16
+  notes: Fixed-point multiplication of two values, where the second has a scaling factor of 1/256 (ranges from -128 to 127.99)
 -
-  desc: Divide dividend times 4
-  label: DivideDividendTimes4
+  desc: Fixed-point divide
+  label: FixedPointDivide
   addr:
     U: 0xB2C
     E: 0xB2C
@@ -219,15 +220,16 @@
   mode: thumb
   params:
   - desc: Dividend
-    type: u16
-  - desc: Divisor
-    type: u16
+    type: s16
+  - desc: Divisor (1/4)
+    type: s16
   return:
     desc: Quotient
-    type: u16
+    type: s16
+  notes: Fixed-point division of two values, where the second has a scaling factor of 1/4 (ranges from -8192 to 8191.75)
 -
-  desc: Divide from 0x10000
-  label: DivideFrom10000
+  desc: Fixed-point inverse
+  label: FixedPointInverse
   addr:
     U: 0xB44
     E: 0xB44
@@ -235,11 +237,12 @@
   size: 0x18
   mode: thumb
   params:
-  - desc: Divisor
-    type: u16
+  - desc: Value
+    type: s16
   return:
-    desc: Quotient
-    type: u16
+    desc: Inverse (1/65536)
+    type: s16
+  notes: Fixed-point inverse of a value, with a scaling factor of 1/65536
 -
   desc: Call V-Blank code
   label: CallVBlankCode

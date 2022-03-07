@@ -79,6 +79,8 @@ PRIMITIVES = {
     "thumb", "arm"
 }
 
+LABEL_PAT = re.compile(r"^\w+$")
+
 
 def hexint_presenter(dumper, data):
     return dumper.represent_int(f"0x{data:X}")
@@ -141,14 +143,14 @@ class Validator(object):
                 self.map_type = MAP_ENUMS
                 for key, vals in enums.items():
                     self.entry = key
-                    assert re.match(r"\w+", key), "enum name must be alphanumeric"
+                    assert LABEL_PAT.match(key), "enum name must be alphanumeric"
                     self.check_vals(vals)
 
                 # check structs
                 self.map_type = "structs"
                 for key, st in structs.items():
                     self.entry = key
-                    assert re.match(r"\w+", key), "struct name must be alphanumeric"
+                    assert LABEL_PAT.match(key), "struct name must be alphanumeric"
                     self.check_size(st, True)
                     self.check_vars(st)
 
@@ -198,7 +200,7 @@ class Validator(object):
     def check_label(self, entry) -> None:
         assert "label" in entry, "label is required"
         label = entry["label"]
-        assert re.match(r"\w+", label), "label must be alphanumeric"
+        assert LABEL_PAT.match(label), "label must be alphanumeric"
 
     def check_versioned_int(self, entry, align=None) -> None:
         nums = None

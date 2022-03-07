@@ -1,5 +1,5 @@
 -
-  desc: Vblank code during soft reset
+  desc: Vblank code during soft reset?
   label: VBlankCodeDuringSoftReset?
   addr:
     U: 0x7C4
@@ -9,6 +9,17 @@
   mode: thumb
   params: void
   return: void
+-
+  desc: Test DivArm and Sqrt?
+  label: Test_DivArm_Sqrt?
+  addr:
+    U: 0x924
+    E: 0x978
+    J: 0x924
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Fills SRAM with 0xFFFF
   label: EraseSram?
@@ -1025,6 +1036,21 @@
   mode: thumb
   params: void
   return: void
+-
+  desc: Play music?
+  label: PlayMusic?
+  addr:
+    U: 0x39F4
+    E: 0x3A48
+    J: 0x39F4
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Music track
+    type: u16
+  - desc: '?'
+    type: u8
+  return: null
 -
   desc: '?'
   label: MusicRelated
@@ -3850,6 +3876,36 @@
     desc: '?'
     type: '?'
 -
+  desc: Check projectile hit block?
+  label: CheckProjectileHitBlock?
+  addr:
+    U: 0x4FD48
+    E: 0x4FE14
+    J: 0x4FD48
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Projectile data pointer
+    type: ptr.ProjectileData
+  - desc: Clipdata affecting action
+    type: u8
+    enum: ClipdataAffectingAction
+  - desc: Particle effect
+    type: u8
+    enum: ParticleEffect
+  return: null
+-
+  desc: Check projectile hit sprite?
+  label: CheckProjectileHitSprite?
+  addr:
+    U: 0x4FD9C
+    E: 0x4FE68
+    J: 0x4FD9C
+  size: 0x5D4
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Called in LoadSpriteData, checks if there is currently an escape if yes
     does a DMA transfer of what seems to be graphics for the timer numbers?
   label: EscapeRelated?
@@ -4969,6 +5025,17 @@
   mode: thumb
   params: void
   return: void
+-
+  desc: Load first room?
+  label: LoadFirstRoom?
+  addr:
+    U: 0x6055C
+    E: 0x60640
+    J: 0x6055C
+  size: 0x204
+  mode: thumb
+  params: null
+  return: null
 -
   desc: '?'
   label: SamusSpawningRelated
