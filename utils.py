@@ -3,6 +3,7 @@ import json
 import os
 import re
 import yaml
+from functools import cmp_to_key
 from typing import Dict, List, Union
 
 
@@ -118,7 +119,24 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
             combined.update(data)
         else:
             raise ValueError("Type mismatch")
+    if isinstance(combined, list):
+        # sort by address
+        combined.sort(key=cmp_to_key(compare_addrs))
     return combined
+
+
+def compare_addrs(entry1, entry2) -> int:
+    addr1 = entry1["addr"]
+    addr2 = entry2["addr"]
+    if isinstance(addr1, dict):
+        for region in REGIONS:
+            if region in addr1 and region in addr2:
+                addr1 = addr1[region]
+                addr2 = addr2[region]
+                break
+        if isinstance(addr1, dict):
+            return 0
+    return addr1 - addr2
 
 
 class Validator(object):
