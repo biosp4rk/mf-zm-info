@@ -596,7 +596,7 @@
     U: 0x3ECC
     E: 0x3ECC
     J: 0x3F30
-  size: 0x6DC
+  size: 0x648
   mode: arm
   params:
   - desc: Source address?
@@ -608,6 +608,37 @@
   return:
     desc: End source address?
     type: ptr
+
+-
+  desc: Call get note frequency
+  label: CallGetNoteFrenquency
+  addr:
+    U: 0x4514
+  size: 0x4
+  mode: thumb
+  params:
+  - desc: Frequency
+    type: u32
+  - desc: Music Pitch
+    type: u32
+  return:
+    desc: Frequency
+    type: u32
+-
+  desc: Get note frequency
+  label: GetNoteFrequency
+  addr:
+    U: 0x4518
+  size: 0x18
+  mode: arm
+  params:
+  - desc: Frequency
+    type: u32
+  - desc: Music Pitch
+    type: u32
+  return:
+    desc: Frequency
+    type: u32
 -
   desc: CpuFastSet
   label: CpuFastSet
