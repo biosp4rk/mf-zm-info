@@ -5409,6 +5409,24 @@
   params: null
   return: null
 -
+  desc: Double to integer
+  label: DoubleToInt
+  addr:
+    U: 0xA3500
+    E: 0xA3B5C
+    J: 0xA57EC
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
+  return:
+  - desc: Integer
+    type: s32
+  notes: Function float_to_si from fp-bit.c in libgcc
+-
   desc: Modulo (signed)
   label: Modulo_Signed
   addr:
@@ -5494,6 +5512,22 @@
     type: ptr
   return: void
   notes: Function unpack_d in fp-bit.c in libgcc
+-
+  desc: Integer to double
+  label: IntToDouble
+  addr:
+    U: 0xA4364
+    E: 0xA49C0
+    J: 0xA6650
+  size: 0x7C
+  mode: thumb
+  params:
+  - desc: Integer
+    type: s32
+  return:
+  - desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function si_to_float from fp-bit.c in libgcc
 -
   desc: Memory copy
   label: MemoryCopy
