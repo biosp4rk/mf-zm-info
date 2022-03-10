@@ -5409,8 +5409,8 @@
   params: null
   return: null
 -
-  desc: Double to integer
-  label: DoubleToInt
+  desc: Double to integer with overflow
+  label: DoubleToInt_Overflow
   addr:
     U: 0xA3500
     E: 0xA3B5C
@@ -5425,7 +5425,7 @@
   return:
     desc: Integer
     type: s32
-  notes: Function float_to_si from fp-bit.c in libgcc
+  notes: If the double is >= 2^31, treat as integer overflow and return a negative value
 -
   desc: Modulo (signed)
   label: Modulo_Signed
@@ -5469,7 +5469,7 @@
     U: 0xA368C
     E: 0xA3CE8
     J: 0xA5978
-  size: 0x88
+  size: 0xC0
   mode: thumb
   params:
   - desc: Dividend
@@ -5513,6 +5513,70 @@
   return: void
   notes: Function unpack_d in fp-bit.c in libgcc
 -
+  desc: Add double parts
+  label: AddDoubleParts
+  addr:
+    U: 0xA396C
+    E: 0xA3FC8
+    J: 0xA5C58
+  size: 0x26C
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked double 1
+    type: ptr.FloatingPointNum
+  - desc: Pointer to unpacked double 2
+    type: ptr.FloatingPointNum
+  - desc: Pointer to temp unpacked double
+    type: ptr.FloatingPointNum
+  return:
+    desc: Pointer to unpacked double result
+    type: ptr.FloatingPointNum
+  notes: Function _fpadd_parts in fp-bit.c in libgcc
+-
+  desc: Add doubles
+  label: AddDoubles
+  addr:
+    U: 0xA3BD8
+    E: 0xA4234
+    J: 0xA5EC4
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function add from fp-bit.c in libgcc
+-
+  desc: Subtract doubles
+  label: SubtractDoubles
+  addr:
+    U: 0xA3C08
+    E: 0xA4264
+    J: 0xA5EF4
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function sub from fp-bit.c in libgcc
+-
   desc: Multiply doubles
   label: MultiplyDoubles
   addr:
@@ -5535,6 +5599,200 @@
     type: u32
   notes: Function multiply from fp-bit.c in libgcc
 -
+  desc: Divide doubles
+  label: DivideDoubles
+  addr:
+    U: 0xA3EE8
+    E: 0xA4544
+    J: 0xA61D4
+  size: 0x188
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function divide from fp-bit.c in libgcc
+-
+  desc: Compare double parts
+  label: CompareDoubleParts
+  addr:
+    U: 0xA4070
+    E: 0xA46CC
+    J: 0xA635C
+  size: 0x100
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked double 1
+    type: ptr.FloatingPointNum
+  - desc: Pointer to unpacked double 2
+    type: ptr.FloatingPointNum
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function __fpcmp_parts from fp-bit.c in libgcc
+-
+  desc: Compare doubles
+  label: CompareDoubles
+  addr:
+    U: 0xA4170
+    E: 0xA47CC
+    J: 0xA645C
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function compare from fp-bit.c in libgcc
+-
+  desc: Doubles equal
+  label: DoublesEqual
+  addr:
+    U: 0xA419C
+    E: 0xA47F8
+    J: 0xA6488
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _eq_f2 from fp-bit.c in libgcc
+-
+  desc: Doubles not equal
+  label: DoublesNotEqual
+  addr:
+    U: 0xA41E8
+    E: 0xA4844
+    J: 0xA64D4
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _ne_f2 from fp-bit.c in libgcc
+-
+  desc: Doubles greater than
+  label: DoublesGreaterThan 
+  addr:
+    U: 0xA4234
+    E: 0xA4890
+    J: 0xA6520
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _gt_f2 from fp-bit.c in libgcc
+-
+  desc: Doubles greater equal
+  label: DoublesGreaterEqual
+  addr:
+    U: 0xA4280
+    E: 0xA48DC
+    J: 0xA656C
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _ge_f2 from fp-bit.c in libgcc
+-
+  desc: Doubles less than
+  label: DoublesLessThan
+  addr:
+    U: 0xA42CC
+    E: 0xA4928
+    J: 0xA65B8
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _lt_f2 from fp-bit.c in libgcc
+-
+  desc: Doubles less equal
+  label: DoublesLessEqual
+  addr:
+    U: 0xA4318
+    E: 0xA4974
+    J: 0xA6604
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Double 1 upper 32 bits
+    type: u32
+  - desc: Double 1 lower 32 bits
+    type: u32
+  - desc: Double 2 upper 32 bits
+    type: u32
+  - desc: Double 2 lower 32 bits
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _le_f2 from fp-bit.c in libgcc
+-
   desc: Integer to double
   label: IntToDouble
   addr:
@@ -5550,6 +5808,67 @@
     desc: Double value (uses r0 and r1)
     type: u32
   notes: Function si_to_float from fp-bit.c in libgcc
+-
+  desc: Double to int
+  label: DoubleToInt
+  addr:
+    U: 0xA43E0
+    E: 0xA4A3C
+    J: 0xA66CC
+  size: 0x74
+  mode: thumb
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
+  return:
+    desc: Integer
+    type: s32
+  notes: Function float_to_si from fp-bit.c in libgcc
+-
+  desc: Negate double
+  label: NegateDouble
+  addr:
+    U: 0xA4454
+    E: 0xA4AB0
+    J: 0xA6740
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function negate from fp-bit.c in libgcc
+-
+  desc: Create double from parts
+  label: CreateDouble
+  addr:
+    U: 0xA447C
+    E: 0xA4AD8
+    J: 0xA6768
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Class
+    type: u32
+    enum: FloatingPointClass
+  - desc: Sign
+    type: u32
+  - desc: Normalized exponent
+    type: s32
+  - desc: Fraction lower bits
+    type: u32
+  - desc: Fraction upper bits
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function __make_fp from fp-bit.c in libgcc
 -
   desc: Memory copy
   label: MemoryCopy
