@@ -11704,6 +11704,7 @@
   return:
     desc: Quotient
     type: s32
+  notes: Function __divsi3 from divmod.c in libgcc
 -
   desc: Divide by 0 handler (empty)
   label: DivideBy0Handler
@@ -11732,6 +11733,7 @@
   return:
     desc: Remainder
     type: s32
+  notes: Function __modsi3 from divmod.c in libgcc
 -
   desc: Divide (unsigned)
   label: Divide_Unsigned
@@ -11749,6 +11751,7 @@
   return:
     desc: Quotient
     type: u32
+  notes: Function __udivsi3 from udivmod.c in libgcc
 -
   desc: Modulo (unsigned)
   label: Modulo_Unsigned
@@ -11766,9 +11769,42 @@
   return:
     desc: Remainder
     type: u32
+  notes: Function __umodsi3 from udivmod.c in libgcc
 -
-  desc: Copy bytes
-  label: CopyBytes
+  desc: Pack double
+  label: PackDouble
+  addr:
+    U: 0x8AF18
+    E: 0x8BBA4
+    J: 0x8AF74
+  size: 0x148
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked data
+    type: ptr
+  return:
+  - desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function pack_d from fp-bit.c in libgcc
+-
+  desc: Unpack double
+  label: UnpackDouble
+  addr:
+    U: 0x8B060
+    E: 0x8BCEC
+    J: 0x8B0BC
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Pointer to double value
+    type: ptr
+  - desc: Pointer to unpacked data
+    type: ptr
+  return: void
+  notes: Function unpack_d in fp-bit.c in libgcc
+-
+  desc: Memory copy
+  label: MemoryCopy
   addr:
     U: 0x8C6BC
     E: 0x8D348
@@ -11783,3 +11819,4 @@
   - desc: Size
     type: u32
   return: null
+  notes: Function memcpy from memcpy.c in libgcc

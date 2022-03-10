@@ -723,6 +723,25 @@ EventLocationAndNavInfo:
   - desc: 1 if data download, 2 if skippable
     type: u8
     offset: 0x8
+FloatingPointNum:
+  size: 0x14
+  vars:
+  - desc: Class
+    type: u32
+    offset: 0x0
+    enum: FloatingPointClass
+  - desc: Sign
+    type: u32
+    offset: 0x4
+  - desc: Normalized exponent
+    type: s32
+    offset: 0x8
+  - desc: Fraction lower bits
+    type: u32
+    offset: 0xC
+  - desc: Fraction upper bits
+    type: u32
+    offset: 0x10
 GameCompletion:
   size: 0x4
   vars:

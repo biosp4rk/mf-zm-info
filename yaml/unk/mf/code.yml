@@ -17551,15 +17551,23 @@
   params: '?'
   return: '?'
 -
-  desc: '?'
+  desc: Double to integer?
+  label: DoubleToInt
   addr:
     U: 0xA3500
     E: 0xA3B5C
     J: 0xA57EC
   size: 0x44
   mode: thumb
-  params: '?'
-  return: '?'
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
+  return:
+  - desc: Integer
+    type: s32
+  notes: Function float_to_si from fp-bit.c in libgcc
 -
   desc: '?'
   addr:
@@ -17587,26 +17595,6 @@
     E: 0xA3DA0
     J: 0xA5A30
   size: 0x8
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0xA374C
-    E: 0xA3DA8
-    J: 0xA5A38
-  size: 0x148
-  mode: thumb
-  params: '?'
-  return: '?'
--
-  desc: '?'
-  addr:
-    U: 0xA3894
-    E: 0xA3EF0
-    J: 0xA5B80
-  size: 0xD8
   mode: thumb
   params: '?'
   return: '?'
@@ -17758,7 +17746,11 @@
     J: 0xA66CC
   size: 0x74
   mode: thumb
-  params: '?'
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
   return: '?'
 -
   desc: '?'
