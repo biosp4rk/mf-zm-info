@@ -5870,6 +5870,63 @@
     type: u32
   notes: Function __make_fp from fp-bit.c in libgcc
 -
+  desc: Right shift long integer
+  label: RightShiftLongInt
+  addr:
+    U: 0xA4E34
+    E: 0xA5490
+    J: 0xA7120
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Long int lower 32 bits
+    type: u32
+  - desc: Long int upper 32 bits
+    type: u32
+  - desc: Shift amount
+    type: u32
+  return:
+    desc: Long int (uses r0 and r1)
+    type: u32
+-
+  desc: Multiply long integers
+  label: MultiplyLongInts
+  addr:
+    U: 0xA4E68
+    E: 0xA54C4
+    J: 0xA7154
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: Long int 1 lower 32 bits
+    type: u32
+  - desc: Long int 1 upper 32 bits
+    type: u32
+  - desc: Long int 2 lower 32 bits
+    type: u32
+  - desc: Long int 2 upper 32 bits
+    type: u32
+  return:
+    desc: Long int (uses r0 and r1)
+    type: u32
+-
+  desc: Negate long integer
+  label: NegateLongInt
+  addr:
+    U: 0xA4ED8
+    E: 0xA5534
+    J: 0xA71C4
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Long int lower 32 bits
+    type: u32
+  - desc: Long int upper 32 bits
+    type: u32
+  return:
+    desc: Long int (uses r0 and r1)
+    type: u32
+-
   desc: Memory copy
   label: MemoryCopy
   addr:
