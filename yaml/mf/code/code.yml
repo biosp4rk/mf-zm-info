@@ -5942,5 +5942,27 @@
     type: ptr
   - desc: Length
     type: u32
-  return: null
+  return:
+    desc: Destination address
+    type: ptr
   notes: Function memcpy from memcpy.c in libgcc
+-
+  desc: Memory set
+  label: MemorySet
+  addr:
+    U: 0xA4F50
+    E: 0xA55AC
+    J: 0xA723C
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Destination address
+    type: ptr
+  - desc: Value
+    type: u8
+  - desc: Length
+    type: u32
+  return:
+    desc: Destination address
+    type: ptr
+  notes: Function memset from memset.c in libgcc
