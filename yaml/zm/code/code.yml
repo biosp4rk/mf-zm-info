@@ -514,6 +514,21 @@
   params: null
   return: null
 -
+  desc: Play music
+  label: PlayMusic
+  addr:
+    U: 0x39F4
+    E: 0x3A48
+    J: 0x39F4
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Music track
+    type: u16
+  - desc: Priority
+    type: u8
+  return: null
+-
   desc: Fades the current music track
   label: FadeMusic
   addr:
@@ -7880,6 +7895,21 @@
     type: bool
   notes: Haze Power Bomb Retracting code
 -
+  desc: Transfer animation graphics
+  label: TransferAnimatedGraphics
+  addr:
+    U: 0x5DD5C
+    E: 0x5DE30
+    J: 0x5DD5C
+  size:
+    U: 0x270
+    E: 0x290
+    J: 0x270
+  mode: thumb
+  params: null
+  return: null
+  notes: Transfers the animated graphics from WRAM to VRAM depending on the animated graphics to update
+-
   desc: Update animated graphics
   label: UpdateAnimatedGraphics
   addr:
@@ -8161,6 +8191,26 @@
   return:
     desc: 5 if ended, 0 otherwise
     type: u8
+-
+  desc: Upgrade suit cutscene
+  label: UpgradeSuitCutscene
+  addr:
+    U: 0x5FDCC
+    E: 0x5FEBC
+    J: 0x5FDCC
+  size:
+    U: 0x5A8
+    E: 0x59C
+    J: 0x5A8
+  mode: thumb
+  params:
+  - desc: Cutscene number
+    type: u8
+  - desc: Cutscene flag
+    type: u8
+  return:
+    desc: Ended
+    type: bool
 -
   desc: Make background flash
   label: MakeBackgroundFlash
@@ -10170,6 +10220,19 @@
     type: bool
   notes: Subroutine for the time attack records
 -
+  desc: Load time attack time for record
+  label: LoadTimeAttackTimeForRecord
+  addr:
+    U: 0x7B744
+    E: 0x7BA3C
+    J: 0x7B760
+  size: 0x110
+  mode: thumb
+  params:
+  - desc: Time attack ID
+    type: u8
+  return: null
+-
   desc: Load time attack password for record
   label: LoadTimeAttackPasswordForRecord
   addr:
@@ -10186,7 +10249,7 @@
   notes: Loads a part of a time attack password in VRAM for the time attack record
     menu
 -
-  desc: Metroid fusion link subroutine
+  desc: Metroid Fusion link subroutine
   label: MetroidFusionLinkSubroutine
   addr:
     U: 0x7B9E8
@@ -10198,7 +10261,7 @@
   return:
     desc: Leaving
     type: bool
-  notes: Subroutine for the metroid fusion link
+  notes: Subroutine for the Metroid Fusion link
 -
   desc: File select menu subroutine
   label: FileSelectMenuSubroutine

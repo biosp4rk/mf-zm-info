@@ -51,6 +51,12 @@
   addr: 0x2009800
   count: 0x400
 -
+  desc: Animated graphics
+  label: AnimatedGfx
+  type: u16
+  addr: 0x201B000
+  size: 0x800
+-
   desc: Decompressed clipdata
   label: DecompClipdata
   type: u16
@@ -392,6 +398,11 @@
   type: u8
   addr: 0x300007D
 -
+  desc: Haze VRAM info
+  label: HazeVramInfo
+  type: HazeVramInfo
+  addr: 0x3000080
+-
   desc: Backup of I/O registers
   label: BackupOfIORegisters
   type: BackupOfIORegisters
@@ -426,6 +437,11 @@
   label: LockScreenPosition
   type: LockScreenPosition
   addr: 0x3000100
+-
+  desc: Suit flash effect
+  label: SuitFlashEffect
+  type: SuitFlashEffect
+  addr: 0x3000108
 -
   desc: Screen shake Y
   label: ScreenShakeY
@@ -541,10 +557,10 @@
   addr: 0x30007F3
   count: 0x18
 -
-  desc: Completion percentage at Mecha Ridley
-  label: CompletionPercentAtMechaRidley
-  type: u16
-  addr: 0x3000820
+  desc: Boss work variables
+  label: BossWork
+  type: BossWork
+  addr: 0x300080C
 -
   desc: Sprite random number
   label: SpriteRandomNum
@@ -1032,6 +1048,12 @@
   type: MusicInfo
   addr: 0x3001D00
 -
+  desc: Raw sound data
+  label: RawSoundData
+  type: s8
+  addr: 0x3002924
+  count: 0xB40
+-
   desc: Pointer to sound code A
   label: SoundCodeAPtr
   type: ptr.arm
@@ -1139,6 +1161,11 @@
   label: DestinationRoom
   type: u8
   addr: 0x300550E
+-
+  desc: Rain sound effect
+  label: RainSoundEffect
+  type: u16
+  addr: 0x3005518
 -
   desc: Current special background effect
   label: CurrSpecialBGEffect
@@ -1253,6 +1280,51 @@
   type: u32
   addr: 0x30058BC
   enum: ErrorFlags
+-
+  desc: Track 8
+  label: Track8
+  size: 0x40
+  addr: 0x3005910
+-
+  desc: Track 3
+  label: Track3
+  size: 0x40
+  addr: 0x3005950
+-
+  desc: Track 1
+  label: Track1
+  size: 0x40
+  addr: 0x3005990
+-
+  desc: Track 6
+  label: Track6
+  size: 0x40
+  addr: 0x30059D0
+-
+  desc: Track 4
+  label: Track4
+  size: 0x40
+  addr: 0x3005A10
+-
+  desc: Track 0
+  label: Track0
+  size: 0x40
+  addr: 0x3005A50
+-
+  desc: Track 7
+  label: Track7
+  size: 0x40
+  addr: 0x3005A90
+-
+  desc: Track 2
+  label: Track2
+  size: 0x40
+  addr: 0x3005AD0
+-
+  desc: Track 5
+  label: Track5
+  size: 0x40
+  addr: 0x3005B10
 -
   desc: Pointer to interrupt code
   label: InterruptCodePtr

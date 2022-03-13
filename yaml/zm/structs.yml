@@ -318,6 +318,42 @@ BossMapIcon:
   - desc: Pixel offset
     type: u8
     offset: 0x4
+BossWork:
+  size: 0x16
+  vars:
+  - desc: Work 1 (usually spawn Y)
+    type: u16
+    offset: 0x0
+  - desc: Work 2 (usually spawn X)
+    type: u16
+    offset: 0x2
+  - desc: Work 3
+    type: u16
+    offset: 0x4
+  - desc: Work 4 (usually health)
+    type: u16
+    offset: 0x6
+  - desc: Work 5
+    type: u16
+    offset: 0x8
+  - desc: Work 6
+    type: u16
+    offset: 0xA
+  - desc: Work 7
+    type: u16
+    offset: 0xC
+  - desc: Work 8
+    type: u16
+    offset: 0xE
+  - desc: Work 9
+    type: u16
+    offset: 0x10
+  - desc: Work 10
+    type: u16
+    offset: 0x12
+  - desc: Work 11
+    type: u16
+    offset: 0x14
 BoxBounds:
   size: 0x8
   vars:
@@ -1003,6 +1039,21 @@ HazeLoops:
     type: u8
     offset: 0x6
   - desc: Flag?
+    type: u8
+    offset: 0x7
+HazeVramInfo:
+  size: 0x8
+  vars:
+  - desc: Affected data pointer (IO register or palette RAM)
+    type: ptr
+    offset: 0x0
+  - desc: '?'
+    type: u16
+    offset: 0x4
+  - desc: Affected data value
+    type: u8
+    offset: 0x6
+  - desc: Haze flag
     type: u8
     offset: 0x7
 InGameTime:
@@ -2204,16 +2255,34 @@ SubSpriteData:
   - desc: '?'
     type: u8
     offset: 0x13
+SuitFlashEffect:
+  size: 0x8
+  vars:
+  - desc: X left
+    type: u8
+    offset: 0x0
+  - desc: X right
+    type: u8
+    offset: 0x1
+  - desc: Y top
+    type: u8
+    offset: 0x2
+  - desc: Y bottom
+    type: u8
+    offset: 0x3
+  - desc: Timer
+    type: u8
+    offset: 0x4
 TankCollectionInfo:
   size: 0x8
   vars:
-  - desc: '?'
+  - desc: Type
     type: u8
     offset: 0x0
   - desc: Underwater flag
     type: u8
     offset: 0x1
-  - desc: '?'
+  - desc: Message ID
     type: u8
     offset: 0x2
   - desc: Revealed clipdata
