@@ -5870,6 +5870,379 @@
     type: u32
   notes: Function __make_fp from fp-bit.c in libgcc
 -
+  desc: Convert double to float
+  label: DoubleToFloat
+  addr:
+    U: 0xA44A4
+    E: 0xA4B00
+    J: 0xA6790
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Double upper 32 bits
+    type: u32
+  - desc: Double lower 32 bits
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function df_to_sf from fp-bit.c in libgcc
+-
+  desc: Pack float
+  label: PackFloat
+  addr:
+    U: 0xA44E8
+    E: 0xA4B44
+    J: 0xA67D4
+  size: 0xB8
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked data
+    type: ptr.FloatingPointNum
+  return:
+    desc: Float value
+    type: u32
+  notes: Function pack_d from fp-bit.c in libgcc
+-
+  desc: Unpack float
+  label: UnpackFloat
+  addr:
+    U: 0xA45A0
+    E: 0xA4BFC
+    J: 0xA688C
+  size: 0x7C
+  mode: thumb
+  params:
+  - desc: Pointer to float value
+    type: ptr
+  - desc: Pointer to unpacked data
+    type: ptr.FloatingPointNum
+  return: null
+  notes: Function unpack_d in fp-bit.c in libgcc
+-
+  desc: Add float parts
+  label: AddFloatParts
+  addr:
+    U: 0xA461C
+    E: 0xA4C78
+    J: 0xA6908
+  size: 0x17C
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked float 1
+    type: ptr.FloatingPointNum
+  - desc: Pointer to unpacked float 2
+    type: ptr.FloatingPointNum
+  - desc: Pointer to temp unpacked float
+    type: ptr.FloatingPointNum
+  return:
+    desc: Pointer to unpacked float result
+    type: ptr.FloatingPointNum
+  notes: Function _fpadd_parts in fp-bit.c in libgcc
+-
+  desc: Add floats
+  label: AddFloats
+  addr:
+    U: 0xA4798
+    E: 0xA4DF4
+    J: 0xA6A84
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function add from fp-bit.c in libgcc
+-
+  desc: Subtract floats
+  label: SubtractFloats
+  addr:
+    U: 0xA47C4
+    E: 0xA4E20
+    J: 0xA6AB0
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function sub from fp-bit.c in libgcc
+-
+  desc: Multiply floats
+  label: MultiplyFloats
+  addr:
+    U: 0xA47F8
+    E: 0xA4E54
+    J: 0xA6AE4
+  size: 0x164
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function multiply from fp-bit.c in libgcc
+-
+  desc: Divide floats
+  label: DivideFloats
+  addr:
+    U: 0xA495C
+    E: 0xA4FB8
+    J: 0xA6C48
+  size: 0xEC
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function divide from fp-bit.c in libgcc
+-
+  desc: Compare float parts
+  label: CompareFloatParts
+  addr:
+    U: 0xA4A48
+    E: 0xA50A4
+    J: 0xA6D34
+  size: 0xE4
+  mode: thumb
+  params:
+  - desc: Pointer to unpacked float 1
+    type: ptr.FloatingPointNum
+  - desc: Pointer to unpacked float 2
+    type: ptr.FloatingPointNum
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function __fpcmp_parts from fp-bit.c in libgcc
+-
+  desc: Compare floats
+  label: CompareFloats
+  addr:
+    U: 0xA4B2C
+    E: 0xA5188
+    J: 0xA6E18
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function compare from fp-bit.c in libgcc
+-
+  desc: Floats equal
+  label: FloatsEqual
+  addr:
+    U: 0xA4B54
+    E: 0xA51B0
+    J: 0xA6E40
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _eq_f2 from fp-bit.c in libgcc
+-
+  desc: Floats not equal
+  label: FloatsNotEqual
+  addr:
+    U: 0xA4B9C
+    E: 0xA51F8
+    J: 0xA6E88
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _ne_f2 from fp-bit.c in libgcc
+-
+  desc: Floats greater than
+  label: FloatsGreaterThan
+  addr:
+    U: 0xA4BE4
+    E: 0xA5240
+    J: 0xA6ED0
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _gt_f2 from fp-bit.c in libgcc
+-
+  desc: Floats greater equal
+  label: FloatsGreaterEqual
+  addr:
+    U: 0xA4C2C
+    E: 0xA5288
+    J: 0xA6F18
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _ge_f2 from fp-bit.c in libgcc
+-
+  desc: Floats less than
+  label: FloatsLessThan
+  addr:
+    U: 0xA4C74
+    E: 0xA52D0
+    J: 0xA6F60
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _lt_f2 from fp-bit.c in libgcc
+-
+  desc: Floats less equal
+  label: FloatsLessEqual
+  addr:
+    U: 0xA4CBC
+    E: 0xA5318
+    J: 0xA6FA8
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Float 1
+    type: u32
+  - desc: Float 2
+    type: u32
+  return:
+    desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
+    type: s8
+  notes: Function _le_f2 from fp-bit.c in libgcc
+-
+  desc: Integer to float
+  label: IntToFloat
+  addr:
+    U: 0xA4D04
+    E: 0xA5360
+    J: 0xA6FF0
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Integer
+    type: s32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function si_to_float from fp-bit.c in libgcc
+-
+  desc: Float to int
+  label: FloatToInt
+  addr:
+    U: 0xA4D64
+    E: 0xA53C0
+    J: 0xA7050
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Float value
+    type: u32
+  return:
+    desc: Integer
+    type: s32
+  notes: Function float_to_si from fp-bit.c in libgcc
+-
+  desc: Negate float
+  label: NegateFloat
+  addr:
+    U: 0xA4DCC
+    E: 0xA5428
+    J: 0xA70B8
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Float value
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function negate from fp-bit.c in libgcc
+-
+  desc: Create float from parts
+  label: CreateFloat
+  addr:
+    U: 0xA4DF0
+    E: 0xA544C
+    J: 0xA70DC
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Class
+    type: u32
+    enum: FloatingPointClass
+  - desc: Sign
+    type: u32
+  - desc: Normalized exponent
+    type: s32
+  - desc: Fraction
+    type: u32
+  return:
+    desc: Float value
+    type: u32
+  notes: Function __make_fp from fp-bit.c in libgcc
+-
+  desc: Convert float to double
+  label: FloatToDouble
+  addr:
+    U: 0xA4E08
+    E: 0xA5464
+    J: 0xA70F4
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: Float value
+    type: u32
+  return:
+    desc: Double value (uses r0 and r1)
+    type: u32
+  notes: Function sf_to_df from fp-bit.c in libgcc
+-
   desc: Right shift long integer
   label: RightShiftLongInt
   addr:
