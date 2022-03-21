@@ -8,7 +8,6 @@ from utils import load_yamls
 
 TAB = "  "
 RomDict = Dict[str, Dict[str, Rom]]
-VersionedInt = Union[int, Dict[str, int]]
 
 
 def check_flatten_int(num: Dict[str, int]) -> VersionedInt:

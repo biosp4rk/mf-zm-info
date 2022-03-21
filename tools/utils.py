@@ -1,11 +1,26 @@
+from ensurepip import version
 from functools import cmp_to_key
 import os
 import re
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 import yaml
 from constants import *
 
 
+TYPE_SIZES = {
+    "u8": 1,
+    "s8": 1,
+    "flags8": 1,
+    "bool": 1,
+    "u16": 2,
+    "s16": 2,
+    "flags16": 2,
+    "char": 2,
+    "u32": 4,
+    "s32": 4,
+    "ptr": 4,
+    "palette": 32
+}
 InfoFile = Union[Dict, List]
 
 
@@ -114,3 +129,43 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     yaml.full_load(output)
     with open(path, "w") as f:
         f.write(output)
+
+
+def get_type_size(entry: Dict[str, Any], structs: Dict[str, Any]) -> int:
+    t = entry["type"].split(".")[0]
+    if t in TYPE_SIZES:
+        return TYPE_SIZES[t]
+    if t in structs:
+        return structs[t]["size"]
+    raise ValueError("Invalid type")
+
+
+def get_entry_size(
+    entry: Dict[str, Any], structs: Dict[str, Any]
+) -> Dict[str, int]:
+    # get regions this entry applies to
+    addr = entry["addr"]
+    if isinstance(addr, dict):
+        regions = addr.keys()
+    else:
+        regions = REGIONS
+    # return size field if present
+    if "size" in entry:
+        size = entry["size"]
+        if isinstance(size, int):
+            size = {r: size for r in regions}
+        return size
+    # can't get size if type isn't known
+    if "type" not in entry:
+        return {r: 0 for r in regions}
+    # multiply type size by count
+    ts = get_type_size(entry, structs)
+    if "count" in entry:
+        count = entry["count"]
+        if isinstance(count, int):
+            count = {r: count for r in regions}
+    else:
+        count = {r: 1 for r in regions}
+    for r in count:
+        count[r] *= ts
+    return count

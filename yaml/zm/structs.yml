@@ -1194,6 +1194,21 @@ NonGameplayRam:
   - desc: Ending number
     type: u8
     offset: 0x98
+  - desc: Changing map screen stage
+    type: u8
+    offset: 0xB4
+  - desc: Visited areas
+    type: flags8
+    offset: 0xB8
+    enum: AreaBitFlags
+  - desc: Areas with hints
+    type: flags8
+    offset: 0xB9
+    enum: AreaBitFlags
+  - desc: Viewable areas
+    type: flags8
+    offset: 0xBA
+    enum: AreaBitFlags
 NumItemsCollected:
   size: 0x8
   vars:

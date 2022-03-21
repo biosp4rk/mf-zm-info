@@ -3,7 +3,7 @@ import json
 import os
 import re
 from constants import *
-from utils import ints_to_strs, read_yaml, read_yamls, write_yaml
+from utils import get_entry_size, ints_to_strs, read_yaml, read_yamls, write_yaml
 
 
 LABEL_PAT = re.compile(r"^\w+$")
@@ -46,6 +46,7 @@ class Validator(object):
 
                 # check code
                 self.map_type = MAP_CODE
+                last = {r: 0 for r in REGIONS}
                 for entry in code:
                     self.entry = entry
                     self.check_desc(entry)
@@ -55,11 +56,24 @@ class Validator(object):
                     self.check_mode(entry)
                     self.check_params(entry)
                     self.check_return(entry)
+                    # TODO: generalize and move this
+                    # check that entries don't overlap
+                    addr = entry["addr"]
+                    if isinstance(addr, int):
+                        addr = {r: addr for r in REGIONS}
+                    for r, a in last.items():
+                        if r in addr:
+                            assert a < addr[r], "code overlap"
+                    size = entry["size"]
+                    if isinstance(size, int):
+                        size = {r: size for r in REGIONS}
+                    last.update({r: addr[r] + size[r] - 1 for r in addr})
 
                 # check data and ram
                 ram_rom = [(MAP_DATA, data), (MAP_RAM, ram)]
                 for map_type, entries in ram_rom:
                     self.map_type = map_type
+                    last = {r: 0 for r in REGIONS}
                     for entry in entries:
                         self.entry = entry
                         self.check_desc(entry)
@@ -72,7 +86,17 @@ class Validator(object):
                         size_req = "type" not in entry
                         self.check_size(entry, size_req)
                         self.check_enum(entry)
-
+                        # TODO: generalize and move this
+                        # check that entries don't overlap
+                        addr = entry["addr"]
+                        if isinstance(addr, int):
+                            addr = {r: addr for r in REGIONS}
+                        for r, a in last.items():
+                            if r in addr:
+                                assert a < addr[r], "entry overlap"
+                        size = get_entry_size(entry, structs)
+                        last.update({r: addr[r] + size[r] - 1 for r in addr})
+                        
         except AssertionError as e:
             print(self.game, self.map_type)
             print(self.entry)

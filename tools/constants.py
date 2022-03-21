@@ -1,3 +1,6 @@
+from typing import Dict, Union
+
+
 YAML_PATH = "../yaml"
 YAML_EXT = ".yml"
 JSON_PATH = "../json"
@@ -75,3 +78,5 @@ PRIMITIVES = {
     "lz", "gfx", "tilemap", "palette",
     "thumb", "arm"
 }
+
+VersionedInt = Union[int, Dict[str, int]]
