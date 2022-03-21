@@ -9,7 +9,7 @@
 02006000 Tilemap_400_Ram
 ;02007000
 ;02009000
-;0201B000
+0201B000 AnimatedGfx
 ;0201B080
 ;0201B100
 ;0201B180
@@ -146,7 +146,7 @@
 0300007D CurrCutscene
 ;0300007E
 ;0300007F
-;03000080
+03000080 HazeVramInfo
 03000088 BackupOfIORegisters
 0300009C BGPtrsAndDimensions
 030000BC CurrRoomEntry
@@ -155,7 +155,7 @@
 ;030000F8
 030000FC BG2Movement
 03000100 LockScreenPosition
-;03000108
+03000108 SuitFlashEffect
 03000110 ScreenShakeY
 03000114 ScreenShakeX
 03000118 CurrScrolls
@@ -186,7 +186,7 @@
 030007F1 PrevCollisionCheck
 ;030007F2
 030007F3 SpriteDrawOrder
-;0300080C
+0300080C BossWork
 0300083C SpriteRandomNum
 03000840 ParticleEffects
 03000900 MissileHighlightStatus
@@ -300,7 +300,7 @@
 03001CF8 VCountCodePtr
 03001CFC Timer3OverflowCodePtr
 03001D00 MusicInfo
-;03002924
+03002924 RawSoundData
 ;03003524
 ;0300376C
 ;03003794
@@ -341,7 +341,7 @@
 ;03005514
 ;03005515
 ;03005516
-;03005518
+03005518 RainSoundEffect
 ;0300551C
 03005520 CurrSpecialBGEffect
 03005528 BreakingAndReformingBlocks
@@ -530,7 +530,7 @@
 08003930 UpdateMusicAfterAlarmStops
 ;08003980
 ;080039C8
-;080039F4
+080039F4 PlayMusic
 ;08003A6C
 08003A98 FadeMusic
 ;08003AE4
@@ -562,6 +562,10 @@
 080043C4 SoundCodeC
 08004464 CallSoundCodeA
 08004474 SoundCodeA
+08004ABC CallGetNoteFrenquency
+08004AC0 GetNoteFrequency
+;08004AD8
+;08004ADC
 ;08004B50
 ;08004C10
 ;08004C1C
@@ -715,7 +719,7 @@
 0800A444 SamusExecutePoseSubroutine
 0800A500 SamusUpdateVelocityAndPosition
 0800A688 SamusUpdateGraphicsRam
-0800B46C SamusUpdateAnimationTimersAndPalette
+0800B46C SamusUpdatePalette
 0800B868 CheckPlayLowHealthSound
 0800B8A8 SamusUpdateDrawDistanceAndStandingStatus
 0800B910 UpdateArmCannonOffset
@@ -1641,7 +1645,7 @@
 08036170 MetroidShell_AI
 08036274 MetroidDoorLock_AI
 0803630C RinkaInit
-080363A4 RinkaGfxINit
+080363A4 RinkaGfxInit
 080363E0 RinkaRespawn
 08036474 RinkaSpawning
 0803658C RinkaMove
@@ -2459,7 +2463,7 @@
 ;0805DA40
 0805DB2C HazePowerBombExpanding
 0805DC44 HazePowerBombRetracting
-;0805DD5C
+0805DD5C TransferAnimatedGraphics
 0805DFCC UpdateAnimatedGraphics
 0805E130 LoadAnimatedTileset
 ;0805E224
@@ -2489,7 +2493,7 @@
 0805F7FC CheckPlayCutsceneDuringElevator
 0805F8F4 IntroSamusCloseUp
 ;0805FD58
-;0805FDCC
+0805FDCC UpgradeSuitCutscene
 ;08060374
 080603C4 MakeBackgroundFlash
 0806041C Set300019F
@@ -2881,7 +2885,7 @@
 ;0807B094
 0807B144 TimeAttackRecordsSubroutine
 ;0807B71C
-;0807B744
+0807B744 LoadTimeAttackTimeForRecord
 ;0807B854
 0807B92C LoadTimeAttackPasswordForRecord
 0807B9E8 MetroidFusionLinkSubroutine
@@ -3085,7 +3089,7 @@
 0808AC34 Divide_Signed
 ;0808ACBC
 0808ACC8 DivideBy0Handler
-;0808ACCC
+0808ACCC DoubleToInt_Overflow
 0808AD10 Modulo_Signed
 ;0808ADD4
 0808ADE0 Divide_Unsigned
@@ -3094,50 +3098,50 @@
 ;0808AE64
 ;0808AEE0
 ;0808AF10
-;0808AF18
-;0808B060
-;0808B138
-;0808B3A4
-;0808B3D4
-;0808B40C
-;0808B6B4
-;0808B83C
-;0808B93C
-;0808B968
-;0808B9B4
-;0808BA00
-;0808BA4C
-;0808BA98
-;0808BAE4
-;0808BB30
-;0808BBAC
-;0808BC20
-;0808BC48
-;0808BC70
-;0808BCB4
-;0808BD6C
-;0808BDE8
-;0808BF64
-;0808BF90
-;0808BFC4
-;0808C128
-;0808C214
-;0808C2F8
-;0808C320
-;0808C368
-;0808C3B0
-;0808C3F8
-;0808C440
-;0808C488
-;0808C4D0
-;0808C530
-;0808C598
-;0808C5BC
-;0808C5D4
-;0808C600
-;0808C634
-;0808C6A4
-0808C6BC CopyBytes
+0808AF18 PackDouble
+0808B060 UnpackDouble
+0808B138 AddDoubleParts
+0808B3A4 AddDoubles
+0808B3D4 SubtractDoubles
+0808B40C MultiplyDoubles
+0808B6B4 DivideDoubles
+0808B83C CompareDoubleParts
+0808B93C CompareDoubles
+0808B968 DoublesEqual
+0808B9B4 DoublesNotEqual
+0808BA00 DoublesGreaterThan
+0808BA4C DoublesGreaterEqual
+0808BA98 DoublesLessThan
+0808BAE4 DoublesLessEqual
+0808BB30 IntToDouble
+0808BBAC DoubleToInt
+0808BC20 NegateDouble
+0808BC48 CreateDouble
+0808BC70 DoubleToFloat
+0808BCB4 PackFloat
+0808BD6C UnpackFloat
+0808BDE8 AddFloatParts
+0808BF64 AddFloats
+0808BF90 SubtractFloats
+0808BFC4 MultiplyFloats
+0808C128 DivideFloats
+0808C214 CompareFloatParts
+0808C2F8 CompareFloats
+0808C320 FloatsEqual
+0808C368 FloatsNotEqual
+0808C3B0 FloatsGreaterThan
+0808C3F8 FloatsGreaterEqual
+0808C440 FloatsLessThan
+0808C488 FloatsLessEqual
+0808C4D0 IntToFloat
+0808C530 FloatToInt
+0808C598 NegateFloat
+0808C5BC CreateFloat
+0808C5D4 FloatToDouble
+0808C600 RightShiftLongInt
+0808C634 MultiplyLongInts
+0808C6A4 NegateLongInt
+0808C6BC MemoryCopy
 
 ; ROM data
 0808C71C SineYValues
