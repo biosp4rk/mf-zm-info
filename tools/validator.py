@@ -76,7 +76,7 @@ class Validator(object):
                         self.check_size(entry, size_req)
                         self.check_enum(entry)
                         self.check_overlap(entry, last)
-                        
+
         except AssertionError as e:
             print(self.game, self.map_type)
             print(self.entry)
