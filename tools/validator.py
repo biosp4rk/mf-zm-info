@@ -56,18 +56,7 @@ class Validator(object):
                     self.check_mode(entry)
                     self.check_params(entry)
                     self.check_return(entry)
-                    # TODO: generalize and move this
-                    # check that entries don't overlap
-                    addr = entry["addr"]
-                    if isinstance(addr, int):
-                        addr = {r: addr for r in REGIONS}
-                    for r, a in last.items():
-                        if r in addr:
-                            assert a < addr[r], "code overlap"
-                    size = entry["size"]
-                    if isinstance(size, int):
-                        size = {r: size for r in REGIONS}
-                    last.update({r: addr[r] + size[r] - 1 for r in addr})
+                    self.check_overlap(entry, last)
 
                 # check data and ram
                 ram_rom = [(MAP_DATA, data), (MAP_RAM, ram)]
@@ -86,16 +75,7 @@ class Validator(object):
                         size_req = "type" not in entry
                         self.check_size(entry, size_req)
                         self.check_enum(entry)
-                        # TODO: generalize and move this
-                        # check that entries don't overlap
-                        addr = entry["addr"]
-                        if isinstance(addr, int):
-                            addr = {r: addr for r in REGIONS}
-                        for r, a in last.items():
-                            if r in addr:
-                                assert a < addr[r], "entry overlap"
-                        size = get_entry_size(entry, structs)
-                        last.update({r: addr[r] + size[r] - 1 for r in addr})
+                        self.check_overlap(entry, last)
                         
         except AssertionError as e:
             print(self.game, self.map_type)
@@ -103,6 +83,16 @@ class Validator(object):
             print(e)
             return
         print("No validation errors")
+
+    def check_overlap(self, entry, last) -> None:
+        addr = entry["addr"]
+        if isinstance(addr, int):
+            addr = {r: addr for r in REGIONS}
+        for r, a in last.items():
+            if r in addr:
+                assert a < addr[r], "entries overlap"
+        size = get_entry_size(entry, self.structs)
+        last.update({r: addr[r] + size[r] - 1 for r in addr})
 
     def check_desc(self, entry) -> None:
         assert "desc" in entry, "desc is required"
