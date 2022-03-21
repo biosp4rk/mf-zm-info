@@ -8,6 +8,8 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
 - `json` - Combined YAML files in JSON format; used for the data maps website
 - `sym` - Symbols files for each game and version; can be used with no$gba
 - `utils.py` - Script for validating data and converting to JSON
+- `dumper.py` - Script for finding and outputing data from a ROM file
+- `constants.py` - Defines constants used by other python files
 
 Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is for unlabeled data.
 

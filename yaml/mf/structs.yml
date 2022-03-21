@@ -357,7 +357,7 @@ CurrRoomEntry:
   - desc: Transparency
     type: u8
     offset: 0x7
-  - desc: Pointer to room's enemy data
+  - desc: Pointer to sprite layout data
     type: ptr.RoomSpriteEntry
     offset: 0x8
   - desc: Event to use the first spriteset
@@ -1029,6 +1029,21 @@ ParticleEffect:
   - desc: X position
     type: u16
     offset: 0xA
+PcmSample:
+  size: 0x10
+  vars:
+  - desc: Looped flag
+    type: u32
+    offset: 0x0
+  - desc: Pitch
+    type: u32
+    offset: 0x4
+  - desc: Loop relative starting point
+    type: u32
+    offset: 0x8
+  - desc: Sample size
+    type: u32
+    offset: 0xC
 PrimarySpriteStats:
   size: 0xE
   vars:
@@ -1158,7 +1173,7 @@ RoomEntry:
   - desc: Transparency
     type: u8
     offset: 0x1D
-  - desc: Default sprite data pointer
+  - desc: Default sprite layout pointer
     type: ptr.RoomSpriteEntry
     offset: 0x20
   - desc: Default spriteset
@@ -1168,7 +1183,7 @@ RoomEntry:
     type: u8
     offset: 0x25
     enum: Event
-  - desc: First sprite data pointer
+  - desc: First sprite layout pointer
     type: ptr.RoomSpriteEntry
     offset: 0x28
   - desc: First spriteset
@@ -1178,7 +1193,7 @@ RoomEntry:
     type: u8
     offset: 0x2D
     enum: Event
-  - desc: Second sprite data pointer
+  - desc: Second sprite layout pointer
     type: ptr.RoomSpriteEntry
     offset: 0x30
   - desc: Second spriteset

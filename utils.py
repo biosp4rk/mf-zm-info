@@ -1,86 +1,17 @@
 import argparse
+from functools import cmp_to_key
 import json
 import os
 import re
-import yaml
-from functools import cmp_to_key
 from typing import Dict, List, Union
+import yaml
+from constants import *
+
+
+LABEL_PAT = re.compile(r"^\w+$")
 
 
 InfoFile = Union[Dict, List]
-
-YAML_PATH = "yaml"
-YAML_EXT = ".yml"
-JSON_PATH = "json"
-JSON_EXT = ".json"
-
-MAP_CODE = "code"
-MAP_DATA = "data"
-MAP_ENUMS = "enums"
-MAP_RAM = "ram"
-MAP_STRUCTS = "structs"
-
-GAMES = ("mf", "zm")
-MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS)
-REGIONS = ("U", "E", "J")
-ASM_MODES = ("thumb", "arm")
-
-DATA = (
-    "desc",
-    "label",
-    "type",
-    "addr",
-    "size",
-    "count",
-    "enum"
-)
-CODE_VAR = ("desc", "type", "enum")
-FIELDS = {
-    MAP_ENUMS: (
-        "desc",
-        "val"
-    ),
-    MAP_STRUCTS: (
-        "size",
-        "vars"
-    ),
-    MAP_CODE: (
-        "desc",
-        "label",
-        "addr",
-        "size",
-        "mode",
-        "params",
-        "return",
-        "notes"
-    ),
-    MAP_RAM: DATA,
-    MAP_DATA: DATA,
-    "addr": REGIONS,
-    "size": REGIONS,
-    "count": REGIONS,
-    "vars":  (
-        "desc",
-        "type",
-        "offset",
-        "size",
-        "count",
-        "enum"
-    ),
-    "params": CODE_VAR,
-    "return": CODE_VAR
-}
-
-PRIMITIVES = {
-    "u8", "s8", "flags8", "bool",
-    "u16", "s16", "flags16",
-    "u32", "s32", "ptr",
-    "ascii", "char",
-    "lz", "gfx", "tilemap", "palette",
-    "thumb", "arm"
-}
-
-LABEL_PAT = re.compile(r"^\w+$")
 
 
 def hexint_presenter(dumper, data):
@@ -161,14 +92,16 @@ class Validator(object):
                 self.map_type = MAP_ENUMS
                 for key, vals in enums.items():
                     self.entry = key
-                    assert LABEL_PAT.match(key), "enum name must be alphanumeric"
+                    assert LABEL_PAT.match(
+                        key), "enum name must be alphanumeric"
                     self.check_vals(vals)
 
                 # check structs
                 self.map_type = "structs"
                 for key, st in structs.items():
                     self.entry = key
-                    assert LABEL_PAT.match(key), "struct name must be alphanumeric"
+                    assert LABEL_PAT.match(
+                        key), "struct name must be alphanumeric"
                     self.check_size(st, True)
                     self.check_vars(st)
 
