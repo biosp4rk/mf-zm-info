@@ -1,9 +1,6 @@
-import re
-
-
-YAML_PATH = "yaml"
+YAML_PATH = "../yaml"
 YAML_EXT = ".yml"
-JSON_PATH = "json"
+JSON_PATH = "../json"
 JSON_EXT = ".json"
 
 MAP_CODE = "code"
