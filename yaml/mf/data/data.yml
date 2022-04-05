@@ -520,6 +520,62 @@
   size: 0x30
   count: 0xE
 -
+  desc: Sine table base
+  label: SineTable_Base
+  type: s8
+  addr:
+    U: 0x3C94D0
+    E: 0x3C9B2C
+    J: 0x3CBAA4
+  count: 0x80
+  notes: Used for wavy Samus graphics on pre-results screen
+-
+  desc: Sine table water max 2
+  label: SineTable_WaterMax2
+  type: s8
+  addr:
+    U: 0x3C9550
+    E: 0x3C9BAC
+    J: 0x3CBB24
+  count: 0x10
+-
+  desc: Sine table water max 4
+  label: SineTable_WaterMax4
+  type: s8
+  addr:
+    U: 0x3C9560
+    E: 0x3C9BBC
+    J: 0x3CBB34
+  count: 0x20
+-
+  desc: Sine tables stage end (unused?)
+  label: SineTables_StageEnd
+  type: s8
+  addr:
+    U: 0x3C9580
+    E: 0x3C9BDC
+    J: 0x3CBB54
+  size: 0x820
+  notes: Each table is 0x20 bytes, with max heights from 0 to 64
+-
+  desc: Sine table heat haze vertical?
+  label: SineTable_HeatHazeV
+  type: s8
+  addr:
+    U: 0x3C9DA0
+    E: 0x3CA3FC
+    J: 0x3CC374
+  count: 0x20
+-
+  desc: Sine table heat haze horizontal?
+  label: SineTable_HeatHazeH
+  type: s8
+  addr:
+    U: 0x3C9DC0
+    E: 0x3CA41C
+    J: 0x3CC394
+  count: 0x10
+-
   desc: Tank increase amounts
   label: TankIncreaseAmounts
   type: TankIncreaseAmounts

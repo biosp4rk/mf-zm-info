@@ -640,6 +640,26 @@
     J: 0x3655FC
   count: 0x340
 -
+  desc: Clipdata collision types (debug)
+  label: ClipdataCollisionTypes_Debug
+  type: u8
+  addr:
+    U: 0x365C20
+    E: 0x3668AC
+    J: 0x365C7C
+  count: 0xA0
+  enum: ClipdataCollisionType
+-
+  desc: Clipdata behavior types (debug)
+  label: ClipdataBehaviorTypes_Debug
+  type: u16
+  addr:
+    U: 0x365CC0
+    E: 0x36694C
+    J: 0x365D1C
+  count: 0xA0
+  enum: ClipdataBehaviorType
+-
   desc: Return one pointer
   label: ReturnOnePtr
   type: ptr.thumb
@@ -856,6 +876,15 @@
     E: 0x772654
     J: 0x75E8C4
   count: 0x43
+-
+  desc: Primary sprite AI pointers
+  label: PrimarySpriteAIPtrs
+  type: ptr.thumb
+  addr:
+    U: 0x75E8C0
+    E: 0x772760
+    J: 0x75E9D0
+  count: 0xCE
 -
   desc: Sprite graphics pointers
   label: SpriteGraphicsPtrs
