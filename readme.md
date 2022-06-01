@@ -58,3 +58,14 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 - `palette` - Palette, 32 bytes per row
 - `thumb` - 16 bit THUMB code
 - `arm` - 32 bit ARM code
+
+### Label Abbreviations
+- `Alt` - Alternate
+- `BG` - Background
+- `Curr` - Current
+- `Gfx` - Graphics
+- `Init` - Initialize
+- `Nav` - Navigation
+- `Num` - Number
+- `Prev` - Previous
+- `Ptr` - Pointer

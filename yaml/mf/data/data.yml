@@ -660,12 +660,12 @@
 -
   desc: Debug rooms tilemap
   label: DebugRoomsTilemap
-  type: u16
+  type: tilemap
   addr:
     U: 0x3F09E4
     E: 0x3F1040
     J: 0x3F2FC0
-  count: 0x2A2
+  size: 0x642
 -
   desc: Clipdata behavior types
   label: ClipdataBehaviorTypes
@@ -1009,6 +1009,24 @@
     J: 0x74FFF4
   size: 0x500
 -
+  desc: Ending 1 tilemap top
+  label: Ending01TilemapTop
+  type: lz.tilemap
+  addr:
+    U: 0x78FD10
+    E: 0x790544
+    J: 0x7916B4
+  size: 0x89A
+-
+  desc: Ending 1 tilemap bottom
+  label: Ending01TilemapBottom
+  type: lz.tilemap
+  addr:
+    U: 0x7905AC
+    E: 0x790DE0
+    J: 0x791F50
+  size: 0x5C0
+-
   desc: Primary sprite AI pointers
   label: PrimarySpriteAIPtrs
   type: ptr.thumb
@@ -1111,7 +1129,7 @@
 -
   desc: Minimap data pointers
   label: MinimapDataPtrs
-  type: ptr.tilemap
+  type: ptr.lz.tilemap
   addr:
     U: 0x79BE5C
     E: 0x79C690

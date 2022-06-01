@@ -158,13 +158,13 @@ ClipdataAffectingAction:
   val: 0xA
 - desc: Power bomb
   val: 0xB
-- desc: Speed boost 1
+- desc: Speed boost
   val: 0xC
-- desc: Speed boost 2
+- desc: Speed boost (ground)
   val: 0xD
 - desc: Screw attack
   val: 0xE
-- desc: Bomb chain related?
+- desc: Bomb chain
   val: 0xF
 ClipdataBehaviorType:
 - desc: Air/solid
@@ -648,6 +648,13 @@ HazeType:
   val: 0x9
 - desc: Cold/snowflakes (no effect)
   val: 0xA
+InGameCutscene:
+- desc: Close-up
+  val: 0x4
+- desc: Getting Varia
+  val: 0x9
+- desc: Getting fully powered
+  val: 0xA
 LZ77BackgroundSize:
 - desc: 256x256
   val: 0x0
@@ -703,6 +710,27 @@ NewProjectileType:
   val: 0x5
 - desc: Charged beam
   val: 0x6
+OamPreAction:
+- desc: None
+  val: 0x0
+- desc: Change frame
+  val: 0x1
+- desc: Reset frame
+  val: 0x2
+- desc: Loop on last frame
+  val: 0x3
+- desc: Delete after end
+  val: 0x4
+- desc: Increment ID after end
+  val: 0x5
+- desc: '?'
+  val: 0x6
+- desc: '?'
+  val: 0x7
+- desc: Switch to previous frame
+  val: 0x8
+- desc: Decrement ID at beginning
+  val: 0x9
 PaletteAnimationType:
 - desc: Not animated
   val: 0x0
@@ -1371,3 +1399,12 @@ SuitType:
   val: 0x1
 - desc: Suitless
   val: 0x2
+UpdateMinimapFlag:
+- desc: None
+  val: 0x0
+- desc: Update top line
+  val: 0x1
+- desc: Update middle line
+  val: 0x2
+- desc: Update bottom line
+  val: 0x3

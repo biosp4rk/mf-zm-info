@@ -533,14 +533,14 @@
   addr: 0x3000770
   count: 0x8
 -
-  desc: Previous vertical collision check
-  label: PrevVerticalCollisionCheck
+  desc: Previous center collision check
+  label: PrevCenterCollisionCheck
   type: u8
   addr: 0x30007F0
   enum: CollisionCheck
 -
-  desc: Previous collision check
-  label: PrevCollisionCheck
+  desc: Previous left/right edge collision check
+  label: PrevLeftRightCollisionCheck
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
@@ -703,6 +703,16 @@
   label: FileSelectOptionsCursorIndex
   type: u8
   addr: 0x3000BF3
+-
+  desc: Current sine Y offset
+  label: CurrSineYOffset
+  type: u16
+  addr: 0x3000C04
+-
+  desc: Current OAM divisor
+  label: CurrOamDivisor
+  type: u16
+  addr: 0x3000C06
 -
   desc: Current message
   label: CurrMessage
@@ -1019,12 +1029,6 @@
   type: MusicInfo
   addr: 0x3001D00
 -
-  desc: Raw sound data
-  label: RawSoundData
-  type: s8
-  addr: 0x3002924
-  count: 0xB40
--
   desc: Pointer to sound code A
   label: SoundCodeAPtr
   type: ptr.arm
@@ -1220,6 +1224,11 @@
   addr: 0x3005730
   size: 0xC
   count: 0x10
+-
+  desc: Maintained input data
+  label: MaintainedInputData
+  type: MaintainedInputData
+  addr: 0x3005800
 -
   desc: IME backup
   label: IME_Backup

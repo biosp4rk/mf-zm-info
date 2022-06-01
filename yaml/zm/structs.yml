@@ -1056,6 +1056,25 @@ HazeVramInfo:
   - desc: Haze flag
     type: u8
     offset: 0x7
+InGameCutsceneData:
+  size: 0xC
+  vars:
+  - desc: Timer
+    type: u16
+    offset: 0x0
+  - desc: Stage
+    type: u8
+    offset: 0x2
+  - desc: Cutscene number
+    type: u8
+    offset: 0x3
+    enum: InGameCutscene
+  - desc: '?'
+    type: u8
+    offset: 0x4
+  - desc: Function pointer
+    type: ptr.thumb
+    offset: 0x8
 InGameTime:
   size: 0x4
   vars:
@@ -1120,6 +1139,15 @@ LockScreenPosition:
   - desc: Y position of screen center
     type: u16
     offset: 0x4
+MaintainedInputData:
+  size: 0x4
+  vars:
+  - desc: Delay
+    type: u8
+    offset: 0x0
+  - desc: Timer
+    type: u8
+    offset: 0x1
 MetroidFusionGalleryData:
   size: 0x14
   vars:
@@ -1139,7 +1167,7 @@ MetroidFusionGalleryData:
     type: ptr.palette
     offset: 0x10
 MusicInfo:
-  size: 0xC24
+  size: 0x1764
   vars:
   - desc: New music track set flag?
     type: u8
@@ -1153,6 +1181,10 @@ MusicInfo:
   - desc: Music related?
     type: u8
     offset: 0x21
+  - desc: Raw sound data
+    type: s8
+    offset: 0xC24
+    count: 0xB40
 NonGameplayRam:
   size: 0x280
   vars:
@@ -1272,6 +1304,25 @@ NumTanksInArea:
   - desc: Power bomb tanks
     type: u8
     offset: 0x3
+Oam:
+  size: 0x8
+  vars:
+  - desc: OAM frame pointer
+    type: ptr
+    offset: 0x0
+  - desc: Duration
+    type: u8
+    offset: 0x4
+OamArray:
+  size: 0x8
+  vars:
+  - desc: OAM pointer
+    type: ptr
+    offset: 0x0
+  - desc: Pre-action
+    type: u8
+    offset: 0x4
+    enum: OamPreAction
 ParticleEffect:
   size: 0xC
   vars:
@@ -1586,7 +1637,7 @@ SamusEnvironmentEffect:
   - desc: Y position
     type: u16
     offset: 0x6
-  - desc: OAM pointer
+  - desc: OAM frame pointer
     type: ptr
     offset: 0x8
 SamusHazardDamage:
@@ -1616,10 +1667,66 @@ SamusHitbox:
 SamusPhysics:
   size: 0x78
   vars:
-  - desc: Samus OAM frame pointers
+  - desc: Body OAM frame pointer
     type: ptr
     offset: 0x0
-    count: 0x12
+  - desc: Shoulders graphics pointer
+    type: ptr.gfx
+    offset: 0x4
+  - desc: '?'
+    type: u16
+    offset: 0x8
+  - desc: Torso graphics pointer
+    type: ptr.gfx
+    offset: 0xC
+  - desc: '?'
+    type: u16
+    offset: 0x10
+  - desc: Legs graphics pointer
+    type: ptr.gfx
+    offset: 0x14
+  - desc: '?'
+    type: u16
+    offset: 0x18
+  - desc: Body lower half graphics pointer
+    type: ptr.gfx
+    offset: 0x1C
+  - desc: '?'
+    type: u16
+    offset: 0x20
+  - desc: '?'
+    type: u16
+    offset: 0x22
+  - desc: Arm cannon OAM frame pointer
+    type: ptr
+    offset: 0x24
+  - desc: Arm cannon upper graphics pointer
+    type: ptr.gfx
+    offset: 0x28
+  - desc: '?'
+    type: u16
+    offset: 0x2C
+  - desc: Arm cannon lower graphics pointer
+    type: ptr.gfx
+    offset: 0x30
+  - desc: '?'
+    type: u16
+    offset: 0x34
+  - desc: Screw attack/speedbooster effects OAM frame pointer
+    type: ptr
+    offset: 0x38
+  - desc: Screw attack/speedbooster effects graphics pointer
+    type: ptr.gfx
+    offset: 0x3C
+  - desc: '?'
+    type: u16
+    offset: 0x40
+  - desc: Screw attack/shinespark graphics pointer
+    type: ptr.gfx
+    offset: 0x44
+  - desc: '?'
+    type: u16
+    offset: 0x48
   - desc: Arm cannon X position offset
     type: s16
     offset: 0x4A
@@ -2181,7 +2288,7 @@ SpriteDebris:
   - desc: Debris type
     type: u8
     offset: 0xC
-  - desc: Falling timer
+  - desc: Frame counter
     type: u8
     offset: 0xD
   - desc: Velocity array offset

@@ -1019,6 +1019,15 @@ NumTanksInArea:
   - desc: Power bomb tanks
     type: u8
     offset: 0x2
+Oam:
+  size: 0x8
+  vars:
+  - desc: OAM frame pointer
+    type: ptr
+    offset: 0x0
+  - desc: Duration
+    type: u8
+    offset: 0x4
 ParticleEffect:
   size: 0xC
   vars:
@@ -1910,7 +1919,7 @@ SpriteDebris:
   - desc: OAM pointer
     type: ptr
     offset: 0x0
-  - desc: '?'
+  - desc: Current animation frame
     type: u16
     offset: 0x4
   - desc: Y position
@@ -1919,7 +1928,7 @@ SpriteDebris:
   - desc: X position
     type: u16
     offset: 0x8
-  - desc: '?'
+  - desc: Animation duration counter
     type: u8
     offset: 0xA
   - desc: Exists flag
@@ -1928,10 +1937,10 @@ SpriteDebris:
   - desc: Debris type
     type: u8
     offset: 0xC
-  - desc: '?'
+  - desc: Frame counter
     type: u8
     offset: 0xD
-  - desc: '?'
+  - desc: Velocity array offset
     type: u8
     offset: 0xE
 SpritesetEntry:
