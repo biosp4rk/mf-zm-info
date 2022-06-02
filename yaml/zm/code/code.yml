@@ -7401,8 +7401,9 @@
   size: 0xB8
   mode: thumb
   params:
-  - desc: Direction?
+  - desc: Bomb chain type
     type: u8
+    enum: BombChainType
   - desc: X position
     type: u16
   - desc: Y position
@@ -7420,6 +7421,23 @@
   size: 0x298
   mode: thumb
   params: null
+  return: null
+-
+  desc: Check start new sub bomb chain
+  label: CheckStartNewSubBombChain
+  addr:
+    U: 0x5A330
+    E: 0x5A3F8
+    J: 0x5A330
+  size: 0xB0
+  mode: thumb
+  params:
+  - desc: Direction (0 = up, 1 = down, 2 = left, 3 = right)
+    type: u8
+  - desc: X position
+    type: u8
+  - desc: Y position
+    type: u8
   return: null
 -
   desc: Mother brain update glass
@@ -10347,8 +10365,8 @@
   size: 0xBC
   mode: thumb
   params:
-  - desc: Part (0 = Normal First Half, 1 = Normal Second Half 2 = 100% First Half,
-      3 = 100% Second Half)
+  - desc: Part (0 = normal first half, 1 = normal second half 2 = 100% first half,
+      3 = 100% second half)
     type: u8
   return: null
   notes: Loads a part of a time attack password in VRAM for the time attack record

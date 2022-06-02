@@ -287,7 +287,7 @@ BackupOfIORegisters:
 BombChainData:
   size: 0x4
   vars:
-  - desc: Stage?
+  - desc: Current block offset
     type: u8
     offset: 0x0
   - desc: Starting X position
@@ -296,7 +296,7 @@ BombChainData:
   - desc: Starting Y position
     type: u8
     offset: 0x2
-  - desc: Direction?
+  - desc: Status (bits 0-2 = type, 0x40 = going left or up, 0x80 = ?)
     type: u8
     offset: 0x3
 BossMapIcon:
@@ -1116,6 +1116,18 @@ LastElevatorUsed:
     offset: 0x2
     enum: Elevator
   - desc: Travel direction
+    type: u8
+    offset: 0x3
+LastTankCollected:
+  size: 0x4
+  vars:
+  - desc: Behavior type
+    type: u16
+    offset: 0x0
+  - desc: X position
+    type: u8
+    offset: 0x2
+  - desc: Y position
     type: u8
     offset: 0x3
 LavaDamageTimer:
