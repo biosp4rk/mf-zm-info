@@ -20,7 +20,9 @@ GAMES = (GAME_MF, GAME_ZM)
 REGION_U = "U"
 REGION_E = "E"
 REGION_J = "J"
+#REGION_C = "C"
 REGIONS = (REGION_U, REGION_E, REGION_J)
+#REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C)
 
 ASM_MODES = ("thumb", "arm")
 
@@ -75,7 +77,8 @@ PRIMITIVES = {
     "u16", "s16", "flags16",
     "u32", "s32", "ptr",
     "ascii", "char",
-    "lz", "gfx", "tilemap", "palette",
+    "lz", "gfx", "tilemap",
+    "palette", "oamframe",
     "thumb", "arm"
 }
 

@@ -1,5 +1,3 @@
-from ensurepip import version
-from functools import cmp_to_key
 import os
 import re
 from typing import Any, Dict, List, Union
@@ -61,9 +59,43 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
         else:
             raise ValueError("Type mismatch")
     if isinstance(combined, list):
-        # sort by address
-        combined.sort(key=cmp_to_key(compare_addrs))
+        # get entries by region
+        entry_dict = {r: [] for r in REGIONS}
+        for entry in combined:
+            addr = entry["addr"]
+            if isinstance(addr, int):
+                reg = REGIONS[0]
+            else:
+                reg = next(r for r in REGIONS if r in addr)
+            entry_dict[reg].append(entry)
+        # sort by U, then by E, etc
+        for r in REGIONS:
+            entries = sorted(entry_dict[r],
+                key=lambda e: get_versioned_int(r, e["addr"]))
+            if r == REGIONS[0]:
+                combined = entries
+                continue
+            i = len(entries) - 1
+            j = len(combined) - 1
+            while i > 0:
+                entry = entries[i]
+                addr = get_versioned_int(r, entry["addr"])
+                while j > 0:
+                    cmp_addr = combined[j]["addr"]
+                    if isinstance(cmp_addr, dict):
+                        cmp_addr = cmp_addr.get(r, 2e32)
+                    if cmp_addr < addr:
+                        break
+                    j -= 1
+                combined.insert(j + 1, entry)
+                i -= 1
     return combined
+
+
+def get_versioned_int(region: str, entry: VersionedInt) -> int:
+    if isinstance(entry, int):
+        return entry
+    return entry.get(region)
 
 
 def compare_addrs(entry1, entry2) -> int:

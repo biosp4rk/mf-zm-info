@@ -3,7 +3,7 @@ from constants import *
 
 
 SIZE_8MB = 0x800000
-ROM_OFFSET = 0x80000000
+ROM_OFFSET = 0x8000000
 
 
 class Rom(object):

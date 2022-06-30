@@ -2,8 +2,9 @@ import argparse
 import json
 import os
 import re
+import sys
 from constants import *
-from utils import get_entry_size, ints_to_strs, read_yaml, read_yamls, write_yaml
+from utils import get_entry_size, get_versioned_int, ints_to_strs, read_yaml, read_yamls, write_yaml
 
 
 LABEL_PAT = re.compile(r"^\w+$")
@@ -46,7 +47,7 @@ class Validator(object):
 
                 # check code
                 self.map_type = MAP_CODE
-                last = {r: 0 for r in REGIONS}
+                prev = None
                 for entry in code:
                     self.entry = entry
                     self.check_desc(entry)
@@ -56,13 +57,14 @@ class Validator(object):
                     self.check_mode(entry)
                     self.check_params(entry)
                     self.check_return(entry)
-                    self.check_overlap(entry, last)
+                    self.check_overlap(entry, prev)
+                    prev = entry
 
                 # check data and ram
                 ram_rom = [(MAP_DATA, data), (MAP_RAM, ram)]
                 for map_type, entries in ram_rom:
                     self.map_type = map_type
-                    last = {r: 0 for r in REGIONS}
+                    prev = None
                     for entry in entries:
                         self.entry = entry
                         self.check_desc(entry)
@@ -75,7 +77,8 @@ class Validator(object):
                         size_req = "type" not in entry
                         self.check_size(entry, size_req)
                         self.check_enum(entry)
-                        self.check_overlap(entry, last)
+                        self.check_overlap(entry, prev)
+                        prev = entry
 
         except AssertionError as e:
             print(self.game, self.map_type)
@@ -84,15 +87,27 @@ class Validator(object):
             return
         print("No validation errors")
 
-    def check_overlap(self, entry, last) -> None:
-        addr = entry["addr"]
-        if isinstance(addr, int):
-            addr = {r: addr for r in REGIONS}
-        for r, a in last.items():
-            if r in addr:
-                assert a < addr[r], "entries overlap"
-        size = get_entry_size(entry, self.structs)
-        last.update({r: addr[r] + size[r] - 1 for r in addr})
+    def check_overlap(self, entry, prev) -> None:
+        if prev is None:
+            return
+        # get current address
+        curr_addr = entry["addr"]
+        if isinstance(curr_addr, int):
+            curr_addr = {r: curr_addr for r in REGIONS}
+        # get end of previous
+        prev_addr = prev["addr"]
+        if isinstance(prev_addr, int):
+            prev_addr = {r: prev_addr for r in REGIONS}
+        size = get_entry_size(prev, self.structs)
+        for r, s in size.items():
+            prev_addr[r] += s - 1
+        # compare
+        for r, a in prev_addr.items():
+            if r in curr_addr:
+                assert a < curr_addr[r], f"entries overlap\n{prev}"
+                # some data is in a different order in different regions,
+                # so we only check against one region
+                break
 
     def check_desc(self, entry) -> None:
         assert "desc" in entry, "desc is required"
@@ -254,6 +269,9 @@ if __name__ == "__main__":
     parser.add_argument("-j", "--json", action="store_true")
     args = parser.parse_args()
 
+    if len(sys.argv) <= 1:
+        parser.print_help()
+        quit()
     if args.validate:
         v = Validator()
         v.validate()
