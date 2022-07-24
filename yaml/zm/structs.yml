@@ -1429,6 +1429,22 @@ ProjectileData:
   - desc: Hitbox right offset
     type: s16
     offset: 0x1A
+RevealableBlockData:
+  size: 0x8
+  vars:
+  - desc: X position
+    type: u16
+    offset: 0x0
+  - desc: Y position
+    type: u16
+    offset: 0x2
+  - desc: Clipdata behavior type
+    type: u16
+    offset: 0x4
+    enum: ClipdataBehaviorType
+  - desc: Block behavior type
+    type: u8
+    offset: 0x6
 RoomEntry:
   size: 0x3C
   vars:

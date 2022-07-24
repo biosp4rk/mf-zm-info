@@ -169,7 +169,7 @@ def get_type_size(entry: Dict[str, Any], structs: Dict[str, Any]) -> int:
         return TYPE_SIZES[t]
     if t in structs:
         return structs[t]["size"]
-    raise ValueError("Invalid type")
+    raise ValueError(f"Invalid type {t}")
 
 
 def get_entry_size(

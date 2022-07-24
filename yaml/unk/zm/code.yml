@@ -611,49 +611,12 @@
   desc: '?'
   label: SoundRelated?
   addr:
-    U: 0x2A58
-    E: 0x2AAC
-    J: 0x2A58
-  size: 0x34
-  mode: thumb
-  params: null
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
     U: 0x2A8C
     E: 0x2AE0
     J: 0x2A8C
   size: 0x40
   mode: thumb
   params: null
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
-    U: 0x2ACC
-    E: 0x2B20
-    J: 0x2ACC
-  size: 0x54
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
-    U: 0x2B20
-    E: 0x2B74
-    J: 0x2B20
-  size: 0x44
-  mode: thumb
-  params:
-  - desc: Sound ID
-    type: u16
   return: null
 -
   desc: '?'
@@ -709,21 +672,6 @@
   desc: '?'
   label: SoundRelated?
   addr:
-    U: 0x2C94
-    E: 0x2CE8
-    J: 0x2C94
-  size: 0x54
-  mode: thumb
-  params:
-  - desc: Track data pointer
-    type: ptr
-  - desc: '?'
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
     U: 0x2CE8
     E: 0x2D3C
     J: 0x2CE8
@@ -747,38 +695,6 @@
   params:
   - desc: Track data pointer
     type: ptr
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
-    U: 0x2DE8
-    E: 0x2E3C
-    J: 0x2DE8
-  size: 0x14
-  mode: thumb
-  params:
-  - desc: Sound ID
-    type: u16
-  - desc: '?'
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
-    U: 0x2DFC
-    E: 0x2E50
-    J: 0x2DFC
-  size: 0x38
-  mode: thumb
-  params:
-  - desc: Track data pointer
-    type: ptr
-  - desc: Sound header pointer
-    type: ptr
-  - desc: '?'
-    type: '?'
   return: null
 -
   desc: '?'
@@ -1049,36 +965,6 @@
   return: null
 -
   desc: '?'
-  label: MusicRelated?
-  addr:
-    U: 0x3AE4
-    E: 0x3B38
-    J: 0x3AE4
-  size: 0x4C
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: MusicRelated?
-  addr:
-    U: 0x3B30
-    E: 0x3B84
-    J: 0x3B30
-  size: 0x4C
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: Music track
-    type: u16
-  - desc: Priority
-    type: '?'
-  return: null
--
-  desc: '?'
   label: MusicRelated
   addr:
     U: 0x3B7C
@@ -1123,21 +1009,6 @@
     type: u16
   - desc: '?'
     type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: MusicRelated
-  addr:
-    U: 0x3CA0
-    E: 0x3CF4
-    J: 0x3CA0
-  size: 0xAC
-  mode: thumb
-  params:
-  - desc: Music track
-    type: u16
   - desc: '?'
     type: '?'
   return: null
@@ -1214,36 +1085,6 @@
   params: null
   return: null
 -
-  desc: Called in Play Sound1
-  label: PlaySoundRelated
-  addr:
-    U: 0x3FAC
-    E: 0x4000
-    J: 0x3FAC
-  size: 0x68
-  mode: thumb
-  params:
-  - desc: Sound ID
-    type: u8?
-  - desc: '?'
-    type: u8?
-  return: null
--
-  desc: Called in Play Sound2
-  label: SoundFunction
-  addr:
-    U: 0x4014
-    E: 0x4068
-    J: 0x4014
-  size: 0x70
-  mode: thumb
-  params:
-  - desc: Sound ID
-    type: u8?
-  - desc: '?'
-    type: u8?
-  return: null
--
   desc: '?'
   addr:
     U: 0x4084
@@ -1299,32 +1140,6 @@
     type: ptr
   - desc: '?'
     type: '?'
-  return: null
--
-  desc: Plays a sound test?
-  label: PlaySoundTest?
-  addr:
-    U: 0x4228
-    E: 0x427C
-    J: 0x4228
-  size: 0x38
-  mode: thumb
-  params:
-  - desc: Music track
-    type: u16
-  return: null
--
-  desc: '?'
-  label: SoundRelated
-  addr:
-    U: 0x4260
-    E: 0x42B4
-    J: 0x4260
-  size: 0x1C
-  mode: thumb
-  params:
-  - desc: Sound ID
-    type: u16
   return: null
 -
   desc: '?'
@@ -1399,19 +1214,6 @@
   mode: thumb
   params: '?'
   return: '?'
--
-  desc: '?'
-  label: SoundRelated?
-  addr:
-    U: 0x4C1C
-    E: 0x4C70
-    J: 0x4C1C
-  size: 0x78
-  mode: thumb
-  params:
-  - desc: Track data pointer
-    type: ptr
-  return: null
 -
   desc: '?'
   label: SoundRelated?
@@ -4159,32 +3961,6 @@
   params: null
   return: null
 -
-  desc: '?'
-  label: BreakableBlockRelated
-  addr:
-    U: 0x59770
-    E: 0x59838
-    J: 0x59770
-  size: 0x84
-  mode: thumb
-  params:
-  - desc: Coordinates pointer?
-    type: '?'
-  return: null
--
-  desc: '?'
-  label: BreakableBlockRelated
-  addr:
-    U: 0x597F4
-    E: 0x598BC
-    J: 0x597F4
-  size: 0x88
-  mode: thumb
-  params:
-  - desc: Coordinates pointer?
-    type: '?'
-  return: null
--
   desc: Clipdata related?
   label: '?'
   addr:
@@ -5014,17 +4790,6 @@
     U: 0xF0
     E: 0xF4
     J: 0xF0
-  mode: thumb
-  params: null
-  return: null
--
-  desc: '?'
-  label: CutsceneRelated?
-  addr:
-    U: 0x60EC0
-    E: 0x60FA8
-    J: 0x60EC0
-  size: 0x34
   mode: thumb
   params: null
   return: null

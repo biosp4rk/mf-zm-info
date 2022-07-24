@@ -104,6 +104,21 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
+ArmCannonOpeningXYOffsets:
+  size: 0x8
+  vars:
+  - desc: Charging Y offset
+    type: u16
+    offset: 0x0
+  - desc: Charging X offset
+    type: u16
+    offset: 0x2
+  - desc: New projectile Y offset
+    type: u16
+    offset: 0x4
+  - desc: New projectile X offset
+    type: u16
+    offset: 0x6
 BG3Movement:
   size: 0x6
   vars:
@@ -224,6 +239,18 @@ BackupOfIORegisters:
   - desc: Backup of BG0CNT (BG0 control)
     type: u16
     offset: 0x10
+BossPartOamData:
+  size: 0x6
+  vars:
+  - desc: OAM table index
+    type: u16
+    offset: 0x0
+  - desc: Y offset
+    type: s16
+    offset: 0x2
+  - desc: X offset
+    type: s16
+    offset: 0x4
 BrokenReformBlock:
   size: 0x4
   vars:
@@ -1253,6 +1280,30 @@ RoomSpriteEntry:
   - desc: Properties
     type: u8
     offset: 0x2
+ArmCannonDrawData:
+  size: 0x8
+  vars:
+  - desc: Opening X/Y offsets pointer
+    type: ptr.ArmCannonOpeningXYOffsets
+    offset: 0x0
+  - desc: OAM frame pointer
+    type: ptr.oamframe
+    offset: 0x4
+SamusBodyDrawData:
+  size: 0x10
+  vars:
+  - desc: Torso graphics pointer
+    type: ptr
+    offset: 0x0
+  - desc: Legs graphics pointer
+    type: ptr
+    offset: 0x4
+  - desc: Body OAM pointer
+    type: ptr.Oam
+    offset: 0x8
+  - desc: '?'
+    type: u8
+    offset: 0xC
 SamusAnimationInfo:
   size: 0xC
   vars:
@@ -1391,46 +1442,53 @@ SamusGraphicsInfo:
   - desc: Samus OAM pointer
     type: ptr
     offset: 0x0
-  - desc: Pointer to 0x6010000 (body top half)
+  - desc: Torso top graphics pointer
     type: ptr.gfx
     offset: 0x4
-  - desc: Graphics length at 0x6010000 (body top half)
+  - desc: Torso top graphics size
     type: u16
     offset: 0x8
-  - desc: Pointer to 0x6010400 (body bottom half)
+  - desc: Torso bottom graphics pointer
     type: ptr.gfx
     offset: 0xC
-  - desc: Graphics length at 0x6010400 (body bottom half)
+  - desc: Torso bottom graphics size
     type: u16
     offset: 0x10
-  - desc: Pointer to 0x6010280 (legs top half)
+  - desc: Legs top graphics pointer
     type: ptr.gfx
     offset: 0x14
-  - desc: Graphics length at 0x6010280 (legs top half)
+  - desc: Legs top graphics size
     type: u16
     offset: 0x18
-  - desc: Pointer to 0x6010680 (legs bottom half)
+  - desc: Legs bottom graphics pointer
     type: ptr.gfx
     offset: 0x1C
-  - desc: Graphics length at 0x6010680 (legs bottom half)
+  - desc: Legs bottom graphics size
     type: u16
     offset: 0x20
-  - desc: Length of arm cannon OAM?
-    type: u16
+  - desc: Arm cannon charging X offset
+    type: s16
+    offset: 0x22
+  - desc: Arm cannon charging Y offset
+    type: s16
     offset: 0x24
-  - desc: Arm cannon OAM pointer?
-    type: ptr
+  - desc: Arm cannon OAM frame count/priority
+    type: u16
+    offset: 0x26
+    notes: 0x1000 = under Samus, 0x2000 = over Samus
+  - desc: Arm cannon OAM frame pointer
+    type: ptr.oamframe
     offset: 0x28
-  - desc: Pointer to 0x6010800 (cannon top half)
+  - desc: Arm cannon top graphics pointer
     type: ptr.gfx
     offset: 0x2C
-  - desc: Graphics length at 0x6010800 (cannon top half)
+  - desc: Arm cannon top graphics size
     type: u16
     offset: 0x30
-  - desc: Pointer to 0x6010C00 (cannon bottom half)
+  - desc: Arm cannon bottom graphics pointer
     type: ptr.gfx
     offset: 0x34
-  - desc: Graphics length at 0x6010C00 (cannon bottom half)
+  - desc: Arm cannon bottom graphics size
     type: u16
     offset: 0x38
 SamusHitboxOffsets:

@@ -3,7 +3,7 @@ from constants import *
 import os
 from typing import Dict, List, Optional
 from rom import Rom
-
+from utils import read_yamls
 
 TAB = "  "
 RomDict = Dict[str, Dict[str, Rom]]
@@ -28,7 +28,7 @@ def yaml_data_entry(
     type: str,
     addr: VersionedInt,
     count: Optional[VersionedInt] = None,
-    size: Optional[int] = None,
+    size: Optional[VersionedInt] = None,
     enum: Optional[str] = None
 ) -> str:
     lines = [
@@ -39,13 +39,14 @@ def yaml_data_entry(
     if count is not None:
         lines += yaml_versioned_int("count", count)
     if size is not None:
-        lines.append(f"size: 0x{size:X}")
+        lines += yaml_versioned_int("size", size)
     if enum is not None:
         lines.append(f"enum: 0x{enum}")
     return "-\n" + "\n".join(TAB + f for f in lines)
 
 
 def find_oam(rom: Rom) -> None:
+    BPOD = "BossPartOamData"
     entries = {}
     ptr_count = 0
     # (ptr dur)+ 00 00 00 00 00 00 00 00
@@ -75,42 +76,87 @@ def find_oam(rom: Rom) -> None:
             continue
         # must end with eight 00 bytes
         if rom.read32(addr) == 0 and rom.read32(addr + 4) == 0:
+            # add yaml entry for OAM
             oam_label = f"OAM_{data_addr:X}"
-            entries[data_addr] = yaml_data_entry(oam_label,
-                oam_label, "Oam", {rom.region: data_addr}, count + 1)
+            entries[data_addr] = (oam_label, "Oam", data_addr, count + 1, None)
             ptr_count += count
+            # go through each frame
             for fn in range(count):
+                # get frame address and number of parts
                 fo = rom.read_ptr(data_addr + fn * 8)
-                num_parts = rom.read16(fo)
-                if num_parts >= 63:
+                if fo in entries:
                     continue
+                num_parts = rom.read16(fo)
+                if num_parts >= 64:
+                    continue
+                if num_parts == 0:
+                    frame_label = f"{oam_label}_Frame_{fn:02X}"
+                    entries[fo] = (frame_label, BPOD, fo, None, 1)
+                    continue
+                # check parts
+                po = fo + 2
+                valid = True
+                for _ in range(num_parts):
+                    attr0 = rom.read16(po)
+                    attr1 = rom.read16(po + 2)
+                    if (attr0 & 0xC00 == 0xC00 or
+                        attr0 & 0xC000 == 0xC000 or
+                        (attr0 & 0x100 == 0 and
+                        attr1 & 0xE00 != 0)):
+                        valid = False
+                        break
+                    po += 6
+                if not valid:
+                    frame_label = f"{oam_label}_Frame_{fn:02X}"
+                    entries[fo] = (frame_label, BPOD, fo, None, 1)
+                    continue
+                #
                 frame_label = f"{oam_label}_Frame_{fn:02X}"
-                entries[fo] = yaml_data_entry(frame_label, frame_label,
-                    "oamframe", {rom.region: fo}, None, 2 + num_parts * 6)
+                entries[fo] = (frame_label, "oamframe", fo, None, 2 + num_parts * 6)
             data_addr = addr + 8
         else:
             data_addr += 4
-    # print(len(entries))
-    # print(ptr_count)
-    for k in sorted(entries):
-        print(entries[k])
+    #
+    items = sorted(entries)
+    for i in range(len(items) - 1):
+        k = items[i]
+        diff = items[i + 1] - k
+        if diff > 0x2000:
+            continue
+        label, type, addr, count, size = entries[k]
+        if size is not None:
+            if size == 1:
+                if diff % 6 != 0:
+                    continue
+                entries[k] = (label, type, addr, count, diff)
+            elif size > diff:
+                if diff % 6 != 0:
+                    continue
+                entries[k] = (label, BPOD, addr, count, diff)
+    for k in items:
+        label, type, addr, count, size = entries[k]
+        y = yaml_data_entry(label, label, type, {rom.region: addr}, count, size)
+        print(y)
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("rom_dir", type=str)
-    parser.add_argument("-g", "--game", type=str, choices=["mf", "zm"])
-    parser.add_argument("-r", "--region", type=str, choices=["U", "E", "J"])
-    args = parser.parse_args()
+rom = Rom("C:\\Users\\kwlab\\Desktop\\gbamet\\mf_u.gba")
+find_oam(rom)
 
-    # read rom files
-    games = [args.game] if args.game else GAMES
-    regions = [args.region] if args.region else REGIONS
-    roms = {}
-    for game in games:
-        roms[game] = {}
-        for region in regions:
-            name = f"{game}_{region}.gba".lower()
-            path = os.path.join(args.rom_dir, name)
-            rom = Rom(path)
-            roms[game][region] = rom
+# if __name__ == "__main__":
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("rom_dir", type=str)
+#     parser.add_argument("-g", "--game", type=str, choices=["mf", "zm"])
+#     parser.add_argument("-r", "--region", type=str, choices=["U", "E", "J"])
+#     args = parser.parse_args()
+
+#     # read rom files
+#     games = [args.game] if args.game else GAMES
+#     regions = [args.region] if args.region else REGIONS
+#     roms = {}
+#     for game in games:
+#         roms[game] = {}
+#         for region in regions:
+#             name = f"{game}_{region}.gba".lower()
+#             path = os.path.join(args.rom_dir, name)
+#             rom = Rom(path)
+#             roms[game][region] = rom
