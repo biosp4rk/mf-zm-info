@@ -42,16 +42,16 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 ### Primitive Types
 - `u8` - Unsigned 8 bit integer
 - `s8` - Signed 8 bit integer
-- `flags8` - 8 bit integer used for bit flags
 - `bool` - u8 that only takes values 0 (false) or 1 (true)
 - `u16` - Unsigned 16 bit integer
 - `s16` - Signed 16 bit integer
-- `flags16` - 16 bit integer used for bit flags
 - `u32` - Unsigned 32 bit integer
 - `s32` - Signed 32 bit integer
-- `ptr` - 32 bit pointer to an address
+
+### Tags
 - `ascii` - 8 bit ASCII character
-- `char` - 16 bit in-game text character
+- `char16` - 16 bit in-game text character
+- `flags` - Integer used for bit flags
 - `lz` - LZ77 compressed
 - `gfx` - Graphics, 32 bytes per tile
 - `tilemap` - Tilemap, 2 bytes per tile
