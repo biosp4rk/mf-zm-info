@@ -36,11 +36,13 @@ DATA = (
     "enum",
     "notes"
 )
-CODE_VAR = ("desc", "type", "enum", "notes")
+CODE_VAR = ("desc", "label", "type", "enum", "notes")
 FIELDS = {
     MAP_ENUMS: (
         "desc",
-        "val"
+        "label",
+        "val",
+        "notes"
     ),
     MAP_STRUCTS: (
         "size",
@@ -63,11 +65,13 @@ FIELDS = {
     "count": REGIONS,
     "vars":  (
         "desc",
+        "label",
         "type",
         "offset",
         "size",
         "count",
-        "enum"
+        "enum",
+        "notes"
     ),
     "params": CODE_VAR,
     "return": CODE_VAR

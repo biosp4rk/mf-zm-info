@@ -161,17 +161,13 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
             #
             if "desc" in entry:
                 desc = entry.pop("desc")
-                if "notes" not in entry:
-                    entry["notes"] = desc
+                lab = "?"
                 if "label" not in entry:
-                    if desc == "?":
-                        if "offset" not in entry:
-                            print(entry)
-                            input()
-                        lab = "?"
-                    else:
+                    if desc != "?":
                         lab = desc_to_label(desc)
-                    print(lab)
+                    entry["label"] = lab
+                if "notes" not in entry and desc != lab:
+                    entry["notes"] = desc
             #
             fields = FIELDS[k]
             for i, field in enumerate(fields):
@@ -182,8 +178,6 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
                     stack.append((v, field))
         elif isinstance(entry, list):
             stack += [(e, k) for e in entry]
-
-    return
 
     # get output
     output = yaml.dump(data)
