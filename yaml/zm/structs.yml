@@ -100,7 +100,7 @@ AnimatedPaletteTiming:
   - label: State
     type: u8
     offset: 0x1
-  - label: '?'
+  - label: unk_02
     type: u8
     offset: 0x2
 AreaConnection:
@@ -284,10 +284,10 @@ BGPtrsAndDimensions:
 BLDALPHAData:
   size: 0x8
   vars:
-  - label: '?'
+  - label: unk_00
     type: u16
     offset: 0x0
-  - label: '?'
+  - label: unk_02
     type: u8
     offset: 0x2
   - label: EvbCoefficient
@@ -298,10 +298,10 @@ BLDALPHAData:
     type: u8
     offset: 0x4
     notes: EVA coefficient
-  - label: '?'
+  - label: unk_05
     type: u8
     offset: 0x5
-  - label: '?'
+  - label: unk_06
     type: u8
     offset: 0x6
   - label: FadingRelated
@@ -596,7 +596,7 @@ CurrDemo:
     type: u8
     offset: 0x2
     enum: DemoStatus
-  - label: '?'
+  - label: unk_03
     type: u8
     offset: 0x3
 CurrMessage:
@@ -662,14 +662,14 @@ CurrMessageSubData3:
 CurrMessageSubData4:
   size: 0x4
   vars:
-  - label: '?'
+  - label: unk_00
     type: u8
     offset: 0x0
   - label: IsMessageFlag
     type: u8
     offset: 0x1
     notes: Is message flag
-  - label: '?'
+  - label: unk_02
     type: u8
     offset: 0x2
 CurrPowerBomb:
@@ -877,13 +877,13 @@ CutsceneInfo:
     type: ptr.thumb
     offset: 0x4
     notes: Pointer to cutscene code?
-  - label: '?'
+  - label: unk_08
     type: u8
     offset: 0x8
-  - label: '?'
+  - label: unk_0A
     type: u8
     offset: 0xA
-  - label: '?'
+  - label: unk_0C
     type: u8
     offset: 0xC
   - label: Event
@@ -1123,13 +1123,13 @@ FileScreenOptionsUnlocked:
     type: u8
     offset: 0x4
     notes: Sound test and original Metroid unlocked flag
-  - label: '?'
+  - label: unk_05
     type: u8
     offset: 0x5
-  - label: '?'
+  - label: unk_06
     type: u8
     offset: 0x6
-  - label: '?'
+  - label: unk_07
     type: u8
     offset: 0x7
   - label: TimeAttackRelated
@@ -1268,7 +1268,7 @@ HazeLoops:
     type: u16
     offset: 0x0
     notes: Speed?
-  - label: '?'
+  - label: unk_02
     type: u8
     offset: 0x2
   - label: Flag
@@ -1279,7 +1279,7 @@ HazeLoops:
     type: u16
     offset: 0x4
     notes: Sub-data
-  - label: '?'
+  - label: unk_06
     type: u8
     offset: 0x6
   - label: Flag
@@ -1293,7 +1293,7 @@ HazeVramInfo:
     type: ptr
     offset: 0x0
     notes: Affected data pointer (IO register or palette RAM)
-  - label: '?'
+  - label: unk_04
     type: u16
     offset: 0x4
   - label: AffectedDataValue
@@ -1318,7 +1318,7 @@ InGameCutsceneData:
     offset: 0x3
     enum: InGameCutscene
     notes: Cutscene number
-  - label: '?'
+  - label: unk_04
     type: u8
     offset: 0x4
   - label: FunctionPtr
@@ -2030,7 +2030,7 @@ SamusEcho:
     type: u16
     offset: 0x108
     notes: Previous position counter
-  - label: '?'
+  - label: unk_10A
     type: u8
     offset: 0x10A
 SamusEnvironmentEffect:
@@ -2106,31 +2106,31 @@ SamusPhysics:
     type: ptr.gfx
     offset: 0x4
     notes: Shoulders graphics pointer
-  - label: '?'
+  - label: unk_08
     type: u16
     offset: 0x8
   - label: TorsoGfxPtr
     type: ptr.gfx
     offset: 0xC
     notes: Torso graphics pointer
-  - label: '?'
+  - label: unk_10
     type: u16
     offset: 0x10
   - label: LegsGfxPtr
     type: ptr.gfx
     offset: 0x14
     notes: Legs graphics pointer
-  - label: '?'
+  - label: unk_18
     type: u16
     offset: 0x18
   - label: BodyLowerHalfGfxPtr
     type: ptr.gfx
     offset: 0x1C
     notes: Body lower half graphics pointer
-  - label: '?'
+  - label: unk_20
     type: u16
     offset: 0x20
-  - label: '?'
+  - label: unk_22
     type: u16
     offset: 0x22
   - label: ArmCannonOamFramePtr
@@ -2141,14 +2141,14 @@ SamusPhysics:
     type: ptr.gfx
     offset: 0x28
     notes: Arm cannon upper graphics pointer
-  - label: '?'
+  - label: unk_2C
     type: u16
     offset: 0x2C
   - label: ArmCannonLowerGfxPtr
     type: ptr.gfx
     offset: 0x30
     notes: Arm cannon lower graphics pointer
-  - label: '?'
+  - label: unk_34
     type: u16
     offset: 0x34
   - label: ScrewAttackSpeedboosterEffectsOamFramePtr
@@ -2159,14 +2159,14 @@ SamusPhysics:
     type: ptr.gfx
     offset: 0x3C
     notes: Screw attack/speedbooster effects graphics pointer
-  - label: '?'
+  - label: unk_40
     type: u16
     offset: 0x40
   - label: ScrewAttackShinesparkGfxPtr
     type: ptr.gfx
     offset: 0x44
     notes: Screw attack/shinespark graphics pointer
-  - label: '?'
+  - label: unk_48
     type: u16
     offset: 0x48
   - label: ArmCannonXPositionOffset
@@ -2485,10 +2485,10 @@ SaveFileRam:
     type: u16
     offset: 0x246
     notes: Current music track
-  - label: '?'
+  - label: unk_248
     type: u32
     offset: 0x248
-  - label: '?'
+  - label: unk_24C
     type: u32
     offset: 0x24C
   - label: VisitedMinimapTiles
@@ -2532,10 +2532,10 @@ ScreenShake:
     type: u8
     offset: 0x1
     notes: Loop counter
-  - label: '?'
+  - label: unk_02
     type: u8
     offset: 0x2
-  - label: '?'
+  - label: unk_03
     type: u8
     offset: 0x3
 ScrewAttackSpeedBoosterAnimation:
@@ -2564,13 +2564,13 @@ SharedSram:
     type: u32
     offset: 0x4
     notes: Bitwise NOT of checksum?
-  - label: '?'
+  - label: unk_08
     type: u8
     offset: 0x8
-  - label: '?'
+  - label: unk_09
     type: u8
     offset: 0x9
-  - label: '?'
+  - label: unk_0A
     type: u16
     offset: 0xA
   - label: GalleryImages
@@ -2581,10 +2581,10 @@ SharedSram:
     type: u8
     offset: 0xE
     notes: Sound test and original Metroid
-  - label: '?'
+  - label: unk_0F
     type: u8
     offset: 0xF
-  - label: '?'
+  - label: unk_10
     type: u8
     offset: 0x10
   - label: FileScreenOptionsUnlockedUnknown1
@@ -2607,7 +2607,7 @@ SharedSram:
     type: u32
     offset: 0x16
     notes: File screen options unlocked time attack?
-  - label: '?'
+  - label: unk_40
     type: u8
     offset: 0x40
 SoundDataEntry:
@@ -2636,7 +2636,7 @@ SpecialBGEffect:
     type: u8
     offset: 0x1
     notes: Unused?
-  - label: '?'
+  - label: unk_02
     type: u16
     offset: 0x2
   - label: Effect
@@ -2646,10 +2646,10 @@ SpecialBGEffect:
   - label: Stage
     type: u8
     offset: 0x5
-  - label: '?'
+  - label: unk_06
     type: u8
     offset: 0x6
-  - label: '?'
+  - label: unk_07
     type: u8
     offset: 0x7
 SpecialBGFade:
@@ -2670,14 +2670,14 @@ SpecialBGFade:
     type: u8
     offset: 0x3
     notes: Fade in/out timer?
-  - label: '?'
+  - label: unk_04
     type: u8
     offset: 0x4
   - label: Flag
     type: u8
     offset: 0x5
     notes: Flag?
-  - label: '?'
+  - label: unk_06
     type: u16
     offset: 0x6
 SpriteData:
@@ -2834,10 +2834,10 @@ SpriteData:
     type: u8
     offset: 0x34
     notes: Absolute palette row
-  - label: '?'
+  - label: unk_35
     type: u8
     offset: 0x35
-  - label: '?'
+  - label: unk_36
     type: u8
     offset: 0x36
 SpriteDebris:
@@ -2981,7 +2981,7 @@ SubSpriteData:
     type: u8
     offset: 0xE
     notes: Timer?
-  - label: '?'
+  - label: unk_0F
     type: u8
     offset: 0xF
   - label: RoomSlot
@@ -2992,10 +2992,10 @@ SubSpriteData:
     type: u8
     offset: 0x11
     notes: RAM slot?
-  - label: '?'
+  - label: unk_12
     type: u8
     offset: 0x12
-  - label: '?'
+  - label: unk_13
     type: u8
     offset: 0x13
 SuitFlashEffect:
@@ -3116,7 +3116,7 @@ TimeAttackData:
     type: u8
     offset: 0x6
     notes: In-game seconds
-  - label: '?'
+  - label: unk_07
     type: u8
     offset: 0x7
   - label: EndingNum
@@ -3127,25 +3127,25 @@ TimeAttackData:
     type: u8
     offset: 0x9
     notes: Completion percentage
-  - label: '?'
+  - label: unk_0A
     type: u8
     offset: 0xA
-  - label: '?'
+  - label: unk_0B
     type: u8
     offset: 0xB
-  - label: '?'
+  - label: unk_0C
     type: u8
     offset: 0xC
-  - label: RandomNumBasedOnInGameTimeAtBossesKraidRuinsTest
+  - label: RandomNum_Kraid_RuinsTest
     type: u8
     offset: 0xD
     notes: Random number based on in-game time at bosses (Kraid + Ruins Test)
-  - label: RandomNumBasedOnInGameTimeAtBossesMotherBrainMechaRidley
+  - label: RandomNum_MotherBrain_MechaRidley
     type: u8
     offset: 0xE
     notes: Random number based on in-game time at bosses (Mother Brain + Mecha
       Ridley)
-  - label: RandomNumBasedOn8BitFrameCounter
+  - label: RandomNum_8BitFrameCounter
     type: u8
     offset: 0xF
     notes: Random number based on 8-bit frame counter
@@ -3153,7 +3153,7 @@ TimeAttackData:
     type: u8
     offset: 0x10
     count: 0x14
-  - label: '?'
+  - label: unk_24
     type: u8
     offset: 0x24
   - label: PasswordSeed

@@ -704,15 +704,15 @@ EndingFlags:
 ErrorFlags:
 - label: None
   val: 0x0
-- label: '?'
+- label: unk_03
   val: 0x3
-- label: '?'
+- label: unk_1C
   val: 0x1C
-- label: '?'
+- label: unk_20
   val: 0x20
-- label: '?'
+- label: unk_40
   val: 0x40
-- label: '?'
+- label: unk_E00
   val: 0xE00
 - label: HardwareError
   val: 0x10000
@@ -1018,9 +1018,9 @@ OamPreAction:
 - label: IncrementIdAfterEnd
   val: 0x5
   notes: Increment ID after end
-- label: '?'
+- label: unk_06
   val: 0x6
-- label: '?'
+- label: unk_07
   val: 0x7
 - label: SwitchToPrevFrame
   val: 0x8
@@ -1300,7 +1300,7 @@ ProjectileStatus:
 - label: XFlip
   val: 0x40
   notes: X-flip
-- label: '?'
+- label: unk_80
   val: 0x80
 ProjectileType:
 - label: Beam
@@ -1644,10 +1644,10 @@ SamusSlopeType:
   val: 0x1
 - label: Slight
   val: 0x2
-- label: ''
+- label: Right
   val: 0x10
   notes: /
-- label: ''
+- label: Left
   val: 0x20
   notes: \
 SamusStandingStatus:
@@ -1702,11 +1702,11 @@ SpecialBGEffect:
   val: 0x8
   notes: All white
 SpecialBGFadeType:
-- label: '?'
+- label: unk_00
   val: 0x0
 - label: Flash
   val: 0x1
-- label: '?'
+- label: unk_02
   val: 0x2
 - label: White
   val: 0x3
@@ -1731,7 +1731,7 @@ SpecialBGFadeType:
 - label: SlowBlackFade
   val: 0xA
   notes: Slow black fade
-- label: '?'
+- label: unk_0B
   val: 0xB
 - label: EscapeFailedFade
   val: 0xC
@@ -1739,7 +1739,7 @@ SpecialBGFadeType:
 - label: SoftResetFade
   val: 0xD
   notes: Soft reset fade?
-- label: '?'
+- label: unk_0E
   val: 0xE
 - label: ChozodiaEscapeFade
   val: 0xF
@@ -1759,14 +1759,14 @@ SpecialBGFadeType:
 - label: IntroTextFade
   val: 0x14
   notes: Intro text fade
-- label: '?'
+- label: unk_15
   val: 0x15
 - label: BlueShipFade
   val: 0x16
   notes: Blue ship fade
-- label: '?'
+- label: unk_17
   val: 0x17
-- label: '?'
+- label: unk_18
   val: 0x18
 SpriteDebrisType:
 - label: Todo
@@ -1776,10 +1776,11 @@ SpriteProperties:
 - label: AlwaysActiveIgnoresPreventMovementTimer
   val: 0x1
   notes: Always active (ignores prevent movement timer)
-- label: '?'
+- label: unk_02
   val: 0x2
-- label: Projectile
+- label: KillOffScreen
   val: 0x4
+  notes: Delete sprite if it moves off screen
 - label: SolidForProjectiles
   val: 0x8
   notes: Solid for projectiles

@@ -712,7 +712,7 @@
   - label: MusicTrack
     type: u16
     notes: Music track
-  - label: '?'
+  - label: param_1
     type: bool
   return: null
   notes: Play music and queue current music
@@ -794,7 +794,7 @@
   - label: DestinationRamAddress
     type: ptr
     notes: Destination RAM address
-  - label: '?'
+  - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
@@ -819,7 +819,7 @@
   - label: DestinationRamAddress
     type: ptr
     notes: Destination RAM address
-  - label: '?'
+  - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
@@ -841,7 +841,7 @@
   - label: SourceRamAddress
     type: ptr
     notes: Source RAM address
-  - label: '?'
+  - label: param_2
     type: u8
   return:
     label: EndSourceAddress
@@ -863,7 +863,7 @@
   - label: SourceRamAddress
     type: ptr
     notes: Source RAM address
-  - label: '?'
+  - label: param_2
     type: u8
   return:
     label: EndSourceAddress
@@ -885,7 +885,7 @@
   - label: DestinationAddress
     type: ptr
     notes: Destination address?
-  - label: '?'
+  - label: param_2
     type: u8
   return:
     label: EndSourceAddress
@@ -907,7 +907,7 @@
   - label: DestinationAddress
     type: ptr
     notes: Destination address?
-  - label: '?'
+  - label: param_2
     type: u8
   return:
     label: EndSourceAddress
@@ -1298,9 +1298,9 @@
   - label: SamusDataPtr
     type: ptr.SamusData
     notes: Samus data pointer
-  - label: '?'
+  - label: param_1
     type: u8
-  - label: '?'
+  - label: param_2
     type: u8
   return: null
   notes: Samus check set environment effect
@@ -7243,7 +7243,7 @@
   params:
   - label: Duration
     type: u8
-  - label: '?'
+  - label: param_1
     type: u8
   return: null
   notes: Start vertical screen shake
@@ -7258,7 +7258,7 @@
   params:
   - label: Duration
     type: u8
-  - label: '?'
+  - label: param_1
     type: u8
   return:
     label: Timer
@@ -7382,7 +7382,7 @@
   - label: EvbCoefficient
     type: u8
     notes: EVB coefficient
-  - label: '?'
+  - label: param_2
     type: u8
   - label: FadingRelated
     type: u8
@@ -7586,7 +7586,7 @@
   - label: XPosition
     type: u16
     notes: X position
-  - label: '?'
+  - label: param_2
     type: u8
   return: null
   notes: Start power bomb explosion
@@ -7745,7 +7745,7 @@
   - label: BlockXPosition
     type: u16
     notes: Block X position
-  - label: '?'
+  - label: param_3
     type: u8
   return:
     label: HazardType
@@ -8231,7 +8231,7 @@
   - label: YPosition
     type: u16
     notes: Y position
-  - label: '?'
+  - label: param_3
     type: u8
   return:
     label: Stored
@@ -8344,11 +8344,11 @@
   - label: Always0
     type: u8
     notes: Always 0?
-  - label: '?'
+  - label: param_1
     type: u16
-  - label: '?'
+  - label: param_2
     type: u16
-  - label: '?'
+  - label: param_3
     type: u16
   return: null
   notes: Updates the graphics for the Mother Brain glass
@@ -8592,7 +8592,7 @@
   size: 0xA0
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u8
   return: null
   notes: Set yellow tint for power bomb explosion
@@ -8647,7 +8647,7 @@
   mode: thumb
   params: null
   return:
-    label: '?'
+    label: unk
     type: bool
   notes: Process special fading effect
 -
@@ -8951,7 +8951,7 @@
   mode: thumb
   params: null
   return:
-    label: '?'
+    label: unk
     type: u8
   notes: Process special background effect
 -
@@ -8980,7 +8980,7 @@
   size: 0x15C
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u8
   - label: HatchNum
     type: u32
@@ -9976,7 +9976,7 @@
   mode: thumb
   params: null
   return:
-    label: '?'
+    label: unk
     type: u8
   notes: Subroutine for the statue opening cutscene
 -
@@ -10345,9 +10345,9 @@
   size: 0x2D4
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u8
-  - label: '?'
+  - label: param_1
     type: u8
   return: null
   notes: Draw in-game time and tanks
@@ -10474,7 +10474,7 @@
   size: 0xEC
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u8
   - label: PtrToTextPtr
     type: ptr
@@ -10753,7 +10753,7 @@
   - label: ChozoStatueYPositionPtr
     type: ptr
     notes: Chozo statue Y position pointer
-  - label: '?'
+  - label: param_2
     type: ptr
   - label: ChozoStatueTargetPathPtr
     type: ptr
@@ -11476,9 +11476,9 @@
   size: 0x44
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 1
@@ -11493,7 +11493,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 2
@@ -11508,7 +11508,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 3
@@ -11523,7 +11523,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 4
@@ -11538,7 +11538,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 5
@@ -11553,7 +11553,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 6
@@ -11568,7 +11568,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 7
@@ -11583,7 +11583,7 @@
   params:
   - label: Seed
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
   return: null
   notes: Time attack password seed function 8
@@ -12211,7 +12211,7 @@
     type: u32
     notes: Line Number
   return:
-    label: '?'
+    label: unk
     type: u32
   notes: Displays a line of text in the credits
 -
@@ -12579,7 +12579,7 @@
   mode: thumb
   params: null
   return:
-    label: '?'
+    label: unk
     type: u32
   notes: Checks if an error has occured and calls DisplayError? If yes
 -
@@ -12591,11 +12591,11 @@
   size: 0x120
   mode: thumb
   params:
-  - label: '?'
+  - label: param_0
     type: u32
-  - label: '?'
+  - label: param_1
     type: u32
-  - label: '?'
+  - label: param_2
     type: u32
   return:
     label: ErrorFlag

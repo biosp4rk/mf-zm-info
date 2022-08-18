@@ -50,7 +50,6 @@ class Validator(object):
                 prev = None
                 for entry in code:
                     self.entry = entry
-                    self.check_desc(entry)
                     self.check_label(entry)
                     self.check_addr(entry, 4)
                     self.check_size(entry, True, 2)
@@ -67,7 +66,6 @@ class Validator(object):
                     prev = None
                     for entry in entries:
                         self.entry = entry
-                        self.check_desc(entry)
                         self.check_label(entry)
                         # TODO: should type be required?
                         self.check_type(entry)
@@ -109,16 +107,17 @@ class Validator(object):
                 # so we only check against one region
                 break
 
-    def check_desc(self, entry) -> None:
-        assert "desc" in entry, "desc is required"
-        desc = entry["desc"]
-        assert isinstance(desc, str), "desc must be a string"
-        assert len(desc.strip()) > 0, "desc cannot be empty"
-
     def check_label(self, entry) -> None:
         assert "label" in entry, "label is required"
         label = entry["label"]
         assert LABEL_PAT.match(label), "label must be alphanumeric"
+
+    def check_notes(self, entry) -> None:
+        if "notes" not in entry:
+            return
+        notes = entry["notes"]
+        assert isinstance(notes, str), "notes must be a string"
+        assert len(notes.strip()) > 0, "notes cannot be empty"
 
     def check_versioned_int(self, entry, align=None) -> None:
         nums = None
@@ -162,7 +161,7 @@ class Validator(object):
         assert isinstance(entry, list), "enum entry must be a list"
         prev = -0x80000001
         for val_dict in entry:
-            self.check_desc(val_dict)
+            self.check_label(val_dict)
             # check val
             assert "val" in val_dict, "val is required"
             val = val_dict["val"]
@@ -176,7 +175,7 @@ class Validator(object):
         assert isinstance(vars, list), "vars must be a list"
         prev = -1
         for var in vars:
-            self.check_desc(var)
+            self.check_label(var)
             self.check_type(var)
             self.check_offset(var)
             self.check_count(var)
@@ -200,7 +199,7 @@ class Validator(object):
             params, list), "params must be null or list"
         if isinstance(params, list):
             for param in params:
-                self.check_desc(param)
+                self.check_label(param)
                 self.check_type(param, True)
                 self.check_enum(param)
 
@@ -210,7 +209,7 @@ class Validator(object):
         assert ret is None or isinstance(
             ret, dict), "return must be null or dictionary"
         if isinstance(ret, dict):
-            self.check_desc(ret)
+            self.check_label(ret)
             self.check_type(ret, True)
             self.check_enum(ret)
 
