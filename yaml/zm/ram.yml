@@ -1,1352 +1,1352 @@
 -
-  desc: Clipdata collision types
   label: ClipdataCollisionTypes_Ram
   type: u8
   addr: 0x2002000
   count: 0x400
   enum: ClipdataCollisionType
+  notes: Clipdata collision types
 -
-  desc: Clipdata collision types (0x400)
   label: ClipdataCollisionTypes_400_Ram
   type: u8
   addr: 0x2002400
   count: 0x400
   enum: ClipdataCollisionType
+  notes: Clipdata collision types (0x400)
 -
-  desc: Clipdata behavior types
   label: ClipdataBehaviorTypes_Ram
   type: u16
   addr: 0x2003000
   count: 0x400
   enum: ClipdataBehaviorType
+  notes: Clipdata behavior types
 -
-  desc: Clipdata behavior types (0x400)
   label: ClipdataBehaviorTypes_400_Ram
   type: u16
   addr: 0x2003800
   count: 0x400
   enum: ClipdataBehaviorType
+  notes: Clipdata behavior types (0x400)
 -
-  desc: Tilemap
   label: Tilemap_Ram
   type: u16
   addr: 0x2004000
   count: 0x1000
+  notes: Tilemap
 -
-  desc: Tilemap (0x400)
   label: Tilemap_400_Ram
   type: u16
   addr: 0x2006000
   count: 0x1000
+  notes: Tilemap (0x400)
 -
-  desc: Pause overlay tilemap
   label: PauseOverlayTilemap
   type: u16
   addr: 0x2009800
   count: 0x400
+  notes: Pause overlay tilemap
 -
-  desc: Animated graphics
   label: AnimatedGfx
   type: u16
   addr: 0x201B000
   size: 0x800
+  notes: Animated graphics
 -
-  desc: Decompressed clipdata
   label: DecompClipdata
   type: u16
   addr: 0x2027800
   count: 0x1800
+  notes: Decompressed clipdata
 -
-  desc: Decompressed BG0 map
   label: DecompBG0Data
   type: u16
   addr: 0x202A800
   count: 0x1800
+  notes: Decompressed BG0 map
 -
-  desc: Decompressed BG1 map
   label: DecompBG1Data
   type: u16
   addr: 0x202D800
   count: 0x1800
+  notes: Decompressed BG1 map
 -
-  desc: Decompressed BG2 map
   label: DecompBG2Data
   type: u16
   addr: 0x2030800
   count: 0x1800
+  notes: Decompressed BG2 map
 -
-  desc: Minimap tiles with obtained items
   label: MinimapTilesWithObtainedItems
   addr: 0x2033800
   size: 0x800
+  notes: Minimap tiles with obtained items
 -
-  desc: Decompressed minimap visited tiles
   label: DecompExploredMinimap
   addr: 0x2034000
   size: 0x800
+  notes: Decompressed minimap visited tiles
 -
-  desc: Decompressed minimap data
   label: DecompMinimapData
   addr: 0x2034800
   size: 0x800
+  notes: Decompressed minimap data
 -
-  desc: Items collected
   label: ItemsCollected
   addr: 0x2036C00
   size: 0x800
+  notes: Items collected
 -
-  desc: Visited minimap tiles
   label: VisitedMinimapTiles
   addr: 0x2037400
   size: 0x400
+  notes: Visited minimap tiles
 -
-  desc: Hatches opened
   label: HatchesOpened
   addr: 0x2037C00
   size: 0x100
+  notes: Hatches opened
 -
-  desc: Events triggered
   label: EventsTriggered
   addr: 0x2037E00
   size: 0x20
+  notes: Events triggered
 -
-  desc: SRAM
   label: Sram
   type: SaveFileRam
   addr: 0x2038000
   count: 0x6
+  notes: SRAM
 -
-  desc: Debug flag
   label: DebugFlag
   type: u8
   addr: 0x3000000
+  notes: Debug flag
 -
-  desc: 16-bit frame counter
   label: FrameCounter16Bit
   type: u16
   addr: 0x3000002
+  notes: 16-bit frame counter
 -
-  desc: Stereo flag
   label: StereoFlag
   type: u8
   addr: 0x3000004
+  notes: Stereo flag
 -
-  desc: Written to BLDALPHA (alpha blending coefficients)
   label: WrittenToBLDALPHA
   type: u16
   addr: 0x3000006
+  notes: Written to BLDALPHA (alpha blending coefficients)
 -
-  desc: Written to BLDCNT (color special effects selection)
   label: WrittenToBLDCNT
   type: u16
   addr: 0x3000008
+  notes: Written to BLDCNT (color special effects selection)
 -
-  desc: Written to DISPCNT (LCD control)
   label: WrittenToDISPCNT
   type: u16
   addr: 0x300000A
+  notes: Written to DISPCNT (LCD control)
 -
-  desc: Written to WININ_H (inside of window 1)
   label: WrittenToWININ_H
   type: u8
   addr: 0x300000E
+  notes: Written to WININ_H (inside of window 1)
 -
-  desc: Written to WINOUT_L (outside of windows)
   label: WrittenToWINOUT_L
   type: u8
   addr: 0x300000F
+  notes: Written to WINOUT_L (outside of windows)
 -
-  desc: Written to 0x05000000 (transparent color)
   label: WrittenTo5000000
   type: u16
   addr: 0x3000010
+  notes: Written to 0x05000000 (transparent color)
 -
-  desc: Written to BLDY (brightness coefficient)
   label: WrittenToBLDY
   type: s8
   addr: 0x3000012
+  notes: Written to BLDY (brightness coefficient)
 -
-  desc: File screen options unlocked
   label: FileScreenOptionsUnlocked
   type: FileScreenOptionsUnlocked
   addr: 0x3000014
+  notes: File screen options unlocked
 -
-  desc: Language
   label: Language
   type: u8
   addr: 0x3000020
   enum: Language
+  notes: Language
 -
-  desc: Game completion
   label: GameCompletion
   type: GameCompletion
   addr: 0x3000024
+  notes: Game completion
 -
-  desc: Completed game flag copy
   label: CompletedGameFlagCopy
   type: u8
   addr: 0x3000028
+  notes: Completed game flag copy
 -
-  desc: Fades backgrounds to black or white
   label: FadeBGBlackWhite
   type: u8
   addr: 0x3000029
   enum: BackgroundFade
+  notes: Fades backgrounds to black or white
 -
-  desc: Which background's position is written to BG3OFS
   label: BGPositionWrittenToBG3OFS
   type: u8
   addr: 0x300002A
+  notes: Which background's position is written to BG3OFS
 -
-  desc: Samus on top of backgrounds flag
   label: SamusOnTopOfBGFlag
   type: u8
   addr: 0x300002B
+  notes: Samus on top of backgrounds flag
 -
-  desc: Difficulty
   label: Difficulty
   type: u8
   addr: 0x300002C
   enum: Difficulty
+  notes: Difficulty
 -
-  desc: Use mothership doors flag
   label: MothershipDoorsFlag
   type: u8
   addr: 0x300002D
+  notes: Use mothership doors flag
 -
-  desc: Time attack flag
   label: TimeAttackFlag
   type: u8
   addr: 0x300002E
+  notes: Time attack flag
 -
-  desc: Cutscene to skip
   label: CutsceneToSkip
   type: u8
   addr: 0x300002F
+  notes: Cutscene to skip
 -
-  desc: Room's music track
   label: RoomMusicTrack
   type: u16
   addr: 0x3000030
+  notes: Room's music track
 -
-  desc: Current demo
   label: CurrDemo
   type: CurrDemo
   addr: 0x3000038
+  notes: Current demo
 -
-  desc: Reboot game flag
   label: RebootGameFlag
   type: u8
   addr: 0x300003C
+  notes: Reboot game flag
 -
-  desc: Disable scrolling flag
   label: DisableScrollingFlag
   type: u8
   addr: 0x300003D
+  notes: Disable scrolling flag
 -
-  desc: Skip door transition flag
   label: SkipDoorTransitionFlag
   type: u8
   addr: 0x3000042
+  notes: Skip door transition flag
 -
-  desc: Disable soft-reset flag
   label: DisableSoftResetFlag
   type: u8
   addr: 0x3000043
+  notes: Disable soft-reset flag
 -
-  desc: Collecting tank flag
   label: CollectingTankFlag
   type: u8
   addr: 0x3000044
+  notes: Collecting tank flag
 -
-  desc: Disable animated graphics timer
   label: DisableAnimatedGfxTimer
   type: u8
   addr: 0x3000045
+  notes: Disable animated graphics timer
 -
-  desc: Animated graphics to update
   label: AnimatedGfxToUpdate
   type: flags16
   addr: 0x3000046
+  notes: Animated graphics to update
 -
-  desc: Disable doors and tanks flag
   label: DisableDoorsAndTanksFlag
   type: u8
   addr: 0x3000048
+  notes: Disable doors and tanks flag
 -
-  desc: Disable pause flag
   label: DisablePauseFlag
   type: u8
   addr: 0x3000049
+  notes: Disable pause flag
 -
-  desc: Hide HUD flag
   label: HideHudFlag
   type: u8
   addr: 0x300004A
+  notes: Hide HUD flag
 -
-  desc: Ship landing cutscene flag
   label: ShipLandingCutsceneFlag
   type: u8
   addr: 0x300004B
+  notes: Ship landing cutscene flag
 -
-  desc: Disable clipdata changing transparency flag
   label: DisableClipdataChangingTransparencyFlag
   type: u8
   addr: 0x300004C
+  notes: Disable clipdata changing transparency flag
 -
-  desc: Disable animated palette flag
   label: DisableAnimatedPaletteFlag
   type: u8
   addr: 0x300004D
+  notes: Disable animated palette flag
 -
-  desc: Current area
   label: AreaID
   type: u8
   addr: 0x3000054
   enum: AreaID
+  notes: Current area
 -
-  desc: Current room
   label: RoomID
   type: u8
   addr: 0x3000055
+  notes: Current room
 -
-  desc: Last door used
   label: PrevDoor
   type: u8
   addr: 0x3000056
+  notes: Last door used
 -
-  desc: Last door properties
   label: PrevDoorProperties
   type: u8
   addr: 0x3000057
+  notes: Last door properties
 -
-  desc: Bit 6 of above, displays new location pop-up
   label: DoorDisplayLocationFlag
   type: u8
   addr: 0x3000058
+  notes: Bit 6 of above, displays new location pop-up
 -
-  desc: Minimap X coordinate
   label: MinimapXPosition
   type: u8
   addr: 0x3000059
+  notes: Minimap X coordinate
 -
-  desc: Minimap Y coordinate
   label: MinimapYPosition
   type: u8
   addr: 0x300005A
+  notes: Minimap Y coordinate
 -
-  desc: Number of never reform blocks broken
   label: NumNeverReformBlocksBroken
   type: NumNeverReformBlocksBroken
   addr: 0x300005B
+  notes: Number of never reform blocks broken
 -
-  desc: Number of items collected
   label: NumItemsCollected
   type: NumItemsCollected
   addr: 0x3000063
+  notes: Number of items collected
 -
-  desc: Current haze value
   label: CurrHazeValue
   type: u8
   addr: 0x300006B
   enum: HazeType
+  notes: Current haze value
 -
-  desc: Room effect actual Y position
   label: RoomEffectActualYPosition
   type: u16
   addr: 0x300006C
+  notes: Room effect actual Y position
 -
-  desc: Room effect Y position offset
   label: RoomEffectYPositionOffset
   type: u16
   addr: 0x300006E
+  notes: Room effect Y position offset
 -
-  desc: DISPCNT backup
   label: DISPCNTBackup
   type: u16
   addr: 0x3000076
+  notes: DISPCNT backup
 -
-  desc: Spriteset
   label: SpritesetNum
   type: u8
   addr: 0x3000078
+  notes: Spriteset
 -
-  desc: Current clipdata affecting action
   label: CurrClipdataAffectingAction
   type: u8
   addr: 0x3000079
   enum: ClipdataAffectingAction
+  notes: Current clipdata affecting action
 -
-  desc: Spriteset entry used
   label: SpritesetEntryUsed
   type: u8
   addr: 0x300007A
+  notes: Spriteset entry used
 -
-  desc: Door unlock timer
   label: DoorUnlockTimer
   type: u8
   addr: 0x300007B
+  notes: Door unlock timer
 -
-  desc: Disable drawing sprites flag
   label: DisableDrawingSpritesFlag
   type: u8
   addr: 0x300007C
+  notes: Disable drawing sprites flag
 -
-  desc: Current cutscene
   label: CurrCutscene
   type: u8
   addr: 0x300007D
+  notes: Current cutscene
 -
-  desc: Haze VRAM info
   label: HazeVramInfo
   type: HazeVramInfo
   addr: 0x3000080
+  notes: Haze VRAM info
 -
-  desc: Backup of I/O registers
   label: BackupOfIORegisters
   type: BackupOfIORegisters
   addr: 0x3000088
+  notes: Backup of I/O registers
 -
-  desc: Background pointers and dimensions
   label: BGPtrsAndDimensions
   type: BGPtrsAndDimensions
   addr: 0x300009C
+  notes: Background pointers and dimensions
 -
-  desc: Current room entry
   label: CurrRoomEntry
   type: CurrRoomEntry
   addr: 0x30000BC
+  notes: Current room entry
 -
-  desc: Current affecting clipdata
   label: CurrAffectingClipdata
   type: CurrAffectingClipdata
   addr: 0x30000DC
+  notes: Current affecting clipdata
 -
-  desc: Background positions
   label: BGPositions
   type: BGPositions
   addr: 0x30000E4
+  notes: Background positions
 -
-  desc: BG2 movement
   label: BG2Movement
   type: BG2Movement
   addr: 0x30000FC
+  notes: BG2 movement
 -
-  desc: Lock screen position
   label: LockScreenPosition
   type: LockScreenPosition
   addr: 0x3000100
+  notes: Lock screen position
 -
-  desc: Suit flash effect
   label: SuitFlashEffect
   type: SuitFlashEffect
   addr: 0x3000108
+  notes: Suit flash effect
 -
-  desc: Screen shake Y
   label: ScreenShakeY
   type: ScreenShake
   addr: 0x3000110
+  notes: Screen shake Y
 -
-  desc: Screen shake X
   label: ScreenShakeX
   type: ScreenShake
   addr: 0x3000114
+  notes: Screen shake X
 -
-  desc: Current scrolls
   label: CurrScrolls
   type: CurrScrolls
   addr: 0x3000118
+  notes: Current scrolls
 -
-  desc: Current power bomb
   label: CurrPowerBomb
   type: CurrPowerBomb
   addr: 0x3000130
+  notes: Current power bomb
 -
-  desc: Screen position and velocity
   label: ScreenPositionAndVelocity
   type: ScreenPositionAndVelocity
   addr: 0x3000144
+  notes: Screen position and velocity
 -
-  desc: Max in-game time flag
   label: MaxInGameTimeFlag
   type: u8
   addr: 0x300014C
+  notes: Max in-game time flag
 -
-  desc: In-game timer
   label: InGameTimer
   type: InGameTime
   addr: 0x3000150
+  notes: In-game timer
 -
-  desc: Best completion times (unused)
   label: BestCompletionTimes
   type: InGameTime
   addr: 0x3000154
   count: 0xC
+  notes: Best completion times (unused)
 -
-  desc: In-game time at bosses
   label: InGameTimeAtBosses
   type: InGameTimeAtBosses
   addr: 0x3000184
+  notes: In-game time at bosses
 -
-  desc: Last elevator used
   label: LastElevatorUsed
   type: LastElevatorUsed
   addr: 0x3000198
+  notes: Last elevator used
 -
-  desc: Alarm timer
   label: AlarmTimer
   type: u16
   addr: 0x30001A8
+  notes: Alarm timer
 -
-  desc: Sprite data
   label: SpriteDataSlot0
   type: SpriteData
   addr: 0x30001AC
   count: 0x18
+  notes: Sprite data
 -
-  desc: Spriteset sprite IDs
   label: SpritesetSpriteIDs
   type: u8
   addr: 0x30006EC
   count: 0xF
   enum: PrimarySpriteID
+  notes: Spriteset sprite IDs
 -
-  desc: Spriteset sprite graphics slots
   label: SpritesetSpriteGfxSlots
   type: u8
   addr: 0x30006FB
   count: 0xF
+  notes: Spriteset sprite graphics slots
 -
-  desc: Sub-sprite data 1
   label: SubSpriteData1
   type: SubSpriteData
   addr: 0x300070C
+  notes: Sub-sprite data 1
 -
-  desc: Sub-sprite data 2
   label: SubSpriteData2
   type: SubSpriteData
   addr: 0x3000720
+  notes: Sub-sprite data 2
 -
-  desc: Current sprite being processed
   label: CurrSpriteData
   type: SpriteData
   addr: 0x3000738
+  notes: Current sprite being processed
 -
-  desc: Sprite debris
   label: SpriteDebris
   type: SpriteDebris
   addr: 0x3000770
   count: 0x8
+  notes: Sprite debris
 -
-  desc: Previous center collision check
   label: PrevCenterCollisionCheck
   type: u8
   addr: 0x30007F0
   enum: CollisionCheck
+  notes: Previous center collision check
 -
-  desc: Previous left/right edge collision check
   label: PrevLeftRightCollisionCheck
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
+  notes: Previous left/right edge collision check
 -
-  desc: Sprite draw order
   label: SpriteDrawOrder
   type: u8
   addr: 0x30007F3
   count: 0x18
+  notes: Sprite draw order
 -
-  desc: Boss work variables
   label: BossWork
   type: BossWork
   addr: 0x300080C
+  notes: Boss work variables
 -
-  desc: Sprite random number
   label: SpriteRandomNum
   type: u8
   addr: 0x300083C
+  notes: Sprite random number
 -
-  desc: Particle effects
   label: ParticleEffects
   type: ParticleEffect
   addr: 0x3000840
   count: 0x10
+  notes: Particle effects
 -
-  desc: Missiles highlight status
   label: MissileHighlightStatus
   type: u8
   addr: 0x3000900
+  notes: Missiles highlight status
 -
-  desc: Power bombs highlight status
   label: PowerBombHighlightStatus
   type: u8
   addr: 0x3000901
+  notes: Power bombs highlight status
 -
-  desc: Super missiles highlight status
   label: SuperMissileHighlightStatus
   type: u8
   addr: 0x3000902
+  notes: Super missiles highlight status
 -
-  desc: Update corner map flag
   label: UpdateCornerMapFlag
   type: u8
   addr: 0x3000903
+  notes: Update corner map flag
 -
-  desc: Energy digits
   label: EnergyDigits
   type: AmmoDigits
   addr: 0x3000904
+  notes: Energy digits
 -
-  desc: Max energy digits
   label: MaxEnergyDigits
   type: AmmoDigits
   addr: 0x3000908
+  notes: Max energy digits
 -
-  desc: Missiles digits
   label: MissileDigits
   type: AmmoDigits
   addr: 0x300090C
+  notes: Missiles digits
 -
-  desc: Power bombs digits
   label: PowerBombDigits
   type: AmmoDigits
   addr: 0x3000910
+  notes: Power bombs digits
 -
-  desc: Super missiles digits
   label: SuperMissileDigits
   type: AmmoDigits
   addr: 0x3000914
+  notes: Super missiles digits
 -
-  desc: Current particle effect OAM frame pointer
   label: CurrParticleEffectOamFramePtr
   type: ptr
   addr: 0x3000918
+  notes: Current particle effect OAM frame pointer
 -
-  desc: Ammo digit graphics
   label: AmmoDigitGfx
   type: gfx
   addr: 0x300091C
   size: 0x40
+  notes: Ammo digit graphics
 -
-  desc: Escape timer status
   label: EscapeTimerStatus
   type: u8
   addr: 0x300095C
   enum: EscapeTimerStatus
+  notes: Escape timer status
 -
-  desc: Escape timer counter
   label: EscapeTimerCounter
   type: u8
   addr: 0x300095D
+  notes: Escape timer counter
 -
-  desc: Escape timer digits
   label: EscapeTimerDigits
   type: EscapeTimerDigits
   addr: 0x300095E
+  notes: Escape timer digits
 -
-  desc: Particle escape OAM frames
   label: ParticleEscapeOamFrames
   addr: 0x3000964
   size: 0x2
   count: 0x19
+  notes: Particle escape OAM frames
 -
-  desc: Energy refill animation
   label: EnergyRefillAnimation
   type: u8
   addr: 0x3000996
+  notes: Energy refill animation
 -
-  desc: Missile refill animation
   label: MissileRefillAnimation
   type: u8
   addr: 0x3000997
+  notes: Missile refill animation
 -
-  desc: Super missile refill animation
   label: SuperMissileRefillAnimation
   type: u8
   addr: 0x3000998
+  notes: Super missile refill animation
 -
-  desc: Power bomb refill animation
   label: PowerBombRefillAnimation
   type: u8
   addr: 0x3000999
+  notes: Power bomb refill animation
 -
-  desc: Particle Samus reflection OAM frames
   label: ParticleSamusReflectionOamFrames
   addr: 0x300099A
   size: 0x2
   count: 0x49
+  notes: Particle Samus reflection OAM frames
 -
-  desc: Projectile data
   label: ProjectileDataSlot0
   type: ProjectileData
   addr: 0x3000A2C
   count: 0x10
+  notes: Projectile data
 -
-  desc: Arm cannon Y position
   label: ArmCannonYPosition
   type: u16
   addr: 0x3000BEC
+  notes: Arm cannon Y position
 -
-  desc: Arm cannon X position
   label: ArmCannonXPosition
   type: u16
   addr: 0x3000BEE
+  notes: Arm cannon X position
 -
-  desc: Pause screen flag
   label: PauseScreenFlag
   type: u8
   addr: 0x3000BF0
   enum: PauseScreenFlag
+  notes: Pause screen flag
 -
-  desc: Area of previous room
   label: AreaOfPrevRoom
   type: u8
   addr: 0x3000BF1
   enum: AreaID
+  notes: Area of previous room
 -
-  desc: File select options cursor index
   label: FileSelectOptionsCursorIndex
   type: u8
   addr: 0x3000BF3
+  notes: File select options cursor index
 -
-  desc: BG0 HOFS during non-gameplay
   label: BG0_HOFS_NonGameplay
   type: u16
   addr: 0x3000BF4
+  notes: BG0 HOFS during non-gameplay
 -
-  desc: BG0 VOFS during non-gameplay
   label: BG0_VOFS_NonGameplay
   type: u16
   addr: 0x3000BF6
+  notes: BG0 VOFS during non-gameplay
 -
-  desc: BG1 HOFS during non-gameplay
   label: BG1_HOFS_NonGameplay
   type: u16
   addr: 0x3000BF8
+  notes: BG1 HOFS during non-gameplay
 -
-  desc: BG1 VOFS during non-gameplay
   label: BG1_VOFS_NonGameplay
   type: u16
   addr: 0x3000BFA
+  notes: BG1 VOFS during non-gameplay
 -
-  desc: BG2 HOFS during non-gameplay
   label: BG2_HOFS_NonGameplay
   type: u16
   addr: 0x3000BFC
+  notes: BG2 HOFS during non-gameplay
 -
-  desc: BG2 VOFS during non-gameplay
   label: BG2_VOFS_NonGameplay
   type: u16
   addr: 0x3000BFE
+  notes: BG2 VOFS during non-gameplay
 -
-  desc: BG3 HOFS during non-gameplay
   label: BG3_HOFS_NonGameplay
   type: u16
   addr: 0x3000C00
+  notes: BG3 HOFS during non-gameplay
 -
-  desc: BG3 VOFS during non-gameplay
   label: BG3_VOFS_NonGameplay
   type: u16
   addr: 0x3000C02
+  notes: BG3 VOFS during non-gameplay
 -
-  desc: Current sine Y offset
   label: CurrSineYOffset
   type: u16
   addr: 0x3000C04
+  notes: Current sine Y offset
 -
-  desc: Current OAM divisor
   label: CurrOamDivisor
   type: u16
   addr: 0x3000C06
+  notes: Current OAM divisor
 -
-  desc: Current message
   label: CurrMessage
   type: CurrMessage
   addr: 0x3000C0C
+  notes: Current message
 -
-  desc: Most recent save file
   label: MostRecentSaveFile
   type: u8
   addr: 0x3000C1E
+  notes: Most recent save file
 -
-  desc: Game mode
   label: GameMode
   type: u16
   addr: 0x3000C70
   enum: GameMode
+  notes: Game mode
 -
-  desc: Sub-game mode 1
   label: SubGameMode1
   type: u16
   addr: 0x3000C72
+  notes: Sub-game mode 1
 -
-  desc: Sub-game mode 2
   label: SubGameMode2
   type: u8
   addr: 0x3000C74
+  notes: Sub-game mode 2
 -
-  desc: Sub-game mode 3
   label: SubGameMode3
   type: u8
   addr: 0x3000C75
+  notes: Sub-game mode 3
 -
-  desc: Cleared every frame
   label: ClearedEveryFrame
   type: u8
   addr: 0x3000C76
+  notes: Cleared every frame
 -
-  desc: 8-bit frame counter
   label: FrameCounter8Bit
   type: u8
   addr: 0x3000C77
+  notes: 8-bit frame counter
 -
-  desc: V-Blank request flag
   label: VBlankRequestFlag
   type: u16
   addr: 0x3000C78
+  notes: V-Blank request flag
 -
-  desc: Interrupt code
   label: InterruptCode
   addr: 0x3000C7C
   size: 0x200
+  notes: Interrupt code
 -
-  desc: OAM data
   label: OamData
   addr: 0x3000E7C
   size: 0x8
   count: 0xA0
+  notes: OAM data
 -
-  desc: Button input
   label: ButtonInput
   type: u16
   addr: 0x300137C
   enum: ButtonInput
+  notes: Button input
 -
-  desc: Button input copy
   label: ButtonInputCopy
   type: u16
   addr: 0x300137E
   enum: ButtonInput
+  notes: Button input copy
 -
-  desc: Changed input
   label: ChangedInput
   type: u16
   addr: 0x3001380
   enum: ButtonInput
+  notes: Changed input
 -
-  desc: Next OAM slot
   label: NextOamSlot
   type: u8
   addr: 0x3001382
+  notes: Next OAM slot
 -
-  desc: Written to BG2X (BG2 reference point X-coordinate)
   label: WrittenToBG2X
   type: u32
   addr: 0x3001394
+  notes: Written to BG2X (BG2 reference point X-coordinate)
 -
-  desc: Written to BG2Y (BG2 reference point Y-coordinate)
   label: WrittenToBG2Y
   type: u32
   addr: 0x3001398
+  notes: Written to BG2Y (BG2 reference point Y-coordinate)
 -
-  desc: Written to MOSAIC_H (mosaic size)
   label: WrittenToMOSAIC_H
   type: u16
   addr: 0x300139C
+  notes: Written to MOSAIC_H (mosaic size)
 -
-  desc: Written to MOSAIC_L (mosaic size)
   label: WrittenToMOSAIC_L
   type: u16
   addr: 0x300139E
+  notes: Written to MOSAIC_L (mosaic size)
 -
-  desc: Written to BG2PA (BG2 rotation/scaling parameter A)
   label: WrittenToBG2PA
   type: u16
   addr: 0x30013A6
+  notes: Written to BG2PA (BG2 rotation/scaling parameter A)
 -
-  desc: Written to BG2PB (BG2 rotation/scaling parameter B)
   label: WrittenToBG2PB
   type: u16
   addr: 0x30013A8
+  notes: Written to BG2PB (BG2 rotation/scaling parameter B)
 -
-  desc: Written to BG2PC (BG2 rotation/scaling parameter C)
   label: WrittenToBG2PC
   type: u16
   addr: 0x30013AA
+  notes: Written to BG2PC (BG2 rotation/scaling parameter C)
 -
-  desc: Written to BG2PD (BG2 rotation/scaling parameter D)
   label: WrittenToBG2PD
   type: u16
   addr: 0x30013AC
+  notes: Written to BG2PD (BG2 rotation/scaling parameter D)
 -
-  desc: Written to BLDY (brightness coefficient)
   label: WrittenToBLDY
   type: u16
   addr: 0x30013AE
+  notes: Written to BLDY (brightness coefficient)
 -
-  desc: Written to BLDALPHA_L (alpha blending coefficients)
   label: WrittenToBLDALPHA_L
   type: u16
   addr: 0x30013B0
+  notes: Written to BLDALPHA_L (alpha blending coefficients)
 -
-  desc: Written to BLDALPHA_H (alpha blending coefficients)
   label: WrittenToBLDALPHA_H
   type: u16
   addr: 0x30013B2
+  notes: Written to BLDALPHA_H (alpha blending coefficients)
 -
-  desc: BG0 X position
   label: BG0XPosition
   type: u16
   addr: 0x30013B4
+  notes: BG0 X position
 -
-  desc: BG0 Y position
   label: BG0YPosition
   type: u16
   addr: 0x30013B6
+  notes: BG0 Y position
 -
-  desc: BG1 X position
   label: BG1XPosition
   type: u16
   addr: 0x30013B8
+  notes: BG1 X position
 -
-  desc: BG1 Y position
   label: BG1YPosition
   type: u16
   addr: 0x30013BA
+  notes: BG1 Y position
 -
-  desc: BG2 X position
   label: BG2XPosition
   type: u16
   addr: 0x30013BC
+  notes: BG2 X position
 -
-  desc: BG2 Y position
   label: BG2YPosition
   type: u16
   addr: 0x30013BE
+  notes: BG2 Y position
 -
-  desc: BG3 X position
   label: BG3XPosition
   type: u16
   addr: 0x30013C0
+  notes: BG3 X position
 -
-  desc: BG3 Y position
   label: BG3YPosition
   type: u16
   addr: 0x30013C2
+  notes: BG3 Y position
 -
-  desc: Samus data
   label: SamusData
   type: SamusData
   addr: 0x30013D4
+  notes: Samus data
 -
-  desc: Samus data copy when changing pose
   label: SamusDataCopy
   type: SamusData
   addr: 0x30013F4
+  notes: Samus data copy when changing pose
 -
-  desc: Samus weapon info
   label: SamusWeaponInfo
   type: SamusWeaponInfo
   addr: 0x3001414
+  notes: Samus weapon info
 -
-  desc: Samus echo
   label: SamusEcho
   type: SamusEcho
   addr: 0x300141C
+  notes: Samus echo
 -
-  desc: Screw attack and speed booster animation
   label: ScrewAttackSpeedBoosterAnimation
   type: ScrewAttackSpeedBoosterAnimation
   addr: 0x3001528
+  notes: Screw attack and speed booster animation
 -
-  desc: Equipment
   label: Equipment
   type: Equipment
   addr: 0x3001530
+  notes: Equipment
 -
-  desc: Samus hazard damage
   label: SamusHazardDamage
   type: SamusHazardDamage
   addr: 0x3001544
+  notes: Samus hazard damage
 -
-  desc: Samus environment effects
   label: SamusEnvironmentEffects
   type: SamusEnvironmentEffect
   addr: 0x300154C
   count: 0x5
+  notes: Samus environment effects
 -
-  desc: Samus physics
   label: SamusPhysics
   type: SamusPhysics
   addr: 0x3001588
+  notes: Samus physics
 -
-  desc: Previous X position
   label: PrevXPosition
   type: u16
   addr: 0x3001600
+  notes: Previous X position
 -
-  desc: Previous Y position
   label: PrevYPosition
   type: u16
   addr: 0x3001602
+  notes: Previous Y position
 -
-  desc: Ending flags
   label: EndingFlags
   type: u8
   addr: 0x3001604
   enum: EndingFlags
+  notes: Ending flags
 -
-  desc: Prevent movement timer
   label: PreventMovementTimer
   type: u16
   addr: 0x3001606
+  notes: Prevent movement timer
 -
-  desc: Disable drawing Samus and scrolling flag
   label: DisableDrawingSamusAndScrollingFlag
   type: u8
   addr: 0x3001608
+  notes: Disable drawing Samus and scrolling flag
 -
-  desc: Button assignments
   label: ButtonAssignments
   type: ButtonAssignments
   addr: 0x300168C
+  notes: Button assignments
 -
-  desc: Time attack best time password
   label: TimeAttackBestTimePassword
   type: u8
   addr: 0x3001694
   count: 0x14
+  notes: Time attack best time password
 -
-  desc: Time attack best in-game time
   label: TimeAttackBestInGameTime
   type: InGameTime
   addr: 0x30016A8
+  notes: Time attack best in-game time
 -
-  desc: Time attack best 100% time password
   label: TimeAttackBest100pTimePassword
   type: u8
   addr: 0x30016AC
   count: 0x14
+  notes: Time attack best 100% time password
 -
-  desc: Time attack best 100% in-game time
   label: TimeAttackBest100pInGameTime
   type: InGameTime
   addr: 0x30016C0
+  notes: Time attack best 100% in-game time
 -
-  desc: Non-gameplay RAM
   label: NonGameplayRam
   type: NonGameplayRam
   addr: 0x30016C4
+  notes: Non-gameplay RAM
 -
-  desc: Haze process code
   label: HazeProcessCode
   type: thumb
   addr: 0x3001944
   size: 0x200
+  notes: Haze process code
 -
-  desc: Pointer to V-Blank code
   label: VBlankCodePtr
   type: ptr.thumb
   addr: 0x3001CEC
+  notes: Pointer to V-Blank code
 -
-  desc: Pointer to H-Blank code
   label: HBlankCodePtr
   type: ptr.thumb
   addr: 0x3001CF0
+  notes: Pointer to H-Blank code
 -
-  desc: Serial communication code pointer
   label: SerialCommunicationCodePtr
   type: ptr.thumb
   addr: 0x3001CF4
+  notes: Serial communication code pointer
 -
-  desc: Pointer to V-Count code
   label: VCountCodePtr
   type: ptr.thumb
   addr: 0x3001CF8
+  notes: Pointer to V-Count code
 -
-  desc: Timer 3 overflow code pointer
   label: Timer3OverflowCodePtr
   type: ptr.thumb
   addr: 0x3001CFC
+  notes: Timer 3 overflow code pointer
 -
-  desc: Music info
   label: MusicInfo
   type: MusicInfo
   addr: 0x3001D00
+  notes: Music info
 -
-  desc: Pointer to sound code A
   label: SoundCodeAPtr
   type: ptr.arm
   addr: 0x3003B8C
+  notes: Pointer to sound code A
 -
-  desc: Sound code A
   label: SoundCodeARam
   addr: 0x3003B90
   size: 0x658
+  notes: Sound code A
 -
-  desc: Pointer to sound code B
   label: SoundCodeBPtr
   type: ptr.arm
   addr: 0x30041E8
+  notes: Pointer to sound code B
 -
-  desc: Sound code B
   label: SoundCodeBRam
   addr: 0x30041EC
   size: 0xA4
+  notes: Sound code B
 -
-  desc: Pointer to sound code C
   label: SoundCodeCPtr
   type: ptr.arm
   addr: 0x3004290
+  notes: Pointer to sound code C
 -
-  desc: Sound code C
   label: SoundCodeCRam
   addr: 0x3004294
   size: 0xAC
+  notes: Sound code C
 -
-  desc: Demo input number
   label: DemoInputNumber
   type: u16
   addr: 0x30053CA
+  notes: Demo input number
 -
-  desc: Demo input timer
   label: DemoInputTimer
   type: u16
   addr: 0x30053CC
+  notes: Demo input timer
 -
-  desc: Demo button input
   label: DemoButtonInput
   type: u16
   addr: 0x30053CE
   enum: ButtonInput
+  notes: Demo button input
 -
-  desc: Samus palette
   label: SamusPalette
   type: palette
   addr: 0x30053E0
   count: 0x2
+  notes: Samus palette
 -
-  desc: Tilemap and clipdata pointers
   label: TilemapAndClipdataPtrs
   type: TilemapAndClipdataPtrs
   addr: 0x3005450
+  notes: Tilemap and clipdata pointers
 -
-  desc: Hatch data
   label: HatchData
   type: HatchData
   addr: 0x300545C
   count: 0x10
+  notes: Hatch data
 -
-  desc: Number of valid hatches in current room
   label: NumValidHatchesInCurrRoom
   type: u8
   addr: 0x30054DC
+  notes: Number of valid hatches in current room
 -
-  desc: Door position start
   label: DoorPositionStart
   type: DoorPositionStart
   addr: 0x30054E0
+  notes: Door position start
 -
-  desc: Doors unlocked flag
   label: DoorsUnlockedFlag
   type: u8
   addr: 0x30054E4
+  notes: Doors unlocked flag
 -
-  desc: Hatches locked
   label: HatchesLocked
   type: HatchesLocked
   addr: 0x30054E6
+  notes: Hatches locked
 -
-  desc: BG3 movement
   label: BG3Movement
   type: BG3Movement
   addr: 0x30054EC
+  notes: BG3 movement
 -
-  desc: BG0 movement
   label: BG0Movement
   type: BG0Movement
   addr: 0x30054F4
+  notes: BG0 movement
 -
-  desc: Tileset's transparent color
   label: TilesetTransparentColor
   type: u16
   addr: 0x30054FC
+  notes: Tileset's transparent color
 -
-  desc: Door transition Y position offset
   label: DoorTransitionYPositionOffset
   type: u16
   addr: 0x300550C
+  notes: Door transition Y position offset
 -
-  desc: Destination room
   label: DestinationRoom
   type: u8
   addr: 0x300550E
+  notes: Destination room
 -
-  desc: Rain sound effect
   label: RainSoundEffect
   type: u16
   addr: 0x3005518
+  notes: Rain sound effect
 -
-  desc: Current special background effect
   label: CurrSpecialBGEffect
   type: SpecialBGEffect
   addr: 0x3005520
+  notes: Current special background effect
 -
-  desc: Breaking and reforming blocks
   label: BreakingAndReformingBlocks
   type: BreakingOrReformingBlock
   addr: 0x3005528
   count: 0x30
+  notes: Breaking and reforming blocks
 -
-  desc: Last tank collected
   label: LastTankCollected
   type: LastTankCollected
   addr: 0x30056A8
+  notes: Last tank collected
 -
-  desc: Bomb chain data
   label: BombChainData
   type: BombChainData
   addr: 0x30056AC
   count: 0x4
+  notes: Bomb chain data
 -
-  desc: Active bomb chain types
   label: ActiveBombChainTypes
   type: flags8
   addr: 0x30056BC
+  notes: Active bomb chain types
 -
-  desc: BLDALPHA related data 1
   label: BLDALPHARelatedData1
   type: BLDALPHAData
   addr: 0x30056CC
+  notes: BLDALPHA related data 1
 -
-  desc: BLDALPHA related data 2
   label: BLDALPHARelatedData2
   type: BLDALPHAData
   addr: 0x30056D4
+  notes: BLDALPHA related data 2
 -
-  desc: Animated palette timing
   label: AnimatedPaletteTiming
   type: AnimatedPaletteTiming
   addr: 0x30056EC
+  notes: Animated palette timing
 -
-  desc: Animated palette and tileset number
   label: AnimatedPaletteAndTilesetNum
   type: AnimatedPaletteAndTilesetNum
   addr: 0x30056F4
+  notes: Animated palette and tileset number
 -
-  desc: Current special background effect
   label: CurrSpecialBGEffect
   type: SpecialBGEffect
   addr: 0x30056F8
+  notes: Current special background effect
 -
-  desc: Current room scrolls data pointer
   label: CurrRoomScrollsDataPtr
   type: ptr
   addr: 0x3005708
+  notes: Current room scrolls data pointer
 -
-  desc: Haze loops 1
   label: HazeLoops1
   type: HazeLoops
   addr: 0x300571C
+  notes: Haze loops 1
 -
-  desc: Haze loops 2
   label: HazeLoops2
   type: HazeLoops
   addr: 0x3005724
+  notes: Haze loops 2
 -
-  desc: Haze process code pointer
   label: HazeProcessCodePtr
   type: ptr.thumb
   addr: 0x300572C
+  notes: Haze process code pointer
 -
-  desc: Animated tileset data
   label: AnimatedTilesetData
   addr: 0x3005730
   size: 0xC
   count: 0x10
+  notes: Animated tileset data
 -
-  desc: Maintained input data
   label: MaintainedInputData
   type: MaintainedInputData
   addr: 0x3005800
+  notes: Maintained input data
 -
-  desc: IME backup
   label: IME_Backup
   type: u16
   addr: 0x30058B2
+  notes: IME backup
 -
-  desc: IE backup
   label: IE_Backup
   type: u16
   addr: 0x30058B4
+  notes: IE backup
 -
-  desc: TM3CNT_H backup
   label: TM3CNT_H_Backup
   type: u16
   addr: 0x30058B6
+  notes: TM3CNT_H backup
 -
-  desc: SIOCNT backup
   label: SIOCNT_Backup
   type: u16
   addr: 0x30058B8
+  notes: SIOCNT backup
 -
-  desc: RCNT backup
   label: RCNT_Backup
   type: u16
   addr: 0x30058BA
+  notes: RCNT backup
 -
-  desc: Error flags
   label: ErrorFlags
   type: u32
   addr: 0x30058BC
   enum: ErrorFlags
+  notes: Error flags
 -
-  desc: Track 8
   label: Track8
   addr: 0x3005910
   size: 0x40
+  notes: Track 8
 -
-  desc: Track 3
   label: Track3
   addr: 0x3005950
   size: 0x40
+  notes: Track 3
 -
-  desc: Track 1
   label: Track1
   addr: 0x3005990
   size: 0x40
+  notes: Track 1
 -
-  desc: Track 6
   label: Track6
   addr: 0x30059D0
   size: 0x40
+  notes: Track 6
 -
-  desc: Track 4
   label: Track4
   addr: 0x3005A10
   size: 0x40
+  notes: Track 4
 -
-  desc: Track 0
   label: Track0
   addr: 0x3005A50
   size: 0x40
+  notes: Track 0
 -
-  desc: Track 7
   label: Track7
   addr: 0x3005A90
   size: 0x40
+  notes: Track 7
 -
-  desc: Track 2
   label: Track2
   addr: 0x3005AD0
   size: 0x40
+  notes: Track 2
 -
-  desc: Track 5
   label: Track5
   addr: 0x3005B10
   size: 0x40
+  notes: Track 5
 -
-  desc: Pointer to interrupt code
   label: InterruptCodePtr
   type: ptr.arm
   addr: 0x3007FFC
+  notes: Pointer to interrupt code
