@@ -8,7 +8,7 @@
   mode: arm
   params: null
   return: null
-  notes: Interrupt setup
+  notes: Sets the Pointer To Interrupt Code and calls MainGameLoop
 -
   label: InterruptCode
   addr:
@@ -47,7 +47,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize game
+  notes: Initializes the game
 -
   label: EmptyFunctionForVBlankCode
   addr:
@@ -58,7 +58,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function for V-Blank code
+  notes: Empty vblank code
 -
   label: SoftResetCheck
   addr:
@@ -69,7 +69,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Soft reset check
+  notes: Checks if a soft reset should happen
 -
   label: EmptyFunction_SoftReset
   addr:
@@ -80,7 +80,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function (soft reset)
+  notes: Empty function (probably related to soft reset)
 -
   label: SoftReset
   addr:
@@ -94,7 +94,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Soft reset
+  notes: Soft reset subroutine
 -
   label: CallLZ77UnComp16Bit
   addr:
@@ -111,7 +111,7 @@
     type: ptr
     notes: Destination address
   return: null
-  notes: Call LZ77UnComp16Bit
+  notes: Calls LZ77UnComp16Bit
 -
   label: CallLZ77UnComp8Bit
   addr:
@@ -128,7 +128,7 @@
     type: ptr
     notes: Destination address
   return: null
-  notes: Call LZ77UnComp8Bit
+  notes: Calls LZ77UnComp8Bit
 -
   label: CallDivArm
   addr:
@@ -139,7 +139,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Call DivArm
+  notes: Tests both DivArm functions
 -
   label: CallSoundBias
   addr:
@@ -150,7 +150,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Call SoundBias
+  notes: Calls SoundBias0, software interrupt 3 and SoundBias1
 -
   label: UpdateInput
   addr:
@@ -161,7 +161,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Update input
+  notes: Updates the input
 -
   label: ClearRAM
   addr:
@@ -172,7 +172,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Clear RAM
+  notes: Clears VRAM, OAM and PALRAM
 -
   label: LoadInterruptCode
   addr:
@@ -183,7 +183,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Load interrupt code
+  notes: Loads the interrupt code into RAM
 -
   label: ResetFreeOam
   addr:
@@ -194,7 +194,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Reset free OAM
+  notes: Clears the OAM after Next OAM Slot
 -
   label: FixedPointMultiply
   addr:
@@ -206,14 +206,13 @@
   params:
   - label: Multiplicand
     type: s16
-  - label: Multiplier1256
+  - label: Multiplier
     type: s16
     notes: Multiplier (1/256)
   return:
     label: Product
     type: s16
-  notes: Fixed-point multiplication of two values, where the second has a scaling
-    factor of 1/256 (ranges from -128 to 127.99)
+  notes: Fixed-point multiplication of two values, where the second has a scaling factor of 1/256 (ranges from -128 to 127.99)
 -
   label: FixedPointDivide
   addr:
@@ -225,14 +224,13 @@
   params:
   - label: Dividend
     type: s16
-  - label: Divisor14
+  - label: Divisor
     type: s16
     notes: Divisor (1/4)
   return:
     label: Quotient
     type: s16
-  notes: Fixed-point division of two values, where the second has a scaling factor
-    of 1/4 (ranges from -8192 to 8191.75)
+  notes: Fixed-point division of two values, where the second has a scaling factor of 1/4 (ranges from -8192 to 8191.75)
 -
   label: FixedPointInverse
   addr:
@@ -245,7 +243,7 @@
   - label: Value
     type: s16
   return:
-    label: Inverse165536
+    label: Inverse
     type: s16
     notes: Inverse (1/65536)
   notes: Fixed-point inverse of a value, with a scaling factor of 1/65536
@@ -259,7 +257,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Call V-Blank code
+  notes: Calls the code in VBlank Code Pointer
 -
   label: SetVBlankCodePtr
   addr:
@@ -273,7 +271,7 @@
     type: ptr.thumb
     notes: V-Blank code pointer
   return: null
-  notes: Set V-Blank code pointer
+  notes: Sets the vblank code pointer to r0
 -
   label: CallHBlankCode
   addr:
@@ -298,7 +296,7 @@
     type: ptr.thumb
     notes: H-Blank code pointer
   return: null
-  notes: Set H-Blank code pointer
+  notes: Sets the hblank code pointer to r0
 -
   label: CallVCountCode
   addr:
@@ -309,7 +307,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Call V-Count code
+  notes: Calls the code in VCount Code Pointer
 -
   label: SetVCountCodePtr
   addr:
@@ -323,7 +321,7 @@
     type: ptr.thumb
     notes: V-Count code pointer
   return: null
-  notes: Set V-Count code pointer
+  notes: Sets the vcount code pointer to r0
 -
   label: EmptyFunctionForBlankingCode
   addr:
@@ -334,7 +332,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function for blanking code
+  notes: Empty interrupt callback
 -
   label: EmptyFunction_SoundRelated
   addr:
@@ -345,7 +343,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function (sound related?)
+  notes: Empty function
 -
   label: PlaySound
   addr:
@@ -359,7 +357,7 @@
     type: u16
     notes: Sound ID
   return: null
-  notes: Play sound
+  notes: Plays the sound in r0
 -
   label: StopSound
   addr:
@@ -373,7 +371,7 @@
     type: u16
     notes: Sound ID
   return: null
-  notes: Stop sound
+  notes: Stops the sound in r0
 -
   label: PlaySoundIfNotPlaying
   addr:
@@ -387,7 +385,7 @@
     type: u16
     notes: Sound ID
   return: null
-  notes: Play sound if not playing
+  notes: Plays a sound, only if it's not currently playing
 -
   label: PlaySound4
   addr:
@@ -426,7 +424,7 @@
     type: u8
     notes: Bit size
   return: null
-  notes: DMA transfer
+  notes: Performs a DMA Transfer
 -
   label: EmptyFunction_MusicRelated
   addr:
@@ -437,7 +435,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function (music related?)
+  notes: Empty function
 -
   label: CheckSetNewMusicTrack
   addr:
@@ -451,7 +449,7 @@
     type: u16
     notes: Music track
   return: null
-  notes: Check set new music track
+  notes: Checks if a new music track should be set
 -
   label: CheckPlayNewMusicTrack
   addr:
@@ -462,7 +460,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Check play new music track
+  notes: Checks if a new music track should play
 -
   label: PlayMusic
   addr:
@@ -479,7 +477,7 @@
     type: u8
     notes: Event related flag?
   return: null
-  notes: Play music
+  notes: Plays the music in r0
 -
   label: FadeOutMusic
   addr:
@@ -493,7 +491,7 @@
     type: u16
     notes: Fade duration
   return: null
-  notes: Fade out music
+  notes: Fades the current music track
 -
   label: PlayCharacterAppearingSound
   addr:
@@ -510,7 +508,7 @@
     type: u8
     notes: Sound type (1 = Adam, 21 = Samus, 41 = Federation)
   return: null
-  notes: Play character appearing sound
+  notes: Plays a sound when a character appears based on r1
 -
   label: CallSoundCodeB
   addr:
@@ -535,7 +533,7 @@
     label: EndDestinationAddress
     type: ptr
     notes: End destination address
-  notes: Call sound code B
+  notes: Switches to ARM mode and calls function below
 -
   label: SoundCodeB
   addr:
@@ -582,7 +580,7 @@
     label: EndSourceAddress
     type: ptr
     notes: End source address
-  notes: Call sound code C
+  notes: Switches to ARM mode and calls the function below
 -
   label: SoundCodeC
   addr:
@@ -626,7 +624,7 @@
     label: EndSourceAddress
     type: ptr
     notes: End source address?
-  notes: Call sound code A
+  notes: Switches to ARM mode and calls the function below
 -
   label: SoundCodeA
   addr:
@@ -666,7 +664,7 @@
   return:
     label: Frequency
     type: u32
-  notes: Call get note frequency
+  notes: Switches to ARM mode and calls the function below
 -
   label: GetNoteFrequency
   addr:
@@ -684,7 +682,7 @@
   return:
     label: Frequency
     type: u32
-  notes: Get note frequency
+  notes: Gets the frequency of a note
 -
   label: CpuFastSet
   addr:
@@ -703,7 +701,7 @@
   - label: Length
     type: u32
   return: null
-  notes: CpuFastSet
+  notes: Calls software interrupt 0xC
 -
   label: CpuSet
   addr:
@@ -722,7 +720,7 @@
   - label: Length
     type: u32
   return: null
-  notes: CpuSet
+  notes: Calls software interrupt 0xB
 -
   label: DivArmQuotient
   addr:
@@ -739,7 +737,7 @@
   return:
     label: Quotient
     type: s32
-  notes: DivArm quotient
+  notes: Calls software interrupt 0x7
 -
   label: DivArmRemainder
   addr:
@@ -756,7 +754,7 @@
   return:
     label: Remainder
     type: s32
-  notes: DivArm remainder
+  notes: Calls software interrupt 0x7 (with mov r1,r0)
 -
   label: LZ77UnComp16Bit
   addr:
@@ -773,7 +771,7 @@
     type: ptr
     notes: Destination address
   return: null
-  notes: LZ77 uncompress 16-bit
+  notes: Calls software interrupt 0x12
 -
   label: LZ77UnComp8Bit
   addr:
@@ -790,7 +788,7 @@
     type: ptr
     notes: Destination address
   return: null
-  notes: LZ77 uncompress 8-bit
+  notes: Calls software interrupt 0x11
 -
   label: MidiKey2Freq
   addr:
@@ -812,7 +810,7 @@
   return:
     label: Frequency
     type: u16
-  notes: MidiKey2Freq
+  notes: Calls software interrupt 0x1F
 -
   label: SoundBias0
   addr:
@@ -823,7 +821,7 @@
   mode: thumb
   params: null
   return: null
-  notes: SoundBias 0
+  notes: Calls software interrupt 0x19 (with mov r0,#0x0)
 -
   label: SoundBias1
   addr:
@@ -834,7 +832,7 @@
   mode: thumb
   params: null
   return: null
-  notes: SoundBias 1
+  notes: Calls software interrupt 0x19 (with mov r0,#0x1)
 -
   label: CopySamusData
   addr:
@@ -845,7 +843,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Copy Samus data
+  notes: Copies samus data
 -
   label: SetSuitPalette
   addr:
@@ -867,7 +865,7 @@
     type: bool
     notes: SA-X flag
   return: null
-  notes: Set suit palette
+  notes: Sets r0 as the new suit palette
 -
   label: SetSamusGravityBasedVelocityAndSaxSuitColors
   addr:
@@ -878,8 +876,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets both the underwater flag and the Samus slow speed flag. Updates
-    suit palette based on Ice Beam.
+  notes: Updates the physics of samus
 -
   label: CallUpdateArmCannonOam
   addr:
@@ -890,7 +887,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Call update arm cannon OAM
+  notes: Calls UpdateArmCannonOffset
 -
   label: SamusPoseHandler_BeamCharging_Bombs_PBs
   addr:
@@ -901,8 +898,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Determines which type of bomb to drop based on the R-button. Updates
-    beam charge counter while holding B.
+  notes: Calls function above, also checks for passive charge beam and bombs
 -
   label: CheckSamusStandingOnDropThroughClipdata
   addr:
@@ -916,7 +912,7 @@
     label: SamusStandingOnDropThroughClipdataFlag
     type: bool
     notes: Samus standing on drop-through clipdata flag
-  notes: Check Samus standing on drop-through clipdata
+  notes: Checks if samus is standing on drop through clipdata (crumble block)
 -
   label: SetForcedMovementFlagForJumpingDroppingThroughClipdata
   addr:
@@ -930,7 +926,7 @@
     label: NewForcedMovementFlagSet
     type: bool
     notes: New forced movement flag set
-  notes: Set forced movement flag for jumping or dropping through clipdata
+  notes: Sets the new forced movement for jumping/dropping through
 -
   label: SamusPoseHandler_DiffusionCharging_Missiles_WeaponIcons
   addr:
@@ -941,8 +937,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the HUD status of missiles/power Bombs based on the R button.
-    Updates diffusion charge counter while holding R.
+  notes: Updates the highlighted weapon and the charges (beam and diffusion)
 -
   label: CheckPlayLowHealthSound
   addr:
@@ -953,7 +948,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Check play low health sound
+  notes: Checks if the low health sound should play
 -
   label: UpdateArmCannonOam
   addr:
@@ -967,7 +962,7 @@
     type: u8
     notes: 0 if facing right, 1 if facing left
   return: null
-  notes: Update arm cannon OAM
+  notes: Updates the arm cannon position offset
 -
   label: InitSamusData
   addr:
@@ -978,7 +973,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize Samus data
+  notes: Initializes all the samus related data
 -
   label: CopyDemoButtonInput
   addr:
@@ -989,7 +984,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Copy demo button input
+  notes: Copies the demo input
 -
   label: SetSaxPose
   addr:
@@ -1004,7 +999,7 @@
     enum: SaxPose
     notes: SA-X pose
   return: null
-  notes: Set SA-X pose
+  notes: Sets the SA-X pose to be r0
 -
   label: InGameSubroutine
   addr:
@@ -1017,7 +1012,7 @@
   return:
     label: Paused
     type: bool
-  notes: In-game subroutine
+  notes: Subroutine for the in game game mode
 -
   label: SetVBlankCodeForInGame
   addr:
@@ -1028,7 +1023,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Set V-Blank code for in-game
+  notes: Sets the vblank code pointer when in game
 -
   label: UpdateSamusAndSaxGfx
   addr:
@@ -1042,7 +1037,7 @@
     type: bool
     notes: Update palette flag
   return: null
-  notes: Update Samus/SA-X graphics
+  notes: Transfers samus' and SA-X graphics to VRAM
 -
   label: VBlankCodeDuringInGameLoads
   addr:
@@ -1053,7 +1048,7 @@
   mode: thumb
   params: null
   return: null
-  notes: V-Blank code during in-game loads
+  notes: VBlank code during loads
 -
   label: VBlankCodeDuringInGame
   addr:
@@ -1064,7 +1059,7 @@
   mode: thumb
   params: null
   return: null
-  notes: V-Blank code during in-game
+  notes: VBlank code during in game
 -
   label: StartTitleScreenDemo
   addr:
@@ -1075,7 +1070,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Start title screen demo
+  notes: Loads and/or initializes generic data
 -
   label: UpdateSpriteRandomNumber
   addr:
@@ -1089,7 +1084,8 @@
     type: u8
     notes: Sprite slot number
   return: null
-  notes: Update sprite random number
+  notes: Updates the sprite random number variable, r0 is just another random
+    factor
 -
   label: LoadSpriteDataForRoom
   addr:
@@ -1100,7 +1096,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Load sprite data for room
+  notes: Loads the sprite data for the current room
 -
   label: LoadSpriteset
   addr:
@@ -1111,7 +1107,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Load spriteset
+  notes: Loads the current spriteset
 -
   label: LoadNewSpriteGfx
   addr:
@@ -1132,7 +1128,7 @@
     type: u8
     notes: Source offset (0x200)
   return: null
-  notes: Load new sprite graphics
+  notes: Loads the graphics of the sprite in r0
 -
   label: LoadNewSpritePalette
   addr:
@@ -1153,7 +1149,7 @@
     type: u8
     notes: Length (rows)
   return: null
-  notes: Load new sprite palette
+  notes: Loads the palette of the sprite in r0
 -
   label: ClearSpriteData
   addr:
@@ -1164,7 +1160,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Clear sprite data
+  notes: Clears the sprite data
 -
   label: LoadRoomSprites
   addr:
@@ -1175,7 +1171,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Load room sprites
+  notes: Loads the sprites of the current room
 -
   label: InitPrimarySprite
   addr:
@@ -1198,7 +1194,7 @@
     type: u8
     notes: Room sprite number
   return: null
-  notes: Initialize primary sprite
+  notes: Initializes a new primary sprite
 -
   label: SpawnNewSecondarySprite
   addr:
@@ -1234,7 +1230,7 @@
     label: AssignedSpriteRamSlot0xffIfNotAssigned
     type: u8
     notes: Assigned sprite RAM slot (0xFF if not assigned)
-  notes: Spawn new secondary sprite
+  notes: Spawns a new secondary sprite
 -
   label: SpawnNewPrimarySprite
   addr:
@@ -1269,7 +1265,7 @@
     label: AssignedSpriteRamSlot0xffIfNotAssigned
     type: u8
     notes: Assigned sprite RAM slot (0xFF if not assigned)
-  notes: Spawn new primary sprite
+  notes: Spawns a new primary sprite
 -
   label: SpawnNewXParasite
   addr:
@@ -1308,7 +1304,7 @@
     label: AssignedSpriteRamSlot0xffIfNotAssigned
     type: u8
     notes: Assigned sprite RAM slot (0xFF if not assigned)
-  notes: Spawn new X parasite
+  notes: Spawns a new X parasite
 -
   label: ModifyDamageTaken
   addr:
@@ -1346,7 +1342,7 @@
     type: u16
     notes: Damage multiplier
   return: null
-  notes: Take damage from sprite
+  notes: Handles samus taking damage from a sprite
 -
   label: CheckObjectsTouching
   addr:
@@ -1384,7 +1380,7 @@
     label: ObjectsAreTouchingFlag
     type: bool
     notes: Objects are touching flag
-  notes: Check objects touching
+  notes: Checks if 2 objects are touching
 -
   label: SamusAndSpriteCollision
   addr:
@@ -1395,7 +1391,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Samus and sprite collision
+  notes: Checks if samus is colliding with a sprite, applies that collision
 -
   label: CheckVerticalCollisionAtPosition
   addr:
@@ -1415,7 +1411,7 @@
     label: BlockTopEdgeYPosition
     type: u16
     notes: Block top edge Y position
-  notes: Check vertical collision at position
+  notes: Checks the vertical collision at the position
 -
   label: CheckVerticalCollisionAtPosition_Slopes
   addr:
@@ -1435,7 +1431,7 @@
     label: BlockTopEdgeYPosition
     type: u16
     notes: Block top edge Y position
-  notes: Check vertical collision at position (account for slopes)
+  notes: Checks the vertical collision at the position (accounts for slopes)
 -
   label: CheckCollisionAtPosition
   addr:
@@ -1452,7 +1448,7 @@
     type: u16
     notes: X position
   return: null
-  notes: Check collision at position
+  notes: Checks the collision at the position
 -
   label: EnemyFalling
   addr:
@@ -1463,7 +1459,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Enemy falling
+  notes: Makes the current sprite fall
 -
   label: MakeSpriteFaceSamus_XFlip
   addr:
@@ -1474,7 +1470,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Make sprite face Samus (X-flip)
+  notes: Makes the current sprite face samus (x flip)
 -
   label: MakeSpriteFaceSamus_Direction
   addr:
@@ -1485,7 +1481,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Make sprite face Samus (direction)
+  notes: Makes the current sprite face samus (direction)
 -
   label: MakeSpriteFaceAwayFromSamus_XFlip
   addr:
@@ -1496,7 +1492,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Make sprite face away from Samus (X-flip)
+  notes: Makes the current sprite face from samus (x flip)
 -
   label: MakeSpriteFaceAwayFromSamus_Direction
   addr:
@@ -1507,7 +1503,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Make sprite face away from Samus (direction)
+  notes: Makes the current sprite face from samus (direction)
 -
   label: CheckEndOfSpriteAnimation_Curr
   addr:
@@ -1521,7 +1517,7 @@
     label: AnimationEnded
     type: bool
     notes: Animation ended
-  notes: Check end of sprite animation (current)
+  notes: Checks if the animation of the current sprite has ended
 -
   label: CheckNearEndOfSpriteAnimation_Curr
   addr:
@@ -1535,7 +1531,7 @@
     label: AnimationNearEnd
     type: bool
     notes: Animation near end
-  notes: Check near end of sprite animation (current)
+  notes: Checks if the animation of the current sprite has nearly ended
 -
   label: CheckEndOfSpriteAnimation_Slot
   addr:
@@ -1552,7 +1548,7 @@
     label: AnimationEnded
     type: bool
     notes: Animation ended
-  notes: Check end of sprite animation (slot)
+  notes: Checks if the animation of the sprite with the room slot has ended
 -
   label: CheckNearEndOfSpriteAnimation_Slot
   addr:
@@ -1569,7 +1565,7 @@
     label: AnimationNearEnd
     type: bool
     notes: Animation near end
-  notes: Check near end of sprite animation (slot)
+  notes: Checks if the animation of the sprite with the room slot has nearly ended
 -
   label: CheckEndBossRound
   addr:
@@ -1583,7 +1579,7 @@
     label: RoundEnded
     type: bool
     notes: Round ended
-  notes: Check end of boss round?
+  notes: Checks if the sprite animation of the sub sprite data 1 has nearly ended
 -
   label: CheckSamusNearSprite_LeftRight
   addr:
@@ -1603,7 +1599,8 @@
     label: 4IfLeftOfSprite8IfRightOfSprite0IfOutOfRange
     type: u8
     notes: 4 if left of sprite, 8 if right of sprite, 0 if out of range
-  notes: Check Samus near sprite (left/right)
+  notes: Checks if samus is in range of the sprite on the left and right with
+    r0 and r1
 -
   label: CheckSamusNearSprite_AboveBelow
   addr:
@@ -1623,7 +1620,8 @@
     label: 1IfAboveSprite2IfBelowSprite0IfOutOfRange
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
-  notes: Check Samus near sprite (above/below)
+  notes: Checks if samus is in range of the sprite above and below with r0 and
+    r1
 -
   label: CheckSamusNearSprite_FrontBehindX
   addr:
@@ -1646,7 +1644,8 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Check Samus near sprite (front/behind X)
+  notes: Checks if samus is in the X range of the sprite front and behind with
+    r0, r1 and r2
 -
   label: CheckSamusNearSprite_FrontBehindY
   addr:
@@ -1669,7 +1668,8 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Check Samus near sprite (front/behind Y)
+  notes: Checks if samus is in the Y range of the sprite front and behind with
+    r0, r1 and r2
 -
   label: CheckSamusNearSprite_AboveBelowSeparate
   addr:
@@ -1692,7 +1692,8 @@
     label: 1IfInRangeAbove2IfInRangeBelow0IfOutOfRange
     type: u8
     notes: 1 if in range above, 2 if in range below, 0 if out of range
-  notes: Check Samus near sprite (above/below, separate ranges)
+  notes: Checks if samus is in range of the sprite above and below (separate ranges)
+    with r0 and r1
 -
   label: UpdateSpriteFreezeTimer
   addr:
@@ -1703,7 +1704,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Update sprite freeze timer
+  notes: Updates the freeze timer of the current sprite
 -
   label: UpdateSecondarySpritesFreezeTimer
   addr:
@@ -1714,7 +1715,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Update secondary sprites freeze timer
+  notes: Updates the freeze timer of the secondary sprites based on r0 and r1
 -
   label: UpdatePrimarySpriteFreezeTimer
   addr:
@@ -1725,7 +1726,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Update primary sprite freeze timer
+  notes: Updates the freeze timer of the primary sprite of the current sprite
 -
   label: UnfreezeSecondarySprites
   addr:
@@ -1736,7 +1737,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Unfreeze secondary sprites
+  notes: Unfreezes the secondary sprites based on r0 and r1
 -
   label: SetSecondarySpriteOamPtr
   addr:
@@ -1750,7 +1751,7 @@
     type: ptr.thumb
     notes: OAM pointer
   return: null
-  notes: Set secondary sprite OAM pointer
+  notes: Sets the OAM pointer for the secondary sprite
 -
   label: SetEnergyAndAmmoToFull
   addr:
@@ -1761,7 +1762,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Set energy and ammo to full
+  notes: Sets the energy and ammo of samus to the max (unused)
 -
   label: CheckEnergyFullAndMissilesNotFull
   addr:
@@ -1775,7 +1776,7 @@
     label: EnergyFullAndMissilesNotFull
     type: bool
     notes: Energy full and missiles not full
-  notes: Check energy full and missiles not full
+  notes: Checks if energy is full and missiles aren't
 -
   label: CheckMissilesFullAndEnergyNotFull
   addr:
@@ -1789,7 +1790,7 @@
     label: MissilesFullAndEnergyNotFull
     type: bool
     notes: Missiles full and energy not full
-  notes: Check missiles full and energy not full
+  notes: Checks if missiles are full and energy isn't
 -
   label: CheckSamusPassesThroughFrozenSprite
   addr:
@@ -1806,7 +1807,7 @@
     label: SamusPassesThroughSprite
     type: bool
     notes: Samus passes through sprite
-  notes: Check Samus passes through frozen sprite
+  notes: 'Checks if samus can pass through the sprite in r0 '
 -
   label: CheckCrouchingOrMorphed
   addr:
@@ -1820,7 +1821,7 @@
     label: CrouchingOrMorphed
     type: bool
     notes: Crouching or morphed
-  notes: Check crouching or morphed
+  notes: Checks if samus is crouched or morphed
 -
   label: CheckMorphed
   addr:
@@ -1833,7 +1834,7 @@
   return:
     label: Morphed
     type: bool
-  notes: Check morphed
+  notes: Checks if samus is morphed
 -
   label: CheckSamusMovementIsPrevented
   addr:
@@ -1847,7 +1848,7 @@
     label: SamusCannotMove
     type: bool
     notes: Samus cannot move
-  notes: Check Samus movement is prevented
+  notes: Checks if samus' movement is prevented
 -
   label: CheckScrewingSparkingBoosting
   addr:
@@ -1861,7 +1862,8 @@
     label: ScrewAttackingShinesparkingOrSpeedBoosting
     type: bool
     notes: Screw attacking, shinesparking, or speed boosting
-  notes: Check screw attacking/shinesparking/speed boosting
+  notes: Checks if samus is in a damaging pose (screw attacking, shinesparking
+    or speedboosting)
 -
   label: CheckPseudoScrewing
   addr:
@@ -1878,7 +1880,7 @@
     label: PseudoScrewAttacking
     type: bool
     notes: Pseudo screw attacking
-  notes: Check pseudo screw attacking
+  notes: Checks if samus is sudo screw attacking the sprite in r0
 -
   label: CheckHangingFromLedge
   addr:
@@ -1892,7 +1894,7 @@
     label: HangingFromLedge
     type: bool
     notes: Hanging from ledge
-  notes: Check hanging from ledge
+  notes: Checks if samus is hanging on ledge
 -
   label: CheckHangingFromCeilingLadder
   addr:
@@ -1906,7 +1908,7 @@
     label: HangingFromCeiling
     type: bool
     notes: Hanging from ceiling
-  notes: Check hanging from ceiling ladder
+  notes: Checks if samus is on a ceiling ladder
 -
   label: CheckPullingSelfUp
   addr:
@@ -1920,7 +1922,7 @@
     label: PullingSelfUp
     type: bool
     notes: Pulling self up
-  notes: Check pulling self up
+  notes: Checks if samus is pulling herself up
 -
   label: TrySetAbsorbXFlagOnNewSprite
   addr:
@@ -1931,7 +1933,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Try set absorb X flag on new sprite
+  notes: Tries to set the Can Absorb X flag on the current sprite
 -
   label: CountSecondarySprites
   addr:
@@ -1949,7 +1951,7 @@
     label: SecondarySpriteCount
     type: u8
     notes: Secondary sprite count
-  notes: Count secondary sprites
+  notes: Counts the number of secondary sprites with r0
 -
   label: CountPrimarySprites
   addr:
@@ -1967,7 +1969,7 @@
     label: PrimarySpriteCount
     type: u8
     notes: Primary sprite count
-  notes: Count primary sprites
+  notes: Counts the number of primary sprites with r0
 -
   label: FindPrimarySprite
   addr:
@@ -1985,7 +1987,7 @@
     label: SpriteRamSlot0xffIfNotFound
     type: u8
     notes: Sprite RAM slot (0xFF if not found)
-  notes: Find primary sprite
+  notes: Finds the first primary sprite with r0
 -
   label: FindSecondarySprite
   addr:
@@ -2003,7 +2005,7 @@
     label: SpriteRamSlot0xffIfNotFound
     type: u8
     notes: Sprite RAM slot (0xFF if not found)
-  notes: Find secondary sprite
+  notes: Finds the first secondary sprite with r0
 -
   label: CountSecondarySpritesWithPrimarySlot
   addr:
@@ -2024,7 +2026,7 @@
     label: SecondarySpriteCount
     type: u8
     notes: Secondary sprite count
-  notes: Count secondary sprites with primary sprite slot
+  notes: Counts the number of secondary sprites with r0 and r1
 -
   label: MoveEyeCoreXBeam
   addr:
@@ -2037,7 +2039,7 @@
   - label: Distance
     type: u8
   return: null
-  notes: Move Eye Core-X beam
+  notes: Handles the movement of an eye core X beam
 -
   label: ProcessSpriteDebris
   addr:
@@ -2048,7 +2050,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Process sprite debris
+  notes: Updates the current sprite debris
 -
   label: InitSpriteDebris
   addr:
@@ -2073,7 +2075,7 @@
     type: u16
     notes: X position
   return: null
-  notes: Initialize sprite debris
+  notes: Initializes a new sprite debris
 -
   label: CheckMainDeckRoomDisplaysLocation
   addr:
@@ -2087,7 +2089,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Main Deck room displays location
+  notes: Gets the location text of the rooms in the main deck
 -
   label: CheckSector1RoomDisplaysLocation
   addr:
@@ -2101,7 +2103,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 1 room displays location
+  notes: Gets the location text of the current room in sector 1
 -
   label: CheckSector2RoomDisplaysLocation
   addr:
@@ -2115,7 +2117,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 2 room displays location
+  notes: Gets the location text of the current room in sector 2
 -
   label: CheckSector3RoomDisplaysLocation
   addr:
@@ -2129,7 +2131,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 3 room displays location
+  notes: Gets the location text of the current room in sector 3
 -
   label: CheckSector4RoomDisplaysLocation
   addr:
@@ -2143,7 +2145,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 4 room displays location
+  notes: Gets the location text of the current room in sector 5
 -
   label: CheckSector5RoomDisplaysLocation
   addr:
@@ -2157,7 +2159,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 5 room displays location
+  notes: Gets the location text of the current room in sector 4
 -
   label: CheckSector6RoomDisplaysLocation
   addr:
@@ -2171,7 +2173,7 @@
     label: 1IfRoomDisplaysLocation1Otherwise
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Check Sector 6 room displays location
+  notes: Gets the location text of the current room in sector 6
 -
   label: GetLocationBannerGfxSlot
   addr:
@@ -2185,7 +2187,7 @@
     label: LocationBannerGfxSlot0xffIfNone
     type: u8
     notes: Location banner graphics slot (0xFF if none)
-  notes: Get location banner graphics slot
+  notes: Loads an area banner GFX/PAL
 -
   label: CheckDisplayLocation
   addr:
@@ -2199,7 +2201,7 @@
     label: LocationBannerGfxSlot0xffIfNone
     type: u8
     notes: Location banner graphics slot (0xFF if none)
-  notes: Check display location
+  notes: Checks if the current room has a location text, if yes starts the text
 -
   label: CheckAdvanceEvent
   addr:
