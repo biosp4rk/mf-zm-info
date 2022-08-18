@@ -128,6 +128,24 @@ def ints_to_strs(data: InfoFile) -> None:
                     stack.append(v)
 
 
+ABBREV = {
+    "Alternate": "Alt",
+    "Background": "BG",
+    "Current": "Curr",
+    "Graphics": "Gfx",
+    "Initialize": "Init",
+    "Navigation": "Nav",
+    "Number": "Num",
+    "Previous": "Prev",
+    "Pointer": "Ptr"
+}
+
+def desc_to_label(desc: str) -> str:
+    words = re.split(r"\W+", desc)
+    words = [word.capitalize() for word in words]
+    words = [ABBREV.get(word, word) for word in words]
+    return "".join(words)
+
 def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     # create stack of entries
     if isinstance(data, dict):
@@ -140,6 +158,21 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     while len(stack) > 0:
         entry, k = stack.pop()
         if isinstance(entry, dict):
+            #
+            if "desc" in entry:
+                desc = entry.pop("desc")
+                if "notes" not in entry:
+                    entry["notes"] = desc
+                if "label" not in entry:
+                    if desc == "?":
+                        if "offset" not in entry:
+                            print(entry)
+                            input()
+                        lab = "?"
+                    else:
+                        lab = desc_to_label(desc)
+                    print(lab)
+            #
             fields = FIELDS[k]
             for i, field in enumerate(fields):
                 if field in entry:
@@ -149,6 +182,8 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
                     stack.append((v, field))
         elif isinstance(entry, list):
             stack += [(e, k) for e in entry]
+
+    return
 
     # get output
     output = yaml.dump(data)

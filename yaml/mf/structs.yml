@@ -104,6 +104,15 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
+ArmCannonDrawData:
+  size: 0x8
+  vars:
+  - desc: Opening X/Y offsets pointer
+    type: ptr.ArmCannonOpeningXYOffsets
+    offset: 0x0
+  - desc: OAM frame pointer
+    type: ptr.oamframe
+    offset: 0x4
 ArmCannonOpeningXYOffsets:
   size: 0x8
   vars:
@@ -1280,30 +1289,6 @@ RoomSpriteEntry:
   - desc: Properties
     type: u8
     offset: 0x2
-ArmCannonDrawData:
-  size: 0x8
-  vars:
-  - desc: Opening X/Y offsets pointer
-    type: ptr.ArmCannonOpeningXYOffsets
-    offset: 0x0
-  - desc: OAM frame pointer
-    type: ptr.oamframe
-    offset: 0x4
-SamusBodyDrawData:
-  size: 0x10
-  vars:
-  - desc: Torso graphics pointer
-    type: ptr
-    offset: 0x0
-  - desc: Legs graphics pointer
-    type: ptr
-    offset: 0x4
-  - desc: Body OAM pointer
-    type: ptr.Oam
-    offset: 0x8
-  - desc: '?'
-    type: u8
-    offset: 0xC
 SamusAnimationInfo:
   size: 0xC
   vars:
@@ -1322,6 +1307,21 @@ SamusAnimationInfo:
   - desc: Shinespark timer
     type: u8
     offset: 0x4
+SamusBodyDrawData:
+  size: 0x10
+  vars:
+  - desc: Torso graphics pointer
+    type: ptr
+    offset: 0x0
+  - desc: Legs graphics pointer
+    type: ptr
+    offset: 0x4
+  - desc: Body OAM pointer
+    type: ptr.Oam
+    offset: 0x8
+  - desc: '?'
+    type: u8
+    offset: 0xC
 SamusData:
   size: 0x2C
   vars:

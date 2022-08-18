@@ -33,9 +33,10 @@ DATA = (
     "addr",
     "size",
     "count",
-    "enum"
+    "enum",
+    "notes"
 )
-CODE_VAR = ("desc", "type", "enum")
+CODE_VAR = ("desc", "type", "enum", "notes")
 FIELDS = {
     MAP_ENUMS: (
         "desc",

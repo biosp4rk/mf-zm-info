@@ -4,7 +4,7 @@ import os
 import re
 import sys
 from constants import *
-from utils import get_entry_size, get_versioned_int, ints_to_strs, read_yaml, read_yamls, write_yaml
+from utils import get_entry_size, ints_to_strs, read_yaml, read_yamls, write_yaml
 
 
 LABEL_PAT = re.compile(r"^\w+$")
