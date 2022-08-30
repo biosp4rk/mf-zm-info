@@ -105,10 +105,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u16 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u16 *
     notes: Destination address
   return: null
   notes: Calls LZ77UnComp16Bit
@@ -122,10 +122,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   return: null
   notes: Calls LZ77UnComp8Bit
@@ -268,7 +268,7 @@
   mode: thumb
   params:
   - label: VBlankCodePtr
-    type: ptr.thumb
+    type: void *
     notes: V-Blank code pointer
   return: null
   notes: Sets the vblank code pointer to r0
@@ -293,7 +293,7 @@
   mode: thumb
   params:
   - label: HBlankCodePtr
-    type: ptr.thumb
+    type: void *
     notes: H-Blank code pointer
   return: null
   notes: Sets the hblank code pointer to r0
@@ -318,7 +318,7 @@
   mode: thumb
   params:
   - label: VCountCodePtr
-    type: ptr.thumb
+    type: void *
     notes: V-Count code pointer
   return: null
   notes: Sets the vcount code pointer to r0
@@ -413,10 +413,10 @@
     type: u8
     notes: DMA channel
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   - label: Length
     type: u16
@@ -519,19 +519,19 @@
   mode: thumb
   params:
   - label: SourceRamAddress
-    type: ptr
+    type: u8 *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: ptr
+    type: u8 *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: ptr
+    type: u8 *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: ptr
+    type: u8 *
     notes: End destination address
   notes: Switches to ARM mode and calls function below
 -
@@ -544,19 +544,19 @@
   mode: arm
   params:
   - label: SourceRamAddress
-    type: ptr
+    type: u8 *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: ptr
+    type: u8 *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: ptr
+    type: u8 *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: ptr
+    type: u8 *
     notes: End destination address
   notes: Sound code B
 -
@@ -569,16 +569,16 @@
   mode: thumb
   params:
   - label: DestinationRamAddress
-    type: ptr
+    type: u8 *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: ptr
+    type: u8 *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: u8 *
     notes: End source address
   notes: Switches to ARM mode and calls the function below
 -
@@ -591,16 +591,16 @@
   mode: arm
   params:
   - label: DestinationRamAddress
-    type: ptr
+    type: u8 *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: ptr
+    type: u8 *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: u8 *
     notes: End source address
   notes: Sound code C
 -
@@ -613,16 +613,16 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address?
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: u8 *
     notes: End source address?
   notes: Switches to ARM mode and calls the function below
 -
@@ -635,16 +635,16 @@
   mode: arm
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address?
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: u8 *
     notes: End source address?
   notes: Sound code A
 -
@@ -693,10 +693,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   - label: Length
     type: u32
@@ -712,10 +712,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   - label: Length
     type: u32
@@ -765,10 +765,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u16 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u16 *
     notes: Destination address
   return: null
   notes: Calls software interrupt 0x12
@@ -782,10 +782,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   return: null
   notes: Calls software interrupt 0x11
@@ -799,7 +799,7 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: MidiKey
     type: u8
@@ -843,7 +843,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Copies samus data
+  notes: Copies Samus data
 -
   label: SetSuitPalette
   addr:
@@ -854,7 +854,9 @@
   mode: thumb
   params:
   - label: PaletteAddress
-    type: ptr
+    type: u16 *
+    tags:
+    - palette
     notes: Palette address
   - label: VramOffset
     type: u32
@@ -876,7 +878,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the physics of samus
+  notes: Updates the physics of Samus
 -
   label: CallUpdateArmCannonOam
   addr:
@@ -912,7 +914,7 @@
     label: SamusStandingOnDropThroughClipdataFlag
     type: bool
     notes: Samus standing on drop-through clipdata flag
-  notes: Checks if samus is standing on drop through clipdata (crumble block)
+  notes: Checks if Samus is standing on drop through clipdata (crumble block)
 -
   label: SetForcedMovementFlagForJumpingDroppingThroughClipdata
   addr:
@@ -973,7 +975,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initializes all the samus related data
+  notes: Initializes all the Samus related data
 -
   label: CopyDemoButtonInput
   addr:
@@ -1037,7 +1039,7 @@
     type: bool
     notes: Update palette flag
   return: null
-  notes: Transfers samus' and SA-X graphics to VRAM
+  notes: Transfers Samus and SA-X graphics to VRAM
 -
   label: VBlankCodeDuringInGameLoads
   addr:
@@ -1224,7 +1226,9 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     enum: SpriteStatus
   return:
     label: AssignedSpriteRamSlot0xffIfNotAssigned
@@ -1260,7 +1264,9 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
   return:
     label: AssignedSpriteRamSlot0xffIfNotAssigned
     type: u8
@@ -1298,7 +1304,9 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     enum: SpriteStatus
   return:
     label: AssignedSpriteRamSlot0xffIfNotAssigned
@@ -1342,7 +1350,7 @@
     type: u16
     notes: Damage multiplier
   return: null
-  notes: Handles samus taking damage from a sprite
+  notes: Handles Samus taking damage from a sprite
 -
   label: CheckObjectsTouching
   addr:
@@ -1391,7 +1399,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if samus is colliding with a sprite, applies that collision
+  notes: Checks if Samus is colliding with a sprite, applies that collision
 -
   label: CheckVerticalCollisionAtPosition
   addr:
@@ -1470,7 +1478,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face samus (x flip)
+  notes: Makes the current sprite face Samus (x flip)
 -
   label: MakeSpriteFaceSamus_Direction
   addr:
@@ -1481,7 +1489,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face samus (direction)
+  notes: Makes the current sprite face Samus (direction)
 -
   label: MakeSpriteFaceAwayFromSamus_XFlip
   addr:
@@ -1492,7 +1500,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face from samus (x flip)
+  notes: Makes the current sprite face from Samus (x flip)
 -
   label: MakeSpriteFaceAwayFromSamus_Direction
   addr:
@@ -1503,7 +1511,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face from samus (direction)
+  notes: Makes the current sprite face from Samus (direction)
 -
   label: CheckEndOfSpriteAnimation_Curr
   addr:
@@ -1599,7 +1607,7 @@
     label: 4IfLeftOfSprite8IfRightOfSprite0IfOutOfRange
     type: u8
     notes: 4 if left of sprite, 8 if right of sprite, 0 if out of range
-  notes: Checks if samus is in range of the sprite on the left and right with
+  notes: Checks if Samus is in range of the sprite on the left and right with
     r0 and r1
 -
   label: CheckSamusNearSprite_AboveBelow
@@ -1620,7 +1628,7 @@
     label: 1IfAboveSprite2IfBelowSprite0IfOutOfRange
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
-  notes: Checks if samus is in range of the sprite above and below with r0 and
+  notes: Checks if Samus is in range of the sprite above and below with r0 and
     r1
 -
   label: CheckSamusNearSprite_FrontBehindX
@@ -1644,7 +1652,7 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Checks if samus is in the X range of the sprite front and behind with
+  notes: Checks if Samus is in the X range of the sprite front and behind with
     r0, r1 and r2
 -
   label: CheckSamusNearSprite_FrontBehindY
@@ -1668,7 +1676,7 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Checks if samus is in the Y range of the sprite front and behind with
+  notes: Checks if Samus is in the Y range of the sprite front and behind with
     r0, r1 and r2
 -
   label: CheckSamusNearSprite_AboveBelowSeparate
@@ -1689,10 +1697,10 @@
     type: u16
     notes: Y range (above)
   return:
-    label: 1IfInRangeAbove2IfInRangeBelow0IfOutOfRange
+    label: InRange
     type: u8
     notes: 1 if in range above, 2 if in range below, 0 if out of range
-  notes: Checks if samus is in range of the sprite above and below (separate ranges)
+  notes: Checks if Samus is in range of the sprite above and below (separate ranges)
     with r0 and r1
 -
   label: UpdateSpriteFreezeTimer
@@ -1748,7 +1756,7 @@
   mode: thumb
   params:
   - label: OamPtr
-    type: ptr.thumb
+    type: void *
     notes: OAM pointer
   return: null
   notes: Sets the OAM pointer for the secondary sprite
@@ -1762,7 +1770,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the energy and ammo of samus to the max (unused)
+  notes: Sets the energy and ammo of Samus to the max (unused)
 -
   label: CheckEnergyFullAndMissilesNotFull
   addr:
@@ -1807,7 +1815,7 @@
     label: SamusPassesThroughSprite
     type: bool
     notes: Samus passes through sprite
-  notes: 'Checks if samus can pass through the sprite in r0 '
+  notes: Checks if Samus can pass through the sprite in r0
 -
   label: CheckCrouchingOrMorphed
   addr:
@@ -1821,7 +1829,7 @@
     label: CrouchingOrMorphed
     type: bool
     notes: Crouching or morphed
-  notes: Checks if samus is crouched or morphed
+  notes: Checks if Samus is crouched or morphed
 -
   label: CheckMorphed
   addr:
@@ -1834,7 +1842,7 @@
   return:
     label: Morphed
     type: bool
-  notes: Checks if samus is morphed
+  notes: Checks if Samus is morphed
 -
   label: CheckSamusMovementIsPrevented
   addr:
@@ -1848,7 +1856,7 @@
     label: SamusCannotMove
     type: bool
     notes: Samus cannot move
-  notes: Checks if samus' movement is prevented
+  notes: Checks if Samus movement is prevented
 -
   label: CheckScrewingSparkingBoosting
   addr:
@@ -1862,7 +1870,7 @@
     label: ScrewAttackingShinesparkingOrSpeedBoosting
     type: bool
     notes: Screw attacking, shinesparking, or speed boosting
-  notes: Checks if samus is in a damaging pose (screw attacking, shinesparking
+  notes: Checks if Samus is in a damaging pose (screw attacking, shinesparking
     or speedboosting)
 -
   label: CheckPseudoScrewing
@@ -1880,7 +1888,7 @@
     label: PseudoScrewAttacking
     type: bool
     notes: Pseudo screw attacking
-  notes: Checks if samus is sudo screw attacking the sprite in r0
+  notes: Checks if Samus is sudo screw attacking the sprite in r0
 -
   label: CheckHangingFromLedge
   addr:
@@ -1894,7 +1902,7 @@
     label: HangingFromLedge
     type: bool
     notes: Hanging from ledge
-  notes: Checks if samus is hanging on ledge
+  notes: Checks if Samus is hanging on ledge
 -
   label: CheckHangingFromCeilingLadder
   addr:
@@ -1908,7 +1916,7 @@
     label: HangingFromCeiling
     type: bool
     notes: Hanging from ceiling
-  notes: Checks if samus is on a ceiling ladder
+  notes: Checks if Samus is on a ceiling ladder
 -
   label: CheckPullingSelfUp
   addr:
@@ -1922,7 +1930,7 @@
     label: PullingSelfUp
     type: bool
     notes: Pulling self up
-  notes: Checks if samus is pulling herself up
+  notes: Checks if Samus is pulling herself up
 -
   label: TrySetAbsorbXFlagOnNewSprite
   addr:
@@ -2909,7 +2917,9 @@
   mode: thumb
   params:
   - label: HatchesToLock
-    type: flags8
+    type: u8
+    tags:
+    - flags
     notes: Hatches to lock
   return: null
   notes: Lock hatches
@@ -3085,10 +3095,10 @@
   - label: Option
     type: u8
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   return:
     label: Size
@@ -3770,7 +3780,7 @@
     type: u8
     notes: Minimap number
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   return: null
   notes: Get minimap data
@@ -3804,7 +3814,7 @@
     type: u16
     notes: Character value
   - label: GfxPosition
-    type: ptr
+    type: u8 *
     notes: Graphics position
   - label: CharacterWidth
     type: u8
@@ -3829,7 +3839,7 @@
     type: u16
     notes: Character value
   - label: GfxPosition
-    type: ptr
+    type: u8 *
     notes: Graphics position
   - label: Color
     type: u8
@@ -4091,10 +4101,12 @@
   mode: thumb
   params:
   - label: TextAddress
-    type: ptr
+    type: u8 *
+    tags:
+    - ascii
     notes: Text address
   - label: RamAddress
-    type: ptr
+    type: u8 *
     notes: RAM address
   return: null
   notes: Write "MetroidEpisode4A" to save
@@ -4108,10 +4120,12 @@
   mode: thumb
   params:
   - label: TextAddress
-    type: ptr
+    type: u8 *
+    tags:
+    - ascii
     notes: Text address
   - label: RamAddress
-    type: ptr
+    type: u8 *
     notes: RAM address
   return: null
   notes: Write "SAVE_END" to save
@@ -4236,7 +4250,9 @@
     type: u8
     notes: Projectile part
   - label: ProjectileStatus
-    type: flags8
+    type: u8
+    tags:
+    - flags
     enum: ProjectileStatus
     notes: Projectile status
   - label: ProjectileDirection
@@ -4480,7 +4496,9 @@
     notes: Sprite slot number
   return:
     label: SpriteWeakness
-    type: flags8
+    type: u8
+    tags:
+    - flags
     enum: SpriteWeakness
     notes: Sprite weakness
   notes: Get sprite weakness
@@ -5685,8 +5703,8 @@
     E: 0x38
   mode: thumb
   params:
-  - label: PtrToNonGameplayRam
-    type: ptr
+  - label: NonGameplayRamPtr
+    type: NonGamePlayRam *
     notes: Pointer to non-gameplay RAM
   return: null
   notes: Language select menu language selected
@@ -5987,8 +6005,8 @@
   size: 0x148
   mode: thumb
   params:
-  - label: PtrToUnpackedData
-    type: ptr
+  - label: UnpackedDataPtr
+    type: u8 *
     notes: Pointer to unpacked data
   return:
     label: DoubleValueUsesR0AndR1
@@ -6004,11 +6022,11 @@
   size: 0xD8
   mode: thumb
   params:
-  - label: PtrToDoubleValue
-    type: ptr
+  - label: DoubleValuePtr
+    type: u8 *
     notes: Pointer to double value
-  - label: PtrToUnpackedData
-    type: ptr
+  - label: UnpackedDataPtr
+    type: u8 *
     notes: Pointer to unpacked data
   return: null
   notes: Function unpack_d in fp-bit.c in libgcc
@@ -6021,18 +6039,18 @@
   size: 0x26C
   mode: thumb
   params:
-  - label: PtrToUnpackedDouble1
-    type: ptr.FloatingPointNum
+  - label: UnpackedDouble1Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 1
-  - label: PtrToUnpackedDouble2
-    type: ptr.FloatingPointNum
+  - label: UnpackedDouble2Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 2
-  - label: PtrToTempUnpackedDouble
-    type: ptr.FloatingPointNum
+  - label: TempUnpackedDoublePtr
+    type: FloatingPointNum *
     notes: Pointer to temp unpacked double
   return:
-    label: PtrToUnpackedDoubleResult
-    type: ptr.FloatingPointNum
+    label: UnpackedDoubleResultPtr
+    type: FloatingPointNum *
     notes: Pointer to unpacked double result
   notes: Function _fpadd_parts in fp-bit.c in libgcc
 -
@@ -6148,11 +6166,11 @@
   size: 0x100
   mode: thumb
   params:
-  - label: PtrToUnpackedDouble1
-    type: ptr.FloatingPointNum
+  - label: UnpackedDouble1Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 1
-  - label: PtrToUnpackedDouble2
-    type: ptr.FloatingPointNum
+  - label: UnpackedDouble2Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 2
   return:
     label: ComparisonResult1Less0Equal1Greater
@@ -6453,8 +6471,8 @@
   size: 0xB8
   mode: thumb
   params:
-  - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+  - label: UnpackedDataPtr
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return:
     label: FloatValue
@@ -6470,11 +6488,11 @@
   size: 0x7C
   mode: thumb
   params:
-  - label: PtrToFloatValue
-    type: ptr
+  - label: FloatValuePtr
+    type: u8 *
     notes: Pointer to float value
-  - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+  - label: UnpackedDataPtr
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return: null
   notes: Function unpack_d in fp-bit.c in libgcc
@@ -6487,18 +6505,18 @@
   size: 0x17C
   mode: thumb
   params:
-  - label: PtrToUnpackedFloat1
-    type: ptr.FloatingPointNum
+  - label: UnpackedFloat1Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 1
-  - label: PtrToUnpackedFloat2
-    type: ptr.FloatingPointNum
+  - label: UnpackedFloat2Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 2
-  - label: PtrToTempUnpackedFloat
-    type: ptr.FloatingPointNum
+  - label: TempUnpackedFloatPtr
+    type: FloatingPointNum *
     notes: Pointer to temp unpacked float
   return:
-    label: PtrToUnpackedFloatResult
-    type: ptr.FloatingPointNum
+    label: UnpackedFloatResultPtr
+    type: FloatingPointNum *
     notes: Pointer to unpacked float result
   notes: Function _fpadd_parts in fp-bit.c in libgcc
 -
@@ -6590,11 +6608,11 @@
   size: 0xE4
   mode: thumb
   params:
-  - label: PtrToUnpackedFloat1
-    type: ptr.FloatingPointNum
+  - label: UnpackedFloat1Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 1
-  - label: PtrToUnpackedFloat2
-    type: ptr.FloatingPointNum
+  - label: UnpackedFloat2Ptr
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 2
   return:
     label: ComparisonResult1Less0Equal1Greater
@@ -6910,16 +6928,16 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   - label: SourceAddress
-    type: ptr
+    type: u8 *
     notes: Source address
   - label: Length
     type: u32
   return:
     label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   notes: Function memcpy from memcpy.c in libgcc
 -
@@ -6932,7 +6950,7 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   - label: Value
     type: u8
@@ -6940,6 +6958,6 @@
     type: u32
   return:
     label: DestinationAddress
-    type: ptr
+    type: u8 *
     notes: Destination address
   notes: Function memset from memset.c in libgcc

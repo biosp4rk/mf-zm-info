@@ -201,3 +201,52 @@ def get_entry_size(
     for r in count:
         count[r] *= ts
     return count
+
+
+# Examples
+# pointer to <type>
+# *
+PTR_P = re.compile(r"^\*$")
+# array of <type>
+# []
+ARR_P = re.compile(r"^\[\d+\]$")
+# pointer to array of <type>
+# (*)[]
+PTR_ARR_P = re.compile(r"^\(\*\)\[\]$")
+# array of pointer to <type>
+# *[]
+ARR_PTR_P = re.compile(r"^\*\[\d+\]$")
+# pointer to pointer of <type>
+# **
+PTR_PTR_P = re.compile(r"^\*\*$")
+# array x of array y of <type>
+# [x][y]
+ARR_ARR_P = re.compile(r"^(\[\d*\]){2}$")
+# pointer to array x of array y of <type>
+# (*)[x][y]
+#_P = re.compile(r"")
+# pointer to array of pointer to <type>
+# *(*)[]
+#_P = re.compile(r"")
+# array of pointer to pointer to <type>
+# **[]
+#_P = re.compile(r"")
+# array x of pointer to array y of <type>
+# (*[x])[y]
+#_P = re.compile(r"")
+
+def parse_type(text: str) -> None:
+    # tokenize
+    spec, declarator = text.split()
+    assert spec in PRIMITIVES
+    if (
+        PTR_P.match(declarator) or
+        ARR_P.match(declarator) or
+        PTR_ARR_P.match(declarator) or
+        PTR_PTR_P.match(declarator) or
+        ARR_ARR_P.match(declarator)
+    ):
+        return True
+    else:
+        return False
+

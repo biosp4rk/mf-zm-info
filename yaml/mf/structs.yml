@@ -2,17 +2,23 @@ AbilityRamValues:
   size: 0x8
   vars:
   - label: BeamStatusFlag
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x0
     enum: BeamStatus
     notes: Beam status flag
   - label: MissileBombStatusFlag
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x1
     enum: MissileBombStatus
     notes: Missile/bomb status flag
   - label: SuitMiscStatusFlag
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x2
     enum: SuitMiscStatus
     notes: Suit/misc status flag
@@ -63,8 +69,10 @@ AnimatedGraphicsEntry:
     type: u8
     offset: 0x2
     notes: Number of states
-  - label: PtrToGfx
-    type: ptr.gfx
+  - label: GfxPtr
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x4
     notes: Pointer to graphics
 AnimatedPaletteAndTilesetNum:
@@ -94,8 +102,10 @@ AnimatedPaletteEntry:
     type: u8
     offset: 0x2
     notes: Number of states
-  - label: PtrToPalette
-    type: ptr.palette
+  - label: PalettePtr
+    type: u16 *
+    tags:
+    - palette
     offset: 0x4
     notes: Pointer to palette
 AnimatedPaletteTiming:
@@ -131,11 +141,11 @@ ArmCannonDrawData:
   size: 0x8
   vars:
   - label: OpeningXYOffsetsPtr
-    type: ptr.ArmCannonOpeningXYOffsets
+    type: ArmCannonOpeningXYOffsets *
     offset: 0x0
     notes: Opening X/Y offsets pointer
   - label: OamFramePtr
-    type: ptr.oamframe
+    type: u16 *
     offset: 0x4
     notes: OAM frame pointer
 ArmCannonOpeningXYOffsets:
@@ -220,8 +230,8 @@ BGPositions:
 BGPtrsAndDimensions:
   size: 0x20
   vars:
-  - label: PtrToDecompressedBg0
-    type: ptr.u16
+  - label: DecompressedBg0Ptr
+    type: u16 *
     offset: 0x0
     notes: Pointer to decompressed BG0
   - label: WidthOfBg0InBlocks
@@ -232,8 +242,8 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0x6
     notes: Height of BG0 in blocks
-  - label: PtrToDecompressedBg1
-    type: ptr.u16
+  - label: DecompressedBg1Ptr
+    type: u16 *
     offset: 0x8
     notes: Pointer to decompressed BG1
   - label: WidthOfBg1InBlocks
@@ -244,8 +254,8 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0xE
     notes: Height of BG1 in blocks
-  - label: PtrToDecompressedBg2
-    type: ptr.u16
+  - label: DecompressedBg2Ptr
+    type: u16 *
     offset: 0x10
     notes: Pointer to decompressed BG2
   - label: WidthOfBg2InBlocks
@@ -256,8 +266,8 @@ BGPtrsAndDimensions:
     type: u16
     offset: 0x16
     notes: Height of BG2 in blocks
-  - label: PtrToDecompressedClipdata
-    type: ptr.u16
+  - label: DecompressedClipdataPtr
+    type: u16 *
     offset: 0x18
     notes: Pointer to decompressed clipdata
   - label: WidthOfClipdataInBlocks
@@ -486,8 +496,8 @@ CurrRoomEntry:
   - label: Transparency
     type: u8
     offset: 0x7
-  - label: PtrToSpriteLayoutData
-    type: ptr.RoomSpriteEntry
+  - label: SpriteLayoutDataPtr
+    type: RoomSpriteEntry *
     offset: 0x8
     notes: Pointer to sprite layout data
   - label: EventToUseTheFirstSpriteset
@@ -619,7 +629,9 @@ DebugMenuOptions:
     offset: 0x7
     notes: Section selection
   - label: DownloadedMaps
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x8
     enum: AreaBitFlags
     notes: Downloaded maps
@@ -635,16 +647,16 @@ DebugMenuOptions:
 DemoInputPtrs:
   size: 0x10
   vars:
-  - label: PtrToInputs
-    type: ptr.u16
+  - label: InputsPtr
+    type: u16 *
     offset: 0x0
     notes: Pointer to inputs
   - label: NumOfInputs
     type: u16
     offset: 0x4
     notes: Number of inputs
-  - label: PtrToDurations
-    type: ptr.u16
+  - label: DurationsPtr
+    type: u16 *
     offset: 0x8
     notes: Pointer to durations
   - label: NumOfDurations
@@ -669,7 +681,9 @@ DemoRam:
     enum: SecurityLevel
     notes: Security level status
   - label: DownloadedMapStatus
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x3
     enum: AreaBitFlags
     notes: Downloaded map status
@@ -834,17 +848,23 @@ Equipment:
     offset: 0x9
     notes: Max power bombs
   - label: BeamStatus
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0xA
     enum: BeamStatus
     notes: Beam status
   - label: MissileBombStatus
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0xB
     enum: MissileBombStatus
     notes: Missile/Bomb status
   - label: SuitMiscStatus
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0xC
     enum: SuitMiscStatus
     notes: Suit/Misc. status
@@ -854,7 +874,9 @@ Equipment:
     enum: SecurityLevel
     notes: Security hatch level
   - label: DownloadedMaps
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0xE
     enum: AreaBitFlags
     notes: Downloaded maps
@@ -1017,7 +1039,9 @@ HatchLockEvent:
     offset: 0x2
     notes: Room ID + 1
   - label: HatchesToLock
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x3
     notes: Hatches to lock
 InGameTime:
@@ -1141,15 +1165,21 @@ NavRoomHatchLockEvent:
     offset: 0x0
     enum: Event
   - label: NavRooms14Hatches
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x1
     notes: Navigation rooms 1-4 hatches
   - label: NavRooms58Hatches
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x2
     notes: Navigation rooms 5-8 hatches
   - label: NavRooms9CHatches
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x3
     notes: Navigation rooms 9-C hatches
 NavRoomLocation:
@@ -1316,7 +1346,7 @@ Oam:
   size: 0x8
   vars:
   - label: OamFramePtr
-    type: ptr
+    type: u16 *
     offset: 0x0
     notes: OAM frame pointer
   - label: Duration
@@ -1326,7 +1356,9 @@ ParticleEffect:
   size: 0xC
   vars:
   - label: Status
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x0
   - label: AnimationFrameCounter
     type: u8
@@ -1390,7 +1422,9 @@ PrimarySpriteStats:
     enum: SuitDamageReduction
     notes: Suit damage reduction
   - label: Weakness
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0x6
     enum: SpriteWeakness
   - label: HealthXProbabilityOutOf0x400
@@ -1409,11 +1443,13 @@ ProjectileData:
   size: 0x20
   vars:
   - label: Status
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x0
     enum: ProjectileStatus
   - label: OamPtr
-    type: ptr
+    type: Oam *
     offset: 0x4
     notes: OAM pointer
   - label: YPosition
@@ -1506,23 +1542,26 @@ RoomEntry:
     enum: BGProperty
     notes: BG3 properties
   - label: Bg0Ptr
-    type: ptr
+    type: u16 *
     offset: 0x8
     notes: BG0 pointer
   - label: Bg1Ptr
-    type: ptr
+    type: u16 *
     offset: 0xC
     notes: BG1 pointer
   - label: Bg2Ptr
-    type: ptr
+    type: u16 *
     offset: 0x10
     notes: BG2 pointer
   - label: ClipdataPtr
-    type: ptr
+    type: u16 *
     offset: 0x14
     notes: Clipdata pointer
   - label: Bg3Ptr
-    type: ptr.lz.tilemap
+    type: u8 *
+    tags:
+    - lz
+    - tilemap
     offset: 0x18
     notes: BG3 pointer
   - label: Bg3Scrolling
@@ -1533,7 +1572,7 @@ RoomEntry:
     type: u8
     offset: 0x1D
   - label: DefaultSpriteLayoutPtr
-    type: ptr.RoomSpriteEntry
+    type: RoomSpriteEntry *
     offset: 0x20
     notes: Default sprite layout pointer
   - label: DefaultSpriteset
@@ -1546,7 +1585,7 @@ RoomEntry:
     enum: Event
     notes: First spriteset event
   - label: FirstSpriteLayoutPtr
-    type: ptr.RoomSpriteEntry
+    type: RoomSpriteEntry *
     offset: 0x28
     notes: First sprite layout pointer
   - label: FirstSpriteset
@@ -1559,7 +1598,7 @@ RoomEntry:
     enum: Event
     notes: Second spriteset event
   - label: SecondSpriteLayoutPtr
-    type: ptr.RoomSpriteEntry
+    type: RoomSpriteEntry *
     offset: 0x30
     notes: Second sprite layout pointer
   - label: SecondSpriteset
@@ -1626,15 +1665,19 @@ SamusBodyDrawData:
   size: 0x10
   vars:
   - label: TorsoGfxPtr
-    type: ptr
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x0
     notes: Torso graphics pointer
   - label: LegsGfxPtr
-    type: ptr
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x4
     notes: Legs graphics pointer
   - label: BodyOamPtr
-    type: ptr.Oam
+    type: Oam *
     offset: 0x8
     notes: Body OAM pointer
   - label: unk_0C
@@ -1788,11 +1831,13 @@ SamusGraphicsInfo:
   size: 0x3C
   vars:
   - label: SamusOamPtr
-    type: ptr
+    type: Oam *
     offset: 0x0
     notes: Samus OAM pointer
   - label: TorsoTopGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x4
     notes: Torso top graphics pointer
   - label: TorsoTopGfxSize
@@ -1800,7 +1845,9 @@ SamusGraphicsInfo:
     offset: 0x8
     notes: Torso top graphics size
   - label: TorsoBottomGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0xC
     notes: Torso bottom graphics pointer
   - label: TorsoBottomGfxSize
@@ -1808,7 +1855,9 @@ SamusGraphicsInfo:
     offset: 0x10
     notes: Torso bottom graphics size
   - label: LegsTopGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x14
     notes: Legs top graphics pointer
   - label: LegsTopGfxSize
@@ -1816,7 +1865,9 @@ SamusGraphicsInfo:
     offset: 0x18
     notes: Legs top graphics size
   - label: LegsBottomGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x1C
     notes: Legs bottom graphics pointer
   - label: LegsBottomGfxSize
@@ -1836,11 +1887,13 @@ SamusGraphicsInfo:
     offset: 0x26
     notes: 0x1000 = under Samus, 0x2000 = over Samus
   - label: ArmCannonOamFramePtr
-    type: ptr.oamframe
+    type: u16 *
     offset: 0x28
     notes: Arm cannon OAM frame pointer
   - label: ArmCannonTopGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x2C
     notes: Arm cannon top graphics pointer
   - label: ArmCannonTopGfxSize
@@ -2078,23 +2131,33 @@ SaveFileRam:
     offset: 0xD6
     notes: Disable drawing Samus and scrolling flag
   - label: AtmosphericStabilizersOnline
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0xD8
     notes: Atmospheric stabilizers online
   - label: NormalXBarrierCoresDestroyed
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0xDA
     notes: Normal X-barrier cores destroyed
   - label: SuperXBarrierCoresDestroyed
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0xDC
     notes: Super X-barrier cores destroyed
   - label: PowerXBarrierCoresDestroyed
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0xDE
     notes: Power X-barrier cores destroyed
   - label: EyedoorsDestroyed
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0xE0
     notes: Eyedoors destroyed
   - label: MissileHatchDestroyed
@@ -2253,7 +2316,9 @@ SecondarySpriteStats:
     enum: SuitDamageReduction
     notes: Suit damage reduction
   - label: Weakness
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0x6
     enum: SpriteWeakness
 SecurityUnlockEvent:
@@ -2301,7 +2366,9 @@ SpriteData:
   size: 0x38
   vars:
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     offset: 0x0
     enum: SpriteStatus
   - label: YPosition
@@ -2348,7 +2415,7 @@ SpriteData:
     offset: 0x16
     notes: Current animation frame
   - label: OamPtr
-    type: ptr
+    type: Oam *
     offset: 0x18
     notes: OAM pointer
   - label: AnimationDurationCounter
@@ -2445,7 +2512,9 @@ SpriteData:
     offset: 0x33
     notes: Standing on sprite flag
   - label: Properties
-    type: flags8
+    type: u8
+    tags:
+    - flags
     offset: 0x34
     enum: SpriteProperties
   - label: FrozenPaletteRowOffset
@@ -2459,7 +2528,7 @@ SpriteDebris:
   size: 0x10
   vars:
   - label: OamPtr
-    type: ptr
+    type: Oam *
     offset: 0x0
     notes: OAM pointer
   - label: CurrAnimationFrame
@@ -2537,16 +2606,18 @@ TankIncreaseAmounts:
 TilemapAndClipdataPtrs:
   size: 0xC
   vars:
-  - label: PtrToTilemap
-    type: ptr.tilemap
+  - label: TilemapPtr
+    type: u16 *
+    tags:
+    - tilemap
     offset: 0x0
     notes: Pointer to tilemap
-  - label: PtrToClipdataCollisionTypes
-    type: ptr
+  - label: ClipdataCollisionTypesPtr
+    type: u8 *
     offset: 0x4
     notes: Pointer to clipdata collision types
-  - label: PtrToClipdataBehaviorTypes
-    type: ptr
+  - label: ClipdataBehaviorTypesPtr
+    type: u16 *
     offset: 0x8
     notes: Pointer to clipdata behavior types
 TilesetEntry:

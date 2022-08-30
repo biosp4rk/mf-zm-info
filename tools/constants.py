@@ -74,11 +74,14 @@ FIELDS = {
 }
 
 PRIMITIVES = {
-    "u8", "s8", "flags8", "bool",
-    "u16", "s16", "flags16",
-    "u32", "s32", "ptr",
-    "ascii", "char",
-    "lz", "gfx", "tilemap",
+    "u8", "s8", "bool",
+    "u16", "s16",
+    "u32", "s32"
+}
+
+TAGS = {
+    "flags", "ascii", "text",
+    "rle", "lz", "gfx", "tilemap",
     "palette", "oamframe",
     "thumb", "arm"
 }
