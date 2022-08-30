@@ -5,20 +5,6 @@ import yaml
 from constants import *
 
 
-TYPE_SIZES = {
-    "u8": 1,
-    "s8": 1,
-    "flags8": 1,
-    "bool": 1,
-    "u16": 2,
-    "s16": 2,
-    "flags16": 2,
-    "char": 2,
-    "u32": 4,
-    "s32": 4,
-    "ptr": 4,
-    "palette": 32
-}
 InfoFile = Union[Dict, List]
 
 
@@ -71,7 +57,7 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
         # sort by U, then by E, etc
         for r in REGIONS:
             entries = sorted(entry_dict[r],
-                key=lambda e: get_versioned_int(r, e["addr"]))
+                key=lambda e: region_int_to_int(r, e["addr"]))
             if r == REGIONS[0]:
                 combined = entries
                 continue
@@ -79,7 +65,7 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
             j = len(combined) - 1
             while i > 0:
                 entry = entries[i]
-                addr = get_versioned_int(r, entry["addr"])
+                addr = region_int_to_int(r, entry["addr"])
                 while j > 0:
                     cmp_addr = combined[j]["addr"]
                     if isinstance(cmp_addr, dict):
@@ -92,10 +78,16 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
     return combined
 
 
-def get_versioned_int(region: str, entry: VersionedInt) -> int:
+def region_int_to_int(region: str, entry: RegionInt) -> int:
     if isinstance(entry, int):
         return entry
     return entry.get(region)
+
+
+def region_int_to_dict(regions: List[str], entry: RegionInt) -> Dict[str, int]:
+    if isinstance(entry, dict):
+        return entry
+    return {r: entry for r in regions}
 
 
 def compare_addrs(entry1, entry2) -> int:
@@ -163,90 +155,42 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
         f.write(output)
 
 
-def get_type_size(entry: Dict[str, Any], structs: Dict[str, Any]) -> int:
-    t = entry["type"].split(".")[0]
-    if t in TYPE_SIZES:
-        return TYPE_SIZES[t]
-    if t in structs:
-        return structs[t]["size"]
-    raise ValueError(f"Invalid type {t}")
+def get_spec_size(spec: str, structs: Dict[str, Any]) -> int:
+    if spec in PRIMITIVES:
+        return PRIMITIVES[spec]
+    if spec in structs:
+        return structs[spec]["size"]
+    raise ValueError(f"Invalid type specifier {spec}")
 
 
 def get_entry_size(
     entry: Dict[str, Any], structs: Dict[str, Any]
 ) -> Dict[str, int]:
     # get regions this entry applies to
+    regions = REGIONS
     addr = entry["addr"]
     if isinstance(addr, dict):
-        regions = addr.keys()
-    else:
-        regions = REGIONS
+        regions = tuple(addr.keys())
     # return size field if present
     if "size" in entry:
-        size = entry["size"]
-        if isinstance(size, int):
-            size = {r: size for r in regions}
-        return size
-    # can't get size if type isn't known
-    if "type" not in entry:
-        return {r: 0 for r in regions}
-    # multiply type size by count
-    ts = get_type_size(entry, structs)
-    if "count" in entry:
-        count = entry["count"]
-        if isinstance(count, int):
-            count = {r: count for r in regions}
-    else:
-        count = {r: 1 for r in regions}
-    for r in count:
-        count[r] *= ts
-    return count
-
-
-# Examples
-# pointer to <type>
-# *
-PTR_P = re.compile(r"^\*$")
-# array of <type>
-# []
-ARR_P = re.compile(r"^\[\d+\]$")
-# pointer to array of <type>
-# (*)[]
-PTR_ARR_P = re.compile(r"^\(\*\)\[\]$")
-# array of pointer to <type>
-# *[]
-ARR_PTR_P = re.compile(r"^\*\[\d+\]$")
-# pointer to pointer of <type>
-# **
-PTR_PTR_P = re.compile(r"^\*\*$")
-# array x of array y of <type>
-# [x][y]
-ARR_ARR_P = re.compile(r"^(\[\d*\]){2}$")
-# pointer to array x of array y of <type>
-# (*)[x][y]
-#_P = re.compile(r"")
-# pointer to array of pointer to <type>
-# *(*)[]
-#_P = re.compile(r"")
-# array of pointer to pointer to <type>
-# **[]
-#_P = re.compile(r"")
-# array x of pointer to array y of <type>
-# (*[x])[y]
-#_P = re.compile(r"")
-
-def parse_type(text: str) -> None:
-    # tokenize
-    spec, declarator = text.split()
-    assert spec in PRIMITIVES
-    if (
-        PTR_P.match(declarator) or
-        ARR_P.match(declarator) or
-        PTR_ARR_P.match(declarator) or
-        PTR_PTR_P.match(declarator) or
-        ARR_ARR_P.match(declarator)
-    ):
-        return True
-    else:
-        return False
-
+        return region_int_to_dict(regions, entry["size"])
+    # parse type
+    parts = entry["type"].split()
+    spec = parts[0]
+    size = get_spec_size(spec, structs)
+    if len(parts) == 2:
+        decl = parts[1]
+        # get inner-most part of declaration
+        i = decl.rfind("(")
+        if i != -1:
+            j = decl.index(")")
+            decl = decl[i+1:j]
+        # check for pointer
+        if decl.startswith("*"):
+            size = 4
+            decl = decl.lstrip("*")
+        # check for array
+        dims = [int(m) for m in re.findall(r"\d+", decl)]
+        for dim in dims:
+            size *= dim
+    return {r: size for r in regions}

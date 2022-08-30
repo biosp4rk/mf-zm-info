@@ -67,7 +67,6 @@ class Validator(object):
                     for entry in entries:
                         self.entry = entry
                         self.check_label(entry)
-                        # TODO: should type be required?
                         self.check_type(entry)
                         # TODO: check if address is aligned with type
                         self.check_addr(entry)
@@ -119,7 +118,7 @@ class Validator(object):
         assert isinstance(notes, str), "notes must be a string"
         assert len(notes.strip()) > 0, "notes cannot be empty"
 
-    def check_versioned_int(self, entry, align=None) -> None:
+    def check_region_int(self, entry, align=None) -> None:
         nums = None
         assert isinstance(entry, (int, dict)), "Expected integer or dictionary"
         if isinstance(entry, int):
@@ -136,7 +135,7 @@ class Validator(object):
     def check_addr(self, entry, align: int = None) -> None:
         assert "addr" in entry, "addr is required"
         addr = entry["addr"]
-        self.check_versioned_int(addr, align)
+        self.check_region_int(addr, align)
 
     def check_offset(self, entry) -> None:
         assert "offset" in entry, "offset is required"
@@ -148,14 +147,14 @@ class Validator(object):
             assert required is False, "count is required"
             return
         addr = entry["count"]
-        self.check_versioned_int(addr)
+        self.check_region_int(addr)
 
     def check_size(self, entry, required: bool = False, align: int = None) -> None:
         if "size" not in entry:
             assert required is False, "size is required"
             return
         size = entry["size"]
-        self.check_versioned_int(size, align)
+        self.check_region_int(size, align)
 
     def check_vals(self, entry) -> None:
         assert isinstance(entry, list), "enum entry must be a list"
@@ -200,7 +199,7 @@ class Validator(object):
         if isinstance(params, list):
             for param in params:
                 self.check_label(param)
-                self.check_type(param, True)
+                self.check_type(param)
                 self.check_enum(param)
 
     def check_return(self, entry):
@@ -210,21 +209,92 @@ class Validator(object):
             ret, dict), "return must be null or dictionary"
         if isinstance(ret, dict):
             self.check_label(ret)
-            self.check_type(ret, True)
+            self.check_type(ret)
             self.check_enum(ret)
 
-    def check_type(self, entry, required=False):
-        if "type" not in entry:
-            assert required is False, "type is required"
-            return
-        type_parts = entry["type"].split(".")
-        for t in type_parts:
-            assert t in PRIMITIVES or t in self.structs, "Invalid type"
+    def check_type(self, entry):
+        assert "type" in entry, "type is required"
+        # parse type
+        t = entry["type"]
+        parts = t.split()
+        assert 1 <= len(parts) <= 2, f"Invalid type {t}"
+        # check specifier
+        spec = parts[0]
+        assert (spec in PRIMITIVES or
+            spec in self.structs), f"Invalid type specifier {spec}"
+        if len(parts) == 2:
+            check_decl(parts[1])
 
     def check_enum(self, entry):
         if "enum" in entry:
             n = entry["enum"]
             assert n in self.enums, "Invalid enum"
+
+
+def tokenize_decl(decl: str):
+    symbols = {"*", "[", "]", "(", ")"}
+    tokens = []
+    i = 0
+    while i < len(decl):
+        c = decl[i]
+        if c in symbols:
+            tokens.append(c)
+            i += 1
+        elif c == "0" and decl[i + 1] == "x":
+            start = i
+            i += 2
+            while "0" <= decl[i] <= "9" or "A" <= decl[i] <= "F":
+                i += 1
+            tokens.append(decl[start:i])
+        elif "0" <= c <= "9":
+            start = i
+            while "0" <= decl[i] <= "9":
+                i += 1
+            tokens.append(decl[start:i])
+        else:
+            raise AssertionError(f"Unexpected char {c} in type")
+    return tokens
+
+
+def parse_decl(tokens, index: int) -> int:
+    # Grammar
+    # Decl  -> Ptr Inner Arr | ""
+    # Inner -> "(" Decl ")" | ""
+    # Ptr   -> "*" Ptr | ""
+    # Arr   -> "[" Num "]" Arr | ""
+    # Num   -> Dec | Hex
+    if index == len(tokens):
+        return index
+    # check for pointer
+    while tokens[index] == "*":
+        index += 1
+        if index == len(tokens):
+            return index
+    # check for inner declaration
+    if tokens[index] == "(":
+        index = parse_decl(tokens, index + 1)
+        assert (index < len(tokens) and
+            tokens[index] == ")"), f"Expected ) in type"
+        index += 1
+        if index == len(tokens):
+            return index
+    # check for arrays
+    while tokens[index] == "[":
+        assert (index + 1 < len(tokens) and
+            tokens[index+1] != "]"), f"Array missing size in type"
+        assert (index + 2 < len(tokens) and
+            tokens[index+2] == "]"), f"Expected ] in type"
+        index += 3
+        if index == len(tokens):
+            return index
+    return index
+
+
+def check_decl(decl: str) -> None:
+    tokens = tokenize_decl(decl)
+    print(tokens)
+    index = parse_decl(tokens, 0)
+    assert index == len(tokens), "Invalid type"
 
 
 def output_yamls() -> None:

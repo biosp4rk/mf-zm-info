@@ -74,9 +74,13 @@ FIELDS = {
 }
 
 PRIMITIVES = {
-    "u8", "s8", "bool",
-    "u16", "s16",
-    "u32", "s32"
+    "u8": 1,
+    "s8": 1,
+    "bool": 1,
+    "u16": 2,
+    "s16": 2,
+    "u32": 4,
+    "s32": 4
 }
 
 TAGS = {
@@ -86,4 +90,4 @@ TAGS = {
     "thumb", "arm"
 }
 
-VersionedInt = Union[int, Dict[str, int]]
+RegionInt = Union[int, Dict[str, int]]
