@@ -80,10 +80,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit
@@ -97,10 +97,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return: null
   notes: Calls LZ77UnCompReadNormalWrite8bit
@@ -198,8 +198,7 @@
   return:
     label: Product
     type: s16
-  notes: Fixed-point multiplication of two values, where the second has a scaling
-    factor of 1/256 (ranges from -128 to 127.99)
+  notes: Fixed-point multiplication of two values, where the second has a scaling factor of 1/256 (ranges from -128 to 127.99)
 -
   label: FixedPointDivide
   addr:
@@ -217,8 +216,7 @@
   return:
     label: Quotient
     type: s16
-  notes: Fixed-point division of two values, where the second has a scaling factor
-    of 1/4 (ranges from -8192 to 8191.75)
+  notes: Fixed-point division of two values, where the second has a scaling factor of 1/4 (ranges from -8192 to 8191.75)
 -
   label: FixedPointInverse
   addr:
@@ -256,7 +254,9 @@
   mode: thumb
   params:
   - label: VBlankCodePtr
-    type: ptr.thumb
+    type: void *
+    tags:
+    - thumb
     notes: V-Blank code pointer
   return: null
   notes: Sets VBlankCodePointer to r0
@@ -281,7 +281,9 @@
   mode: thumb
   params:
   - label: HBlankCodePtr
-    type: ptr.thumb
+    type: void *
+    tags:
+    - thumb
     notes: H-Blank code pointer
   return: null
   notes: Sets HBlankCodePointer to r0
@@ -306,7 +308,9 @@
   mode: thumb
   params:
   - label: VCountCodePtr
-    type: ptr.thumb
+    type: void *
+    tags:
+    - thumb
     notes: V-Count code pointer
   return: null
   notes: Sets VCountCodePointer to r0
@@ -331,7 +335,9 @@
   mode: thumb
   params:
   - label: FunctionPtr
-    type: ptr.thumb
+    type: void *
+    tags:
+    - thumb
     notes: Function pointer
   return: null
   notes: Sets SerialCommunicationCodePointer to r0
@@ -356,7 +362,9 @@
   mode: thumb
   params:
   - label: FunctionPtr
-    type: ptr.thumb
+    type: void *
+    tags:
+    - thumb
     notes: Function pointer
   return: null
   notes: Sets Timer3OverflowCodePointer to r0
@@ -392,8 +400,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initializes registers and RAM values that are related to sound/music
-    (sets the pointers to the sound codes)
+  notes: Initializes registers and RAM values that are related to sound/music (sets the pointers to the sound codes)
 -
   label: TransferSound
   addr:
@@ -497,7 +504,7 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: ptr
+    type: void *
     notes: Track data pointer
   - label: Timer
     type: u16
@@ -529,10 +536,10 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: ptr
+    type: void *
     notes: Track data pointer
   - label: SoundEntryPtr
-    type: ptr
+    type: void *
     notes: Sound entry pointer
   - label: Timer
     type: u16
@@ -551,10 +558,10 @@
     type: u8
     notes: DMA channel
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: Length
     type: u16
@@ -578,7 +585,7 @@
   - label: Value
     type: u8
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: Length
     type: u16
@@ -682,8 +689,7 @@
   - label: Priority
     type: u8
   return: null
-  notes: Fades the current music track and queries the track in r1 to be immediately
-    played next
+  notes: Fades the current music track and queries the track in r1 to be immediately played next
 -
   label: CheckFadeInMusic
   addr:
@@ -717,8 +723,7 @@
   - label: param_1
     type: bool
   return: null
-  notes: Queues the current music, plays the music in r0, and when the music is
-    done replays the queued music
+  notes: Queues the current music, plays the music in r0, and when the music is done replays the queued music
 -
   label: QueueSound
   addr:
@@ -789,19 +794,19 @@
   mode: thumb
   params:
   - label: SourceRamAddress
-    type: ptr
+    type: void *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: ptr
+    type: void *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: ptr
+    type: void *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: ptr
+    type: void *
     notes: End destination address
   notes: Call sound code B
 -
@@ -814,19 +819,19 @@
   mode: arm
   params:
   - label: SourceRamAddress
-    type: ptr
+    type: void *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: ptr
+    type: void *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: ptr
+    type: void *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: ptr
+    type: void *
     notes: End destination address
   notes: Sound code B
 -
@@ -839,16 +844,16 @@
   mode: thumb
   params:
   - label: DestinationRamAddress
-    type: ptr
+    type: void *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: ptr
+    type: void *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: void *
     notes: End source address
   notes: Call sound code C
 -
@@ -861,16 +866,16 @@
   mode: arm
   params:
   - label: DestinationRamAddress
-    type: ptr
+    type: void *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: ptr
+    type: void *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: void *
     notes: End source address
   notes: Sound code C
 -
@@ -883,16 +888,16 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address?
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: void *
     notes: End source address?
   notes: Call sound code A
 -
@@ -905,16 +910,16 @@
   mode: arm
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address?
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: ptr
+    type: void *
     notes: End source address?
   notes: Sound code A
 -
@@ -963,7 +968,7 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: ptr
+    type: void *
     notes: Track data pointer
   return: null
   notes: Stops the music of the track in r0
@@ -977,10 +982,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: LengthMode
     type: u32
@@ -997,10 +1002,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: LengthMode
     type: u32
@@ -1051,10 +1056,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: CallbackParameter
     type: u32
@@ -1074,10 +1079,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: CallbackParameter
     type: u32
@@ -1097,7 +1102,7 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: MidiKey
     type: u8
@@ -1119,7 +1124,7 @@
   mode: thumb
   params:
   - label: PtrToMultibootparamStructure
-    type: ptr
+    type: void *
     notes: Pointer to MultiBootParam structure
   return:
     label: FailureFlag
@@ -1185,10 +1190,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return: null
   notes: Checks for screw attack/speedbooster damage to the environment
@@ -1202,10 +1207,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return: null
   notes: Checks for the sides collision when walking
@@ -1219,10 +1224,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return:
     label: NewPose
@@ -1240,10 +1245,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return:
     label: NewPose
@@ -1261,10 +1266,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return:
     label: NewPose
@@ -1282,10 +1287,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return: null
   notes: Calls other functions related to checking for collision
@@ -1299,7 +1304,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: param_1
     type: u8
@@ -1317,11 +1322,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
-  notes: Updates the environmental effects and checks if a liquid damage environment
-    effect should happen
+  notes: Updates the environmental effects and checks if a liquid damage environment effect should happen
 -
   label: SamusUpdateJumpVelocity
   addr:
@@ -1332,17 +1336,16 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusDataCopyPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data copy pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return: null
-  notes: "Updates the velocity of samus mid-air (spin breaking, starting to spin,\
-    \ forced movements\u2026)"
+  notes: "Updates the velocity of samus mid-air (spin breaking, starting to spin, forced movements\u2026)"
 -
   label: SamusSetLandingPose
   addr:
@@ -1353,10 +1356,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusDataCopyPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data copy pointer
   return: null
   notes: Determines the new pose when samus lands on ground
@@ -1370,13 +1373,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusDataCopyPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data copy pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return: null
   notes: Determines the new pose when samus gets hurt
@@ -1390,13 +1393,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusDataCopyPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data copy pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return: null
   notes: Determines the new pose when samus receives knockback
@@ -1410,13 +1413,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusDataCopyPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data copy pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return: null
   notes: Checks if some fields should be carried from samus data copy
@@ -1456,7 +1459,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Sets samus physics default values and check if slowed by liquid
@@ -1470,7 +1473,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewXVelocity
@@ -1487,7 +1490,7 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: PaletteOffset
     type: u32
@@ -1507,8 +1510,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls SamusUpdatePhysics, SamusExecutePoseRoutine, SamusUpdateVelocityPosition
-    1 unknown function b8a8 and increments the animation counter
+  notes: Calls SamusUpdatePhysics, SamusExecutePoseRoutine, SamusUpdateVelocityPosition 1 unknown function b8a8 and increments the animation counter
 -
   label: SamusUpdateHitbox
   addr:
@@ -1567,8 +1569,7 @@
   params:
   - label: Direction0xaRight0xbUp0xcLeft0x80BombAboveSamusFlag
     type: u8
-    notes: Direction (0xA = right, 0xB = up, 0xC = left, 0x80 = Bomb above Samus
-      flag)
+    notes: Direction (0xA = right, 0xB = up, 0xC = left, 0x80 = Bomb above Samus flag)
   return: null
   notes: Makes samus bounce with a bomb
 -
@@ -1581,7 +1582,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Sets the aim of the cannon
@@ -1595,13 +1596,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   - label: SamusEquipmentPtr
-    type: ptr.Equipment
+    type: Equipment *
     notes: Samus equipment pointer
   return:
     label: FiredBeamOrMissile
@@ -1618,10 +1619,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return:
     label: NewProjectile0None1Pistol2ChargedPistol
@@ -1638,17 +1639,16 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   - label: SamusEquipmentPtr
-    type: ptr.Equipment
+    type: Equipment *
     notes: Samus equipment pointer
   return: null
-  notes: Determines what new projectile should spawn, calls the 2 previously listed
-    functions
+  notes: Determines what new projectile should spawn, calls the 2 previously listed functions
 -
   label: SamusCheckAButtonPressed
   addr:
@@ -1659,14 +1659,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: AButtonPressed
     type: bool
     notes: A button pressed
-  notes: Checks if A is pressed and if so sets forced movement flag to 1 used
-    in the standing pose subroutines (morphball, turning around and standing)
+  notes: Checks if A is pressed and if so sets forced movement flag to 1 used in the standing pose subroutines (morphball, turning around and standing)
 -
   label: SamusSetHighlightedWeapon
   addr:
@@ -1677,17 +1676,16 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusWeaponInfoPtr
-    type: ptr.SamusWeaponInfo
+    type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   - label: SamusEquipmentPtr
-    type: ptr.Equipment
+    type: Equipment *
     notes: Samus equipment pointer
   return: null
-  notes: Sets what weapon is hightlighted in the HUD  (also arms the cannon for
-    missiles)
+  notes: Sets what weapon is hightlighted in the HUD  (also arms the cannon for missiles)
 -
   label: SamusSetSpinningPose
   addr:
@@ -1698,10 +1696,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusEquipmentPtr
-    type: ptr.Equipment
+    type: Equipment *
     notes: Samus equipment pointer
   return: null
   notes: Sets the spinning pose (space jumping, spinning, screw attacking)
@@ -1721,7 +1719,7 @@
     type: s16
     notes: X Velocity
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Applies an X acceleration to samus
@@ -1735,13 +1733,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusEquipmentPtr
-    type: ptr.Equipment
+    type: Equipment *
     notes: Samus equipment pointer
   - label: SamusHazardDamagePtr
-    type: ptr.SamusHazardDamage
+    type: SamusHazardDamage *
     notes: Samus hazard damage pointer
   return:
     label: GettingKnockedBackOrDying
@@ -1758,7 +1756,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Checks if samus is shinesparking
@@ -1772,14 +1770,13 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: Always0xff
     type: u8
     notes: Always 0xFF
-  notes: Default function used for pose subroutines that don't have any behavior
-    (generally when the player isn't in control of samus)
+  notes: Default function used for pose subroutines that don't have any behavior (generally when the player isn't in control of samus)
 -
   label: SamusRunning
   addr:
@@ -1790,7 +1787,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1808,7 +1805,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1826,7 +1823,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1844,7 +1841,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1862,7 +1859,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1880,7 +1877,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1898,7 +1895,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1916,7 +1913,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1934,7 +1931,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1952,7 +1949,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1970,7 +1967,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -1988,7 +1985,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2006,7 +2003,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2024,7 +2021,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2042,7 +2039,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2060,7 +2057,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2078,7 +2075,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2096,7 +2093,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2114,7 +2111,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2132,7 +2129,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2150,7 +2147,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2168,7 +2165,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2186,7 +2183,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2204,7 +2201,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2222,7 +2219,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2240,7 +2237,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2258,7 +2255,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2276,7 +2273,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2294,7 +2291,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2312,7 +2309,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2330,7 +2327,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2348,7 +2345,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2366,7 +2363,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2384,7 +2381,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2402,7 +2399,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2420,7 +2417,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2438,7 +2435,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2456,7 +2453,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2474,7 +2471,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2492,7 +2489,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2510,7 +2507,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2528,7 +2525,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2546,7 +2543,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2564,7 +2561,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2582,7 +2579,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2600,7 +2597,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2618,7 +2615,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2636,7 +2633,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2654,7 +2651,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2672,7 +2669,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2690,7 +2687,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2708,7 +2705,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2726,7 +2723,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2744,7 +2741,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2762,7 +2759,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2780,7 +2777,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2798,7 +2795,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2816,7 +2813,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2834,7 +2831,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2852,7 +2849,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2870,7 +2867,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2888,7 +2885,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2906,7 +2903,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2924,7 +2921,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2942,7 +2939,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2960,7 +2957,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2978,7 +2975,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -2996,7 +2993,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3014,7 +3011,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3032,7 +3029,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3050,7 +3047,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3068,7 +3065,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3086,7 +3083,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3104,7 +3101,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3122,7 +3119,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewSamusPose0xffIfNone
@@ -3143,15 +3140,14 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: NewPose
     type: u8
     enum: SamusPose
     notes: New pose
-  notes: Calls BXR1 to execute the current pose subroutines, also calls  SamusSpawnNewWeapon,
-    SamusSetHighlightedWeapon, SamusLiquidDamage, SamusCheckShinesparking and SamusSetSpinningPose
+  notes: Calls BXR1 to execute the current pose subroutines, also calls  SamusSpawnNewWeapon, SamusSetHighlightedWeapon, SamusLiquidDamage, SamusCheckShinesparking and SamusSetSpinningPose
 -
   label: SamusUpdateVelocityAndPosition
   addr:
@@ -3162,7 +3158,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Updates the velocity and the position of samus
@@ -3176,7 +3172,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: FacingLeftOrRight
     type: u8
@@ -3193,7 +3189,7 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return: null
   notes: Updates the palette of samus
@@ -3218,10 +3214,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return: null
   notes: Updates the draw distances and the standing status
@@ -3332,10 +3328,10 @@
   mode: thumb
   params:
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   - label: SamusPhysicsPtr
-    type: ptr.SamusPhysics
+    type: SamusPhysics *
     notes: Samus physics pointer
   return: null
   notes: Transfers samus' graphics and palettes to VRAM
@@ -3382,9 +3378,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls sprites AI, updates sprite info (animation counter, stun timer),
-    updates sprite debris, does checks related to samus on sprite and updates the
-    alarm timer
+  notes: Calls sprites AI, updates sprite info (animation counter, stun timer), updates sprite debris, does checks related to samus on sprite and updates the alarm timer
 -
   label: UpdateSpriteAnimation
   addr:
@@ -3395,7 +3389,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Updates the animation duration counter and the current animation frame
@@ -3409,8 +3403,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loop that calls the DrawSprite function, actually draws sprites, updates
-    sprite debris and is affected by the DisableDrawingSprites flag
+  notes: Loop that calls the DrawSprite function, actually draws sprites, updates sprite debris and is affected by the DisableDrawingSprites flag
 -
   label: DrawSprite
   addr:
@@ -3421,7 +3414,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: RamSlot
     type: u32
@@ -3438,7 +3431,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Checks if the sprite in r0 is on screen
@@ -3452,8 +3445,7 @@
   mode: thumb
   params: null
   return: null
-  notes: 'Calls : ClearSpriteData, LoadSpriteset, CheckReloadEscapeDigitsGraphics,
-    LoadLocationText,  LoadRoomSprites and SpawnSpacePiratesWaiting'
+  notes: 'Calls : ClearSpriteData, LoadSpriteset, CheckReloadEscapeDigitsGraphics, LoadLocationText,  LoadRoomSprites and SpawnSpacePiratesWaiting'
 -
   label: LoadSpriteset
   addr:
@@ -3578,7 +3570,9 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     enum: SpriteStatus
   return:
     label: AssignedSpriteRamSlot0xffOtherwise
@@ -3611,7 +3605,9 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     enum: SpriteStatus
   return:
     label: AssignedSpriteRamSlot0xffOtherwise
@@ -3647,14 +3643,15 @@
     type: u16
     notes: X position
   - label: Status
-    type: flags16
+    type: u16
+    tags:
+    - flags
     enum: SpriteStatus
   return:
     label: AssignedSpriteRamSlot0xffOtherwise
     type: u8
     notes: Assigned sprite RAM slot, 0xFF otherwise
-  notes: Spawns a drop according to the data in parameters is also used to spawn
-    the follower sprites
+  notes: Spawns a drop according to the data in parameters is also used to spawn the follower sprites
 -
   label: LoadLocationTextSprite
   addr:
@@ -3679,7 +3676,7 @@
     type: bool
     notes: Knockback flag
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: DamageMultiplier
     type: u16
@@ -4046,7 +4043,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return:
     label: AnimationEnded
@@ -4063,14 +4060,13 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return:
     label: AnimationNearEnd
     type: bool
     notes: Animation near end
-  notes: Checks if the sprite animation of the sub sprite data in r0 has nearly
-    ended
+  notes: Checks if the sprite animation of the sub sprite data in r0 has nearly ended
 -
   label: CheckSamusNearSprite_LeftRight
   addr:
@@ -4090,8 +4086,7 @@
     label: 4IfLeftOfSprite8IfRightOfSprite0IfOutOfRange
     type: u8
     notes: 4 if left of sprite, 8 if right of sprite, 0 if out of range
-  notes: Checks if samus is in range of the sprite on the left and right with
-    r0 and r1
+  notes: Checks if samus is in range of the sprite on the left and right with r0 and r1
 -
   label: CheckSamusNearSprite_AboveBelow
   addr:
@@ -4111,8 +4106,7 @@
     label: 1IfAboveSprite2IfBelowSprite0IfOutOfRange
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
-  notes: Checks if samus is in range of the sprite above and below with r0 and
-    r1
+  notes: Checks if samus is in range of the sprite above and below with r0 and r1
 -
   label: CheckSamusNearSprite_FrontBehindX
   addr:
@@ -4135,8 +4129,7 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Checks if samus is in range of the sprite front and behind with r0, r1
-    and r2
+  notes: Checks if samus is in range of the sprite front and behind with r0, r1 and r2
 -
   label: SamusStandingOnSprite
   addr:
@@ -4147,7 +4140,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Handles samus standing on a sprite
@@ -4172,8 +4165,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Unfreeze animation for metroids on easy mode and for winged ripper on
-    any difficulty
+  notes: Unfreeze animation for metroids on easy mode and for winged ripper on any difficulty
 -
   label: MetroidUnfreezeAnimation
   addr:
@@ -4345,18 +4337,16 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: SamusDataPtr
-    type: ptr.SamusData
+    type: SamusData *
     notes: Samus data pointer
   return:
     label: DamageContactType0None1Shinespark2Speedbooster3ScrewAttack4PseudoScrew
     type: u8
-    notes: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3
-      = screw attack, 4 = pseudo screw)
-  notes: Determines if a sprite should take damage when entering in collision
-    with  samus and applies said damage
+    notes: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3 = screw attack, 4 = pseudo screw)
+  notes: Determines if a sprite should take damage when entering in collision with  samus and applies said damage
 -
   label: CheckPullingSelfUp
   addr:
@@ -4420,8 +4410,7 @@
     label: SecondarySpriteCount
     type: u8
     notes: Secondary sprite count
-  notes: Counts the number of secondary sprites with r0 and the current sprite
-    RAM slot
+  notes: Counts the number of secondary sprites with r0 and the current sprite RAM slot
 -
   label: CountPrimarySpritesWithCurrPrimarySlot
   addr:
@@ -4439,8 +4428,7 @@
     label: PrimarySpriteCount
     type: u8
     notes: Primary sprite count
-  notes: Counts the number of primary sprites with r0 and the current sprite RAM
-    slot
+  notes: Counts the number of primary sprites with r0 and the current sprite RAM slot
 -
   label: FindPrimarySprite
   addr:
@@ -4570,7 +4558,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Updates the invicibilty stun flash timer of the sprite in r0
@@ -4597,8 +4585,7 @@
     type: u16
     notes: X position
   return: null
-  notes: Initialize 1 to 3 sprite debris between a set of 2  choosed randomly
-    (only the debris type changes)
+  notes: Initialize 1 to 3 sprite debris between a set of 2  choosed randomly (only the debris type changes)
 -
   label: GetAmmoDropSpriteID
   addr:
@@ -4658,8 +4645,7 @@
     enum: ParticleEffect
     notes: Particle effect
   return: null
-  notes: Called when a sprite dies, spawn a drop, calls RandomSpriteDebris, SetParticleEffect
-    and calls SpawnDrop if r0 = 1
+  notes: Called when a sprite dies, spawn a drop, calls RandomSpriteDebris, SetParticleEffect and calls SpawnDrop if r0 = 1
 -
   label: IsSpriteStunned
   addr:
@@ -4687,8 +4673,7 @@
     label: SpriteOnScreenAndScreenShakeIsActive
     type: bool
     notes: Sprite on-screen and screen shake is active
-  notes: Checks if a sprite is on screen and a screen shake is active (used in
-    sova, zoomer and zeela AI)
+  notes: Checks if a sprite is on screen and a screen shake is active (used in sova, zoomer and zeela AI)
 -
   label: UpdateSubSprite1Animation
   addr:
@@ -4699,8 +4684,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the animation duration counter and the current animation frame
-    of the sub sprite data 1
+  notes: Updates the animation duration counter and the current animation frame of the sub sprite data 1
 -
   label: SyncCurrSpritePositionWithSubSprite1Position
   addr:
@@ -4711,8 +4695,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Synchronizes the position of the current sprite with the position of
-    the sub sprite data 1
+  notes: Synchronizes the position of the current sprite with the position of the sub sprite data 1
 -
   label: SyncCurrSpritePositionWithSubSprite1OAM
   addr:
@@ -4723,8 +4706,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Syncronises the current sprite position with the sub sprite data 1 and
-    the X/Y coordinates of its OAM data
+  notes: Syncronises the current sprite position with the sub sprite data 1 and the X/Y coordinates of its OAM data
 -
   label: UpdateSubSprite2Animation
   addr:
@@ -4735,8 +4717,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the animation duration counter and the current animation frame
-    of the sub sprite data 2
+  notes: Updates the animation duration counter and the current animation frame of the sub sprite data 2
 -
   label: SyncCurrSpritePositionWithSubSprite2OAM
   addr:
@@ -4747,8 +4728,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Syncronises the current sprite position with the sub sprite data 2 and
-    the X/Y coordinates of its OAM data
+  notes: Syncronises the current sprite position with the sub sprite data 2 and the X/Y coordinates of its OAM data
 -
   label: UpdateSubSpriteAnimation
   addr:
@@ -4759,11 +4739,10 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
-  notes: Updates the animation duration counter and the current animation frame
-    of the sub sprite data in r0
+  notes: Updates the animation duration counter and the current animation frame of the sub sprite data in r0
 -
   label: SyncCurrSpritePositionWithSubSpriteOAM
   addr:
@@ -4774,11 +4753,10 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
-  notes: Synchronizes the position of the current sprite with the position of
-    the sub sprite data in r0
+  notes: Synchronizes the position of the current sprite with the position of the sub sprite data in r0
 -
   label: SpriteCheckOverlappingSamus
   addr:
@@ -4791,8 +4769,7 @@
   return:
     label: Overlapping
     type: bool
-  notes: Calls CheckObjectsTouching to detect collision between the current sprite
-    and samus' draw distance offsets
+  notes: Calls CheckObjectsTouching to detect collision between the current sprite and samus' draw distance offsets
 -
   label: SetSpriteSplashEffect
   addr:
@@ -4909,7 +4886,7 @@
   mode: thumb
   params:
   - label: DebrisDataPtr
-    type: ptr.SpriteDebris
+    type: SpriteDebris *
     notes: Debris data pointer
   return: null
   notes: Processes the sprite debris in r0
@@ -4923,8 +4900,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops on all sprite debris and calls ProcessSpriteDebris also updates
-    the animation related info
+  notes: Loops on all sprite debris and calls ProcessSpriteDebris also updates the animation related info
 -
   label: DrawSpriteDebris
   addr:
@@ -4935,7 +4911,7 @@
   mode: thumb
   params:
   - label: SpriteDebrisPtr
-    type: ptr.SpriteDebris
+    type: SpriteDebris *
     notes: Sprite debris pointer
   return: null
   notes: Draws the sprite debris in r0
@@ -5099,8 +5075,7 @@
     label: GfxSlot
     type: u8
     notes: Graphics slot
-  notes: Gets the current area location text number and returns the GFX slot for
-    it
+  notes: Gets the current area location text number and returns the GFX slot for it
 -
   label: SetBeamParticleEffect
   addr:
@@ -5132,8 +5107,7 @@
     label: WithinLimit
     type: bool
     notes: Within limit
-  notes: Checks if the numbers of currently loaded projectiles of type r0 is above/below
-    r1
+  notes: Checks if the numbers of currently loaded projectiles of type r0 is above/below r1
 -
   label: InitProjectile
   addr:
@@ -5167,8 +5141,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the projectiles and spawns the projectile in samus weapon info.new
-    projectile
+  notes: Updates the projectiles and spawns the projectile in samus weapon info.new projectile
 -
   label: AdvanceProjectileAnimation
   addr:
@@ -5179,7 +5152,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Updates the animation of the projectile in r0
@@ -5193,8 +5166,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the 80
-    status flag isn't set
+  notes: Loops through all the projectiles and calls DrawProjectile if the 80 status flag isn't set
 -
   label: CallDrawProjectile8BitTrue
   addr:
@@ -5205,8 +5177,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the 80
-    status flag is set
+  notes: Loops through all the projectiles and calls DrawProjectile if the 80 status flag is set
 -
   label: DrawProjectile
   addr:
@@ -5217,7 +5188,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Draws the projectile in r0
@@ -5231,7 +5202,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Checks if the projectile in r0 should despawn
@@ -5256,8 +5227,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls LoadBeamGraphics and clears all projectiles if the pause screen
-    flag is 0
+  notes: Calls LoadBeamGraphics and clears all projectiles if the pause screen flag is 0
 -
   label: MoveProjectile
   addr:
@@ -5268,7 +5238,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: Distance
     type: u8
@@ -5304,7 +5274,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr
+    type: void *
     notes: Projectile data pointer
   return:
     label: CollisionCheck
@@ -5322,7 +5292,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: ParticleEffect
     type: u8
@@ -5343,7 +5313,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Handles a missile/super missile tumbling
@@ -5357,7 +5327,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return:
     label: SpriteWeakness
@@ -5375,7 +5345,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: Damage
     type: u16
@@ -5394,7 +5364,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: Damage
     type: u16
@@ -5413,11 +5383,11 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return:
     label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   notes: Handles a projectile hitting a sprite immune to projectiles
 -
@@ -5430,11 +5400,11 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return:
     label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   notes: Handles a projectile hitting a solid sprite
 -
@@ -5447,7 +5417,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Handles a power bomb dealing damage to a sprite
@@ -5461,7 +5431,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5487,7 +5457,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5513,7 +5483,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: FreezeTimer
     type: u8
@@ -5530,7 +5500,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5556,7 +5526,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5582,10 +5552,10 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: ProjectileType
     type: u8
@@ -5603,7 +5573,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: ProjectileType
     type: u8
@@ -5621,10 +5591,10 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5644,10 +5614,10 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   - label: ProjectileYPosition
     type: u16
@@ -5667,7 +5637,7 @@
   mode: thumb
   params:
   - label: SpriteDataPtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Sprite data pointer
   return: null
   notes: Handles a bomb hitting a sprite
@@ -5681,7 +5651,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Normal beam subroutine
@@ -5695,7 +5665,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Long beam subroutine
@@ -5709,7 +5679,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Ice beam subroutine
@@ -5723,7 +5693,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return:
     label: NumOfBlocksTouched03
@@ -5740,7 +5710,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Wave beam subroutine
@@ -5754,7 +5724,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Plasma beam subroutine
@@ -5768,7 +5738,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Pistol subroutine
@@ -5782,7 +5752,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged normal beam subroutine
@@ -5796,7 +5766,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged long beam subroutine
@@ -5810,7 +5780,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged ice beam subroutine
@@ -5824,7 +5794,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged wave beam subroutine
@@ -5838,7 +5808,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged plasma beam subroutine
@@ -5852,7 +5822,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Charged pistol subroutine
@@ -5866,7 +5836,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Decrements the missile counter
@@ -5880,7 +5850,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Missile subroutine
@@ -5894,7 +5864,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Decrements the super missile counter
@@ -5908,7 +5878,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Super missile subroutine
@@ -5922,7 +5892,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Checks if samus is in place and launchs it
@@ -5936,7 +5906,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Checks if samus is colliding with a bomb, calls SamusBounceBomb
@@ -5950,7 +5920,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Bomb subroutine
@@ -5975,7 +5945,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: ptr.ProjectileData
+    type: ProjectileData *
     notes: Projectile data pointer
   return: null
   notes: Power bomb subroutine
@@ -6000,13 +5970,13 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: NormalGfxSourceAddress
-    type: ptr
+    type: void *
     notes: Normal graphics source address
   - label: RefillGfxSourceAddress
-    type: ptr
+    type: void *
     notes: Refill graphics source address
   - label: NumOfEnergyTanks
     type: u8
@@ -6167,8 +6137,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls all the DrawHUD weapons functions, DrawHUDSuitless if in suitless
-    and DrawHUDOAM
+  notes: Calls all the DrawHUD weapons functions, DrawHUDSuitless if in suitless and DrawHUDOAM
 -
   label: CheckTimerDisplayed
   addr:
@@ -6284,7 +6253,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Checks if the particle effect in r0 is on screen
@@ -6298,7 +6267,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Draw the particle effect in r0
@@ -6344,10 +6313,10 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   - label: OamPtr
-    type: ptr
+    type: void *
     notes: OAM pointer
   return:
     label: AnimationEnded
@@ -6364,10 +6333,10 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   - label: OamPtr
-    type: ptr
+    type: void *
     notes: OAM pointer
   return: null
   notes: Sets the current particle effect OAM frame pointer
@@ -6381,7 +6350,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash water small subroutine
@@ -6395,7 +6364,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash water big subroutine
@@ -6409,7 +6378,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash water huge subroutine
@@ -6423,7 +6392,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash lava small subroutine
@@ -6437,7 +6406,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash lava big subroutine
@@ -6451,7 +6420,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash lava huge subroutine
@@ -6465,7 +6434,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash acid small subroutine
@@ -6479,7 +6448,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash acid big subroutine
@@ -6493,7 +6462,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite splash acid huge subroutine
@@ -6507,7 +6476,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam left subroutine
@@ -6521,7 +6490,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam right subroutine
@@ -6535,7 +6504,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam diagonally up left subroutine
@@ -6549,7 +6518,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam diagonally up right subroutine
@@ -6563,7 +6532,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam diagonally down left subroutine
@@ -6577,7 +6546,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam diagonally down right subroutine
@@ -6591,7 +6560,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam up left subroutine
@@ -6605,7 +6574,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam up right subroutine
@@ -6619,7 +6588,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam down left subroutine
@@ -6633,7 +6602,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shooting beam down right subroutine
@@ -6647,7 +6616,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Bomb subroutine
@@ -6661,7 +6630,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Missile trail subroutine
@@ -6675,7 +6644,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Super missile trail subroutine
@@ -6689,7 +6658,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Beam trailing right subroutine
@@ -6703,7 +6672,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Beam trailing left subroutine
@@ -6717,7 +6686,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged long beam trail subroutine
@@ -6731,7 +6700,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged ice beam trail subroutine
@@ -6745,7 +6714,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged wave beam trail subroutine
@@ -6759,7 +6728,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged plasma beam trail subroutine
@@ -6773,7 +6742,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged full beam trail subroutine
@@ -6787,7 +6756,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Charged pistol trail subroutine
@@ -6801,7 +6770,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite explosion huge subroutine
@@ -6815,7 +6784,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite explosion small subroutine
@@ -6829,7 +6798,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite explosion medium subroutine
@@ -6843,7 +6812,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite explosion big subroutine
@@ -6857,7 +6826,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sprite explosion single then big subroutine
@@ -6871,7 +6840,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Screw attack destroyed subroutine
@@ -6885,7 +6854,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Shinespark destroyed subroutine
@@ -6899,7 +6868,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Sudo screw destroyed subroutine
@@ -6913,7 +6882,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Speedbooster destroyed subroutine
@@ -6927,7 +6896,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Main boss death subroutine
@@ -6941,7 +6910,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Freezing sprite with ice subroutine
@@ -6955,7 +6924,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Freezing sprite with charged ice subroutine
@@ -6969,11 +6938,10 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
-  notes: Particle effect Hitting something with base beam or charged base beam
-    subroutine
+  notes: Particle effect Hitting something with base beam or charged base beam subroutine
 -
   label: ParticleHittingSomethingWithLongBeam
   addr:
@@ -6984,11 +6952,10 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
-  notes: Particle effect Hitting something with long beam or charged long beam
-    subroutine
+  notes: Particle effect Hitting something with long beam or charged long beam subroutine
 -
   label: ParticleHittingSomethingWithIceBeam
   addr:
@@ -6999,7 +6966,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with ice beam subroutine
@@ -7013,7 +6980,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with wave beam subroutine
@@ -7027,7 +6994,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with full beam no plasma subroutine
@@ -7041,7 +7008,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with plasma beam subroutine
@@ -7055,7 +7022,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with full beam subroutine
@@ -7069,7 +7036,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something invicible subroutine
@@ -7083,7 +7050,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with missile subroutine
@@ -7097,7 +7064,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Hitting something with super missile subroutine
@@ -7111,7 +7078,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Small dust subroutine
@@ -7125,7 +7092,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Medium dust subroutine
@@ -7139,7 +7106,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Two medium dust subroutine
@@ -7153,7 +7120,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Second Small dust subroutine
@@ -7167,7 +7134,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Second medium dust subroutine
@@ -7181,7 +7148,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle effect Second two medium dust subroutine
@@ -7195,8 +7162,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when beginning to charge
-    a beam
+  notes: Plays a sound depending on the beams activated when beginning to charge a beam
 -
   label: PlayShootingChargedBeamSound
   addr:
@@ -7207,8 +7173,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when shooting a charged
-    beam
+  notes: Plays a sound depending on the beams activated when shooting a charged beam
 -
   label: PlayBeamFullyChargedSound
   addr:
@@ -7219,8 +7184,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when charging a fully
-    charged beam
+  notes: Plays a sound depending on the beams activated when charging a fully charged beam
 -
   label: ParticleChargingBeam
   addr:
@@ -7231,7 +7195,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle Charging beam subroutine
@@ -7245,7 +7209,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle Escape subroutine
@@ -7259,7 +7223,7 @@
   mode: thumb
   params:
   - label: ParticleEffectPtr
-    type: ptr.ParticleEffect
+    type: ParticleEffect *
     notes: Particle effect pointer
   return: null
   notes: Particle Samus relfection subroutine
@@ -7324,8 +7288,7 @@
     label: YPositionOffset
     type: u8
     notes: Y position offset
-  notes: Updates the vertical screen shake and returns the Y position offset for
-    the backgrounds
+  notes: Updates the vertical screen shake and returns the Y position offset for the backgrounds
 -
   label: UpdateHorizontalScreenShake
   addr:
@@ -7339,8 +7302,7 @@
     label: XPositionOffset
     type: u8
     notes: X position offset
-  notes: Updates the horizontal screen shake and returns the X position offset
-    for the backgrounds
+  notes: Updates the horizontal screen shake and returns the X position offset for the backgrounds
 -
   label: SetTransparencyAndBGEffects
   addr:
@@ -7442,7 +7404,7 @@
   mode: thumb
   params:
   - label: BldalphaRelatedStructPtr
-    type: ptr
+    type: void *
     notes: BLDALPHA related struct pointer?
   return: null
   notes: Applies the new BLDALPHA transparency values
@@ -7522,8 +7484,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the BG0 and BG3 scrolling depending on the room effect/background
-    3 scrolling method
+  notes: Sets the BG0 and BG3 scrolling depending on the room effect/background 3 scrolling method
 -
   label: RleDecompress
   addr:
@@ -7537,10 +7498,10 @@
     type: u8
     notes: Data type (0 = tilemap, 1 = BG)
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return:
     label: Always0MaybeAnErrorFlag
@@ -7568,8 +7529,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the positions of all the backgrounds, checks for position offsets
-    of screenshakes
+  notes: Updates the positions of all the backgrounds, checks for position offsets of screenshakes
 -
   label: CheckDMA3Ended
   addr:
@@ -7580,8 +7540,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the DMA operation on the third channel has ended (probably
-    unused)
+  notes: Checks if the DMA operation on the third channel has ended (probably unused)
 -
   label: ProcessPowerBombExplosion
   addr:
@@ -7655,8 +7614,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called multiple times at the end of the explosion, does some works on
-    the IO registers
+  notes: Called multiple times at the end of the explosion, does some works on the IO registers
 -
   label: UpdateGadoraHatch
   addr:
@@ -7831,11 +7789,10 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
-  notes: Processes the 2 current scrolls if within, calls UpdateCurrentScrolls
-    and ScrollScreen
+  notes: Processes the 2 current scrolls if within, calls UpdateCurrentScrolls and ScrollScreen
 -
   label: ScrollScreen
   addr:
@@ -7863,10 +7820,10 @@
   mode: thumb
   params:
   - label: ActiveScrollPtr
-    type: ptr.ActiveScroll
+    type: ActiveScroll *
     notes: Active scroll pointer
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return:
     label: ScreenXPosition
@@ -7883,10 +7840,10 @@
   mode: thumb
   params:
   - label: ActiveScrollPtr
-    type: ptr.ActiveScroll
+    type: ActiveScroll *
     notes: Active scroll pointer
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return:
     label: ScreenYPosition
@@ -7914,11 +7871,10 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
-  notes: Updates the 2 current scrolls, also checks for extended bounds (when
-    taking an elevator and when triggered by a breakable block)
+  notes: Updates the 2 current scrolls, also checks for extended bounds (when taking an elevator and when triggered by a breakable block)
 -
   label: ProcessGeneralScrolling
   addr:
@@ -7940,7 +7896,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic scrolling on a room with no scrolls
@@ -7954,7 +7910,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic Y scrolling on a room with no scrolls
@@ -7968,7 +7924,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic X scrolling on a room with no scrolls
@@ -7982,7 +7938,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer
   return: null
   notes: Updates the haze and effect position
@@ -8010,8 +7966,7 @@
     label: XYScrollingValue
     type: u8
     notes: X/Y scrolling value
-  notes: Gets the X/Y scrolling values of the background 3 depending on the current
-    room entry BG3 scrolling
+  notes: Gets the X/Y scrolling values of the background 3 depending on the current room entry BG3 scrolling
 -
   label: ScrollBG3
   addr:
@@ -8055,7 +8010,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer?
   return:
     label: ValidBlock
@@ -8072,7 +8027,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8089,7 +8044,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8106,7 +8061,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: ptr
+    type: void *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8151,7 +8106,7 @@
   mode: thumb
   params:
   - label: RevealableBlockDataPtr
-    type: ptr.RevealableBlockData
+    type: RevealableBlockData *
     notes: Revealable block data pointer
   return:
     label: ShouldDestroyBlock
@@ -8168,7 +8123,7 @@
   mode: thumb
   params:
   - label: RevealableBlockDataPtr
-    type: ptr.RevealableBlockData
+    type: RevealableBlockData *
     notes: Revealable block data pointer
   return:
     label: ShouldDestroyBlock
@@ -8215,14 +8170,12 @@
     notes: Y position
   - label: DestructingAction0None1Speedbooster2ScrewAttack3Both
     type: u16
-    notes: Destructing action (0 = none, 1 = speedbooster, 2 = screw attack, 3
-      = both)
+    notes: Destructing action (0 = none, 1 = speedbooster, 2 = screw attack, 3 = both)
   return:
     label: ClipdataValue
     type: u16
     notes: Clipdata value?
-  notes: Applies the speedbooster/screw attack destructing action (return value
-    can be garbage from caller)
+  notes: Applies the speedbooster/screw attack destructing action (return value can be garbage from caller)
 -
   label: UpdateBrokenReformBlocks
   addr:
@@ -8244,7 +8197,7 @@
   mode: thumb
   params:
   - label: BrokenReformBlockPtr
-    type: ptr
+    type: void *
     notes: Broken reform block pointer
   return: null
   notes: Handles the animation of a block breaking/reforming
@@ -8454,8 +8407,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls CheckTouchingTransitionOrTank, checks for transparency changes,
-    calls CheckWalkingOnCrumbleBlock and CheckGrabbingCrumbleBlock
+  notes: Calls CheckTouchingTransitionOrTank, checks for transparency changes, calls CheckWalkingOnCrumbleBlock and CheckGrabbingCrumbleBlock
 -
   label: ApplyClipdataChangingTransparency
   addr:
@@ -8787,8 +8739,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the background haze effect depending on the Haze Data table and
-    the room effect
+  notes: Sets the background haze effect depending on the Haze Data table and the room effect
 -
   label: SetupHazeCode
   addr:
@@ -8831,8 +8782,7 @@
     label: PowerBombEndedAndRoomHasHaze
     type: bool
     notes: Power bomb ended and room has haze
-  notes: Calls the Haze Process Code, if a power bomb ended and the room has a
-    haze effect Set Background Haze Effect is called and the function returns 1
+  notes: Calls the Haze Process Code, if a power bomb ended and the room has a haze effect Set Background Haze Effect is called and the function returns 1
 -
   label: HazeBG3
   addr:
@@ -8876,8 +8826,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Haze BG3/BG2 (Strong In Effect, Weak Outside For BG3 And Medium Everywhere
-    For BG2) code
+  notes: Haze BG3/BG2 (Strong In Effect, Weak Outside For BG3 And Medium Everywhere For BG2) code
 -
   label: HazePowerBombExpanding
   addr:
@@ -8917,8 +8866,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Transfers the animated graphics from WRAM to VRAM depending on the Animated
-    graphics to update
+  notes: Transfers the animated graphics from WRAM to VRAM depending on the Animated graphics to update
 -
   label: UpdateAnimatedGraphics
   addr:
@@ -9039,8 +8987,7 @@
     label: DoorFound
     type: bool
     notes: Door found
-  notes: Checks if the door samus is entering is valid, if yes makes samus enter
-    the door
+  notes: Checks if the door samus is entering is valid, if yes makes samus enter the door
 -
   label: CheckAreaConnection
   addr:
@@ -9060,8 +9007,7 @@
     label: DoorFound
     type: bool
     notes: Door found
-  notes: Checks if the area connection is valid, if yes makes samus enter the
-    door
+  notes: Checks if the area connection is valid, if yes makes samus enter the door
 -
   label: ProcessDoorType
   addr:
@@ -9105,8 +9051,7 @@
   params:
   - label: 0ForCheckingIfOpened1ForSettingSourceAndDestination2ForSettingSource
     type: u8
-    notes: 0 for checking if opened, 1 for setting source and destination, 2 for
-      setting source
+    notes: 0 for checking if opened, 1 for setting source and destination, 2 for setting source
   - label: DoorNum
     type: u8
     notes: Door number
@@ -9161,8 +9106,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls LockHatches with 0 in r0, called when the doors are locked using
-    the timer and not via a hatch lock event
+  notes: Calls LockHatches with 0 in r0, called when the doors are locked using the timer and not via a hatch lock event
 -
   label: CheckHatchLockEvents
   addr:
@@ -9173,8 +9117,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks for a hatch lock event in the current room, calls LockHatches
-    with 1 in r0
+  notes: Checks for a hatch lock event in the current room, calls LockHatches with 1 in r0
 -
   label: CheckPlayCutsceneDuringTransition
   addr:
@@ -9253,8 +9196,7 @@
   params:
   - label: FlashType0SlightYellowFlash1TransparencyChangeForStatueLong2HeavyYellowFlash3QuickFlash
     type: u8
-    notes: Flash type (0 = slight yellow flash, 1 = transparency change for statue
-      long, 2 = heavy yellow flash 3 = quick flash)
+    notes: Flash type (0 = slight yellow flash, 1 = transparency change for statue long, 2 = heavy yellow flash 3 = quick flash)
   return: null
   notes: Starts a flash background effect
 -
@@ -9305,8 +9247,7 @@
   params:
   - label: 0IfClearingEvent1IfSettingEvent2IfTogglingEvent3IfCheckingEvent
     type: u8
-    notes: 0 if clearing event, 1 if setting event, 2 if toggling event, 3 if
-      checking event
+    notes: 0 if clearing event, 1 if setting event, 2 if toggling event, 3 if checking event
   - label: Event
     type: u8
     enum: Event
@@ -9525,8 +9466,7 @@
   return:
     label: Ended
     type: bool
-  notes: Subroutine for the story text cutscenes (intro, after landing on Chozodia
-    and another one?)
+  notes: Subroutine for the story text cutscenes (intro, after landing on Chozodia and another one?)
 -
   label: MotherBrainCloseUpLookingAtSamus
   addr:
@@ -9540,8 +9480,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the mother brain looking at samus part of the mother brain close
-    up cutscene
+  notes: Handles the mother brain looking at samus part of the mother brain close up cutscene
 -
   label: MotherBrainCloseUpEyeOpening
   addr:
@@ -9569,8 +9508,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the view of mother brain in her tank from up top (beginning)
-    part of the mother brain close up cutscene
+  notes: Handles the view of mother brain in her tank from up top (beginning) part of the mother brain close up cutscene
 -
   label: MotherBrainCloseUpInit
   addr:
@@ -9653,8 +9591,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the view on the ship in space (beginning) part of the ridley
-    in space cutscene
+  notes: Handles the view on the ship in space (beginning) part of the ridley in space cutscene
 -
   label: RidleyInSpaceCutsceneInit
   addr:
@@ -9764,8 +9701,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the ridley flying towards the camera part of the ridley spawn
-    cutscene
+  notes: Handles the ridley flying towards the camera part of the ridley spawn cutscene
 -
   label: RidleySpawnHelmetReflection
   addr:
@@ -9779,8 +9715,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the ridley in the helmet reflection part of the ridley spawn
-    cutscene
+  notes: Handles the ridley in the helmet reflection part of the ridley spawn cutscene
 -
   label: RidleySpawnSamusLookingUp
   addr:
@@ -9835,8 +9770,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the eye opening part (the entire cutscene) of the mecha ridley
-    sees samus cutscene
+  notes: Handles the eye opening part (the entire cutscene) of the mecha ridley sees samus cutscene
 -
   label: MechaRidleySeesSamusInit
   addr:
@@ -9877,8 +9811,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the animation (entire cutscene) part of the getting fully powered
-    suit cutscene
+  notes: Handles the animation (entire cutscene) part of the getting fully powered suit cutscene
 -
   label: GettingFullyPoweredSuitInit
   addr:
@@ -9947,8 +9880,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the view on the sides of the chozo wall part of the before charlie
-    cutscene
+  notes: Handles the view on the sides of the chozo wall part of the before charlie cutscene
 -
   label: BeforeRuinsTestInit
   addr:
@@ -10027,8 +9959,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the animation of the metroids (entire cutscene) part of the enter
-    tourian cutscene
+  notes: Handles the animation of the metroids (entire cutscene) part of the enter tourian cutscene
 -
   label: EnterTourianInit
   addr:
@@ -10069,8 +10000,7 @@
     label: Always0
     type: bool
     notes: Always 0
-  notes: Handles the blue ship powering up (entire cutscene) part of the samus
-    in blue ship cutscene
+  notes: Handles the blue ship powering up (entire cutscene) part of the samus in blue ship cutscene
 -
   label: SamusInBlueShipInit
   addr:
@@ -10135,10 +10065,10 @@
   - label: Length
     type: u32
   - label: CutsceneOamDataPtr
-    type: ptr
+    type: void *
     notes: Cutscene OAM data pointer
   - label: OamArrayPtr
-    type: ptr.OamArray
+    type: OamArray *
     notes: OAM array pointer
   return: null
   notes: Processes a cutscene OAM Data and writes to OAM data
@@ -10194,7 +10124,7 @@
     type: u8
     notes: Minimap number
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return: null
   notes: Gets the minimap data
@@ -10211,8 +10141,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks for maintained input when on specific menus (map screen and file
-    select)
+  notes: Checks for maintained input when on specific menus (map screen and file select)
 -
   label: UpdateMinimap
   addr:
@@ -10296,7 +10225,7 @@
     enum: AreaID
     notes: Area ID
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return: null
   notes: Sets tiles with obtained items when loading a new map for an area
@@ -10314,11 +10243,10 @@
     enum: AreaID
     notes: Area ID
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return: null
-  notes: Checks if the map has been downloaded and sets the unexplored tiles when
-    loading a new map for an area
+  notes: Checks if the map has been downloaded and sets the unexplored tiles when loading a new map for an area
 -
   label: UpdateMinimapSquareForCollectedItem
   addr:
@@ -10411,8 +10339,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks which areas have at least one visited tile bit set used to allow
-    the view of said area in the pause screen
+  notes: Checks which areas have at least one visited tile bit set used to allow the view of said area in the pause screen
 -
   label: MapScreenCheckInput
   addr:
@@ -10468,15 +10395,14 @@
     type: u16
     notes: Character ID
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: Indent
     type: u16
   - label: Color
     type: u8
   return: null
-  notes: Draws a character for a text (description in equipment screen and story
-    text)
+  notes: Draws a character for a text (description in equipment screen and story text)
 -
   label: DrawCharacterForMessage
   addr:
@@ -10493,7 +10419,7 @@
     type: u16
     notes: Character ID
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: Indent
     type: u16
@@ -10513,7 +10439,7 @@
   - label: param_0
     type: u8
   - label: PtrToTextPtr
-    type: ptr
+    type: void *
     notes: Pointer to text pointer
   return: null
   notes: Draws the characters for the location text in r1
@@ -10575,13 +10501,15 @@
   mode: thumb
   params:
   - label: CurrMessagePtr
-    type: ptr.CurrMessage
+    type: CurrMessage *
     notes: Current message pointer
   - label: TextPtr
-    type: ptr.char
+    type: u16 *
+    tags:
+    - text
     notes: Text pointer
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   return:
     label: LineState0NoNewLine1NewLine2MessageEnd
@@ -10722,8 +10650,7 @@
   return:
     label: EquipmentIdEnumInOrderStartingWithLongBeam0AndEndingWithSpaceJump10UnknownItem11Pistol12AndNone80
     type: u8
-    notes: Equipment ID (Enum in order starting with long beam = 0 and ending
-      with space jump = 10, unknown item = 11, pistol = 12 and none = 80)
+    notes: Equipment ID (Enum in order starting with long beam = 0 and ending with space jump = 10, unknown item = 11, pistol = 12 and none = 80)
   notes: Gets the ID of the current equipment selected on the status screen
 -
   label: EasySleepMenuSubroutine
@@ -10784,15 +10711,15 @@
   mode: thumb
   params:
   - label: ChozoStatueXPositionPtr
-    type: ptr
+    type: void *
     notes: Chozo statue X position pointer
   - label: ChozoStatueYPositionPtr
-    type: ptr
+    type: void *
     notes: Chozo statue Y position pointer
   - label: param_2
-    type: ptr
+    type: void *
   - label: ChozoStatueTargetPathPtr
-    type: ptr
+    type: void *
     notes: Chozo statue target path pointer?
   return: null
   notes: Chozo statue hint change area
@@ -10834,8 +10761,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if a non-explored area has an hint, used to allow the view of
-    said area in the pause screen
+  notes: Checks if a non-explored area has an hint, used to allow the view of said area in the pause screen
 -
   label: DrawMapScreenBossFlames
   addr:
@@ -10893,10 +10819,12 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: StringPtr
-    type: ptr.ascii
+    type: s8 *
+    tags:
+    - ascii
     notes: String pointer
   - label: Length
     type: u8
@@ -11050,7 +10978,10 @@
   mode: thumb
   params:
   - label: SpecialGfxDataPtr
-    type: ptr.lz.gfx
+    type: u8 *
+    tags:
+    - lz
+    - gfx
     notes: Special graphics data pointer
   return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0
@@ -11064,11 +10995,13 @@
   mode: thumb
   params:
   - label: SpecialGfxDataPtr
-    type: ptr.lz.gfx
+    type: u8 *
+    tags:
+    - lz
+    - gfx
     notes: Special graphics data pointer
   return: null
-  notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0,
-    copy of above
+  notes: Calls LZ77UnCompReadNormalWrite16bit and loads the graphics data in r0, copy of above
 -
   label: TitleScreenProcessOAM
   addr:
@@ -11338,11 +11271,9 @@
   params:
   - label: Part0NormalFirstHalf1NormalSecondHalf2100FirstHalf3100SecondHalf
     type: u8
-    notes: Part (0 = normal first half, 1 = normal second half 2 = 100% first
-      half, 3 = 100% second half)
+    notes: Part (0 = normal first half, 1 = normal second half 2 = 100% first half, 3 = 100% second half)
   return: null
-  notes: Loads a part of a time attack password in VRAM for the time attack record
-    menu
+  notes: Loads a part of a time attack password in VRAM for the time attack record menu
 -
   label: MetroidFusionLinkSubroutine
   addr:
@@ -11484,7 +11415,7 @@
   - label: Seed
     type: u32
   - label: DestinationArray
-    type: ptr
+    type: void *
     notes: Destination array
   - label: Size
     type: u32
@@ -11502,8 +11433,7 @@
   return:
     label: Invalid
     type: bool
-  notes: Checks if a save file is legit (Compares IGT at bosses with anti-cheat
-    IGT)
+  notes: Checks if a save file is legit (Compares IGT at bosses with anti-cheat IGT)
 -
   label: TimeAttackPasswordSeedFunction1
   addr:
@@ -11518,8 +11448,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction2
   addr:
@@ -11534,8 +11463,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction3
   addr:
@@ -11550,8 +11478,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction4
   addr:
@@ -11566,8 +11493,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction5
   addr:
@@ -11582,8 +11508,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction6
   addr:
@@ -11598,8 +11523,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction7
   addr:
@@ -11614,8 +11538,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: TimeAttackPasswordSeedFunction8
   addr:
@@ -11630,8 +11553,7 @@
   - label: param_1
     type: u32
   return: null
-  notes: Function that calls other functions in a pseudo random way to shuffle
-    the seed values
+  notes: Function that calls other functions in a pseudo random way to shuffle the seed values
 -
   label: RandomizeTimeAttackPasswordSeed
   addr:
@@ -11658,7 +11580,7 @@
   mode: thumb
   params:
   - label: TimeAttackDataPtr
-    type: ptr.TimeAttackData
+    type: TimeAttackData *
     notes: Time attack data pointer
   return:
     label: Always0
@@ -11697,8 +11619,7 @@
     type: u32
     notes: OAM slot
   return: null
-  notes: Calculates the part 4 of the OAM (used for special cases such as cutscenes
-    and menus)
+  notes: Calculates the part 4 of the OAM (used for special cases such as cutscenes and menus)
 -
   label: VBlankCodeDuringIntroFuzz
   addr:
@@ -11919,8 +11840,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calculates the new position and size of the BG2 for the camera zooming
-    out effect
+  notes: Calculates the new position and size of the BG2 for the camera zooming out effect
 -
   label: TourianEscapeInit
   addr:
@@ -11950,8 +11870,7 @@
   return:
     label: Ended
     type: bool
-  notes: Handles the rooms exploding and the ship leaving the planet with zebes
-    exploding in the background part of the cutscene
+  notes: Handles the rooms exploding and the ship leaving the planet with zebes exploding in the background part of the cutscene
 -
   label: TourianEscapeSamusInHerShip
   addr:
@@ -12044,8 +11963,7 @@
   return:
     label: Ended
     type: bool
-  notes: Handles the samus being chased by pirates that shoots beams part of the
-    cutscene
+  notes: Handles the samus being chased by pirates that shoots beams part of the cutscene
 -
   label: TourianEscapeSamusGettingShot
   addr:
@@ -12138,8 +12056,7 @@
   return:
     label: Ended
     type: bool
-  notes: Calls the other subroutines for the tourian escape cutscene, ends when
-    the big monologue text ended
+  notes: Calls the other subroutines for the tourian escape cutscene, ends when the big monologue text ended
 -
   label: FusionGalleryInit
   addr:
@@ -12193,8 +12110,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads the graphics for the IGT and completion percentage display at the
-    end of the game
+  notes: Loads the graphics for the IGT and completion percentage display at the end of the game
 -
   label: VBlankCodeDuringGallery
   addr:
@@ -12402,8 +12318,7 @@
     label: Action0Nothing1ChangingPopUp2Leaving
     type: u8
     notes: Action (0 = nothing, 1 = changing pop-up, 2 = leaving)
-  notes: Handles the pop up displaying what has been unlocked after beating the
-    game
+  notes: Handles the pop up displaying what has been unlocked after beating the game
 -
   label: CreditsSubroutine
   addr:
@@ -12416,8 +12331,7 @@
   return:
     label: Ended
     type: bool
-  notes: Subroutine for the credits (credits, end screen ending image and unlocked
-    options)
+  notes: Subroutine for the credits (credits, end screen ending image and unlocked options)
 -
   label: GalleryInit
   addr:
@@ -12490,8 +12404,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Processes a part of the OAM related stuff (ship exploding, escape ship
-    leaving the planet and mission accomplished text)
+  notes: Processes a part of the OAM related stuff (ship exploding, escape ship leaving the planet and mission accomplished text)
 -
   label: ChozodiaEscapeProcessOAM2
   addr:
@@ -12502,8 +12415,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Processes a part of the OAM related stuff (ship opening/escape ship leaving
-    and escape ship arriving)
+  notes: Processes a part of the OAM related stuff (ship opening/escape ship leaving and escape ship arriving)
 -
   label: ChozodiaEscapeInit
   addr:
@@ -12872,8 +12784,7 @@
   return:
     label: Integer
     type: s32
-  notes: If the double is >= 2^31, treat as integer overflow and return a negative
-    value
+  notes: If the double is >= 2^31, treat as integer overflow and return a negative value
 -
   label: Modulo_Signed
   addr:
@@ -12935,7 +12846,7 @@
   mode: thumb
   params:
   - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return:
     label: DoubleValueUsesR0AndR1
@@ -12952,10 +12863,10 @@
   mode: thumb
   params:
   - label: PtrToDoubleValue
-    type: ptr
+    type: void *
     notes: Pointer to double value
   - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return: null
   notes: Function unpack_d in fp-bit.c in libgcc
@@ -12969,17 +12880,17 @@
   mode: thumb
   params:
   - label: PtrToUnpackedDouble1
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 1
   - label: PtrToUnpackedDouble2
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 2
   - label: PtrToTempUnpackedDouble
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to temp unpacked double
   return:
     label: PtrToUnpackedDoubleResult
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked double result
   notes: Function _fpadd_parts in fp-bit.c in libgcc
 -
@@ -13096,10 +13007,10 @@
   mode: thumb
   params:
   - label: PtrToUnpackedDouble1
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 1
   - label: PtrToUnpackedDouble2
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked double 2
   return:
     label: ComparisonResult1Less0Equal1Greater
@@ -13401,7 +13312,7 @@
   mode: thumb
   params:
   - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return:
     label: FloatValue
@@ -13418,10 +13329,10 @@
   mode: thumb
   params:
   - label: PtrToFloatValue
-    type: ptr
+    type: void *
     notes: Pointer to float value
   - label: PtrToUnpackedData
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked data
   return: null
   notes: Function unpack_d in fp-bit.c in libgcc
@@ -13435,17 +13346,17 @@
   mode: thumb
   params:
   - label: PtrToUnpackedFloat1
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 1
   - label: PtrToUnpackedFloat2
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 2
   - label: PtrToTempUnpackedFloat
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to temp unpacked float
   return:
     label: PtrToUnpackedFloatResult
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked float result
   notes: Function _fpadd_parts in fp-bit.c in libgcc
 -
@@ -13538,10 +13449,10 @@
   mode: thumb
   params:
   - label: PtrToUnpackedFloat1
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 1
   - label: PtrToUnpackedFloat2
-    type: ptr.FloatingPointNum
+    type: FloatingPointNum *
     notes: Pointer to unpacked float 2
   return:
     label: ComparisonResult1Less0Equal1Greater
@@ -13857,15 +13768,15 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   - label: SourceAddress
-    type: ptr
+    type: void *
     notes: Source address
   - label: Size
     type: u32
   return:
     label: DestinationAddress
-    type: ptr
+    type: void *
     notes: Destination address
   notes: Function memcpy from memcpy.c in libgcc

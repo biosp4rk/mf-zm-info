@@ -307,8 +307,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Synchronizes the chozo statue body sprites position with the chozo statue
-    main sprite
+  notes: Synchronizes the chozo statue body sprites position with the chozo statue main sprite
 -
   label: SetChozoStatueEventAndEquipmentFlags
   addr:
@@ -352,8 +351,7 @@
     label: ChozoStatueBehavior0Item1Refill2Hint3HintTaken
     type: u8
     notes: Chozo statue behavior (0 = Item, 1 = Refill, 2 = Hint, 3 = Hint taken)
-  notes: Swicthes on r0 and checks if the item/hint is already collected Contradicts
-    biospark's sprite AI map, i'm trusting ghidra but i'm also doubting
+  notes: Swicthes on r0 and checks if the item/hint is already collected Contradicts biospark's sprite AI map, i'm trusting ghidra but i'm also doubting
 -
   label: ChozoStatueInit
   addr:
@@ -518,8 +516,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed
-    by chozo statue and updates chozo statue GFX
+  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed by chozo statue and updates chozo statue GFX
 -
   label: ChozoStatueBodySyncSamusPosition
   addr:
@@ -563,8 +560,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed
-    by chozo statue and updates chozo statue GFX
+  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed by chozo statue and updates chozo statue GFX
 -
   label: ChozoStatueBodyRefill
   addr:
@@ -630,8 +626,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the chozo statue's eyes are fully opened at the beginning of
-    a hint
+  notes: Checks if the chozo statue's eyes are fully opened at the beginning of a hint
 -
   label: ChozoStatueItemAfterBanner
   addr:
@@ -697,8 +692,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Synchronizes the chozo statue body sprites position with the chozo statue
-    main sprite
+  notes: Synchronizes the chozo statue body sprites position with the chozo statue main sprite
 -
   label: UnknownItemChozoStatueInit
   addr:
@@ -808,8 +802,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the unknown item chozo statue flashing animation when samus is
-    refilling
+  notes: Handles the unknown item chozo statue flashing animation when samus is refilling
 -
   label: UnknownItemChozoStatueRefillEnd
   addr:
@@ -864,8 +857,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed
-    by chozo statue and updates chozo statue GFX
+  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed by chozo statue and updates chozo statue GFX
 -
   label: UnknownItemChozoStatueBodySyncSamusPosition
   addr:
@@ -909,8 +901,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed
-    by chozo statue and updates chozo statue GFX
+  notes: Detects if samus needs to be grabbed, if so sets samus pose to grabbed by chozo statue and updates chozo statue GFX
 -
   label: UnknownItemChozoStatueBodyRefill
   addr:
@@ -1050,8 +1041,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata Affecting Action 2
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/Disable chozo statue hitbox related to hint poses (standing and sitting)
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/Disable chozo statue hitbox related to hint poses (standing and sitting)
 -
   label: ChozoStatueSittingChangeClipAction
   addr:
@@ -1066,8 +1056,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata Affecting Action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/Disable chozo statue hitbox when sitting
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/Disable chozo statue hitbox when sitting
 -
   label: ChozoBallSpawnItemBanner
   addr:
@@ -1217,8 +1206,7 @@
   return:
     label: Midair
     type: bool
-  notes: Checks if the zoomer is colliding with air, used to see if it's still
-    crawling on something and if it's colliding on ground when falling
+  notes: Checks if the zoomer is colliding with air, used to see if it's still crawling on something and if it's colliding on ground when falling
 -
   label: ZoomerCollisionInit
   addr:
@@ -1251,8 +1239,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize a zoomer's GFX facing the normal direction (used when a zoomer
-    is falling)
+  notes: Initialize a zoomer's GFX facing the normal direction (used when a zoomer is falling)
 -
   label: ZoomerInit
   addr:
@@ -1397,8 +1384,7 @@
   return:
     label: Midair
     type: bool
-  notes: Checks if the zeela is colliding with air, used to see if it's still
-    crawling on something and if it's colliding on ground when falling
+  notes: Checks if the zeela is colliding with air, used to see if it's still crawling on something and if it's colliding on ground when falling
 -
   label: ZeelaHitboxInit
   addr:
@@ -1431,8 +1417,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize a zeela's GFX facing the normal direction (used when a zeela
-    is falling)
+  notes: Initialize a zeela's GFX facing the normal direction (used when a zeela is falling)
 -
   label: ZeelaInit
   addr:
@@ -1630,9 +1615,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if any projectile is colliding with kraid's belly, if so spaws
-    appropriate particle effect 2 random sprite debris, starts an horizontal screen
-    shake and destroys the projectile
+  notes: Checks if any projectile is colliding with kraid's belly, if so spaws appropriate particle effect 2 random sprite debris, starts an horizontal screen shake and destroys the projectile
 -
   label: KraidOpenCloseRoutineAndProjectileCollision
   addr:
@@ -1643,8 +1626,7 @@
   mode: thumb
   params: null
   return: null
-  notes: 'Handles the opening/closing of the mouth and the projectile collision:
-    damage and bouncing off'
+  notes: 'Handles the opening/closing of the mouth and the projectile collision: damage and bouncing off'
 -
   label: KraidRandomSpriteDebrisOnCeiling
   addr:
@@ -1669,8 +1651,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the arm hibox depending on the current animation frame when it's
-    idle
+  notes: Updates the arm hibox depending on the current animation frame when it's idle
 -
   label: KraidMouthUpdateArmAttackingHitbox
   addr:
@@ -1681,8 +1662,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the arm hibox depending on the current animation frame when it's
-    attacking
+  notes: Updates the arm hibox depending on the current animation frame when it's attacking
 -
   label: KraidMouthUpdateLeftArmIdleHitbox
   addr:
@@ -1693,8 +1673,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the left arm hibox depending on the current animation frame when
-    it's idle
+  notes: Updates the left arm hibox depending on the current animation frame when it's idle
 -
   label: KraidMouthUpdateLeftArmAttackingHitbox
   addr:
@@ -1705,8 +1684,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the left arm hibox depending on the current animation frame when
-    it's throwing nails
+  notes: Updates the left arm hibox depending on the current animation frame when it's throwing nails
 -
   label: KraidInit
   addr:
@@ -1731,8 +1709,7 @@
     label: FullyUp
     type: bool
     notes: Fully up
-  notes: Checks if kraid has finished going up at the beginning of the fight calls
-    KraidRandomSpriteDebrisOnCeiling
+  notes: Checks if kraid has finished going up at the beginning of the fight calls KraidRandomSpriteDebrisOnCeiling
 -
   label: KraidGoUp
   addr:
@@ -1889,9 +1866,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls KraidPreventSamusGoingThrough, KraidRandomSpriteDebrisOnCeiling,
-    starts screen shake, sets particle effects and plays the kraid statue opening
-    cutscene
+  notes: Calls KraidPreventSamusGoingThrough, KraidRandomSpriteDebrisOnCeiling, starts screen shake, sets particle effects and plays the kraid statue opening cutscene
 -
   label: KraidBeforeDeath
   addr:
@@ -1902,8 +1877,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called when kraid is stationary when dying, saves the in game time at
-    kraid and spawns a bunch of particle effects
+  notes: Called when kraid is stationary when dying, saves the in game time at kraid and spawns a bunch of particle effects
 -
   label: KraidMouthInit
   addr:
@@ -1925,8 +1899,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the nails should spawn, if so spawns 2 kraid nail secondary
-    sprite
+  notes: Checks if the nails should spawn, if so spawns 2 kraid nail secondary sprite
 -
   label: KraidMouthCheckSamusNear
   addr:
@@ -2080,8 +2053,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the pop up animaion of an item banner, alos spawns the save yes
-    no cursor secondary sprite if necessary
+  notes: Handles the pop up animaion of an item banner, alos spawns the save yes no cursor secondary sprite if necessary
 -
   label: ItemBannerStatic
   addr:
@@ -2103,8 +2075,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called once at the beginning of the removal animation, calls FinishCollectingTank
-    if samus is collecting a tank
+  notes: Called once at the beginning of the removal animation, calls FinishCollectingTank if samus is collecting a tank
 -
   label: ItemBannerRemovalAnimation
   addr:
@@ -2115,8 +2086,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the removal animation, spawns a falling chozo pillar primary
-    sprite if the item banner is the fully powered suit one
+  notes: Handles the removal animation, spawns a falling chozo pillar primary sprite if the item banner is the fully powered suit one
 -
   label: ItemBanner_AI
   addr:
@@ -2193,8 +2163,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the first half of a ripper turning around, updates the status
-    and the GFX
+  notes: Handles the first half of a ripper turning around, updates the status and the GFX
 -
   label: RipperCheckTurnedAround
   addr:
@@ -2205,8 +2174,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the ripper has finished turning around, if so resumes normal
-    behavior
+  notes: Checks if the ripper has finished turning around, if so resumes normal behavior
 -
   label: Ripper_AI
   addr:
@@ -2272,8 +2240,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the first half of a ripper 2 turning around, updates the status
-    and the GFX
+  notes: Handles the first half of a ripper 2 turning around, updates the status and the GFX
 -
   label: Ripper2CheckTurnedAround
   addr:
@@ -2284,8 +2251,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the ripper 2 has finished turning around, if so resumes normal
-    behavior
+  notes: Checks if the ripper 2 has finished turning around, if so resumes normal behavior
 -
   label: RipperII_AI
   addr:
@@ -2329,8 +2295,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the zeb has no drop and if samus is in range to determine if
-    it should spawn
+  notes: Checks if the zeb has no drop and if samus is in range to determine if it should spawn
 -
   label: ZebGoingUp
   addr:
@@ -2440,8 +2405,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called once before the skree starts going down, sets the facing direction
-    and updates GFX
+  notes: Called once before the skree starts going down, sets the facing direction and updates GFX
 -
   label: SkreeGoDown
   addr:
@@ -2463,8 +2427,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize 4 sprite debris and spawns  4 skree explosion/blue skree explosion
-    secondary sprites
+  notes: Initialize 4 sprite debris and spawns  4 skree explosion/blue skree explosion secondary sprites
 -
   label: SkreeExplosionInit
   addr:
@@ -2530,8 +2493,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called once after the initialization, sets 2 unknown values of the sprite
-    data to a random number based on the sprite random number
+  notes: Called once after the initialization, sets 2 unknown values of the sprite data to a random number based on the sprite random number
 -
   label: ReoSamusDetection
   addr:
@@ -2614,8 +2576,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the GFX of a zipline (checks if samus is on it, if releasing,
-    if activated and the timers)
+  notes: Updates the GFX of a zipline (checks if samus is on it, if releasing, if activated and the timers)
 -
   label: ZiplineInit
   addr:
@@ -2670,8 +2631,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if there's a zipline sprite in the current room and if ziplines
-    are activated sets data accordingly
+  notes: Checks if there's a zipline sprite in the current room and if ziplines are activated sets data accordingly
 -
   label: ZiplineButtonCheckZiplinesActivated
   addr:
@@ -2682,8 +2642,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the ziplines are activated (called each frame if the ziplines
-    aren't activated when ZiplineButtonSpawn is called)
+  notes: Checks if the ziplines are activated (called each frame if the ziplines aren't activated when ZiplineButtonSpawn is called)
 -
   label: ZiplineButtonIdle
   addr:
@@ -2740,8 +2699,7 @@
   return:
     label: Midair
     type: bool
-  notes: Checks if the sova is colliding with air, used to see if it's still crawling
-    on something and if it's colliding on ground when falling
+  notes: Checks if the sova is colliding with air, used to see if it's still crawling on something and if it's colliding on ground when falling
 -
   label: SovaHitboxUpdate
   addr:
@@ -2818,8 +2776,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the sova turning around, calls SovaTurningAroundGFXUpdate, SovaHitboxUpdate
-    and updates the sprite data (direction facing and position)
+  notes: Handles the sova turning around, calls SovaTurningAroundGFXUpdate, SovaHitboxUpdate and updates the sprite data (direction facing and position)
 -
   label: SovaBackOnGround
   addr:
@@ -2852,8 +2809,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the X and Y position of the sova, calls SovaHitboxUpdate and
-    updates GFX in order to prepare it to fall
+  notes: Updates the X and Y position of the sova, calls SovaHitboxUpdate and updates GFX in order to prepare it to fall
 -
   label: SovaFalling
   addr:
@@ -3094,8 +3050,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the resetting animation (when the geruta hits the ceiling after
-    moving) has ended
+  notes: Checks if the resetting animation (when the geruta hits the ceiling after moving) has ended
 -
   label: Geruta_AI
   addr:
@@ -3271,8 +3226,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Determines what message banner should be spawned depending on the current
-    area
+  notes: Determines what message banner should be spawned depending on the current area
 -
   label: MapStationAfterDownload
   addr:
@@ -3362,8 +3316,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus is on the save platform  (calls SavePlatformDetectSamus
-    and checks if morphed/crouching)
+  notes: Detects if samus is on the save platform  (calls SavePlatformDetectSamus and checks if morphed/crouching)
 -
   label: SavePlatformCheckOpeningAnimEnded
   addr:
@@ -3605,8 +3558,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the tube around animation has ended (quick beam going to the
-    center at the beginning)
+  notes: Checks if the tube around animation has ended (quick beam going to the center at the beginning)
 -
   label: SaveStationTopTubeDownUpAnim
   addr:
@@ -3830,9 +3782,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Used to place solid clipdata on the left part of Deorem to prevent damage boosting
-    and to remove this solid clipdata when he dies
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Used to place solid clipdata on the left part of Deorem to prevent damage boosting and to remove this solid clipdata when he dies
 -
   label: DeoremRightChangeClipAction
   addr:
@@ -3957,8 +3907,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if it should spawn (samus detection and if samus have missiles)
-    spawns the first half of the body (6 Deorem segments) and locks the screen
+  notes: Checks if it should spawn (samus detection and if samus have missiles) spawns the first half of the body (6 Deorem segments) and locks the screen
 -
   label: DeoremSpawnGoingDownAnim
   addr:
@@ -4002,8 +3951,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns the hidden part of the body (above the head) and the Deorem eye
-    secondary sprite
+  notes: Spawns the hidden part of the body (above the head) and the Deorem eye secondary sprite
 -
   label: DeoremAfterSpawn
   addr:
@@ -4014,8 +3962,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called after the function above, sets the timer for how long the first
-    eye will open
+  notes: Called after the function above, sets the timer for how long the first eye will open
 -
   label: DeoremRetracting
   addr:
@@ -4037,8 +3984,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles Deorem throwing thorns (doesn't handle the thorn throwing, juste
-    the idle state)
+  notes: Handles Deorem throwing thorns (doesn't handle the thorn throwing, juste the idle state)
 -
   label: DeoremAfterThorns
   addr:
@@ -4060,8 +4006,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called once when Deorem dies, sets events according to first or second
-    location
+  notes: Called once when Deorem dies, sets events according to first or second location
 -
   label: DeoremDyingGoingDown
   addr:
@@ -4116,8 +4061,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls DeoremRandomSpriteDebris, starts a vertical screen shake and handles
-    the movement
+  notes: Calls DeoremRandomSpriteDebris, starts a vertical screen shake and handles the movement
 -
   label: DeoremLeavingInGroundDebris
   addr:
@@ -4128,8 +4072,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls DeoremRandomSpriteDebris, starts a vertical screen shake is called
-    when Deorem is leaving and he has its head on the ground
+  notes: Calls DeoremRandomSpriteDebris, starts a vertical screen shake is called when Deorem is leaving and he has its head on the ground
 -
   label: DeoremSegmentInit
   addr:
@@ -4162,8 +4105,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the movement when Deorem is spawning, going down and the other
-    side has started spawning
+  notes: Handles the movement when Deorem is spawning, going down and the other side has started spawning
 -
   label: DeoremSegmentSpawnGoingUp
   addr:
@@ -4185,8 +4127,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the movement when Deorem is spawning, going up and the current
-    side has finished spawning
+  notes: Handles the movement when Deorem is spawning, going up and the current side has finished spawning
 -
   label: DeoremSegmentRightIdleAnim
   addr:
@@ -4197,8 +4138,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the idle animation and the thorn throwing of the segments on
-    the right side
+  notes: Handles the idle animation and the thorn throwing of the segments on the right side
 -
   label: DeoremSegmentLeftIdleAnim
   addr:
@@ -4209,8 +4149,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the idle animation and the thorn throwing of the segments on
-    the left side
+  notes: Handles the idle animation and the thorn throwing of the segments on the left side
 -
   label: DeoremSegmentGoingDown
   addr:
@@ -4320,8 +4259,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the timer depending on the room slot for how long it stays alive
-    before exploding upon  Deorem death
+  notes: Sets the timer depending on the room slot for how long it stays alive before exploding upon  Deorem death
 -
   label: DeoremSegmentDying
   addr:
@@ -4398,8 +4336,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the eye spinning and moving when Deorem is dying (body dying/not
-    here) Calls DeoremSpawnChargeBeam
+  notes: Handles the eye spinning and moving when Deorem is dying (body dying/not here) Calls DeoremSpawnChargeBeam
 -
   label: DeoremThornInit
   addr:
@@ -4421,8 +4358,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the spinning animation when the thorn is spawning, before is
-    moves
+  notes: Handles the spinning animation when the thorn is spawning, before is moves
 -
   label: DeoremThornMovement
   addr:
@@ -4780,8 +4716,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns a mellow if necesserary and checks if the hive should go to phase
-    2
+  notes: Spawns a mellow if necesserary and checks if the hive should go to phase 2
 -
   label: HivePhase2
   addr:
@@ -4792,8 +4727,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns a mellow if necesserary and checks if the hive should go to phase
-    3
+  notes: Spawns a mellow if necesserary and checks if the hive should go to phase 3
 -
   label: HivePhase3
   addr:
@@ -4859,7 +4793,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Initialize a mellow sprite
@@ -4873,7 +4807,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the mellow being idle
@@ -4887,7 +4821,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles a mellow fleeing
@@ -4901,7 +4835,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Called once when the mellow detected samus
@@ -4915,7 +4849,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the movement of the mellow when chasing samus
@@ -4984,7 +4918,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Initialize an imago larva sprite
@@ -4998,7 +4932,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Calls ImagoLarvaBellyFlashing and checks if samus is in range
@@ -5012,7 +4946,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Initialize the GFX for the larva hitting the wall after dashing
@@ -5037,7 +4971,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Handles the larva retreating
@@ -5051,7 +4985,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Initialize the GFX for the larva after it retreated
@@ -5076,7 +5010,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Called once when the larva starts to attack
@@ -5090,7 +5024,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Checks if the warning animation before attacking has ended
@@ -5104,7 +5038,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Initialize the GFX for the larva attacking
@@ -5118,7 +5052,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Handles the larva attacking
@@ -5132,7 +5066,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Initialize the GFX for the larva taking damage
@@ -5157,7 +5091,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Called once before the larva dies
@@ -5182,8 +5116,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the death of the imago larva, calls SpriteDeath  and sets the
-    caterpillar killed event if necessary
+  notes: Handles the death of the imago larva, calls SpriteDeath  and sets the caterpillar killed event if necessary
 -
   label: ImagoLarvaOutsideInit
   addr:
@@ -5205,7 +5138,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Called all the time but seems to only affect the retraction
@@ -5219,7 +5152,7 @@
   mode: thumb
   params:
   - label: SubSpriteDataPtr
-    type: ptr.SubSpriteData
+    type: SubSpriteData *
     notes: Sub-sprite data pointer
   return: null
   notes: Called all the time but seems to only affect the attack
@@ -5303,8 +5236,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enables the launcher hitbox
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enables the launcher hitbox
 -
   label: MorphBallLauncherInit
   addr:
@@ -5381,8 +5313,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the animation and the position for imago cocoon and the imago
-    cocoon vines
+  notes: Updates the animation and the position for imago cocoon and the imago cocoon vines
 -
   label: ImagoCocoonChangeOneClipAction
   addr:
@@ -5397,8 +5328,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Removes the middle block of the floor when imago cocoon falls
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Removes the middle block of the floor when imago cocoon falls
 -
   label: ImagoCocoonChangeTwoMiddleClipAction
   addr:
@@ -5413,8 +5343,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Removes the 2 blocks of the floor around the middle block when imago cocoon falls
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Removes the 2 blocks of the floor around the middle block when imago cocoon falls
 -
   label: ImagoCocoonChangeTwoAroundClipAction
   addr:
@@ -5429,8 +5358,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Removes the 2 blocks at the edges of the floor when imago cocoon falls
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Removes the 2 blocks at the edges of the floor when imago cocoon falls
 -
   label: ImagoCocoonChangeTwoBlockingClipAction
   addr:
@@ -5445,8 +5373,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Removes the blocks blocking the passage after imago dies
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Removes the blocks blocking the passage after imago dies
 -
   label: ImagoCocoonChangeOamScaling
   addr:
@@ -5463,8 +5390,7 @@
     type: u16
     notes: OAM Scaling
   return: null
-  notes: Checks if the OAM scaling is above or below r0-0x100 or r0+0x100 if check
-    is succesful, adds/decrement r1 to the current OAM scaling
+  notes: Checks if the OAM scaling is above or below r0-0x100 or r0+0x100 if check is succesful, adds/decrement r1 to the current OAM scaling
 -
   label: ImagoCocoonInit
   addr:
@@ -5497,9 +5423,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the spawning of imago cocoon (detecting samus to play the music)
-    also handles the death of imago cocoon (setting the event) also calls ImagoCocoonChangeOAMScalling
-    and handles the palette switching
+  notes: Handles the spawning of imago cocoon (detecting samus to play the music) also handles the death of imago cocoon (setting the event) also calls ImagoCocoonChangeOAMScalling and handles the palette switching
 -
   label: ImagoCocoonFallingBeforeBlocks
   addr:
@@ -5532,8 +5456,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks the timer for the imago cocoon, if timer ended sets door unlock
-    timer and opens up the passage
+  notes: Checks the timer for the imago cocoon, if timer ended sets door unlock timer and opens up the passage
 -
   label: ImagoCocoonInGroundAnim
   addr:
@@ -5544,8 +5467,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the animation of the imago cocoon when he is on the ground after
-    falling
+  notes: Handles the animation of the imago cocoon when he is on the ground after falling
 -
   label: ImagoCocoonVineInit
   addr:
@@ -5855,8 +5777,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Disables the alarm if mecha ridley isn't dead  sets the stealth music
-    if fully powered suit isn't obtained
+  notes: Disables the alarm if mecha ridley isn't dead  sets the stealth music if fully powered suit isn't obtained
 -
   label: DecrementChozodiaAlarm
   addr:
@@ -5922,8 +5843,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns space pirate lasers secondary sprites when the space pirate fires
-    on ground
+  notes: Spawns space pirate lasers secondary sprites when the space pirate fires on ground
 -
   label: SpacePirateFireLaserWall
   addr:
@@ -5934,8 +5854,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns space pirate lasers secondary sprites when the space pirate fires
-    on the wall
+  notes: Spawns space pirate lasers secondary sprites when the space pirate fires on the wall
 -
   label: SpacePirateCheckSamusInShootingRange
   addr:
@@ -6007,8 +5926,7 @@
     type: bool
     notes: Play sound flag
   return: null
-  notes: Handles the death of the space pirate, counts the number of space pirates
-    alives and if all pirates are dead disables the alarm
+  notes: Handles the death of the space pirate, counts the number of space pirates alives and if all pirates are dead disables the alarm
 -
   label: SpacePirateLaserInit
   addr:
@@ -6085,9 +6003,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the black space pirate getting hit by a projectile, checks if
-    the projectile is of plasma type, deals damage if yes and spawns a particle effect
-    if not
+  notes: Handles the black space pirate getting hit by a projectile, checks if the projectile is of plasma type, deals damage if yes and spawns a particle effect if not
 -
   label: BlackSpacePirateCollidingWithLaser
   addr:
@@ -6098,8 +6014,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the black space pirate is colliding with a laser, if yes sets
-    a particle effect
+  notes: Checks if the black space pirate is colliding with a laser, if yes sets a particle effect
 -
   label: BlackSpacePirateInit
   addr:
@@ -6121,8 +6036,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the black space pirate is on screen, if yes sets its pose to
-    27
+  notes: Checks if the black space pirate is on screen, if yes sets its pose to 27
 -
   label: BlackSpacePirateBeforeShootingGfxInit
   addr:
@@ -6250,8 +6164,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable the hitbox for the zipline generator
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable the hitbox for the zipline generator
 -
   label: ZiplineGeneratorInit
   addr:
@@ -6273,8 +6186,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Detects if samus is in the hole and in morph ball if yes starts activating
-    the ziplines
+  notes: Detects if samus is in the hole and in morph ball if yes starts activating the ziplines
 -
   label: ZiplineGeneratorActivating
   addr:
@@ -6285,8 +6197,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the activating animation, and the end of the activation (sets
-    samus pose to morphball and sets the ziplines activated event)
+  notes: Handles the activating animation, and the end of the activation (sets samus pose to morphball and sets the ziplines activated event)
 -
   label: ZiplineGenerator_AI
   addr:
@@ -6400,8 +6311,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disables the hitbox for the gate
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disables the hitbox for the gate
 -
   label: SecurityGateOpen
   addr:
@@ -6858,8 +6768,7 @@
     label: CountGreaterThan3
     type: bool
     notes: Count greater than 3
-  notes: Counts the number of bugs that are on pose 0x43, used to know if samus
-    should take damage
+  notes: Counts the number of bugs that are on pose 0x43, used to know if samus should take damage
 -
   label: ParasiteInit
   addr:
@@ -6870,7 +6779,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Initialize a parasite sprite
@@ -6884,7 +6793,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite grabbing samus
@@ -6898,7 +6807,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite behavior when grabbing samus
@@ -6912,7 +6821,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Initialize the GFX for the parasite getting expulsed
@@ -6926,11 +6835,10 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
-  notes: Handles the parasite starting to get expulsed when he was previously
-    on an object (geron or samus)
+  notes: Handles the parasite starting to get expulsed when he was previously on an object (geron or samus)
 -
   label: ParasiteExpulsed
   addr:
@@ -6941,7 +6849,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite getting expulsed
@@ -6955,11 +6863,10 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
-  notes: Handles the parasite getting expulsed when he was previously on an object
-    (geron or samus)
+  notes: Handles the parasite getting expulsed when he was previously on an object (geron or samus)
 -
   label: ParasiteFalling
   addr:
@@ -6970,7 +6877,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite falling
@@ -6984,7 +6891,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite (multiple) jumping
@@ -6998,7 +6905,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the second part of the parasite (multiple) jumping
@@ -7012,7 +6919,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Initialize the GFX for the parasite crouching
@@ -7026,7 +6933,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite (multiple) walking
@@ -7040,7 +6947,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Initialize the GFX for the parasite uncrouching
@@ -7054,7 +6961,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Checks if the turning around animation has ended
@@ -7068,7 +6975,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Checks if the turning around animation has nearly ended
@@ -7082,7 +6989,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite landing
@@ -7096,7 +7003,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the parasite falling normally (block broken below)
@@ -7110,7 +7017,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Checks if the bugs killed event should be set
@@ -7124,7 +7031,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the bug grabbing a geron
@@ -7138,7 +7045,7 @@
   mode: thumb
   params:
   - label: CurrSpritePtr
-    type: ptr.SpriteData
+    type: SpriteData *
     notes: Current sprite pointer
   return: null
   notes: Handles the collision with a bomb exploding
@@ -7178,8 +7085,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable the hitbox for the piston
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable the hitbox for the piston
 -
   label: PistonChangeOneBelowClipAction
   addr:
@@ -7194,8 +7100,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of the bottom block of the piston
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of the bottom block of the piston
 -
   label: PistonChangeOneUpperClipAction
   addr:
@@ -7210,8 +7115,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable the hitbox of the top block of the piston
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable the hitbox of the top block of the piston
 -
   label: PistonCheckSamusIn
   addr:
@@ -7360,8 +7264,7 @@
     type: u16
     notes: OAM Scaling
   return: null
-  notes: Spawns the fireballs at the beginning of the fight using r0 for room
-    slot
+  notes: Spawns the fireballs at the beginning of the fight using r0 for room slot
 -
   label: RidleyCheckSpawn
   addr:
@@ -7471,8 +7374,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles ridley dying, sets random particle effects and sets the ridley
-    killed event
+  notes: Handles ridley dying, sets random particle effects and sets the ridley killed event
 -
   label: RidleyBodyInit
   addr:
@@ -7549,8 +7451,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the movement of the medium fire balls (at the beginning of the
-    fight)
+  notes: Handles the movement of the medium fire balls (at the beginning of the fight)
 -
   label: Ridley_AI
   addr:
@@ -7667,8 +7568,7 @@
   - label: Movement
     type: u16
   return: null
-  notes: Checks if the metroid is colliding with another metroid, if yes makes
-    them bounce
+  notes: Checks if the metroid is colliding with another metroid, if yes makes them bounce
 -
   label: MetroidCheckSamusGrabbed
   addr:
@@ -7748,8 +7648,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls MetroidMove, MetroidCheckBouncingOnMetroid and checks if grabbing
-    samus
+  notes: Calls MetroidMove, MetroidCheckBouncingOnMetroid and checks if grabbing samus
 -
   label: MetroidGrabSamusGfxInit
   addr:
@@ -7914,8 +7813,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the movement of the mother brain rinka and determines where it
-    spawns
+  notes: Handles the movement of the mother brain rinka and determines where it spawns
 -
   label: Rinka_AI
   addr:
@@ -8426,8 +8324,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Disables the ceiling hitbox
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Disables the ceiling hitbox
 -
   label: RuinsTestMoveToPosition
   addr:
@@ -8456,9 +8353,7 @@
     type: u16
     notes: Always 4?
   return: null
-  notes: Handles slowly moving an object from r2 and r3 to r0 and r1? Used to
-    move the ghost back at the center at the end of the fight and to move the symbols
-    to the corners
+  notes: Handles slowly moving an object from r2 and r3 to r0 and r1? Used to move the ghost back at the center at the end of the fight and to move the symbols to the corners
 -
   label: RuinsTestProjectileCollision
   addr:
@@ -8471,8 +8366,7 @@
   return:
     label: Colliding
     type: bool
-  notes: Checks if a projectile is colliding with the shootable symbol Handles
-    samus taking damage
+  notes: Checks if a projectile is colliding with the shootable symbol Handles samus taking damage
 -
   label: RuinsTestCheckSamusHurting
   addr:
@@ -8486,8 +8380,7 @@
     label: SamusGettingHurt
     type: bool
     notes: Samus getting hurt
-  notes: Checks if the current sprite mosaic flag is on and if samus' current
-    pose is Getting Hurt
+  notes: Checks if the current sprite mosaic flag is on and if samus' current pose is Getting Hurt
 -
   label: RuinsTestGhostMove
   addr:
@@ -8523,8 +8416,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns the ruins test reflection cover and the ruins test samus reflection
-    start
+  notes: Spawns the ruins test reflection cover and the ruins test samus reflection start
 -
   label: RuinsTestCheckSamusNotFacingBackground
   addr:
@@ -8579,8 +8471,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns the ruins test samus reflection end, plays the getting fully powered
-    suit cutscene sets the fully powered suit event, and calls RuinsTestChangeCCAA
+  notes: Spawns the ruins test samus reflection end, plays the getting fully powered suit cutscene sets the fully powered suit event, and calls RuinsTestChangeCCAA
 -
   label: RuinsTestGhostInit
   addr:
@@ -8889,8 +8780,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the atomic shooting the electricity and the animation before
-    shooting
+  notes: Handles the atomic shooting the electricity and the animation before shooting
 -
   label: AtomicInit
   addr:
@@ -8951,8 +8841,7 @@
     label: NotAtomicOrDead
     type: bool
     notes: Not atomic or dead
-  notes: Checks if the main sprite of the atomic electricity is an atomic and
-    is alive
+  notes: Checks if the main sprite of the atomic electricity is an atomic and is alive
 -
   label: AtomicElectricityInit
   addr:
@@ -9117,8 +9006,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the palette switching when mother brain charges the beam and
-    fires it
+  notes: Handles the palette switching when mother brain charges the beam and fires it
 -
   label: MotherBrainInit
   addr:
@@ -9140,8 +9028,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Mother brain main loop AI, handles the update of the sub sprites, firing
-    the beam the death and the animations
+  notes: Mother brain main loop AI, handles the update of the sub sprites, firing the beam the death and the animations
 -
   label: MotherBrainDeath
   addr:
@@ -9316,8 +9203,7 @@
     type: u16
     notes: X position
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Used to remove the 2 blocks on the ground
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Used to remove the 2 blocks on the ground
 -
   label: AcidWormChangeBigBlockDownClipAction
   addr:
@@ -9332,8 +9218,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Used to remove the first 2 blocks of the big block on the ground
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Used to remove the first 2 blocks of the big block on the ground
 -
   label: AcidWormChangeBigBlockMiddleClipAction
   addr:
@@ -9348,8 +9233,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Used to remove the 2 middle blocks of the big block on the ground
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Used to remove the 2 middle blocks of the big block on the ground
 -
   label: AcidWormChangeBigBlockTopClipAction
   addr:
@@ -9364,8 +9248,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Used to remove the 2 top blocks of the big block on the ground
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Used to remove the 2 top blocks of the big block on the ground
 -
   label: AcidWormPlaySound
   addr:
@@ -9986,8 +9869,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the cannon can fire a bullet, if yes spawns a cannon bullet
-    sprite
+  notes: Checks if the cannon can fire a bullet, if yes spawns a cannon bullet sprite
 -
   label: CannonCheckSurroundings
   addr:
@@ -10328,8 +10210,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles imago charging through the wall at the end of the fight, also
-    destroys the first half
+  notes: Handles imago charging through the wall at the end of the fight, also destroys the first half
 -
   label: ImagoDestroyWall
   addr:
@@ -10373,8 +10254,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the left and right hitboxes of the imago body depending on the X
-    flip
+  notes: Sets the left and right hitboxes of the imago body depending on the X flip
 -
   label: ImagoBodyInit
   addr:
@@ -10638,8 +10518,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the detection of samus to activate the alarm, also deactivates
-    the other searchlight eye beams
+  notes: Handles the detection of samus to activate the alarm, also deactivates the other searchlight eye beams
 -
   label: SearchlightEyeBeamDisappear
   addr:
@@ -10751,8 +10630,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the movement of the ship before the intro cutscene at the start
-    of the game
+  notes: Handles the movement of the ship before the intro cutscene at the start of the game
 -
   label: GunshipSamusEnter
   addr:
@@ -10862,8 +10740,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the samus collision of the gunship to escape ship, called after
-    samus leaves the ship
+  notes: Sets the samus collision of the gunship to escape ship, called after samus leaves the ship
 -
   label: GunshipCheckSamusOnTopAfterLeaving
   addr:
@@ -11072,8 +10949,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Disables the glass tube hitbox
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Disables the glass tube hitbox
 -
   label: GlassTubeInit
   addr:
@@ -11161,8 +11037,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if samus is on the save platform (calls SavePlatformDetectSamus
-    and checks if morhed/crouching)
+  notes: Checks if samus is on the save platform (calls SavePlatformDetectSamus and checks if morhed/crouching)
 -
   label: SavePlatformChozodiaCheckOpeningAnimEnded
   addr:
@@ -11448,8 +11323,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the tube around animation has ended (quick beam going to the
-    center at the beginning)
+  notes: Checks if the tube around animation has ended (quick beam going to the center at the beginning)
 -
   label: SaveStationTopChozodiaCheckTubeAroundAnimEnded
   addr:
@@ -11676,8 +11550,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable the hitbox of the statue debris on the ground
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable the hitbox of the statue debris on the ground
 -
   label: KraidElevatorStatueChangeClipAction
   addr:
@@ -11692,8 +11565,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of the statue
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of the statue
 -
   label: KraidElevatorStatueAfterFall
   addr:
@@ -11763,8 +11635,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of the statue
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of the statue
 -
   label: RidleyElevatorStatueAfterFall
   addr:
@@ -12119,8 +11990,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of a vertical lign of 6 blocks
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of a vertical lign of 6 blocks
 -
   label: StatueHorizontalLineThreeChangeClipAction
   addr:
@@ -12135,8 +12005,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of a horizontal lign of 3 blocks
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of a horizontal lign of 3 blocks
 -
   label: StatueHorizontalLineHeightChangeClipAction
   addr:
@@ -12151,8 +12020,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox of a horizontal lign of 8 blocks
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox of a horizontal lign of 8 blocks
 -
   label: KraidStatueAfterOpen
   addr:
@@ -12163,8 +12031,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called after the statue finished opening or when initializing the sprite
-    but it's already opened
+  notes: Called after the statue finished opening or when initializing the sprite but it's already opened
 -
   label: KraidStatueInit
   addr:
@@ -12212,8 +12079,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable the hitbox for a horizontal lign of 3 blocks
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable the hitbox for a horizontal lign of 3 blocks
 -
   label: RidleyStatueChangeFourClipAction
   addr:
@@ -12228,8 +12094,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox for 4 blocks
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox for 4 blocks
 -
   label: RidleyStatueAfterOpen
   addr:
@@ -12240,8 +12105,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called after the statue finished opening or when initializing the sprite
-    but it's already opened
+  notes: Called after the statue finished opening or when initializing the sprite but it's already opened
 -
   label: RidleyStatueInit
   addr:
@@ -12373,8 +12237,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the opening eye animation ended, spawns a gadora beam sprite
-    if necessary
+  notes: Checks if the opening eye animation ended, spawns a gadora beam sprite if necessary
 -
   label: GadoraEyeOpened
   addr:
@@ -12488,8 +12351,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox for the block
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox for the block
 -
   label: UnknownItemBlock_AI
   addr:
@@ -12522,8 +12384,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all sprites and sets the ignore samus collision timer to
-    0xf
+  notes: Loops through all sprites and sets the ignore samus collision timer to 0xf
 -
   label: EscapeShipSetPirateDrawOrder
   addr:
@@ -12545,8 +12406,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the escape ship is colliding with a space pirate laser, if
-    yes destroys it and spawns a particle effect
+  notes: Checks if the escape ship is colliding with a space pirate laser, if yes destroys it and spawns a particle effect
 -
   label: EscapeShip_AI
   addr:
@@ -12623,8 +12483,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Synchronizes the mecha ridley part sprites position with the mecha ridley
-    sprite
+  notes: Synchronizes the mecha ridley part sprites position with the mecha ridley sprite
 -
   label: MechaRidleyPartGreenGlow
   addr:
@@ -12690,8 +12549,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Called after mecha ridley finished walking, plays the music and enables
-    the alarm
+  notes: Called after mecha ridley finished walking, plays the music and enables the alarm
 -
   label: MechaRidleyCheckSamusOutOfAmmo
   addr:
@@ -12708,8 +12566,7 @@
     label: SamusHasNoMoreAmmo
     type: bool
     notes: Samus has no more ammo
-  notes: Checks if samus is out of ammo (missiles and super missiles), used to
-    force a missile attack
+  notes: Checks if samus is out of ammo (missiles and super missiles), used to force a missile attack
 -
   label: RidleyClawAttack
   addr:
@@ -12786,8 +12643,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the extending head animation before the fireballs attack has
-    ended
+  notes: Checks if the extending head animation before the fireballs attack has ended
 -
   label: MechaRidleyCheckOpeningMouthAnimEnded
   addr:
@@ -12798,8 +12654,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the opening mouth animation before the fireballs attack has
-    ended
+  notes: Checks if the opening mouth animation before the fireballs attack has ended
 -
   label: MechaRidleyFireballsAttack
   addr:
@@ -12821,8 +12676,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the closing mouth animation after the fireballs attack has
-    ended
+  notes: Checks if the closing mouth animation after the fireballs attack has ended
 -
   label: MechaRidleyCheckRetractingHeadAfterFireballsAnimEnded
   addr:
@@ -12833,8 +12687,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if the retracting head animation after the fireballs attack has
-    ended
+  notes: Checks if the retracting head animation after the fireballs attack has ended
 -
   label: MechaRidleyStartDying
   addr:
@@ -12900,8 +12753,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the second part of the eye glow at the end of the fight (spawns
-    an item banner sprite and sets the mecha ridley killed event)
+  notes: Handles the second part of the eye glow at the end of the fight (spawns an item banner sprite and sets the mecha ridley killed event)
 -
   label: MechaRidleyPartInit
   addr:
@@ -13015,8 +12867,7 @@
     enum: ClipdataAffectingAction
     notes: Clipdata affecting action
   return: null
-  notes: Changes the current clipdata affecting action and calls ProcessClipdata
-    Enable/disable the hitbox for the gate
+  notes: Changes the current clipdata affecting action and calls ProcessClipdata Enable/disable the hitbox for the gate
 -
   label: EscapeGate_AI
   addr:
