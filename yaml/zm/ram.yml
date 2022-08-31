@@ -46,9 +46,9 @@
   notes: Pause overlay tilemap
 -
   label: AnimatedGfx
-  type: u16
+  type: u8
   addr: 0x201B000
-  size: 0x800
+  count: 0x800
   notes: Animated graphics
 -
   label: DecompClipdata
@@ -76,38 +76,45 @@
   notes: Decompressed BG2 map
 -
   label: MinimapTilesWithObtainedItems
+  type: u8
   addr: 0x2033800
-  size: 0x800
+  count: 0x800
   notes: Minimap tiles with obtained items
 -
   label: DecompExploredMinimap
+  type: u8
   addr: 0x2034000
-  size: 0x800
+  count: 0x800
   notes: Decompressed minimap visited tiles
 -
   label: DecompMinimapData
+  type: u8
   addr: 0x2034800
-  size: 0x800
+  count: 0x800
   notes: Decompressed minimap data
 -
   label: ItemsCollected
+  type: u8
   addr: 0x2036C00
-  size: 0x800
+  count: 0x800
   notes: Items collected
 -
   label: VisitedMinimapTiles
+  type: u8
   addr: 0x2037400
-  size: 0x400
+  count: 0x400
   notes: Visited minimap tiles
 -
   label: HatchesOpened
+  type: u8
   addr: 0x2037C00
-  size: 0x100
+  count: 0x100
   notes: Hatches opened
 -
   label: EventsTriggered
+  type: u8
   addr: 0x2037E00
-  size: 0x20
+  count: 0x20
   notes: Events triggered
 -
   label: Sram
@@ -625,7 +632,7 @@
   label: AmmoDigitGfx
   type: gfx
   addr: 0x300091C
-  size: 0x40
+  count: 0x40
   notes: Ammo digit graphics
 -
   label: EscapeTimerStatus
@@ -645,8 +652,10 @@
   notes: Escape timer digits
 -
   label: ParticleEscapeOamFrames
+  type: u16
+  tags:
+  - oamframe
   addr: 0x3000964
-  size: 0x2
   count: 0x19
   notes: Particle escape OAM frames
 -
@@ -671,8 +680,10 @@
   notes: Power bomb refill animation
 -
   label: ParticleSamusReflectionOamFrames
+  type: u16
+  tags:
+  - oamframe
   addr: 0x300099A
-  size: 0x2
   count: 0x49
   notes: Particle Samus reflection OAM frames
 -
@@ -806,15 +817,16 @@
   notes: V-Blank request flag
 -
   label: InterruptCode
+  type: u8
   addr: 0x3000C7C
-  size: 0x200
-  notes: Interrupt code
+  count: 0x200
+  notes: Interrupt code (void [0x200])
 -
   label: OamData
+  type: u8
   addr: 0x3000E7C
-  size: 0x8
   count: 0xA0
-  notes: OAM data
+  notes: OAM data (u16 [0xA0][8])
 -
   label: ButtonInput
   type: u16
@@ -1039,9 +1051,9 @@
   notes: Non-gameplay RAM
 -
   label: HazeProcessCode
-  type: thumb
+  type: u8
   addr: 0x3001944
-  size: 0x200
+  count: 0x200
   notes: Haze process code
 -
   label: VBlankCodePtr
@@ -1080,8 +1092,9 @@
   notes: Pointer to sound code A
 -
   label: SoundCodeARam
+  type: u8
   addr: 0x3003B90
-  size: 0x658
+  count: 0x658
   notes: Sound code A
 -
   label: SoundCodeBPtr
@@ -1090,8 +1103,9 @@
   notes: Pointer to sound code B
 -
   label: SoundCodeBRam
+  type: u8
   addr: 0x30041EC
-  size: 0xA4
+  count: 0xA4
   notes: Sound code B
 -
   label: SoundCodeCPtr
@@ -1100,8 +1114,9 @@
   notes: Pointer to sound code C
 -
   label: SoundCodeCRam
+  type: u8
   addr: 0x3004294
-  size: 0xAC
+  count: 0xAC
   notes: Sound code C
 -
   label: DemoInputNumber
@@ -1260,9 +1275,9 @@
   notes: Haze process code pointer
 -
   label: AnimatedTilesetData
+  type: u8
   addr: 0x3005730
-  size: 0xC
-  count: 0x10
+  count: 0xC0
   notes: Animated tileset data
 -
   label: MaintainedInputData
@@ -1302,48 +1317,57 @@
   notes: Error flags
 -
   label: Track8
+  type: u8
   addr: 0x3005910
-  size: 0x40
+  count: 0x40
   notes: Track 8
 -
   label: Track3
+  type: u8
   addr: 0x3005950
-  size: 0x40
+  count: 0x40
   notes: Track 3
 -
   label: Track1
+  type: u8
   addr: 0x3005990
-  size: 0x40
+  count: 0x40
   notes: Track 1
 -
   label: Track6
+  type: u8
   addr: 0x30059D0
-  size: 0x40
+  count: 0x40
   notes: Track 6
 -
   label: Track4
+  type: u8
   addr: 0x3005A10
-  size: 0x40
+  count: 0x40
   notes: Track 4
 -
   label: Track0
+  type: u8
   addr: 0x3005A50
-  size: 0x40
+  count: 0x40
   notes: Track 0
 -
   label: Track7
+  type: u8
   addr: 0x3005A90
-  size: 0x40
+  count: 0x40
   notes: Track 7
 -
   label: Track2
+  type: u8
   addr: 0x3005AD0
-  size: 0x40
+  count: 0x40
   notes: Track 2
 -
   label: Track5
+  type: u8
   addr: 0x3005B10
-  size: 0x40
+  count: 0x40
   notes: Track 5
 -
   label: InterruptCodePtr

@@ -2325,7 +2325,7 @@ SaveFileRam:
   - label: Zero_mission_010
     type: ascii
     offset: 0x0
-    size: 0x10
+    count: 0x10
     notes: ZERO_MISSION_010
   - label: Checksum
     type: u32
@@ -2422,7 +2422,7 @@ SaveFileRam:
   - label: PlanetZebes
     type: ascii
     offset: 0x4F
-    size: 0x11
+    count: 0x11
     notes: 'Planet Zebes... '
   - label: SamusData
     type: SamusData
@@ -2492,16 +2492,19 @@ SaveFileRam:
     type: u32
     offset: 0x24C
   - label: VisitedMinimapTiles
+    type: u8
     offset: 0x300
-    size: 0x400
+    count: 0x400
     notes: Visited minimap tiles
   - label: HatchesOpened
+    type: u8
     offset: 0x1100
-    size: 0x100
+    count: 0x100
     notes: Hatches opened
   - label: EventsTriggered
+    type: u8
     offset: 0x1200
-    size: 0x20
+    count: 0x20
     notes: Events triggered
 ScreenPositionAndVelocity:
   size: 0x8

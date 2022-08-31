@@ -32,7 +32,7 @@
     U: 0x8F244
     E: 0x8FED0
     J: 0x8F2A0
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 square50 waveform
 -
   label: SoundDataEntries
@@ -142,14 +142,6 @@
     J: 0x2B1C40
   count: 0x4D
   notes: Secondary sprite stats
--
-  label: SpritesetEntries
-  addr:
-    U: 0x2B2150
-    E: 0x2B2DDC
-    J: 0x2B21AC
-  size: 0x3D4
-  notes: Spriteset entries
 -
   label: ChargeBeamSpriteYPositionOffsets
   type: s16
@@ -310,7 +302,7 @@
     U: 0x32BAC8
     E: 0x32C754
     J: 0x32BB24
-  size: 0x3800
+  count: 0x3800
   notes: Common sprite graphics
 -
   label: MissileDigitGfx
@@ -319,7 +311,7 @@
     U: 0x32F2C8
     E: 0x32FF54
     J: 0x32F324
-  size: 0x900
+  count: 0x900
   notes: Missile digit graphics
 -
   label: PowerBombDigitGfx
@@ -328,7 +320,7 @@
     U: 0x32FBC8
     E: 0x330854
     J: 0x32FC24
-  size: 0x900
+  count: 0x900
   notes: Power bomb digit graphics
 -
   label: SuitlessHudChargedBarGfx
@@ -337,7 +329,7 @@
     U: 0x3362A8
     E: 0x336F34
     J: 0x336304
-  size: 0x100
+  count: 0x100
   notes: Suitless HUD charged bar graphics
 -
   label: SamusEnvironEffect_RunningOnDustyGroundOAM
@@ -697,7 +689,6 @@
     U: 0x345C48
     E: 0x3468D4
     J: 0x345CA4
-  size: 0x8
   count: 0xC
   notes: Tank collection info
 -
@@ -738,13 +729,13 @@
   notes: Animated graphics entries
 -
   label: AnimatedTilesetEntries
+  type: u8
   addr:
     U: 0x35FA78
     E: 0x360704
     J: 0x35FAD4
-  size: 0x30
   count: 0x8
-  notes: Animated tileset entries
+  notes: Animated tileset entries (u8 [0x8][0x30])
 -
   label: AnimatedPaletteEntries
   type: AnimatedPaletteEntry
@@ -857,14 +848,6 @@
   count: 0xF
   notes: Cutscene data
 -
-  label: DebugMenuTileParts
-  addr:
-    U: 0x4078EC
-    E: 0x408584
-    J: 0x407948
-  size: 0x2BC
-  notes: Debug menu tile parts
--
   label: BossMapIcons
   type: BossMapIcon
   addr:
@@ -927,7 +910,7 @@
     U: 0x45FCF4
     E: 0x46D808
     J: 0x45FD50
-  size: 0x20
+  count: 0x20
   notes: Time attack password characters
 -
   label: MetroidFusionGalleryData
@@ -1010,7 +993,7 @@
     U: 0x5D940C
     E: 0x5EC460
     J: 0x5D951C
-  size: 0x1000
+  count: 0x1000
   notes: Common BG graphics
 -
   label: CommonBGPalette
@@ -1028,7 +1011,7 @@
     U: 0x74F8B4
     E: 0x762700
     J: 0x74F9C4
-  size: 0x5200
+  count: 0x5200
   notes: Graphics for animated graphics
 -
   label: NonGameplayRamPtr
@@ -1211,11 +1194,12 @@
   notes: Minimap data pointers
 -
   label: ExploredMinimapBitFlags
+  type: u8
   addr:
     U: 0x760218
     E: 0x7740C0
     J: 0x760328
-  size: 0x80
+  count: 0x80
   notes: Explored minimap bit flags
 -
   label: DescriptionTextPtrs
@@ -1557,9 +1541,10 @@
   notes: Sound test sound IDs
 -
   label: NesMetroidData
+  type: u8
   addr:
     U: 0x7D8000
     E: 0x7D8000
     J: 0x7D8000
-  size: 0x1F734
+  count: 0x1F734
   notes: NES Metroid data
