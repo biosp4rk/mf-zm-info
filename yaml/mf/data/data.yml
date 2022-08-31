@@ -1,83 +1,74 @@
 -
   label: SineYValues
-  type: u16
+  type: u16 [0x140]
   addr:
     U: 0xA4FA4
     E: 0xA5600
     J: 0xA7290
-  count: 0x140
   notes: Sine Y values
 -
   label: DelayNoteLengthTable
-  type: u8
+  type: u8 [0x31]
   addr:
     U: 0xA5378
     E: 0xA59D4
     J: 0xA7664
-  count: 0x31
   notes: Delay/note length table
 -
   label: Sound3Waveform_sinewave
-  type: u8
+  type: u8 [0x10]
   addr:
     U: 0xA8C8C
     E: 0xA92E8
     J: 0xAAFF0
-  count: 0x10
   notes: Sound channel 3 sinewave waveform
 -
   label: Sound3Waveform_triangle
-  type: u8
+  type: u8 [0x10]
   addr:
     U: 0xA8C9C
     E: 0xA92F8
     J: 0xAB000
-  count: 0x10
   notes: Sound channel 3 triangle waveform
 -
   label: Sound3Waveform_sawtooth
-  type: u8
+  type: u8 [0x10]
   addr:
     U: 0xA8CAC
     E: 0xA9308
     J: 0xAB010
-  count: 0x10
   notes: Sound channel 3 sawtooth waveform
 -
   label: Sound3Waveform_square50
-  type: u8
+  type: u8 [0x10]
   addr:
     U: 0xA8CBC
     E: 0xA9318
     J: 0xAB020
-  count: 0x10
   notes: Sound channel 3 square50 waveform
 -
   label: Sound3Waveform_halfsine
-  type: u8
+  type: u8 [0x10]
   addr:
     U: 0xA8CCC
     E: 0xA9328
     J: 0xAB030
-  count: 0x10
   notes: Sound channel 3 half sine waveform
 -
   label: SoundDataEntries
-  type: SoundDataEntry
+  type: SoundDataEntry [0x2E9]
   addr:
     U: 0xA8D3C
     E: 0xA9398
     J: 0xAB0A0
-  count: 0x2E9
   notes: Sound data entries
 -
   label: BlankDataCopiedToSamusRam
-  type: u8
+  type: u8 [0x28]
   addr:
     U: 0x28D258
     E: 0x28D8B4
     J: 0x28F560
-  count: 0x28
   notes: Blank data copied to Samus RAM
 -
   label: CopiedToSamusData
@@ -86,7 +77,6 @@
     U: 0x28D280
     E: 0x28D8DC
     J: 0x28F588
-  count: 0x1
   notes: Copied to Samus data
 -
   label: CopiedToSamusEquipment
@@ -98,401 +88,357 @@
   notes: Copied to Samus equipment
 -
   label: SamusHitboxOffsets
-  type: SamusHitboxOffsets
+  type: SamusHitboxOffsets [0x8]
   addr:
     U: 0x28FC8C
     E: 0x2902E8
     J: 0x291F94
-  count: 0x8
   notes: Samus hitbox offsets
 -
   label: RandomNumTable_0_F
-  type: u8
+  type: u8 [0x20]
   addr:
     U: 0x2E491C
     E: 0x2E4F78
     J: 0x2E6C24
-  count: 0x20
   notes: Random number table (0-F)
 -
   label: SuitDamageReductionPercent
-  type: SuitDamageReductionPercent
+  type: SuitDamageReductionPercent [0x4]
   addr:
     U: 0x2E493C
     E: 0x2E4F98
     J: 0x2E6C44
-  count: 0x4
   notes: Suit damage reduction percent
 -
   label: EnemyFallSpeedTable_MediumHop
-  type: s16
+  type: s16 [0x14]
   addr:
     U: 0x2E4954
     E: 0x2E4FB0
     J: 0x2E6C5C
-  count: 0x14
   notes: Enemy fall speed table (hop before falling)
 -
   label: EnemyFallSpeedTable_SmallHop
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x2E497C
     E: 0x2E4FD8
     J: 0x2E6C84
-  count: 0x10
   notes: Enemy fall speed table (quick hop before falling)
 -
   label: EnemyFallSpeedTable_BigHop
-  type: s16
+  type: s16 [0x12]
   addr:
     U: 0x2E499C
     E: 0x2E4FF8
     J: 0x2E6CA4
-  count: 0x12
   notes: Enemy fall speed table (big hop before falling)
 -
   label: EnemyFallSpeedTable_FallingTowardCeiling
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x2E49C0
     E: 0x2E501C
     J: 0x2E6CC8
-  count: 0x10
   notes: Enemy fall speed table (falling toward ceiling)
 -
   label: EnemyFallSpeedTable_Default
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x2E49E0
     E: 0x2E503C
     J: 0x2E6CE8
-  count: 0x10
   notes: Enemy fall speed table (default)
 -
   label: EnemyFallSpeedTable_QuickAcceleration
-  type: s16
+  type: s16 [0x8]
   addr:
     U: 0x2E4A00
     E: 0x2E505C
     J: 0x2E6D08
-  count: 0x8
   notes: Enemy fall speed table (quick acceleration)
 -
   label: EnemyFallSpeedTable_LowSpeed
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x2E4A10
     E: 0x2E506C
     J: 0x2E6D18
-  count: 0x10
   notes: Enemy fall speed table (low speed)
 -
   label: EnemyFallSpeedTable_HighSpeed
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x2E4A30
     E: 0x2E508C
     J: 0x2E6D38
-  count: 0x10
   notes: Enemy fall speed table (high speed)
 -
   label: SpriteGraphicsLengths
-  type: u32
+  type: u32 [0xBF]
   addr:
     U: 0x2E4A50
     E: 0x2E50AC
     J: 0x2E6D58
-  count: 0xBF
   notes: Sprite graphics lengths
 -
   label: PrimarySpriteStats
-  type: PrimarySpriteStats
+  type: PrimarySpriteStats [0xCF]
   addr:
     U: 0x2E4D4C
     E: 0x2E53A8
     J: 0x2E7054
-  count: 0xCF
   notes: Primary sprite stats
 -
   label: SecondarySpriteStats
-  type: SecondarySpriteStats
+  type: SecondarySpriteStats [0x82]
   addr:
     U: 0x2E589E
     E: 0x2E5EFA
     J: 0x2E7BA6
-  count: 0x82
   notes: Secondary sprite stats
 -
   label: ClipdataBehaviorTypes_8000
-  type: u16
+  type: u16 [0x210]
   addr:
     U: 0x3BE3A0
     E: 0x3BE9FC
     J: 0x3C06A8
-  count: 0x210
   enum: ClipdataBehaviorType
   notes: Clipdata behavior types (0x8000)
 -
   label: ClipdataCollisionTypes_8000
-  type: u8
+  type: u8 [0x210]
   addr:
     U: 0x3BF5C0
     E: 0x3BFC1C
     J: 0x3C1B48
-  count: 0x210
   enum: ClipdataCollisionType
   notes: Clipdata collision types (0x8000)
 -
   label: TilesetEntries
-  type: TilesetEntry
+  type: TilesetEntry [0x62]
   addr:
     U: 0x3BF888
     E: 0x3BFEE4
     J: 0x3C1E50
-  count: 0x62
   notes: Tileset entries
 -
   label: MainDeckDoors
-  type: DoorEntry
+  type: DoorEntry [0xCE]
   addr:
     U: 0x3C0030
     E: 0x3C068C
     J: 0x3C25F8
-  count: 0xCE
   notes: Main Deck doors
 -
   label: Sector1Doors
-  type: DoorEntry
+  type: DoorEntry [0x74]
   addr:
     U: 0x3C09D8
     E: 0x3C1034
     J: 0x3C2FA0
-  count: 0x74
   notes: Sector 1 doors
 -
   label: Sector2Doors
-  type: DoorEntry
+  type: DoorEntry [0x93]
   addr:
     U: 0x3C0F48
     E: 0x3C15A4
     J: 0x3C3510
-  count: 0x93
   notes: Sector 2 doors
 -
   label: Sector3Doors
-  type: DoorEntry
+  type: DoorEntry [0x5B]
   addr:
     U: 0x3C162C
     E: 0x3C1C88
     J: 0x3C3BF4
-  count: 0x5B
   notes: Sector 3 doors
 -
   label: Sector5Doors
-  type: DoorEntry
+  type: DoorEntry [0x7D]
   addr:
     U: 0x3C1A70
     E: 0x3C20CC
     J: 0x3C4038
-  count: 0x7D
   notes: Sector 5 doors
 -
   label: Sector4Doors
-  type: DoorEntry
+  type: DoorEntry [0x77]
   addr:
     U: 0x3C204C
     E: 0x3C26A8
     J: 0x3C4614
-  count: 0x77
   notes: Sector 4 doors
 -
   label: Sector6Doors
-  type: DoorEntry
+  type: DoorEntry [0x5E]
   addr:
     U: 0x3C25E0
     E: 0x3C2C3C
     J: 0x3C4BA8
-  count: 0x5E
   notes: Sector 6 doors
 -
   label: Debug1Doors
-  type: DoorEntry
+  type: DoorEntry [0xC]
   addr:
     U: 0x3C2A48
     E: 0x3C30A4
     J: 0x3C5010
-  count: 0xC
   notes: Debug 1 doors
 -
   label: Debug2Doors
-  type: DoorEntry
+  type: DoorEntry [0xC]
   addr:
     U: 0x3C2AD8
     E: 0x3C3134
     J: 0x3C50A0
-  count: 0xC
   notes: Debug 2 doors
 -
   label: Debug3Doors
-  type: DoorEntry
+  type: DoorEntry [0xC]
   addr:
     U: 0x3C2B68
     E: 0x3C31C4
     J: 0x3C5130
-  count: 0xC
   notes: Debug 3 doors
 -
   label: MainDeckRoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x57]
   addr:
     U: 0x3C2C4C
     E: 0x3C32A8
     J: 0x3C5214
-  count: 0x57
   notes: Main Deck room entries
 -
   label: Sector1RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x36]
   addr:
     U: 0x3C40B0
     E: 0x3C470C
     J: 0x3C6678
-  count: 0x36
   notes: Sector 1 room entries
 -
   label: Sector2RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x3D]
   addr:
     U: 0x3C4D58
     E: 0x3C53B4
     J: 0x3C7320
-  count: 0x3D
   notes: Sector 2 room entries
 -
   label: Sector3RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x27]
   addr:
     U: 0x3C5BA4
     E: 0x3C6200
     J: 0x3C816C
-  count: 0x27
   notes: Sector 3 room entries
 -
   label: Sector5RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x34]
   addr:
     U: 0x3C64C8
     E: 0x3C6B24
     J: 0x3C8A90
-  count: 0x34
   notes: Sector 5 room entries
 -
   label: Sector4RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x30]
   addr:
     U: 0x3C70F8
     E: 0x3C7754
     J: 0x3C96C0
-  count: 0x30
   notes: Sector 4 room entries
 -
   label: Sector6RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x29]
   addr:
     U: 0x3C7C38
     E: 0x3C8294
     J: 0x3CA200
-  count: 0x29
   notes: Sector 6 room entries
 -
   label: Debug1RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x4]
   addr:
     U: 0x3C85D4
     E: 0x3C8C30
     J: 0x3CAB9C
-  count: 0x4
   notes: Debug 1 room entries
 -
   label: Debug2RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x4]
   addr:
     U: 0x3C86C4
     E: 0x3C8D20
     J: 0x3CAC8C
-  count: 0x4
   notes: Debug 2 room entries
 -
   label: Debug3RoomEntries
-  type: RoomEntry
+  type: RoomEntry [0x4]
   addr:
     U: 0x3C87B4
     E: 0x3C8E10
     J: 0x3CAD7C
-  count: 0x4
   notes: Debug 3 room entries
 -
   label: DimLightingEvents
-  type: DimLightingEvent
+  type: DimLightingEvent [0x4]
   addr:
     U: 0x3C88F0
     E: 0x3C8F4C
     J: 0x3CAEB8
-  count: 0x4
   notes: Dim lighting events
 -
   label: NavRoomHatchLockEvents
-  type: NavRoomHatchLockEvent
+  type: NavRoomHatchLockEvent [0x59]
   addr:
     U: 0x3C88F8
     E: 0x3C8F54
     J: 0x3CAEC0
-  count: 0x59
   notes: Navigation room hatch lock events
 -
   label: HatchLockEvents
-  type: HatchLockEvent
+  type: HatchLockEvent [0x4B]
   addr:
     U: 0x3C8A5C
     E: 0x3C90B8
     J: 0x3CB024
-  count: 0x4B
   notes: Hatch lock events
 -
   label: AreaConnections
-  type: AreaConnection
+  type: AreaConnection [0x24]
   addr:
     U: 0x3C8B90
     E: 0x3C91EC
     J: 0x3CB158
-  count: 0x24
   notes: Area connections
 -
   label: ElevatorRoomPairs
-  type: ElevatorRoomPair
+  type: ElevatorRoomPair [0xB]
   addr:
     U: 0x3C8BFC
     E: 0x3C9258
     J: 0x3CB1C4
-  count: 0xB
   notes: Elevator room pairs
 -
   label: EventBasedConnections
-  type: EventBasedConnection
+  type: EventBasedConnection [0x3C]
   addr:
     U: 0x3C8C68
     E: 0x3C92C4
     J: 0x3CB230
-  count: 0x3C
   notes: Event based connections
 -
   label: AnimatedGraphicsEntries
-  type: AnimatedGraphicsEntry
+  type: AnimatedGraphicsEntry [0x47]
   addr:
     U: 0x3C8D58
     E: 0x3C93B4
     J: 0x3CB320
-  count: 0x47
   notes: Animated graphics entries
 -
   label: AnimatedTilesetEntries
@@ -504,30 +450,27 @@
   notes: Animated tileset entries (u8 [0xE][0x30])
 -
   label: SineTable_Base
-  type: s8
+  type: s8 [0x80]
   addr:
     U: 0x3C94D0
     E: 0x3C9B2C
     J: 0x3CBAA4
-  count: 0x80
   notes: Used for wavy Samus graphics on pre-results screen
 -
   label: SineTable_WaterMax2
-  type: s8
+  type: s8 [0x10]
   addr:
     U: 0x3C9550
     E: 0x3C9BAC
     J: 0x3CBB24
-  count: 0x10
   notes: Sine table water max 2
 -
   label: SineTable_WaterMax4
-  type: s8
+  type: s8 [0x20]
   addr:
     U: 0x3C9560
     E: 0x3C9BBC
     J: 0x3CBB34
-  count: 0x20
   notes: Sine table water max 4
 -
   label: SineTables_StageEnd
@@ -539,848 +482,860 @@
   notes: Each table is 32 bytes, with heights from 0 to 64. Potentially left over from WL4 (s8 [65][32])
 -
   label: SineTable_HeatHazeV
-  type: s8
+  type: s8 [0x20]
   addr:
     U: 0x3C9DA0
     E: 0x3CA3FC
     J: 0x3CC374
-  count: 0x20
   notes: Sine table heat haze vertical?
 -
   label: SineTable_HeatHazeH
-  type: s8
+  type: s8 [0x10]
   addr:
     U: 0x3C9DC0
     E: 0x3CA41C
     J: 0x3CC394
-  count: 0x10
   notes: Sine table heat haze horizontal?
 -
   label: TankIncreaseAmounts
-  type: TankIncreaseAmounts
+  type: TankIncreaseAmounts [0x3]
   addr:
     J: 0x3CB898
-  count: 0x3
   notes: Tank increase amounts for each difficulty
 -
   label: AnimatedPaletteEntries
-  type: AnimatedPaletteEntry
+  type: AnimatedPaletteEntry [0x21]
   addr:
     U: 0x3E3764
     E: 0x3E3DC0
-  count: 0x21
   notes: Animated palette entries
 -
   label: AnimatedPaletteEntries_J
-  type: AnimatedPaletteEntry
+  type: AnimatedPaletteEntry [0x22]
   addr:
     J: 0x3E5D38
-  count: 0x22
   notes: Animated palette entries (J has 1 more entry)
 -
   label: DemoInputPtrs
-  type: DemoInputPtrs
+  type: DemoInputPtrs [0xC]
   addr:
     U: 0x3E3EAC
     E: 0x3E4508
     J: 0x3E6488
-  count: 0xC
   notes: Demo inputs and duration pointers
 -
   label: DemoRam
-  type: DemoRam
+  type: DemoRam [0xC]
   addr:
     U: 0x3E3F6C
     E: 0x3E45C8
     J: 0x3E6548
-  count: 0xC
   notes: Demo RAM
 -
   label: DemoNumbers
-  type: u8
+  type: u8 [0xC]
   addr:
     U: 0x3E40BC
     E: 0x3E4718
     J: 0x3E6698
-  count: 0xC
   notes: Demo numbers
 -
   label: ClipdataCollisionTypes
-  type: u8
+  type: u8 [0xB0]
   addr:
     U: 0x3F0834
     E: 0x3F0E90
     J: 0x3F2E10
-  count: 0xB0
   enum: ClipdataCollisionType
   notes: Clipdata collision types
 -
   label: ClipdataCollisionTypes_Debug
-  type: u8
+  type: u8 [0x100]
   addr:
     U: 0x3F08E4
     E: 0x3F0F40
     J: 0x3F2EC0
-  count: 0x100
   notes: Clipdata collision types (debug)
 -
   label: ClipdataBehaviorTypes
-  type: u16
+  type: u16 [0xB0]
   addr:
     U: 0x3F11E8
     E: 0x3F1844
     J: 0x3F37C4
-  count: 0xB0
   enum: ClipdataBehaviorType
   notes: Clipdata behavior types
 -
   label: ClipdataBehaviorTypes_Debug
-  type: u16
+  type: u16 [0x100]
   addr:
     U: 0x3F1348
     E: 0x3F19A4
     J: 0x3F3924
-  count: 0x100
   notes: Clipdata behavior types (debug)
 -
   label: EventLocationAndNavInfo
-  type: EventLocationAndNavInfo
+  type: EventLocationAndNavInfo [0x6E]
   addr:
     U: 0x575A60
     E: 0x5760BC
     J: 0x578164
-  count: 0x6E
   notes: Event location and navigation info
 -
   label: NumTanksPerArea
-  type: NumTanksInArea
+  type: NumTanksInArea [0x8]
   addr:
     U: 0x575F88
     E: 0x5765E4
     J: 0x57868C
-  count: 0x8
   notes: Number of tanks per area
 -
   label: ObtainItemEvents
-  type: u8
+  type: u8 [0x14]
   addr:
     U: 0x575FA0
     E: 0x5765FC
     J: 0x5786A4
-  count: 0x14
   enum: Event
   notes: Obtain item events
 -
   label: AbilityRamValues
-  type: AbilityRamValues
+  type: AbilityRamValues [0x13]
   addr:
     U: 0x575FB4
     E: 0x576610
     J: 0x5786B8
-  count: 0x13
   notes: Ability RAM values
 -
   label: NavRoomLocations
-  type: NavRoomLocation
+  type: NavRoomLocation [0xD]
   addr:
     U: 0x57604C
     E: 0x5766A8
     J: 0x578750
-  count: 0xD
   notes: Navigation room locations
 -
   label: MonologueEvents
-  type: MonologueEvent
+  type: MonologueEvent [0x6]
   addr:
     U: 0x576098
     E: 0x5766F4
     J: 0x57879C
-  count: 0x6
   notes: Monologue events
 -
   label: SecurityUnlockEvents
-  type: SecurityUnlockEvent
+  type: SecurityUnlockEvent [0x4]
   addr:
     U: 0x5760C8
     E: 0x576724
     J: 0x5787CC
-  count: 0x4
   notes: Security unlock events
 -
   label: CharacterWidths
-  type: u8
+  type: u8 [0x4A0]
   addr:
     U: 0x576234
     E: 0x576890
     J: 0x578934
-  count: 0x4A0
   notes: Character widths
 -
   label: NavigationTargets
-  type: NavTarget
+  type: NavTarget [0x21]
   addr:
     U: 0x5766E4
     E: 0x576D40
     J: 0x578DE4
-  count: 0x21
   notes: Navigation targets
 -
   label: DebugEventText
-  type: ascii
+  type: s8 [0xBF0]
+  tags:
+  - ascii
   addr:
     U: 0x581510
     E: 0x581B6C
     J: 0x583C10
-  count: 0xBF0
   notes: Debug event names
 -
   label: Met4AGBBackUp01_Text
-  type: ascii
+  type: s8 [0x10]
+  tags:
+  - ascii
   addr:
     U: 0x5821E8
     E: 0x582844
     J: 0x58491C
-  count: 0x10
   notes: Met4AGBBackUp01 text
 -
   label: SAVE_END_Text
-  type: ascii
+  type: s8 [0x8]
+  tags:
+  - ascii
   addr:
     U: 0x5821F8
     E: 0x582854
     J: 0x58492C
-  count: 0x8
   notes: SAVE_END text
 -
   label: MetroidEpisode4A_Text
-  type: ascii
+  type: s8 [0x20]
+  tags:
+  - ascii
   addr:
     U: 0x582200
     E: 0x58285C
     J: 0x584934
-  count: 0x20
   notes: MetroidEpisode4A text
 -
   label: SaveDataWramPtrs
-  type: ptr
+  type: void *[0x3]
   addr:
     U: 0x58225C
     E: 0x5828B8
     J: 0x584990
-  count: 0x3
   notes: Save data WRAM pointers
 -
   label: MissileSpeeds
-  type: s16
+  type: s16 [0x7]
   addr:
     U: 0x58B40C
     E: 0x58BA68
     J: 0x58BB9C
-  count: 0x7
   notes: Missile speeds
 -
   label: SuperMissileSpeeds
-  type: s16
+  type: s16 [0x7]
   addr:
     U: 0x58B41A
     E: 0x58BA76
     J: 0x58BBAA
-  count: 0x7
   notes: Super missile speeds
 -
   label: IceMissileSpeeds
-  type: s16
+  type: s16 [0x7]
   addr:
     U: 0x58B428
     E: 0x58BA84
     J: 0x58BBB8
-  count: 0x7
   notes: Ice missile speeds
 -
   label: DiffusionMissileSpeeds
-  type: s16
+  type: s16 [0x7]
   addr:
     U: 0x58B436
     E: 0x58BA92
     J: 0x58BBC6
-  count: 0x7
   notes: Diffusion missile speeds
 -
   label: TumblingMissileSpeeds
-  type: s16
+  type: s16 [0x10]
   addr:
     U: 0x58B444
     E: 0x58BAA0
     J: 0x58BBD4
-  count: 0x10
   notes: Tumbling missile speeds
 -
   label: CreditsText
-  type: ascii
+  type: s8 [0x2ED4]
+  tags:
+  - ascii
   addr:
     U: 0x74B0B0
     E: 0x74B8C0
     J: 0x74CB18
-  count: 0x2ED4
   notes: Credits text
 -
   label: PrimarySpriteAIPtrs
-  type: ptr.thumb
+  type: void *[0xCF]
+  tags:
+  - thumb
   addr:
     U: 0x79A29C
     E: 0x79AAD0
     J: 0x7EC94C
-  count: 0xCF
   notes: Primary sprite AI pointers
 -
   label: SpriteGraphicsPtrs
-  type: ptr.gfx
+  type: u8 *[0xBF]
+  tags:
+  - gfx
   addr:
     U: 0x79A5D8
     E: 0x79AE0C
     J: 0x7ECC88
-  count: 0xBF
   notes: Sprite graphics pointers
 -
   label: SecondarySpriteAIPtrs
-  type: ptr.thumb
+  type: void *[0x82]
+  tags:
+  - thumb
   addr:
     U: 0x79ABD0
     E: 0x79B404
     J: 0x7ED280
-  count: 0x82
   notes: Secondary sprite AI pointers
 -
   label: SpritesetPtrs
-  type: ptr.SpritesetEntry
+  type: SpritesetEntry *[0x81]
   addr:
     U: 0x79ADD8
     E: 0x79B60C
     J: 0x7ED488
-  count: 0x81
   notes: Spriteset pointers
 -
   label: AreaDoorsPtrs
-  type: ptr.DoorEntry
+  type: DoorEntry *[0xA]
   addr:
     U: 0x79B894
     E: 0x79C0C8
     J: 0x7EDF44
-  count: 0xA
   notes: Area doors pointers
 -
   label: AreaRoomEntryPtrs
-  type: ptr.RoomEntry
+  type: RoomEntry *[0xA]
   addr:
     U: 0x79B8BC
     E: 0x79C0F0
     J: 0x7EDF6C
-  count: 0xA
   notes: Area room entry pointers
 -
   label: RoomScrollsPointers
-  type: ptr
+  type: void *[0x89]
   addr:
     U: 0x79B8E4
     E: 0x79C118
     J: 0x7EDF94
-  count: 0x89
   notes: Room scrolls pointers
 -
   label: AreaScrollsPtrs
-  type: ptr
+  type: void *[0xA]
   addr:
     U: 0x79BB08
     E: 0x79C33C
     J: 0x7EE1B8
-  count: 0xA
   notes: Area scrolls pointers
 -
   label: NavConversationSubEvents
-  type: NavConversationSubEvent
+  type: NavConversationSubEvent [0x16]
   addr:
     U: 0x79BBCC
     E: 0x79C400
     J: 0x7EE27C
-  count: 0x16
   notes: Navigation conversation sub-events
 -
   label: SubEventTriggers
-  type: u8
+  type: u8 [0x9C]
   addr:
     U: 0x79BC24
     E: 0x79C458
     J: 0x7EE2D4
-  count: 0x9C
   enum: SubEventTrigger
   notes: Sub-event triggers
 -
   label: ExploredMinimapBitFlags
-  type: u32
+  type: u32 [0x20]
   addr:
     U: 0x79BDDC
     E: 0x79C610
     J: 0x7EE48C
-  count: 0x20
   notes: Explored minimap bit flags
 -
   label: MinimapDataPtrs
-  type: ptr.lz.tilemap
+  type: u16 *[0xB]
+  tags:
+  - lz
+  - tilemap
   addr:
     U: 0x79BE5C
     E: 0x79C690
     J: 0x7EE50C
-  count: 0xB
   notes: Minimap data pointers
 -
   label: NavTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79C0F0
     E: 0x79C924
     J: 0x7EE7A0
-  count: 0x7
   notes: Navigation text pointers
 -
   label: PauseScreenTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79C10C
     E: 0x79C940
     J: 0x7EE7BC
-  count: 0x7
   notes: Pause screen text pointers
 -
   label: ProcessProjectilePtrs
-  type: ptr.thumb
+  type: void *[0x13]
+  tags:
+  - thumb
   addr:
     U: 0x79C27C
     E: 0x79CAB0
     J: 0x7EE918
-  count: 0x13
   notes: Process projectile pointers
 -
   label: MonologueTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79C5A4
     E: 0x79CDD8
     J: 0x7EEC40
-  count: 0x7
   notes: Monologue text pointers
 -
   label: JapaneseMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79C5C0
     E: 0x79CDF4
     J: 0x7EEC5C
-  count: 0x30
   notes: Japanese message text pointers
 -
   label: JapaneseLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79C680
     E: 0x79CEB4
     J: 0x7EED1C
-  count: 0x1A
   notes: Japanese location text pointers
 -
   label: HiraganaMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79C6E8
     E: 0x79CF1C
     J: 0x7EED84
-  count: 0x30
   notes: Hiragana message text pointers
 -
   label: HiraganaLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79C7A8
     E: 0x79CFDC
     J: 0x7EEE44
-  count: 0x1A
   notes: Hiragana location text pointers
 -
   label: EnglishMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79C810
     E: 0x79D044
     J: 0x7EEEAC
-  count: 0x30
   notes: English message text pointers
 -
   label: EnglishLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79C8D0
     E: 0x79D104
     J: 0x7EEF6C
-  count: 0x1A
   notes: English location text pointers
 -
   label: GermanMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79C938
     E: 0x79D16C
     J: 0x7EEFD4
-  count: 0x30
   notes: German message text pointers
 -
   label: GermanLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79C9F8
     E: 0x79D22C
     J: 0x7EF094
-  count: 0x1A
   notes: German location text pointers
 -
   label: FrenchMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79CA60
     E: 0x79D294
     J: 0x7EF0FC
-  count: 0x30
   notes: French message text pointers
 -
   label: FrenchLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79CB20
     E: 0x79D354
     J: 0x7EF1BC
-  count: 0x1A
   notes: French location text pointers
 -
   label: ItalianMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79CB88
     E: 0x79D3BC
     J: 0x7EF224
-  count: 0x30
   notes: Italian message text pointers
 -
   label: ItalianLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79CC48
     E: 0x79D47C
     J: 0x7EF2E4
-  count: 0x1A
   notes: Italian location text pointers
 -
   label: SpanishMessageTextPtrs
-  type: ptr.char
+  type: u16 *[0x30]
+  tags:
+  - text
   addr:
     U: 0x79CCB0
     E: 0x79D4E4
     J: 0x7EF34C
-  count: 0x30
   notes: Spanish message text pointers
 -
   label: SpanishLocationTextPtrs
-  type: ptr.char
+  type: u16 *[0x1A]
+  tags:
+  - text
   addr:
     U: 0x79CD70
     E: 0x79D5A4
     J: 0x7EF40C
-  count: 0x1A
   notes: Spanish location text pointers
 -
   label: LocationTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79CDD8
     E: 0x79D60C
     J: 0x7EF474
-  count: 0x7
   notes: Location text pointers
 -
   label: MessageTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79CDF4
     E: 0x79D628
     J: 0x7EF490
-  count: 0x7
   notes: Message text pointers
 -
   label: JapaneseNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79CE10
     E: 0x79D644
     J: 0x7EF4AC
-  count: 0x72
   notes: Japanese navigation text pointers
 -
   label: JapanesePauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79CFD8
     E: 0x79D80C
     J: 0x7EF674
-  count: 0x6F
   notes: Japanese pause screen text pointers
 -
   label: HiraganaNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79D194
     E: 0x79D9C8
     J: 0x7EF830
-  count: 0x72
   notes: Hiragana navigation text pointers
 -
   label: HiraganaPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6C]
+  tags:
+  - text
   addr:
     U: 0x79D35C
     E: 0x79DB90
-  count: 0x6C
   notes: Hiragana pause screen text pointers
 -
   label: HiraganaPauseScreenTextPtrs_J
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     J: 0x7EF9F8
-  count: 0x6F
   notes: Hiragana pause screen text pointers (J has 3 more entries)
 -
   label: EnglishNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79D50C
     E: 0x79DD40
     J: 0x7EFBB4
-  count: 0x72
   notes: English navigation text pointers
 -
   label: EnglishPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79D6D4
     E: 0x79DF08
     J: 0x7EFD7C
-  count: 0x6F
   notes: English pause screen text pointers
 -
   label: GermanNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79D890
     E: 0x79E0C4
     J: 0x7EFF38
-  count: 0x72
   notes: German navigation text pointers
 -
   label: GermanPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79DA58
     E: 0x79E28C
     J: 0x7F0100
-  count: 0x6F
   notes: German pause screen text pointers
 -
   label: FrenchNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79DC14
     E: 0x79E448
     J: 0x7F02BC
-  count: 0x72
   notes: French navigation text pointers
 -
   label: FrenchPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79DDDC
     E: 0x79E610
     J: 0x7F0484
-  count: 0x6F
   notes: French pause screen text pointers
 -
   label: ItalianNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79DF98
     E: 0x79E7CC
     J: 0x7F0640
-  count: 0x72
   notes: Italian navigation text pointers
 -
   label: ItalianPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79E160
     E: 0x79E994
     J: 0x7F0808
-  count: 0x6F
   notes: Italian pause screen text pointers
 -
   label: SpanishNavTextPtrs
-  type: ptr.char
+  type: u16 *[0x72]
+  tags:
+  - text
   addr:
     U: 0x79E31C
     E: 0x79EB50
     J: 0x7F09C4
-  count: 0x72
   notes: Spanish navigation text pointers
 -
   label: SpanishPauseScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0x6F]
+  tags:
+  - text
   addr:
     U: 0x79E4E4
     E: 0x79ED18
     J: 0x7F0B8C
-  count: 0x6F
   notes: Spanish pause screen text pointers
 -
   label: JapaneseMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E6A0
     E: 0x79EED4
     J: 0x7F0D48
-  count: 0x13
   notes: Japanese monologue text pointers
 -
   label: HiraganaMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     J: 0x7F0D94
-  count: 0x13
   notes: Hiragana monologue text pointers
 -
   label: EnglishMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E6EC
     E: 0x79EF20
     J: 0x7F0DE0
-  count: 0x13
   notes: English monologue text pointers
 -
   label: GermanMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E738
     E: 0x79EF6C
     J: 0x7F0E2C
-  count: 0x13
   notes: German monologue text pointers
 -
   label: FrenchMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E784
     E: 0x79EFB8
     J: 0x7F0E78
-  count: 0x13
   notes: French monologue text pointers
 -
   label: ItalianMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E7D0
     E: 0x79F004
     J: 0x7F0EC4
-  count: 0x13
   notes: Italian monologue text pointers
 -
   label: SpanishMonologueTextPtrs
-  type: ptr.char
+  type: u16 *[0x13]
+  tags:
+  - text
   addr:
     U: 0x79E81C
     E: 0x79F050
     J: 0x7F0F10
-  count: 0x13
   notes: Spanish monologue text pointers
 -
   label: JapaneseFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EA08
     E: 0x79F264
     J: 0x7F1118
-  count: 0xB
   notes: Japanese file screen text pointers
 -
   label: HiraganaFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     J: 0x7F118C
-  count: 0xB
   notes: Hiragana file screen text pointers
 -
   label: EnglishFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EA6C
     E: 0x79F2C8
     J: 0x7F1200
-  count: 0xB
   notes: English file screen text pointers
 -
   label: GermanFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EAD0
     E: 0x79F32C
     J: 0x7F1264
-  count: 0xB
   notes: German file screen text pointers
 -
   label: FrenchFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EB34
     E: 0x79F390
     J: 0x7F12C8
-  count: 0xB
   notes: French file screen text pointers
 -
   label: ItalianFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EB98
     E: 0x79F3F4
     J: 0x7F132C
-  count: 0xB
   notes: Italian file screen text pointers
 -
   label: SpanishFileScreenTextPtrs
-  type: ptr.char
+  type: u16 *[0xB]
+  tags:
+  - text
   addr:
     U: 0x79EBFC
     E: 0x79F458
     J: 0x7F1390
-  count: 0xB
   notes: Spanish file screen text pointers
 -
   label: FileScreenTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79EC68
     E: 0x79F4C4
     J: 0x7F13FC
-  count: 0x7
   notes: File screen text pointers
 -
   label: UnusedTextPtrs
-  type: ptr
+  type: void *[0x7]
   addr:
     U: 0x79EC84
     E: 0x79F4E0
     J: 0x7F1418
-  count: 0x7
   notes: Unused text pointers

@@ -1,3 +1,4 @@
+import math
 import os
 import re
 from typing import Any, Dict, List, Union
@@ -132,6 +133,15 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     while len(stack) > 0:
         entry, k = stack.pop()
         if isinstance(entry, dict):
+            #
+            if "type" in entry:
+                t, tags = get_new_type(entry)
+                entry["type"] = t
+                if tags:
+                    entry["tags"] = tags
+                if "count" in entry:
+                    entry.pop("count")
+            #
             fields = FIELDS[k]
             for i, field in enumerate(fields):
                 if field in entry:
@@ -143,7 +153,7 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
             stack += [(e, k) for e in entry]
 
     # get output
-    output = yaml.dump(data)
+    output = yaml.dump(data, width=math.inf)
     # remove index from fields
     output = re.sub(r"\d+~", "", output)
     if isinstance(data, list):
@@ -192,6 +202,8 @@ def get_entry_size(
         for dim in dims:
             size *= dim
     return {r: size for r in regions}
+
+
 
 
 def get_new_type(entry):
@@ -245,6 +257,3 @@ def get_new_type(entry):
         spec += " " + decl
     return spec, tags
 
-# TODO:
-# fix gfx and palette counts in all files
-# convert sizes to counts for vars

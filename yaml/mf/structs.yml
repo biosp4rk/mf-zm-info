@@ -1901,7 +1901,9 @@ SamusGraphicsInfo:
     offset: 0x30
     notes: Arm cannon top graphics size
   - label: ArmCannonBottomGfxPtr
-    type: ptr.gfx
+    type: u8 *
+    tags:
+    - gfx
     offset: 0x34
     notes: Arm cannon bottom graphics pointer
   - label: ArmCannonBottomGfxSize
@@ -1985,9 +1987,10 @@ SaveFileRam:
   size: 0x1200
   vars:
   - label: Metroidepisode4aText
-    type: ascii
+    type: s8 [0x10]
+    tags:
+    - ascii
     offset: 0x0
-    count: 0x10
     notes: MetroidEpisode4A text
   - label: Checksum
     type: u32
@@ -2197,29 +2200,26 @@ SaveFileRam:
     offset: 0xF0
     enum: Difficulty
   - label: BestCompletionTimesUnused
-    type: InGameTime
+    type: InGameTime [0xC]
     offset: 0xF4
-    count: 0xC
     notes: Best completion times (unused?)
   - label: Save_endText
-    type: ascii
+    type: s8 [0x8]
+    tags:
+    - ascii
     offset: 0x124
-    count: 0x8
     notes: SAVE_END text
   - label: MinimapVisitedTiles
-    type: u8
+    type: u8 [0x380]
     offset: 0x300
-    count: 0x380
     notes: Minimap visited tiles
   - label: NeverReformBlocks
-    type: NeverReformBlock
+    type: NeverReformBlock [0x300]
     offset: 0x680
-    count: 0x300
     notes: Never reform blocks
   - label: TanksCollected
-    type: CollectedTank
+    type: CollectedTank [0xA0]
     offset: 0xF80
-    count: 0xA0
     notes: Tanks collected
 SaxData:
   size: 0x24
@@ -2352,7 +2352,7 @@ SoundDataEntry:
   size: 0x8
   vars:
   - label: SoundHeaderPtr
-    type: ptr
+    type: void *
     offset: 0x0
     notes: Sound header pointer
   - label: TrackGroupNum
@@ -2625,19 +2625,29 @@ TilesetEntry:
   size: 0x14
   vars:
   - label: RleBGGfxPtr
-    type: ptr.lz.gfx
+    type: u8 *
+    tags:
+    - lz
+    - gfx
     offset: 0x0
     notes: RLE background graphics pointer
   - label: BGPalettePtr
-    type: ptr.palette
+    type: u16 *
+    tags:
+    - palette
     offset: 0x4
     notes: Background palette pointer
   - label: Lz77BGGfxPtr
-    type: ptr.lz.gfx
+    type: u8 *
+    tags:
+    - lz
+    - gfx
     offset: 0x8
     notes: LZ77 background graphics pointer
   - label: RleBGTilemapPtr
-    type: ptr.tilemap
+    type: u16 *
+    tags:
+    - tilemap
     offset: 0xC
     notes: RLE background tilemap pointer
   - label: AnimatedTileset

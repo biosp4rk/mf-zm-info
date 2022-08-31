@@ -1086,8 +1086,7 @@
     type: u8
     notes: Sprite slot number
   return: null
-  notes: Updates the sprite random number variable, r0 is just another random
-    factor
+  notes: Updates the sprite random number variable, r0 is just another random factor
 -
   label: LoadSpriteDataForRoom
   addr:
@@ -1607,8 +1606,7 @@
     label: 4IfLeftOfSprite8IfRightOfSprite0IfOutOfRange
     type: u8
     notes: 4 if left of sprite, 8 if right of sprite, 0 if out of range
-  notes: Checks if Samus is in range of the sprite on the left and right with
-    r0 and r1
+  notes: Checks if Samus is in range of the sprite on the left and right with r0 and r1
 -
   label: CheckSamusNearSprite_AboveBelow
   addr:
@@ -1628,8 +1626,7 @@
     label: 1IfAboveSprite2IfBelowSprite0IfOutOfRange
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
-  notes: Checks if Samus is in range of the sprite above and below with r0 and
-    r1
+  notes: Checks if Samus is in range of the sprite above and below with r0 and r1
 -
   label: CheckSamusNearSprite_FrontBehindX
   addr:
@@ -1652,8 +1649,7 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Checks if Samus is in the X range of the sprite front and behind with
-    r0, r1 and r2
+  notes: Checks if Samus is in the X range of the sprite front and behind with r0, r1 and r2
 -
   label: CheckSamusNearSprite_FrontBehindY
   addr:
@@ -1676,8 +1672,7 @@
     label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
     type: u8
     notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
-  notes: Checks if Samus is in the Y range of the sprite front and behind with
-    r0, r1 and r2
+  notes: Checks if Samus is in the Y range of the sprite front and behind with r0, r1 and r2
 -
   label: CheckSamusNearSprite_AboveBelowSeparate
   addr:
@@ -1700,8 +1695,7 @@
     label: InRange
     type: u8
     notes: 1 if in range above, 2 if in range below, 0 if out of range
-  notes: Checks if Samus is in range of the sprite above and below (separate ranges)
-    with r0 and r1
+  notes: Checks if Samus is in range of the sprite above and below (separate ranges) with r0 and r1
 -
   label: UpdateSpriteFreezeTimer
   addr:
@@ -1870,8 +1864,7 @@
     label: ScrewAttackingShinesparkingOrSpeedBoosting
     type: bool
     notes: Screw attacking, shinesparking, or speed boosting
-  notes: Checks if Samus is in a damaging pose (screw attacking, shinesparking
-    or speedboosting)
+  notes: Checks if Samus is in a damaging pose (screw attacking, shinesparking or speedboosting)
 -
   label: CheckPseudoScrewing
   addr:
@@ -5621,8 +5614,7 @@
   return:
     label: 1IfStartingNewGame2IfLoadingGame3IfReturningToTitle0Otherwise
     type: u8
-    notes: 1 if starting new game, 2 if loading game, 3 if returning to title,
-      0 otherwise
+    notes: 1 if starting new game, 2 if loading game, 3 if returning to title, 0 otherwise
   notes: File select subroutine
 -
   label: FileSelectInput
@@ -5639,8 +5631,7 @@
   return:
     label: 1IfStartingNewGame2IfLoadingGame3IfReturningToTitle0Otherwise
     type: u8
-    notes: 1 if starting new game, 2 if loading game, 3 if returning to title,
-      0 otherwise
+    notes: 1 if starting new game, 2 if loading game, 3 if returning to title, 0 otherwise
   notes: File select input
 -
   label: SetLanguage
@@ -5943,8 +5934,7 @@
   return:
     label: Integer
     type: s32
-  notes: If the double is >= 2^31, treat as integer overflow and return a negative
-    value
+  notes: If the double is >= 2^31, treat as integer overflow and return a negative value
 -
   label: Modulo_Signed
   addr:

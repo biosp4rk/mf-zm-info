@@ -311,6 +311,7 @@ def output_yamls() -> None:
                     assert name in MAP_TYPES
                     path = os.path.join(root, f)
                     yaml_files.append((path, name))
+        break
     # parse files and output
     for path, map_type in yaml_files:
         data = read_yaml(path)

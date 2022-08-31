@@ -29,13 +29,14 @@ ASM_MODES = ("thumb", "arm")
 DATA = (
     "label",
     "type",
+    "tags",
     "addr",
     "size",
     "count",
     "enum",
     "notes"
 )
-CODE_VAR = ("label", "type", "enum", "notes")
+CODE_VAR = ("label", "type", "tags", "enum", "notes")
 FIELDS = {
     MAP_ENUMS: (
         "label",
@@ -63,6 +64,7 @@ FIELDS = {
     "vars":  (
         "label",
         "type",
+        "tags",
         "offset",
         "size",
         "count",
