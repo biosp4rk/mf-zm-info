@@ -1,18 +1,20 @@
 -
   label: PauseBG0Map
+  type: tilemap
   addr:
     U: 0x200F800
     E: 0x200F800
     J: 0x200F800
-  size: 0x800
+  count: 0x400
   notes: Pause screen BG0 map
 -
   label: SleepModeBG0Map
+  type: tilemap
   addr:
     U: 0x2010000
     E: 0x2010000
     J: 0x2010000
-  size: 0x800
+  count: 0x800
   notes: Sleep mode BG0 map
 -
   label: PausedCommonSpriteGfx
@@ -21,7 +23,7 @@
     U: 0x201C000
     E: 0x201C000
     J: 0x201C000
-  size: 0x4000
+  count: 0x4000
   notes: Holds common sprite graphics while paused
 -
   label: PausedRoomSpriteGfx
@@ -30,7 +32,7 @@
     U: 0x2020000
     E: 0x2020000
     J: 0x2020000
-  size: 0x4000
+  count: 0x4000
   notes: Holds room sprite graphics while paused
 -
   label: DecompClipdata
@@ -70,11 +72,12 @@
   notes: Decompressed BG2 map
 -
   label: DecompBG3Data
+  type: u16
   addr:
     U: 0x2032000
     E: 0x2032000
     J: 0x2032000
-  size: 0x2000
+  count: 0x1000
   notes: Decompressed BG3 map
 -
   label: CurrMinimapData
@@ -132,27 +135,30 @@
   notes: Tanks collected
 -
   label: MinimapVisitedTiles
+  type: u8
   addr:
     U: 0x2037C00
     E: 0x2037C00
     J: 0x2037C00
-  size: 0x400
+  count: 0x400
   notes: Minimap visited tiles
 -
   label: SramHeader
+  type: u8
   addr:
     U: 0x2038000
     E: 0x2038000
     J: 0x2038000
-  size: 0x80
+  count: 0x80
   notes: 00-7F of SRAM
 -
   label: SramHeaderCopy
+  type: u8
   addr:
     U: 0x2038080
     E: 0x2038080
     J: 0x2038080
-  size: 0x80
+  count: 0x80
   notes: Copy of 00-7F of SRAM
 -
   label: Sram
@@ -607,12 +613,13 @@
   notes: Which spriteset entry was used
 -
   label: UseAltAnimatedTilesetFlag
+  type: u8
   addr:
     U: 0x3000058
     E: 0x3000058
     J: 0x300005E
-  size: 0x5
-  notes: Use alternate animated tileset flag
+  count: 0x5
+  notes: Use alternate animated tileset flag (unused)
 -
   label: SubEventCounter
   type: u16
@@ -754,11 +761,12 @@
   notes: Spriteset sprite IDs
 -
   label: SpritesetSpriteGfxSlots
+  type: u8
   addr:
     U: 0x300068F
     E: 0x300068F
     J: 0x30006C3
-  size: 0xF
+  count: 0xF
   notes: Spriteset sprite graphics slots
 -
   label: XParasiteTargetYPosition
@@ -1164,11 +1172,12 @@
   notes: SRAM corrupt flag
 -
   label: SaveFileData
+  type: u8
   addr:
     U: 0x3000B94
     E: 0x3000B94
     J: 0x3000BC8
-  size: 0x3C
+  count: 0x3C
   notes: Save file data
 -
   label: DebugMenuOptions
@@ -1237,20 +1246,24 @@
   notes: V-Blank request flag
 -
   label: InterruptCode
+  type: u8
+  tags:
+  - arm
   addr:
     U: 0x3000BE8
     E: 0x3000BE8
     J: 0x3000C1C
-  size: 0x200
-  notes: Interrupt code
+  count: 0x200
+  notes: Interrupt code (void [0x200])
 -
   label: OamData
+  type: u8
   addr:
     U: 0x3000DE8
     E: 0x3000DE8
     J: 0x3000E1C
-  size: 0x400
-  notes: OAM data
+  count: 0x400
+  notes: OAM data (u16 [0x80][8])
 -
   label: ButtonInput
   type: flags16
@@ -1604,12 +1617,15 @@
   notes: Pointer to sound code A
 -
   label: SoundCodeARam
+  type: u8
+  tags:
+  - arm
   addr:
     U: 0x3003658
     E: 0x3003658
     J: 0x300368C
-  size: 0x658
-  notes: Sound code A
+  count: 0x658
+  notes: Sound code A (void [658])
 -
   label: SoundCodeBPtr
   type: ptr.arm
@@ -1620,11 +1636,12 @@
   notes: Pointer to sound code B
 -
   label: SoundCodeBRam
+  type: u8
   addr:
     U: 0x3003CB4
     E: 0x3003CB4
     J: 0x3003CE8
-  size: 0xA4
+  count: 0xA4
   notes: Sound code B
 -
   label: SoundCodeCPtr
@@ -1636,11 +1653,12 @@
   notes: Pointer to sound code C
 -
   label: SoundCodeCRam
+  type: u8
   addr:
     U: 0x3003D5C
     E: 0x3003D5C
     J: 0x3003D90
-  size: 0xAC
+  count: 0xAC
   notes: Sound code C
 -
   label: DemoInputNumber
@@ -1785,11 +1803,12 @@
   notes: Pointer to clipdata handling code
 -
   label: AnimTilesetData
+  type: u8
   addr:
     U: 0x300531C
     E: 0x300531C
     J: 0x300534C
-  size: 0x30
+  count: 0x30
   notes: Animated tileset data
 -
   label: CollectibleTankAnimation

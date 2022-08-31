@@ -1987,7 +1987,7 @@ SaveFileRam:
   - label: Metroidepisode4aText
     type: ascii
     offset: 0x0
-    size: 0x10
+    count: 0x10
     notes: MetroidEpisode4A text
   - label: Checksum
     type: u32
@@ -2204,11 +2204,12 @@ SaveFileRam:
   - label: Save_endText
     type: ascii
     offset: 0x124
-    size: 0x8
+    count: 0x8
     notes: SAVE_END text
   - label: MinimapVisitedTiles
+    type: u8
     offset: 0x300
-    size: 0x380
+    count: 0x380
     notes: Minimap visited tiles
   - label: NeverReformBlocks
     type: NeverReformBlock

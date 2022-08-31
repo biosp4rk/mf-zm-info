@@ -23,7 +23,7 @@
     U: 0xA8C8C
     E: 0xA92E8
     J: 0xAAFF0
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 sinewave waveform
 -
   label: Sound3Waveform_triangle
@@ -32,7 +32,7 @@
     U: 0xA8C9C
     E: 0xA92F8
     J: 0xAB000
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 triangle waveform
 -
   label: Sound3Waveform_sawtooth
@@ -41,7 +41,7 @@
     U: 0xA8CAC
     E: 0xA9308
     J: 0xAB010
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 sawtooth waveform
 -
   label: Sound3Waveform_square50
@@ -50,7 +50,7 @@
     U: 0xA8CBC
     E: 0xA9318
     J: 0xAB020
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 square50 waveform
 -
   label: Sound3Waveform_halfsine
@@ -59,7 +59,7 @@
     U: 0xA8CCC
     E: 0xA9328
     J: 0xAB030
-  size: 0x10
+  count: 0x10
   notes: Sound channel 3 half sine waveform
 -
   label: SoundDataEntries
@@ -72,11 +72,12 @@
   notes: Sound data entries
 -
   label: BlankDataCopiedToSamusRam
+  type: u8
   addr:
     U: 0x28D258
     E: 0x28D8B4
     J: 0x28F560
-  size: 0x28
+  count: 0x28
   notes: Blank data copied to Samus RAM
 -
   label: CopiedToSamusData
@@ -89,21 +90,12 @@
   notes: Copied to Samus data
 -
   label: CopiedToSamusEquipment
+  type: Equipment
   addr:
     U: 0x28D2AC
     E: 0x28D908
     J: 0x28F5B4
-  size: 0x10
   notes: Copied to Samus equipment
--
-  label: SamusPoseHitboxRelated
-  addr:
-    U: 0x28D794
-    E: 0x28DDF0
-    J: 0x28FA9C
-  size: 0x5
-  count: 0x41
-  notes: Samus pose hitbox related?
 -
   label: SamusHitboxOffsets
   type: SamusHitboxOffsets
@@ -230,14 +222,6 @@
     J: 0x2E7BA6
   count: 0x82
   notes: Secondary sprite stats
--
-  label: SpritesetEntries
-  addr:
-    U: 0x2E5CB0
-    E: 0x2E630C
-    J: 0x2E7FB8
-  size: 0x4B0
-  notes: Spriteset entries
 -
   label: ClipdataBehaviorTypes_8000
   type: u16
@@ -512,13 +496,12 @@
   notes: Animated graphics entries
 -
   label: AnimatedTilesetEntries
+  type: u8
   addr:
     U: 0x3C8F90
     E: 0x3C95EC
     J: 0x3CB558
-  size: 0x30
-  count: 0xE
-  notes: Animated tileset entries
+  notes: Animated tileset entries (u8 [0xE][0x30])
 -
   label: SineTable_Base
   type: s8
@@ -553,8 +536,7 @@
     U: 0x3C9580
     E: 0x3C9BDC
     J: 0x3CBB54
-  size: 0x820
-  notes: Each table is 0x20 bytes, with max heights from 0 to 64
+  notes: Each table is 32 bytes, with heights from 0 to 64. Potentially left over from WL4 (s8 [65][32])
 -
   label: SineTable_HeatHazeV
   type: s8
@@ -579,27 +561,22 @@
   addr:
     J: 0x3CB898
   count: 0x3
-  notes: Tank increase amounts
+  notes: Tank increase amounts for each difficulty
 -
   label: AnimatedPaletteEntries
   type: AnimatedPaletteEntry
   addr:
     U: 0x3E3764
     E: 0x3E3DC0
-    J: 0x3E5D38
-  count:
-    U: 0x21
-    E: 0x21
-    J: 0x22
+  count: 0x21
   notes: Animated palette entries
 -
-  label: DemoInputsAndDurations
+  label: AnimatedPaletteEntries_J
+  type: AnimatedPaletteEntry
   addr:
-    U: 0x3E392C
-    E: 0x3E3F88
-    J: 0x3E5F08
-  size: 0x580
-  notes: Demo inputs and durations
+    J: 0x3E5D38
+  count: 0x22
+  notes: Animated palette entries (J has 1 more entry)
 -
   label: DemoInputPtrs
   type: DemoInputPtrs
@@ -665,22 +642,6 @@
     J: 0x3F3924
   count: 0x100
   notes: Clipdata behavior types (debug)
--
-  label: DebugRoomsBlockData
-  addr:
-    U: 0x3F1548
-    E: 0x3F1BA4
-    J: 0x3F3B24
-  size: 0xC56
-  notes: Debug rooms block data
--
-  label: DebugRoomsBGTilemaps
-  addr:
-    U: 0x3F2350
-    E: 0x3F29AC
-    J: 0x3F492C
-  size: 0x578
-  notes: Debug rooms BG tilemaps
 -
   label: EventLocationAndNavInfo
   type: EventLocationAndNavInfo
@@ -770,7 +731,7 @@
     U: 0x581510
     E: 0x581B6C
     J: 0x583C10
-  size: 0xBF0
+  count: 0xBF0
   notes: Debug event names
 -
   label: Met4AGBBackUp01_Text
@@ -779,7 +740,7 @@
     U: 0x5821E8
     E: 0x582844
     J: 0x58491C
-  size: 0x10
+  count: 0x10
   notes: Met4AGBBackUp01 text
 -
   label: SAVE_END_Text
@@ -788,7 +749,7 @@
     U: 0x5821F8
     E: 0x582854
     J: 0x58492C
-  size: 0x8
+  count: 0x8
   notes: SAVE_END text
 -
   label: MetroidEpisode4A_Text
@@ -797,7 +758,7 @@
     U: 0x582200
     E: 0x58285C
     J: 0x584934
-  size: 0x20
+  count: 0x20
   notes: MetroidEpisode4A text
 -
   label: SaveDataWramPtrs
@@ -860,7 +821,7 @@
     U: 0x74B0B0
     E: 0x74B8C0
     J: 0x74CB18
-  size: 0x2ED4
+  count: 0x2ED4
   notes: Credits text
 -
   label: PrimarySpriteAIPtrs
@@ -1184,12 +1145,15 @@
   addr:
     U: 0x79D35C
     E: 0x79DB90
-    J: 0x7EF9F8
-  count:
-    U: 0x6C
-    E: 0x6C
-    J: 0x6F
+  count: 0x6C
   notes: Hiragana pause screen text pointers
+-
+  label: HiraganaPauseScreenTextPtrs_J
+  type: ptr.char
+  addr:
+    J: 0x7EF9F8
+  count: 0x6F
+  notes: Hiragana pause screen text pointers (J has 3 more entries)
 -
   label: EnglishNavTextPtrs
   type: ptr.char
