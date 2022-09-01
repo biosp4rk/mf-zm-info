@@ -57,6 +57,7 @@ FIELDS = {
     MAP_RAM: DATA,
     MAP_DATA: DATA,
     "addr": REGIONS,
+    "size": REGIONS,
     "vars":  (
         "label",
         "type",

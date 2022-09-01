@@ -2836,34 +2836,42 @@
   notes: Flare graphics
 -
   label: TitleScreenTextGfx
-  type: u8
+  type: u8 [0x1ED8]
   tags:
   - lz
   - gfx
   addr:
     U: 0x590C9C
     E: 0x5912F8
-    J: 0x59142C
-  size:
-    U: 0x1ED8
-    E: 0x1ED8
-    J: 0x20BE
   notes: Title screen text graphics
 -
+  label: TitleScreenTextGfx_J
+  type: u8 [0x20BE]
+  tags:
+  - lz
+  - gfx
+  addr:
+    J: 0x59142C
+  notes: Title screen text graphics (J graphics are larger)
+-
   label: TitleScreenLogoGfx
-  type: u8
+  type: u8 [0x3143]
   tags:
   - lz
   - gfx
   addr:
     U: 0x593274
     E: 0x5938D0
-    J: 0x593BEC
-  size:
-    U: 0x3143
-    E: 0x3143
-    J: 0x325E
   notes: Title screen logo graphics
+-
+  label: TitleScreenLogoGfx_J
+  type: u8 [0x325E]
+  tags:
+  - lz
+  - gfx
+  addr:
+    J: 0x593BEC
+  notes: Title screen logo graphics (J graphics are larger)
 -
   label: IntroStartObjGfx
   type: u8 [0x3747]
@@ -3977,19 +3985,23 @@
   notes: SA-X face close-up graphics
 -
   label: GameOverBGGfx
-  type: u8
+  type: u8 [0x5849]
   tags:
   - lz
   - gfx
   addr:
     U: 0x73422C
     E: 0x734A3C
-    J: 0x735C88
-  size:
-    U: 0x5849
-    E: 0x5849
-    J: 0x5785
   notes: Game over BG graphics
+-
+  label: GameOverBGGfx_J
+  type: u8 [0x5785]
+  tags:
+  - lz
+  - gfx
+  addr:
+    J: 0x735C88
+  notes: Game over BG graphics (J graphics are smaller)
 -
   label: GameOverCursorGfx
   type: u8 [0x2DD]
@@ -4062,19 +4074,23 @@
   notes: Game over Japanese text graphics
 -
   label: FileSelectObjGfx
-  type: u8
+  type: u8 [0x1613]
   tags:
   - lz
   - gfx
   addr:
     U: 0x73DC20
     E: 0x73E430
-    J: 0x73D7E0
-  size:
-    U: 0x1613
-    E: 0x1613
-    J: 0x23FC
   notes: File select OBJ graphics
+-
+  label: FileSelectObjGfx_J
+  type: u8 [0x23FC]
+  tags:
+  - lz
+  - gfx
+  addr:
+    J: 0x73D7E0
+  notes: File select OBJ graphics (J graphics are larger)
 -
   label: FileSelectBGGfx
   type: u8 [0x412C]
