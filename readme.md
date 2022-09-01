@@ -64,6 +64,7 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 ### Label Abbreviations
 - `Alt` - Alternate
 - `BG` - Background
+- `Calc` - Calculate
 - `Curr` - Current
 - `Gfx` - Graphics
 - `Init` - Initialize
@@ -71,3 +72,4 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 - `Num` - Number
 - `Prev` - Previous
 - `Ptr` - Pointer
+- `Unk` - Unknown

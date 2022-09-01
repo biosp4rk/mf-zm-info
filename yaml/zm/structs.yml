@@ -127,10 +127,10 @@ AreaConnection:
 BG0Movement:
   size: 0x8
   vars:
-  - label: Type0None1WaterClouds4Snowflakes
+  - label: Type
     type: u8
     offset: 0x0
-    notes: Type (0 = none, 1 = water/clouds, 4 = snowflakes)
+    notes: 0 = none, 1 = water/clouds, 4 = snowflakes
   - label: YPositionOffset
     type: u8
     offset: 0x1
@@ -315,43 +315,43 @@ BLDALPHAData:
 BackupOfIORegisters:
   size: 0x12
   vars:
-  - label: BackupOfDispcntLcdControlDuringNonGameplay
+  - label: BackupOfDISPCNT_NonGameplay
     type: u16
     offset: 0x0
     notes: Backup of DISPCNT (LCD control) during non-gameplay
-  - label: BackupOfBldcntColorSpecialEffectsSelectionDuringNonGameplay
+  - label: BackupOfBLDCNT_NonGameplay
     type: u16
     offset: 0x2
     notes: Backup of BLDCNT (color special effects selection) during non-gameplay
-  - label: BackupOfBldalphaAlphaBlendingCoefficientsDuringNonGameplay
+  - label: BackupOfBLDALPHA_NonGameplay
     type: u16
     offset: 0x4
     notes: Backup of BLDALPHA (alpha blending coefficients) during non-gameplay
-  - label: BackupOfWinin_hInsideOfWindow1DuringNonGameplay
+  - label: BackupOfWININ_H_NonGameplay
     type: u8
     offset: 0x6
     notes: Backup of WININ_H (inside of window 1) during non-gameplay
-  - label: BackupOfWinout_lOutsideOfWindowsDuringNonGameplay
+  - label: BackupOfWINOUT_L_NonGameplay
     type: u8
     offset: 0x7
     notes: Backup of WINOUT_L (outside of windows) during non-gameplay
-  - label: BackupOfBg0cntBg0ControlWrittenToOnly
+  - label: BackupOfBG0CNT_WriteOnly
     type: u16
     offset: 0x8
     notes: Backup of BG0CNT (BG0 control), written to only
-  - label: BackupOfBg1cntBg1Control
+  - label: BackupOfBG1CNT
     type: u16
     offset: 0xA
     notes: Backup of BG1CNT (BG1 control)
-  - label: BackupOfBg2cntBg2Control
+  - label: BackupOfBG2CNT
     type: u16
     offset: 0xC
     notes: Backup of BG2CNT (BG2 control)
-  - label: BackupOfBg3cntBg3Control
+  - label: BackupOfBG3CNT
     type: u16
     offset: 0xE
     notes: Backup of BG3CNT (BG3 control)
-  - label: BackupOfBg0cntBg0Control
+  - label: BackupOfBG0CNT
     type: u16
     offset: 0x10
     notes: Backup of BG0CNT (BG0 control)
@@ -370,7 +370,7 @@ BombChainData:
     type: u8
     offset: 0x2
     notes: Starting Y position
-  - label: StatusBits02Type0x40GoingLeftOrUp0x80
+  - label: Status
     type: u8
     offset: 0x3
     notes: Status (bits 0-2 = type, 0x40 = going left or up, 0x80 = ?)
@@ -382,7 +382,7 @@ BossMapIcon:
     offset: 0x0
     enum: Event
     notes: Event number
-  - label: BossIconNum1Kraid2Ridley3BossDead4UnusedShip
+  - label: BossIconNum
     type: u8
     offset: 0x1
     notes: Boss icon number (1 = Kraid, 2 = Ridley, 3 = Boss dead, 4 = Unused ship)
@@ -401,11 +401,11 @@ BossMapIcon:
 BossWork:
   size: 0x16
   vars:
-  - label: Work1UsuallySpawnY
+  - label: Work1
     type: u16
     offset: 0x0
     notes: Work 1 (usually spawn Y)
-  - label: Work2UsuallySpawnX
+  - label: Work2
     type: u16
     offset: 0x2
     notes: Work 2 (usually spawn X)
@@ -413,7 +413,7 @@ BossWork:
     type: u16
     offset: 0x4
     notes: Work 3
-  - label: Work4UsuallyHealth
+  - label: Work4
     type: u16
     offset: 0x6
     notes: Work 4 (usually health)
@@ -718,11 +718,11 @@ CurrPowerBomb:
     type: u8
     offset: 0x10
     notes: Power bomb placed flag
-  - label: Always0Unused
+  - label: Unused_11
     type: u8
     offset: 0x11
     notes: Always 0 (unused)
-  - label: Always0Unused
+  - label: Unused_12
     type: u8
     offset: 0x12
     notes: Always 0 (unused)
@@ -1292,7 +1292,7 @@ HatchesLocked:
     type: u16
     offset: 0x2
     notes: Hatches locked with event or door type 7
-  - label: Unused
+  - label: Unused_04
     type: u16
     offset: 0x4
     notes: Unused?
@@ -2283,11 +2283,11 @@ SamusPhysics:
     type: s16
     offset: 0x4C
     notes: Arm cannon Y position offset
-  - label: HorizontalMovementDirection0None1Left2Right
+  - label: HorizontalMovementDirection
     type: u8
     offset: 0x4E
     notes: Horizontal movement direction (0 = none, 1 = left, 2 = right)
-  - label: VerticalMovementDirection0None1Up2Down
+  - label: VerticalMovementDirection
     type: u8
     offset: 0x4F
     notes: Vertical movement direction (0 = none, 1 = up, 2 = down)
@@ -2695,15 +2695,15 @@ SharedSram:
   - label: unk_10
     type: u8
     offset: 0x10
-  - label: FileScreenOptionsUnlockedUnknown1
+  - label: FileScreenOptionsUnlocked_unk1
     type: u8
     offset: 0x11
     notes: File screen options unlocked unknown 1
-  - label: FileScreenOptionsUnlockedUnknown2
+  - label: FileScreenOptionsUnlocked_unk2
     type: u8
     offset: 0x12
     notes: File screen options unlocked unknown 2
-  - label: FileScreenOptionsUnlockedUnknown3
+  - label: FileScreenOptionsUnlocked_unk3
     type: u8
     offset: 0x13
     notes: File screen options unlocked unknown 3
@@ -3009,27 +3009,27 @@ SpriteStats:
     - flags
     offset: 0x4
     enum: SpriteWeakness
-  - label: NoDropProbabilityOutOf0x400
+  - label: NoDropProbability
     type: u16
     offset: 0x6
     notes: No drop probability (out of 0x400)
-  - label: SmallHealthProbabilityOutOf0x400
+  - label: SmallHealthProbability
     type: u16
     offset: 0x8
     notes: Small health probability (out of 0x400)
-  - label: LargeProbabilityOutOf0x400
+  - label: LargeProbability
     type: u16
     offset: 0xA
     notes: Large probability (out of 0x400)
-  - label: MissileProbabilityOutOf0x400
+  - label: MissileProbability
     type: u16
     offset: 0xC
     notes: Missile probability (out of 0x400)
-  - label: SuperMissileProbabilityOutOf0x400
+  - label: SuperMissileProbability
     type: u16
     offset: 0xE
     notes: Super missile probability (out of 0x400)
-  - label: PowerBombProbabilityOutOf0x400
+  - label: PowerBombProbability
     type: u16
     offset: 0x10
     notes: Power bomb probability (out of 0x400)
@@ -3228,7 +3228,7 @@ TilesetEntry:
 TimeAttackData:
   size: 0x62
   vars:
-  - label: CopyOf30000148TimeAttackRelated
+  - label: CopyOf300001C
     type: u32
     offset: 0x0
     notes: Copy of 3000014 + 8 (time attack related?)

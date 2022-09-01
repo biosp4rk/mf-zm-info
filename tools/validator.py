@@ -145,6 +145,7 @@ class Validator(object):
         prev = -1
         for val_dict in entry:
             self.check_label(val_dict)
+            self.check_notes(val_dict)
             # check val
             assert "val" in val_dict, "val is required"
             val = val_dict["val"]

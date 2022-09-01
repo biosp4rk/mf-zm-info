@@ -281,43 +281,43 @@ BGPtrsAndDimensions:
 BackupOfIORegisters:
   size: 0x12
   vars:
-  - label: BackupOfDispcntLcdControlDuringNonGameplay
+  - label: BackupOfDISPCNT_NonGameplay
     type: u16
     offset: 0x0
     notes: Backup of DISPCNT (LCD control) during non-gameplay
-  - label: BackupOfBldcntColorSpecialEffectsSelectionDuringNonGameplay
+  - label: BackupOfBLDCNT_NonGameplay
     type: u16
     offset: 0x2
     notes: Backup of BLDCNT (color special effects selection) during non-gameplay
-  - label: BackupOfBldalphaAlphaBlendingCoefficientsDuringNonGameplay
+  - label: BackupOfBLDALPHA_NonGameplay
     type: u16
     offset: 0x4
     notes: Backup of BLDALPHA (alpha blending coefficients) during non-gameplay
-  - label: BackupOfWinin_hInsideOfWindow1DuringNonGameplay
+  - label: BackupOfWININ_H_NonGameplay
     type: u8
     offset: 0x6
     notes: Backup of WININ_H (inside of window 1) during non-gameplay
-  - label: BackupOfWinout_lOutsideOfWindowsDuringNonGameplay
+  - label: BackupOfWINOUT_L_NonGameplay
     type: u8
     offset: 0x7
     notes: Backup of WINOUT_L (outside of windows) during non-gameplay
-  - label: BackupOfBg0cntBg0ControlWrittenToOnly
+  - label: BackupOfBG0CNT_WriteOnly
     type: u16
     offset: 0x8
     notes: Backup of BG0CNT (BG0 control), written to only
-  - label: BackupOfBg1cntBg1Control
+  - label: BackupOfBG1CNT
     type: u16
     offset: 0xA
     notes: Backup of BG1CNT (BG1 control)
-  - label: BackupOfBg2cntBg2Control
+  - label: BackupOfBG2CNT
     type: u16
     offset: 0xC
     notes: Backup of BG2CNT (BG2 control)
-  - label: BackupOfBg3cntBg3Control
+  - label: BackupOfBG3CNT
     type: u16
     offset: 0xE
     notes: Backup of BG3CNT (BG3 control)
-  - label: BackupOfBg0cntBg0Control
+  - label: BackupOfBG0CNT
     type: u16
     offset: 0x10
     notes: Backup of BG0CNT (BG0 control)
@@ -600,19 +600,19 @@ CurrScrolls:
 DebugMenuOptions:
   size: 0xC
   vars:
-  - label: BldcntMode1stPixel2ndPixelUnused
+  - label: BLDCNT_Mode_Unused
     type: u16
     offset: 0x0
     notes: BLDCNT mode, 1st pixel, 2nd pixel (unused)
-  - label: BldcntEvbUnused
+  - label: BLDCNT_EVB_Unused
     type: u8
     offset: 0x2
     notes: BLDCNT EVB (unused)
-  - label: BldcntEvaUnused
+  - label: BLDCNT_EVA_Unused
     type: u8
     offset: 0x3
     notes: BLDCNT EVA (unused)
-  - label: BldcntEvyUnused
+  - label: BLDCNT_EVY_Unused
     type: u8
     offset: 0x4
     notes: BLDCNT EVY (unused)
@@ -640,7 +640,7 @@ DebugMenuOptions:
     offset: 0x9
     enum: SecurityLevel
     notes: Security hatch level
-  - label: MapScanLRAndStereoFlagUnused
+  - label: MapScanAndStereoFlag_Unused
     type: u8
     offset: 0xA
     notes: Map scan L-R and stereo flag (unused)
@@ -934,12 +934,12 @@ EventBasedConnection:
 EventLocationAndNavInfo:
   size: 0xC
   vars:
-  - label: AreaId
+  - label: AreaID
     type: u8
     offset: 0x0
     enum: AreaID
     notes: Area ID
-  - label: RoomId1
+  - label: RoomID_Plus1
     type: u8
     offset: 0x1
     notes: Room ID + 1
@@ -968,10 +968,10 @@ EventLocationAndNavInfo:
     offset: 0x7
     enum: NavRoom
     notes: Navigation room location number
-  - label: 1IfDataDownload2IfSkippable
+  - label: EventType
     type: u8
     offset: 0x8
-    notes: 1 if data download, 2 if skippable
+    notes: 0 = normal, 1 = data download, 2 = skippable
 FloatingPointNum:
   size: 0x14
   vars:
@@ -1427,15 +1427,15 @@ PrimarySpriteStats:
     - flags
     offset: 0x6
     enum: SpriteWeakness
-  - label: HealthXProbabilityOutOf0x400
+  - label: HealthXProbability
     type: u16
     offset: 0x8
     notes: Health X probability (out of 0x400)
-  - label: MissileXProbabilityOutOf0x400
+  - label: MissileXProbability
     type: u16
     offset: 0xA
     notes: Missile X probability (out of 0x400)
-  - label: RedXProbabilityOutOf0x400
+  - label: RedXProbability
     type: u16
     offset: 0xC
     notes: Red X probability (out of 0x400)
@@ -2579,15 +2579,15 @@ SpritesetEntry:
 SuitDamageReductionPercent:
   size: 0x6
   vars:
-  - label: FractionOfDamageDealtWithFusionSuitOutOf0xa
+  - label: FractionOfDamageDealt_FusionSuit
     type: u16
     offset: 0x0
     notes: Fraction of damage dealt with fusion suit (out of 0xA)
-  - label: FractionOfDamageDealtWithVariaSuitOutOf0xa
+  - label: FractionOfDamageDealt_VariaSuit
     type: u16
     offset: 0x2
     notes: Fraction of damage dealt with varia suit (out of 0xA)
-  - label: FractionOfDamageDealtWithGravitySuitOutOf0xa
+  - label: FractionOfDamageDealt_GravitySuit
     type: u16
     offset: 0x4
     notes: Fraction of damage dealt with gravity suit (out of 0xA)

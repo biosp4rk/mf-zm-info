@@ -348,10 +348,10 @@
     enum: PrimarySpriteID
     notes: Sprite ID
   return:
-    label: ChozoStatueBehavior0Item1Refill2Hint3HintTaken
+    label: ChozoStatueBehavior
     type: u8
-    notes: Chozo statue behavior (0 = Item, 1 = Refill, 2 = Hint, 3 = Hint taken)
-  notes: Swicthes on r0 and checks if the item/hint is already collected Contradicts biospark's sprite AI map, i'm trusting ghidra but i'm also doubting
+    notes: Chozo statue behavior (0 = item, 1 = refill, 2 = hint, 3 = hint taken)
+  notes: Swicthes on r0 and checks if the item/hint is already collected
 -
   label: ChozoStatueInit
   addr:
@@ -1844,7 +1844,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Prevents samus from going through kraid when he is dying
+  notes: Prevents Samus from going through Kraid when he is dying
 -
   label: KraidDeath
   addr:
@@ -1855,7 +1855,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the kraid killed event and updates the minimap
+  notes: Sets the Kraid killed event and updates the minimap
 -
   label: KraidDying
   addr:

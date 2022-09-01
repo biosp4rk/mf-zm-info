@@ -192,7 +192,7 @@
   params:
   - label: Multiplicand
     type: s16
-  - label: Multiplier1256
+  - label: Multiplier
     type: s16
     notes: Multiplier (1/256)
   return:
@@ -210,7 +210,7 @@
   params:
   - label: Dividend
     type: s16
-  - label: Divisor14
+  - label: Divisor
     type: s16
     notes: Divisor (1/4)
   return:
@@ -229,7 +229,7 @@
   - label: Value
     type: s16
   return:
-    label: Inverse165536
+    label: Inverse
     type: s16
     notes: Inverse (1/65536)
   notes: Fixed-point inverse of a value, with a scaling factor of 1/65536
@@ -1567,7 +1567,7 @@
   size: 0x5C
   mode: thumb
   params:
-  - label: Direction0xaRight0xbUp0xcLeft0x80BombAboveSamusFlag
+  - label: Direction
     type: u8
     notes: Direction (0xA = right, 0xB = up, 0xC = left, 0x80 = Bomb above Samus flag)
   return: null
@@ -1625,7 +1625,7 @@
     type: SamusWeaponInfo *
     notes: Samus weapon info pointer
   return:
-    label: NewProjectile0None1Pistol2ChargedPistol
+    label: NewProjectile
     type: u8
     notes: New projectile (0 = none, 1 = pistol, 2 = charged pistol)
   notes: Increments charge counter and checks if fully charged when B is released
@@ -1773,7 +1773,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: Always0xff
+    label: AlwaysFF
     type: u8
     notes: Always 0xFF
   notes: Default function used for pose subroutines that don't have any behavior (generally when the player isn't in control of samus)
@@ -1790,7 +1790,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1808,7 +1808,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1826,7 +1826,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1844,7 +1844,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1862,7 +1862,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1880,7 +1880,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1898,7 +1898,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1916,7 +1916,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1934,7 +1934,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1952,7 +1952,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1970,7 +1970,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -1988,7 +1988,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2006,7 +2006,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2024,7 +2024,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2042,7 +2042,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2060,7 +2060,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2078,7 +2078,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2096,7 +2096,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2114,7 +2114,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2132,7 +2132,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2150,7 +2150,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2168,7 +2168,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2186,7 +2186,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2204,7 +2204,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2222,7 +2222,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2240,7 +2240,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2258,7 +2258,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2276,7 +2276,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2294,7 +2294,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2312,7 +2312,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2330,7 +2330,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2348,7 +2348,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2366,7 +2366,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2384,7 +2384,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2402,7 +2402,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2420,7 +2420,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2438,7 +2438,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2456,7 +2456,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2474,7 +2474,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2492,7 +2492,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2510,7 +2510,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2528,7 +2528,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2546,7 +2546,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2564,7 +2564,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2582,7 +2582,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2600,7 +2600,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2618,7 +2618,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2636,7 +2636,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2654,7 +2654,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2672,7 +2672,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2690,7 +2690,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2708,7 +2708,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2726,7 +2726,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2744,7 +2744,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2762,7 +2762,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2780,7 +2780,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2798,7 +2798,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2816,7 +2816,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2834,7 +2834,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2852,7 +2852,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2870,7 +2870,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2888,7 +2888,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2906,7 +2906,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2924,7 +2924,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2942,7 +2942,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2960,7 +2960,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2978,7 +2978,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -2996,7 +2996,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3014,7 +3014,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3032,7 +3032,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3050,7 +3050,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3068,7 +3068,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3086,7 +3086,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3104,7 +3104,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3122,7 +3122,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: NewSamusPose0xffIfNone
+    label: NewSamusPose
     type: u8
     enum: SamusPose
     notes: New Samus pose (0xFF if none)
@@ -3230,7 +3230,7 @@
   size: 0x3A8
   mode: thumb
   params:
-  - label: 0IfFacingRight1IfFacingLeft
+  - label: Direction
     type: u8
     notes: 0 if facing right, 1 if facing left
   return: null
@@ -3575,7 +3575,7 @@
     - flags
     enum: SpriteStatus
   return:
-    label: AssignedSpriteRamSlot0xffOtherwise
+    label: AssignedSpriteRamSlot
     type: u8
     notes: Assigned sprite RAM slot, 0xFF otherwise
   notes: Spawns a new secondary sprite
@@ -3610,7 +3610,7 @@
     - flags
     enum: SpriteStatus
   return:
-    label: AssignedSpriteRamSlot0xffOtherwise
+    label: AssignedSpriteRamSlot
     type: u8
     notes: Assigned sprite RAM slot, 0xFF otherwise
   notes: Spawns a new primary sprite
@@ -3648,7 +3648,7 @@
     - flags
     enum: SpriteStatus
   return:
-    label: AssignedSpriteRamSlot0xffOtherwise
+    label: AssignedSpriteRamSlot
     type: u8
     notes: Assigned sprite RAM slot, 0xFF otherwise
   notes: Spawns a drop according to the data in parameters is also used to spawn the follower sprites
@@ -4083,7 +4083,7 @@
     type: u16
     notes: X range
   return:
-    label: 4IfLeftOfSprite8IfRightOfSprite0IfOutOfRange
+    label: Side
     type: u8
     notes: 4 if left of sprite, 8 if right of sprite, 0 if out of range
   notes: Checks if samus is in range of the sprite on the left and right with r0 and r1
@@ -4103,7 +4103,7 @@
     type: u16
     notes: X range
   return:
-    label: 1IfAboveSprite2IfBelowSprite0IfOutOfRange
+    label: Side
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
   notes: Checks if samus is in range of the sprite above and below with r0 and r1
@@ -4126,9 +4126,9 @@
     type: u16
     notes: X range (behind)
   return:
-    label: 3IfInRangeInFront0xcIfInRangeBehind0IfOutOfRange
+    label: Side
     type: u8
-    notes: 3 if in range in front, 0xC if in range behind, 0 if out of range
+    notes: 3 if in front, 0xC if behind, 0 if out of range
   notes: Checks if samus is in range of the sprite front and behind with r0, r1 and r2
 -
   label: SamusStandingOnSprite
@@ -4343,7 +4343,7 @@
     type: SamusData *
     notes: Samus data pointer
   return:
-    label: DamageContactType0None1Shinespark2Speedbooster3ScrewAttack4PseudoScrew
+    label: DamageContactType
     type: u8
     notes: Damage contact type (0 = none, 1 = shinespark, 2 = speedbooster, 3 = screw attack, 4 = pseudo screw)
   notes: Determines if a sprite should take damage when entering in collision with  samus and applies said damage
@@ -4443,7 +4443,7 @@
     enum: PrimarySpriteID
     notes: Sprite ID
   return:
-    label: SpriteRamSlot0xffOtherwise
+    label: SpriteRamSlot
     type: u8
     notes: Sprite RAM slot, 0xFF otherwise
   notes: Finds the first primary sprite with r0
@@ -4464,7 +4464,7 @@
     type: u8
     notes: Part number
   return:
-    label: SpriteRamSlot0xffOtherwise
+    label: SpriteRamSlot
     type: u8
     notes: Sprite RAM slot, 0xFF otherwise
   notes: Finds the first secondary sprite with r0 and r1
@@ -4599,7 +4599,7 @@
     type: u8
     notes: Random number
   return:
-    label: AmmoDropSpriteId0Otherwise
+    label: AmmoDropSpriteID
     type: u8
     enum: PrimarySpriteID
     notes: Ammo drop sprite ID, 0 otherwise
@@ -4614,7 +4614,7 @@
   mode: thumb
   params: null
   return:
-    label: EnemyDropSpriteId0Otherwise
+    label: EnemyDropSpriteID
     type: u8
     enum: PrimarySpriteID
     notes: Enemy drop sprite ID, 0 otherwise
@@ -4628,7 +4628,7 @@
   size: 0x1FC
   mode: thumb
   params:
-  - label: DeathType0Normal1Respawning2AlreadyHasDrop
+  - label: DeathType
     type: u8
     notes: Death type (0 = normal, 1 = respawning, 2 = already has drop)
   - label: YPosition
@@ -4785,7 +4785,7 @@
   - label: XPosition
     type: u16
     notes: X position
-  - label: SplashSize0None1Small2Big3Huge
+  - label: SplashSize
     type: u8
     notes: Splash size (0 = none, 1 = small, 2 = big, 3 = huge)
   return: null
@@ -4960,7 +4960,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in brinstar
@@ -4974,7 +4974,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in kraid
@@ -4988,7 +4988,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in crateria
@@ -5002,7 +5002,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in norfair
@@ -5016,7 +5016,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in ridley
@@ -5030,7 +5030,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in chozodia
@@ -5044,7 +5044,7 @@
   mode: thumb
   params: null
   return:
-    label: LocationTextNum0xffOtherwise
+    label: LocationTextNum
     type: u8
     notes: Location text number, 0xFF otherwise
   notes: Gets the location text of the current room in tourian
@@ -5157,7 +5157,7 @@
   return: null
   notes: Updates the animation of the projectile in r0
 -
-  label: CallDrawProjectile8BitFalse
+  label: CallDrawProjectile_80Clear
   addr:
     U: 0x4F33C
     E: 0x4F408
@@ -5168,7 +5168,7 @@
   return: null
   notes: Loops through all the projectiles and calls DrawProjectile if the 80 status flag isn't set
 -
-  label: CallDrawProjectile8BitTrue
+  label: CallDrawProjectile_80Set
   addr:
     U: 0x4F380
     E: 0x4F44C
@@ -5350,7 +5350,7 @@
   - label: Damage
     type: u16
   return:
-    label: SpriteFreezeTimerF0IfAlive0IfDead
+    label: SpriteFreezeTimer
     type: u8
     notes: Sprite freeze timer (F0 if alive, 0 if dead)
   notes: Handles the ice beam dealing damage to a sprite
@@ -5696,7 +5696,7 @@
     type: ProjectileData *
     notes: Projectile data pointer
   return:
-    label: NumOfBlocksTouched03
+    label: NumOfBlocksTouched
     type: u8
     notes: Number of blocks touched (0-3)
   notes: Checks for wave beam collision
@@ -6152,7 +6152,7 @@
   mode: thumb
   params: null
   return:
-    label: 1ForMotherBrain2ForMechaRidley0Otherwise
+    label: TimerType
     type: u8
     notes: 1 for Mother Brain, 2 for Mecha Ridley, 0 otherwise
   notes: Checks which escape timer should be activated
@@ -7345,10 +7345,10 @@
   mode: thumb
   params: null
   return:
-    label: 0xffffIfRoomIsDark0Otherwise
+    label: IsDark
     type: u16
     notes: 0xFFFF if room is dark, 0 otherwise
-  notes: Checks if the background 0 is dark
+  notes: Checks if BG0 is dark
 -
   label: UpdateBLDCNT
   addr:
@@ -7587,7 +7587,7 @@
   return: null
   notes: Starts a power bomb explosion at r0 and r1
 -
-  label: SetCurrentPowerBomb0x12To0
+  label: SetCurrPowerBomb0x12To0
   addr:
     U: 0x57734
     E: 0x577FC
@@ -7634,7 +7634,7 @@
   - label: YPosition
     type: u16
     notes: Y Position
-  - label: Action0Close1Open
+  - label: Action
     type: u8
     notes: Action (0 = close, 1 = open)
   return: null
@@ -7659,7 +7659,7 @@
   size: 0x74
   mode: thumb
   params:
-  - label: Operation0Remove1Add
+  - label: Operation
     type: u8
     notes: Operation (0 = remove, 1 = add)
   - label: Value
@@ -8172,7 +8172,7 @@
   - label: YPosition
     type: u16
     notes: Y position
-  - label: DestructingAction0None1Speedbooster2ScrewAttack3Both
+  - label: DestructingAction
     type: u16
     notes: Destructing action (0 = none, 1 = speedbooster, 2 = screw attack, 3 = both)
   return:
@@ -8313,7 +8313,7 @@
   size: 0xB0
   mode: thumb
   params:
-  - label: Direction0Up1Down2Left3Right
+  - label: Direction
     type: u8
     notes: Direction (0 = up, 1 = down, 2 = left, 3 = right)
   - label: XPosition
@@ -8526,7 +8526,7 @@
     type: u16
     notes: Y position (blocks)
   return:
-    label: DoorBehavior0NotOpening1Opening2Locked
+    label: DoorBehavior
     type: u8
     notes: Door behavior (0 = not opening, 1 = opening, 2 = locked)
   notes: Checks if the hatch should open
@@ -9040,7 +9040,7 @@
     type: u8
     notes: Source door number
   return:
-    label: TargetDoorNumIfFound0xffOtherwise
+    label: TargetDoorNum
     type: u8
     notes: Target door number if found, 0xFF otherwise
   notes: Finds the new destination room for event based doors
@@ -9053,16 +9053,16 @@
   size: 0xA0
   mode: thumb
   params:
-  - label: 0ForCheckingIfOpened1ForSettingSourceAndDestination2ForSettingSource
+  - label: Action
     type: u8
     notes: 0 for checking if opened, 1 for setting source and destination, 2 for setting source
   - label: DoorNum
     type: u8
     notes: Door number
   return:
-    label: HatchPreviouslyUnopened
+    label: HatchWasUnopened
     type: bool
-    notes: Hatch previously unopened
+    notes: Hatch was previously unopened
   notes: Sets an hatch as opened
 -
   label: CheckUnlockHatches
@@ -9134,7 +9134,7 @@
   - label: Area
     type: u8
     enum: AreaID
-  - label: DestinationRoom1
+  - label: DestinationRoomPlus1
     type: u8
     notes: Destination room + 1
   return: null
@@ -9163,7 +9163,7 @@
   mode: thumb
   params: null
   return:
-    label: 5IfEnded0Otherwise
+    label: Stage
     type: u8
     notes: 5 if ended, 0 otherwise
   notes: Handles the samus close up at the beginning of the game
@@ -9198,7 +9198,7 @@
   size: 0x58
   mode: thumb
   params:
-  - label: FlashType0SlightYellowFlash1TransparencyChangeForStatueLong2HeavyYellowFlash3QuickFlash
+  - label: FlashType
     type: u8
     notes: Flash type (0 = slight yellow flash, 1 = transparency change for statue long, 2 = heavy yellow flash 3 = quick flash)
   return: null
@@ -9249,7 +9249,7 @@
   size: 0x6C
   mode: thumb
   params:
-  - label: 0IfClearingEvent1IfSettingEvent2IfTogglingEvent3IfCheckingEvent
+  - label: Action
     type: u8
     notes: 0 if clearing event, 1 if setting event, 2 if toggling event, 3 if checking event
   - label: Event
@@ -9376,7 +9376,7 @@
     notes: Cutscene ended
   notes: Main subroutine for all cutscenes
 -
-  label: EndCutsceneFunctions
+  label: EndCutscene
   addr:
     U: 0x61228
     E: 0x61310
@@ -9385,10 +9385,10 @@
   mode: thumb
   params: null
   return:
-    label: 1ToIndicateEndOfFunctions
+    label: End
     type: bool
-    notes: 1 to indicate end of functions
-  notes: Returns 1, used for cutscene subroutines
+    notes: Always 1
+  notes: Returns 1 to indicate end of cutscene functions
 -
   label: KraidRisingRising
   addr:
@@ -10328,7 +10328,7 @@
   size: 0x7C
   mode: thumb
   params:
-  - label: Always0xff
+  - label: AlwaysFF
     type: u8
     notes: Always 0xFF?
   return: null
@@ -10379,7 +10379,7 @@
     type: u16
     notes: Character ID
   return:
-    label: CharacterWidth0xaIfInvalid
+    label: CharacterWidth
     type: u8
     notes: Character width (0xA if invalid)
   notes: Gets the width of the character in r0 using the Character Width table
@@ -10590,7 +10590,7 @@
     notes: Row to draw?
   - label: Amount
     type: u16
-  - label: Always0xb
+  - label: AlwaysB
     type: u8
     notes: Always 0xB?
   - label: IsAtMaxFlag
@@ -10621,10 +10621,10 @@
   size: 0x14
   mode: thumb
   params:
-  - label: Always0x4SelectFlag
+  - label: SelectFlag
     type: u8
     enum: ButtonInput
-    notes: Always 0x4 (select flag)
+    notes: Always 4
   return:
     label: SelectPressed
     type: bool
@@ -10654,7 +10654,7 @@
     type: u8
     notes: Status Slot
   return:
-    label: EquipmentIdEnumInOrderStartingWithLongBeam0AndEndingWithSpaceJump10UnknownItem11Pistol12AndNone80
+    label: EquipmentID
     type: u8
     notes: Equipment ID (Enum in order starting with long beam = 0 and ending with space jump = 10, unknown item = 11, pistol = 12 and none = 80)
   notes: Gets the ID of the current equipment selected on the status screen
@@ -10668,7 +10668,7 @@
   mode: thumb
   params: null
   return:
-    label: 1IfLeavingWithInput2IfLeavingWithNoOption0Otherwise
+    label: Selection
     type: u8
     notes: 1 if leaving with input, 2 if leaving with "no" option, 0 otherwise
   notes: Subroutine for the easy sleep menu
@@ -10947,7 +10947,7 @@
   mode: thumb
   params: null
   return:
-    label: Input0None1Erasing2NoFirstWindow
+    label: Input
     type: u8
     notes: Input (0 = none, 1 = erasing, 2 = no first window)
   notes: Checks for input
@@ -11060,7 +11060,7 @@
   mode: thumb
   params: null
   return:
-    label: Action0None1InputDetected2StartingDemo
+    label: Action
     type: u8
     notes: Action (0 = none, 1 = input detected 2 = starting demo)
   notes: Handles the sparkles and the logo glow animations
@@ -11277,7 +11277,7 @@
   size: 0xBC
   mode: thumb
   params:
-  - label: Part0NormalFirstHalf1NormalSecondHalf2100FirstHalf3100SecondHalf
+  - label: Part
     type: u8
     notes: Part (0 = normal first half, 1 = normal second half 2 = 100% first half, 3 = 100% second half)
   return: null
@@ -11839,7 +11839,7 @@
   return: null
   notes: Vblank code during intro
 -
-  label: TourianEscapeSamusSurroundedCalculateBG2Position
+  label: TourianEscapeSamusSurroundedCalcBG2Position
   addr:
     U: 0x81684
     E: 0x81D90
@@ -12224,7 +12224,7 @@
   mode: thumb
   params: null
   return:
-    label: 2IfEnded0Otherwise
+    label: Stage
     type: u8
     notes: 2 if ended, 0 otherwise
   notes: Handles the zooming on the chozo wall at the end of the credits
@@ -12323,7 +12323,7 @@
   mode: thumb
   params: null
   return:
-    label: Action0Nothing1ChangingPopUp2Leaving
+    label: Action
     type: u8
     notes: Action (0 = nothing, 1 = changing pop-up, 2 = leaving)
   notes: Handles the pop up displaying what has been unlocked after beating the game
@@ -12509,7 +12509,7 @@
   mode: thumb
   params: null
   return:
-    label: 2IfEnded0Otherwise
+    label: Stage
     type: u8
     notes: 2 if ended, 0 otherwise
   notes: Handles the mission accomplished part
@@ -12857,7 +12857,7 @@
     type: FloatingPointNum *
     notes: Pointer to unpacked data
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function pack_d from fp-bit.c in libgcc
@@ -12923,7 +12923,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function add from fp-bit.c in libgcc
@@ -12949,7 +12949,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function sub from fp-bit.c in libgcc
@@ -12975,7 +12975,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function multiply from fp-bit.c in libgcc
@@ -13001,7 +13001,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function divide from fp-bit.c in libgcc
@@ -13021,7 +13021,7 @@
     type: FloatingPointNum *
     notes: Pointer to unpacked double 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function __fpcmp_parts from fp-bit.c in libgcc
@@ -13047,7 +13047,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function compare from fp-bit.c in libgcc
@@ -13073,7 +13073,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _eq_f2 from fp-bit.c in libgcc
@@ -13099,7 +13099,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _ne_f2 from fp-bit.c in libgcc
@@ -13125,7 +13125,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _gt_f2 from fp-bit.c in libgcc
@@ -13151,7 +13151,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _ge_f2 from fp-bit.c in libgcc
@@ -13177,7 +13177,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _lt_f2 from fp-bit.c in libgcc
@@ -13203,7 +13203,7 @@
     type: u32
     notes: Double 2 lower 32 bits
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _le_f2 from fp-bit.c in libgcc
@@ -13219,7 +13219,7 @@
   - label: Integer
     type: s32
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function si_to_float from fp-bit.c in libgcc
@@ -13258,7 +13258,7 @@
     type: u32
     notes: Double lower 32 bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function negate from fp-bit.c in libgcc
@@ -13286,7 +13286,7 @@
     type: u32
     notes: Fraction upper bits
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function __make_dp from fp-bit.c in libgcc
@@ -13463,7 +13463,7 @@
     type: FloatingPointNum *
     notes: Pointer to unpacked float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function __fpcmp_parts from fp-bit.c in libgcc
@@ -13483,7 +13483,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function compare from fp-bit.c in libgcc
@@ -13503,7 +13503,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _eq_f2 from fp-bit.c in libgcc
@@ -13523,7 +13523,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _ne_f2 from fp-bit.c in libgcc
@@ -13543,7 +13543,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _gt_f2 from fp-bit.c in libgcc
@@ -13563,7 +13563,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _ge_f2 from fp-bit.c in libgcc
@@ -13583,7 +13583,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _lt_f2 from fp-bit.c in libgcc
@@ -13603,7 +13603,7 @@
     type: u32
     notes: Float 2
   return:
-    label: ComparisonResult1Less0Equal1Greater
+    label: ComparisonResult
     type: s8
     notes: Comparison result (-1 = less, 0 = equal, 1 = greater)
   notes: Function _le_f2 from fp-bit.c in libgcc
@@ -13693,7 +13693,7 @@
     type: u32
     notes: Float value
   return:
-    label: DoubleValueUsesR0AndR1
+    label: DoubleValue
     type: u32
     notes: Double value (uses r0 and r1)
   notes: Function sf_to_df from fp-bit.c in libgcc
@@ -13716,7 +13716,7 @@
     type: u32
     notes: Shift amount
   return:
-    label: LongIntUsesR0AndR1
+    label: LongInt
     type: u32
     notes: Long int (uses r0 and r1)
   notes: Right shift long integer
@@ -13742,7 +13742,7 @@
     type: u32
     notes: Long int 2 upper 32 bits
   return:
-    label: LongIntUsesR0AndR1
+    label: LongInt
     type: u32
     notes: Long int (uses r0 and r1)
   notes: Multiply long integers
@@ -13762,7 +13762,7 @@
     type: u32
     notes: Long int upper 32 bits
   return:
-    label: LongIntUsesR0AndR1
+    label: LongInt
     type: u32
     notes: Long int (uses r0 and r1)
   notes: Negate long integer
