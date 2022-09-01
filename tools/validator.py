@@ -42,7 +42,7 @@ class Validator(object):
                     self.entry = key
                     assert LABEL_PAT.match(
                         key), "struct name must be alphanumeric"
-                    self.check_size(st, True)
+                    self.check_size(st)
                     self.check_vars(st)
 
                 # check code
@@ -52,10 +52,11 @@ class Validator(object):
                     self.entry = entry
                     self.check_label(entry)
                     self.check_addr(entry, 4)
-                    self.check_size(entry, True, 2)
+                    self.check_size(entry, 2)
                     self.check_mode(entry)
                     self.check_params(entry)
                     self.check_return(entry)
+                    self.check_notes(entry)
                     self.check_overlap(entry, prev)
                     prev = entry
 
@@ -68,12 +69,11 @@ class Validator(object):
                         self.entry = entry
                         self.check_label(entry)
                         self.check_type(entry)
+                        self.check_tags(entry)
                         # TODO: check if address is aligned with type
                         self.check_addr(entry)
-                        self.check_count(entry)
-                        size_req = "type" not in entry
-                        self.check_size(entry, size_req)
                         self.check_enum(entry)
+                        self.check_notes(entry)
                         self.check_overlap(entry, prev)
                         prev = entry
 
@@ -111,13 +111,6 @@ class Validator(object):
         label = entry["label"]
         assert LABEL_PAT.match(label), "label must be alphanumeric"
 
-    def check_notes(self, entry) -> None:
-        if "notes" not in entry:
-            return
-        notes = entry["notes"]
-        assert isinstance(notes, str), "notes must be a string"
-        assert len(notes.strip()) > 0, "notes cannot be empty"
-
     def check_region_int(self, entry, align=None) -> None:
         nums = None
         assert isinstance(entry, (int, dict)), "Expected integer or dictionary"
@@ -142,23 +135,14 @@ class Validator(object):
         offset = entry["offset"]
         assert isinstance(offset, int), "offset must be an integer"
 
-    def check_count(self, entry, required: bool = False) -> None:
-        if "count" not in entry:
-            assert required is False, "count is required"
-            return
-        addr = entry["count"]
-        self.check_region_int(addr)
-
-    def check_size(self, entry, required: bool = False, align: int = None) -> None:
-        if "size" not in entry:
-            assert required is False, "size is required"
-            return
+    def check_size(self, entry, align: int = None) -> None:
+        assert "size" in entry, "size is required"
         size = entry["size"]
         self.check_region_int(size, align)
 
     def check_vals(self, entry) -> None:
         assert isinstance(entry, list), "enum entry must be a list"
-        prev = -0x80000001
+        prev = -1
         for val_dict in entry:
             self.check_label(val_dict)
             # check val
@@ -176,11 +160,10 @@ class Validator(object):
         for var in vars:
             self.check_label(var)
             self.check_type(var)
+            self.check_tags(entry)
             self.check_offset(var)
-            self.check_count(var)
-            size_req = "type" not in var
-            self.check_size(var, size_req)
             self.check_enum(var)
+            self.check_notes(entry)
             # check offset
             offset = var["offset"]
             assert prev < offset, "offsets should be in ascending order"
@@ -206,7 +189,7 @@ class Validator(object):
         assert "return" in entry, "return is required"
         ret = entry["return"]
         assert ret is None or isinstance(
-            ret, dict), "return must be null or dictionary"
+            ret, dict), "return must be null or dict"
         if isinstance(ret, dict):
             self.check_label(ret)
             self.check_type(ret)
@@ -225,10 +208,23 @@ class Validator(object):
         if len(parts) == 2:
             check_decl(parts[1])
 
+    def check_tags(self, entry):
+        if "tags" not in entry:
+            return
+        tags = entry["tags"]
+        assert isinstance(tags, list), "tags must be a list"
+        for tag in tags:
+            assert tag in TAGS, f"Invalid tag {tag}"
+
     def check_enum(self, entry):
         if "enum" in entry:
             n = entry["enum"]
             assert n in self.enums, "Invalid enum"
+
+    def check_notes(self, entry) -> None:
+        if "notes" in entry:
+            notes = entry["notes"]
+            assert isinstance(notes, str), "notes must be a string"
 
 
 def tokenize_decl(decl: str):
@@ -292,7 +288,6 @@ def parse_decl(tokens, index: int) -> int:
 
 def check_decl(decl: str) -> None:
     tokens = tokenize_decl(decl)
-    print(tokens)
     index = parse_decl(tokens, 0)
     assert index == len(tokens), "Invalid type"
 

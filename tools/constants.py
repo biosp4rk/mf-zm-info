@@ -31,8 +31,6 @@ DATA = (
     "type",
     "tags",
     "addr",
-    "size",
-    "count",
     "enum",
     "notes"
 )
@@ -59,15 +57,11 @@ FIELDS = {
     MAP_RAM: DATA,
     MAP_DATA: DATA,
     "addr": REGIONS,
-    "size": REGIONS,
-    "count": REGIONS,
     "vars":  (
         "label",
         "type",
         "tags",
         "offset",
-        "size",
-        "count",
         "enum",
         "notes"
     ),
@@ -76,6 +70,7 @@ FIELDS = {
 }
 
 PRIMITIVES = {
+    "void": 1,
     "u8": 1,
     "s8": 1,
     "bool": 1,
