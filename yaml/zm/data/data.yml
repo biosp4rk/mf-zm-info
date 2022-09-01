@@ -64,7 +64,7 @@
   notes: Samus hitbox data
 -
   label: SamusEnvironEffectsOamPtrs
-  type: void *[0x12]
+  type: Oam *[0x12]
   addr:
     U: 0x23A56C
     E: 0x23B1F8
@@ -136,7 +136,9 @@
   notes: Charge beam sprite Y position offsets
 -
   label: ChozoStatueHintFlashingPaletteRows
-  type: u8 [0x4]
+  type: u16 [0x40]
+  tags:
+  - palette
   addr:
     U: 0x2B3BD4
     E: 0x2B4860
@@ -200,7 +202,9 @@
   notes: Mellow idle X velocity
 -
   label: ImagoLarvaFlashingBellyPaletteRows
-  type: u8 [0x4]
+  type: u16 [0x40]
+  tags:
+  - palette
   addr:
     U: 0x2DB248
     E: 0x2DBED4
@@ -224,7 +228,7 @@
   notes: Metroid spawning X position offsets
 -
   label: MetroidSamusGrabbedPalette
-  type: u16 [0x5]
+  type: u16 [0x50]
   tags:
   - palette
   addr:
@@ -258,7 +262,7 @@
   notes: Tumbling missile speeds
 -
   label: CommonSpritePalette
-  type: u16 [0x6]
+  type: u16 [0x60]
   tags:
   - palette
   addr:
@@ -760,7 +764,7 @@
     U: 0x36BDB0
     E: 0x36CA3C
     J: 0x36BE0C
-  notes: Return one pointer
+  notes: Pointer to function that returns 1 (default cutscene pointer?)
 -
   label: CutsceneData
   type: CutsceneData [0xF]
@@ -921,7 +925,7 @@
   notes: Common BG graphics
 -
   label: CommonBGPalette
-  type: u16 [0xA]
+  type: u16 [0xA0]
   tags:
   - palette
   addr:
@@ -941,7 +945,7 @@
   notes: Graphics for animated graphics
 -
   label: NonGameplayRamPtr
-  type: void *
+  type: NonGameplayRam *
   addr:
     U: 0x754BC4
     E: 0x767910
@@ -1054,7 +1058,7 @@
   notes: Area room entry pointers
 -
   label: RoomScrollsPtrs
-  type: void *[0x92]
+  type: u8 *[0x92]
   addr:
     U: 0x75FAE0
     E: 0x773980
@@ -1062,14 +1066,14 @@
   notes: Room scrolls pointers
 -
   label: AreaScrollsPtrs
-  type: void *[0xB]
+  type: u8 **[0xB]
   addr:
     U: 0x75FD28
     E: 0x773BC8
     J: 0x75FE38
   notes: Area scrolls pointers
 -
-  label: NoNeverReformDestroyFunctionPtrs
+  label: NonReformDestroyFunctionPtrs
   type: void *[0x5]
   tags:
   - thumb
@@ -1077,7 +1081,7 @@
     U: 0x75FD64
     E: 0x773C04
     J: 0x75FE74
-  notes: No/never reform destroy function pointers
+  notes: No/never reform block destroy function pointers
 -
   label: HazeData
   type: HazeData [0xD]
@@ -1096,7 +1100,7 @@
   notes: Hatch lock events pointers
 -
   label: DemoRamDataPtrs
-  type: void *[0x10]
+  type: DemoRam *[0x10]
   addr:
     U: 0x75FDFC
     E: 0x773C9C
@@ -1104,7 +1108,9 @@
   notes: Demo RAM data pointers
 -
   label: StoryTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x75FEE0
     E: 0x773D80
@@ -1131,7 +1137,7 @@
   notes: Explored minimap bit flags
 -
   label: DescriptionTextPtrs
-  type: u16 *[0x7]
+  type: u16 **[0x7]
   tags:
   - text
   addr:
@@ -1141,7 +1147,7 @@
   notes: Description text pointers
 -
   label: ChozoStatueTargetPathPtrs
-  type: void *[0x6]
+  type: u8 *[0x6]
   addr:
     U: 0x7603F0
     E: 0x774298
@@ -1283,7 +1289,9 @@
   notes: Spanish location text pointers
 -
   label: LocationTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x760764
     E: 0x774A1C
@@ -1291,7 +1299,9 @@
   notes: Location text pointers
 -
   label: MessageTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x760780
     E: 0x774A38
@@ -1299,7 +1309,9 @@
   notes: Message text pointers
 -
   label: FileScreenTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x76079C
     E: 0x774A54

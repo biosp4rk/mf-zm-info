@@ -600,7 +600,9 @@
   notes: Super missiles digits
 -
   label: CurrParticleEffectOamFramePtr
-  type: void *
+  type: u16 *
+  tags:
+  - oamframe
   addr: 0x3000918
   notes: Current particle effect OAM frame pointer
 -
@@ -790,14 +792,14 @@
   notes: V-Blank request flag
 -
   label: InterruptCode
-  type: u8 [0x200]
+  type: void [0x200]
   addr: 0x3000C7C
-  notes: Interrupt code (void [0x200])
+  notes: Interrupt code
 -
   label: OamData
-  type: u8 [0xA0]
+  type: u16 [0xA0][4]
   addr: 0x3000E7C
-  notes: OAM data (u16 [0xA0][8])
+  notes: OAM data
 -
   label: ButtonInput
   type: u16
@@ -1071,7 +1073,7 @@
   notes: Pointer to sound code A
 -
   label: SoundCodeARam
-  type: u8 [0x658]
+  type: void [0x658]
   addr: 0x3003B90
   notes: Sound code A
 -
@@ -1083,7 +1085,7 @@
   notes: Pointer to sound code B
 -
   label: SoundCodeBRam
-  type: u8 [0xA4]
+  type: void [0xA4]
   addr: 0x30041EC
   notes: Sound code B
 -
@@ -1095,7 +1097,7 @@
   notes: Pointer to sound code C
 -
   label: SoundCodeCRam
-  type: u8 [0xAC]
+  type: void [0xAC]
   addr: 0x3004294
   notes: Sound code C
 -
@@ -1235,7 +1237,7 @@
   notes: Current special background effect
 -
   label: CurrRoomScrollsDataPtr
-  type: void *
+  type: u8 *
   addr: 0x3005708
   notes: Current room scrolls data pointer
 -

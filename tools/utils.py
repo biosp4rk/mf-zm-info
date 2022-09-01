@@ -133,15 +133,6 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     while len(stack) > 0:
         entry, k = stack.pop()
         if isinstance(entry, dict):
-            #
-            if "type" in entry:
-                t, tags = get_new_type(entry)
-                entry["type"] = t
-                if tags:
-                    entry["tags"] = tags
-                if "count" in entry:
-                    entry.pop("count")
-            #
             fields = FIELDS[k]
             for i, field in enumerate(fields):
                 if field in entry:
@@ -202,58 +193,3 @@ def get_entry_size(
         for dim in dims:
             size *= dim
     return {r: size for r in regions}
-
-
-
-
-def get_new_type(entry):
-    parts = entry["type"].split(".")
-    spec = "void"
-    is_ptr = False
-    count = entry.get("count", 1)
-    tags = []
-    for part in parts:
-        if part in PRIMITIVES:
-            spec = part
-        elif part == "flags8":
-            spec = "u8"
-            tags.append("flags")
-        elif part == "flags16":
-            spec = "u16"
-            tags.append("flags")
-        elif part == "ptr":
-            is_ptr = True
-        elif part == "ascii":
-            spec = "s8"
-            tags.append("ascii")
-        elif part == "char":
-            spec = "u16"
-            tags.append("text")
-        elif part == "lz":
-            tags.append("lz")
-        elif part == "gfx":
-            spec = "u8"
-            tags.append("gfx")
-        elif part == "tilemap":
-            spec = "u16"
-            tags.append("tilemap")
-        elif part == "palette":
-            spec = "u16"
-            tags.append("palette")
-        elif part == "thumb":
-            spec = "void"
-            tags.append("thumb")
-        elif part == "arm":
-            spec = "void"
-            tags.append("arm")
-        else:
-            spec = part
-    decl = ""
-    if is_ptr:
-        decl += "*"
-    if count > 1:
-        decl += f"[0x{count:X}]"
-    if decl:
-        spec += " " + decl
-    return spec, tags
-

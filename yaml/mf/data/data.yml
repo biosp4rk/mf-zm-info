@@ -442,12 +442,12 @@
   notes: Animated graphics entries
 -
   label: AnimatedTilesetEntries
-  type: u8
+  type: u8 [0xE][0x30]
   addr:
     U: 0x3C8F90
     E: 0x3C95EC
     J: 0x3CB558
-  notes: Animated tileset entries (u8 [0xE][0x30])
+  notes: Animated tileset entries
 -
   label: SineTable_Base
   type: s8 [0x80]
@@ -688,7 +688,7 @@
   notes: MetroidEpisode4A text
 -
   label: SaveDataWramPtrs
-  type: void *[0x3]
+  type: SaveFileRam *[0x3]
   addr:
     U: 0x58225C
     E: 0x5828B8
@@ -800,7 +800,7 @@
   notes: Area room entry pointers
 -
   label: RoomScrollsPointers
-  type: void *[0x89]
+  type: u8 *[0x89]
   addr:
     U: 0x79B8E4
     E: 0x79C118
@@ -808,7 +808,7 @@
   notes: Room scrolls pointers
 -
   label: AreaScrollsPtrs
-  type: void *[0xA]
+  type: u8 **[0xA]
   addr:
     U: 0x79BB08
     E: 0x79C33C
@@ -852,7 +852,9 @@
   notes: Minimap data pointers
 -
   label: NavTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79C0F0
     E: 0x79C924
@@ -860,7 +862,9 @@
   notes: Navigation text pointers
 -
   label: PauseScreenTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79C10C
     E: 0x79C940
@@ -878,7 +882,9 @@
   notes: Process projectile pointers
 -
   label: MonologueTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79C5A4
     E: 0x79CDD8
@@ -1026,7 +1032,9 @@
   notes: Spanish location text pointers
 -
   label: LocationTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79CDD8
     E: 0x79D60C
@@ -1034,7 +1042,9 @@
   notes: Location text pointers
 -
   label: MessageTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79CDF4
     E: 0x79D628
@@ -1325,7 +1335,9 @@
   notes: Spanish file screen text pointers
 -
   label: FileScreenTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79EC68
     E: 0x79F4C4
@@ -1333,7 +1345,9 @@
   notes: File screen text pointers
 -
   label: UnusedTextPtrs
-  type: void *[0x7]
+  type: u16 **[0x7]
+  tags:
+  - text
   addr:
     U: 0x79EC84
     E: 0x79F4E0

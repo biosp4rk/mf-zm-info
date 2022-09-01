@@ -916,7 +916,7 @@
   notes: Current sprite debris being processed
 -
   label: BossPartOamTablePtr
-  type: void *
+  type: Oam *
   addr:
     U: 0x3000784
     E: 0x3000784
@@ -1241,22 +1241,22 @@
   notes: V-Blank request flag
 -
   label: InterruptCode
-  type: u8 [0x200]
+  type: void [0x200]
   tags:
   - arm
   addr:
     U: 0x3000BE8
     E: 0x3000BE8
     J: 0x3000C1C
-  notes: Interrupt code (void [0x200])
+  notes: Interrupt code
 -
   label: OamData
-  type: u8 [0x400]
+  type: u16 [0x80][4]
   addr:
     U: 0x3000DE8
     E: 0x3000DE8
     J: 0x3000E1C
-  notes: OAM data (u16 [0x80][8])
+  notes: OAM data
 -
   label: ButtonInput
   type: u16
@@ -1627,14 +1627,14 @@
   notes: Pointer to sound code A
 -
   label: SoundCodeARam
-  type: u8 [0x658]
+  type: void [0x658]
   tags:
   - arm
   addr:
     U: 0x3003658
     E: 0x3003658
     J: 0x300368C
-  notes: Sound code A (void [658])
+  notes: Sound code A
 -
   label: SoundCodeBPtr
   type: void *
@@ -1647,7 +1647,7 @@
   notes: Pointer to sound code B
 -
   label: SoundCodeBRam
-  type: u8 [0xA4]
+  type: void [0xA4]
   addr:
     U: 0x3003CB4
     E: 0x3003CB4
@@ -1665,7 +1665,7 @@
   notes: Pointer to sound code C
 -
   label: SoundCodeCRam
-  type: u8 [0xAC]
+  type: void [0xAC]
   addr:
     U: 0x3003D5C
     E: 0x3003D5C
@@ -1832,7 +1832,7 @@
   notes: Collectible tank animation counters
 -
   label: RoomScrollsPtr
-  type: void *
+  type: u8 *
   addr:
     U: 0x30053E8
     E: 0x30053E8

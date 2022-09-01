@@ -80,10 +80,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u16 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit
@@ -97,10 +97,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   return: null
   notes: Calls LZ77UnCompReadNormalWrite8bit
@@ -504,7 +504,7 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: void *
+    type: u8 *
     notes: Track data pointer
   - label: Timer
     type: u16
@@ -536,10 +536,10 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: void *
+    type: u8 *
     notes: Track data pointer
   - label: SoundEntryPtr
-    type: void *
+    type: u8 *
     notes: Sound entry pointer
   - label: Timer
     type: u16
@@ -558,10 +558,10 @@
     type: u8
     notes: DMA channel
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: Length
     type: u16
@@ -585,7 +585,7 @@
   - label: Value
     type: u8
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: Length
     type: u16
@@ -794,19 +794,19 @@
   mode: thumb
   params:
   - label: SourceRamAddress
-    type: void *
+    type: u8 *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: void *
+    type: u8 *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: void *
+    type: u8 *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: void *
+    type: u8 *
     notes: End destination address
   notes: Call sound code B
 -
@@ -819,19 +819,19 @@
   mode: arm
   params:
   - label: SourceRamAddress
-    type: void *
+    type: u8 *
     notes: Source RAM address
   - label: SourceRamAddressCopy
-    type: void *
+    type: u8 *
     notes: Source RAM address copy
   - label: DestinationRamAddress
-    type: void *
+    type: u8 *
     notes: Destination RAM address
   - label: param_3
     type: u8
   return:
     label: EndDestinationAddress
-    type: void *
+    type: u8 *
     notes: End destination address
   notes: Sound code B
 -
@@ -844,16 +844,16 @@
   mode: thumb
   params:
   - label: DestinationRamAddress
-    type: void *
+    type: u8 *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: void *
+    type: u8 *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: void *
+    type: u8 *
     notes: End source address
   notes: Call sound code C
 -
@@ -866,16 +866,16 @@
   mode: arm
   params:
   - label: DestinationRamAddress
-    type: void *
+    type: u8 *
     notes: Destination RAM address
   - label: SourceRamAddress
-    type: void *
+    type: u8 *
     notes: Source RAM address
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: void *
+    type: u8 *
     notes: End source address
   notes: Sound code C
 -
@@ -888,16 +888,16 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address?
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: void *
+    type: u8 *
     notes: End source address?
   notes: Call sound code A
 -
@@ -910,16 +910,16 @@
   mode: arm
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address?
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address?
   - label: param_2
     type: u8
   return:
     label: EndSourceAddress
-    type: void *
+    type: u8 *
     notes: End source address?
   notes: Sound code A
 -
@@ -968,7 +968,7 @@
   mode: thumb
   params:
   - label: TrackDataPtr
-    type: void *
+    type: u8 *
     notes: Track data pointer
   return: null
   notes: Stops the music of the track in r0
@@ -982,10 +982,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: LengthMode
     type: u32
@@ -1002,10 +1002,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: LengthMode
     type: u32
@@ -1056,10 +1056,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u16 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   - label: CallbackParameter
     type: u32
@@ -1079,10 +1079,10 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: CallbackParameter
     type: u32
@@ -1102,7 +1102,7 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: MidiKey
     type: u8
@@ -1123,9 +1123,9 @@
   size: 0x8
   mode: thumb
   params:
-  - label: PtrToMultibootparamStructure
-    type: void *
-    notes: Pointer to MultiBootParam structure
+  - label: PtrToMultibootparamStruct
+    type: u8 *
+    notes: Pointer to MultiBootParam struct
   return:
     label: FailureFlag
     type: bool
@@ -1490,7 +1490,7 @@
   mode: thumb
   params:
   - label: SourceAddress
-    type: void *
+    type: u16 *
     notes: Source address
   - label: PaletteOffset
     type: u32
@@ -1510,7 +1510,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls SamusUpdatePhysics, SamusExecutePoseRoutine, SamusUpdateVelocityPosition 1 unknown function b8a8 and increments the animation counter
+  notes: Calls SamusUpdatePhysics, SamusExecutePoseRoutine, SamusUpdateVelocityPosition, sub B8A8 and increments the animation counter
 -
   label: SamusUpdateHitbox
   addr:
@@ -5274,7 +5274,7 @@
   mode: thumb
   params:
   - label: ProjectileDataPtr
-    type: void *
+    type: ProjectileData *
     notes: Projectile data pointer
   return:
     label: CollisionCheck
@@ -5970,13 +5970,17 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: NormalGfxSourceAddress
-    type: void *
+    type: u8 *
+    tags:
+    - gfx
     notes: Normal graphics source address
   - label: RefillGfxSourceAddress
-    type: void *
+    type: u8 *
+    tags:
+    - gfx
     notes: Refill graphics source address
   - label: NumOfEnergyTanks
     type: u8
@@ -5995,7 +5999,7 @@
   size: 0x598
   mode: thumb
   params:
-  - label: FileNum0InGame1FileA2FileB3FileC
+  - label: FileNum
     type: u8
     notes: File number (0 = in-game, 1 = file A, 2 = file B, 3 = file C)
   return: null
@@ -6316,7 +6320,7 @@
     type: ParticleEffect *
     notes: Particle effect pointer
   - label: OamPtr
-    type: void *
+    type: Oam *
     notes: OAM pointer
   return:
     label: AnimationEnded
@@ -6336,7 +6340,7 @@
     type: ParticleEffect *
     notes: Particle effect pointer
   - label: OamPtr
-    type: void *
+    type: Oam *
     notes: OAM pointer
   return: null
   notes: Sets the current particle effect OAM frame pointer
@@ -7404,7 +7408,7 @@
   mode: thumb
   params:
   - label: BldalphaRelatedStructPtr
-    type: void *
+    type: u8 *
     notes: BLDALPHA related struct pointer?
   return: null
   notes: Applies the new BLDALPHA transparency values
@@ -7494,20 +7498,20 @@
   size: 0x110
   mode: thumb
   params:
-  - label: DataType0Tilemap1Bg
+  - label: DataType
     type: u8
     notes: Data type (0 = tilemap, 1 = BG)
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   return:
-    label: Always0MaybeAnErrorFlag
+    label: Always0
     type: bool
-    notes: Always 0 (maybe an error flag?)
-  notes: RLE Decompression algorithm
+    notes: Always 0 (probably an error flag)
+  notes: RLE decompression algorithm
 -
   label: UpdateRoomInfo
   addr:
@@ -7789,7 +7793,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Processes the 2 current scrolls if within, calls UpdateCurrentScrolls and ScrollScreen
@@ -7823,7 +7827,7 @@
     type: ActiveScroll *
     notes: Active scroll pointer
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return:
     label: ScreenXPosition
@@ -7843,7 +7847,7 @@
     type: ActiveScroll *
     notes: Active scroll pointer
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return:
     label: ScreenYPosition
@@ -7871,7 +7875,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Updates the 2 current scrolls, also checks for extended bounds (when taking an elevator and when triggered by a breakable block)
@@ -7896,7 +7900,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic scrolling on a room with no scrolls
@@ -7910,7 +7914,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic Y scrolling on a room with no scrolls
@@ -7924,7 +7928,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Handles the automatic X scrolling on a room with no scrolls
@@ -7938,7 +7942,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer
   return: null
   notes: Updates the haze and effect position
@@ -8010,7 +8014,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer?
   return:
     label: ValidBlock
@@ -8027,7 +8031,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8044,7 +8048,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8061,7 +8065,7 @@
   mode: thumb
   params:
   - label: CoordinatesPtr
-    type: void *
+    type: u8 *
     notes: Coordinates pointer?
   return:
     label: Always1
@@ -8196,8 +8200,8 @@
   size: 0x134
   mode: thumb
   params:
-  - label: BrokenReformBlockPtr
-    type: void *
+  - label: BreakingOrReformingBlockPtr
+    type: BreakingOrReformingBlock *
     notes: Broken reform block pointer
   return: null
   notes: Handles the animation of a block breaking/reforming
@@ -10065,7 +10069,7 @@
   - label: Length
     type: u32
   - label: CutsceneOamDataPtr
-    type: void *
+    type: Oam *
     notes: Cutscene OAM data pointer
   - label: OamArrayPtr
     type: OamArray *
@@ -10124,7 +10128,7 @@
     type: u8
     notes: Minimap number
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   return: null
   notes: Gets the minimap data
@@ -10141,7 +10145,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks for maintained input when on specific menus (map screen and file select)
+  notes: Checks for sustained input when on specific menus (map screen and file select)
 -
   label: UpdateMinimap
   addr:
@@ -10225,7 +10229,7 @@
     enum: AreaID
     notes: Area ID
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   return: null
   notes: Sets tiles with obtained items when loading a new map for an area
@@ -10243,7 +10247,7 @@
     enum: AreaID
     notes: Area ID
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   return: null
   notes: Checks if the map has been downloaded and sets the unexplored tiles when loading a new map for an area
@@ -10391,11 +10395,11 @@
     J: 0x4B8
   mode: thumb
   params:
-  - label: CharacterId
+  - label: CharacterID
     type: u16
     notes: Character ID
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   - label: Indent
     type: u16
@@ -10415,11 +10419,11 @@
     J: 0x5F0
   mode: thumb
   params:
-  - label: CharacterId
+  - label: CharacterID
     type: u16
     notes: Character ID
   - label: DestinationAddress
-    type: void *
+    type: u16 *
     notes: Destination address
   - label: Indent
     type: u16
@@ -10439,7 +10443,7 @@
   - label: param_0
     type: u8
   - label: PtrToTextPtr
-    type: void *
+    type: u16 **
     notes: Pointer to text pointer
   return: null
   notes: Draws the characters for the location text in r1
@@ -10509,12 +10513,14 @@
     - text
     notes: Text pointer
   - label: DestinationAddress
-    type: void *
+    type: u16 *
+    tags:
+    - text
     notes: Destination address
   return:
-    label: LineState0NoNewLine1NewLine2MessageEnd
+    label: LineState
     type: u8
-    notes: Line state (0 = No new line, 1 = new line, 2 = message end)
+    notes: Line state (0 = no new line, 1 = new line, 2 = message end)
   notes: Processes the current message
 -
   label: UpdateMinimapAnimatedPalettes
@@ -10711,15 +10717,15 @@
   mode: thumb
   params:
   - label: ChozoStatueXPositionPtr
-    type: void *
+    type: u8 *
     notes: Chozo statue X position pointer
   - label: ChozoStatueYPositionPtr
-    type: void *
+    type: u8 *
     notes: Chozo statue Y position pointer
   - label: param_2
-    type: void *
+    type: u8 *
   - label: ChozoStatueTargetPathPtr
-    type: void *
+    type: u8 *
     notes: Chozo statue target path pointer?
   return: null
   notes: Chozo statue hint change area
@@ -10736,7 +10742,7 @@
     type: u8
     notes: Array offset?
   return:
-    label: 1IfNotActivated0IfActivated1IfDeActivated
+    label: HintActivation
     type: s8
     notes: -1 if not activated, 0 if activated, 1 if de-activated
   notes: Checks for events/flags to see if a target is activated
@@ -10819,7 +10825,9 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: void *
+    type: s8 *
+    tags:
+    - ascii
     notes: Destination address
   - label: StringPtr
     type: s8 *
@@ -11415,7 +11423,7 @@
   - label: Seed
     type: u32
   - label: DestinationArray
-    type: void *
+    type: u8 *
     notes: Destination array
   - label: Size
     type: u32
@@ -12863,7 +12871,7 @@
   mode: thumb
   params:
   - label: PtrToDoubleValue
-    type: void *
+    type: u32 *
     notes: Pointer to double value
   - label: PtrToUnpackedData
     type: FloatingPointNum *
@@ -13329,7 +13337,7 @@
   mode: thumb
   params:
   - label: PtrToFloatValue
-    type: void *
+    type: u32 *
     notes: Pointer to float value
   - label: PtrToUnpackedData
     type: FloatingPointNum *
@@ -13768,15 +13776,15 @@
   mode: thumb
   params:
   - label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   - label: SourceAddress
-    type: void *
+    type: u8 *
     notes: Source address
   - label: Size
     type: u32
   return:
     label: DestinationAddress
-    type: void *
+    type: u8 *
     notes: Destination address
   notes: Function memcpy from memcpy.c in libgcc

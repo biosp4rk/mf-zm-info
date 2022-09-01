@@ -90,9 +90,9 @@ AnimatedPaletteEntry:
     offset: 0x2
     notes: Number of states
   - label: PtrToPalette
-    type: u8 *
+    type: u16 *
     tags:
-    - gfx
+    - palette
     offset: 0x4
     notes: Pointer to palette
 AnimatedPaletteTiming:
@@ -194,35 +194,35 @@ BG3Movement:
 BGPositions:
   size: 0x14
   vars:
-  - label: Bg0XPosition
+  - label: BG0XPosition
     type: u16
     offset: 0x0
     notes: BG0 X position
-  - label: Bg0YPosition
+  - label: BG0YPosition
     type: u16
     offset: 0x2
     notes: BG0 Y position
-  - label: Bg1XPosition
+  - label: BG1XPosition
     type: u16
     offset: 0x4
     notes: BG1 X position
-  - label: Bg1YPosition
+  - label: BG1YPosition
     type: u16
     offset: 0x6
     notes: BG1 Y position
-  - label: Bg2XPosition
+  - label: BG2XPosition
     type: u16
     offset: 0x8
     notes: BG2 X position
-  - label: Bg2YPosition
+  - label: BG2YPosition
     type: u16
     offset: 0xA
     notes: BG2 Y position
-  - label: Bg3XPosition
+  - label: BG3XPosition
     type: u16
     offset: 0xC
     notes: BG3 X position
-  - label: Bg3YPosition
+  - label: BG3YPosition
     type: u16
     offset: 0xE
     notes: BG3 Y position
@@ -733,22 +733,22 @@ CurrRoomEntry:
     type: u8
     offset: 0x0
     notes: Tileset number
-  - label: Bg0Properties
+  - label: BG0Properties
     type: u8
     offset: 0x1
     enum: BGProperty
     notes: BG0 properties
-  - label: Bg1Properties
+  - label: BG1Properties
     type: u8
     offset: 0x2
     enum: BGProperty
     notes: BG1 properties
-  - label: Bg2Properties
+  - label: BG2Properties
     type: u8
     offset: 0x3
     enum: BGProperty
     notes: BG2 properties
-  - label: Bg3Properties
+  - label: BG3Properties
     type: u8
     offset: 0x4
     enum: BGProperty
@@ -758,7 +758,7 @@ CurrRoomEntry:
     offset: 0x5
     enum: ScrollsFlag
     notes: Scrolls flag
-  - label: Bg3ScrollingMethod
+  - label: BG3ScrollingMethod
     type: u8
     offset: 0x6
     notes: BG3 scrolling method
@@ -804,17 +804,17 @@ CurrRoomEntry:
     type: u16
     offset: 0x16
     notes: Music track
-  - label: Bg0Size
+  - label: BG0Size
     type: u8
     offset: 0x18
     enum: LZ77BackgroundSize
     notes: BG0 size
-  - label: Bg3Size
+  - label: BG3Size
     type: u8
     offset: 0x19
     enum: LZ77BackgroundSize
     notes: BG3 size
-  - label: Bg3StartsFromBottomFlag
+  - label: BG3StartsFromBottomFlag
     type: u8
     offset: 0x1A
     notes: BG3 starts from bottom flag?
@@ -912,6 +912,37 @@ CutsceneSubroutineData:
     type: u8
     offset: 0x4
     notes: OAM related number
+DemoRam:
+  size: 0x280
+  vars:
+  - label: CurrArea
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - label: CurrDoor
+    type: u8
+    offset: 0x1
+  - label: SamusData
+    type: SamusData
+    offset: 0x4
+  - label: SamusWeaponInfo
+    type: SamusWeaponInfo
+    offset: 0x24
+  - label: SamusEcho
+    type: SamusEcho
+    offset: 0x2C
+  - label: ScrewAttackSpeedBoosterAnimation
+    type: ScrewAttackSpeedBoosterAnimation
+    offset: 0x138
+  - label: Equipment
+    type: Equipment
+    offset: 0x140
+  - label: SamusHazardDamage
+    type: SamusHazardDamage
+    offset: 0x154
+  - label: MothershipDoorsFlag
+    type: u8
+    offset: 0x240
 DoorEntry:
   size: 0xC
   vars:
@@ -1278,7 +1309,7 @@ HazeData:
     offset: 0x1
     enum: RoomEffect
     notes: Room effect
-  - label: Bg0WaterMovingFlag
+  - label: BG0WaterMovingFlag
     type: u8
     offset: 0x2
     notes: BG0 water moving flag
@@ -1314,8 +1345,8 @@ HazeLoops:
 HazeVramInfo:
   size: 0x8
   vars:
-  - label: AffectedDataPtrIoRegisterOrPaletteRam
-    type: void *
+  - label: AffectedDataPtr
+    type: u16 *
     offset: 0x0
     notes: Affected data pointer (IO register or palette RAM)
   - label: unk_04
@@ -1677,7 +1708,9 @@ Oam:
   size: 0x8
   vars:
   - label: OamFramePtr
-    type: void *
+    type: u16 *
+    tags:
+    - oamframe
     offset: 0x0
     notes: OAM frame pointer
   - label: Duration
@@ -1687,7 +1720,7 @@ OamArray:
   size: 0x8
   vars:
   - label: OamPtr
-    type: void *
+    type: Oam *
     offset: 0x0
     notes: OAM pointer
   - label: PreAction
@@ -1759,7 +1792,7 @@ ProjectileData:
     offset: 0x0
     enum: ProjectileStatus
   - label: OamPtr
-    type: void *
+    type: Oam *
     offset: 0x4
     notes: OAM pointer
   - label: YPosition
@@ -1840,50 +1873,50 @@ RoomEntry:
   - label: Tileset
     type: u8
     offset: 0x0
-  - label: Bg0Properties
+  - label: BG0Properties
     type: u8
     offset: 0x1
     enum: BGProperty
     notes: BG0 properties
-  - label: Bg1Properties
+  - label: BG1Properties
     type: u8
     offset: 0x2
     enum: BGProperty
     notes: BG1 properties
-  - label: Bg2Properties
+  - label: BG2Properties
     type: u8
     offset: 0x3
     enum: BGProperty
     notes: BG2 properties
-  - label: Bg3Properties
+  - label: BG3Properties
     type: u8
     offset: 0x4
     enum: BGProperty
     notes: BG3 properties
-  - label: Bg0Ptr
-    type: void *
+  - label: BG0Ptr
+    type: u16 *
     offset: 0x8
     notes: BG0 pointer
-  - label: Bg1Ptr
-    type: void *
+  - label: BG1Ptr
+    type: u16 *
     offset: 0xC
     notes: BG1 pointer
-  - label: Bg2Ptr
-    type: void *
+  - label: BG2Ptr
+    type: u16 *
     offset: 0x10
     notes: BG2 pointer
   - label: ClipdataPtr
-    type: void *
+    type: u16 *
     offset: 0x14
     notes: Clipdata pointer
-  - label: Bg3Ptr
+  - label: BG3Ptr
     type: u16 *
     tags:
     - lz
     - tilemap
     offset: 0x18
     notes: BG3 pointer
-  - label: Bg3Scrolling
+  - label: BG3Scrolling
     type: u8
     offset: 0x1C
     notes: BG3 scrolling
@@ -2111,7 +2144,9 @@ SamusEnvironmentEffect:
     offset: 0x6
     notes: Y position
   - label: OamFramePtr
-    type: void *
+    type: u16 *
+    tags:
+    - oamframe
     offset: 0x8
     notes: OAM frame pointer
 SamusHazardDamage:
@@ -2148,7 +2183,9 @@ SamusPhysics:
   size: 0x78
   vars:
   - label: BodyOamFramePtr
-    type: void *
+    type: u16 *
+    tags:
+    - oamframe
     offset: 0x0
     notes: Body OAM frame pointer
   - label: ShouldersGfxPtr
@@ -2191,7 +2228,9 @@ SamusPhysics:
     type: u16
     offset: 0x22
   - label: ArmCannonOamFramePtr
-    type: void *
+    type: u16 *
+    tags:
+    - oamframe
     offset: 0x24
     notes: Arm cannon OAM frame pointer
   - label: ArmCannonUpperGfxPtr
@@ -2213,7 +2252,9 @@ SamusPhysics:
     type: u16
     offset: 0x34
   - label: ScrewAttackSpeedboosterEffectsOamFramePtr
-    type: void *
+    type: u16 *
+    tags:
+    - oamframe
     offset: 0x38
     notes: Screw attack/speedbooster effects OAM frame pointer
   - label: ScrewAttackSpeedboosterEffectsGfxPtr
@@ -2283,7 +2324,7 @@ SamusPhysics:
     type: u8
     offset: 0x5B
     notes: Slowed by liquid flag
-  - label: WeaponType0None1BeamMissileOrPistol2ChargedPistol
+  - label: WeaponType
     type: u8
     offset: 0x5C
     notes: Weapon type (0 = none, 1 = beam, missile, or pistol, 2 = charged pistol)
@@ -2433,35 +2474,35 @@ SaveFileRam:
     type: ScreenPositionAndVelocity
     offset: 0x24
     notes: Screen position and velocity
-  - label: Bg0XPosition
+  - label: BG0XPosition
     type: u16
     offset: 0x2C
     notes: BG0 X position
-  - label: Bg0YPosition
+  - label: BG0YPosition
     type: u16
     offset: 0x2E
     notes: BG0 Y position
-  - label: Bg1XPosition
+  - label: BG1XPosition
     type: u16
     offset: 0x30
     notes: BG1 X position
-  - label: Bg1YPosition
+  - label: BG1YPosition
     type: u16
     offset: 0x32
     notes: BG1 Y position
-  - label: Bg2XPosition
+  - label: BG2XPosition
     type: u16
     offset: 0x34
     notes: BG2 X position
-  - label: Bg2YPosition
+  - label: BG2YPosition
     type: u16
     offset: 0x36
     notes: BG2 Y position
-  - label: Bg3XPosition
+  - label: BG3XPosition
     type: u16
     offset: 0x38
     notes: BG3 X position
-  - label: Bg3YPosition
+  - label: BG3YPosition
     type: u16
     offset: 0x3A
     notes: BG3 Y position
@@ -2606,10 +2647,10 @@ ScreenShake:
 ScrewAttackSpeedBoosterAnimation:
   size: 0x8
   vars:
-  - label: Flag0None1ScrewAttackingSpeedboosting8StoringShinespark
+  - label: Status
     type: u8
     offset: 0x0
-    notes: Flag (0 = None, 1 = screw attacking/speedboosting, 8 = storing shinespark)
+    notes: Status flags (0 = none, 1 = screw attacking/speedboosting, 8 = storing shinespark)
   - label: AnimationCounter
     type: u8
     offset: 0x1
@@ -2683,7 +2724,7 @@ SoundDataEntry:
   size: 0x8
   vars:
   - label: SoundHeaderPtr
-    type: void *
+    type: u8 *
     offset: 0x0
     notes: Sound header pointer
   - label: TrackGroupNum
@@ -2802,7 +2843,7 @@ SpriteData:
     offset: 0x16
     notes: Current animation frame
   - label: OamPtr
-    type: void *
+    type: Oam *
     offset: 0x18
     notes: OAM pointer
   - label: AnimationDurationCounter
@@ -2917,7 +2958,7 @@ SpriteDebris:
   size: 0x10
   vars:
   - label: OamPtr
-    type: void *
+    type: Oam *
     offset: 0x0
     notes: OAM pointer
   - label: CurrAnimationFrame
@@ -3025,7 +3066,7 @@ SubSpriteData:
   size: 0x14
   vars:
   - label: OamPtr
-    type: void *
+    type: Oam *
     offset: 0x0
     notes: OAM pointer
   - label: CurrAnimationFrame
@@ -3140,11 +3181,11 @@ TilemapAndClipdataPtrs:
     offset: 0x0
     notes: Pointer to tilemap
   - label: PtrToClipdataCollisionTypes
-    type: void *
+    type: u8 *
     offset: 0x4
     notes: Pointer to clipdata collision types
   - label: PtrToClipdataBehaviorTypes
-    type: void *
+    type: u16 *
     offset: 0x8
     notes: Pointer to clipdata behavior types
 TilesetEntry:
@@ -3163,7 +3204,7 @@ TilesetEntry:
     - palette
     offset: 0x4
     notes: Background palette pointer
-  - label: Lz77BGGfxPtr
+  - label: LZ77BGGfxPtr
     type: u8 *
     tags:
     - lz
