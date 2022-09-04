@@ -17,16 +17,15 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 
 ## Data Format
 - ram / rom
-  - desc
   - label
+  - notes (optional)
   - type
+  - tags (optional)
   - addr
-  - size (optional)
-  - count (optional, assume count=1 if not specified)
   - enum (optional)
 - code
-  - desc
   - label
+  - notes (optional)
   - addr
   - size
   - mode (`thumb` or `arm`)
