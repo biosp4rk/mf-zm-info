@@ -9,14 +9,14 @@ TAB = "  "
 RomDict = Dict[str, Dict[str, Rom]]
 
 
-def check_flatten_int(num: Dict[str, int]) -> VersionedInt:
+def check_flatten_int(num: Dict[str, int]) -> RegionInt:
     vals = list(num.values())
     if len(vals) == len(REGIONS) and all(v == vals[0] for v in vals):
         return vals[0]
     return num
 
 
-def yaml_versioned_int(field: str, num: VersionedInt) -> List[str]:
+def yaml_versioned_int(field: str, num: RegionInt) -> List[str]:
     if isinstance(num, int):
         return [f"{field}: 0x{num:X}"]
     return [f"{field}:"] + [f"{TAB}{k}: 0x{v:X}" for k, v in num.items()]
@@ -26,9 +26,9 @@ def yaml_data_entry(
     desc: str,
     label: str,
     type: str,
-    addr: VersionedInt,
-    count: Optional[VersionedInt] = None,
-    size: Optional[VersionedInt] = None,
+    addr: RegionInt,
+    count: Optional[RegionInt] = None,
+    size: Optional[RegionInt] = None,
     enum: Optional[str] = None
 ) -> str:
     lines = [
