@@ -1576,6 +1576,45 @@
   return: null
   notes: Sets the energy and ammo of Samus to the max (unused)
 -
+  label: RefillTenEnergy
+  addr:
+    U: 0x12340
+    E: 0x12340
+    J: 0x1247C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    label: StillRefilling
+    type: bool
+  notes: Used when refilling in a recharge room or at the ship
+-
+  label: RefillTenMissiles
+  addr:
+    U: 0x1236C
+    E: 0x1236C
+    J: 0x124A8
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    label: StillRefilling
+    type: bool
+  notes: Used when refilling in a recharge room or at the ship
+-
+  label: RefillTenPowerBombs
+  addr:
+    U: 0x12398
+    E: 0x12398
+    J: 0x124D4
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    label: StillRefilling
+    type: bool
+  notes: Used when refilling in a recharge room or at the ship
+-
   label: CheckEnergyFullAndMissilesNotFull
   addr:
     U: 0x124A0
