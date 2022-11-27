@@ -9,6 +9,8 @@ from utils import get_entry_size, ints_to_strs, read_yaml, read_yamls, write_yam
 
 LABEL_PAT = re.compile(r"^\w+$")
 
+TYPE_SYMS = {"*", "[", "]", "(", ")"}
+
 
 class Validator(object):
     def __init__(self):
@@ -229,12 +231,11 @@ class Validator(object):
 
 
 def tokenize_decl(decl: str):
-    symbols = {"*", "[", "]", "(", ")"}
     tokens = []
     i = 0
     while i < len(decl):
         c = decl[i]
-        if c in symbols:
+        if c in TYPE_SYMS:
             tokens.append(c)
             i += 1
         elif c == "0" and decl[i + 1] == "x":
