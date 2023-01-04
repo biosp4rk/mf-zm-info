@@ -27,6 +27,7 @@ REGIONS = (REGION_U, REGION_E, REGION_J)
 ASM_MODES = ("thumb", "arm")
 
 DATA = (
+    "desc",
     "label",
     "type",
     "tags",
@@ -34,9 +35,17 @@ DATA = (
     "enum",
     "notes"
 )
-CODE_VAR = ("label", "type", "tags", "enum", "notes")
+CODE_VAR = (
+    "desc",
+    "label",
+    "type",
+    "tags",
+    "enum",
+    "notes"
+)
 FIELDS = {
     MAP_ENUMS: (
+        "desc",
         "label",
         "val",
         "notes"
@@ -46,6 +55,7 @@ FIELDS = {
         "vars"
     ),
     MAP_CODE: (
+        "desc",
         "label",
         "addr",
         "size",
@@ -59,6 +69,7 @@ FIELDS = {
     "addr": REGIONS,
     "size": REGIONS,
     "vars":  (
+        "desc",
         "label",
         "type",
         "tags",

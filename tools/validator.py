@@ -4,10 +4,10 @@ import os
 import re
 import sys
 from constants import *
-from utils import get_entry_size, ints_to_strs, read_yaml, read_yamls, write_yaml
+from utils import *
 
 
-LABEL_PAT = re.compile(r"^\w+$")
+LABEL_PAT = re.compile(r"^\w+$", flags=re.A)
 
 TYPE_SYMS = {"*", "[", "]", "(", ")"}
 
@@ -107,6 +107,11 @@ class Validator(object):
                 # some data is in a different order in different regions,
                 # so we only check against one region
                 break
+
+    def check_desc(self, entry) -> None:
+        assert "desc" in entry, "desc is required"
+        desc = entry["desc"]
+        assert is_ascii(desc), "desc must be ascii"
 
     def check_label(self, entry) -> None:
         assert "label" in entry, "label is required"
@@ -227,7 +232,11 @@ class Validator(object):
     def check_notes(self, entry) -> None:
         if "notes" in entry:
             notes = entry["notes"]
-            assert isinstance(notes, str), "notes must be a string"
+            assert is_ascii(notes), "notes must be ascii"
+
+
+def is_ascii(s: str) -> bool:
+    return all(ord(c) < 128 for c in s)
 
 
 def tokenize_decl(decl: str):

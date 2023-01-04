@@ -1,62 +1,76 @@
 AbilityRamValues:
   size: 0x8
   vars:
-  - label: BeamStatusFlag
+  - desc: Beam status flag
+    label: BeamStatusFlag
     type: u8
     tags:
     - flags
     offset: 0x0
     enum: BeamStatus
-  - label: MissileBombStatusFlag
+  - desc: Missile bomb status flag
+    label: MissileBombStatusFlag
     type: u8
     tags:
     - flags
     offset: 0x1
     enum: MissileBombStatus
-  - label: SuitMiscStatusFlag
+  - desc: Suit misc status flag
+    label: SuitMiscStatusFlag
     type: u8
     tags:
     - flags
     offset: 0x2
     enum: SuitMiscStatus
-  - label: IsSuitFlag
+  - desc: Is suit flag
+    label: IsSuitFlag
     type: u8
     offset: 0x3
-  - label: MessageNum
+  - desc: Message number
+    label: MessageNum
     type: u8
     offset: 0x4
-  - label: SubEventNum
+  - desc: Sub event number
+    label: SubEventNum
     type: u16
     offset: 0x6
 AmmoDigits:
   size: 0x4
   vars:
-  - label: OnesPlace
+  - desc: Ones place
+    label: OnesPlace
     type: u8
     offset: 0x0
-  - label: TensPlace
+  - desc: Tens place
+    label: TensPlace
     type: u8
     offset: 0x1
-  - label: HundredsPlace
+  - desc: Hundreds place
+    label: HundredsPlace
     type: u8
     offset: 0x2
-  - label: ThousandsPlace
+  - desc: Thousands place
+    label: ThousandsPlace
     type: u8
     offset: 0x3
 AnimatedGraphicsEntry:
   size: 0x8
   vars:
-  - label: AnimationType
+  - desc: Animation type
+    label: AnimationType
     type: u8
     offset: 0x0
     enum: GraphicsAnimationType
-  - label: FramesPerState
+  - desc: Frames per state
+    label: FramesPerState
     type: u8
     offset: 0x1
-  - label: NumOfStates
+  - desc: Number of states
+    label: NumOfStates
     type: u8
     offset: 0x2
-  - label: GfxPtr
+  - desc: Graphics pointer
+    label: GfxPtr
     type: u8 *
     tags:
     - gfx
@@ -64,26 +78,32 @@ AnimatedGraphicsEntry:
 AnimatedPaletteAndTilesetNum:
   size: 0x2
   vars:
-  - label: AnimatedPaletteNum
+  - desc: Animated palette number
+    label: AnimatedPaletteNum
     type: u8
     offset: 0x0
-  - label: AnimatedTilesetNum
+  - desc: Animated tileset number
+    label: AnimatedTilesetNum
     type: u8
     offset: 0x1
 AnimatedPaletteEntry:
   size: 0x8
   vars:
-  - label: AnimationType
+  - desc: Animation type
+    label: AnimationType
     type: u8
     offset: 0x0
     enum: PaletteAnimationType
-  - label: FramesPerState
+  - desc: Frames per state
+    label: FramesPerState
     type: u8
     offset: 0x1
-  - label: NumOfStates
+  - desc: Number of states
+    label: NumOfStates
     type: u8
     offset: 0x2
-  - label: PalettePtr
+  - desc: Palette pointer
+    label: PalettePtr
     type: u16 *
     tags:
     - palette
@@ -91,768 +111,970 @@ AnimatedPaletteEntry:
 AnimatedPaletteTiming:
   size: 0x3
   vars:
-  - label: Counter
+  - desc: Counter
+    label: Counter
     type: u8
     offset: 0x0
-  - label: State
+  - desc: State
+    label: State
     type: u8
     offset: 0x1
-  - label: unk_02
+  - desc: Unknown 02
+    label: unk_02
     type: u8
     offset: 0x2
 AreaConnection:
   size: 0x3
   vars:
-  - label: SourceArea
+  - desc: Source area
+    label: SourceArea
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: SourceDoor
+  - desc: Source door
+    label: SourceDoor
     type: u8
     offset: 0x1
-  - label: DestinationArea
+  - desc: Destination area
+    label: DestinationArea
     type: u8
     offset: 0x2
     enum: AreaID
 ArmCannonDrawData:
   size: 0x8
   vars:
-  - label: OpeningXYOffsetsPtr
+  - desc: Opening XY offsets pointer
+    label: OpeningXYOffsetsPtr
     type: ArmCannonOpeningXYOffsets *
     offset: 0x0
-  - label: OamFramePtr
+  - desc: OAM frame pointer
+    label: OamFramePtr
     type: u16 *
     offset: 0x4
 ArmCannonOpeningXYOffsets:
   size: 0x8
   vars:
-  - label: ChargingYOffset
+  - desc: Charging Y offset
+    label: ChargingYOffset
     type: u16
     offset: 0x0
-  - label: ChargingXOffset
+  - desc: Charging X offset
+    label: ChargingXOffset
     type: u16
     offset: 0x2
-  - label: NewProjectileYOffset
+  - desc: New projectile Y offset
+    label: NewProjectileYOffset
     type: u16
     offset: 0x4
-  - label: NewProjectileXOffset
+  - desc: New projectile X offset
+    label: NewProjectileXOffset
     type: u16
     offset: 0x6
 BG3Movement:
   size: 0x6
   vars:
-  - label: Direction
+  - desc: Direction
+    label: Direction
     type: u8
     offset: 0x0
-  - label: Counter
+  - desc: Counter
+    label: Counter
     type: u8
     offset: 0x1
-  - label: MoveLeftToRightStage
+  - desc: Move left to right stage
+    label: MoveLeftToRightStage
     type: u8
     offset: 0x2
-  - label: XPositionOffset
+  - desc: X position offset
+    label: XPositionOffset
     type: u16
     offset: 0x4
 BGPositions:
   size: 0x14
   vars:
-  - label: BG0XPosition
+  - desc: BG0 X position
+    label: BG0XPosition
     type: u16
     offset: 0x0
-  - label: BG0YPosition
+  - desc: BG0 Y position
+    label: BG0YPosition
     type: u16
     offset: 0x2
-  - label: BG1XPosition
+  - desc: BG1 X position
+    label: BG1XPosition
     type: u16
     offset: 0x4
-  - label: BG1YPosition
+  - desc: BG1 Y position
+    label: BG1YPosition
     type: u16
     offset: 0x6
-  - label: BG2XPosition
+  - desc: BG2 X position
+    label: BG2XPosition
     type: u16
     offset: 0x8
-  - label: BG2YPosition
+  - desc: BG2 Y position
+    label: BG2YPosition
     type: u16
     offset: 0xA
-  - label: BG3XPosition
+  - desc: BG3 X position
+    label: BG3XPosition
     type: u16
     offset: 0xC
-  - label: BG3YPosition
+  - desc: BG3 Y position
+    label: BG3YPosition
     type: u16
     offset: 0xE
-  - label: DoorTransitionXPosition
+  - desc: Door transition X position
+    label: DoorTransitionXPosition
     type: u16
     offset: 0x10
-  - label: DoorTransitionYPosition
+  - desc: Door transition Y position
+    label: DoorTransitionYPosition
     type: u16
     offset: 0x12
 BGPtrsAndDimensions:
   size: 0x20
   vars:
-  - label: DecompressedBG0Ptr
+  - desc: Decompressed BG0 pointer
+    label: DecompressedBG0Ptr
     type: u16 *
     offset: 0x0
-  - label: WidthOfBG0InBlocks
+  - desc: Width of BG0 in blocks
+    label: WidthOfBG0InBlocks
     type: u16
     offset: 0x4
-  - label: HeightOfBG0InBlocks
+  - desc: Height of BG0 in blocks
+    label: HeightOfBG0InBlocks
     type: u16
     offset: 0x6
-  - label: DecompressedBG1Ptr
+  - desc: Decompressed BG1 pointer
+    label: DecompressedBG1Ptr
     type: u16 *
     offset: 0x8
-  - label: WidthOfBG1InBlocks
+  - desc: Width of BG1 in blocks
+    label: WidthOfBG1InBlocks
     type: u16
     offset: 0xC
-  - label: HeightOfBG1InBlocks
+  - desc: Height of BG1 in blocks
+    label: HeightOfBG1InBlocks
     type: u16
     offset: 0xE
-  - label: DecompressedBG2Ptr
+  - desc: Decompressed BG2 pointer
+    label: DecompressedBG2Ptr
     type: u16 *
     offset: 0x10
-  - label: WidthOfBG2InBlocks
+  - desc: Width of BG2 in blocks
+    label: WidthOfBG2InBlocks
     type: u16
     offset: 0x14
-  - label: HeightOfBG2InBlocks
+  - desc: Height of BG2 in blocks
+    label: HeightOfBG2InBlocks
     type: u16
     offset: 0x16
-  - label: DecompressedClipdataPtr
+  - desc: Decompressed clipdata pointer
+    label: DecompressedClipdataPtr
     type: u16 *
     offset: 0x18
-  - label: WidthOfClipdataInBlocks
+  - desc: Width of clipdata in blocks
+    label: WidthOfClipdataInBlocks
     type: u16
     offset: 0x1C
-  - label: HeightOfClipdataInBlocks
+  - desc: Height of clipdata in blocks
+    label: HeightOfClipdataInBlocks
     type: u16
     offset: 0x1E
 BackupOfIORegisters:
   size: 0x12
   vars:
-  - label: BackupOfDISPCNT_NonGameplay
+  - desc: Backup of DISPCNT non gameplay
+    label: BackupOfDISPCNT_NonGameplay
     type: u16
     offset: 0x0
     notes: LCD control
-  - label: BackupOfBLDCNT_NonGameplay
+  - desc: Backup of BLDCNT non gameplay
+    label: BackupOfBLDCNT_NonGameplay
     type: u16
     offset: 0x2
     notes: Color special effects selection
-  - label: BackupOfBLDALPHA_NonGameplay
+  - desc: Backup of BLDALPHA non gameplay
+    label: BackupOfBLDALPHA_NonGameplay
     type: u16
     offset: 0x4
     notes: Alpha blending coefficients
-  - label: BackupOfWININ_H_NonGameplay
+  - desc: Backup of WININ H non gameplay
+    label: BackupOfWININ_H_NonGameplay
     type: u8
     offset: 0x6
     notes: Inside of window 1
-  - label: BackupOfWINOUT_L_NonGameplay
+  - desc: Backup of WINOUT L non gameplay
+    label: BackupOfWINOUT_L_NonGameplay
     type: u8
     offset: 0x7
     notes: Outside of windows
-  - label: BackupOfBG0CNT_WriteOnly
+  - desc: Backup of BG0 CNT write only
+    label: BackupOfBG0CNT_WriteOnly
     type: u16
     offset: 0x8
     notes: BG0 control
-  - label: BackupOfBG1CNT
+  - desc: Backup of BG1 CNT
+    label: BackupOfBG1CNT
     type: u16
     offset: 0xA
     notes: BG1 control
-  - label: BackupOfBG2CNT
+  - desc: Backup of BG2 CNT
+    label: BackupOfBG2CNT
     type: u16
     offset: 0xC
     notes: BG2 control
-  - label: BackupOfBG3CNT
+  - desc: Backup of BG3 CNT
+    label: BackupOfBG3CNT
     type: u16
     offset: 0xE
     notes: BG3 control
-  - label: BackupOfBG0CNT
+  - desc: Backup of BG0 CNT
+    label: BackupOfBG0CNT
     type: u16
     offset: 0x10
     notes: BG0 control
 BossPartOamData:
   size: 0x6
   vars:
-  - label: OamTableIndex
+  - desc: OAM table index
+    label: OamTableIndex
     type: u16
     offset: 0x0
-  - label: YOffset
+  - desc: Y offset
+    label: YOffset
     type: s16
     offset: 0x2
-  - label: XOffset
+  - desc: X offset
+    label: XOffset
     type: s16
     offset: 0x4
 BrokenReformBlock:
   size: 0x4
   vars:
-  - label: Stage
+  - desc: Stage
+    label: Stage
     type: u8
     offset: 0x0
-  - label: Timer
+  - desc: Timer
+    label: Timer
     type: u8
     offset: 0x1
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u8
     offset: 0x2
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u8
     offset: 0x3
 ButtonAssignments:
   size: 0x8
   vars:
-  - label: ArmMissilesButton
+  - desc: Arm missiles button
+    label: ArmMissilesButton
     type: u16
     offset: 0x0
     enum: ButtonInput
-  - label: DiagonalAimButton
+  - desc: Diagonal aim button
+    label: DiagonalAimButton
     type: u16
     offset: 0x2
     enum: ButtonInput
-  - label: SelectButton
+  - desc: Select button
+    label: SelectButton
     type: u16
     offset: 0x4
     enum: ButtonInput
-  - label: PauseScreenButton
+  - desc: Pause screen button
+    label: PauseScreenButton
     type: u16
     offset: 0x6
     enum: ButtonInput
 CollectedTank:
   size: 0x4
   vars:
-  - label: RoomId
+  - desc: Room id
+    label: RoomId
     type: u8
     offset: 0x0
-  - label: TankType
+  - desc: Tank type
+    label: TankType
     type: u8
     offset: 0x1
     enum: TankType
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u8
     offset: 0x2
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u8
     offset: 0x3
 CollectibleTankAnimation:
   size: 0x4
   vars:
-  - label: Delay
+  - desc: Delay
+    label: Delay
     type: u8
     offset: 0x0
-  - label: Frame
+  - desc: Frame
+    label: Frame
     type: u8
     offset: 0x1
-  - label: Unused
+  - desc: Unused
+    label: Unused
     type: u16
     offset: 0x2
 CurrPowerBomb:
   size: 0x14
   vars:
-  - label: AnimationState
+  - desc: Animation state
+    label: AnimationState
     type: u8
     offset: 0x0
-  - label: unk_01
+  - desc: Unknown 01
+    label: unk_01
     type: u8
     offset: 0x1
-  - label: SemiMinorAxis
+  - desc: Semi minor axis
+    label: SemiMinorAxis
     type: u8
     offset: 0x2
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0x4
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x6
-  - label: HitboxLeftOffset
+  - desc: Hitbox left offset
+    label: HitboxLeftOffset
     type: u16
     offset: 0x8
-  - label: HitboxRightOffset
+  - desc: Hitbox right offset
+    label: HitboxRightOffset
     type: u16
     offset: 0xA
-  - label: HitboxTopOffset
+  - desc: Hitbox top offset
+    label: HitboxTopOffset
     type: u16
     offset: 0xC
-  - label: HitboxBottomOffset
+  - desc: Hitbox bottom offset
+    label: HitboxBottomOffset
     type: u16
     offset: 0xE
-  - label: unk_10
+  - desc: Unknown 10
+    label: unk_10
     type: u8
     offset: 0x10
-  - label: unk_11
+  - desc: Unknown 11
+    label: unk_11
     type: u8
     offset: 0x11
-  - label: Exists
+  - desc: Exists
+    label: Exists
     type: u8
     offset: 0x12
 CurrRoomEntry:
   size: 0x1C
   vars:
-  - label: TilesetNum
+  - desc: Tileset number
+    label: TilesetNum
     type: u8
     offset: 0x0
-  - label: BG0Properties
+  - desc: BG0 properties
+    label: BG0Properties
     type: u8
     offset: 0x1
     enum: BGProperty
-  - label: BG1Properties
+  - desc: BG1 properties
+    label: BG1Properties
     type: u8
     offset: 0x2
     enum: BGProperty
-  - label: BG2Properties
+  - desc: BG2 properties
+    label: BG2Properties
     type: u8
     offset: 0x3
     enum: BGProperty
-  - label: BG3Properties
+  - desc: BG3 properties
+    label: BG3Properties
     type: u8
     offset: 0x4
     enum: BGProperty
-  - label: ScrollsFlag
+  - desc: Scrolls flag
+    label: ScrollsFlag
     type: u8
     offset: 0x5
     enum: ScrollsFlag
-  - label: BG3ScrollingMethod
+  - desc: BG3 scrolling method
+    label: BG3ScrollingMethod
     type: u8
     offset: 0x6
-  - label: Transparency
+  - desc: Transparency
+    label: Transparency
     type: u8
     offset: 0x7
-  - label: SpriteLayoutDataPtr
+  - desc: Sprite layout data pointer
+    label: SpriteLayoutDataPtr
     type: RoomSpriteEntry *
     offset: 0x8
-  - label: EventToUseTheFirstSpriteset
+  - desc: Event to use the first spriteset
+    label: EventToUseTheFirstSpriteset
     type: u8
     offset: 0xC
     enum: Event
-  - label: EventToUseTheSecondSpriteset
+  - desc: Event to use the second spriteset
+    label: EventToUseTheSecondSpriteset
     type: u8
     offset: 0xD
     enum: Event
-  - label: MapXCoordinate
+  - desc: Map X coordinate
+    label: MapXCoordinate
     type: u8
     offset: 0xE
-  - label: MapYCoordinate
+  - desc: Map Y coordinate
+    label: MapYCoordinate
     type: u8
     offset: 0xF
-  - label: RoomEffect
+  - desc: Room effect
+    label: RoomEffect
     type: u8
     offset: 0x10
     enum: RoomEffect
-  - label: RoomEffectYPosition
+  - desc: Room effect Y position
+    label: RoomEffectYPosition
     type: u16
     offset: 0x12
-  - label: RoomEffectForSuits
+  - desc: Room effect for suits
+    label: RoomEffectForSuits
     type: u8
     offset: 0x14
     enum: RoomEffect
-  - label: MusicTrack
+  - desc: Music track
+    label: MusicTrack
     type: u16
     offset: 0x16
-  - label: BG0Size
+  - desc: BG0 size
+    label: BG0Size
     type: u8
     offset: 0x18
     enum: LZ77BackgroundSize
-  - label: BG3Size
+  - desc: BG3 size
+    label: BG3Size
     type: u8
     offset: 0x19
     enum: LZ77BackgroundSize
-  - label: AnimatedTilesetNum
+  - desc: Animated tileset number
+    label: AnimatedTilesetNum
     type: u8
     offset: 0x1A
-  - label: AnimatedPaletteNum
+  - desc: Animated palette number
+    label: AnimatedPaletteNum
     type: u8
     offset: 0x1B
 CurrScrolls:
   size: 0x18
   vars:
-  - label: WithinScrollFlag
+  - desc: Within scroll flag
+    label: WithinScrollFlag
     type: u8
     offset: 0x0
-  - label: CurrScrollXEnd
+  - desc: Current scroll X end
+    label: CurrScrollXEnd
     type: u16
     offset: 0x2
-  - label: CurrScrollXStart
+  - desc: Current scroll X start
+    label: CurrScrollXStart
     type: u16
     offset: 0x4
-  - label: CurrScrollYStart
+  - desc: Current scroll Y start
+    label: CurrScrollYStart
     type: u16
     offset: 0x6
-  - label: CurrScrollYEnd
+  - desc: Current scroll Y end
+    label: CurrScrollYEnd
     type: u16
     offset: 0x8
-  - label: WithinOverlappingScrollsFlag
+  - desc: Within overlapping scrolls flag
+    label: WithinOverlappingScrollsFlag
     type: u8
     offset: 0xC
-  - label: SecondScrollXEnd
+  - desc: Second scroll X end
+    label: SecondScrollXEnd
     type: u16
     offset: 0xE
-  - label: SecondScrollXStart
+  - desc: Second scroll X start
+    label: SecondScrollXStart
     type: u16
     offset: 0x10
-  - label: SecondScrollYStart
+  - desc: Second scroll Y start
+    label: SecondScrollYStart
     type: u16
     offset: 0x12
-  - label: SecondScrollYEnd
+  - desc: Second scroll Y end
+    label: SecondScrollYEnd
     type: u16
     offset: 0x14
 DebugMenuOptions:
   size: 0xC
   vars:
-  - label: BLDCNT_Mode_Unused
+  - desc: BLDCNT mode unused
+    label: BLDCNT_Mode_Unused
     type: u16
     offset: 0x0
     notes: BLDCNT mode, 1st pixel, 2nd pixel (unused)
-  - label: BLDCNT_EVB_Unused
+  - desc: BLDCNT EVB unused
+    label: BLDCNT_EVB_Unused
     type: u8
     offset: 0x2
-  - label: BLDCNT_EVA_Unused
+  - desc: BLDCNT EVA unused
+    label: BLDCNT_EVA_Unused
     type: u8
     offset: 0x3
-  - label: BLDCNT_EVY_Unused
+  - desc: BLDCNT EVY unused
+    label: BLDCNT_EVY_Unused
     type: u8
     offset: 0x4
-  - label: FrontWideCamera
+  - desc: Front wide camera
+    label: FrontWideCamera
     type: u8
     offset: 0x5
-  - label: SectionCursor
+  - desc: Section cursor
+    label: SectionCursor
     type: u8
     offset: 0x6
-  - label: SectionSelection
+  - desc: Section selection
+    label: SectionSelection
     type: u8
     offset: 0x7
-  - label: DownloadedMaps
+  - desc: Downloaded maps
+    label: DownloadedMaps
     type: u8
     tags:
     - flags
     offset: 0x8
     enum: AreaBitFlags
-  - label: SecurityHatchLevel
+  - desc: Security hatch level
+    label: SecurityHatchLevel
     type: u8
     offset: 0x9
     enum: SecurityLevel
-  - label: MapScanAndStereoFlag_Unused
+  - desc: Map scan and stereo flag unused
+    label: MapScanAndStereoFlag_Unused
     type: u8
     offset: 0xA
     notes: Map scan L-R and stereo flag (unused)
 DemoInputPtrs:
   size: 0x10
   vars:
-  - label: InputsPtr
+  - desc: Inputs pointer
+    label: InputsPtr
     type: u16 *
     offset: 0x0
-  - label: NumOfInputs
+  - desc: Number of inputs
+    label: NumOfInputs
     type: u16
     offset: 0x4
-  - label: DurationsPtr
+  - desc: Durations pointer
+    label: DurationsPtr
     type: u16 *
     offset: 0x8
-  - label: NumOfDurations
+  - desc: Number of durations
+    label: NumOfDurations
     type: u16
     offset: 0xC
 DemoRam:
   size: 0x1C
   vars:
-  - label: CurrArea
+  - desc: Current area
+    label: CurrArea
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: LastDoorUsed
+  - desc: Last door used
+    label: LastDoorUsed
     type: u8
     offset: 0x1
-  - label: SecurityLevelStatus
+  - desc: Security level status
+    label: SecurityLevelStatus
     type: u8
     offset: 0x2
     enum: SecurityLevel
-  - label: DownloadedMapStatus
+  - desc: Downloaded map status
+    label: DownloadedMapStatus
     type: u8
     tags:
     - flags
     offset: 0x3
     enum: AreaBitFlags
-  - label: EventCounter
+  - desc: Event counter
+    label: EventCounter
     type: u8
     offset: 0x4
     enum: Event
-  - label: SubEventCounter
+  - desc: Sub event counter
+    label: SubEventCounter
     type: u16
     offset: 0x6
-  - label: AbilityCount
+  - desc: Ability count
+    label: AbilityCount
     type: u8
     offset: 0x8
     enum: AbilityCount
-  - label: MaxEnergy
+  - desc: Max energy
+    label: MaxEnergy
     type: u16
     offset: 0xA
-  - label: CurrEnergy
+  - desc: Current energy
+    label: CurrEnergy
     type: u16
     offset: 0xC
-  - label: MaxMissiles
+  - desc: Max missiles
+    label: MaxMissiles
     type: u16
     offset: 0xE
-  - label: CurrMissiles
+  - desc: Current missiles
+    label: CurrMissiles
     type: u16
     offset: 0x10
-  - label: MaxPowerBombs
+  - desc: Max power bombs
+    label: MaxPowerBombs
     type: u8
     offset: 0x12
-  - label: CurrPowerBombs
+  - desc: Current power bombs
+    label: CurrPowerBombs
     type: u8
     offset: 0x13
-  - label: SamusDirection
+  - desc: Samus direction
+    label: SamusDirection
     type: u16
     offset: 0x14
     enum: HorizontalDirection
-  - label: SamusXPosition
+  - desc: Samus X position
+    label: SamusXPosition
     type: u16
     offset: 0x16
-  - label: SamusYPosition
+  - desc: Samus Y position
+    label: SamusYPosition
     type: u16
     offset: 0x18
 DimLightingEvent:
   size: 0x2
   vars:
-  - label: Event
+  - desc: Event
+    label: Event
     type: u8
     offset: 0x0
     enum: Event
-  - label: SetDimFlag
+  - desc: Set dim flag
+    label: SetDimFlag
     type: u8
     offset: 0x1
 DoorEntry:
   size: 0xC
   vars:
-  - label: Type
+  - desc: Type
+    label: Type
     type: u8
     offset: 0x0
     enum: DoorType
-  - label: SourceRoom
+  - desc: Source room
+    label: SourceRoom
     type: u8
     offset: 0x1
-  - label: XStart
+  - desc: X start
+    label: XStart
     type: u8
     offset: 0x2
-  - label: XEnd
+  - desc: X end
+    label: XEnd
     type: u8
     offset: 0x3
-  - label: YStart
+  - desc: Y start
+    label: YStart
     type: u8
     offset: 0x4
-  - label: YEnd
+  - desc: Y end
+    label: YEnd
     type: u8
     offset: 0x5
-  - label: DestinationDoor
+  - desc: Destination door
+    label: DestinationDoor
     type: u8
     offset: 0x6
-  - label: XExitDistance
+  - desc: X exit distance
+    label: XExitDistance
     type: u8
     offset: 0x7
-  - label: YExitDistance
+  - desc: Y exit distance
+    label: YExitDistance
     type: u8
     offset: 0x8
 DoorPositionStart:
   size: 0x4
   vars:
-  - label: XPositionStart
+  - desc: X position start
+    label: XPositionStart
     type: u16
     offset: 0x0
-  - label: YPositionStart
+  - desc: Y position start
+    label: YPositionStart
     type: u16
     offset: 0x2
 ElevatorRoomPair:
   size: 0x4
   vars:
-  - label: AreaId1
+  - desc: Area id 1
+    label: AreaId1
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: RoomId1
+  - desc: Room id 1
+    label: RoomId1
     type: u8
     offset: 0x1
-  - label: AreaId2
+  - desc: Area id 2
+    label: AreaId2
     type: u8
     offset: 0x2
     enum: AreaID
-  - label: RoomId2
+  - desc: Room id 2
+    label: RoomId2
     type: u8
     offset: 0x3
 Equipment:
   size: 0x10
   vars:
-  - label: CurrEnergy
+  - desc: Current energy
+    label: CurrEnergy
     type: u16
     offset: 0x0
-  - label: MaxEnergy
+  - desc: Max energy
+    label: MaxEnergy
     type: u16
     offset: 0x2
-  - label: CurrMissiles
+  - desc: Current missiles
+    label: CurrMissiles
     type: u16
     offset: 0x4
-  - label: MaxMissiles
+  - desc: Max missiles
+    label: MaxMissiles
     type: u16
     offset: 0x6
-  - label: CurrPowerBombs
+  - desc: Current power bombs
+    label: CurrPowerBombs
     type: u8
     offset: 0x8
-  - label: MaxPowerBombs
+  - desc: Max power bombs
+    label: MaxPowerBombs
     type: u8
     offset: 0x9
-  - label: BeamStatus
+  - desc: Beam status
+    label: BeamStatus
     type: u8
     tags:
     - flags
     offset: 0xA
     enum: BeamStatus
-  - label: MissileBombStatus
+  - desc: Missile bomb status
+    label: MissileBombStatus
     type: u8
     tags:
     - flags
     offset: 0xB
     enum: MissileBombStatus
-  - label: SuitMiscStatus
+  - desc: Suit misc status
+    label: SuitMiscStatus
     type: u8
     tags:
     - flags
     offset: 0xC
     enum: SuitMiscStatus
-  - label: SecurityHatchLevel
+  - desc: Security hatch level
+    label: SecurityHatchLevel
     type: u8
     offset: 0xD
     enum: SecurityLevel
-  - label: DownloadedMaps
+  - desc: Downloaded maps
+    label: DownloadedMaps
     type: u8
     tags:
     - flags
     offset: 0xE
     enum: AreaBitFlags
-  - label: LowHealthFlag
+  - desc: Low health flag
+    label: LowHealthFlag
     type: u8
     offset: 0xF
 EscapeTimerDigits:
   size: 0x6
   vars:
-  - label: HundredthsOfASecond
+  - desc: Hundredths of A second
+    label: HundredthsOfASecond
     type: u8
     offset: 0x0
-  - label: TenthsOfASecond
+  - desc: Tenths of A second
+    label: TenthsOfASecond
     type: u8
     offset: 0x1
-  - label: SecondsOnesPlace
+  - desc: Seconds ones place
+    label: SecondsOnesPlace
     type: u8
     offset: 0x2
-  - label: SecondsTensPlace
+  - desc: Seconds tens place
+    label: SecondsTensPlace
     type: u8
     offset: 0x3
-  - label: MinutesOnesPlace
+  - desc: Minutes ones place
+    label: MinutesOnesPlace
     type: u8
     offset: 0x4
-  - label: MinutesTensPlace
+  - desc: Minutes tens place
+    label: MinutesTensPlace
     type: u8
     offset: 0x5
 EventBasedConnection:
   size: 0x4
   vars:
-  - label: SourceArea
+  - desc: Source area
+    label: SourceArea
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: SourceDoor
+  - desc: Source door
+    label: SourceDoor
     type: u8
     offset: 0x1
-  - label: Event
+  - desc: Event
+    label: Event
     type: u8
     offset: 0x2
     enum: Event
-  - label: DestinationDoor
+  - desc: Destination door
+    label: DestinationDoor
     type: u8
     offset: 0x3
 EventLocationAndNavInfo:
   size: 0xC
   vars:
-  - label: AreaID
+  - desc: Area ID
+    label: AreaID
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: RoomID_Plus1
+  - desc: Room ID plus 1
+    label: RoomID_Plus1
     type: u8
     offset: 0x1
     notes: Room ID + 1
-  - label: XStart
+  - desc: X start
+    label: XStart
     type: u8
     offset: 0x2
-  - label: YStart
+  - desc: Y start
+    label: YStart
     type: u8
     offset: 0x3
-  - label: XEnd
+  - desc: X end
+    label: XEnd
     type: u8
     offset: 0x4
-  - label: YEnd
+  - desc: Y end
+    label: YEnd
     type: u8
     offset: 0x5
-  - label: NavConversationNum
+  - desc: Navigation conversation number
+    label: NavConversationNum
     type: u8
     offset: 0x6
-  - label: NavRoomLocationNum
+  - desc: Navigation room location number
+    label: NavRoomLocationNum
     type: u8
     offset: 0x7
     enum: NavRoom
-  - label: EventType
+  - desc: Event type
+    label: EventType
     type: u8
     offset: 0x8
     notes: 0 = normal, 1 = data download, 2 = skippable
 FloatingPointNum:
   size: 0x14
   vars:
-  - label: Class
+  - desc: Class
+    label: Class
     type: u32
     offset: 0x0
     enum: FloatingPointClass
-  - label: Sign
+  - desc: Sign
+    label: Sign
     type: u32
     offset: 0x4
-  - label: NormalizedExponent
+  - desc: Normalized exponent
+    label: NormalizedExponent
     type: s32
     offset: 0x8
-  - label: FractionLowerBits
+  - desc: Fraction lower bits
+    label: FractionLowerBits
     type: u32
     offset: 0xC
-  - label: FractionUpperBits
+  - desc: Fraction upper bits
+    label: FractionUpperBits
     type: u32
     offset: 0x10
 GameCompletion:
   size: 0x4
   vars:
-  - label: CompletedGameFlag
+  - desc: Completed game flag
+    label: CompletedGameFlag
     type: u8
     offset: 0x0
-  - label: IntroPlayedFlag
+  - desc: Intro played flag
+    label: IntroPlayedFlag
     type: u8
     offset: 0x1
 HatchData:
   size: 0x4
   vars:
-  - label: Status
+  - desc: Status
+    label: Status
     type: u8
     offset: 0x0
-  - label: Animation
+  - desc: Animation
+    label: Animation
     type: u8
     offset: 0x1
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u8
     offset: 0x2
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u8
     offset: 0x3
 HatchLockEvent:
   size: 0x4
   vars:
-  - label: Event
+  - desc: Event
+    label: Event
     type: u8
     offset: 0x0
     enum: Event
-  - label: AreaId
+  - desc: Area id
+    label: AreaId
     type: u8
     offset: 0x1
     enum: AreaID
-  - label: RoomId1
+  - desc: Room id 1
+    label: RoomId1
     type: u8
     offset: 0x2
-  - label: HatchesToLock
+  - desc: Hatches to lock
+    label: HatchesToLock
     type: u8
     tags:
     - flags
@@ -860,115 +1082,146 @@ HatchLockEvent:
 InGameTime:
   size: 0x4
   vars:
-  - label: InGameHours
+  - desc: In game hours
+    label: InGameHours
     type: u8
     offset: 0x0
-  - label: InGameMinutes
+  - desc: In game minutes
+    label: InGameMinutes
     type: u8
     offset: 0x1
-  - label: InGameSeconds
+  - desc: In game seconds
+    label: InGameSeconds
     type: u8
     offset: 0x2
-  - label: InGameFrames
+  - desc: In game frames
+    label: InGameFrames
     type: u8
     offset: 0x3
 MonologueEvent:
   size: 0x8
   vars:
-  - label: Event
+  - desc: Event
+    label: Event
     type: u8
     offset: 0x0
     enum: Event
-  - label: ElevatorRoomPair
+  - desc: Elevator room pair
+    label: ElevatorRoomPair
     type: u8
     offset: 0x1
-  - label: IndexOfSourceElevatorRoom
+  - desc: Index of source elevator room
+    label: IndexOfSourceElevatorRoom
     type: u8
     offset: 0x2
-  - label: CutsceneNum
+  - desc: Cutscene number
+    label: CutsceneNum
     type: u8
     offset: 0x3
-  - label: SubEventAtStart
+  - desc: Sub event at start
+    label: SubEventAtStart
     type: u16
     offset: 0x4
-  - label: SubEventAtEnd
+  - desc: Sub event at end
+    label: SubEventAtEnd
     type: u16
     offset: 0x6
 MusicInfo:
   size: 0xC24
   vars:
-  - label: NewMusicTrackSetFlag
+  - desc: New music track set flag
+    label: NewMusicTrackSetFlag
     type: u8
     offset: 0x1
-  - label: unk_02
+  - desc: Unknown 02
+    label: unk_02
     type: u16
     offset: 0x2
-  - label: unk_04
+  - desc: Unknown 04
+    label: unk_04
     type: u8
     offset: 0x4
-  - label: unk_05
+  - desc: Unknown 05
+    label: unk_05
     type: u8
     offset: 0x5
-  - label: unk_09
+  - desc: Unknown 09
+    label: unk_09
     type: u8
     offset: 0x9
-  - label: unk_0B
+  - desc: Unknown 0B
+    label: unk_0B
     type: u8
     offset: 0xB
-  - label: MusicLength
+  - desc: Music length
+    label: MusicLength
     type: u8
     offset: 0xE
-  - label: CurrMusicPosition
+  - desc: Current music position
+    label: CurrMusicPosition
     type: u8
     offset: 0x10
-  - label: unk_12
+  - desc: Unknown 12
+    label: unk_12
     type: u16
     offset: 0x12
-  - label: unk_18
+  - desc: Unknown 18
+    label: unk_18
     type: u32
     offset: 0x18
-  - label: MusicSlot1
+  - desc: Music slot 1
+    label: MusicSlot1
     type: u16
     offset: 0x1C
-  - label: MusicSlot2
+  - desc: Music slot 2
+    label: MusicSlot2
     type: u16
     offset: 0x1E
-  - label: MusicSlotSwitch
+  - desc: Music slot switch
+    label: MusicSlotSwitch
     type: u8
     offset: 0x20
-  - label: EventBasedMusicFlag
+  - desc: Event based music flag
+    label: EventBasedMusicFlag
     type: u8
     offset: 0x21
-  - label: NewMusicTrack
+  - desc: New music track
+    label: NewMusicTrack
     type: u16
     offset: 0x22
 NavConversationSubEvent:
   size: 0x4
   vars:
-  - label: NavConversationNum
+  - desc: Navigation conversation number
+    label: NavConversationNum
     type: u8
     offset: 0x0
-  - label: SubEvent
+  - desc: Sub event
+    label: SubEvent
     type: u16
     offset: 0x2
 NavRoomHatchLockEvent:
   size: 0x4
   vars:
-  - label: Event
+  - desc: Event
+    label: Event
     type: u8
     offset: 0x0
     enum: Event
-  - label: NavRooms_1_to_4_Hatches
+  - desc: Navigation rooms 1 to 4 hatches
+    label: NavRooms_1_to_4_Hatches
     type: u8
     tags:
     - flags
     offset: 0x1
-  - label: NavRooms_5_to_8_Hatches
+  - desc: Navigation rooms 5 to 8 hatches
+    label: NavRooms_5_to_8_Hatches
     type: u8
     tags:
     - flags
     offset: 0x2
-  - label: NavRooms_9_to_C_Hatches
+  - desc: Navigation rooms 9 to C hatches
+    label: NavRooms_9_to_C_Hatches
     type: u8
     tags:
     - flags
@@ -976,920 +1229,1174 @@ NavRoomHatchLockEvent:
 NavRoomLocation:
   size: 0x2
   vars:
-  - label: AreaId
+  - desc: Area id
+    label: AreaId
     type: u8
     offset: 0x0
     enum: AreaID
-  - label: RoomId1
+  - desc: Room id 1
+    label: RoomId1
     type: u8
     offset: 0x1
 NavTarget:
   size: 0x8
   vars:
-  - label: NavConversationNum
+  - desc: Navigation conversation number
+    label: NavConversationNum
     type: u8
     offset: 0x0
-  - label: TargetArea
+  - desc: Target area
+    label: TargetArea
     type: u8
     offset: 0x1
     enum: NavTargetArea
-  - label: TargetXPosition
+  - desc: Target X position
+    label: TargetXPosition
     type: u8
     offset: 0x2
-  - label: TargetYPosition
+  - desc: Target Y position
+    label: TargetYPosition
     type: u8
     offset: 0x3
-  - label: TextDirection
+  - desc: Text direction
+    label: TextDirection
     type: u8
     offset: 0x4
     enum: NavTargetTextDirection
 NeverReformBlock:
   size: 0x3
   vars:
-  - label: RoomId
+  - desc: Room id
+    label: RoomId
     type: u8
     offset: 0x0
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u8
     offset: 0x1
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u8
     offset: 0x2
 NonGameplayRam:
   size: 0x540
   vars:
-  - label: EndingImageTier
+  - desc: Ending image tier
+    label: EndingImageTier
     type: u8
     offset: 0x99
-  - label: EndingPercent
+  - desc: Ending percent
+    label: EndingPercent
     type: u8
     offset: 0x9A
-  - label: MapTargetXPosition
+  - desc: Map target X position
+    label: MapTargetXPosition
     type: u8
     offset: 0x20C
-  - label: MapTargetYPosition
+  - desc: Map target Y position
+    label: MapTargetYPosition
     type: u8
     offset: 0x20D
-  - label: StereoFlag
+  - desc: Stereo flag
+    label: StereoFlag
     type: u8
     offset: 0x26D
 NumNeverReformBlocksBroken:
   size: 0x8
   vars:
-  - label: NumOfNeverReformBlocksBrokenInMainDeck
+  - desc: Number of never reform blocks broken in main Deck
+    label: NumOfNeverReformBlocksBrokenInMainDeck
     type: u8
     offset: 0x0
-  - label: NumOfNeverReformBlocksBrokenInSector1
+  - desc: Number of never reform blocks broken in Sector 1
+    label: NumOfNeverReformBlocksBrokenInSector1
     type: u8
     offset: 0x1
-  - label: NumOfNeverReformBlocksBrokenInSector2
+  - desc: Number of never reform blocks broken in Sector 2
+    label: NumOfNeverReformBlocksBrokenInSector2
     type: u8
     offset: 0x2
-  - label: NumOfNeverReformBlocksBrokenInSector3
+  - desc: Number of never reform blocks broken in Sector 3
+    label: NumOfNeverReformBlocksBrokenInSector3
     type: u8
     offset: 0x3
-  - label: NumOfNeverReformBlocksBrokenInSector4
+  - desc: Number of never reform blocks broken in Sector 4
+    label: NumOfNeverReformBlocksBrokenInSector4
     type: u8
     offset: 0x4
-  - label: NumOfNeverReformBlocksBrokenInSector5
+  - desc: Number of never reform blocks broken in Sector 5
+    label: NumOfNeverReformBlocksBrokenInSector5
     type: u8
     offset: 0x5
-  - label: NumOfNeverReformBlocksBrokenInSector6
+  - desc: Number of never reform blocks broken in Sector 6
+    label: NumOfNeverReformBlocksBrokenInSector6
     type: u8
     offset: 0x6
-  - label: NumOfNeverReformBlocksBrokenInDebug1
+  - desc: Number of never reform blocks broken in debug 1
+    label: NumOfNeverReformBlocksBrokenInDebug1
     type: u8
     offset: 0x7
 NumTanksCollected:
   size: 0x8
   vars:
-  - label: NumOfTanksCollectedInMainDeck
+  - desc: Number of tanks collected in main Deck
+    label: NumOfTanksCollectedInMainDeck
     type: u8
     offset: 0x0
-  - label: NumOfTanksCollectedInSector1
+  - desc: Number of tanks collected in Sector 1
+    label: NumOfTanksCollectedInSector1
     type: u8
     offset: 0x1
-  - label: NumOfTanksCollectedInSector2
+  - desc: Number of tanks collected in Sector 2
+    label: NumOfTanksCollectedInSector2
     type: u8
     offset: 0x2
-  - label: NumOfTanksCollectedInSector3
+  - desc: Number of tanks collected in Sector 3
+    label: NumOfTanksCollectedInSector3
     type: u8
     offset: 0x3
-  - label: NumOfTanksCollectedInSector4
+  - desc: Number of tanks collected in Sector 4
+    label: NumOfTanksCollectedInSector4
     type: u8
     offset: 0x4
-  - label: NumOfTanksCollectedInSector5
+  - desc: Number of tanks collected in Sector 5
+    label: NumOfTanksCollectedInSector5
     type: u8
     offset: 0x5
-  - label: NumOfTanksCollectedInSector6
+  - desc: Number of tanks collected in Sector 6
+    label: NumOfTanksCollectedInSector6
     type: u8
     offset: 0x6
-  - label: NumOfTanksCollectedInDebug1
+  - desc: Number of tanks collected in debug 1
+    label: NumOfTanksCollectedInDebug1
     type: u8
     offset: 0x7
 NumTanksInArea:
   size: 0x3
   vars:
-  - label: EnergyTanks
+  - desc: Energy tanks
+    label: EnergyTanks
     type: u8
     offset: 0x0
-  - label: MissileTanks
+  - desc: Missile tanks
+    label: MissileTanks
     type: u8
     offset: 0x1
-  - label: PowerBombTanks
+  - desc: Power bomb tanks
+    label: PowerBombTanks
     type: u8
     offset: 0x2
 Oam:
   size: 0x8
   vars:
-  - label: OamFramePtr
+  - desc: OAM frame pointer
+    label: OamFramePtr
     type: u16 *
     offset: 0x0
-  - label: Duration
+  - desc: Duration
+    label: Duration
     type: u8
     offset: 0x4
 ParticleEffect:
   size: 0xC
   vars:
-  - label: Status
+  - desc: Status
+    label: Status
     type: u8
     tags:
     - flags
     offset: 0x0
-  - label: AnimationFrameCounter
+  - desc: Animation frame counter
+    label: AnimationFrameCounter
     type: u8
     offset: 0x1
-  - label: EffectNum
+  - desc: Effect number
+    label: EffectNum
     type: u8
     offset: 0x2
     enum: ParticleEffect
-  - label: unk_03
+  - desc: Unknown 03
+    label: unk_03
     type: u8
     offset: 0x3
-  - label: FrameCounter
+  - desc: Frame counter
+    label: FrameCounter
     type: u8
     offset: 0x4
-  - label: AnimationState
+  - desc: Animation state
+    label: AnimationState
     type: u16
     offset: 0x6
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x8
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0xA
 PcmSample:
   size: 0x10
   vars:
-  - label: LoopedFlag
+  - desc: Looped flag
+    label: LoopedFlag
     type: u32
     offset: 0x0
-  - label: Pitch
+  - desc: Pitch
+    label: Pitch
     type: u32
     offset: 0x4
-  - label: LoopRelativeStartingPoint
+  - desc: Loop relative starting point
+    label: LoopRelativeStartingPoint
     type: u32
     offset: 0x8
-  - label: SampleSize
+  - desc: Sample size
+    label: SampleSize
     type: u32
     offset: 0xC
 PrimarySpriteStats:
   size: 0xE
   vars:
-  - label: SpawnHealth
+  - desc: Spawn health
+    label: SpawnHealth
     type: u16
     offset: 0x0
-  - label: Damage
+  - desc: Damage
+    label: Damage
     type: u16
     offset: 0x2
-  - label: SuitDamageReduction
+  - desc: Suit damage reduction
+    label: SuitDamageReduction
     type: u16
     offset: 0x4
     enum: SuitDamageReduction
-  - label: Weakness
+  - desc: Weakness
+    label: Weakness
     type: u16
     tags:
     - flags
     offset: 0x6
     enum: SpriteWeakness
-  - label: HealthXProbability
+  - desc: Health X probability
+    label: HealthXProbability
     type: u16
     offset: 0x8
     notes: Out of 0x400
-  - label: MissileXProbability
+  - desc: Missile X probability
+    label: MissileXProbability
     type: u16
     offset: 0xA
     notes: Out of 0x400
-  - label: RedXProbability
+  - desc: Red X probability
+    label: RedXProbability
     type: u16
     offset: 0xC
     notes: Out of 0x400
 ProjectileData:
   size: 0x20
   vars:
-  - label: Status
+  - desc: Status
+    label: Status
     type: u8
     tags:
     - flags
     offset: 0x0
     enum: ProjectileStatus
-  - label: OamPtr
+  - desc: OAM pointer
+    label: OamPtr
     type: Oam *
     offset: 0x4
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x8
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0xA
-  - label: AnimationFrame
+  - desc: Animation frame
+    label: AnimationFrame
     type: u16
     offset: 0xC
-  - label: AnimationCounter
+  - desc: Animation counter
+    label: AnimationCounter
     type: u8
     offset: 0xE
-  - label: Type
+  - desc: Type
+    label: Type
     type: u8
     offset: 0xF
     enum: ProjectileType
-  - label: Direction
+  - desc: Direction
+    label: Direction
     type: u8
     offset: 0x10
     enum: ProjectileDirection
-  - label: MovementStage
+  - desc: Movement stage
+    label: MovementStage
     type: u8
     offset: 0x12
-  - label: Part
+  - desc: Part
+    label: Part
     type: u8
     offset: 0x13
-  - label: OffScreenYRange
+  - desc: Off screen Y range
+    label: OffScreenYRange
     type: u8
     offset: 0x14
-  - label: OffScreenXRange
+  - desc: Off screen X range
+    label: OffScreenXRange
     type: u8
     offset: 0x15
-  - label: HitboxTopOffset
+  - desc: Hitbox top offset
+    label: HitboxTopOffset
     type: u16
     offset: 0x16
-  - label: HitboxBottomOffset
+  - desc: Hitbox bottom offset
+    label: HitboxBottomOffset
     type: u16
     offset: 0x18
-  - label: HitboxLeftOffset
+  - desc: Hitbox left offset
+    label: HitboxLeftOffset
     type: u16
     offset: 0x1A
-  - label: HitboxRightOffset
+  - desc: Hitbox right offset
+    label: HitboxRightOffset
     type: u16
     offset: 0x1C
-  - label: TimerCounter
+  - desc: Timer counter
+    label: TimerCounter
     type: u8
     offset: 0x1E
-  - label: PrimaryProjectileSlot
+  - desc: Primary projectile slot
+    label: PrimaryProjectileSlot
     type: u8
     offset: 0x1F
 RoomEntry:
   size: 0x3C
   vars:
-  - label: Tileset
+  - desc: Tileset
+    label: Tileset
     type: u8
     offset: 0x0
-  - label: BG0Properties
+  - desc: BG0 properties
+    label: BG0Properties
     type: u8
     offset: 0x1
     enum: BGProperty
-  - label: BG1Properties
+  - desc: BG1 properties
+    label: BG1Properties
     type: u8
     offset: 0x2
     enum: BGProperty
-  - label: BG2Properties
+  - desc: BG2 properties
+    label: BG2Properties
     type: u8
     offset: 0x3
     enum: BGProperty
-  - label: BG3Properties
+  - desc: BG3 properties
+    label: BG3Properties
     type: u8
     offset: 0x4
     enum: BGProperty
-  - label: BG0Ptr
+  - desc: BG0 pointer
+    label: BG0Ptr
     type: u16 *
     offset: 0x8
-  - label: BG1Ptr
+  - desc: BG1 pointer
+    label: BG1Ptr
     type: u16 *
     offset: 0xC
-  - label: BG2Ptr
+  - desc: BG2 pointer
+    label: BG2Ptr
     type: u16 *
     offset: 0x10
-  - label: ClipdataPtr
+  - desc: Clipdata pointer
+    label: ClipdataPtr
     type: u16 *
     offset: 0x14
-  - label: BG3Ptr
+  - desc: BG3 pointer
+    label: BG3Ptr
     type: u8 *
     tags:
     - lz
     - tilemap
     offset: 0x18
-  - label: BG3Scrolling
+  - desc: BG3 scrolling
+    label: BG3Scrolling
     type: u8
     offset: 0x1C
-  - label: Transparency
+  - desc: Transparency
+    label: Transparency
     type: u8
     offset: 0x1D
-  - label: DefaultSpriteLayoutPtr
+  - desc: Default sprite layout pointer
+    label: DefaultSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x20
-  - label: DefaultSpriteset
+  - desc: Default spriteset
+    label: DefaultSpriteset
     type: u8
     offset: 0x24
-  - label: FirstSpritesetEvent
+  - desc: First spriteset event
+    label: FirstSpritesetEvent
     type: u8
     offset: 0x25
     enum: Event
-  - label: FirstSpriteLayoutPtr
+  - desc: First sprite layout pointer
+    label: FirstSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x28
-  - label: FirstSpriteset
+  - desc: First spriteset
+    label: FirstSpriteset
     type: u8
     offset: 0x2C
-  - label: SecondSpritesetEvent
+  - desc: Second spriteset event
+    label: SecondSpritesetEvent
     type: u8
     offset: 0x2D
     enum: Event
-  - label: SecondSpriteLayoutPtr
+  - desc: Second sprite layout pointer
+    label: SecondSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x30
-  - label: SecondSpriteset
+  - desc: Second spriteset
+    label: SecondSpriteset
     type: u8
     offset: 0x34
-  - label: MapXCoordinate
+  - desc: Map X coordinate
+    label: MapXCoordinate
     type: u8
     offset: 0x35
-  - label: MapYCoordinate
+  - desc: Map Y coordinate
+    label: MapYCoordinate
     type: u8
     offset: 0x36
-  - label: Effect
+  - desc: Effect
+    label: Effect
     type: u8
     offset: 0x37
-  - label: EffectYPosition
+  - desc: Effect Y position
+    label: EffectYPosition
     type: u8
     offset: 0x38
-  - label: MusicTrack
+  - desc: Music track
+    label: MusicTrack
     type: u16
     offset: 0x3A
 RoomSpriteEntry:
   size: 0x3
   vars:
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u8
     offset: 0x0
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u8
     offset: 0x1
-  - label: Properties
+  - desc: Properties
+    label: Properties
     type: u8
     offset: 0x2
 SamusAnimationInfo:
   size: 0xC
   vars:
-  - label: LoadingSaveFlag
+  - desc: Loading save flag
+    label: LoadingSaveFlag
     type: u8
     offset: 0x0
-  - label: PaletteAnimationCounter
+  - desc: Palette animation counter
+    label: PaletteAnimationCounter
     type: u8
     offset: 0x1
-  - label: CurrPaletteRow
+  - desc: Current palette row
+    label: CurrPaletteRow
     type: u8
     offset: 0x2
-  - label: SpaceJumpSpinCounter
+  - desc: Space jump spin counter
+    label: SpaceJumpSpinCounter
     type: u8
     offset: 0x3
-  - label: ShinesparkTimer
+  - desc: Shinespark timer
+    label: ShinesparkTimer
     type: u8
     offset: 0x4
 SamusBodyDrawData:
   size: 0x10
   vars:
-  - label: TorsoGfxPtr
+  - desc: Torso graphics pointer
+    label: TorsoGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x0
-  - label: LegsGfxPtr
+  - desc: Legs graphics pointer
+    label: LegsGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x4
-  - label: BodyOamPtr
+  - desc: Body OAM pointer
+    label: BodyOamPtr
     type: Oam *
     offset: 0x8
-  - label: unk_0C
+  - desc: Unknown 0C
+    label: unk_0C
     type: u8
     offset: 0xC
 SamusData:
   size: 0x2C
   vars:
-  - label: Unused
+  - desc: Unused
+    label: Unused
     type: u8
     offset: 0x0
-  - label: CurrPose
+  - desc: Current pose
+    label: CurrPose
     type: u8
     offset: 0x1
     enum: SamusPose
-  - label: TurningFlag
+  - desc: Turning flag
+    label: TurningFlag
     type: u8
     offset: 0x2
-  - label: ForcedMovementFlag
+  - desc: Forced movement flag
+    label: ForcedMovementFlag
     type: u8
     offset: 0x3
     enum: ForcedMovement
-  - label: WallJumpTimer
+  - desc: Wall jump timer
+    label: WallJumpTimer
     type: u8
     offset: 0x4
-  - label: InvincibilityTimer
+  - desc: Invincibility timer
+    label: InvincibilityTimer
     type: u8
     offset: 0x5
-  - label: SpeedBoostingCounterFlag
+  - desc: Speed boosting counter flag
+    label: SpeedBoostingCounterFlag
     type: u8
     offset: 0x6
-  - label: ArmCannonDirection
+  - desc: Arm cannon direction
+    label: ArmCannonDirection
     type: u8
     offset: 0x7
     enum: ArmCannonDirection
-  - label: MissilesSelectedFlag
+  - desc: Missiles selected flag
+    label: MissilesSelectedFlag
     type: u8
     offset: 0x8
-  - label: NewProjectile
+  - desc: New projectile
+    label: NewProjectile
     type: u8
     offset: 0x9
     enum: NewProjectileType
-  - label: CooldownTimer
+  - desc: Cooldown timer
+    label: CooldownTimer
     type: u8
     offset: 0xA
-  - label: ChargeBeamCounter
+  - desc: Charge beam counter
+    label: ChargeBeamCounter
     type: u8
     offset: 0xC
-  - label: DiagonalAim
+  - desc: Diagonal aim
+    label: DiagonalAim
     type: u8
     offset: 0xD
     enum: DiagonalAim
-  - label: ArmRunningAnimationFlag
+  - desc: Arm running animation flag
+    label: ArmRunningAnimationFlag
     type: u8
     offset: 0xE
-  - label: MiscCounterSpeedBoostKnockbackDying
+  - desc: Misc counter speed boost knockback dying
+    label: MiscCounterSpeedBoostKnockbackDying
     type: u8
     offset: 0xF
-  - label: WallJumpDirection
+  - desc: Wall jump direction
+    label: WallJumpDirection
     type: u16
     offset: 0x10
     enum: HorizontalDirection
-  - label: Direction
+  - desc: Direction
+    label: Direction
     type: u16
     offset: 0x12
     enum: HorizontalDirection
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0x16
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x18
-  - label: XVelocity
+  - desc: X velocity
+    label: XVelocity
     type: u16
     offset: 0x1A
-  - label: YVelocity
+  - desc: Y velocity
+    label: YVelocity
     type: u16
     offset: 0x1C
-  - label: CurrSlopeType
+  - desc: Current slope type
+    label: CurrSlopeType
     type: u16
     offset: 0x1E
     enum: SamusSlopeType
-  - label: StandingStatus
+  - desc: Standing status
+    label: StandingStatus
     type: u8
     offset: 0x20
     enum: SamusStandingStatus
-  - label: AnimationCounter
+  - desc: Animation counter
+    label: AnimationCounter
     type: u8
     offset: 0x21
-  - label: CurrAnimation
+  - desc: Current animation
+    label: CurrAnimation
     type: u8
     offset: 0x22
-  - label: ShootingFlag
+  - desc: Shooting flag
+    label: ShootingFlag
     type: u8
     offset: 0x23
-  - label: LeftBoundryOffset
+  - desc: Left boundry offset
+    label: LeftBoundryOffset
     type: u16
     offset: 0x24
-  - label: TopBoundryOffset
+  - desc: Top boundry offset
+    label: TopBoundryOffset
     type: u16
     offset: 0x26
-  - label: RightBoundryOffset
+  - desc: Right boundry offset
+    label: RightBoundryOffset
     type: u16
     offset: 0x28
-  - label: BottomBoundryOffset
+  - desc: Bottom boundry offset
+    label: BottomBoundryOffset
     type: u16
     offset: 0x2A
 SamusEcho:
   size: 0xC
   vars:
-  - label: EchoFlag
+  - desc: Echo flag
+    label: EchoFlag
     type: u8
     offset: 0x0
-  - label: Timer
+  - desc: Timer
+    label: Timer
     type: u8
     offset: 0x1
-  - label: Position
+  - desc: Position
+    label: Position
     type: u8
     offset: 0x2
 SamusGraphicsInfo:
   size: 0x3C
   vars:
-  - label: SamusOamPtr
+  - desc: Samus OAM pointer
+    label: SamusOamPtr
     type: Oam *
     offset: 0x0
-  - label: TorsoTopGfxPtr
+  - desc: Torso top graphics pointer
+    label: TorsoTopGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x4
-  - label: TorsoTopGfxSize
+  - desc: Torso top graphics size
+    label: TorsoTopGfxSize
     type: u16
     offset: 0x8
-  - label: TorsoBottomGfxPtr
+  - desc: Torso bottom graphics pointer
+    label: TorsoBottomGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0xC
-  - label: TorsoBottomGfxSize
+  - desc: Torso bottom graphics size
+    label: TorsoBottomGfxSize
     type: u16
     offset: 0x10
-  - label: LegsTopGfxPtr
+  - desc: Legs top graphics pointer
+    label: LegsTopGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x14
-  - label: LegsTopGfxSize
+  - desc: Legs top graphics size
+    label: LegsTopGfxSize
     type: u16
     offset: 0x18
-  - label: LegsBottomGfxPtr
+  - desc: Legs bottom graphics pointer
+    label: LegsBottomGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x1C
-  - label: LegsBottomGfxSize
+  - desc: Legs bottom graphics size
+    label: LegsBottomGfxSize
     type: u16
     offset: 0x20
-  - label: ArmCannonChargingXOffset
+  - desc: Arm cannon charging X offset
+    label: ArmCannonChargingXOffset
     type: s16
     offset: 0x22
-  - label: ArmCannonChargingYOffset
+  - desc: Arm cannon charging Y offset
+    label: ArmCannonChargingYOffset
     type: s16
     offset: 0x24
-  - label: ArmCannonOamFrameCountPriority
+  - desc: Arm cannon OAM frame count priority
+    label: ArmCannonOamFrameCountPriority
     type: u16
     offset: 0x26
     notes: 0x1000 = under Samus, 0x2000 = over Samus
-  - label: ArmCannonOamFramePtr
+  - desc: Arm cannon OAM frame pointer
+    label: ArmCannonOamFramePtr
     type: u16 *
     offset: 0x28
-  - label: ArmCannonTopGfxPtr
+  - desc: Arm cannon top graphics pointer
+    label: ArmCannonTopGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x2C
-  - label: ArmCannonTopGfxSize
+  - desc: Arm cannon top graphics size
+    label: ArmCannonTopGfxSize
     type: u16
     offset: 0x30
-  - label: ArmCannonBottomGfxPtr
+  - desc: Arm cannon bottom graphics pointer
+    label: ArmCannonBottomGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x34
-  - label: ArmCannonBottomGfxSize
+  - desc: Arm cannon bottom graphics size
+    label: ArmCannonBottomGfxSize
     type: u16
     offset: 0x38
 SamusHitboxOffsets:
   size: 0x8
   vars:
-  - label: HitboxLeftOffset
+  - desc: Hitbox left offset
+    label: HitboxLeftOffset
     type: u16
     offset: 0x0
-  - label: HitboxTopOffset
+  - desc: Hitbox top offset
+    label: HitboxTopOffset
     type: u16
     offset: 0x2
-  - label: HitboxRightOffset
+  - desc: Hitbox right offset
+    label: HitboxRightOffset
     type: u16
     offset: 0x4
-  - label: HitboxBottomOffset
+  - desc: Hitbox bottom offset
+    label: HitboxBottomOffset
     type: u16
     offset: 0x6
 SamusPhysics:
   size: 0x10
   vars:
-  - label: SlowSpeedFlag
+  - desc: Slow speed flag
+    label: SlowSpeedFlag
     type: u8
     offset: 0x0
-  - label: YAcceleration
+  - desc: Y acceleration
+    label: YAcceleration
     type: u16
     offset: 0x2
-  - label: YVelocityCap
+  - desc: Y velocity cap
+    label: YVelocityCap
     type: u16
     offset: 0x4
-  - label: MidAirXAcceleration
+  - desc: Mid air X acceleration
+    label: MidAirXAcceleration
     type: u16
     offset: 0x6
-  - label: MidAirXVelocityCap
+  - desc: Mid air X velocity cap
+    label: MidAirXVelocityCap
     type: u16
     offset: 0x8
-  - label: MidAirMorphedXVelocityCap
+  - desc: Mid air morphed X velocity cap
+    label: MidAirMorphedXVelocityCap
     type: u16
     offset: 0xA
-  - label: XAcceleration
+  - desc: X acceleration
+    label: XAcceleration
     type: u16
     offset: 0xC
-  - label: XVelocityCap
+  - desc: X velocity cap
+    label: XVelocityCap
     type: u16
     offset: 0xE
 SamusTimersAndCounters:
   size: 0x20
   vars:
-  - label: AbsorbXPaletteTimer
+  - desc: Absorb X palette timer
+    label: AbsorbXPaletteTimer
     type: u8
     offset: 0x3
-  - label: DiffusionMissileChargeCounter
+  - desc: Diffusion missile charge counter
+    label: DiffusionMissileChargeCounter
     type: u8
     offset: 0x13
-  - label: ConstantDamageDecrementTimer
+  - desc: Constant damage decrement timer
+    label: ConstantDamageDecrementTimer
     type: u8
     offset: 0x14
-  - label: ConstantDamageSoundTimer
+  - desc: Constant damage sound timer
+    label: ConstantDamageSoundTimer
     type: u8
     offset: 0x15
 SaveFileRam:
   size: 0x1200
   vars:
-  - label: Metroidepisode4aText
+  - desc: Metroidepisode4a text
+    label: Metroidepisode4aText
     type: s8 [0x10]
     tags:
     - ascii
     offset: 0x0
-  - label: Checksum
+  - desc: Checksum
+    label: Checksum
     type: u32
     offset: 0x10
-  - label: BitwiseNotOfChecksum
+  - desc: Bitwise not of checksum
+    label: BitwiseNotOfChecksum
     type: u32
     offset: 0x14
-  - label: GameCompletion
+  - desc: Game completion
+    label: GameCompletion
     type: GameCompletion
     offset: 0x18
-  - label: unk_1C
+  - desc: Unknown 1C
+    label: unk_1C
     type: u8
     offset: 0x1C
-  - label: CurrArea
+  - desc: Current area
+    label: CurrArea
     type: u8
     offset: 0x1D
     enum: AreaID
-  - label: CurrRoom
+  - desc: Current room
+    label: CurrRoom
     type: u8
     offset: 0x1E
-  - label: LastDoorUsed
+  - desc: Last door used
+    label: LastDoorUsed
     type: u8
     offset: 0x1F
-  - label: AbilityCount
+  - desc: Ability count
+    label: AbilityCount
     type: u8
     offset: 0x20
     enum: AbilityCount
-  - label: EventCounter
+  - desc: Event counter
+    label: EventCounter
     type: u8
     offset: 0x21
     enum: Event
-  - label: PrevNavConversation
+  - desc: Previous navigation conversation
+    label: PrevNavConversation
     type: u8
     offset: 0x22
-  - label: PrevCutscene
+  - desc: Previous cutscene
+    label: PrevCutscene
     type: u8
     offset: 0x23
-  - label: MinimapXCoordinate
+  - desc: Minimap X coordinate
+    label: MinimapXCoordinate
     type: u8
     offset: 0x24
-  - label: MinimapYCoordinate
+  - desc: Minimap Y coordinate
+    label: MinimapYCoordinate
     type: u8
     offset: 0x25
-  - label: SubEventCounter
+  - desc: Sub event counter
+    label: SubEventCounter
     type: u16
     offset: 0x26
-  - label: PrevSubEvent
+  - desc: Previous sub event
+    label: PrevSubEvent
     type: u16
     offset: 0x28
-  - label: CurrFlashingSectorNum
+  - desc: Current flashing Sector number
+    label: CurrFlashingSectorNum
     type: u8
     offset: 0x2A
-  - label: BackUpOfSecurityHatchFlashLevelDuringPowerOutage
+  - desc: Back up of security hatch flash level during power outage
+    label: BackUpOfSecurityHatchFlashLevelDuringPowerOutage
     type: u8
     offset: 0x2B
     enum: SecurityLevel
-  - label: ScreenPositionAndVelocity
+  - desc: Screen position and velocity
+    label: ScreenPositionAndVelocity
     type: ScreenPositionAndVelocity
     offset: 0x2C
-  - label: BG0XPosition
+  - desc: BG0 X position
+    label: BG0XPosition
     type: u16
     offset: 0x40
-  - label: BG0YPosition
+  - desc: BG0 Y position
+    label: BG0YPosition
     type: u16
     offset: 0x42
-  - label: BG1XPosition
+  - desc: BG1 X position
+    label: BG1XPosition
     type: u16
     offset: 0x44
-  - label: BG1YPosition
+  - desc: BG1 Y position
+    label: BG1YPosition
     type: u16
     offset: 0x46
-  - label: BG2XPosition
+  - desc: BG2 X position
+    label: BG2XPosition
     type: u16
     offset: 0x48
-  - label: BG2YPosition
+  - desc: BG2 Y position
+    label: BG2YPosition
     type: u16
     offset: 0x4A
-  - label: BG3XPosition
+  - desc: BG3 X position
+    label: BG3XPosition
     type: u16
     offset: 0x4C
-  - label: BG3YPosition
+  - desc: BG3 Y position
+    label: BG3YPosition
     type: u16
     offset: 0x4E
-  - label: NumOfNeverReformBlocksBroken
+  - desc: Number of never reform blocks broken
+    label: NumOfNeverReformBlocksBroken
     type: NumNeverReformBlocksBroken
     offset: 0x50
-  - label: NumOfTanksCollected
+  - desc: Number of tanks collected
+    label: NumOfTanksCollected
     type: NumTanksCollected
     offset: 0x58
-  - label: SamusData
+  - desc: Samus data
+    label: SamusData
     type: SamusData
     offset: 0x60
-  - label: SamusAnimationInfo
+  - desc: Samus animation info
+    label: SamusAnimationInfo
     type: SamusAnimationInfo
     offset: 0x8C
-  - label: SamusEcho
+  - desc: Samus echo
+    label: SamusEcho
     type: SamusEcho
     offset: 0x98
-  - label: SamusTimersCounters
+  - desc: Samus timers counters
+    label: SamusTimersCounters
     type: SamusTimersAndCounters
     offset: 0xA4
-  - label: Equipment
+  - desc: Equipment
+    label: Equipment
     type: Equipment
     offset: 0xC4
-  - label: FreezeMovementTimer
+  - desc: Freeze movement timer
+    label: FreezeMovementTimer
     type: u16
     offset: 0xD4
-  - label: DisableDrawingSamusAndScrollingFlag
+  - desc: Disable drawing Samus and scrolling flag
+    label: DisableDrawingSamusAndScrollingFlag
     type: u8
     offset: 0xD6
-  - label: AtmosphericStabilizersOnline
+  - desc: Atmospheric stabilizers online
+    label: AtmosphericStabilizersOnline
     type: u16
     tags:
     - flags
     offset: 0xD8
-  - label: NormalXBarrierCoresDestroyed
+  - desc: Normal X barrier cores destroyed
+    label: NormalXBarrierCoresDestroyed
     type: u16
     tags:
     - flags
     offset: 0xDA
-  - label: SuperXBarrierCoresDestroyed
+  - desc: Super X barrier cores destroyed
+    label: SuperXBarrierCoresDestroyed
     type: u16
     tags:
     - flags
     offset: 0xDC
-  - label: PowerXBarrierCoresDestroyed
+  - desc: Power X barrier cores destroyed
+    label: PowerXBarrierCoresDestroyed
     type: u16
     tags:
     - flags
     offset: 0xDE
-  - label: EyedoorsDestroyed
+  - desc: Eyedoors destroyed
+    label: EyedoorsDestroyed
     type: u16
     tags:
     - flags
     offset: 0xE0
-  - label: MissileHatchDestroyed
+  - desc: Missile hatch destroyed
+    label: MissileHatchDestroyed
     type: u8
     offset: 0xE2
-  - label: WaterLoweredFlag
+  - desc: Water lowered flag
+    label: WaterLoweredFlag
     type: u8
     offset: 0xE3
-  - label: InGameTimer
+  - desc: In game timer
+    label: InGameTimer
     type: InGameTime
     offset: 0xE4
-  - label: MusicSlot1
+  - desc: Music slot 1
+    label: MusicSlot1
     type: u16
     offset: 0xE8
-  - label: MusicSlot2
+  - desc: Music slot 2
+    label: MusicSlot2
     type: u16
     offset: 0xEA
-  - label: MusicSlotSwitch
+  - desc: Music slot switch
+    label: MusicSlotSwitch
     type: u8
     offset: 0xEC
-  - label: EventBasedMusicFlag
+  - desc: Event based music flag
+    label: EventBasedMusicFlag
     type: u8
     offset: 0xED
-  - label: MusicRelated
+  - desc: Music related
+    label: MusicRelated
     type: u8
     offset: 0xEE
-  - label: Difficulty
+  - desc: Difficulty
+    label: Difficulty
     type: u8
     offset: 0xF0
     enum: Difficulty
-  - label: BestCompletionTimesUnused
+  - desc: Best completion times unused
+    label: BestCompletionTimesUnused
     type: InGameTime [0xC]
     offset: 0xF4
-  - label: Save_endText
+  - desc: Save end text
+    label: Save_endText
     type: s8 [0x8]
     tags:
     - ascii
     offset: 0x124
-  - label: MinimapVisitedTiles
+  - desc: Minimap visited tiles
+    label: MinimapVisitedTiles
     type: u8 [0x380]
     offset: 0x300
-  - label: NeverReformBlocks
+  - desc: Never reform blocks
+    label: NeverReformBlocks
     type: NeverReformBlock [0x300]
     offset: 0x680
-  - label: TanksCollected
+  - desc: Tanks collected
+    label: TanksCollected
     type: CollectedTank [0xA0]
     offset: 0xF80
 SaxData:
   size: 0x24
   vars:
-  - label: OnScreenFlag
+  - desc: On screen flag
+    label: OnScreenFlag
     type: u8
     offset: 0x0
     enum: SaxOnScreenFlag
-  - label: Pose
+  - desc: Pose
+    label: Pose
     type: u8
     offset: 0x1
     enum: SaxPose
-  - label: TurningFlag
+  - desc: Turning flag
+    label: TurningFlag
     type: u8
     offset: 0x2
-  - label: FrozenGfxFlag
+  - desc: Frozen graphics flag
+    label: FrozenGfxFlag
     type: u8
     offset: 0x5
-  - label: Direction
+  - desc: Direction
+    label: Direction
     type: u8
     offset: 0x8
     enum: HorizontalDirection
-  - label: SaxXPosition
+  - desc: SA-X X position
+    label: SaxXPosition
     type: u16
     offset: 0xA
-  - label: SaxYPosition
+  - desc: SA-X Y position
+    label: SaxYPosition
     type: u16
     offset: 0xC
 ScreenPositionAndVelocity:
   size: 0x14
   vars:
-  - label: ScreenXPosition
+  - desc: Screen X position
+    label: ScreenXPosition
     type: u16
     offset: 0x0
-  - label: ScreenYPosition
+  - desc: Screen Y position
+    label: ScreenYPosition
     type: u16
     offset: 0x4
-  - label: ScreenXVelocity
+  - desc: Screen X velocity
+    label: ScreenXVelocity
     type: u8
     offset: 0x6
-  - label: ScreenYVelocity
+  - desc: Screen Y velocity
+    label: ScreenYVelocity
     type: u8
     offset: 0x7
-  - label: unk_08
+  - desc: Unknown 08
+    label: unk_08
     type: u8
     offset: 0x8
-  - label: unk_09
+  - desc: Unknown 09
+    label: unk_09
     type: u8
     offset: 0x9
-  - label: BG3Related
+  - desc: BG3 related
+    label: BG3Related
     type: u8
     offset: 0xA
-  - label: unk_0C
+  - desc: Unknown 0C
+    label: unk_0C
     type: u16
     offset: 0xC
 ScreenShake:
   size: 0x4
   vars:
-  - label: Timer
+  - desc: Timer
+    label: Timer
     type: u8
     offset: 0x0
-  - label: LoopCounter
+  - desc: Loop counter
+    label: LoopCounter
     type: u8
     offset: 0x1
-  - label: unk_02
+  - desc: Unknown 02
+    label: unk_02
     type: u8
     offset: 0x2
-  - label: unk_03
+  - desc: Unknown 03
+    label: unk_03
     type: u8
     offset: 0x3
 SecondarySpriteStats:
   size: 0x8
   vars:
-  - label: SpawnHealth
+  - desc: Spawn health
+    label: SpawnHealth
     type: u16
     offset: 0x0
-  - label: Damage
+  - desc: Damage
+    label: Damage
     type: u16
     offset: 0x2
-  - label: SuitDamageReduction
+  - desc: Suit damage reduction
+    label: SuitDamageReduction
     type: u16
     offset: 0x4
     enum: SuitDamageReduction
-  - label: Weakness
+  - desc: Weakness
+    label: Weakness
     type: u16
     tags:
     - flags
@@ -1898,275 +2405,349 @@ SecondarySpriteStats:
 SecurityUnlockEvent:
   size: 0x8
   vars:
-  - label: SecurityLevel
+  - desc: Security level
+    label: SecurityLevel
     type: u8
     offset: 0x0
-  - label: AreaId
+  - desc: Area id
+    label: AreaId
     type: u8
     offset: 0x1
     enum: AreaID
-  - label: PrevEvent
+  - desc: Previous event
+    label: PrevEvent
     type: u8
     offset: 0x2
     enum: Event
-  - label: NewEvent
+  - desc: New event
+    label: NewEvent
     type: u8
     offset: 0x3
     enum: Event
-  - label: SubEvent
+  - desc: Sub event
+    label: SubEvent
     type: u16
     offset: 0x4
 SoundDataEntry:
   size: 0x8
   vars:
-  - label: SoundHeaderPtr
+  - desc: Sound header pointer
+    label: SoundHeaderPtr
     type: u8 *
     offset: 0x0
-  - label: TrackGroupNum
+  - desc: Track group number
+    label: TrackGroupNum
     type: u16
     offset: 0x4
-  - label: TrackGroupNum
+  - desc: Track group number
+    label: TrackGroupNum
     type: u16
     offset: 0x6
 SpriteData:
   size: 0x38
   vars:
-  - label: Status
+  - desc: Status
+    label: Status
     type: u16
     tags:
     - flags
     offset: 0x0
     enum: SpriteStatus
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x2
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0x4
-  - label: XParasiteTimer
+  - desc: X parasite timer
+    label: XParasiteTimer
     type: u16
     offset: 0x6
-  - label: XParasiteRelated
+  - desc: X parasite related
+    label: XParasiteRelated
     type: u16
     offset: 0x8
-  - label: HitboxTopOffset
+  - desc: Hitbox top offset
+    label: HitboxTopOffset
     type: u16
     offset: 0xA
-  - label: HitboxBottomOffset
+  - desc: Hitbox bottom offset
+    label: HitboxBottomOffset
     type: u16
     offset: 0xC
-  - label: HitboxLeftOffset
+  - desc: Hitbox left offset
+    label: HitboxLeftOffset
     type: u16
     offset: 0xE
-  - label: HitboxRightOffset
+  - desc: Hitbox right offset
+    label: HitboxRightOffset
     type: u16
     offset: 0x10
-  - label: OamScaling
+  - desc: OAM scaling
+    label: OamScaling
     type: u16
     offset: 0x12
-  - label: Health
+  - desc: Health
+    label: Health
     type: u16
     offset: 0x14
-  - label: CurrAnimationFrame
+  - desc: Current animation frame
+    label: CurrAnimationFrame
     type: u16
     offset: 0x16
-  - label: OamPtr
+  - desc: OAM pointer
+    label: OamPtr
     type: Oam *
     offset: 0x18
-  - label: AnimationDurationCounter
+  - desc: Animation duration counter
+    label: AnimationDurationCounter
     type: u8
     offset: 0x1C
-  - label: SpriteId
+  - desc: Sprite id
+    label: SpriteId
     type: u8
     offset: 0x1D
-  - label: RoomSlotPartNum
+  - desc: Room slot part number
+    label: RoomSlotPartNum
     type: u8
     offset: 0x1E
-  - label: SpritesetGfxSlot
+  - desc: Spriteset graphics slot
+    label: SpritesetGfxSlot
     type: u8
     offset: 0x1F
-  - label: PaletteRow
+  - desc: Palette row
+    label: PaletteRow
     type: u8
     offset: 0x20
-  - label: BGPriority
+  - desc: Background priority
+    label: BGPriority
     type: u8
     offset: 0x21
-  - label: DrawOrder
+  - desc: Draw order
+    label: DrawOrder
     type: u8
     offset: 0x22
-  - label: PrimarySpriteRamSlot
+  - desc: Primary sprite RAM slot
+    label: PrimarySpriteRamSlot
     type: u8
     offset: 0x23
-  - label: Pose
+  - desc: Pose
+    label: Pose
     type: u8
     offset: 0x24
-  - label: SamusCollision
+  - desc: Samus collision
+    label: SamusCollision
     type: u8
     offset: 0x25
     enum: SpriteSamusCollision
-  - label: IgnoreSamusCollisionTimer
+  - desc: Ignore Samus collision timer
+    label: IgnoreSamusCollisionTimer
     type: u8
     offset: 0x26
-  - label: DrawDistanceTopOffset
+  - desc: Draw distance top offset
+    label: DrawDistanceTopOffset
     type: u8
     offset: 0x27
-  - label: DrawDistanceBottomOffset
+  - desc: Draw distance bottom offset
+    label: DrawDistanceBottomOffset
     type: u8
     offset: 0x28
-  - label: DrawDistanceHorizontalOffset
+  - desc: Draw distance horizontal offset
+    label: DrawDistanceHorizontalOffset
     type: u8
     offset: 0x29
-  - label: PropertySpritesetSlot
+  - desc: Property spriteset slot
+    label: PropertySpritesetSlot
     type: u8
     offset: 0x2A
-  - label: OamRotation
+  - desc: OAM rotation
+    label: OamRotation
     type: u8
     offset: 0x2B
-  - label: InvincibilityStunFlashTimer
+  - desc: Invincibility stun flash timer
+    label: InvincibilityStunFlashTimer
     type: u8
     offset: 0x2C
-  - label: unk_2D
+  - desc: Unknown 2D
+    label: unk_2D
     type: u8
     offset: 0x2D
-  - label: Timer1
+  - desc: Timer 1
+    label: Timer1
     type: u8
     offset: 0x2E
-  - label: Timer2
+  - desc: Timer 2
+    label: Timer2
     type: u8
     offset: 0x2F
-  - label: unk_30
+  - desc: Unknown 30
+    label: unk_30
     type: u8
     offset: 0x30
-  - label: unk_31
+  - desc: Unknown 31
+    label: unk_31
     type: u8
     offset: 0x31
-  - label: FreezeTimer
+  - desc: Freeze timer
+    label: FreezeTimer
     type: u8
     offset: 0x32
-  - label: StandingOnSpriteFlag
+  - desc: Standing on sprite flag
+    label: StandingOnSpriteFlag
     type: u8
     offset: 0x33
-  - label: Properties
+  - desc: Properties
+    label: Properties
     type: u8
     tags:
     - flags
     offset: 0x34
     enum: SpriteProperties
-  - label: FrozenPaletteRowOffset
+  - desc: Frozen palette row offset
+    label: FrozenPaletteRowOffset
     type: u8
     offset: 0x35
-  - label: unk_36
+  - desc: Unknown 36
+    label: unk_36
     type: u8
     offset: 0x36
 SpriteDebris:
   size: 0x10
   vars:
-  - label: OamPtr
+  - desc: OAM pointer
+    label: OamPtr
     type: Oam *
     offset: 0x0
-  - label: CurrAnimationFrame
+  - desc: Current animation frame
+    label: CurrAnimationFrame
     type: u16
     offset: 0x4
-  - label: YPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0x6
-  - label: XPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0x8
-  - label: AnimationDurationCounter
+  - desc: Animation duration counter
+    label: AnimationDurationCounter
     type: u8
     offset: 0xA
-  - label: ExistsFlag
+  - desc: Exists flag
+    label: ExistsFlag
     type: u8
     offset: 0xB
-  - label: DebrisType
+  - desc: Debris type
+    label: DebrisType
     type: u8
     offset: 0xC
-  - label: FrameCounter
+  - desc: Frame counter
+    label: FrameCounter
     type: u8
     offset: 0xD
-  - label: VelocityArrayOffset
+  - desc: Velocity array offset
+    label: VelocityArrayOffset
     type: u8
     offset: 0xE
 SpritesetEntry:
   size: 0x2
   vars:
-  - label: SpriteId
+  - desc: Sprite id
+    label: SpriteId
     type: u8
     offset: 0x0
     enum: PrimarySpriteID
-  - label: GfxRow
+  - desc: Graphics row
+    label: GfxRow
     type: u8
     offset: 0x1
 SuitDamageReductionPercent:
   size: 0x6
   vars:
-  - label: FractionOfDamageDealt_FusionSuit
+  - desc: Fraction of damage dealt fusion suit
+    label: FractionOfDamageDealt_FusionSuit
     type: u16
     offset: 0x0
     notes: Out of 10
-  - label: FractionOfDamageDealt_VariaSuit
+  - desc: Fraction of damage dealt varia suit
+    label: FractionOfDamageDealt_VariaSuit
     type: u16
     offset: 0x2
     notes: Out of 10
-  - label: FractionOfDamageDealt_GravitySuit
+  - desc: Fraction of damage dealt gravity suit
+    label: FractionOfDamageDealt_GravitySuit
     type: u16
     offset: 0x4
     notes: Out of 10
 TankIncreaseAmounts:
   size: 0x3
   vars:
-  - label: Energy
+  - desc: Energy
+    label: Energy
     type: u8
     offset: 0x0
-  - label: Missiles
+  - desc: Missiles
+    label: Missiles
     type: u8
     offset: 0x1
-  - label: PowerBombs
+  - desc: Power bombs
+    label: PowerBombs
     type: u8
     offset: 0x2
 TilemapAndClipdataPtrs:
   size: 0xC
   vars:
-  - label: TilemapPtr
+  - desc: Tilemap pointer
+    label: TilemapPtr
     type: u16 *
     tags:
     - tilemap
     offset: 0x0
-  - label: ClipdataCollisionTypesPtr
+  - desc: Clipdata collision types pointer
+    label: ClipdataCollisionTypesPtr
     type: u8 *
     offset: 0x4
-  - label: ClipdataBehaviorTypesPtr
+  - desc: Clipdata behavior types pointer
+    label: ClipdataBehaviorTypesPtr
     type: u16 *
     offset: 0x8
 TilesetEntry:
   size: 0x14
   vars:
-  - label: RleBGGfxPtr
+  - desc: RLE background graphics pointer
+    label: RleBGGfxPtr
     type: u8 *
     tags:
     - lz
     - gfx
     offset: 0x0
-  - label: BGPalettePtr
+  - desc: Background palette pointer
+    label: BGPalettePtr
     type: u16 *
     tags:
     - palette
     offset: 0x4
-  - label: LZ77BGGfxPtr
+  - desc: LZ77 background graphics pointer
+    label: LZ77BGGfxPtr
     type: u8 *
     tags:
     - lz
     - gfx
     offset: 0x8
-  - label: RleBGTilemapPtr
+  - desc: RLE background tilemap pointer
+    label: RleBGTilemapPtr
     type: u16 *
     tags:
     - tilemap
     offset: 0xC
-  - label: AnimatedTileset
+  - desc: Animated tileset
+    label: AnimatedTileset
     type: u8
     offset: 0x10
-  - label: AnimatedPalette
+  - desc: Animated palette
+    label: AnimatedPalette
     type: u8
     offset: 0x11
