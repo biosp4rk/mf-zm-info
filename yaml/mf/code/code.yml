@@ -52,7 +52,7 @@
   return: null
   notes: Called when the game boots to setup RAM
 -
-  desc: Empty function for V blank code
+  desc: Empty function for V-Blank code
   label: EmptyFunctionForVBlankCode
   addr:
     U: 0x8B0
@@ -75,7 +75,7 @@
   return: null
   notes: Checks if the soft reset button combo is pressed
 -
-  desc: Empty function soft reset related
+  desc: Empty function (soft reset related)
   label: EmptyFunction_SoftResetRelated
   addr:
     U: 0x8E8
@@ -100,7 +100,7 @@
   params: null
   return: null
 -
-  desc: Call LZ77 un comp 16 bit
+  desc: Call LZ77UnComp16Bit
   label: CallLZ77UnComp16Bit
   addr:
     U: 0x9EC
@@ -116,8 +116,9 @@
     label: DestinationAddress
     type: u16 *
   return: null
+  notes: Calls LZ77UnCompReadNormalWrite16bit
 -
-  desc: Call LZ77 un comp 8 bit
+  desc: Call LZ77UnComp8Bit
   label: CallLZ77UnComp8Bit
   addr:
     U: 0x9F8
@@ -133,8 +134,9 @@
     label: DestinationAddress
     type: u8 *
   return: null
+  notes: Calls LZ77UnCompReadNormalWrite8bit
 -
-  desc: Call div arm
+  desc: Call DivArm
   label: CallDivArm
   addr:
     U: 0xA04
@@ -146,7 +148,7 @@
   return: null
   notes: Tests both DivArm functions
 -
-  desc: Call sound bias
+  desc: Call SoundBias
   label: CallSoundBias
   addr:
     U: 0xA1C
@@ -168,7 +170,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates controller input
+  notes: Reads controller input from I/O RAM
 -
   desc: Clear RAM
   label: ClearRAM
@@ -203,7 +205,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Clears the OAM after NextOamSlot
 -
   desc: Fixed point multiply
   label: FixedPointMultiply
@@ -268,7 +269,7 @@
     notes: 1/65536 scaling factor
   notes: Fixed-point inverse of a value, with a scaling factor of 1/65536
 -
-  desc: Call V blank code
+  desc: Call V-Blank code
   label: CallVBlankCode
   addr:
     U: 0xB5C
@@ -279,7 +280,7 @@
   params: null
   return: null
 -
-  desc: Set V blank code pointer
+  desc: Set V-Blank code pointer
   label: SetVBlankCodePtr
   addr:
     U: 0xB88
@@ -288,12 +289,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: V blank code pointer
+  - desc: V-Blank code pointer
     label: VBlankCodePtr
     type: void *
+    tags:
+    - thumb
   return: null
 -
-  desc: Call H blank code
+  desc: Call H-Blank code
   label: CallHBlankCode
   addr:
     U: 0xBA4
@@ -304,7 +307,7 @@
   params: null
   return: null
 -
-  desc: Set H blank code pointer
+  desc: Set H-Blank code pointer
   label: SetHBlankCodePtr
   addr:
     U: 0xBC8
@@ -313,12 +316,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: H blank code pointer
+  - desc: H-Blank code pointer
     label: HBlankCodePtr
     type: void *
+    tags:
+    - thumb
   return: null
 -
-  desc: Call V count code
+  desc: Call V-Count code
   label: CallVCountCode
   addr:
     U: 0xBE4
@@ -329,7 +334,7 @@
   params: null
   return: null
 -
-  desc: Set V count code pointer
+  desc: Set V-Count code pointer
   label: SetVCountCodePtr
   addr:
     U: 0xC08
@@ -338,9 +343,11 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: V count code pointer
+  - desc: V-Count code pointer
     label: VCountCodePtr
     type: void *
+    tags:
+    - thumb
   return: null
 -
   desc: Empty function for blanking code
@@ -353,7 +360,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty interrupt callback
 -
   desc: Empty function sound related
   label: EmptyFunction_SoundRelated

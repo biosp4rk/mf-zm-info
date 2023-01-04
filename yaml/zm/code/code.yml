@@ -35,6 +35,7 @@
   mode: thumb
   params: null
   return: null
+  notes: Code that runs every frame
 -
   desc: Initialize game
   label: InitGame
@@ -46,7 +47,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Initialize the game data
+  notes: Called when the game boots to setup RAM
 -
   desc: Soft reset check
   label: SoftResetCheck
@@ -58,7 +59,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Checks if a soft reset should happen
+  notes: Checks if the soft reset button combo is pressed
 -
   desc: Soft reset
   label: SoftReset
@@ -73,9 +74,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles a soft reset
 -
-  desc: Call LZ77 un comp 16 bit
+  desc: Call LZ77UnComp16Bit
   label: CallLZ77UnComp16Bit
   addr:
     U: 0x90C
@@ -93,7 +93,7 @@
   return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit
 -
-  desc: Call LZ77 un comp 8 bit
+  desc: Call LZ77UnComp8Bit
   label: CallLZ77UnComp8Bit
   addr:
     U: 0x918
@@ -111,7 +111,7 @@
   return: null
   notes: Calls LZ77UnCompReadNormalWrite8bit
 -
-  desc: Call sound bias
+  desc: Call SoundBias
   label: CallSoundBias
   addr:
     U: 0x940
@@ -123,7 +123,7 @@
   return: null
   notes: Calls SoundBias0 and SoundBias0x200
 -
-  desc: Call multi boot
+  desc: Call MultiBoot
   label: CallMultiBoot
   addr:
     U: 0x950
@@ -133,9 +133,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls MultiBoot
 -
-  desc: Call V blank intr wait
+  desc: Call VBlankIntrWait
   label: CallVBlankIntrWait
   addr:
     U: 0x95C
@@ -145,7 +144,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls VBlankIntrWait
 -
   desc: Update input
   label: UpdateInput
@@ -157,7 +155,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the input
+  notes: Reads controller input from I/O RAM
 -
   desc: Clear RAM
   label: ClearRAM
@@ -169,7 +167,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Clears OAM, PALRAM and VRAM
+  notes: Clears VRAM, OAM, and PALRAM
 -
   desc: Load interrupt code
   label: LoadInterruptCode
@@ -181,7 +179,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads the interrupt code
 -
   desc: Reset free OAM
   label: ResetFreeOam
@@ -193,7 +190,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Resets the OAM
 -
   desc: Fixed point multiply
   label: FixedPointMultiply
@@ -210,7 +206,7 @@
   - desc: Multiplier
     label: Multiplier
     type: s16
-    notes: Multiplier (1/256)
+    notes: 1/256 scaling factor
   return:
     desc: Product
     label: Product
@@ -232,7 +228,7 @@
   - desc: Divisor
     label: Divisor
     type: s16
-    notes: Divisor (1/4)
+    notes: 1/4 scaling factor
   return:
     desc: Quotient
     label: Quotient
@@ -255,10 +251,10 @@
     desc: Inverse
     label: Inverse
     type: s16
-    notes: Inverse (1/65536)
+    notes: 1/65536 scaling factor
   notes: Fixed-point inverse of a value, with a scaling factor of 1/65536
 -
-  desc: Call V blank code
+  desc: Call V-Blank code
   label: CallVBlankCode
   addr:
     U: 0xA98
@@ -268,9 +264,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls the Vblank code with the function in VBlankCodePointer
 -
-  desc: Set V blank code pointer
+  desc: Set V-Blank code pointer
   label: SetVBlankCodePtr
   addr:
     U: 0xAE4
@@ -279,16 +274,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: V blank code pointer
+  - desc: V-Blank code pointer
     label: VBlankCodePtr
     type: void *
     tags:
     - thumb
-    notes: V-Blank code pointer
   return: null
-  notes: Sets VBlankCodePointer to r0
 -
-  desc: Call H blank code
+  desc: Call H-Blank code
   label: CallHBlankCode
   addr:
     U: 0xB00
@@ -298,9 +291,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls the Vblank code with the function in HBlankCodePointer
 -
-  desc: Set H blank code pointer
+  desc: Set H-Blank code pointer
   label: SetHBlankCodePtr
   addr:
     U: 0xB24
@@ -309,16 +301,14 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: H blank code pointer
+  - desc: H-Blank code pointer
     label: HBlankCodePtr
     type: void *
     tags:
     - thumb
-    notes: H-Blank code pointer
   return: null
-  notes: Sets HBlankCodePointer to r0
 -
-  desc: Call V count code
+  desc: Call V-Count code
   label: CallVCountCode
   addr:
     U: 0xB40
@@ -328,9 +318,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls the VCount code with the function in VCountCodePointer
 -
-  desc: Set V count code pointer
+  desc: Set V-Count code pointer
   label: SetVCountCodePtr
   addr:
     U: 0xB64
@@ -339,14 +328,12 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: V count code pointer
+  - desc: V-Count code pointer
     label: VCountCodePtr
     type: void *
     tags:
     - thumb
-    notes: V-Count code pointer
   return: null
-  notes: Sets VCountCodePointer to r0
 -
   desc: Call serial communication code
   label: CallSerialCommunicationCode
@@ -358,7 +345,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls the serial communication code with the function in SerialCommunicationCodePointer
 -
   desc: Set serial communication code
   label: SetSerialCommunicationCode
@@ -374,11 +360,9 @@
     type: void *
     tags:
     - thumb
-    notes: Function pointer
   return: null
-  notes: Sets SerialCommunicationCodePointer to r0
 -
-  desc: Call timer 3 overflow code
+  desc: Call Timer 3 overflow code
   label: CallTimer3OverflowCode
   addr:
     U: 0xBC0
@@ -388,9 +372,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls the timer 3 overflow code with the function in Timer3OverflowCodePointer
 -
-  desc: Set timer 3 overflow code
+  desc: Set Timer 3 overflow code
   label: SetTimer3OverflowCode
   addr:
     U: 0xBE4
@@ -404,11 +387,9 @@
     type: void *
     tags:
     - thumb
-    notes: Function pointer
   return: null
-  notes: Sets Timer3OverflowCodePointer to r0
 -
-  desc: Empty function C 00
+  desc: Empty function C00
   label: EmptyFunction_C00
   addr:
     U: 0xC00
@@ -418,10 +399,9 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function (interrupt handler)
 -
-  desc: Music empty function
-  label: Music_EmptyFunction
+  desc: Empty function (music related)
+  label: EmptyFunction_Music
   addr:
     U: 0x24BC
     E: 0x2510
@@ -430,7 +410,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Empty function
 -
   desc: Initialize sound
   label: InitSound
@@ -456,8 +435,8 @@
   return: null
   notes: Sets up 2 repeat DMA Transfers from the raw sound data to the FIFO channels
 -
-  desc: Play sound 1
-  label: PlaySound1
+  desc: Play sound
+  label: PlaySound
   addr:
     U: 0x2A18
     E: 0x2A6C
@@ -465,11 +444,10 @@
   size: 0x10
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   return: null
-  notes: Plays a sound
 -
   desc: Stop sound
   label: StopSound
@@ -480,11 +458,10 @@
   size: 0x10
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   return: null
-  notes: Stops a sound
 -
   desc: Stop all music and sounds
   label: StopAllMusicAndSounds
@@ -496,7 +473,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Stops every music/sound currently playing
 -
   desc: Fade all sounds
   label: FadeAllSounds
@@ -511,7 +487,6 @@
     label: Timer
     type: u16
   return: null
-  notes: Fades every single sound
 -
   desc: Play sound if not playing
   label: PlaySoundIfNotPlaying
@@ -522,11 +497,11 @@
   size: 0x44
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   return: null
-  notes: Plays a sound, only if it's not currently playing
+  notes: Plays a sound if it's not already playing
 -
   desc: Fade sound
   label: FadeSound
@@ -537,14 +512,13 @@
   size: 0x14
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   - desc: Timer
     label: Timer
     type: u16
   return: null
-  notes: Fades a sound
 -
   desc: Apply music or sound fading
   label: ApplyMusicOrSoundFading
@@ -558,12 +532,10 @@
   - desc: Track data pointer
     label: TrackDataPtr
     type: u8 *
-    notes: Track data pointer
   - desc: Timer
     label: Timer
     type: u16
   return: null
-  notes: Applies the fading for a sound/music
 -
   desc: Play sound after cutscene
   label: PlaySoundAfterCutscene
@@ -574,14 +546,14 @@
   size: 0x14
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   - desc: Timer
     label: Timer
     type: u16
   return: null
-  notes: Plays a fading in sound (used to replay the elevator sound after a cutscene)
+  notes: Plays a sound that fades in (used to replay the elevator sound after a cutscene)
 -
   desc: Initialize fade in music
   label: InitFadeInMusic
@@ -595,16 +567,13 @@
   - desc: Track data pointer
     label: TrackDataPtr
     type: u8 *
-    notes: Track data pointer
   - desc: Sound entry pointer
     label: SoundEntryPtr
     type: u8 *
-    notes: Sound entry pointer
   - desc: Timer
     label: Timer
     type: u16
   return: null
-  notes: Initialises a music that fades in
 -
   desc: DMA transfer
   label: DMATransfer
@@ -815,8 +784,8 @@
   size: 0x68
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   - desc: Timer
     label: Timer
@@ -833,8 +802,8 @@
   size: 0x70
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   - desc: Timer
     label: Timer
@@ -866,8 +835,8 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: Sound id
-    label: SoundId
+  - desc: Sound ID
+    label: SoundID
     type: u16
   return: null
   notes: Replays a sound test
@@ -3943,7 +3912,7 @@
   size: 0x2C
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -3963,7 +3932,7 @@
   size: 0x40
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -4035,7 +4004,7 @@
   size: 0xC4
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: SecondarySpriteID
@@ -4078,7 +4047,7 @@
   size: 0xB8
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -4117,7 +4086,7 @@
   size: 0xC4
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -4726,7 +4695,7 @@
   size: 0x9C
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: SecondarySpriteID
@@ -4942,7 +4911,7 @@
   size: 0x50
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -4961,7 +4930,7 @@
   size: 0x60
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: SecondarySpriteID
@@ -4980,7 +4949,7 @@
   size: 0x60
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -4999,7 +4968,7 @@
   size: 0x58
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: PrimarySpriteID
@@ -5019,7 +4988,7 @@
   size: 0x60
   mode: thumb
   params:
-  - desc: Sprite id
+  - desc: Sprite ID
     label: SpriteId
     type: u8
     enum: SecondarySpriteID
@@ -8631,11 +8600,11 @@
   size: 0xC8
   mode: thumb
   params:
-  - desc: Area id
+  - desc: Area ID
     label: AreaId
     type: u8
     enum: AreaID
-  - desc: Room id 1
+  - desc: Room ID 1
     label: RoomId1
     type: u8
   - desc: BGXPosition
@@ -10393,11 +10362,11 @@
   size: 0xBC
   mode: thumb
   params:
-  - desc: Area id
+  - desc: Area ID
     label: AreaId
     type: u8
     enum: AreaID
-  - desc: Room id
+  - desc: Room ID
     label: RoomId
     type: u8
   return: null
@@ -11436,7 +11405,7 @@
   size: 0x6C
   mode: thumb
   params:
-  - desc: Area id
+  - desc: Area ID
     label: AreaId
     type: u8
     enum: AreaID
@@ -11455,7 +11424,7 @@
   size: 0x128
   mode: thumb
   params:
-  - desc: Area id
+  - desc: Area ID
     label: AreaId
     type: u8
     enum: AreaID
@@ -11602,7 +11571,7 @@
   size: 0x24
   mode: thumb
   params:
-  - desc: Character id
+  - desc: Character ID
     label: CharacterId
     type: u16
   return:
@@ -11697,7 +11666,7 @@
     J: 0x90
   mode: thumb
   params:
-  - desc: Location text id
+  - desc: Location text ID
     label: LocationTextId
     type: u8
   - desc: Graphics slot
@@ -11716,7 +11685,7 @@
   size: 0x20
   mode: thumb
   params:
-  - desc: Story text id
+  - desc: Story text ID
     label: StoryTextId
     type: u8
   return: null
@@ -12589,7 +12558,7 @@
   size: 0x110
   mode: thumb
   params:
-  - desc: Time attack id
+  - desc: Time attack ID
     label: TimeAttackId
     type: u8
   return: null
