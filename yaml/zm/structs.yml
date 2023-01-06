@@ -56,14 +56,12 @@ AnimatedGraphicsEntry:
     label: NumOfStates
     type: u8
     offset: 0x2
-    notes: Number of states
   - desc: Pointer to graphics
     label: PtrToGfx
     type: u8 *
     tags:
     - gfx
     offset: 0x4
-    notes: Pointer to graphics
 AnimatedPaletteAndTilesetNum:
   size: 0x2
   vars:
@@ -71,12 +69,10 @@ AnimatedPaletteAndTilesetNum:
     label: AnimatedPaletteNum
     type: u8
     offset: 0x0
-    notes: Animated palette number
   - desc: Animated tileset number
     label: AnimatedTilesetNum
     type: u8
     offset: 0x1
-    notes: Animated tileset number
 AnimatedPaletteEntry:
   size: 0x8
   vars:
@@ -93,14 +89,12 @@ AnimatedPaletteEntry:
     label: NumOfStates
     type: u8
     offset: 0x2
-    notes: Number of states
   - desc: Pointer to palette
     label: PtrToPalette
     type: u16 *
     tags:
     - palette
     offset: 0x4
-    notes: Pointer to palette
 AnimatedPaletteTiming:
   size: 0x3
   vars:
@@ -256,7 +250,6 @@ BGPtrsAndDimensions:
     label: PtrToDecompressedBG0
     type: u16 *
     offset: 0x0
-    notes: Pointer to decompressed BG0
   - desc: Width of BG0 in blocks
     label: WidthOfBG0InBlocks
     type: u16
@@ -269,7 +262,6 @@ BGPtrsAndDimensions:
     label: PtrToDecompressedBG1
     type: u16 *
     offset: 0x8
-    notes: Pointer to decompressed BG1
   - desc: Width of BG1 in blocks
     label: WidthOfBG1InBlocks
     type: u16
@@ -282,7 +274,6 @@ BGPtrsAndDimensions:
     label: PtrToDecompressedBG2
     type: u16 *
     offset: 0x10
-    notes: Pointer to decompressed BG2
   - desc: Width of BG2 in blocks
     label: WidthOfBG2InBlocks
     type: u16
@@ -295,7 +286,6 @@ BGPtrsAndDimensions:
     label: PtrToDecompressedClipdata
     type: u16 *
     offset: 0x18
-    notes: Pointer to decompressed clipdata
   - desc: Width of clipdata in blocks
     label: WidthOfClipdataInBlocks
     type: u16
@@ -395,7 +385,6 @@ BombChainData:
     label: CurrBlockOffset
     type: u8
     offset: 0x0
-    notes: Current block offset
   - desc: Starting X position
     label: StartingXPosition
     type: u8
@@ -417,7 +406,6 @@ BossMapIcon:
     type: u8
     offset: 0x0
     enum: Event
-    notes: Event number
   - desc: Boss icon number
     label: BossIconNum
     type: u8
@@ -613,7 +601,6 @@ ChozoTargetCheck:
     label: EquipmentBitFlagOrEventNum
     type: u8
     offset: 0x1
-    notes: Equipment bit flag or event number
 CurrAffectingClipdata:
   size: 0x4
   vars:
@@ -627,7 +614,6 @@ CurrAffectingClipdata:
     type: u16
     offset: 0x2
     enum: HazardType
-    notes: Current affecting hazard
 CurrDemo:
   size: 0x4
   vars:
@@ -635,7 +621,6 @@ CurrDemo:
     label: Num
     type: u8
     offset: 0x0
-    notes: Number
   - desc: Playing flag
     label: PlayingFlag
     type: u8
@@ -675,12 +660,10 @@ CurrMessageSubData1:
     label: CurrCharacterIndex
     type: u16
     offset: 0x0
-    notes: Current character index
   - desc: Current indent
     label: CurrIndent
     type: u16
     offset: 0x2
-    notes: Current indent
 CurrMessageSubData2:
   size: 0x4
   vars:
@@ -692,12 +675,10 @@ CurrMessageSubData2:
     label: CurrColor
     type: u8
     offset: 0x2
-    notes: Current color
   - desc: Current line
     label: CurrLine
     type: u8
     offset: 0x3
-    notes: Current line
 CurrMessageSubData3:
   size: 0x4
   vars:
@@ -709,12 +690,10 @@ CurrMessageSubData3:
     label: MessageNum
     type: u8
     offset: 0x2
-    notes: Message number
   - desc: Graphics slot
     label: GfxSlot
     type: u8
     offset: 0x3
-    notes: Graphics slot
 CurrMessageSubData4:
   size: 0x4
   vars:
@@ -790,7 +769,6 @@ CurrRoomEntry:
     label: TilesetNum
     type: u8
     offset: 0x0
-    notes: Tileset number
   - desc: BG0 properties
     label: BG0Properties
     type: u8
@@ -828,7 +806,6 @@ CurrRoomEntry:
     label: PtrToSpriteLayoutData
     type: RoomSpriteEntry *
     offset: 0x8
-    notes: Pointer to sprite layout data
   - desc: Event to use the first spriteset
     label: EventToUseTheFirstSpriteset
     type: u8
@@ -882,12 +859,10 @@ CurrRoomEntry:
     label: AnimatedTilesetNum
     type: u8
     offset: 0x1B
-    notes: Animated tileset number
   - desc: Animated palette number
     label: AnimatedPaletteNum
     type: u8
     offset: 0x1C
-    notes: Animated palette number
 CurrScrolls:
   size: 0x18
   vars:
@@ -916,7 +891,6 @@ CutsceneData:
     type: u8
     offset: 0x4
     enum: SpecialBGFadeType
-    notes: Special background fade
   - desc: Event
     label: Event
     type: u8
@@ -928,7 +902,6 @@ CutsceneData:
     tags:
     - thumb
     offset: 0xC
-    notes: Pointer to subroutine
 CutsceneInfo:
   size: 0x10
   vars:
@@ -946,7 +919,6 @@ CutsceneInfo:
     label: StoryTextNum
     type: u8
     offset: 0x2
-    notes: Story text number
   - desc: Pointer to cutscene code
     label: PtrToCutsceneCode
     type: void *
@@ -980,12 +952,10 @@ CutsceneSubroutineData:
     tags:
     - thumb
     offset: 0x0
-    notes: Function pointer
   - desc: OAM related number
     label: OamRelatedNum
     type: u8
     offset: 0x4
-    notes: OAM related number
 DemoRam:
   size: 0x280
   vars:
@@ -1137,22 +1107,18 @@ Equipment:
     label: CurrEnergy
     type: u16
     offset: 0x6
-    notes: Current energy
   - desc: Current missiles
     label: CurrMissiles
     type: u16
     offset: 0x8
-    notes: Current missiles
   - desc: Current super missiles
     label: CurrSuperMissiles
     type: u8
     offset: 0xA
-    notes: Current super missiles
   - desc: Current power bombs
     label: CurrPowerBombs
     type: u8
     offset: 0xB
-    notes: Current power bombs
   - desc: Beam bombs
     label: BeamBombs
     type: u8
@@ -1357,7 +1323,6 @@ HatchData:
     label: SourceDoorNum
     type: u8
     offset: 0x7
-    notes: Source door number
 HatchLockEvent:
   size: 0x8
   vars:
@@ -1481,7 +1446,6 @@ InGameCutsceneData:
     type: u8
     offset: 0x3
     enum: InGameCutscene
-    notes: Cutscene number
   - desc: Unknown 04
     label: unk_04
     type: u8
@@ -1492,7 +1456,6 @@ InGameCutsceneData:
     tags:
     - thumb
     offset: 0x8
-    notes: Function pointer
 InGameTime:
   size: 0x4
   vars:
@@ -1543,7 +1506,6 @@ LastElevatorUsed:
     type: u8
     offset: 0x2
     enum: Elevator
-    notes: Elevator number
   - desc: Travel direction
     label: TravelDirection
     type: u8
@@ -1609,35 +1571,30 @@ MetroidFusionGalleryData:
     tags:
     - gfx
     offset: 0x0
-    notes: Top half graphics pointer
   - desc: Bottom half graphics pointer
     label: BottomHalfGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x4
-    notes: Bottom half graphics pointer
   - desc: Top half tilemap pointer
     label: TopHalfTilemapPtr
     type: u16 *
     tags:
     - tilemap
     offset: 0x8
-    notes: Top half tilemap pointer
   - desc: Bottom half tilemap pointer
     label: BottomHalfTilemapPtr
     type: u16 *
     tags:
     - tilemap
     offset: 0xC
-    notes: Bottom half tilemap pointer
   - desc: Palette pointer
     label: PalettePtr
     type: u16 *
     tags:
     - palette
     offset: 0x10
-    notes: Palette pointer
 MusicInfo:
   size: 0x1764
   vars:
@@ -1649,7 +1606,6 @@ MusicInfo:
     label: CurrMusicTrack
     type: u16
     offset: 0x1C
-    notes: Current music track
   - desc: Music related
     label: MusicRelated
     type: u8
@@ -1709,7 +1665,6 @@ NonGameplayRam:
     label: NumOfTimeAttackCodeButtonsInput
     type: u8
     offset: 0x6D
-    notes: Number of time attack code buttons input
   - desc: Time attack code cooldown timer
     label: TimeAttackCodeCooldownTimer
     type: u8
@@ -1718,7 +1673,6 @@ NonGameplayRam:
     label: EndingNum
     type: u8
     offset: 0x98
-    notes: Ending number
   - desc: Changing map screen stage
     label: ChangingMapScreenStage
     type: u8
@@ -1751,37 +1705,30 @@ NumItemsCollected:
     label: NumOfItemsCollectedInBrinstar
     type: u8
     offset: 0x0
-    notes: Number of items collected in Brinstar
   - desc: Number of items collected in Kraid
     label: NumOfItemsCollectedInKraid
     type: u8
     offset: 0x1
-    notes: Number of items collected in Kraid
   - desc: Number of items collected in Norfair
     label: NumOfItemsCollectedInNorfair
     type: u8
     offset: 0x2
-    notes: Number of items collected in Norfair
   - desc: Number of items collected in Ridley
     label: NumOfItemsCollectedInRidley
     type: u8
     offset: 0x3
-    notes: Number of items collected in Ridley
   - desc: Number of items collected in Tourian
     label: NumOfItemsCollectedInTourian
     type: u8
     offset: 0x4
-    notes: Number of items collected in Tourian
   - desc: Number of items collected in Crateria
     label: NumOfItemsCollectedInCrateria
     type: u8
     offset: 0x5
-    notes: Number of items collected in Crateria
   - desc: Number of items collected in Chozodia
     label: NumOfItemsCollectedInChozodia
     type: u8
     offset: 0x6
-    notes: Number of items collected in Chozodia
 NumNeverReformBlocksBroken:
   size: 0x8
   vars:
@@ -1789,37 +1736,30 @@ NumNeverReformBlocksBroken:
     label: NumOfNeverReformBlocksBrokenInBrinstar
     type: u8
     offset: 0x0
-    notes: Number of never reform blocks broken in Brinstar
   - desc: Number of never reform blocks broken in Kraid
     label: NumOfNeverReformBlocksBrokenInKraid
     type: u8
     offset: 0x1
-    notes: Number of never reform blocks broken in Kraid
   - desc: Number of never reform blocks broken in Norfair
     label: NumOfNeverReformBlocksBrokenInNorfair
     type: u8
     offset: 0x2
-    notes: Number of never reform blocks broken in Norfair
   - desc: Number of never reform blocks broken in Ridley
     label: NumOfNeverReformBlocksBrokenInRidley
     type: u8
     offset: 0x3
-    notes: Number of never reform blocks broken in Ridley
   - desc: Number of never reform blocks broken in Tourian
     label: NumOfNeverReformBlocksBrokenInTourian
     type: u8
     offset: 0x4
-    notes: Number of never reform blocks broken in Tourian
   - desc: Number of never reform blocks broken in Crateria
     label: NumOfNeverReformBlocksBrokenInCrateria
     type: u8
     offset: 0x5
-    notes: Number of never reform blocks broken in Crateria
   - desc: Number of never reform blocks broken in Chozodia
     label: NumOfNeverReformBlocksBrokenInChozodia
     type: u8
     offset: 0x6
-    notes: Number of never reform blocks broken in Chozodia
 NumTanksInArea:
   size: 0x4
   vars:
@@ -1848,7 +1788,6 @@ Oam:
     tags:
     - oamframe
     offset: 0x0
-    notes: OAM frame pointer
   - desc: Duration
     label: Duration
     type: u8
@@ -1860,7 +1799,6 @@ OamArray:
     label: OamPtr
     type: Oam *
     offset: 0x0
-    notes: OAM pointer
   - desc: Pre action
     label: PreAction
     type: u8
@@ -1884,7 +1822,6 @@ ParticleEffect:
     label: EffectNum
     type: u8
     offset: 0x2
-    notes: Effect number
   - desc: Stage
     label: Stage
     type: u8
@@ -1938,7 +1875,6 @@ ProjectileData:
     label: OamPtr
     type: Oam *
     offset: 0x4
-    notes: OAM pointer
   - desc: Y position
     label: YPosition
     type: u16
@@ -2044,22 +1980,18 @@ RoomEntry:
     label: BG0Ptr
     type: u16 *
     offset: 0x8
-    notes: BG0 pointer
   - desc: BG1 pointer
     label: BG1Ptr
     type: u16 *
     offset: 0xC
-    notes: BG1 pointer
   - desc: BG2 pointer
     label: BG2Ptr
     type: u16 *
     offset: 0x10
-    notes: BG2 pointer
   - desc: Clipdata pointer
     label: ClipdataPtr
     type: u16 *
     offset: 0x14
-    notes: Clipdata pointer
   - desc: BG3 pointer
     label: BG3Ptr
     type: u16 *
@@ -2067,7 +1999,6 @@ RoomEntry:
     - lz
     - tilemap
     offset: 0x18
-    notes: BG3 pointer
   - desc: BG3 scrolling
     label: BG3Scrolling
     type: u8
@@ -2080,7 +2011,6 @@ RoomEntry:
     label: DefaultSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x20
-    notes: Default sprite layout pointer
   - desc: Default spriteset
     label: DefaultSpriteset
     type: u8
@@ -2094,7 +2024,6 @@ RoomEntry:
     label: FirstSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x28
-    notes: First sprite layout pointer
   - desc: First spriteset
     label: FirstSpriteset
     type: u8
@@ -2108,7 +2037,6 @@ RoomEntry:
     label: SecondSpriteLayoutPtr
     type: RoomSpriteEntry *
     offset: 0x30
-    notes: Second sprite layout pointer
   - desc: Second spriteset
     label: SecondSpriteset
     type: u8
@@ -2156,7 +2084,6 @@ SamusData:
     type: u8
     offset: 0x0
     enum: SamusPose
-    notes: Current pose
   - desc: Standing status
     label: StandingStatus
     type: u8
@@ -2235,7 +2162,6 @@ SamusData:
     type: u16
     offset: 0x1A
     enum: SamusSlopeType
-    notes: Current slope type
   - desc: Animation counter
     label: AnimationCounter
     type: u8
@@ -2244,7 +2170,6 @@ SamusData:
     label: CurrAnimation
     type: u8
     offset: 0x1D
-    notes: Current animation
 SamusEcho:
   size: 0x10C
   vars:
@@ -2268,17 +2193,14 @@ SamusEcho:
     label: Prev64XPositions
     type: u16 [0x40]
     offset: 0x8
-    notes: Previous 64 X positions
   - desc: Previous 64 Y positions
     label: Prev64YPositions
     type: u16 [0x40]
     offset: 0x88
-    notes: Previous 64 Y positions
   - desc: Previous position counter
     label: PrevPositionCounter
     type: u16
     offset: 0x108
-    notes: Previous position counter
   - desc: Unknown 10 A
     label: unk_10A
     type: u8
@@ -2317,7 +2239,6 @@ SamusEnvironmentEffect:
     tags:
     - oamframe
     offset: 0x8
-    notes: OAM frame pointer
 SamusHazardDamage:
   size: 0x8
   vars:
@@ -2357,14 +2278,12 @@ SamusPhysics:
     tags:
     - oamframe
     offset: 0x0
-    notes: Body OAM frame pointer
   - desc: Shoulders graphics pointer
     label: ShouldersGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x4
-    notes: Shoulders graphics pointer
   - desc: Unknown 08
     label: unk_08
     type: u16
@@ -2375,7 +2294,6 @@ SamusPhysics:
     tags:
     - gfx
     offset: 0xC
-    notes: Torso graphics pointer
   - desc: Unknown 10
     label: unk_10
     type: u16
@@ -2386,7 +2304,6 @@ SamusPhysics:
     tags:
     - gfx
     offset: 0x14
-    notes: Legs graphics pointer
   - desc: Unknown 18
     label: unk_18
     type: u16
@@ -2397,7 +2314,6 @@ SamusPhysics:
     tags:
     - gfx
     offset: 0x1C
-    notes: Body lower half graphics pointer
   - desc: Unknown 20
     label: unk_20
     type: u16
@@ -2412,14 +2328,12 @@ SamusPhysics:
     tags:
     - oamframe
     offset: 0x24
-    notes: Arm cannon OAM frame pointer
   - desc: Arm cannon upper graphics pointer
     label: ArmCannonUpperGfxPtr
     type: u8 *
     tags:
     - gfx
     offset: 0x28
-    notes: Arm cannon upper graphics pointer
   - desc: Unknown 2C
     label: unk_2C
     type: u16
@@ -2430,7 +2344,6 @@ SamusPhysics:
     tags:
     - gfx
     offset: 0x30
-    notes: Arm cannon lower graphics pointer
   - desc: Unknown 34
     label: unk_34
     type: u16
@@ -2647,12 +2560,10 @@ SaveFileRam:
     type: u8
     offset: 0x1D
     enum: AreaID
-    notes: Current area
   - desc: Current room
     label: CurrRoom
     type: u8
     offset: 0x1E
-    notes: Current room
   - desc: Last door used
     label: LastDoorUsed
     type: u8
@@ -2718,12 +2629,10 @@ SaveFileRam:
     label: NumOfNeverReformBlocksBroken
     type: NumNeverReformBlocksBroken
     offset: 0x3F
-    notes: Number of never reform blocks broken
   - desc: Number of items collected
     label: NumOfItemsCollected
     type: NumItemsCollected
     offset: 0x47
-    notes: Number of items collected
   - desc: Planet Zebes
     label: PlanetZebes
     type: s8 [0x11]
@@ -2790,7 +2699,6 @@ SaveFileRam:
     label: CurrMusicTrack
     type: u16
     offset: 0x246
-    notes: Current music track
   - desc: Unknown 248
     label: unk_248
     type: u32
@@ -2865,7 +2773,6 @@ ScrewAttackSpeedBoosterAnimation:
     label: CurrAnimation
     type: u8
     offset: 0x2
-    notes: Current animation
 SharedSram:
   size: 0x80
   vars:
@@ -2911,17 +2818,14 @@ SharedSram:
     label: FileScreenOptionsUnlocked_unk1
     type: u8
     offset: 0x11
-    notes: File screen options unlocked unknown 1
   - desc: File screen options unlocked unknown 2
     label: FileScreenOptionsUnlocked_unk2
     type: u8
     offset: 0x12
-    notes: File screen options unlocked unknown 2
   - desc: File screen options unlocked unknown 3
     label: FileScreenOptionsUnlocked_unk3
     type: u8
     offset: 0x13
-    notes: File screen options unlocked unknown 3
   - desc: Metroid fusion gallery images
     label: MetroidFusionGalleryImages
     type: u16
@@ -2943,17 +2847,14 @@ SoundDataEntry:
     label: SoundHeaderPtr
     type: u8 *
     offset: 0x0
-    notes: Sound header pointer
   - desc: Track group number
     label: TrackGroupNum
     type: u16
     offset: 0x4
-    notes: Track group number
   - desc: Track group number
     label: TrackGroupNum
     type: u16
     offset: 0x6
-    notes: Track group number
 SpecialBGEffect:
   size: 0x8
   vars:
@@ -3072,12 +2973,10 @@ SpriteData:
     label: CurrAnimationFrame
     type: u16
     offset: 0x16
-    notes: Current animation frame
   - desc: OAM pointer
     label: OamPtr
     type: Oam *
     offset: 0x18
-    notes: OAM pointer
   - desc: Animation duration counter
     label: AnimationDurationCounter
     type: u8
@@ -3095,7 +2994,6 @@ SpriteData:
     label: SpritesetGfxSlot
     type: u8
     offset: 0x1F
-    notes: Spriteset graphics slot
   - desc: Palette row
     label: PaletteRow
     type: u8
@@ -3104,7 +3002,6 @@ SpriteData:
     label: BGPriority
     type: u8
     offset: 0x21
-    notes: Background priority
   - desc: Draw order
     label: DrawOrder
     type: u8
@@ -3162,7 +3059,6 @@ SpriteData:
     label: CurrArrayIndex
     type: u8
     offset: 0x2F
-    notes: Current array index
   - desc: Freeze timer
     label: FreezeTimer
     type: u8
@@ -3201,12 +3097,10 @@ SpriteDebris:
     label: OamPtr
     type: Oam *
     offset: 0x0
-    notes: OAM pointer
   - desc: Current animation frame
     label: CurrAnimationFrame
     type: u16
     offset: 0x4
-    notes: Current animation frame
   - desc: Y position
     label: YPosition
     type: u16
@@ -3295,7 +3189,6 @@ SpritesetEntry:
     label: GfxRow
     type: u8
     offset: 0x1
-    notes: Graphics row
 StartingHealthAmmo:
   size: 0x4
   vars:
@@ -3322,12 +3215,10 @@ SubSpriteData:
     label: OamPtr
     type: Oam *
     offset: 0x0
-    notes: OAM pointer
   - desc: Current animation frame
     label: CurrAnimationFrame
     type: u16
     offset: 0x4
-    notes: Current animation frame
   - desc: Y position
     label: YPosition
     type: u16
@@ -3442,17 +3333,14 @@ TilemapAndClipdataPtrs:
     tags:
     - tilemap
     offset: 0x0
-    notes: Pointer to tilemap
   - desc: Pointer to clipdata collision types
     label: PtrToClipdataCollisionTypes
     type: u8 *
     offset: 0x4
-    notes: Pointer to clipdata collision types
   - desc: Pointer to clipdata behavior types
     label: PtrToClipdataBehaviorTypes
     type: u16 *
     offset: 0x8
-    notes: Pointer to clipdata behavior types
 TilesetEntry:
   size: 0x14
   vars:
@@ -3463,14 +3351,12 @@ TilesetEntry:
     - lz
     - gfx
     offset: 0x0
-    notes: RLE background graphics pointer
   - desc: Background palette pointer
     label: BGPalettePtr
     type: u16 *
     tags:
     - palette
     offset: 0x4
-    notes: Background palette pointer
   - desc: LZ77 background graphics pointer
     label: LZ77BGGfxPtr
     type: u8 *
@@ -3478,14 +3364,12 @@ TilesetEntry:
     - lz
     - gfx
     offset: 0x8
-    notes: LZ77 background graphics pointer
   - desc: Tilemap pointer
     label: TilemapPtr
     type: u16 *
     tags:
     - tilemap
     offset: 0xC
-    notes: Tilemap pointer
   - desc: Animated tileset
     label: AnimatedTileset
     type: u8
