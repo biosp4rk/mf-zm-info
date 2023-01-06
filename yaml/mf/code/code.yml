@@ -455,7 +455,7 @@
     type: u8
   return: null
 -
-  desc: Empty function music related
+  desc: Empty function (music related)
   label: EmptyFunction_MusicRelated
   addr:
     U: 0x3494
@@ -479,6 +479,7 @@
     label: MusicTrack
     type: u16
   return: null
+  notes: Checks if the provided music track is different from the current one
 -
   desc: Check play new music track
   label: CheckPlayNewMusicTrack
@@ -729,7 +730,7 @@
     label: Frequency
     type: u32
 -
-  desc: Cpu fast set
+  desc: CpuFastSet
   label: CpuFastSet
   addr:
     U: 0x4B9C
@@ -750,7 +751,7 @@
   return: null
   notes: Calls software interrupt 0xC
 -
-  desc: Cpu set
+  desc: CpuSet
   label: CpuSet
   addr:
     U: 0x4BA0
@@ -771,8 +772,8 @@
   return: null
   notes: Calls software interrupt 0xB
 -
-  desc: Div arm quotient
-  label: DivArmQuotient
+  desc: DivArm (divide)
+  label: DivArm_Divide
   addr:
     U: 0x4BA4
     E: 0x4BA4
@@ -792,8 +793,8 @@
     type: s32
   notes: Calls software interrupt 0x7
 -
-  desc: Div arm remainder
-  label: DivArmRemainder
+  desc: DivArm (modulo)
+  label: DivArm_Modulo
   addr:
     U: 0x4BA8
     E: 0x4BA8
@@ -811,10 +812,10 @@
     desc: Remainder
     label: Remainder
     type: s32
-  notes: Calls software interrupt 0x7 (with mov r1,r0)
+  notes: Calls software interrupt 0x7
 -
-  desc: LZ77 un comp 16 bit
-  label: LZ77UnComp16Bit
+  desc: LZ77UnCompReadNormalWrite16bit
+  label: LZ77UnCompReadNormalWrite16bit
   addr:
     U: 0x4BB0
     E: 0x4BB0
@@ -831,8 +832,8 @@
   return: null
   notes: Calls software interrupt 0x12
 -
-  desc: LZ77 un comp 8 bit
-  label: LZ77UnComp8Bit
+  desc: LZ77UnCompReadNormalWrite8bit
+  label: LZ77UnCompReadNormalWrite8bit
   addr:
     U: 0x4BB4
     E: 0x4BB4
@@ -849,7 +850,7 @@
   return: null
   notes: Calls software interrupt 0x11
 -
-  desc: Midi key 2 freq
+  desc: MidiKey2Freq
   label: MidiKey2Freq
   addr:
     U: 0x4BB8
@@ -873,8 +874,8 @@
     type: u16
   notes: Calls software interrupt 0x1F
 -
-  desc: Sound bias 0
-  label: SoundBias0
+  desc: SoundBias 0
+  label: SoundBias_0
   addr:
     U: 0x4BBC
     E: 0x4BBC
@@ -883,10 +884,10 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls software interrupt 0x19 (with mov r0,0)
+  notes: Calls software interrupt 0x19 (r0 = 0)
 -
-  desc: Sound bias 1
-  label: SoundBias1
+  desc: SoundBias 200
+  label: SoundBias_200
   addr:
     U: 0x4BC4
     E: 0x4BC4
@@ -895,7 +896,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls software interrupt 0x19 (with mov r0,1)
+  notes: Calls software interrupt 0x19 (r0 = 1)
 -
   desc: Copy Samus data
   label: CopySamusData
