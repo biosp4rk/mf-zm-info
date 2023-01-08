@@ -133,10 +133,6 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     while len(stack) > 0:
         entry, k = stack.pop()
         if isinstance(entry, dict):
-            #
-            if "notes" in entry and entry["notes"] == entry["desc"]:
-                entry.pop("notes")
-            #
             fields = FIELDS[k]
             for i, field in enumerate(fields):
                 if field in entry:

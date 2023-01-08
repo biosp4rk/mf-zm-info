@@ -205,7 +205,6 @@
   label: BGPositionWrittenToBG3OFS
   type: u8
   addr: 0x300002A
-  notes: Which background's position is written to BG3OFS
 -
   desc: Samus on top of background flag
   label: SamusOnTopOfBGFlag
@@ -496,7 +495,7 @@
   type: u8
   addr: 0x300014C
 -
-  desc: In game timer
+  desc: In-game timer
   label: InGameTimer
   type: InGameTime
   addr: 0x3000150
@@ -507,7 +506,7 @@
   addr: 0x3000154
   notes: Best completion times (unused)
 -
-  desc: In game time at bosses
+  desc: In-game time at bosses
   label: InGameTimeAtBosses
   type: InGameTimeAtBosses
   addr: 0x3000184
@@ -528,7 +527,7 @@
   addr: 0x30001AC
   notes: Sprite data
 -
-  desc: Spriteset sprite ids
+  desc: Spriteset sprite IDs
   label: SpritesetSpriteIDs
   type: u8 [0xF]
   addr: 0x30006EC
@@ -566,23 +565,21 @@
   addr: 0x30007F0
   enum: CollisionCheck
 -
-  desc: Previous left right collision check
-  label: PrevLeftRightCollisionCheck
+  desc: Previous left/right edge collision check
+  label: PrevLeftRightEdgeCollisionCheck
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
-  notes: Previous left/right edge collision check
 -
   desc: Sprite draw order
   label: SpriteDrawOrder
   type: u8 [0x18]
   addr: 0x30007F3
 -
-  desc: Boss work
+  desc: Boss work variables
   label: BossWork
   type: BossWork
   addr: 0x300080C
-  notes: Boss work variables
 -
   desc: Sprite random number
   label: SpriteRandomNum

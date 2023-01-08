@@ -956,7 +956,7 @@
   params: null
   return: null
 -
-  desc: Samus pose handler beam charging bombs P bs
+  desc: Samus pose handler (beam charging, bombs, power bombs)
   label: SamusPoseHandler_BeamCharging_Bombs_PBs
   addr:
     U: 0x5D44
@@ -967,8 +967,8 @@
   params: null
   return: null
 -
-  desc: Check Samus standing on drop through clipdata
-  label: CheckSamusStandingOnDropThroughClipdata
+  desc: Check Samus standing on crumble block
+  label: CheckSamusStandingOnCrumbleBlock
   addr:
     U: 0x5EEC
     E: 0x5EEC
@@ -977,12 +977,11 @@
   mode: thumb
   params: null
   return:
-    desc: On drop through
-    label: OnDropThrough
+    desc: On crumble block
+    label: OnCrumbleBlock
     type: bool
-  notes: Checks if Samus is standing on a crumble block
 -
-  desc: Set forced movement flag for jumping dropping through clipdata
+  desc: Set forced movement flag for jumping or dropping through clipdata
   label: SetForcedMovementFlagForJumpingDroppingThroughClipdata
   addr:
     U: 0x5F60
@@ -996,7 +995,7 @@
     label: NewForcedMovementFlagSet
     type: bool
 -
-  desc: Samus pose handler diffusion charging missiles weapon icons
+  desc: Samus pose handler (diffusion charging, missiles, weapon icons)
   label: SamusPoseHandler_DiffusionCharging_Missiles_WeaponIcons
   addr:
     U: 0x5FAC
@@ -1006,7 +1005,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the highlighted weapon and the charges (beam and diffusion)
 -
   desc: Check play low health sound
   label: CheckPlayLowHealthSound
@@ -1044,7 +1042,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Initializes all the Samus related data
 -
   desc: Copy demo button input
   label: CopyDemoButtonInput
@@ -1072,7 +1069,7 @@
     enum: SaxPose
   return: null
 -
-  desc: In game subroutine
+  desc: In-game subroutine
   label: InGameSubroutine
   addr:
     U: 0xDD24
@@ -1082,11 +1079,11 @@
   mode: thumb
   params: null
   return:
-    desc: Paused
-    label: Paused
+    desc: Change game mode
+    label: ChangeGameMode
     type: bool
 -
-  desc: Set V blank code for in game
+  desc: Set V-Blank code for in-game
   label: SetVBlankCodeForInGame
   addr:
     U: 0xDF58
@@ -1112,7 +1109,7 @@
   return: null
   notes: Transfers Samus and SA-X graphics to VRAM
 -
-  desc: V blank code during in game loads
+  desc: V-Blank code during in-game loads
   label: VBlankCodeDuringInGameLoads
   addr:
     U: 0xE11C
@@ -1123,7 +1120,7 @@
   params: null
   return: null
 -
-  desc: V blank code during in game
+  desc: V-Blank code during in-game
   label: VBlankCodeDuringInGame
   addr:
     U: 0xE2E8
@@ -1134,8 +1131,8 @@
   params: null
   return: null
 -
-  desc: Start title screen demo
-  label: StartTitleScreenDemo
+  desc: Initialize and load room data
+  label: InitAndLoadRoomData
   addr:
     U: 0xE420
     E: 0xE420
@@ -1144,7 +1141,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads and/or initializes generic data
+  notes: Loads room specific data and copies common graphics/palette; if entering a room, initializes Samus and sprite data
 -
   desc: Update sprite random number
   label: UpdateSpriteRandomNumber
@@ -1170,7 +1167,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads the sprite data for the current room
 -
   desc: Load spriteset
   label: LoadSpriteset
@@ -1182,7 +1178,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads the current spriteset
 -
   desc: Load new sprite graphics
   label: LoadNewSpriteGfx
@@ -1237,6 +1232,7 @@
   mode: thumb
   params: null
   return: null
+  notes: Sets Status and StandingOnSpriteFlag to 0 for all sprites, also clears all sprite debris
 -
   desc: Load room sprites
   label: LoadRoomSprites
@@ -1248,7 +1244,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Loads the sprites of the current room
 -
   desc: Initialize primary sprite
   label: InitPrimarySprite
@@ -1272,7 +1267,6 @@
     label: RoomSpriteNum
     type: u8
   return: null
-  notes: Initializes a new primary sprite
 -
   desc: Spawn new secondary sprite
   label: SpawnNewSecondarySprite
@@ -1411,7 +1405,7 @@
     desc: New damage
     label: NewDamage
     type: u16
-  notes: Modify damage taken based on difficulty
+  notes: Modify damage taken based on difficulty (J only)
 -
   desc: Take damage from sprite
   label: TakeDamageFromSprite
@@ -1488,8 +1482,8 @@
   return: null
   notes: Checks if Samus is colliding with a sprite, applies that collision
 -
-  desc: Check vertical collision at position
-  label: CheckVerticalCollisionAtPosition
+  desc: Check center collision at position
+  label: CheckCenterCollisionAtPosition
   addr:
     U: 0x11058
     E: 0x11058
@@ -1508,8 +1502,8 @@
     label: BlockTopEdgeYPosition
     type: u16
 -
-  desc: Check vertical collision at position slopes
-  label: CheckVerticalCollisionAtPosition_Slopes
+  desc: Check center collision at position (slopes)
+  label: CheckCenterCollisionAtPosition_Slopes
   addr:
     U: 0x11174
     E: 0x11174
@@ -1529,8 +1523,8 @@
     type: u16
   notes: Accounts for slopes
 -
-  desc: Check collision at position
-  label: CheckCollisionAtPosition
+  desc: Check left/right edge collision at position
+  label: CheckLeftRightEdgeCollisionAtPosition
   addr:
     U: 0x11390
     E: 0x11390
@@ -1546,8 +1540,8 @@
     type: u16
   return: null
 -
-  desc: Enemy falling
-  label: EnemyFalling
+  desc: Sprite falling
+  label: SpriteFalling
   addr:
     U: 0x11428
     E: 0x11428
@@ -1556,9 +1550,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite fall
 -
-  desc: Make sprite face Samus X flip
+  desc: Make sprite face Samus (X flip)
   label: MakeSpriteFaceSamus_XFlip
   addr:
     U: 0x1153C
@@ -1568,9 +1561,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face Samus (X flip)
 -
-  desc: Make sprite face Samus direction
+  desc: Make sprite face Samus (direction)
   label: MakeSpriteFaceSamus_Direction
   addr:
     U: 0x1156C
@@ -1580,9 +1572,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face Samus (direction)
 -
-  desc: Make sprite face away from Samus X flip
+  desc: Make sprite face away from Samus (X flip)
   label: MakeSpriteFaceAwayFromSamus_XFlip
   addr:
     U: 0x115A0
@@ -1592,9 +1583,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face away from Samus (X flip)
 -
-  desc: Make sprite face away from Samus direction
+  desc: Make sprite face away from Samus (direction)
   label: MakeSpriteFaceAwayFromSamus_Direction
   addr:
     U: 0x115D0
@@ -1604,9 +1594,8 @@
   mode: thumb
   params: null
   return: null
-  notes: Makes the current sprite face away from Samus (direction)
 -
-  desc: Check end of sprite animation current
+  desc: Check end of sprite animation (current)
   label: CheckEndOfSpriteAnimation_Curr
   addr:
     U: 0x11934
@@ -1619,9 +1608,8 @@
     desc: Animation ended
     label: AnimationEnded
     type: bool
-  notes: Checks if the animation of the current sprite has ended
 -
-  desc: Check near end of sprite animation current
+  desc: Check near end of sprite animation (current)
   label: CheckNearEndOfSpriteAnimation_Curr
   addr:
     U: 0x1196C
@@ -1634,9 +1622,8 @@
     desc: Animation near end
     label: AnimationNearEnd
     type: bool
-  notes: Checks if the animation of the current sprite has nearly ended
 -
-  desc: Check end of sprite animation slot
+  desc: Check end of sprite animation (slot)
   label: CheckEndOfSpriteAnimation_Slot
   addr:
     U: 0x119A8
@@ -1652,9 +1639,8 @@
     desc: Animation ended
     label: AnimationEnded
     type: bool
-  notes: Checks if the animation of the sprite with the room slot has ended
 -
-  desc: Check near end of sprite animation slot
+  desc: Check near end of sprite animation (slot)
   label: CheckNearEndOfSpriteAnimation_Slot
   addr:
     U: 0x119F0
@@ -1670,7 +1656,6 @@
     desc: Animation near end
     label: AnimationNearEnd
     type: bool
-  notes: Checks if the animation of the sprite with the room slot has nearly ended
 -
   desc: Check end boss round
   label: CheckEndBossRound
@@ -1685,9 +1670,8 @@
     desc: Round ended
     label: RoundEnded
     type: bool
-  notes: Checks if the sprite animation of the sub sprite data 1 has nearly ended
 -
-  desc: Check Samus near sprite left right
+  desc: Check Samus near sprite (left/right)
   label: CheckSamusNearSprite_LeftRight
   addr:
     U: 0x11B24
@@ -1729,7 +1713,7 @@
     type: u8
     notes: 1 if above sprite, 2 if below sprite, 0 if out of range
 -
-  desc: Check Samus near sprite front behind X
+  desc: Check Samus near sprite (front/behind X)
   label: CheckSamusNearSprite_FrontBehindX
   addr:
     U: 0x11BE4
@@ -1753,7 +1737,7 @@
     type: u8
     notes: 3 if in front, 0xC if behind, 0 if out of range
 -
-  desc: Check Samus near sprite front behind Y
+  desc: Check Samus near sprite (front/behind Y)
   label: CheckSamusNearSprite_FrontBehindY
   addr:
     U: 0x11C8C
@@ -1777,7 +1761,7 @@
     type: u8
     notes: 3 if in front, 0xC if behind, 0 if out of range
 -
-  desc: Check Samus near sprite above below separate
+  desc: Check Samus near sprite (above/below separate)
   label: CheckSamusNearSprite_AboveBelowSeparate
   addr:
     U: 0x11D38
@@ -1811,7 +1795,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the freeze timer of the current sprite
 -
   desc: Update secondary sprites freeze timer
   label: UpdateSecondarySpritesFreezeTimer
@@ -1821,7 +1804,14 @@
     J: 0x11FE0
   size: 0x9C
   mode: thumb
-  params: null
+  params:
+  - desc: Sprite ID
+    label: SpriteID
+    type: u8
+    enum: SecondarySpriteID
+  - desc: Primary RAM slot
+    label: PrimaryRamSlot
+    type: u8
   return: null
 -
   desc: Update primary sprite freeze timer
@@ -1870,7 +1860,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Sets the energy and ammo of Samus to the max (unused)
+  notes: Unused
 -
   desc: Refill ten energy
   label: RefillTenEnergy
@@ -2004,7 +1994,7 @@
     label: SamusCannotMove
     type: bool
 -
-  desc: Check screwing sparking boosting
+  desc: Check screw attacking, shinesparking, or speed boosting
   label: CheckScrewingSparkingBoosting
   addr:
     U: 0x126F8
@@ -2017,9 +2007,9 @@
     desc: Screw shine or speed
     label: ScrewShineOrSpeed
     type: bool
-  notes: Checks if Samus is in a damaging pose (screw attacking, shinesparking or speedboosting)
+  notes: Checks if Samus is in a damaging pose
 -
-  desc: Check pseudo screwing
+  desc: Check pseudo screw attacking
   label: CheckPseudoScrewing
   addr:
     U: 0x1271C
@@ -2031,7 +2021,7 @@
   - desc: Sprite slot number
     label: SpriteSlotNum
     type: u8
-    notes: Sprite slot number or 0x80
+    notes: 0x80 if not checking any sprite
   return:
     desc: Pseudo screw attacking
     label: PseudoScrewAttacking
@@ -2212,7 +2202,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Updates the current sprite debris
 -
   desc: Initialize sprite debris
   label: InitSpriteDebris
@@ -2238,9 +2227,8 @@
     label: XPosition
     type: u16
   return: null
-  notes: Initializes a new sprite debris
 -
-  desc: Check main Deck room displays location
+  desc: Check Main Deck room displays location
   label: CheckMainDeckRoomDisplaysLocation
   addr:
     U: 0x14310
@@ -2254,7 +2242,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Main Deck
 -
   desc: Check Sector 1 room displays location
   label: CheckSector1RoomDisplaysLocation
@@ -2270,7 +2257,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 1
 -
   desc: Check Sector 2 room displays location
   label: CheckSector2RoomDisplaysLocation
@@ -2286,7 +2272,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 2
 -
   desc: Check Sector 3 room displays location
   label: CheckSector3RoomDisplaysLocation
@@ -2302,7 +2287,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 3
 -
   desc: Check Sector 4 room displays location
   label: CheckSector4RoomDisplaysLocation
@@ -2318,7 +2302,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 5
 -
   desc: Check Sector 5 room displays location
   label: CheckSector5RoomDisplaysLocation
@@ -2334,7 +2317,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 4
 -
   desc: Check Sector 6 room displays location
   label: CheckSector6RoomDisplaysLocation
@@ -2350,7 +2332,6 @@
     label: DisplayLocation
     type: s8
     notes: 1 if room displays location, -1 otherwise
-  notes: Gets the location text of the current room in Sector 6
 -
   desc: Get location banner graphics slot
   label: GetLocationBannerGfxSlot
@@ -2401,8 +2382,8 @@
     label: EventWasSet
     type: bool
 -
-  desc: Check on event 4 B
-  label: CheckOnEvent4B
+  desc: Check on event Nav after Yakuza
+  label: CheckOnEvent_NavAfterYakuza
   addr:
     U: 0x60B54
     E: 0x60B54
@@ -2414,10 +2395,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Nav after Yakuza
+  notes: Event 4B
 -
-  desc: Check on event 4 C
-  label: CheckOnEvent4C
+  desc: Check on event Engaged TRO SA-X 2
+  label: CheckOnEvent_EngagedTroSax2
   addr:
     U: 0x60B6C
     E: 0x60B6C
@@ -2429,10 +2410,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Engaged TRO SA-X 2
+  notes: Event 4C
 -
-  desc: Check after event 6 B
-  label: CheckAfterEvent6B
+  desc: Check after event Ice beam recovered
+  label: CheckAfterEvent_IceBeamRecovered
   addr:
     U: 0x60B84
     E: 0x60B84
@@ -2444,10 +2425,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event Ice beam recovered
+  notes: Event 6B
 -
-  desc: Check after event 6 A
-  label: CheckAfterEvent6A
+  desc: Check after event SA-X killed by Omega
+  label: CheckAfterEvent_SaxKilledByOmega
   addr:
     U: 0x60B9C
     E: 0x60B9C
@@ -2459,10 +2440,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event SA-X killed by Omega
+  notes: Event 6A
 -
-  desc: Check on event 65
-  label: CheckOnEvent65
+  desc: Check on event Entered operations deck
+  label: CheckOnEvent_EnteredOperationsDeck
   addr:
     U: 0x60BB4
     E: 0x60BB4
@@ -2474,10 +2455,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Entered operations deck
+  notes: Event 65
 -
-  desc: Check on event 5 A
-  label: CheckOnEvent5A
+  desc: Check on event Triggered BOX 2 rumble
+  label: CheckOnEvent_TriggeredBox2Rumble
   addr:
     U: 0x60BCC
     E: 0x60BCC
@@ -2489,10 +2470,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Triggered BOX 2 rumble
+  notes: Event 5A
 -
-  desc: Check on event 59
-  label: CheckOnEvent59
+  desc: Check on event Restricted Zone warning
+  label: CheckOnEvent_RestrictedZoneWarning
   addr:
     U: 0x60BE4
     E: 0x60BE4
@@ -2504,10 +2485,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Restricted Zone warning
+  notes: Event 59
 -
-  desc: Check after event 34
-  label: CheckAfterEvent34
+  desc: Check after event Blue X flee
+  label: CheckAfterEvent_BlueXFlee
   addr:
     U: 0x60BFC
     E: 0x60BFC
@@ -2519,10 +2500,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event Blue X flee
+  notes: Event 34
 -
-  desc: Check event 46
-  label: CheckEvent46
+  desc: Check event Power outage
+  label: CheckEvent_PowerOutage
   addr:
     U: 0x60C14
     E: 0x60C14
@@ -2535,10 +2516,10 @@
     label: BeforeOnAfterEvent
     type: u8
     notes: 0 if before event, 1 if on event, 2 if after event
-  notes: Check event Power outage
+  notes: Event 46
 -
-  desc: Check on event 5 B
-  label: CheckOnEvent5B
+  desc: Check on event Wave beam recovered
+  label: CheckOnEvent_WaveBeamRecovered
   addr:
     U: 0x60C30
     E: 0x60C30
@@ -2550,10 +2531,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Wave beam recovered
+  notes: Event 5B
 -
-  desc: Check on event 5 C
-  label: CheckOnEvent5C
+  desc: Check on event Restricted lab explosion
+  label: CheckOnEvent_RestrictedLabExplosion
   addr:
     U: 0x60C48
     E: 0x60C48
@@ -2565,10 +2546,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Restricted lab explosion
+  notes: Event 5C
 -
-  desc: Check on event 17
-  label: CheckOnEvent17
+  desc: Check on event Earthquake after bombs
+  label: CheckOnEvent_EarthquakeAfterBombs
   addr:
     U: 0x60C60
     E: 0x60C60
@@ -2580,10 +2561,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Earthquake after bombs
+  notes: Event 17
 -
-  desc: Check on event 16
-  label: CheckOnEvent16
+  desc: Check on event Bomb data downloaded
+  label: CheckOnEvent_BombDataDownloaded
   addr:
     U: 0x60C78
     E: 0x60C78
@@ -2595,10 +2576,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Bomb data downloaded
+  notes: Event 16
 -
-  desc: Check on event 31
-  label: CheckOnEvent31
+  desc: Check on event Escaped NOC SA-X
+  label: CheckOnEvent_EscapedNocSax
   addr:
     U: 0x60C90
     E: 0x60C90
@@ -2610,10 +2591,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Escaped NOC SA-X
+  notes: Event 31
 -
-  desc: Check on event 43
-  label: CheckOnEvent43
+  desc: Check on event ARC SA-X encounter
+  label: CheckOnEvent_ArcSaxEncounter
   addr:
     U: 0x60CA8
     E: 0x60CA8
@@ -2625,10 +2606,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event ARC SA-X encounter
+  notes: Event 43
 -
-  desc: Check on event 42
-  label: CheckOnEvent42
+  desc: Check on event Power bomb data downloaded
+  label: CheckOnEvent_PowerBombDataDownloaded
   addr:
     U: 0x60CC0
     E: 0x60CC0
@@ -2640,10 +2621,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Power bomb data downloaded
+  notes: Event 42
 -
-  desc: Check on event 30
-  label: CheckOnEvent30
+  desc: Check on event NOC SA-X encounter
+  label: CheckOnEvent_NocSaxEncounter
   addr:
     U: 0x60CD8
     E: 0x60CD8
@@ -2655,10 +2636,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event NOC SA-X encounter
+  notes: Event 30
 -
-  desc: Check on event 2 F
-  label: CheckOnEvent2F
+  desc: Check on event NOC 1 nav conversation
+  label: CheckOnEvent_Noc1NavConversation
   addr:
     U: 0x60CF0
     E: 0x60CF0
@@ -2670,10 +2651,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event NOC 1 nav conversation
+  notes: Event 2F
 -
-  desc: Check on event 19
-  label: CheckOnEvent19
+  desc: Check on event Hi-jump recovered
+  label: CheckOnEvent_HiJumpRecovered
   addr:
     U: 0x60D08
     E: 0x60D08
@@ -2685,10 +2666,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Hi-jump recovered
+  notes: Event 19
 -
-  desc: Check after event 1 A
-  label: CheckAfterEvent1A
+  desc: Check after event Escaped TRO SA-X 1
+  label: CheckAfterEvent_EscapedTroSax1
   addr:
     U: 0x60D20
     E: 0x60D20
@@ -2700,10 +2681,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event Escaped TRO SA-X 1
+  notes: Event 1A
 -
-  desc: Check after event 28
-  label: CheckAfterEvent28
+  desc: Check after event BOX 1 defeated
+  label: CheckAfterEvent_Box1Defeated
   addr:
     U: 0x60D38
     E: 0x60D38
@@ -2715,10 +2696,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event BOX 1 defeated
+  notes: Event 28
 -
-  desc: Check on event 27
-  label: CheckOnEvent27
+  desc: Check on event Triggered BOX 1 rumble
+  label: CheckOnEvent_TriggeredBox1Rumble
   addr:
     U: 0x60D50
     E: 0x60D50
@@ -2730,10 +2711,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Triggered BOX 1 rumble
+  notes: Event 27
 -
-  desc: Check on event 26
-  label: CheckOnEvent26
+  desc: Check on event Super missile data downloaded
+  label: CheckOnEvent_SuperMissileDataDownloaded
   addr:
     U: 0x60D68
     E: 0x60D68
@@ -2745,10 +2726,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Super missile data downloaded
+  notes: Event 26
 -
-  desc: Check on event 25
-  label: CheckOnEvent25
+  desc: Check on event Entered super missile data room
+  label: CheckOnEvent_EnteredSuperMissileDataRoom
   addr:
     U: 0x60D80
     E: 0x60D80
@@ -2760,10 +2741,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Entered super missile data room
+  notes: Event 25
 -
-  desc: Check after event 20
-  label: CheckAfterEvent20
+  desc: Check after event Water level lowered
+  label: CheckAfterEvent_WaterLevelLowered
   addr:
     U: 0x60D98
     E: 0x60D98
@@ -2775,10 +2756,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event Water level lowered
+  notes: Event 20
 -
-  desc: Check on event 01
-  label: CheckOnEvent01
+  desc: Check on event Nav before quarantine bay
+  label: CheckOnEvent_NavBeforeQuarantineBay
   addr:
     U: 0x60DB0
     E: 0x60DB0
@@ -2790,10 +2771,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Nav before quarantine bay
+  notes: Event 1
 -
   desc: Check on event with save disabled
-  label: CheckOnEventWithSaveDisabled
+  label: CheckOnEvent_SaveDisabled
   addr:
     U: 0x60DC8
     E: 0x60DC8
@@ -2808,7 +2789,7 @@
   notes: Check on any event where save rooms are disabled
 -
   desc: Check on event with navigation disabled
-  label: CheckOnEventWithNavDisabled
+  label: CheckOnEvent_NavDisabled
   addr:
     U: 0x60DF8
     E: 0x60DF8
@@ -2823,7 +2804,7 @@
   notes: Check on any event where nav rooms are disabled
 -
   desc: Check on event with recharge disabled
-  label: CheckOnEventWithRechargeDisabled
+  label: CheckOnEvent_RechargeDisabled
   addr:
     U: 0x60E1C
     E: 0x60E1C
@@ -2837,8 +2818,8 @@
     type: bool
   notes: Check on event where recharge rooms are disabled
 -
-  desc: Check on event 1 F
-  label: CheckOnEvent1F
+  desc: Check on event Entered pump control unit
+  label: CheckOnEvent_EnteredPumpControlUnit
   addr:
     U: 0x60E3C
     E: 0x60E3C
@@ -2850,10 +2831,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Entered pump control unit
+  notes: Event 1F
 -
   desc: Check on event meltdown
-  label: CheckOnEventMeltdown
+  label: CheckOnEvent_Meltdown
   addr:
     U: 0x60E54
     E: 0x60E54
@@ -2862,14 +2843,14 @@
   mode: thumb
   params: null
   return:
-    desc: On event
-    label: OnEvent
+    desc: Meltdown event
+    label: MeltdownEvent
     type: u8
     notes: 1 if on 3B, 2 if on 3C, 0 otherwise
-  notes: Check on event during Meltdown
+  notes: Events 3B and 3C
 -
-  desc: Check on event 3 E
-  label: CheckOnEvent3E
+  desc: Check on event To animals
+  label: CheckOnEvent_ToAnimals
   addr:
     U: 0x60E74
     E: 0x60E74
@@ -2881,10 +2862,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event To animals
+  notes: Event 3E
 -
-  desc: Check after event 3 F
-  label: CheckAfterEvent3F
+  desc: Check after event Animals released
+  label: CheckAfterEvent_AnimalsReleased
   addr:
     U: 0x60E8C
     E: 0x60E8C
@@ -2896,10 +2877,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: After event Animals released
+  notes: Event 3F
 -
-  desc: Check on event 49
-  label: CheckOnEvent49
+  desc: Check on event Space jump recovered
+  label: CheckOnEvent_SpaceJumpRecovered
   addr:
     U: 0x60EA4
     E: 0x60EA4
@@ -2911,10 +2892,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event Space jump recovered
+  notes: Event 49
 -
-  desc: Check on event 66
-  label: CheckOnEvent66
+  desc: Check on event SA-X defeated
+  label: CheckOnEvent_SaxDefeated
   addr:
     U: 0x60EBC
     E: 0x60EBC
@@ -2926,10 +2907,10 @@
     desc: On event
     label: OnEvent
     type: bool
-  notes: On event SA-X defeated
+  notes: Event 66
 -
-  desc: Check after event 66
-  label: CheckAfterEvent66
+  desc: Check after event SA-X defeated
+  label: CheckAfterEvent_SaxDefeated
   addr:
     U: 0x60ED4
     E: 0x60ED4
@@ -2941,10 +2922,10 @@
     desc: After event
     label: AfterEvent
     type: bool
-  notes: After event SA-X defeated
+  notes: Event 66
 -
   desc: Check on event with timer displayed
-  label: CheckOnEventWithTimerDisplayed
+  label: CheckOnEvent_TimerDisplayed
   addr:
     U: 0x60EEC
     E: 0x60EEC
@@ -2953,14 +2934,13 @@
   mode: thumb
   params: null
   return:
-    desc: On event
-    label: OnEvent
+    desc: Timer event
+    label: TimerEvent
     type: u8
     notes: 1 for meltdown, 2 for restricted lab, 3 for escape, 0 otherwise
-  notes: Check on event where a timer is displayed
 -
   desc: Check on event with timer stopped
-  label: CheckOnEventWithTimerStopped
+  label: CheckOnEvent_TimerStopped
   addr:
     U: 0x60FE4
     E: 0x60FE4
@@ -3110,8 +3090,8 @@
     label: DuringMeltdown
     type: bool
 -
-  desc: Check room should be room dark
-  label: CheckRoomShouldBeRoomDark
+  desc: Check room should be dark
+  label: CheckRoomShouldBeDark
   addr:
     U: 0x62DD8
     E: 0x62DD8
@@ -3161,7 +3141,7 @@
   mode: thumb
   params: null
   return:
-    desc: Not A navigation room
+    desc: Not a navigation room
     label: NotANavRoom
     type: bool
 -
@@ -3267,8 +3247,8 @@
   params: null
   return: null
 -
-  desc: Remove never reform blocks tanks
-  label: RemoveNeverReformBlocksTanks
+  desc: Remove never reform blocks and collected tanks
+  label: RemoveNeverReformBlocksAndTanks
   addr:
     U: 0x64ADC
     E: 0x64ADC
@@ -3277,7 +3257,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Remove never reform blocks and collected tanks
 -
   desc: Reset room RAM values
   label: ResetRoomRamValues
@@ -3310,9 +3289,10 @@
   size: 0xFC
   mode: thumb
   params:
-  - desc: Option
-    label: Option
+  - desc: Data type
+    label: DataType
     type: u8
+    notes: 0 = tilemap, 1 = BG
   - desc: Source address
     label: SourceAddress
     type: u8 *
@@ -3345,6 +3325,7 @@
   mode: thumb
   params: null
   return: null
+  notes: Copied to non-gameplay RAM
 -
   desc: Update clipdata at position
   label: UpdateClipdataAtPosition
@@ -3575,7 +3556,7 @@
   params: null
   return: null
 -
-  desc: Update opening closing hatch
+  desc: Update opening/closing hatch
   label: UpdateOpeningClosingHatch
   addr:
     U: 0x6C930
@@ -3613,7 +3594,7 @@
     label: HatchShouldOpen
     type: bool
 -
-  desc: Update BG1 and sub event SA-X elevator scene
+  desc: Update BG1 and sub-event during SA-X elevator cutscene
   label: UpdateBG1AndSubEvent_SaxElevatorScene
   addr:
     U: 0x6CC4C
@@ -3627,7 +3608,6 @@
     type: u8
     notes: 0 if blowing up wall, 1 if blowing up hatch
   return: null
-  notes: Update BG1 and sub-event during SA-X elevator cutscene
 -
   desc: Set tank as collected
   label: SetTankAsCollected
@@ -3650,7 +3630,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Remove collected tanks upon entering a room
+  notes: Removes the collected tanks when loading a room
 -
   desc: Update animated palette
   label: UpdateAnimatedPalette
@@ -3677,7 +3657,7 @@
     label: SetTo0
     type: bool
 -
-  desc: Update sub event for SA-X encounter
+  desc: Update sub-event for SA-X encounter
   label: UpdateSubEventForSaxEncounter
   addr:
     U: 0x700BC
@@ -3688,7 +3668,7 @@
   params: null
   return: null
 -
-  desc: Update sub event after obtaining ability
+  desc: Update sub-event after obtaining ability
   label: UpdateSubEventAfterObtainingAbility
   addr:
     U: 0x700F4
@@ -3699,7 +3679,7 @@
   params: null
   return: null
 -
-  desc: Update sub event after navigation conversation
+  desc: Update sub-event after navigation conversation
   label: UpdateSubEventAfterNavConversation
   addr:
     U: 0x70120
@@ -3710,7 +3690,7 @@
   params: null
   return: null
 -
-  desc: Set sub event and update music
+  desc: Set sub-event and update music
   label: SetSubEventAndUpdateMusic
   addr:
     U: 0x70164
@@ -3719,17 +3699,17 @@
   size: 0x1C
   mode: thumb
   params:
-  - desc: Sub event value
+  - desc: Sub-event value
     label: SubEventValue
     type: u8
     enum: SubEvent
-  - desc: Sub event trigger type
+  - desc: Sub-event trigger type
     label: SubEventTriggerType
     type: u8
     enum: SubEventTrigger
   return: null
 -
-  desc: Check update sub event and music
+  desc: Check update sub-event and music
   label: CheckUpdateSubEventAndMusic
   addr:
     U: 0x70180
@@ -3738,7 +3718,7 @@
   size: 0x142C
   mode: thumb
   params:
-  - desc: Sub event trigger type
+  - desc: Sub-event trigger type
     label: SubEventTriggerType
     type: u8
     enum: SubEventTrigger
@@ -3753,10 +3733,9 @@
   size: 0x110
   mode: thumb
   params:
-  - desc: Address group to initialize
+  - desc: Address group to initialize (0 or 1)
     label: AddressGroupToInit
     type: u8
-    notes: Address group to initialize (0 or 1)
   return: null
 -
   desc: Draw HUD OAM
@@ -3900,8 +3879,8 @@
     enum: Event
   return: null
 -
-  desc: Check play cutscene
-  label: CheckPlayCutscene
+  desc: Check play cutscene during transition
+  label: CheckPlayCutsceneDuringTransition
   addr:
     U: 0x74BA8
     E: 0x74BA8
@@ -3920,7 +3899,6 @@
     label: CutsceneNum
     type: u8
     enum: Cutscene
-  notes: Check play cutscene during transition
 -
   desc: Check or download data item
   label: CheckOrDownloadDataItem
@@ -4059,7 +4037,7 @@
     type: u8
   return: null
 -
-  desc: Draw character debug menu
+  desc: Draw character (debug menu)
   label: DrawCharacter_DebugMenu
   addr:
     U: 0x79308
@@ -4111,7 +4089,7 @@
     type: u8
   return: null
 -
-  desc: Copy graphics when navigation pop up displays
+  desc: Copy graphics when navigation pop-up displays
   label: CopyGfxWhenNavPopUpDisplays
   addr:
     U: 0x7BDE0
@@ -4122,7 +4100,7 @@
   params: null
   return: null
 -
-  desc: Fade in navigation pop up palette
+  desc: Fade in navigation pop-up palette
   label: FadeInNavPopUpPalette
   addr:
     U: 0x7BFD4
@@ -4133,7 +4111,7 @@
   params: null
   return: null
 -
-  desc: Update and animate navigation pop up
+  desc: Update and animate navigation pop-up
   label: UpdateAndAnimateNavPopUp
   addr:
     U: 0x7C0D0
@@ -4144,7 +4122,7 @@
   params: null
   return: null
 -
-  desc: Close navigation pop up
+  desc: Close navigation pop-up
   label: CloseNavPopUp
   addr:
     U: 0x7C318
@@ -4191,7 +4169,7 @@
   params: null
   return: null
 -
-  desc: Draw debug menu abilities security maps
+  desc: Draw debug menu abilities, security level, and maps
   label: DrawDebugMenu_Abilities_Security_Maps
   addr:
     U: 0x7DB78
@@ -4205,7 +4183,6 @@
     type: u8
     notes: 0xFF for all
   return: null
-  notes: Draws debug menu abilities, security level, and maps
 -
   desc: Set ability count
   label: SetAbilityCount
@@ -4232,7 +4209,7 @@
   params: null
   return: null
 -
-  desc: Draw debug menu room door
+  desc: Draw debug menu room and door
   label: DrawDebugMenu_Room_Door
   addr:
     U: 0x7E0B0
@@ -4242,7 +4219,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Draws debug menu room and door
 -
   desc: Draw debug menu timer
   label: DrawDebugMenu_Timer
@@ -4275,7 +4251,7 @@
   params: null
   return: null
 -
-  desc: Draw debug menu ammo events
+  desc: Draw debug menu ammo and events
   label: DrawDebugMenu_Ammo_Events
   addr:
     U: 0x7E478
@@ -4289,7 +4265,6 @@
     type: u8
     notes: 0xFF for all
   return: null
-  notes: Draws debug menu ammo and events
 -
   desc: Draw debug menu values
   label: DrawDebugMenuValues
@@ -4333,7 +4308,7 @@
   params: null
   return: null
 -
-  desc: Write Metroid episode 4 A to save
+  desc: Write MetroidEpisode4A to save
   label: Write_MetroidEpisode4A_ToSave
   addr:
     U: 0x7FAA8
@@ -4351,9 +4326,8 @@
     label: RamAddress
     type: u8 *
   return: null
-  notes: Writes "MetroidEpisode4A" to save
 -
-  desc: Write SAVE END to save
+  desc: Write SAVE_END to save
   label: Write_SAVE_END_ToSave
   addr:
     U: 0x7FAC4
@@ -4371,7 +4345,6 @@
     label: RamAddress
     type: u8 *
   return: null
-  notes: Writes "SAVE_END" to save
 -
   desc: Verify save data checksum
   label: VerifySaveDataChecksum
@@ -4402,7 +4375,7 @@
   params: null
   return: null
 -
-  desc: Write to save minimap blocks tanks
+  desc: Write to save minimap, never reform blocks, and tanks collected
   label: WriteToSave_Minimap_Blocks_Tanks
   addr:
     U: 0x7FEA4
@@ -4414,7 +4387,7 @@
   return: null
   notes: Writes minimap, never reform blocks, and tanks collected to save
 -
-  desc: Load from save minimap blocks tanks
+  desc: Load from save minimap, never reform blocks, and tanks collected
   label: LoadFromSave_Minimap_Blocks_Tanks
   addr:
     U: 0x7FF7C
@@ -4581,7 +4554,7 @@
   return: null
   notes: Checks if a projectile is too far offscreen
 -
-  desc: Load eye core X beam graphics
+  desc: Load eye core-X beam graphics
   label: LoadEyeCoreXBeamGfx
   addr:
     U: 0x81CFC
@@ -4782,7 +4755,7 @@
     type: u16
   return: null
 -
-  desc: Create sprite debris piercing beam
+  desc: Create sprite debris (piercing beam)
   label: CreateSpriteDebris_PiercingBeam
   addr:
     U: 0x831C4
@@ -4849,7 +4822,7 @@
     type: u16
   return: null
 -
-  desc: Lower sprite health ice missile
+  desc: Lower sprite health (ice missile)
   label: LowerSpriteHealth_IceMissile
   addr:
     U: 0x83788
@@ -4875,7 +4848,7 @@
     label: SpriteFlashTimer
     type: u8
 -
-  desc: Lower sprite health diffusion flake
+  desc: Lower sprite health (diffusion flake)
   label: LowerSpriteHealth_DiffusionFlake
   addr:
     U: 0x838F0
@@ -4898,7 +4871,7 @@
     label: SpriteFlashTimer
     type: u8
 -
-  desc: Lower sprite health ice beam
+  desc: Lower sprite health (ice beam)
   label: LowerSpriteHealth_IceBeam
   addr:
     U: 0x83A4C
@@ -5329,7 +5302,7 @@
     type: u16
   return: null
 -
-  desc: Set sprite flash timer beams bombs
+  desc: Set sprite flash timer for non-charge beams and bombs
   label: SetSpriteFlashTimer_Beams_Bombs
   addr:
     U: 0x84CAC
@@ -5351,9 +5324,8 @@
     label: ProjectileXPosition
     type: u16
   return: null
-  notes: Set sprite flash timer for non-charge beams and bombs
 -
-  desc: Set sprite flash timer charge beam
+  desc: Set sprite flash timer for charge beam
   label: SetSpriteFlashTimer_ChargeBeam
   addr:
     U: 0x84CC8
@@ -5375,9 +5347,8 @@
     label: ProjectileXPosition
     type: u16
   return: null
-  notes: Set sprite flash timer for charge beam
 -
-  desc: Set sprite flash timer missiles
+  desc: Set sprite flash timer for missiles
   label: SetSpriteFlashTimer_Missiles
   addr:
     U: 0x84CE4
@@ -5399,7 +5370,6 @@
     label: ProjectileXPosition
     type: u16
   return: null
-  notes: Set sprite flash timer for missiles
 -
   desc: Lower Zazabi health
   label: LowerZazabiHealth
@@ -5827,8 +5797,8 @@
     label: unk
     type: bool
 -
-  desc: New intro Samus cured subroutine
-  label: NewIntroSamusCuredSubroutine
+  desc: New file intro Samus cured subroutine
+  label: NewFileIntroSamusCuredSubroutine
   addr:
     U: 0x8EDD0
     E: 0x8EE90
@@ -5921,7 +5891,7 @@
     desc: Language chosen
     label: LanguageChosen
     type: bool
-    notes: Language chosen (U and J versions return 1 right away)
+    notes: U and J versions return 1 right away
 -
   desc: Setup background control for language select menu
   label: SetupBGControlForLanguageSelectMenu
@@ -5973,7 +5943,7 @@
     type: NonGameplayRam *
   return: null
 -
-  desc: Check valid european language
+  desc: Check valid European language
   label: CheckValidEuropeanLanguage
   addr:
     E: 0xA1AB8
@@ -5997,7 +5967,7 @@
   params: null
   return: null
 -
-  desc: Bx r 0
+  desc: bx r0
   label: bx_r0
   addr:
     U: 0xA342C
@@ -6008,7 +5978,7 @@
   params: null
   return: null
 -
-  desc: Bx r 1
+  desc: bx r1
   label: bx_r1
   addr:
     U: 0xA3430
@@ -6019,7 +5989,7 @@
   params: null
   return: null
 -
-  desc: Bx r 2
+  desc: bx r2
   label: bx_r2
   addr:
     U: 0xA3434
@@ -6030,7 +6000,7 @@
   params: null
   return: null
 -
-  desc: Bx r 3
+  desc: bx r3
   label: bx_r3
   addr:
     U: 0xA3438
@@ -6041,7 +6011,7 @@
   params: null
   return: null
 -
-  desc: Bx r 4
+  desc: bx r4
   label: bx_r4
   addr:
     U: 0xA343C
@@ -6052,7 +6022,7 @@
   params: null
   return: null
 -
-  desc: Bx r 5
+  desc: bx r5
   label: bx_r5
   addr:
     U: 0xA3440
@@ -6063,7 +6033,7 @@
   params: null
   return: null
 -
-  desc: Bx r 6
+  desc: bx r6
   label: bx_r6
   addr:
     U: 0xA3444
@@ -6074,7 +6044,7 @@
   params: null
   return: null
 -
-  desc: Bx r 7
+  desc: bx r7
   label: bx_r7
   addr:
     U: 0xA3448
@@ -6085,7 +6055,7 @@
   params: null
   return: null
 -
-  desc: Bx r 8
+  desc: bx r8
   label: bx_r8
   addr:
     U: 0xA344C
@@ -6096,7 +6066,7 @@
   params: null
   return: null
 -
-  desc: Bx r 9
+  desc: bx r9
   label: bx_r9
   addr:
     U: 0xA3450
@@ -6107,7 +6077,7 @@
   params: null
   return: null
 -
-  desc: Bx r 10
+  desc: bx r10
   label: bx_r10
   addr:
     U: 0xA3454
@@ -6118,7 +6088,7 @@
   params: null
   return: null
 -
-  desc: Bx r 11
+  desc: bx r11
   label: bx_r11
   addr:
     U: 0xA3458
@@ -6129,7 +6099,7 @@
   params: null
   return: null
 -
-  desc: Bx r 12
+  desc: bx r12
   label: bx_r12
   addr:
     U: 0xA345C
@@ -6140,7 +6110,7 @@
   params: null
   return: null
 -
-  desc: Bx r 13
+  desc: bx r13
   label: bx_r13
   addr:
     U: 0xA3460
@@ -6151,7 +6121,7 @@
   params: null
   return: null
 -
-  desc: Bx r 14
+  desc: bx r14
   label: bx_r14
   addr:
     U: 0xA3464
@@ -6162,7 +6132,7 @@
   params: null
   return: null
 -
-  desc: Divide signed
+  desc: Divide (signed)
   label: Divide_Signed
   addr:
     U: 0xA3468
@@ -6195,7 +6165,7 @@
   return: null
   notes: Divide by 0 handler (empty)
 -
-  desc: Double to int overflow
+  desc: Double to int (overflow)
   label: DoubleToInt_Overflow
   addr:
     U: 0xA3500
@@ -6216,7 +6186,7 @@
     type: s32
   notes: If the double is >= 2^31, treat as integer overflow and return a negative value
 -
-  desc: Modulo signed
+  desc: Modulo (signed)
   label: Modulo_Signed
   addr:
     U: 0xA3544
@@ -6237,7 +6207,7 @@
     type: s32
   notes: Function __modsi3 from divmod.c in libgcc
 -
-  desc: Divide unsigned
+  desc: Divide (unsigned)
   label: Divide_Unsigned
   addr:
     U: 0xA3614
@@ -6258,7 +6228,7 @@
     type: u32
   notes: Function __udivsi3 from udivmod.c in libgcc
 -
-  desc: Modulo unsigned
+  desc: Modulo (unsigned)
   label: Modulo_Unsigned
   addr:
     U: 0xA368C
