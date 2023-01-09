@@ -5397,8 +5397,8 @@
     type: ProjectileData *
   return: null
 -
-  desc: Call draw projectile (80 clear)
-  label: CallDrawProjectile_80Clear
+  desc: Call draw projectile (over sprites)
+  label: CallDrawProjectile_OverSprites
   addr:
     U: 0x4F33C
     E: 0x4F408
@@ -5407,10 +5407,10 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the 80 status flag isn't set
+  notes: Loops through all the projectiles and calls DrawProjectile if the UnderSprites status flag isn't set
 -
-  desc: Call draw projectile (80 set)
-  label: CallDrawProjectile_80Set
+  desc: Call draw projectile (under sprites)
+  label: CallDrawProjectile_UnderSprites
   addr:
     U: 0x4F380
     E: 0x4F44C
@@ -5419,7 +5419,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the 80 status flag is set
+  notes: Loops through all the projectiles and calls DrawProjectile if the UnderSprites status flag is set
 -
   desc: Draw projectile
   label: DrawProjectile
