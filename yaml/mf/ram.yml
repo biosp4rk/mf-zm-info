@@ -174,7 +174,7 @@
     E: 0x3000000
     J: 0x3000000
 -
-  desc: Frame counter 16 bit
+  desc: 16-bit frame counter
   label: FrameCounter16Bit
   type: u16
   addr:
@@ -215,7 +215,7 @@
     J: 0x300000A
   notes: LCD control
 -
-  desc: Written to BG3 CNT
+  desc: Written to BG3CNT
   label: WrittenToBG3CNT
   type: u16
   addr:
@@ -224,7 +224,7 @@
     J: 0x300000C
   notes: BG3 control
 -
-  desc: Written to WININ H
+  desc: Written to WININ_H
   label: WrittenToWININ_H
   type: u8
   addr:
@@ -233,7 +233,7 @@
     J: 0x300000E
   notes: Inside of window 1
 -
-  desc: Written to WINOUT L
+  desc: Written to WINOUT_L
   label: WrittenToWINOUT_L
   type: u8
   addr:
@@ -251,7 +251,7 @@
     J: 0x3000010
   notes: Transparent color
 -
-  desc: Copied to 203800 C
+  desc: Copied to 203800C
   label: CopiedTo203800C
   type: u8
   addr:
@@ -276,7 +276,7 @@
     E: 0x3000014
     J: 0x3000018
 -
-  desc: Fade background black white
+  desc: Fades backgrounds to black or white
   label: FadeBGBlackWhite
   type: u8
   addr:
@@ -284,9 +284,8 @@
     E: 0x3000018
     J: 0x300001C
   enum: BackgroundFade
-  notes: Fades backgrounds to black or white
 -
-  desc: Background position written to BG3 OFS
+  desc: Background position written to BG3OFS
   label: BGPositionWrittenToBG3OFS
   type: u8
   addr:
@@ -295,14 +294,13 @@
     J: 0x300001D
   notes: Which background's position is written to BG3OFS
 -
-  desc: Samus on top of background flag
+  desc: Samus on top of backgrounds flag
   label: SamusOnTopOfBGFlag
   type: u8
   addr:
     U: 0x300001A
     E: 0x300001A
     J: 0x300001E
-  notes: Indicates if Samus should be drawn on top of backgrounds
 -
   desc: Ability count
   label: AbilityCount
@@ -337,7 +335,7 @@
     E: 0x300001D
     J: 0x3000022
   enum: SecurityLevel
-  notes: Back-up of security hatch flash level during power outage
+  notes: Backup of security hatch flash level during power outage
 -
   desc: Current demo
   label: CurrDemo
@@ -404,7 +402,7 @@
     E: 0x3000026
     J: 0x300002B
 -
-  desc: Disable anim graphics timer
+  desc: Disable animated graphics timer
   label: DisableAnimGfxTimer
   type: u8
   addr:
@@ -412,7 +410,7 @@
     E: 0x3000027
     J: 0x300002C
 -
-  desc: Anim graphics to update
+  desc: Animated graphics to update
   label: AnimGfxToUpdate
   type: u16
   tags:
@@ -496,7 +494,7 @@
     E: 0x3000032
     J: 0x3000038
 -
-  desc: Number never reform blocks broken
+  desc: Number of never reform blocks broken
   label: NumNeverReformBlocksBroken
   type: NumNeverReformBlocksBroken
   addr:
@@ -573,7 +571,7 @@
     J: 0x3000051
   enum: EventBasedEffect
 -
-  desc: Current flashing Sector number
+  desc: Current flashing sector number
   label: CurrFlashingSectorNum
   type: u8
   addr:
@@ -632,7 +630,7 @@
     J: 0x300005E
   notes: Unused flag to use alternate animated tileset
 -
-  desc: Sub event counter
+  desc: Sub-event counter
   label: SubEventCounter
   type: u16
   addr:
@@ -640,7 +638,7 @@
     E: 0x3000060
     J: 0x3000066
 -
-  desc: Previous sub event
+  desc: Previous sub-event
   label: PrevSubEvent
   type: u16
   addr:
@@ -648,7 +646,7 @@
     E: 0x3000062
     J: 0x3000068
 -
-  desc: Backup of IO registers
+  desc: Backup of I/O registers
   label: BackupOfIORegisters
   type: BackupOfIORegisters
   addr:
@@ -834,7 +832,7 @@
     J: 0x30006E0
   enum: PrimarySpriteID
 -
-  desc: Core X formation sprite ID
+  desc: Core-X formation sprite ID
   label: CoreXFormationSpriteID
   type: u8
   addr:
@@ -853,7 +851,7 @@
     E: 0x30006AE
     J: 0x30006E2
 -
-  desc: Normal X barriers destroyed
+  desc: Normal X-barriers destroyed
   label: NormalXBarriersDestroyed
   type: u16
   tags:
@@ -863,7 +861,7 @@
     E: 0x30006B0
     J: 0x30006E4
 -
-  desc: Super X barriers destroyed
+  desc: Super X-barriers destroyed
   label: SuperXBarriersDestroyed
   type: u16
   tags:
@@ -873,7 +871,7 @@
     E: 0x30006B2
     J: 0x30006E6
 -
-  desc: Power X barriers destroyed
+  desc: Power X-barriers destroyed
   label: PowerXBarriersDestroyed
   type: u16
   tags:
@@ -1140,7 +1138,7 @@
     E: 0x3000B82
     J: 0x3000BB6
 -
-  desc: Non gameplay flag
+  desc: Non-gameplay flag
   label: NonGameplayFlag
   type: u8
   addr:
@@ -1223,7 +1221,7 @@
     J: 0x3000C12
   enum: GameMode
 -
-  desc: Sub game mode 1
+  desc: Sub-game mode 1
   label: SubGameMode1
   type: u16
   addr:
@@ -1231,7 +1229,7 @@
     E: 0x3000BE0
     J: 0x3000C14
 -
-  desc: Sub game mode 2
+  desc: Sub-game mode 2
   label: SubGameMode2
   type: u16
   addr:
@@ -1247,7 +1245,7 @@
     E: 0x3000BE4
     J: 0x3000C18
 -
-  desc: Frame counter 8 bit
+  desc: 8-bit frame counter
   label: FrameCounter8Bit
   type: u8
   addr:
@@ -1255,7 +1253,7 @@
     E: 0x3000BE5
     J: 0x3000C19
 -
-  desc: V blank request flag
+  desc: V-Blank request flag
   label: VBlankRequestFlag
   type: u16
   addr:
@@ -1322,7 +1320,7 @@
     E: 0x30011EE
     J: 0x3001222
 -
-  desc: Written to MOSAIC H
+  desc: Written to MOSAIC_H
   label: WrittenToMOSAIC_H
   type: u16
   addr:
@@ -1331,7 +1329,7 @@
     J: 0x3001240
   notes: Mosaic size
 -
-  desc: Written to MOSAIC L
+  desc: Written to MOSAIC_L
   label: WrittenToMOSAIC_L
   type: u16
   addr:
@@ -1598,7 +1596,7 @@
     E: 0x3001458
     J: 0x300148C
 -
-  desc: Non gameplay RAM
+  desc: Non-gameplay RAM
   label: NonGameplayRam
   type: NonGameplayRam
   addr:
@@ -1606,7 +1604,7 @@
     E: 0x3001484
     J: 0x30014B8
 -
-  desc: V blank code pointer
+  desc: V-Blank code pointer
   label: VBlankCodePtr
   type: void *
   tags:
@@ -1616,7 +1614,7 @@
     E: 0x30019C4
     J: 0x30019F8
 -
-  desc: H blank code pointer
+  desc: H-Blank code pointer
   label: HBlankCodePtr
   type: void *
   tags:
@@ -1626,7 +1624,7 @@
     E: 0x30019C8
     J: 0x30019FC
 -
-  desc: V count code pointer
+  desc: V-Count code pointer
   label: VCountCodePtr
   type: void *
   tags:
@@ -1654,7 +1652,7 @@
     E: 0x3003654
     J: 0x3003688
 -
-  desc: Sound code A RAM
+  desc: Sound code A
   label: SoundCodeARam
   type: void [0x658]
   tags:
@@ -1674,7 +1672,7 @@
     E: 0x3003CB0
     J: 0x3003CE4
 -
-  desc: Sound code B RAM
+  desc: Sound code B
   label: SoundCodeBRam
   type: void [0xA4]
   addr:
@@ -1692,7 +1690,7 @@
     E: 0x3003D58
     J: 0x3003D8C
 -
-  desc: Sound code C RAM
+  desc: Sound code C
   label: SoundCodeCRam
   type: void [0xAC]
   addr:
@@ -1793,7 +1791,7 @@
     E: 0x3004E18
     J: 0x3004E48
 -
-  desc: Tileset transparent color
+  desc: Tileset's transparent color
   label: TilesetTransparentColor
   type: u16
   addr:
