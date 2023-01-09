@@ -15,7 +15,7 @@
     E: 0x8D628
     J: 0x8C9F8
 -
-  desc: Delay note length table
+  desc: Delay/note length table
   label: DelayNoteLengthTable
   type: u8 [0x31]
   addr:
@@ -23,14 +23,13 @@
     E: 0x8D85C
     J: 0x8CC2C
 -
-  desc: Sound 3 waveform square 50
-  label: Sound3Waveform_square50
+  desc: Sound channel 3 square 50% waveform
+  label: Sound3Waveform_Square50
   type: u8 [0x10]
   addr:
     U: 0x8F244
     E: 0x8FED0
     J: 0x8F2A0
-  notes: Sound channel 3 square50 waveform
 -
   desc: Sound data entries
   label: SoundDataEntries
@@ -64,14 +63,13 @@
     E: 0x23B1E0
     J: 0x23A5B0
 -
-  desc: Samus environ effects OAM pointers
+  desc: Samus environmental effects OAM pointers
   label: SamusEnvironEffectsOamPtrs
   type: Oam *[0x12]
   addr:
     U: 0x23A56C
     E: 0x23B1F8
     J: 0x23A5C8
-  notes: Samus environmental effects OAM pointers
 -
   desc: Samus pulling self up Y velocity
   label: SamusPullingSelfUpYVelocity
@@ -81,14 +79,14 @@
     E: 0x23B240
     J: 0x23A610
 -
-  desc: Random number table 0 F
+  desc: Random number table (0-F)
   label: RandomNumTable_0_F
   type: u8 [0x20]
   addr:
     U: 0x2B0CAC
     E: 0x2B1938
     J: 0x2B0D08
-  notes: Random number table (0-F)
+  notes: Random number table used for most sprite randomness, values range from 0x0-0xF
 -
   desc: Dessgeega and sidehopper jump speeds
   label: DessgeegaAndSidehopperJumpSpeeds
@@ -173,23 +171,21 @@
     E: 0x2CD708
     J: 0x2CCAD8
 -
-  desc: Reo idle anim Y position offsets
+  desc: Reo idle animation Y position offsets
   label: ReoIdleAnimYPositionOffsets
   type: s16 [0x41]
   addr:
     U: 0x2CD604
     E: 0x2CE290
     J: 0x2CD660
-  notes: Reo idle animation Y position offsets
 -
-  desc: Reo idle anim X position offsets
+  desc: Reo idle animation X position offsets
   label: ReoIdleAnimXPositionOffsets
   type: s16 [0x51]
   addr:
     U: 0x2CD686
     E: 0x2CE312
     J: 0x2CD6E2
-  notes: Reo idle animation X position offsets
 -
   desc: Mellow idle Y velocity
   label: MellowIdleYVelocity
@@ -317,149 +313,133 @@
     E: 0x336F34
     J: 0x336304
 -
-  desc: Samus environ effect running on dusty ground OAM
+  desc: Samus environmental effect running on dusty ground OAM
   label: SamusEnvironEffect_RunningOnDustyGroundOAM
   type: Oam [0x6]
   addr:
     U: 0x33C778
     E: 0x33D404
     J: 0x33C7D4
-  notes: Samus environmental effect running on dusty ground OAM
 -
-  desc: Samus environ effect landing or skidding on dusty ground OAM
+  desc: Samus environmental effect landing/skidding on dusty ground OAM
   label: SamusEnvironEffect_LandingOrSkiddingOnDustyGroundOAM
   type: Oam [0x7]
   addr:
     U: 0x33C7A8
     E: 0x33D434
     J: 0x33C804
-  notes: Samus environmental effect landing/skidding on dusty ground OAM
 -
-  desc: Samus environ effect taking damage in lava OAM
+  desc: Samus environmental effect taking damage in lava OAM
   label: SamusEnvironEffect_TakingDamageInLavaOAM
   type: Oam [0x9]
   addr:
     U: 0x33C7E8
     E: 0x33D474
     J: 0x33C844
-  notes: Samus environmental effect taking damage in lava OAM
 -
-  desc: Samus environ effect taking damage in acid OAM
+  desc: Samus environmental effect taking damage in acid OAM
   label: SamusEnvironEffect_TakingDamageInAcidOAM
   type: Oam [0x9]
   addr:
     U: 0x33C830
     E: 0x33D4BC
     J: 0x33C88C
-  notes: Samus environmental effect taking damage in acid OAM
 -
-  desc: Samus environ effect running on wet ground OAM
+  desc: Samus environmental effect running on wet ground OAM
   label: SamusEnvironEffect_RunningOnWetGroundOAM
   type: Oam [0x6]
   addr:
     U: 0x33C878
     E: 0x33D504
     J: 0x33C8D4
-  notes: Samus environmental effect running on wet ground OAM
 -
-  desc: Samus environ effect landing or skidding on wet ground OAM
+  desc: Samus environmental effect landing/skidding on wet ground OAM
   label: SamusEnvironEffect_LandingOrSkiddingOnWetGroundOAM
   type: Oam [0x6]
   addr:
     U: 0x33C8A8
     E: 0x33D534
     J: 0x33C904
-  notes: Samus environmental effect landing/skidding on wet ground OAM
 -
-  desc: Samus environ effect going out of water OAM
+  desc: Samus environmental effect going out of water OAM
   label: SamusEnvironEffect_GoingOutOfWaterOAM
   type: Oam [0xA]
   addr:
     U: 0x33C8D8
     E: 0x33D564
     J: 0x33C934
-  notes: Samus environmental effect going out of water OAM
 -
-  desc: Samus environ effect running into water OAM
+  desc: Samus environmental effect running into water OAM
   label: SamusEnvironEffect_RunningIntoWaterOAM
   type: Oam [0x7]
   addr:
     U: 0x33C928
     E: 0x33D5B4
     J: 0x33C984
-  notes: Samus environmental effect running into water OAM
 -
-  desc: Samus environ effect going out of lava OAM
+  desc: Samus environmental effect going out of lava OAM
   label: SamusEnvironEffect_GoingOutOfLavaOAM
   type: Oam [0xA]
   addr:
     U: 0x33C960
     E: 0x33D5EC
     J: 0x33C9BC
-  notes: Samus environmental effect going out of lava OAM
 -
-  desc: Samus environ effect running into lava OAM
+  desc: Samus environmental effect running into lava OAM
   label: SamusEnvironEffect_RunningIntoLavaOAM
   type: Oam [0x7]
   addr:
     U: 0x33C9B0
     E: 0x33D63C
     J: 0x33CA0C
-  notes: Samus environmental effect running into lava OAM
 -
-  desc: Samus environ effect going out of acid OAM
+  desc: Samus environmental effect going out of acid OAM
   label: SamusEnvironEffect_GoingOutOfAcidOAM
   type: Oam [0xB]
   addr:
     U: 0x33C9E8
     E: 0x33D674
     J: 0x33CA44
-  notes: Samus environmental effect going out of acid OAM
 -
-  desc: Samus environ effect running into acid OAM
+  desc: Samus environmental effect running into acid OAM
   label: SamusEnvironEffect_RunningIntoAcidOAM
   type: Oam [0x7]
   addr:
     U: 0x33CA40
     E: 0x33D6CC
     J: 0x33CA9C
-  notes: Samus environmental effect running into acid OAM
 -
-  desc: Samus environ effect landing on bubbly ground OAM
+  desc: Samus environmental effect landing on bubbly ground OAM
   label: SamusEnvironEffect_LandingOnBubblyGroundOAM
   type: Oam [0x7]
   addr:
     U: 0x33CA78
     E: 0x33D704
     J: 0x33CAD4
-  notes: Samus environmental effect landing on bubbly ground OAM
 -
-  desc: Samus environ effect breathing bubbles OAM
+  desc: Samus environmental effect breathing bubbles OAM
   label: SamusEnvironEffect_BreathingBubblesOAM
   type: Oam [0x8]
   addr:
     U: 0x33CAB0
     E: 0x33D73C
     J: 0x33CB0C
-  notes: Samus environmental effect breathing bubbles OAM
 -
-  desc: Samus environ effect running on very dusty ground OAM
+  desc: Samus environmental effect running on very dusty ground OAM
   label: SamusEnvironEffect_RunningOnVeryDustyGroundOAM
   type: Oam [0xC]
   addr:
     U: 0x33CAF0
     E: 0x33D77C
     J: 0x33CB4C
-  notes: Samus environmental effect running on very dusty ground OAM
 -
-  desc: Samus environ effect landing on very dusty ground OAM
+  desc: Samus environmental effect landing on very dusty ground OAM
   label: SamusEnvironEffect_LandingOnVeryDustyGroundOAM
   type: Oam [0x10]
   addr:
     U: 0x33CB50
     E: 0x33D7DC
     J: 0x33CBAC
-  notes: Samus environmental effect landing on very dusty ground OAM
 -
   desc: Tileset entries
   label: TilesetEntries
@@ -597,23 +577,22 @@
     E: 0x3465C0
     J: 0x345990
 -
-  desc: Number tanks per area
+  desc: Number of tanks per area
   label: NumTanksPerArea
   type: NumTanksInArea [0x8]
   addr:
     U: 0x3459A0
     E: 0x34662C
     J: 0x3459FC
-  notes: Number of tanks per area
+  notes: Last entry is total in all areas
 -
-  desc: Starting health and ammo
+  desc: Starting health/ammo
   label: StartingHealthAndAmmo
   type: StartingHealthAmmo
   addr:
     U: 0x3459C0
     E: 0x34664C
     J: 0x345A1C
-  notes: Starting health/ammo
 -
   desc: Tank increase amounts
   label: TankIncreaseAmounts
@@ -656,16 +635,15 @@
     E: 0x3468D4
     J: 0x345CA4
 -
-  desc: BLDALPHA values for clipadata
-  label: BLDALPHA_ValuesForClipadata
+  desc: BLDALPHA values for clipdata
+  label: BLDALPHA_ValuesForClipdata
   type: u16 [0xB]
   addr:
     U: 0x345CC8
     E: 0x346954
     J: 0x345D24
-  notes: BLDALPHA values for clipdata
 -
-  desc: Sub bomb chain trigger position offset
+  desc: Sub-bomb chain trigger position offset
   label: SubBombChainTriggerPositionOffset
   type: s8 [0x10]
   addr:
@@ -680,7 +658,6 @@
     U: 0x34607C
     E: 0x346D08
     J: 0x3460D8
-  notes: Haze BG3 strong in effect movement
 -
   desc: Animated graphics entries
   label: AnimatedGraphicsEntries
@@ -738,7 +715,7 @@
     E: 0x360F64
     J: 0x360334
 -
-  desc: Clipdata behavior types 400
+  desc: Clipdata behavior types (0x400)
   label: ClipdataBehaviorTypes400
   type: u16 [0xD0]
   addr:
@@ -746,9 +723,8 @@
     E: 0x365FBC
     J: 0x36538C
   enum: ClipdataBehaviorType
-  notes: Clipdata behavior types (0x400)
 -
-  desc: Clipdata collision types 400
+  desc: Clipdata collision types (0x400)
   label: ClipdataCollisionTypes400
   type: u8 [0xD0]
   addr:
@@ -756,18 +732,16 @@
     E: 0x36615C
     J: 0x36552C
   enum: ClipdataCollisionType
-  notes: Clipdata collision types (0x400)
 -
-  desc: Tilemap 400
+  desc: Tilemap (0x400)
   label: Tilemap400
   type: u16 [0x340]
   addr:
     U: 0x3655A0
     E: 0x36622C
     J: 0x3655FC
-  notes: Tilemap (0x400)
 -
-  desc: Clipdata collision types debug
+  desc: Clipdata collision types (debug)
   label: ClipdataCollisionTypes_Debug
   type: u8 [0xA0]
   addr:
@@ -776,7 +750,7 @@
     J: 0x365C7C
   enum: ClipdataCollisionType
 -
-  desc: Clipdata behavior types debug
+  desc: Clipdata behavior types (debug)
   label: ClipdataBehaviorTypes_Debug
   type: u16 [0xA0]
   addr:
@@ -854,7 +828,7 @@
     J: 0x45F4AE
   enum: ButtonInput
 -
-  desc: Time attack password chars
+  desc: Time attack password characters
   label: TimeAttackPasswordChars
   type: s8 [0x20]
   tags:
@@ -863,9 +837,8 @@
     U: 0x45FCF4
     E: 0x46D808
     J: 0x45FD50
-  notes: Time attack password characters
 -
-  desc: Metroid fusion gallery data
+  desc: Metroid Fusion gallery data
   label: MetroidFusionGalleryData
   type: MetroidFusionGalleryData [0xD]
   addr:
@@ -954,7 +927,6 @@
     U: 0x5D940C
     E: 0x5EC460
     J: 0x5D951C
-  notes: Common BG graphics
 -
   desc: Common background palette
   label: CommonBGPalette
@@ -966,7 +938,7 @@
     E: 0x5F2E74
     J: 0x5DFF30
 -
-  desc: Graphics for anim graphics
+  desc: Graphics for animated graphics
   label: GfxForAnimGraphics
   type: u8 [0x5200]
   tags:
@@ -975,16 +947,14 @@
     U: 0x74F8B4
     E: 0x762700
     J: 0x74F9C4
-  notes: Graphics for animated graphics
 -
-  desc: Non gameplay RAM pointer
+  desc: Non-gameplay RAM pointer
   label: NonGameplayRamPtr
   type: NonGameplayRam *
   addr:
     U: 0x754BC4
     E: 0x767910
     J: 0x754CD4
-  notes: Non-gameplay RAM pointer
 -
   desc: Samus pose function pointers
   label: SamusPoseFunctionPtrs
@@ -1107,7 +1077,7 @@
     E: 0x773BC8
     J: 0x75FE38
 -
-  desc: Non reform destroy function pointers
+  desc: No/never reform block destroy function pointers
   label: NonReformDestroyFunctionPtrs
   type: void *[0x5]
   tags:
@@ -1116,7 +1086,6 @@
     U: 0x75FD64
     E: 0x773C04
     J: 0x75FE74
-  notes: No/never reform block destroy function pointers
 -
   desc: Haze data
   label: HazeData
@@ -1133,7 +1102,6 @@
     U: 0x75FDE0
     E: 0x773C80
     J: 0x75FEF0
-  notes: Hatch lock events pointers
 -
   desc: Demo RAM data pointers
   label: DemoRamDataPtrs
@@ -1540,7 +1508,7 @@
   addr:
     E: 0x7750A4
 -
-  desc: Sound test sound ids
+  desc: Sound test sound IDs
   label: SoundTestSoundIDs
   type: u16 [0x18]
   addr:
@@ -1548,7 +1516,7 @@
     E: 0x775288
     J: 0x760CBC
 -
-  desc: Nes Metroid data
+  desc: NES Metroid data
   label: NesMetroidData
   type: u8 [0x1F734]
   addr:

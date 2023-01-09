@@ -7,7 +7,7 @@
     E: 0xA5600
     J: 0xA7290
 -
-  desc: Delay note length table
+  desc: Delay/note length table
   label: DelayNoteLengthTable
   type: u8 [0x31]
   addr:
@@ -15,50 +15,45 @@
     E: 0xA59D4
     J: 0xA7664
 -
-  desc: Sound 3 waveform sinewave
-  label: Sound3Waveform_sinewave
+  desc: Sound channel 3 sine waveform
+  label: Sound3Waveform_Sine
   type: u8 [0x10]
   addr:
     U: 0xA8C8C
     E: 0xA92E8
     J: 0xAAFF0
-  notes: Sound channel 3 sinewave waveform
 -
-  desc: Sound 3 waveform triangle
-  label: Sound3Waveform_triangle
+  desc: Sound channel 3 triangle waveform
+  label: Sound3Waveform_Triangle
   type: u8 [0x10]
   addr:
     U: 0xA8C9C
     E: 0xA92F8
     J: 0xAB000
-  notes: Sound channel 3 triangle waveform
 -
-  desc: Sound 3 waveform sawtooth
-  label: Sound3Waveform_sawtooth
+  desc: Sound channel 3 sawtooth waveform
+  label: Sound3Waveform_Sawtooth
   type: u8 [0x10]
   addr:
     U: 0xA8CAC
     E: 0xA9308
     J: 0xAB010
-  notes: Sound channel 3 sawtooth waveform
 -
-  desc: Sound 3 waveform square 50
-  label: Sound3Waveform_square50
+  desc: Sound channel 3 square 50% waveform
+  label: Sound3Waveform_Square50
   type: u8 [0x10]
   addr:
     U: 0xA8CBC
     E: 0xA9318
     J: 0xAB020
-  notes: Sound channel 3 square50 waveform
 -
-  desc: Sound 3 waveform halfsine
-  label: Sound3Waveform_halfsine
+  desc: Sound channel 3 half sine waveform
+  label: Sound3Waveform_HalfSine
   type: u8 [0x10]
   addr:
     U: 0xA8CCC
     E: 0xA9328
     J: 0xAB030
-  notes: Sound channel 3 half sine waveform
 -
   desc: Sound data entries
   label: SoundDataEntries
@@ -100,7 +95,7 @@
     E: 0x2902E8
     J: 0x291F94
 -
-  desc: Random number table 0 F
+  desc: Random number table (0-F)
   label: RandomNumTable_0_F
   type: u8 [0x20]
   addr:
@@ -117,34 +112,31 @@
     E: 0x2E4F98
     J: 0x2E6C44
 -
-  desc: Enemy fall speed table medium hop
+  desc: Enemy fall speed table (hop before falling)
   label: EnemyFallSpeedTable_MediumHop
   type: s16 [0x14]
   addr:
     U: 0x2E4954
     E: 0x2E4FB0
     J: 0x2E6C5C
-  notes: Enemy fall speed table (hop before falling)
 -
-  desc: Enemy fall speed table small hop
+  desc: Enemy fall speed table (quick hop before falling)
   label: EnemyFallSpeedTable_SmallHop
   type: s16 [0x10]
   addr:
     U: 0x2E497C
     E: 0x2E4FD8
     J: 0x2E6C84
-  notes: Enemy fall speed table (quick hop before falling)
 -
-  desc: Enemy fall speed table big hop
+  desc: Enemy fall speed table (big hop before falling)
   label: EnemyFallSpeedTable_BigHop
   type: s16 [0x12]
   addr:
     U: 0x2E499C
     E: 0x2E4FF8
     J: 0x2E6CA4
-  notes: Enemy fall speed table (big hop before falling)
 -
-  desc: Enemy fall speed table falling toward ceiling
+  desc: Enemy fall speed table (falling toward ceiling)
   label: EnemyFallSpeedTable_FallingTowardCeiling
   type: s16 [0x10]
   addr:
@@ -152,7 +144,7 @@
     E: 0x2E501C
     J: 0x2E6CC8
 -
-  desc: Enemy fall speed table default
+  desc: Enemy fall speed table (default)
   label: EnemyFallSpeedTable_Default
   type: s16 [0x10]
   addr:
@@ -160,7 +152,7 @@
     E: 0x2E503C
     J: 0x2E6CE8
 -
-  desc: Enemy fall speed table quick acceleration
+  desc: Enemy fall speed table (quick acceleration)
   label: EnemyFallSpeedTable_QuickAcceleration
   type: s16 [0x8]
   addr:
@@ -168,7 +160,7 @@
     E: 0x2E505C
     J: 0x2E6D08
 -
-  desc: Enemy fall speed table low speed
+  desc: Enemy fall speed table (low speed)
   label: EnemyFallSpeedTable_LowSpeed
   type: s16 [0x10]
   addr:
@@ -176,7 +168,7 @@
     E: 0x2E506C
     J: 0x2E6D18
 -
-  desc: Enemy fall speed table high speed
+  desc: Enemy fall speed table (high speed)
   label: EnemyFallSpeedTable_HighSpeed
   type: s16 [0x10]
   addr:
@@ -208,7 +200,7 @@
     E: 0x2E5EFA
     J: 0x2E7BA6
 -
-  desc: Clipdata behavior types 8000
+  desc: Clipdata behavior types (0x8000)
   label: ClipdataBehaviorTypes_8000
   type: u16 [0x210]
   addr:
@@ -218,7 +210,7 @@
   enum: ClipdataBehaviorType
   notes: Clipdata behavior types for values over 0x8000
 -
-  desc: Clipdata collision types 8000
+  desc: Clipdata collision types (0x8000)
   label: ClipdataCollisionTypes_8000
   type: u8 [0x210]
   addr:
@@ -460,8 +452,8 @@
     E: 0x3C95EC
     J: 0x3CB558
 -
-  desc: Sine table base
-  label: SineTable_Base
+  desc: Sine table 1
+  label: SineTable_1
   type: s8 [0x80]
   addr:
     U: 0x3C94D0
@@ -469,24 +461,26 @@
     J: 0x3CBAA4
   notes: Used for wavy Samus graphics on pre-results screen
 -
-  desc: Sine table water max 2
-  label: SineTable_WaterMax2
+  desc: Sine table 2
+  label: SineTable_2
   type: s8 [0x10]
   addr:
     U: 0x3C9550
     E: 0x3C9BAC
     J: 0x3CBB24
+  notes: Unused?
 -
-  desc: Sine table water max 4
-  label: SineTable_WaterMax4
+  desc: Sine table 3
+  label: SineTable_3
   type: s8 [0x20]
   addr:
     U: 0x3C9560
     E: 0x3C9BBC
     J: 0x3CBB34
+  notes: Unused?
 -
-  desc: Sine tables stage end
-  label: SineTables_StageEnd
+  desc: Sine tables (increasing values)
+  label: SineTables_Increasing
   type: s8 [65][32]
   addr:
     U: 0x3C9580
@@ -494,23 +488,21 @@
     J: 0x3CBB54
   notes: Each table is 32 bytes, with heights from 0 to 64; potentially left over from WL4
 -
-  desc: Sine table heat haze V
-  label: SineTable_HeatHazeV
+  desc: Sine table 4
+  label: SineTable_4
   type: s8 [0x20]
   addr:
     U: 0x3C9DA0
     E: 0x3CA3FC
     J: 0x3CC374
-  notes: Sine table heat haze vertical?
 -
-  desc: Sine table heat haze H
-  label: SineTable_HeatHazeH
+  desc: Sine table 5
+  label: SineTable_5
   type: s8 [0x10]
   addr:
     U: 0x3C9DC0
     E: 0x3CA41C
     J: 0x3CC394
-  notes: Sine table heat haze horizontal?
 -
   desc: Tank increase amounts
   label: TankIncreaseAmounts
@@ -526,7 +518,7 @@
     U: 0x3E3764
     E: 0x3E3DC0
 -
-  desc: Animated palette entries J
+  desc: Animated palette entries (J)
   label: AnimatedPaletteEntries_J
   type: AnimatedPaletteEntry [0x22]
   addr:
@@ -566,7 +558,7 @@
     J: 0x3F2E10
   enum: ClipdataCollisionType
 -
-  desc: Clipdata collision types debug
+  desc: Clipdata collision types (debug)
   label: ClipdataCollisionTypes_Debug
   type: u8 [0x100]
   addr:
@@ -583,7 +575,7 @@
     J: 0x3F37C4
   enum: ClipdataBehaviorType
 -
-  desc: Clipdata behavior types debug
+  desc: Clipdata behavior types (debug)
   label: ClipdataBehaviorTypes_Debug
   type: u16 [0x100]
   addr:
@@ -599,7 +591,7 @@
     E: 0x5760BC
     J: 0x578164
 -
-  desc: Number tanks per area
+  desc: Number of tanks per area
   label: NumTanksPerArea
   type: NumTanksInArea [0x8]
   addr:
@@ -676,7 +668,7 @@
     J: 0x583C10
   notes: Event names in the pause screen debug menu
 -
-  desc: Met 4 AGB back up 01 text
+  desc: Met4AGBBackUp01 text
   label: Met4AGBBackUp01_Text
   type: s8 [0x10]
   tags:
@@ -686,7 +678,7 @@
     E: 0x582844
     J: 0x58491C
 -
-  desc: SAVE END text
+  desc: SAVE_END text
   label: SAVE_END_Text
   type: s8 [0x8]
   tags:
@@ -696,7 +688,7 @@
     E: 0x582854
     J: 0x58492C
 -
-  desc: Metroid episode 4 A text
+  desc: MetroidEpisode4A text
   label: MetroidEpisode4A_Text
   type: s8 [0x20]
   tags:
@@ -706,7 +698,7 @@
     E: 0x58285C
     J: 0x584934
 -
-  desc: Save data wram pointers
+  desc: Save data WRAM pointers
   label: SaveDataWramPtrs
   type: SaveFileRam *[0x3]
   addr:
@@ -834,7 +826,7 @@
     E: 0x79C33C
     J: 0x7EE1B8
 -
-  desc: Navigation conversation sub events
+  desc: Navigation conversation sub-events
   label: NavConversationSubEvents
   type: NavConversationSubEvent [0x16]
   addr:
@@ -842,7 +834,7 @@
     E: 0x79C400
     J: 0x7EE27C
 -
-  desc: Sub event triggers
+  desc: Sub-event triggers
   label: SubEventTriggers
   type: u8 [0x9C]
   addr:
@@ -1109,7 +1101,7 @@
     U: 0x79D35C
     E: 0x79DB90
 -
-  desc: Hiragana pause screen text pointers J
+  desc: Hiragana pause screen text pointers (J)
   label: HiraganaPauseScreenTextPtrs_J
   type: u16 *[0x6F]
   tags:
