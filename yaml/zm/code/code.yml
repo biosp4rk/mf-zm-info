@@ -2684,8 +2684,8 @@
     enum: SamusPose
     notes: 0xFF if none
 -
-  desc: Samus using an elevator
-  label: SamusUsingAnElevator
+  desc: Samus using elevator
+  label: SamusUsingElevator
   addr:
     U: 0x9B28
     E: 0x9B84
@@ -2703,8 +2703,8 @@
     enum: SamusPose
     notes: 0xFF if none
 -
-  desc: Samus using an elevator graphics
-  label: SamusUsingAnElevatorGfx
+  desc: Samus using elevator graphics
+  label: SamusUsingElevatorGfx
   addr:
     U: 0x9BB4
     E: 0x9C10
@@ -3422,7 +3422,6 @@
     type: u8
     notes: 0 if facing right, 1 if facing left
   return: null
-  notes: Updates the arm cannon position offset
 -
   desc: Initialize Samus data
   label: InitSamusData
@@ -4665,7 +4664,7 @@
     label: SpriteRamSlot
     type: u8
     notes: 0xFF if not found
-  notes: Finds the first primary sprite with r0
+  notes: Finds the first primary sprite with the provided ID
 -
   desc: Find secondary sprite with part number
   label: FindSecondarySpriteWithPartNumber
@@ -5407,7 +5406,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the UnderSprites status flag isn't set
+  notes: Loops through all projectiles and calls DrawProjectile if the UnderSprites status flag isn't set
 -
   desc: Call draw projectile (under sprites)
   label: CallDrawProjectile_UnderSprites
@@ -5419,7 +5418,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Loops through all the projectiles and calls DrawProjectile if the UnderSprites status flag is set
+  notes: Loops through all projectiles and calls DrawProjectile if the UnderSprites status flag is set
 -
   desc: Draw projectile
   label: DrawProjectile
@@ -7430,7 +7429,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when beginning to charge a beam
 -
   desc: Play shooting charged beam sound
   label: PlayShootingChargedBeamSound
@@ -7442,7 +7440,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when shooting a charged beam
 -
   desc: Play beam fully charged sound
   label: PlayBeamFullyChargedSound
@@ -7454,7 +7451,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Plays a sound depending on the beams activated when charging a fully charged beam
 -
   desc: Particle charging beam
   label: ParticleChargingBeam
@@ -10221,7 +10217,7 @@
     desc: Always 0
     label: Always0
     type: bool
-  notes: Handles the wall view and the grey voice part of the before charlie cutscene
+  notes: Handles the wall view and the grey voice part of the before Ruins Test cutscene
 -
   desc: Before Ruins Test Chozo wall sides
   label: BeforeRuinsTestChozoWallSides
@@ -14256,7 +14252,7 @@
     notes: Uses r0 and r1
   notes: Function sf_to_df from fp-bit.c in libgcc
 -
-  desc: Right shift long int
+  desc: Right shift long integer
   label: RightShiftLongInt
   addr:
     U: 0x8C600
@@ -14279,9 +14275,8 @@
     label: LongInt
     type: u32
     notes: Uses r0 and r1
-  notes: Right shift long integer
 -
-  desc: Multiply long ints
+  desc: Multiply long integers
   label: MultiplyLongInts
   addr:
     U: 0x8C634
@@ -14307,9 +14302,8 @@
     label: LongInt
     type: u32
     notes: Uses r0 and r1
-  notes: Multiply long integers
 -
-  desc: Negate long int
+  desc: Negate long integer
   label: NegateLongInt
   addr:
     U: 0x8C6A4
@@ -14329,7 +14323,6 @@
     label: LongInt
     type: u32
     notes: Uses r0 and r1
-  notes: Negate long integer
 -
   desc: Memory copy
   label: MemoryCopy

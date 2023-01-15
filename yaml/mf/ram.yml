@@ -41,7 +41,7 @@
     J: 0x2020000
   notes: Holds room sprite graphics while paused
 -
-  desc: Decomp clipdata
+  desc: Decompressed clipdata
   label: DecompClipdata
   type: u16 [0x1800]
   addr:
@@ -49,7 +49,7 @@
     E: 0x2026000
     J: 0x2026000
 -
-  desc: Decomp BG0 data
+  desc: Decompressed BG0 data
   label: DecompBG0Data
   type: u16 [0x1800]
   addr:
@@ -57,7 +57,7 @@
     E: 0x2029000
     J: 0x2029000
 -
-  desc: Decomp BG1 data
+  desc: Decompressed BG1 data
   label: DecompBG1Data
   type: u16 [0x1800]
   addr:
@@ -65,7 +65,7 @@
     E: 0x202C000
     J: 0x202C000
 -
-  desc: Decomp BG2 data
+  desc: Decompressed BG2 data
   label: DecompBG2Data
   type: u16 [0x1800]
   addr:
@@ -73,7 +73,7 @@
     E: 0x202F000
     J: 0x202F000
 -
-  desc: Decomp BG3 data
+  desc: Decompressed BG3 data
   label: DecompBG3Data
   type: u16 [0x1000]
   addr:
@@ -974,7 +974,7 @@
     U: 0x30007F0
     E: 0x30007F0
     J: 0x3000824
-  notes: Ranges between 0x0-0xF
+  notes: Ranges between 0-F
 -
   desc: Boss work 0
   label: BossWork0
@@ -1654,7 +1654,7 @@
 -
   desc: Sound code A
   label: SoundCodeARam
-  type: void [0x658]
+  type: u8 [0x658]
   tags:
   - arm
   addr:
@@ -1674,7 +1674,7 @@
 -
   desc: Sound code B
   label: SoundCodeBRam
-  type: void [0xA4]
+  type: u8 [0xA4]
   addr:
     U: 0x3003CB4
     E: 0x3003CB4
@@ -1692,7 +1692,7 @@
 -
   desc: Sound code C
   label: SoundCodeCRam
-  type: void [0xAC]
+  type: u8 [0xAC]
   addr:
     U: 0x3003D5C
     E: 0x3003D5C

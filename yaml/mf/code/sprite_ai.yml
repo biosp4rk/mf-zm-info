@@ -2803,7 +2803,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Spawns the save prompt
 -
   desc: Save platform idle after prompt
   label: SavePlatform_IdleAfterPrompt
@@ -2815,7 +2814,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Idle after the save prompt spawned
 -
   desc: Save platform rising
   label: SavePlatform_Rising
@@ -2838,7 +2836,6 @@
   mode: thumb
   params: null
   return: null
-  notes: Handles the save platform rising after a save prompt
 -
   desc: Save pad hologram initialize
   label: SavePadHologram_Init
@@ -5688,8 +5685,8 @@
   params: null
   return: null
 -
-  desc: Try spawn message BOX
-  label: TrySpawnMessageBox
+  desc: Try spawn message banner
+  label: TrySpawnMessageBanner
   addr:
     U: 0x2A828
     E: 0x2A828
@@ -5701,12 +5698,13 @@
     label: MessageNum
     type: u8
   return:
-    desc: Assigned sprite RAM slot0x 18 otherwise
-    label: AssignedSpriteRamSlot0x18Otherwise
+    desc: Assigned sprite RAM slot
+    label: AssignedSpriteRamSlot
     type: u8
+    notes: 0x18 if not not assigned
 -
-  desc: Message BOX initialize
-  label: MessageBox_Init
+  desc: Message banner initialize
+  label: MessageBanner_Init
   addr:
     U: 0x2A89C
     E: 0x2A89C
@@ -5716,8 +5714,8 @@
   params: null
   return: null
 -
-  desc: Message BOX opening start
-  label: MessageBox_OpeningStart
+  desc: Message banner opening start
+  label: MessageBanner_OpeningStart
   addr:
     U: 0x2A9B0
     E: 0x2A9B0
@@ -5727,8 +5725,8 @@
   params: null
   return: null
 -
-  desc: Message BOX opening
-  label: MessageBox_Opening
+  desc: Message banner opening
+  label: MessageBanner_Opening
   addr:
     U: 0x2AA00
     E: 0x2AA00
@@ -5738,8 +5736,8 @@
   params: null
   return: null
 -
-  desc: Message BOX displaying
-  label: MessageBox_Displaying
+  desc: Message banner displaying
+  label: MessageBanner_Displaying
   addr:
     U: 0x2AB18
     E: 0x2AB18
@@ -5749,8 +5747,8 @@
   params: null
   return: null
 -
-  desc: Message BOX closing start
-  label: MessageBox_ClosingStart
+  desc: Message banner closing start
+  label: MessageBanner_ClosingStart
   addr:
     U: 0x2ABA0
     E: 0x2ABA0
@@ -5760,8 +5758,8 @@
   params: null
   return: null
 -
-  desc: Message BOX closing
-  label: MessageBox_Closing
+  desc: Message banner closing
+  label: MessageBanner_Closing
   addr:
     U: 0x2ABE4
     E: 0x2ABE4
@@ -5771,8 +5769,8 @@
   params: null
   return: null
 -
-  desc: Message BOX AI
-  label: MessageBox_AI
+  desc: Message banner AI
+  label: MessageBanner_AI
   addr:
     U: 0x2AC24
     E: 0x2AC24
