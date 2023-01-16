@@ -1632,7 +1632,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Calls UpdateSamusGraphics, SamusUpdateAnimationAndTimers and SamusUpdateGroundEffects
+  notes: Calls UpdateSamusGraphics, SamusUpdateAnimAndTimers and SamusUpdateGroundEffects
 -
   desc: Call check play low health sound
   label: CallCheckPlayLowHealthSound
@@ -3571,7 +3571,7 @@
   notes: Calls sprite AI, updates sprite info (animation counter, stun timer), updates sprite debris, does checks related to Samus on sprite, and updates the alarm timer
 -
   desc: Update sprite animation
-  label: UpdateSpriteAnimation
+  label: UpdateSpriteAnim
   addr:
     U: 0xD32C
     E: 0xD3E0
@@ -4138,7 +4138,7 @@
   notes: Calculates the new OAM rotation for the current sprite to face Samus
 -
   desc: Check end of sprite animation (current)
-  label: CheckEndOfSpriteAnimation_Curr
+  label: CheckEndOfSpriteAnim_Curr
   addr:
     U: 0xFBC8
     E: 0xFC7C
@@ -4148,11 +4148,11 @@
   params: null
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Check near end of sprite animation (current)
-  label: CheckNearEndOfSpriteAnimation_Curr
+  label: CheckNearEndOfSpriteAnim_Curr
   addr:
     U: 0xFC00
     E: 0xFCB4
@@ -4162,11 +4162,11 @@
   params: null
   return:
     desc: Animation near end
-    label: AnimationNearEnd
+    label: AnimNearEnd
     type: bool
 -
   desc: Check end of sprite animation (slot)
-  label: CheckEndOfSpriteAnimation_Slot
+  label: CheckEndOfSpriteAnim_Slot
   addr:
     U: 0xFC3C
     E: 0xFCF0
@@ -4179,11 +4179,11 @@
     type: u8
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Check near end of sprite animation (slot)
-  label: CheckNearEndOfSpriteAnimation_Slot
+  label: CheckNearEndOfSpriteAnim_Slot
   addr:
     U: 0xFC84
     E: 0xFD38
@@ -4196,11 +4196,11 @@
     type: u8
   return:
     desc: Animation near end
-    label: AnimationNearEnd
+    label: AnimNearEnd
     type: bool
 -
   desc: Check end of sub sprite data 1 animation
-  label: CheckEndOfSubSpriteData1Animation
+  label: CheckEndOfSubSpriteData1Anim
   addr:
     U: 0xFCD0
     E: 0xFD84
@@ -4210,11 +4210,11 @@
   params: null
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Check near end of sub sprite data 1 animation
-  label: CheckNearEndOfSubSpriteData1Animation
+  label: CheckNearEndOfSubSpriteData1Anim
   addr:
     U: 0xFD08
     E: 0xFDBC
@@ -4224,11 +4224,11 @@
   params: null
   return:
     desc: Animation near end
-    label: AnimationNearEnd
+    label: AnimNearEnd
     type: bool
 -
   desc: Check end of sub sprite data 2 animation
-  label: CheckEndOfSubSpriteData2Animation
+  label: CheckEndOfSubSpriteData2Anim
   addr:
     U: 0xFD44
     E: 0xFDF8
@@ -4238,11 +4238,11 @@
   params: null
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Check end of sub sprite animation (pointer)
-  label: CheckEndOfSubSpriteAnimation_Ptr
+  label: CheckEndOfSubSpriteAnim_Ptr
   addr:
     U: 0xFD7C
     E: 0xFE30
@@ -4255,11 +4255,11 @@
     type: SubSpriteData *
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Check near end of sub sprite animation (pointer)
-  label: CheckNearEndOfSubSpriteAnimation_Ptr
+  label: CheckNearEndOfSubSpriteAnim_Ptr
   addr:
     U: 0xFDAC
     E: 0xFE60
@@ -4272,7 +4272,7 @@
     type: SubSpriteData *
   return:
     desc: Animation near end
-    label: AnimationNearEnd
+    label: AnimNearEnd
     type: bool
 -
   desc: Check Samus near sprite (left/right)
@@ -4367,7 +4367,7 @@
   return: null
 -
   desc: Sprite unfreeze animation (easy mode)
-  label: SpriteUnfreezeAnimation_EasyMode
+  label: SpriteUnfreezeAnim_EasyMode
   addr:
     U: 0x1004C
     E: 0x10100
@@ -4379,7 +4379,7 @@
   notes: Unfreeze animation for Metroids on easy mode and for winged ripper on any difficulty
 -
   desc: Metroid unfreeze animation
-  label: MetroidUnfreezeAnimation
+  label: MetroidUnfreezeAnim
   addr:
     U: 0x100A4
     E: 0x10158
@@ -4901,7 +4901,7 @@
   notes: Checks if a sprite is on screen and a screen shake is active (used in sova, zoomer and zeela AI)
 -
   desc: Update sub-sprite 1 animation
-  label: UpdateSubSprite1Animation
+  label: UpdateSubSprite1Anim
   addr:
     U: 0x11330
     E: 0x113E4
@@ -4934,7 +4934,7 @@
   return: null
 -
   desc: Update sub-sprite 2 animation
-  label: UpdateSubSprite2Animation
+  label: UpdateSubSprite2Anim
   addr:
     U: 0x11410
     E: 0x114C4
@@ -4956,7 +4956,7 @@
   return: null
 -
   desc: Update sub-sprite animation
-  label: UpdateSubSpriteAnimation
+  label: UpdateSubSpriteAnim
   addr:
     U: 0x114AC
     E: 0x11560
@@ -5383,7 +5383,7 @@
   return: null
 -
   desc: Advance projectile animation
-  label: AdvanceProjectileAnimation
+  label: AdvanceProjectileAnim
   addr:
     U: 0x4F304
     E: 0x4F3D0
@@ -6243,7 +6243,7 @@
     label: NumOfEnergyTanks
     type: u8
   - desc: Refill animation stage
-    label: RefillAnimationStage
+    label: RefillAnimStage
     type: u8
   return: null
   notes: Updates the energy tank squares on the HUD
@@ -6489,7 +6489,7 @@
   return: null
 -
   desc: Reset refill animations
-  label: ResetRefillAnimations
+  label: ResetRefillAnims
   addr:
     U: 0x53C8C
     E: 0x53D58
@@ -6500,7 +6500,7 @@
   return: null
 -
   desc: Reset HUD digits animation
-  label: ResetHudDigitsAnimation
+  label: ResetHudDigitsAnim
   addr:
     U: 0x53CB0
     E: 0x53D7C
@@ -6571,7 +6571,7 @@
   return: null
 -
   desc: Update particle effect animation
-  label: UpdateParticleEffectAnimation
+  label: UpdateParticleEffectAnim
   addr:
     U: 0x5418C
     E: 0x54258
@@ -6587,7 +6587,7 @@
     type: Oam *
   return:
     desc: Animation ended
-    label: AnimationEnded
+    label: AnimEnded
     type: bool
 -
   desc: Set current particle effect OAM frame pointer
@@ -8484,7 +8484,7 @@
   return: null
 -
   desc: Breaking or reforming block animation
-  label: BreakingOrReformingBlockAnimation
+  label: BreakingOrReformingBlockAnim
   addr:
     U: 0x59C74
     E: 0x59D3C
@@ -9281,7 +9281,7 @@
     type: bool
 -
   desc: Update hatch animation
-  label: UpdateHatchAnimation
+  label: UpdateHatchAnim
   addr:
     U: 0x5E8F8
     E: 0x5E9EC
@@ -10149,7 +10149,7 @@
     type: bool
 -
   desc: Getting fully powered suit animation
-  label: GettingFullyPoweredSuitAnimation
+  label: GettingFullyPoweredSuitAnim
   addr:
     U: 0x65BD8
     E: 0x65CF4
@@ -10301,7 +10301,7 @@
     type: u8
 -
   desc: Enter Tourian animation
-  label: EnterTourianAnimation
+  label: EnterTourianAnim
   addr:
     U: 0x67080
     E: 0x6719C
@@ -11521,7 +11521,7 @@
   return: null
 -
   desc: Game over menu letters animation
-  label: GameOverMenuLettersAnimation
+  label: GameOverMenuLettersAnim
   addr:
     U: 0x77FF4
     E: 0x782F4

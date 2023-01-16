@@ -80,10 +80,10 @@ AnimatedGraphicsEntry:
   size: 0x8
   vars:
   - desc: Animation type
-    label: AnimationType
+    label: AnimType
     type: u8
     offset: 0x0
-    enum: GraphicsAnimationType
+    enum: GraphicsAnimType
   - desc: Frames per state
     label: FramesPerState
     type: u8
@@ -113,10 +113,10 @@ AnimatedPaletteEntry:
   size: 0x8
   vars:
   - desc: Animation type
-    label: AnimationType
+    label: AnimType
     type: u8
     offset: 0x0
-    enum: PaletteAnimationType
+    enum: PaletteAnimType
   - desc: Frames per state
     label: FramesPerState
     type: u8
@@ -436,7 +436,7 @@ CollectedTank:
     label: YPosition
     type: u8
     offset: 0x3
-CollectibleTankAnimation:
+CollectibleTankAnim:
   size: 0x4
   vars:
   - desc: Delay
@@ -455,7 +455,7 @@ CurrPowerBomb:
   size: 0x14
   vars:
   - desc: Animation state
-    label: AnimationState
+    label: AnimState
     type: u8
     offset: 0x0
   - desc: Unknown 01
@@ -1033,7 +1033,7 @@ HatchData:
     type: u8
     offset: 0x0
   - desc: Animation
-    label: Animation
+    label: Anim
     type: u8
     offset: 0x1
   - desc: X position
@@ -1397,7 +1397,7 @@ ParticleEffect:
     - flags
     offset: 0x0
   - desc: Animation frame counter
-    label: AnimationFrameCounter
+    label: AnimFrameCounter
     type: u8
     offset: 0x1
   - desc: Effect number
@@ -1414,7 +1414,7 @@ ParticleEffect:
     type: u8
     offset: 0x4
   - desc: Animation state
-    label: AnimationState
+    label: AnimState
     type: u16
     offset: 0x6
   - desc: Y position
@@ -1505,11 +1505,11 @@ ProjectileData:
     type: u16
     offset: 0xA
   - desc: Animation frame
-    label: AnimationFrame
+    label: AnimFrame
     type: u16
     offset: 0xC
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0xE
   - desc: Type
@@ -1689,7 +1689,7 @@ RoomSpriteEntry:
     label: Properties
     type: u8
     offset: 0x2
-SamusAnimationInfo:
+SamusAnimInfo:
   size: 0xC
   vars:
   - desc: Loading save flag?
@@ -1697,7 +1697,7 @@ SamusAnimationInfo:
     type: u8
     offset: 0x0
   - desc: Palette animation counter
-    label: PaletteAnimationCounter
+    label: PaletteAnimCounter
     type: u8
     offset: 0x1
   - desc: Current palette row
@@ -1796,7 +1796,7 @@ SamusData:
     offset: 0xD
     enum: DiagonalAim
   - desc: Arm running animation flag
-    label: ArmRunningAnimationFlag
+    label: ArmRunningAnimFlag
     type: u8
     offset: 0xE
   - desc: Misc counter (speed boost, knockback, dying)
@@ -1840,11 +1840,11 @@ SamusData:
     offset: 0x20
     enum: SamusStandingStatus
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0x21
   - desc: Current animation
-    label: CurrAnimation
+    label: CurrAnim
     type: u8
     offset: 0x22
   - desc: Shooting flag
@@ -2169,8 +2169,8 @@ SaveFileRam:
     type: SamusData
     offset: 0x60
   - desc: Samus animation info
-    label: SamusAnimationInfo
-    type: SamusAnimationInfo
+    label: SamusAnimInfo
+    type: SamusAnimInfo
     offset: 0x8C
   - desc: Samus echo
     label: SamusEcho
@@ -2484,7 +2484,7 @@ SpriteData:
     type: u16
     offset: 0x14
   - desc: Current animation frame
-    label: CurrAnimationFrame
+    label: CurrAnimFrame
     type: u16
     offset: 0x16
   - desc: OAM pointer
@@ -2492,7 +2492,7 @@ SpriteData:
     type: Oam *
     offset: 0x18
   - desc: Animation duration counter
-    label: AnimationDurationCounter
+    label: AnimDurationCounter
     type: u8
     offset: 0x1C
   - desc: Sprite ID
@@ -2611,7 +2611,7 @@ SpriteDebris:
     type: Oam *
     offset: 0x0
   - desc: Current animation frame
-    label: CurrAnimationFrame
+    label: CurrAnimFrame
     type: u16
     offset: 0x4
   - desc: Y position
@@ -2623,7 +2623,7 @@ SpriteDebris:
     type: u16
     offset: 0x8
   - desc: Animation duration counter
-    label: AnimationDurationCounter
+    label: AnimDurationCounter
     type: u8
     offset: 0xA
   - desc: Exists flag
