@@ -7,7 +7,7 @@ from constants import *
 from utils import *
 
 
-LABEL_PAT = re.compile(r"^\w+$", flags=re.A)
+LABEL_PAT = re.compile(r"^[A-Za-z]\w*$", flags=re.A)
 
 TYPE_SYMS = {"*", "[", "]", "(", ")"}
 

@@ -16,27 +16,46 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
 Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is for unlabeled data.
 
 ## Data Format
-- ram / rom
-  - label
-  - notes (optional)
-  - type
-  - tags (optional)
-  - addr
-  - enum (optional)
-- code
-  - label
-  - notes (optional)
-  - addr
-  - size
-  - mode (`thumb` or `arm`)
-  - params
-  - return
-- structs
-  - size
-  - vars
-- enums
-  - desc
-  - val
+
+### Type Definitions
+
+- `hex` is a hexadecimal string that matches the pattern `0x[0-9A-F]+`
+- Labels must match the pattern `[A-Za-z]\w*`
+- `Region = Literal['U', 'E', 'J']`
+- `RegionDict = Dict[Region, hex]`
+- `RegionInt = Union[hex, RegionDict]`
+
+### Entry Attributes
+
+- GameVar
+  - **`desc`** : `str`
+  - **`label`** : `str`
+  - **`type`** : `str`
+  - **`tags`** : `Optional[List[str]]`
+  - **`enum`** : `Optional[str]`
+  - **`notes`** : `Optional[str]`
+- RAM / ROM
+  - Extends GameVar
+  - **`addr`** : `RegionInt`
+- Code
+  - **`desc`** : `str`
+  - **`label`** : `str`
+  - **`addr`** : `RegionInt`
+  - **`size`** : `RegionInt`
+  - **`mode`** : `Literal['thumb', 'arm']`
+  - **`params`** : `Union[List[GameVar], None]`
+  - **`return`** : `Union[GameVar, None]`
+  - **`notes`** : `Optional[str]`
+- Structs
+  - **`size`** : `hex`
+  - **`vars`** : `List`
+    - Extends GameVar
+    - **`offset`** : `hex`
+- Enums
+  - **`desc`** : `str`
+  - **`label`** : `str`
+  - **`val`** : `hex`
+  - **`notes`** : `Optional[str]`
 
 ### Primitive Types
 - `u8` - Unsigned 8 bit integer
