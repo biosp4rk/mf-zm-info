@@ -116,6 +116,22 @@ BeforeAfterEventFlag:
 - desc: Before
   label: Before
   val: 0x1
+BlockReformType:
+- desc: None
+  label: None
+  val: 0x0
+- desc: No/never Reform
+  label: NoOrNeverReform
+  val: 0x1
+- desc: Reform
+  label: Reform
+  val: 0x2
+- desc: Bomb chain
+  label: BombChain
+  val: 0x3
+- desc: Tank
+  label: Tank
+  val: 0x4
 BlockWeaknessFlags:
 - desc: None
   label: None
@@ -123,8 +139,8 @@ BlockWeaknessFlags:
 - desc: Beam
   label: Beam
   val: 0x1
-- desc: Bomb pistol
-  label: BombPistol
+- desc: Bomb/pistol
+  label: BombOrPistol
   val: 0x2
 - desc: Missile
   label: Missile
@@ -138,8 +154,8 @@ BlockWeaknessFlags:
 - desc: Speed boost
   label: SpeedBoost
   val: 0x20
-- desc: Speed boost 2
-  label: SpeedBoost2
+- desc: Speed boost (ground)
+  label: SpeedBoost_Ground
   val: 0x40
 - desc: Screw attack
   label: ScrewAttack
@@ -172,6 +188,73 @@ BombChainType:
 - desc: Horizontal 4
   label: Horizontal4
   val: 0x7
+BreakableBlockType:
+- desc: None
+  label: None
+  val: 0x0
+- desc: Shot block (reform)
+  label: ShotBlock_Reform
+  val: 0x1
+- desc: Bomb block (reform)
+  label: BombBlock_Reform
+  val: 0x2
+- desc: Speed booster (reform)
+  label: SpeedBooster_Reform
+  val: 0x3
+- desc: Crumble
+  label: Crumble
+  val: 0x4
+- desc: Slow crumble
+  label: SlowCrumble
+  val: 0x5
+- desc: Missile (never reform)
+  label: Missile_NeverReform
+  val: 0x6
+- desc: Missile (no reform)
+  label: Missile_NoReform
+  val: 0x7
+- desc: Super missile (never reform)
+  label: SuperMissile_NeverReform
+  val: 0x8
+- desc: Super missile (no reform)
+  label: SuperMissile_NoReform
+  val: 0x9
+- desc: Power bomb (never reform)
+  label: PowerBomb_NeverReform
+  val: 0xA
+- desc: Screw attack (no reform)
+  label: ScrewAttack_NoReform
+  val: 0xB
+- desc: Speed booster (no reform)
+  label: SpeedBooster_NoReform
+  val: 0xC
+- desc: Bomb (never reform)
+  label: Bomb_NeverReform
+  val: 0xD
+- desc: Vertical bomb chain 1
+  label: VerticalBombChain1
+  val: 0xE
+- desc: Vertical bomb chain 2
+  label: VerticalBombChain2
+  val: 0xF
+- desc: Vertical bomb chain 3
+  label: VerticalBombChain3
+  val: 0x10
+- desc: Vertical bomb chain 4
+  label: VerticalBombChain4
+  val: 0x11
+- desc: Horizontal bomb chain 1
+  label: HorizontalBombChain1
+  val: 0x12
+- desc: Horizontal bomb chain 2
+  label: HorizontalBombChain2
+  val: 0x13
+- desc: Horizontal bomb chain 3
+  label: HorizontalBombChain3
+  val: 0x14
+- desc: Horizontal bomb chain 4
+  label: HorizontalBombChain4
+  val: 0x15
 ButtonInput:
 - desc: A
   label: A
@@ -270,9 +353,24 @@ ClipdataAffectingAction:
 - desc: Remove solid
   label: RemoveSolid
   val: 0x1
-- desc: Make solid
-  label: MakeSolid
+- desc: Make solid 1
+  label: MakeSolid1
+  val: 0x2
+  notes: Sets clip to 0x43E
+- desc: Make solid 2
+  label: MakeSolid2
+  val: 0x3
+  notes: Sets clip to 0x43D
+- desc: Make solid 3
+  label: MakeSolid3
   val: 0x4
+  notes: Sets clip to 0x43F
+- desc: Bomb chain (unused)
+  label: BombChain_Unused
+  val: 0x5
+- desc: Unused
+  label: Unused
+  val: 0x6
 - desc: Beam
   label: Beam
   val: 0x7
@@ -291,8 +389,8 @@ ClipdataAffectingAction:
 - desc: Speed boost
   label: SpeedBoost
   val: 0xC
-- desc: Speed boost ground
-  label: SpeedBoostGround
+- desc: Speed boost (ground)
+  label: SpeedBoost_Ground
   val: 0xD
 - desc: Screw attack
   label: ScrewAttack
@@ -613,39 +711,73 @@ Cutscene:
 - desc: Samus Zebes escape final text
   label: SamusZebesEscapeFinalText
   val: 0x3
-- desc: Entering Norfair
-  label: EnteringNorfair
+- desc: Mother Brain close-up
+  label: MotherBrainCloseUp
   val: 0x4
+  notes: Triggered when entering Norfair
 - desc: Kraid fight start
   label: KraidFightStart
   val: 0x5
 - desc: Tourian elevator statue activating
   label: TourianElevatorStatueActivating
   val: 0x6
-- desc: Leaving Kraid
-  label: LeavingKraid
+- desc: Ridley in space
+  label: RidleyInSpace
   val: 0x7
-- desc: Entering Ridley
-  label: EnteringRidley
+  notes: Triggered when leaving Kraid
+- desc: Ridley landing
+  label: RidleyLanding
   val: 0x8
+  notes: Triggered when entering Ridley
 - desc: Ridley fight start
   label: RidleyFightStart
   val: 0x9
-- desc: Entering Tourian
-  label: EnteringTourian
+- desc: Tourian Metroids
+  label: TourianMetroids
   val: 0xA
-- desc: Entering Ruins Test room
-  label: EnteringRuinsTestRoom
+  notes: Triggered when entering Tourian
+- desc: Before Ruins Test fight
+  label: BeforeRuinsTestFight
   val: 0xB
+  notes: Triggered when entering Ruins Test room
 - desc: Obtaining fully powered suit
   label: ObtainingFullyPoweredSuit
   val: 0xC
-- desc: Entering mother ship
-  label: EnteringMotherShip
+- desc: Mecha Ridley sees Samus
+  label: MechaRidleySeesSamus
   val: 0xD
+  notes: Triggered when entering mother ship
 - desc: Activating escape ship
   label: ActivatingEscapeShip
   val: 0xE
+CutsceneRequest:
+- desc: None
+  label: None
+  val: 0x0
+- desc: Escaping Chozodia
+  label: EscapingChozodia
+  val: 0x1
+- desc: Escape failed
+  label: EscapedFailed
+  val: 0x2
+- desc: Escaping Zebes
+  label: EscapingZebes
+  val: 0x3
+- desc: Obtaining fully powered suit
+  label: ObtainingFullyPoweredSuit
+  val: 0x4
+- desc: RidleyFightStart
+  label: RidleyFightStart
+  val: 0x5
+- desc: Tourian elevator statue activating
+  label: TourianElevatorStatueActivating
+  val: 0x6
+- desc: Samus intro text
+  label: SamusIntroText
+  val: 0x7
+- desc: Activating escape ship
+  label: ActivatingEscapeShip
+  val: 0x8
 DebrisCloudType:
 - desc: TODO
   label: TODO

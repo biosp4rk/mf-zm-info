@@ -44,10 +44,10 @@ AnimatedGraphicsEntry:
   size: 0x8
   vars:
   - desc: Animation type
-    label: AnimationType
+    label: AnimType
     type: u8
     offset: 0x0
-    enum: GraphicsAnimationType
+    enum: GraphicsAnimType
   - desc: Frames per state
     label: FramesPerState
     type: u8
@@ -77,10 +77,10 @@ AnimatedPaletteEntry:
   size: 0x8
   vars:
   - desc: Animation type
-    label: AnimationType
+    label: AnimType
     type: u8
     offset: 0x0
-    enum: PaletteAnimationType
+    enum: PaletteAnimType
   - desc: Frames per state
     label: FramesPerState
     type: u8
@@ -496,6 +496,27 @@ BoxBounds:
     label: BottomOffset
     type: s16
     offset: 0x6
+BreakableBlockBehavior:
+  size: 0x4
+  vars:
+  - desc: Reform type
+    label: ReformType
+    type: u8
+    offset: 0x0
+    enum: BlockReformType
+  - desc: Function array offset
+    label: FunctionArrayOffset
+    type: u8
+    offset: 0x1
+  - desc: Block type
+    label: BlockType
+    type: u8
+    offset: 0x2
+    enum: BreakableBlockType
+  - desc: Unknown 03
+    label: unk_03
+    type: u8
+    offset: 0x3
 BreakingOrReformingBlock:
   size: 0x8
   vars:
@@ -605,6 +626,26 @@ ChozoTargetCheck:
     label: EquipmentBitFlagOrEventNum
     type: u8
     offset: 0x1
+CollisionData:
+  size: 0x10
+  vars:
+  - desc: Clipdata collision type
+    label: ClipdataCollisionType
+    type: u16
+    offset: 0x0
+    enum: ClipdataCollisionType
+  - desc: X position
+    label: XPosition
+    type: u32
+    offset: 0x4
+  - desc: Y position
+    label: YPosition
+    type: u32
+    offset: 0x8
+  - desc: Unknown 0C
+    label: unk_0C
+    type: u32
+    offset: 0xC
 CurrAffectingClipdata:
   size: 0x4
   vars:
@@ -717,7 +758,7 @@ CurrPowerBomb:
   size: 0x14
   vars:
   - desc: Animation state
-    label: AnimationState
+    label: AnimState
     type: u8
     offset: 0x0
   - desc: Stage?
@@ -1310,7 +1351,7 @@ HatchData:
     type: u8
     offset: 0x3
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0x4
   - desc: X position
@@ -1348,6 +1389,33 @@ HatchLockEvent:
     tags:
     - flags
     offset: 0x3
+HatchLockingData:
+  size: 0x8
+  vars:
+  - desc: Unlocking
+    label: Unlocking
+    type: bool
+    offset: 0x0
+  - desc: Unknown 01
+    label: unk_01
+    type: u8
+    offset: 0x1
+  - desc: Hatches locked with timer
+    label: HatchesLocked_Timer
+    type: u16
+    tags:
+    - flags
+    offset: 0x2
+  - desc: Hatches locked with type 7 or event
+    label: HatchesLocked_Type7_Event
+    type: u16
+    tags:
+    - flags
+    offset: 0x4
+  - desc: Unknown 06
+    label: unk_06
+    type: u16
+    offset: 0x6
 HatchesLocked:
   size: 0x6
   vars:
@@ -1817,7 +1885,7 @@ ParticleEffect:
     offset: 0x0
     enum: ParticleEffectStatus
   - desc: Animation frame counter
-    label: AnimationFrameCounter
+    label: AnimFrameCounter
     type: u8
     offset: 0x1
   - desc: Effect number
@@ -1833,7 +1901,7 @@ ParticleEffect:
     type: u8
     offset: 0x4
   - desc: Animation state
-    label: AnimationState
+    label: AnimState
     type: u16
     offset: 0x6
   - desc: Y position
@@ -1886,11 +1954,11 @@ ProjectileData:
     type: u16
     offset: 0xA
   - desc: Animation frame
-    label: AnimationFrame
+    label: AnimFrame
     type: u16
     offset: 0xC
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0xE
   - desc: Type
@@ -2165,7 +2233,7 @@ SamusData:
     offset: 0x1A
     enum: SamusSlopeType
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0x1C
   - desc: Current animation
@@ -2216,11 +2284,11 @@ SamusEnvironmentEffect:
     offset: 0x0
     enum: SamusEnvironmentEffect
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0x1
   - desc: Animation frame
-    label: AnimationFrame
+    label: AnimFrame
     type: u8
     offset: 0x2
   - desc: Breathing bubbles timer
@@ -2765,9 +2833,9 @@ ScrewAttackSpeedBoosterAnim:
     tags:
     - flags
     offset: 0x0
-    notes: 0 = none, 1 = screw attacking/speedboosting, 8 = storing shinespark
+    notes: 0 = none, 1 = screw attacking/speed boosting, 8 = storing shinespark
   - desc: Animation counter
-    label: AnimationCounter
+    label: AnimCounter
     type: u8
     offset: 0x1
   - desc: Current animation
@@ -2979,7 +3047,7 @@ SpriteData:
     type: Oam *
     offset: 0x18
   - desc: Animation duration counter
-    label: AnimationDurationCounter
+    label: AnimDurationCounter
     type: u8
     offset: 0x1C
   - desc: Sprite ID
@@ -3110,7 +3178,7 @@ SpriteDebris:
     type: u16
     offset: 0x8
   - desc: Animation duration counter
-    label: AnimationDurationCounter
+    label: AnimDurationCounter
     type: u8
     offset: 0xA
   - desc: Exists flag
@@ -3232,7 +3300,7 @@ SubSpriteData:
     type: u16
     offset: 0xA
   - desc: Animation duration counter
-    label: AnimationDurationCounter
+    label: AnimDurationCounter
     type: u8
     offset: 0xC
   - desc: Status?

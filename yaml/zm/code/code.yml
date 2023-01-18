@@ -627,6 +627,17 @@
     type: u8
   return: null
 -
+  desc: DMA2 interrupt code
+  label: Dma2InterruptCode
+  addr:
+    U: 0x3380
+    E: 0x33D4
+    J: 0x3380
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Check set new music track
   label: CheckSetNewMusicTrack
   addr:
@@ -771,6 +782,17 @@
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
 -
+  desc: Dampen volume of music tracks 0 and 1
+  label: DampenVolumeOfMusicTracks0And1
+  addr:
+    U: 0x3F20
+    E: 0x3F74
+    J: 0x3F20
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Queue sound
   label: QueueSound
   addr:
@@ -806,6 +828,24 @@
     type: u16
   return: null
   notes: Fades or stops a sound depending on the provided timer
+-
+  desc: Play music/sound with delay
+  label: PlayMusicOrSoundWithDelay
+  addr:
+    U: 0x41EC
+    E: 0x4240
+    J: 0x41EC
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: u32 *
+  - desc: Delay
+    label: Delay
+    type: u32
+  return: null
+  notes: Adds a delay before the music/sound starts
 -
   desc: Play sound test music track
   label: PlaySoundTestMusicTrack
@@ -1885,6 +1925,27 @@
     type: u8
     notes: Always 0xFF
   notes: Default function used for pose subroutines that don't have any behavior (generally when the player isn't in control of Samus)
+-
+  desc: Samus check animation ended
+  label: SamusCheckAnimEnded
+  addr:
+    U: 0x847C
+    E: 0x84D8
+    J: 0x847C
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    label: SamusDataPointer
+    type: SamusData *
+  - desc: Is slowed flag
+    label: IsSlowedFlag
+    type: bool
+  return:
+    desc: Animation state
+    label: AnimState
+    type: u32
+    notes: 0 = none, 1 = sub-animation ended, 2 = animation ended
 -
   desc: Samus running
   label: SamusRunning
@@ -7430,8 +7491,8 @@
   params: null
   return: null
 -
-  desc: Play shooting charged beam sound
-  label: PlayShootingChargedBeamSound
+  desc: Stop begin to charge sound
+  label: StopBeginToChargeSound
   addr:
     U: 0x54FF8
     E: 0x550C4
@@ -7789,6 +7850,17 @@
     label: Size
     type: u32
 -
+  desc: Update animated graphics and palette
+  label: UpdateAnimatedGraphicsAndPalette
+  addr:
+    U: 0x56E74
+    E: 0x56F40
+    J: 0x56E74
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Update room info
   label: UpdateRoomInfo
   addr:
@@ -7929,6 +8001,17 @@
   params: null
   return: null
 -
+  desc: Write IO registers
+  label: WriteIORegisters
+  addr:
+    U: 0x57A24
+    E: 0x57AEC
+    J: 0x57A24
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Update DISPCNT
   label: UpdateDISPCNT
   addr:
@@ -7983,6 +8066,66 @@
   return: null
   notes: Copied to non-gameplay RAM
 -
+  desc: Process clipdata for Samus
+  label: ProcessClipdataForSamus
+  addr:
+    U: 0x57DF8
+    E: 0x57EC0
+    J: 0x57DF8
+  size: 0x84
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return:
+    desc: Collision check
+    label: CollisionCheck
+    type: u32
+    notes: 0x1000000 flag if solid
+-
+  desc: Process clipdata
+  label: ProcessClipdata
+  addr:
+    U: 0x57E7C
+    E: 0x57F44
+    J: 0x57E7C
+  size: 0x100
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return:
+    desc: Collision check
+    label: CollisionCheck
+    type: u32
+    notes: 0x1000000 flag if solid
+-
+  desc: Convert clipdata to collision
+  label: ConvertclipdataToCollision
+  addr:
+    U: 0x57F7C
+    E: 0x58044
+    J: 0x57F7C
+  size: 0x104
+  mode: thumb
+  params:
+  - desc: Collision data pointer
+    label: CollisionDataPtr
+    type: CollisionData *
+  return:
+    desc: Collision check
+    label: CollisionCheck
+    type: u32
+    notes: 0x1000000 flag if solid
+-
   desc: Check hazard at position
   label: CheckHazardAtPosition
   addr:
@@ -8004,8 +8147,8 @@
     type: u8
     enum: HazardType
 -
-  desc: Check current affecting hazard and very special clipdata
-  label: CheckCurrentAffectingHazardAndVerySpecialClipdata
+  desc: Update current clipdata action
+  label: UpdateCurrClipdataAction
   addr:
     U: 0x580C0
     E: 0x58188
@@ -8022,14 +8165,14 @@
   - desc: Block X position
     label: BlockXPosition
     type: u16
-  - desc: Param 3
-    label: param_3
-    type: u8
+  - desc: Don't check for elevator
+    label: DontCheckForElevator
+    type: bool
   return:
-    desc: Hazard type
-    label: HazardType
+    desc: Current clipdata action
+    label: CurrClipdataAction
     type: u8
-    enum: HazardType
+    enum: ClipdataAffectingAction
 -
   desc: Check can use elevator
   label: CheckCanUseElevator
@@ -8295,6 +8438,23 @@
   params: null
   return: null
 -
+  desc: Check clipdata affecting action on block
+  label: CheckClipdataActionOnBlock
+  addr:
+    U: 0x590B0
+    E: 0x59178
+    J: 0x590B0
+  size: 0x214
+  mode: thumb
+  params:
+  - desc: Clipdata block pointer
+    label: ClipdataBlockPtr
+    type: u16 *
+  return:
+    desc: Block destroyed
+    label: BlockDestroyed
+    type: bool
+-
   desc: Destroy non-reform blocks
   label: DestroyNonReformBlocks
   addr:
@@ -8363,6 +8523,23 @@
     label: Always1
     type: bool
 -
+  desc: Store single never reform block
+  label: StoreSingleNeverReformBlock
+  addr:
+    U: 0x59480
+    E: 0x59548
+    J: 0x59480
+  size: 0x80
+  mode: thumb
+  params:
+  - desc: X position
+    label: XPosition
+    type: u8
+  - desc: Y position
+    label: YPosition
+    type: u8
+  return: null
+-
   desc: Remove never reform blocks
   label: RemoveNeverReformBlocks
   addr:
@@ -8390,6 +8567,18 @@
     label: YPosition
     type: u8
   return: null
+-
+  desc: Shift never reform blocks
+  label: ShiftNeverReformBlocks
+  addr:
+    U: 0x595E4
+    E: 0x596AC
+    J: 0x595E4
+  size: 0x18C
+  mode: thumb
+  params: null
+  return: null
+  notes: Shifts the never reform blocks when transitioning, adds room ID to the data
 -
   desc: Check reveal or destroy non-bomb block
   label: CheckRevealOrDestroyNonBombBlock
@@ -8444,11 +8633,33 @@
     label: ClipdataBlockValue
     type: u16
   return:
-    desc: Unused
-    label: Unused
-    type: u32
+    desc: Block changed
+    label: BlockChanged
+    type: bool
+    notes: Returns 1 if block was destroyed, made solid, or hatch opened
 -
-  desc: Samus apply screw or speed damage to environment
+  label: Update make solid block
+  label: UpdateMakeSolidBlock
+  addr:
+    U: 0x599E0
+    E: 0x59AA8
+    J: 0x599E0
+  size: 0xBC
+  mode: thumb
+  params:
+  - desc: Make solid
+    label: MakeSolid
+    type: bool
+  - desc: X position
+    label: XPosition
+    type: u8
+  - desc: Y position
+    label: YPosition
+    type: u8
+  return: null
+  notes: Updates the MakeSolidBlocks array
+-
+  desc: Samus apply screw/speed damage to environment
   label: SamusApplyScrewSpeedDamageToEnvironment
   addr:
     U: 0x59A9C
@@ -8466,11 +8677,12 @@
   - desc: Destructing action
     label: DestructingAction
     type: u16
-    notes: 0 = none, 1 = speedbooster, 2 = screw attack, 3 = both
+    notes: 0 = none, 1 = speed booster, 2 = screw attack, 3 = both
   return:
-    desc: Clipdata value
-    label: ClipdataValue
-    type: u16
+    desc: Block destroyed
+    label: BlockDestroyed
+    type: bool
+  notes: Return value is not initialized, can be garbage in false case
 -
   desc: Update broken reform blocks
   label: UpdateBrokenReformBlocks
@@ -8515,9 +8727,9 @@
   - desc: Y position
     label: YPosition
     type: u16
-  - desc: Param 3
-    label: param_3
-    type: u8
+  - desc: Stop Samus
+    label: StopSamus
+    type: bool
   return:
     desc: Stored
     label: Stored
@@ -8630,17 +8842,17 @@
   size: 0xD8
   mode: thumb
   params:
-  - desc: Always 0
-    label: Always0
+  - desc: Background number
+    label: BackgroundNum
     type: u8
-  - desc: Param 1
-    label: param_1
+  - desc: Value
+    label: Value
     type: u16
-  - desc: Param 2
-    label: param_2
+  - desc: Y position
+    label: YPosition
     type: u16
-  - desc: Param 3
-    label: param_3
+  - desc: X position
+    label: XPosition
     type: u16
   return: null
 -
@@ -8893,13 +9105,151 @@
   size: 0xA0
   mode: thumb
   params:
-  - desc: Param 0
-    label: param_0
+  - desc: Palette RAM offset
+    label: PaletteRamOffset
     type: u8
   return: null
 -
-  desc: Play cutscene
-  label: PlayCutscene
+  desc: Apply monochrome to palette
+  label: ApplyMonochromeToPalette
+  addr:
+    U: 0x5B624
+    E: 0x5B6EC
+    J: 0x5B624
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Source address
+    label: SourceAddr
+    type: u32
+  - desc: Destination address
+    label: DestinationAddr
+    type: u32
+  - desc: Additional value
+    label: AdditionalVal
+    type: u16
+  return: null
+  notes: Applies a monochrome effect to a palette and adds r2 to the color result
+-
+  desc: Apply smooth monochrome to palette
+  label: ApplySmoothMonochromeToPalette
+  addr:
+    U: 0x5B68C
+    E: 0x5B754
+    J: 0x5B68C
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Source address (normal)
+    label: SourceAddr_Normal
+    type: u32
+    notes: Needs to be the result of ApplyMonochromeToPalette to work properly
+  - desc: Source address (monochrome)
+    label: SourceAddr_Monochrome
+    type: u32
+  - desc: Destination address
+    label: DestinationAddr
+    type: u32
+  - desc: Stage
+    label: Stage
+    type: u8
+  return: null
+  notes: Applies a smooth monochrome transition effect between the provided palettes; stage goes from 0-20
+-
+  desc: Apply smooth palette transition
+  label: ApplySmoothPaletteTransition
+  addr:
+    U: 0x5B764
+    E: 0x5B82C
+    J: 0x5B764
+  size: 0xCC
+  mode: thumb
+  params:
+  - desc: Source address start
+    label: SourceAddrStart
+    type: u32
+  - desc: Source address end
+    label: SourceAddrEnd
+    type: u32
+  - desc: Destination address
+    label: DestinationAddr
+    type: u32
+  - desc: Stage
+    label: Stage
+    type: u8
+  return: null
+-
+  desc: Apply special background effect color on BG
+  label: ApplySpecialBGEffectColorOnBG
+  addr:
+    U: 0x5B830
+    E: 0x5B8F8
+    J: 0x5B830
+  size: 0x13C
+  mode: thumb
+  params:
+  - desc: Color mask
+    label: ColorMask
+    type: u16
+  - desc: Color to apply
+    label: ColorToApply
+    type: u16
+  - desc: Stage
+    label: Stage
+    type: u8
+  return: null
+  notes: Color is only applied if the color bit of mask isn't 0; mask is 0x7FFF (white) for every effect
+-
+  desc: Apply special background effect color on OBJ
+  label: ApplySpecialBGEffectColorOnObj
+  addr:
+    U: 0x5B96C
+    E: 0x5BA34
+    J: 0x5B96C
+  size: 0x140
+  mode: thumb
+  params:
+  - desc: Color mask
+    label: ColorMask
+    type: u16
+  - desc: Color to apply
+    label: ColorToApply
+    type: u16
+  - desc: Stage
+    label: Stage
+    type: u8
+  return: null
+  notes: Not applied to Samus; color is only applied if the color bit of mask isn't 0
+-
+  desc: Apply special background fading color
+  label: ApplySpecialBGFadingColor
+  addr:
+    U: 0x5BAAC
+    E: 0x5BB74
+    J: 0x5BAAC
+  size: 0x138
+  mode: thumb
+  params:
+  - desc: Type
+    label: Type
+    type: u8
+    notes: 0 = fading in, 1 = flash, 2 = fading out, 3 = ?
+  - desc: Color
+    label: Color
+    type: u16
+  - desc: Source address pointer
+    label: SourceAddrPtr
+    type: u32 *
+  - desc: Destination address pointer
+    label: DestinationAddrPtr
+    type: u32 *
+  - desc: Color mask
+    label: ColorMask
+    type: u16
+  return: null
+-
+  desc: Start special fade/effect for cutscene
+  label: StartSpecialFadeOrEffectForCutscene
   addr:
     U: 0x5BFD4
     E: 0x5C09C
@@ -8907,10 +9257,10 @@
   size: 0xA0
   mode: thumb
   params:
-  - desc: Cutscene number
-    label: CutsceneNum
+  - desc: Cutscene request
+    label: CutsceneRequest
     type: u8
-    enum: Cutscene
+    enum: CutsceneRequest
   return: null
 -
   desc: Start special background fading
@@ -9226,8 +9576,8 @@
   params: null
   return: null
 -
-  desc: Load animated palette
-  label: LoadAnimatedPalette
+  desc: Check disable animated palette on transition
+  label: CheckDisableAnimatedPaletteOnTransition
   addr:
     U: 0x5E424
     E: 0x5E518
@@ -9647,6 +9997,21 @@
   params: null
   return: null
 -
+  desc: End demo
+  label: EndDemo
+  addr:
+    U: 0x60D38
+    E: 0x60E1C
+    J: 0x60D38
+  size:
+    U: 0xF0
+    E: 0xF4
+    J: 0xF0
+  mode: thumb
+  params: null
+  return: null
+  notes: Checks if another demo should start, also saves the recorded demo to SRAM if in debug mode
+-
   desc: Return one (cutscene related)
   label: ReturnOne_Cutscene
   addr:
@@ -9727,6 +10092,24 @@
     type: bool
     notes: Always 1
   notes: Returns 1 to indicate end of cutscene functions
+-
+  desc: Cutscene update BGCNT
+  label: CutsceneUpdateBGCNT
+  addr:
+    U: 0x61484
+    E: 0x6159C
+    J: 0x61484
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Value
+    label: Value
+    type: u32
+  - desc: Background
+    label: Background
+    type: u8
+  return: null
+  notes: Updates the BGCNT of the provided background
 -
   desc: Kraid rising rising
   label: KraidRisingRising
@@ -11271,6 +11654,23 @@
     type: u8
   return: null
 -
+  desc: Delete file
+  label: DeleteFile
+  addr:
+    U: 0x75494
+    E: 0x755CC
+    J: 0x754B0
+  size: 0x110
+  mode: thumb
+  params:
+  - desc: File number
+    label: FileNum
+    type: u8
+  return:
+    desc: Done
+    label: Done
+    type: bool
+-
   desc: Check load save file
   label: CheckLoadSaveFile
   addr:
@@ -11760,6 +12160,25 @@
     label: FileNum
     type: u8
   return: null
+-
+  desc: File select menu selecting sub-menu
+  label: FileSelectMenuSelectingSubMenu
+  addr:
+    U: 0x7D27C
+    E: 0x7D5B0
+    J: 0x7D2B4
+  size:
+    U: 0x30C
+    E: 0x310
+    J: 0x35C
+  mode: thumb
+  params: null
+  return:
+    desc: Leaving
+    label: Leaving
+    type: bool
+    notes: Includes starting game and going back to title screen
+  notes: Handles file select, file copy, options, etc.
 -
   desc: Check time attack code input
   label: CheckTimeAttackCodeInput

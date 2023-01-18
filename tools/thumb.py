@@ -3,29 +3,6 @@ from typing import List
 from rom import Rom, ROM_OFFSET
 
 
-class ThumbForm(Enum):
-    Undef = 0
-    Shift = 1
-    AddSub = 2
-    Immed = 3
-    AluOp = 4
-    HiReg = 5
-    LdPC = 6
-    LdStR = 7
-    LdStRS = 8
-    LdStI = 9
-    LdStIH = 10
-    LdStSP = 11
-    RelAddr = 12
-    AddSP = 13
-    PushPop = 14
-    LdStM = 15
-    CondB = 16
-    Swi = 17
-    UncondB = 18
-    Link = 19
-
-
 class ThumbOp(Enum):
     Undef = 0
     # logical operations
@@ -84,6 +61,37 @@ class ThumbOp(Enum):
     POP = 50
     LDMIA = 51
     STMIA = 52
+
+
+class ThumbForm(Enum):
+    Undef = 0
+    Shift = 1
+    AddSub = 2
+    Immed = 3
+    AluOp = 4
+    HiReg = 5
+    LdPC = 6
+    LdStR = 7
+    LdStRS = 8
+    LdStI = 9
+    LdStIH = 10
+    LdStSP = 11
+    RelAddr = 12
+    AddSP = 13
+    PushPop = 14
+    LdStM = 15
+    CondB = 16
+    Swi = 17
+    UncondB = 18
+    Link = 19
+
+
+class Reg(object):
+    LoMax = 7
+    Hi = 8
+    SP = 13
+    LR = 14
+    PC = 15
 
 
 class ThumbInstruct(object):
@@ -208,91 +216,6 @@ class ThumbInstruct(object):
             self.opcode = val >> 7 & 1
         elif self.format == ThumbForm.CondB:
             self.opcode = val >> 8 & 15
-
-    def set_rd(self, val: int) -> None:
-        self.rd: int = None
-        if self.format in {
-            ThumbForm.Shift,
-            ThumbForm.AddSub,
-            ThumbForm.AluOp,
-            ThumbForm.LdStR,
-            ThumbForm.LdStRS,
-            ThumbForm.LdStI,
-            ThumbForm.LdStIH
-        }:
-            self.rd = val & 7
-        elif self.format in {
-            ThumbForm.Immed,
-            ThumbForm.LdPC,
-            ThumbForm.LdStSP,
-            ThumbForm.RelAddr,
-            ThumbForm.LdStM
-        }:
-            self.rd = val >> 8 & 7
-        elif self.format == ThumbForm.HiReg:
-            self.rd = ((val & 0x80) >> 4) | (val & 7)
-
-    def set_rs(self, val: int) -> None:
-        self.rs: int = None
-        if self.format in {
-            ThumbForm.Shift,
-            ThumbForm.AddSub,
-            ThumbForm.Immed,
-            ThumbForm.AluOp,
-            ThumbForm.LdStR,
-            ThumbForm.LdStRS,
-            ThumbForm.LdStI,
-            ThumbForm.LdStIH
-        }:
-            self.rs = val >> 3 & 7
-        elif self.format == ThumbForm.HiReg:
-            self.rs = val >> 3 & 15
-
-    def set_rn(self, val: int) -> None:
-        self.rn: int = None
-        if self.format == ThumbForm.AddSub and self.opcode < 2:
-            self.rn = val >> 6 & 7
-
-    def set_ro(self, val: int) -> None:
-        self.ro: int = None
-        if self.format == ThumbForm.LdStR or self.format == ThumbForm.LdStRS:
-            self.ro = val >> 6 & 7
-
-    def set_rlist(self, val: int) -> None:
-        self.rlist: List[int] = None
-        if self.format == ThumbForm.PushPop or self.format == ThumbForm.LdStM:
-            self.rlist = [r for r in range(8) if val >> r & 1]
-            if self.format == ThumbForm.PushPop and (val & 0x100):
-                if self.opcode == 0:
-                    self.rlist.append(14)
-                else:
-                    self.rlist.append(15)
-
-    def set_imm(self, val: int) -> None:
-        self.imm: int = None
-        if self.format in {
-            ThumbForm.Shift,
-            ThumbForm.LdStI,
-            ThumbForm.LdStIH
-        }:
-            self.imm = val >> 6 & 31
-        elif self.format == ThumbForm.AddSub:
-            if self.opcode >= 2:
-                self.imm = val >> 6 & 7
-        elif self.format in {
-            ThumbForm.Immed,
-            ThumbForm.LdPC,
-            ThumbForm.LdStSP,
-            ThumbForm.RelAddr,
-            ThumbForm.AddSP,
-            ThumbForm.CondB,
-            ThumbForm.Swi
-        }:
-            self.imm = val & 255
-        elif self.format == ThumbForm.UncondB:
-            self.imm = val & 1023
-        elif self.format == ThumbForm.Link:
-            raise ValueError("Set in constructor")
 
     def set_opname(self) -> None:
         self.opname: ThumbOp = None
@@ -439,6 +362,91 @@ class ThumbInstruct(object):
         elif self.format == ThumbForm.Link:
             self.opname = ThumbOp.BL
 
+    def set_rd(self, val: int) -> None:
+        self.rd: int = None
+        if self.format in {
+            ThumbForm.Shift,
+            ThumbForm.AddSub,
+            ThumbForm.AluOp,
+            ThumbForm.LdStR,
+            ThumbForm.LdStRS,
+            ThumbForm.LdStI,
+            ThumbForm.LdStIH
+        }:
+            self.rd = val & 7
+        elif self.format in {
+            ThumbForm.Immed,
+            ThumbForm.LdPC,
+            ThumbForm.LdStSP,
+            ThumbForm.RelAddr,
+            ThumbForm.LdStM
+        }:
+            self.rd = val >> 8 & 7
+        elif self.format == ThumbForm.HiReg:
+            self.rd = ((val & 0x80) >> 4) | (val & 7)
+
+    def set_rs(self, val: int) -> None:
+        self.rs: int = None
+        if self.format in {
+            ThumbForm.Shift,
+            ThumbForm.AddSub,
+            ThumbForm.Immed,
+            ThumbForm.AluOp,
+            ThumbForm.LdStR,
+            ThumbForm.LdStRS,
+            ThumbForm.LdStI,
+            ThumbForm.LdStIH
+        }:
+            self.rs = val >> 3 & 7
+        elif self.format == ThumbForm.HiReg:
+            self.rs = val >> 3 & 15
+
+    def set_rn(self, val: int) -> None:
+        self.rn: int = None
+        if self.format == ThumbForm.AddSub and self.opcode < 2:
+            self.rn = val >> 6 & 7
+
+    def set_ro(self, val: int) -> None:
+        self.ro: int = None
+        if self.format == ThumbForm.LdStR or self.format == ThumbForm.LdStRS:
+            self.ro = val >> 6 & 7
+
+    def set_rlist(self, val: int) -> None:
+        self.rlist: List[int] = None
+        if self.format == ThumbForm.PushPop or self.format == ThumbForm.LdStM:
+            self.rlist = [r for r in range(8) if val >> r & 1]
+            if self.format == ThumbForm.PushPop and (val & 0x100):
+                if self.opcode == 0:
+                    self.rlist.append(14)
+                else:
+                    self.rlist.append(15)
+
+    def set_imm(self, val: int) -> None:
+        self.imm: int = None
+        if self.format in {
+            ThumbForm.Shift,
+            ThumbForm.LdStI,
+            ThumbForm.LdStIH
+        }:
+            self.imm = val >> 6 & 31
+        elif self.format == ThumbForm.AddSub:
+            if self.opcode >= 2:
+                self.imm = val >> 6 & 7
+        elif self.format in {
+            ThumbForm.Immed,
+            ThumbForm.LdPC,
+            ThumbForm.LdStSP,
+            ThumbForm.RelAddr,
+            ThumbForm.AddSP,
+            ThumbForm.CondB,
+            ThumbForm.Swi
+        }:
+            self.imm = val & 255
+        elif self.format == ThumbForm.UncondB:
+            self.imm = val & 1023
+        elif self.format == ThumbForm.Link:
+            raise ValueError("Set in constructor")
+
     def virt_addr(self) -> int:
         return self.phys_addr + ROM_OFFSET
 
@@ -470,10 +478,10 @@ class ThumbInstruct(object):
             raise ValueError()  
         regs = 0
         for reg in self.rlist:
-            if reg <= 7:
+            if reg <= Reg.LoMax:
                 regs |= 1 << reg
-            elif ((reg == 14 and self.opname == ThumbOp.PUSH) or
-                (reg == 15 and self.opname == ThumbOp.POP)):
+            elif ((reg == Reg.LR and self.opname == ThumbOp.PUSH) or
+                (reg == Reg.PC and self.opname == ThumbOp.POP)):
                 regs |= 0x100
             else:
                 raise ValueError()

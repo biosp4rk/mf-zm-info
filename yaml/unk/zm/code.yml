@@ -790,16 +790,6 @@
 -
   label: MusicRelated
   addr:
-    U: 0x3380
-    E: 0x33D4
-    J: 0x3380
-  size: 0x5C
-  mode: thumb
-  params: null
-  return: null
--
-  label: MusicRelated
-  addr:
     U: 0x33DC
     E: 0x3430
     J: 0x33DC
@@ -995,16 +985,6 @@
 -
   label: MusicRelated
   addr:
-    U: 0x3F20
-    E: 0x3F74
-    J: 0x3F20
-  size: 0x4C
-  mode: thumb
-  params: null
-  return: null
--
-  label: MusicRelated
-  addr:
     U: 0x3F6C
     E: 0x3FC0
     J: 0x3F6C
@@ -1049,20 +1029,6 @@
   size: 0x9C
   mode: thumb
   params: null
-  return: null
--
-  label: MusicRelated
-  addr:
-    U: 0x41EC
-    E: 0x4240
-    J: 0x41EC
-  size: 0x3C
-  mode: thumb
-  params:
-  - desc: Track data pointer
-    type: ptr
-  - desc: '?'
-    type: '?'
   return: null
 -
   label: MusicRelated
@@ -1491,22 +1457,6 @@
     type: ptr
   return:
     desc: New pose
-    type: '?'
--
-  label: '?'
-  addr:
-    U: 0x847C
-    E: 0x84D8
-    J: 0x847C
-  size: 0x60
-  mode: thumb
-  params:
-  - desc: Samus data pointer
-    type: ptr
-  - desc: '?'
-    type: '?'
-  return:
-    desc: '?'
     type: '?'
 -
   label: RecordDemo?
@@ -3514,17 +3464,6 @@
   return: null
   notes: Related to minimap? Also sets the Disable Doors And Tank flag
 -
-  label: CheckUpdateAnimatedGraphicsPalette?
-  addr:
-    U: 0x56E74
-    E: 0x56F40
-    J: 0x56E74
-  size: 0x80
-  mode: thumb
-  params: null
-  return: null
-  notes: Checks if the animated graphics/palette should update and if yes updates them
--
   label: '?'
   addr:
     U: 0x56EF4
@@ -3567,17 +3506,6 @@
 -
   label: '?'
   addr:
-    U: 0x57A24
-    E: 0x57AEC
-    J: 0x57A24
-  size: 0xD4
-  mode: thumb
-  params: null
-  return: null
-  notes: Sets some registers values
--
-  label: '?'
-  addr:
     U: 0x57AF8
     E: 0x57BC0
     J: 0x57AF8
@@ -3596,53 +3524,6 @@
   mode: thumb
   params: null
   return: null
--
-  label: '?'
-  addr:
-    U: 0x57DF8
-    E: 0x57EC0
-    J: 0x57DF8
-  size: 0x84
-  mode: thumb
-  params:
-  - desc: Y position
-    type: '?'
-  - desc: X position
-    type: '?'
-  return: null
-  notes: Related to samus colliding with some blocks?
--
-  label: ApplyCurrClipdataAffectingAction
-  addr:
-    U: 0x57E7C
-    E: 0x57F44
-    J: 0x57E7C
-  size: 0x100
-  mode: thumb
-  params:
-  - desc: Y position
-    type: u16
-  - desc: X position
-    type: u16
-  return:
-    desc: '?'
-    type: u32
-  notes: Apply current clipdata affecting action?
--
-  label: '?'
-  addr:
-    U: 0x57F7C
-    E: 0x58044
-    J: 0x57F7C
-  size: 0x104
-  mode: thumb
-  params:
-  - desc: Collision related structure pointer
-    type: ptr
-  return:
-    desc: Clipdata collision type
-    type: '?'
-  notes: Clipdata related?
 -
   label: ScrollBG3Related?
   addr:
@@ -3667,60 +3548,6 @@
     type: ptr
   return: null
   notes: Slow scrolling, background 1 related
--
-  label: '?'
-  addr:
-    U: 0x590B0
-    E: 0x59178
-    J: 0x590B0
-  size: 0x214
-  mode: thumb
-  params: '?'
-  return: null
-  notes: Clipdata related?
--
-  label: NeverReformBlocksRelated
-  addr:
-    U: 0x59480
-    E: 0x59548
-    J: 0x59480
-  size: 0x80
-  mode: thumb
-  params:
-  - desc: X position?
-    type: '?'
-  - desc: Y position?
-    type: '?'
-  return: null
-  notes: Stores the never reform blocks at 2035c00?
--
-  label: '?'
-  addr:
-    U: 0x595E4
-    E: 0x596AC
-    J: 0x595E4
-  size: 0x18C
-  mode: thumb
-  params: null
-  return: null
-  notes: Never reform blocks related?
--
-  label: '?'
-  addr:
-    U: 0x599E0
-    E: 0x59AA8
-    J: 0x599E0
-  size: 0xBC
-  mode: thumb
-  params:
-  - desc: Make solid
-    type: '?'
-  - desc: X position
-    type: '?'
-  - desc: Y position
-    type: '?'
-  return: null
-  notes: Clipdata related?
 -
   label: BlockRelated?
   addr:
@@ -3847,110 +3674,6 @@
   size: 0xAC
   mode: thumb
   params:
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x5B624
-    E: 0x5B6EC
-    J: 0x5B624
-  size: 0x68
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x5B68C
-    E: 0x5B754
-    J: 0x5B68C
-  size: 0xD8
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: Destination address
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x5B764
-    E: 0x5B82C
-    J: 0x5B764
-  size: 0xCC
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: Destination address
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: BackgroundFadingRelated?
-  addr:
-    U: 0x5B830
-    E: 0x5B8F8
-    J: 0x5B830
-  size: 0x13C
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: BackgroundFadingRelated?
-  addr:
-    U: 0x5B96C
-    E: 0x5BA34
-    J: 0x5B96C
-  size: 0x140
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x5BAAC
-    E: 0x5BB74
-    J: 0x5BAAC
-  size: 0x138
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
   - desc: '?'
     type: '?'
   return: null
@@ -4480,19 +4203,6 @@
   return: null
   notes: Demo related?
 -
-  label: DemoRelated?
-  addr:
-    U: 0x60D38
-    E: 0x60E1C
-    J: 0x60D38
-  size:
-    U: 0xF0
-    E: 0xF4
-    J: 0xF0
-  mode: thumb
-  params: null
-  return: null
--
   label: VBlankCodeDuring?
   addr:
     U: 0x6122C
@@ -4537,20 +4247,6 @@
   mode: thumb
   params:
   - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x61484
-    E: 0x6159C
-    J: 0x61484
-  size: 0x50
-  mode: thumb
-  params:
-  - desc: Value
     type: '?'
   - desc: '?'
     type: '?'
@@ -6515,18 +6211,6 @@
 -
   label: '?'
   addr:
-    U: 0x75494
-    E: 0x755CC
-    J: 0x754B0
-  size: 0x110
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
     U: 0x755A4
     E: 0x756DC
     J: 0x755C0
@@ -7331,19 +7015,6 @@
   params:
   - desc: '?'
     type: '?'
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x7D27C
-    E: 0x7D5B0
-    J: 0x7D2B4
-  size:
-    U: 0x30C
-    E: 0x310
-    J: 0x35C
-  mode: thumb
-  params: null
   return: null
 -
   label: '?'

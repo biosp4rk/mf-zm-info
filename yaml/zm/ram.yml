@@ -43,6 +43,12 @@
   type: u8 [0x800]
   addr: 0x201B000
 -
+  desc: Make solid blocks
+  label: MakeSolidBlocks
+  type: u16 [0x40]
+  addr: 0x2027780
+  notes: Two byte pairs of Y position and X position
+-
   desc: Decompressed clipdata
   label: DecompClipdata
   type: u16 [0x1800]
@@ -77,6 +83,19 @@
   label: DecompMinimapData
   type: u8 [0x800]
   addr: 0x2034800
+-
+  desc: Palette RAM copy
+  label: PaletteRamCopy
+  type: u16 [0x200]
+  tags:
+  - palette
+  addr: 0x2035000
+-
+  desc: Never reform blocks
+  label: NeverReformBlocks
+  type: u8 [0x200][0x8]
+  addr: 0x2035C00
+  notes: One array per area (last is unused)
 -
   desc: Items collected
   label: ItemsCollected
@@ -1147,6 +1166,21 @@
   - palette
   addr: 0x30053E0
 -
+  desc: Written to WIN1H
+  label: WrittenToWIN1H
+  type: u16
+  addr: 0x3005448
+-
+  desc: Written to WIN1V
+  label: WrittenToWIN1V
+  type: u16
+  addr: 0x300544A
+-
+  desc: Written to BLDCNT
+  label: WrittenToBLDCNT
+  type: u16
+  addr: 0x300544C
+-
   desc: Tilemap and clipdata pointers
   label: TilemapAndClipdataPtrs
   type: TilemapAndClipdataPtrs
@@ -1167,15 +1201,10 @@
   type: DoorPositionStart
   addr: 0x30054E0
 -
-  desc: Doors unlocked flag
-  label: DoorsUnlockedFlag
-  type: u8
+  desc: Hatch locking data
+  label: HatchLockingData
+  type: HatchLockingData
   addr: 0x30054E4
--
-  desc: Hatches locked
-  label: HatchesLocked
-  type: HatchesLocked
-  addr: 0x30054E6
 -
   desc: BG3 movement
   label: BG3Movement

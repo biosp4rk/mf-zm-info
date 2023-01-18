@@ -189,7 +189,8 @@ def get_entry_size(
             size = 4
             decl = decl.lstrip("*")
         # check for array
-        dims = [int(m) for m in re.findall(r"\d+", decl)]
+        dims = re.findall(r"(?:0x)?[0-9A-F]+", decl)
         for dim in dims:
-            size *= dim
+            radix = 16 if dim.startswith("0x") else 10
+            size *= int(dim, radix)
     return {r: size for r in regions}
