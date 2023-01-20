@@ -1557,8 +1557,8 @@ ParticleEffectStatus:
 - desc: Not drawn
   label: NotDrawn
   val: 0x8
-- desc: Special effect
-  label: SpecialEffect
+- desc: Live off screen
+  label: LiveOffScreen
   val: 0x10
 - desc: Low background priority
   label: LowBGPriority
@@ -2183,6 +2183,9 @@ SpriteSamusCollision:
 - desc: Escape ship
   label: EscapeShip
   val: 0x2
+- desc: Hurts Samus, can stand on
+  label: HurtsSamus_CanStandOn
+  val: 0x3
 - desc: Hurts Samus
   label: HurtsSamus
   val: 0x4
@@ -2195,6 +2198,9 @@ SpriteSamusCollision:
 - desc: Knocks back Samus
   label: KnocksBackSamus
   val: 0x7
+- desc: Hurts Samus, no knockback
+  label: HurtsSamus_NoKnockback
+  val: 0x9
 - desc: Kraid
   label: Kraid
   val: 0xA
@@ -2207,6 +2213,15 @@ SpriteSamusCollision:
 - desc: Imago stinger
   label: ImagoStinger
   val: 0xD
+- desc: Hurts Samus, big knockback, stops/dies when hit
+  label: HurtsSamus_BigKnockback_StopsWhenHit
+  val: 0xE
+- desc: Hurts Samus, no knockback, stops/dies when hit
+  label: HurtsSamus_NoKnockback_StopsWhenHit
+  val: 0x10
+- desc: Hurts Samus, no knockback, ignore contact damage
+  label: HurtsSamus_NoKnockback_IgnoreContactDamage
+  val: 0x11
 - desc: Mellow
   label: Mellow
   val: 0x12
@@ -2292,6 +2307,12 @@ SpriteStatus:
 - desc: Facing right
   label: FacingRight
   val: 0x200
+- desc: Alpha blending
+  label: AlphaBlending
+  val: 0x2000
+- desc: Ignore projectiles
+  label: IgnoreProjectiles
+  val: 0x8000
 SpriteWeakness:
 - desc: Charge beam/pistol (no normal beam)
   label: ChargeBeamPistol_NoNormalBeam

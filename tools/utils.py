@@ -1,7 +1,7 @@
 import math
 import os
 import re
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Tuple, Union
 import yaml
 from constants import *
 
@@ -49,7 +49,7 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
         # get entries by region
         entry_dict = {r: [] for r in REGIONS}
         for entry in combined:
-            addr = entry["addr"]
+            addr = entry[K_ADDR]
             if isinstance(addr, int):
                 reg = REGIONS[0]
             else:
@@ -58,7 +58,7 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
         # sort by U, then by E, etc
         for r in REGIONS:
             entries = sorted(entry_dict[r],
-                key=lambda e: region_int_to_int(r, e["addr"]))
+                key=lambda e: region_int_to_int(r, e[K_ADDR]))
             if r == REGIONS[0]:
                 combined = entries
                 continue
@@ -66,9 +66,9 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
             j = len(combined) - 1
             while i > 0:
                 entry = entries[i]
-                addr = region_int_to_int(r, entry["addr"])
+                addr = region_int_to_int(r, entry[K_ADDR])
                 while j > 0:
-                    cmp_addr = combined[j]["addr"]
+                    cmp_addr = combined[j][K_ADDR]
                     if isinstance(cmp_addr, dict):
                         cmp_addr = cmp_addr.get(r, 2e32)
                     if cmp_addr < addr:
@@ -92,8 +92,8 @@ def region_int_to_dict(regions: List[str], entry: RegionInt) -> Dict[str, int]:
 
 
 def compare_addrs(entry1, entry2) -> int:
-    addr1 = entry1["addr"]
-    addr2 = entry2["addr"]
+    addr1 = entry1[K_ADDR]
+    addr2 = entry2[K_ADDR]
     if isinstance(addr1, dict):
         for region in REGIONS:
             if region in addr1 and region in addr2:
@@ -153,44 +153,78 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     with open(path, "w") as f:
         f.write(output)
 
-
-def get_spec_size(spec: str, structs: Dict[str, Any]) -> int:
-    if spec in PRIMITIVES:
-        return PRIMITIVES[spec]
-    if spec in structs:
-        return structs[spec]["size"]
-    raise ValueError(f"Invalid type specifier {spec}")
-
-
-def get_entry_size(
+# gets the total physical size of all items
+def get_entry_length(
     entry: Dict[str, Any], structs: Dict[str, Any]
 ) -> Dict[str, int]:
-    # get regions this entry applies to
-    regions = REGIONS
-    addr = entry["addr"]
-    if isinstance(addr, dict):
-        regions = tuple(addr.keys())
     # return size field if present
-    if "size" in entry:
-        return region_int_to_dict(regions, entry["size"])
-    # parse type
-    parts = entry["type"].split()
-    spec = parts[0]
-    size = get_spec_size(spec, structs)
+    if K_SIZE in entry:
+        regions = get_entry_regions(entry)
+        return region_int_to_dict(regions, entry[K_SIZE])
+    # parse type to get count and size
+    parts = entry[K_TYPE].split()
+    count = get_type_count(parts)
+    size = get_entry_size(entry, structs)
+    return {r: s * count for r, s in size.items()}
+
+
+# gets the number of items (1 unless array type)
+def get_type_count(parts: List[str]) -> int:
+    count = 1
     if len(parts) == 2:
         decl = parts[1]
-        # get inner-most part of declaration
+        # get inner most part of declaration
         i = decl.rfind("(")
         if i != -1:
-            j = decl.index(")")
+            j = decl.find(")")
             decl = decl[i+1:j]
         # check for pointer
-        if decl.startswith("*"):
-            size = 4
+        if decl[0] == "*":
             decl = decl.lstrip("*")
         # check for array
         dims = re.findall(r"(?:0x)?[0-9A-F]+", decl)
         for dim in dims:
             radix = 16 if dim.startswith("0x") else 10
-            size *= int(dim, radix)
+            count *= int(dim, radix)
+    return count
+
+
+# gets the physical size of an individual item
+def get_entry_size(
+    entry: Dict[str, Any], structs: Dict[str, Any]
+) -> Dict[str, int]:
+    regions = get_entry_regions(entry)
+    # parse type
+    parts = entry[K_TYPE].split()
+    if is_ptr_type(parts):
+        return {r: 4 for r in regions}
+    spec = parts[0]
+    size = get_spec_size(spec, structs)
     return {r: size for r in regions}
+
+
+def get_entry_regions(entry: Dict[str, Any]) -> Tuple[str]:
+    addr = entry[K_ADDR]
+    if isinstance(addr, dict):
+        return tuple(addr.keys())
+    return REGIONS
+
+
+def is_ptr_type(parts: List[str]) -> bool:
+    # get second part of type string
+    if len(parts) != 2:
+        return False
+    decl = parts[1]
+    # find inner most part of declaration
+    i = decl.rfind("(")
+    i += 1
+    # check for pointer
+    return decl[i] == '*'
+
+
+def get_spec_size(spec: str, structs: Dict[str, Any]) -> int:
+    if spec in PRIMITIVES:
+        return PRIMITIVES[spec]
+    if spec in structs:
+        return structs[spec][K_SIZE]
+    raise ValueError(f"Invalid type specifier {spec}")

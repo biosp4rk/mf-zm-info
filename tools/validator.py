@@ -39,7 +39,7 @@ class Validator(object):
                     self.check_vals(vals)
 
                 # check structs
-                self.map_type = "structs"
+                self.map_type = MAP_STRUCTS
                 for key, st in structs.items():
                     self.entry = key
                     assert LABEL_PAT.match(
@@ -92,16 +92,16 @@ class Validator(object):
         if prev is None:
             return
         # get current address
-        curr_addr = entry["addr"]
+        curr_addr = entry[K_ADDR]
         if isinstance(curr_addr, int):
             curr_addr = {r: curr_addr for r in REGIONS}
         # get end of previous
-        prev_addr = prev["addr"]
+        prev_addr = prev[K_ADDR]
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
-        size = get_entry_size(prev, self.structs)
-        for r, s in size.items():
-            prev_addr[r] += s - 1
+        length = get_entry_length(prev, self.structs)
+        for r, len in length.items():
+            prev_addr[r] += len - 1
         # compare
         for r, a in prev_addr.items():
             if r in curr_addr:
@@ -111,13 +111,13 @@ class Validator(object):
                 break
 
     def check_desc(self, entry) -> None:
-        assert "desc" in entry, "desc is required"
-        desc = entry["desc"]
+        assert K_DESC in entry, "desc is required"
+        desc = entry[K_DESC]
         assert is_ascii(desc), "desc must be ascii"
 
     def check_label(self, entry) -> None:
-        assert "label" in entry, "label is required"
-        label = entry["label"]
+        assert K_LABEL in entry, "label is required"
+        label = entry[K_LABEL]
         assert LABEL_PAT.match(label), "label must be alphanumeric"
 
     def check_region_int(self, entry, align=None) -> None:
@@ -135,18 +135,18 @@ class Validator(object):
                 assert num % align == 0, f"Number must be {align} byte aligned"
 
     def check_addr(self, entry, align: int = None) -> None:
-        assert "addr" in entry, "addr is required"
-        addr = entry["addr"]
+        assert K_ADDR in entry, "addr is required"
+        addr = entry[K_ADDR]
         self.check_region_int(addr, align)
 
     def check_offset(self, entry) -> None:
-        assert "offset" in entry, "offset is required"
-        offset = entry["offset"]
+        assert K_OFFSET in entry, "offset is required"
+        offset = entry[K_OFFSET]
         assert isinstance(offset, int), "offset must be an integer"
 
     def check_size(self, entry, align: int = None) -> None:
-        assert "size" in entry, "size is required"
-        size = entry["size"]
+        assert K_SIZE in entry, "size is required"
+        size = entry[K_SIZE]
         self.check_region_int(size, align)
 
     def check_vals(self, entry) -> None:
@@ -156,15 +156,15 @@ class Validator(object):
             self.check_label(val_dict)
             self.check_notes(val_dict)
             # check val
-            assert "val" in val_dict, "val is required"
-            val = val_dict["val"]
+            assert K_VAL in val_dict, "val is required"
+            val = val_dict[K_VAL]
             assert isinstance(val, int), "val must be an integer"
             assert prev < val, "vals should be in ascending order"
             prev = val
 
     def check_vars(self, entry):
-        assert "vars" in entry, "vars is required"
-        vars = entry["vars"]
+        assert K_VARS in entry, "vars is required"
+        vars = entry[K_VARS]
         assert isinstance(vars, list), "vars must be a list"
         prev = -1
         for var in vars:
@@ -175,18 +175,18 @@ class Validator(object):
             self.check_enum(var)
             self.check_notes(entry)
             # check offset
-            offset = var["offset"]
+            offset = var[K_OFFSET]
             assert prev < offset, "offsets should be in ascending order"
             prev = offset
 
     def check_mode(self, entry) -> None:
-        assert "mode" in entry, "mode is required"
-        mode = entry["mode"]
+        assert K_MODE in entry, "mode is required"
+        mode = entry[K_MODE]
         assert mode in ASM_MODES, "Invalid mode"
 
     def check_params(self, entry):
-        assert "params" in entry, "params is required"
-        params = entry["params"]
+        assert K_PARAMS in entry, "params is required"
+        params = entry[K_PARAMS]
         assert params is None or isinstance(
             params, list), "params must be null or list"
         if isinstance(params, list):
@@ -196,8 +196,8 @@ class Validator(object):
                 self.check_enum(param)
 
     def check_return(self, entry):
-        assert "return" in entry, "return is required"
-        ret = entry["return"]
+        assert K_RETURN in entry, "return is required"
+        ret = entry[K_RETURN]
         assert ret is None or isinstance(
             ret, dict), "return must be null or dict"
         if isinstance(ret, dict):
@@ -206,9 +206,9 @@ class Validator(object):
             self.check_enum(ret)
 
     def check_type(self, entry):
-        assert "type" in entry, "type is required"
+        assert K_TYPE in entry, "type is required"
         # parse type
-        t = entry["type"]
+        t = entry[K_TYPE]
         parts = t.split()
         assert 1 <= len(parts) <= 2, f"Invalid type {t}"
         # check specifier
@@ -219,21 +219,21 @@ class Validator(object):
             check_decl(parts[1])
 
     def check_tags(self, entry):
-        if "tags" not in entry:
+        if K_TAGS not in entry:
             return
-        tags = entry["tags"]
+        tags = entry[K_TAGS]
         assert isinstance(tags, list), "tags must be a list"
         for tag in tags:
             assert tag in TAGS, f"Invalid tag {tag}"
 
     def check_enum(self, entry):
-        if "enum" in entry:
-            n = entry["enum"]
+        if K_ENUM in entry:
+            n = entry[K_ENUM]
             assert n in self.enums, "Invalid enum"
 
     def check_notes(self, entry) -> None:
-        if "notes" in entry:
-            notes = entry["notes"]
+        if K_NOTES in entry:
+            notes = entry[K_NOTES]
             assert is_ascii(notes), "notes must be ascii"
 
 

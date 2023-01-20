@@ -2286,7 +2286,7 @@ SaxData:
   vars:
   - desc: On screen flag
     label: OnScreenFlag
-    type: u8
+    type: bool
     offset: 0x0
     enum: SaxOnScreenFlag
   - desc: Pose
@@ -2296,25 +2296,79 @@ SaxData:
     enum: SaxPose
   - desc: Turning flag
     label: TurningFlag
-    type: u8
+    type: bool
     offset: 0x2
+  - desc: Diagonal aim
+    label: DiagonalAim
+    type: u8
+    offset: 0x3
+  - desc: Missiles armed flag
+    label: MissilesArmedFlag
+    type: bool
+    offset: 0x4
   - desc: Frozen graphics flag
     label: FrozenGfxFlag
     type: u8
     offset: 0x5
+  - desc: MosaicFlag
+    label: MosaicFlag
+    type: bool
+    offset: 0x6
   - desc: Direction
     label: Direction
-    type: u8
+    type: u16
     offset: 0x8
     enum: HorizontalDirection
-  - desc: SA-X X position
-    label: SaxXPosition
+  - desc: X position
+    label: XPosition
     type: u16
     offset: 0xA
-  - desc: SA-X Y position
-    label: SaxYPosition
+  - desc: Y position
+    label: YPosition
     type: u16
     offset: 0xC
+  - desc: X velocity
+    label: XVelocity
+    type: s16
+    offset: 0xE
+  - desc: Y velocity
+    label: YVelocity
+    type: s16
+    offset: 0x10
+  - desc: Animation timer
+    label: AnimTimer
+    type: u8
+    offset: 0x12
+  - desc: Animation state
+    label: AnimState
+    type: u8
+    offset: 0x13
+  - desc: Top graphics pointer
+    label: TopGfxPtr
+    type: u8 *
+    tags:
+    - gfx
+    offset: 0x14
+  - desc: Bottom graphics pointer
+    label: BottomGfxPtr
+    type: u8 *
+    tags:
+    - gfx
+    offset: 0x18
+  - desc: Top graphics length
+    label: TopGfxLength
+    type: u16
+    offset: 0x1C
+  - desc: Bottom graphics length
+    label: BottomGfxLength
+    type: u16
+    offset: 0x1E
+  - desc: OAM frame pointer
+    label: OamFramePtr
+    type: u16 *
+    tags:
+    - oamframe
+    offset: 0x20
 ScreenPositionAndVelocity:
   size: 0x14
   vars:

@@ -43,6 +43,13 @@
   type: u8 [0x800]
   addr: 0x201B000
 -
+  desc: Current character graphics
+  label: CurrCharacterGfx
+  type: u8 [0x80]
+  tags:
+  - gfx
+  addr: 0x2027700
+-
   desc: Make solid blocks
   label: MakeSolidBlocks
   type: u16 [0x40]
@@ -785,6 +792,11 @@
   type: CurrMessage
   addr: 0x3000C0C
 -
+  desc: Loading file flag
+  label: LoadingFileFlag
+  type: bool
+  addr: 0x3000C1D
+-
   desc: Most recent save file
   label: MostRecentSaveFile
   type: u8
@@ -1260,6 +1272,16 @@
   label: DestinationRoom
   type: u8
   addr: 0x300550E
+-
+  desc: Screen Y offset
+  label: ScreenYOffset
+  type: u8
+  addr: 0x3005515
+-
+  desc: Screen X offset
+  label: ScreenXOffset
+  type: u16
+  addr: 0x3005516
 -
   desc: Rain sound effect
   label: RainSoundEffect

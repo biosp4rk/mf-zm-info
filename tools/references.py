@@ -1,5 +1,7 @@
+import argparse
 from typing import List
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
+import sys
 from thumb import ThumbForm, ThumbInstruct
 
 
@@ -50,36 +52,64 @@ class References(object):
                 self.data_addrs.append(i)
 
     def output(self) -> List[str]:
-        lines = []
+        addr_type = None
+        if self.in_rom:
+            addr_type = "Code" if self.in_code else "Data"
+        else:
+            addr_type = "RAM"
+        lines = [f"Type: {addr_type}", ""]
 
-        if len(self.bl_addrs) > 0:
-            lines.append("Function calls:")
+        num_bls = len(self.bl_addrs)
+        if num_bls > 0:
+            lines.append(f"Function calls ({num_bls}):")
             for addr in self.bl_addrs:
                 lines.append(f"{addr:X}")
+            lines.append("")
 
-        if self.in_code and len(self.ldr_addrs) + len(self.data_addrs) > 0:
-            lines.append("Function pointers:")
-
-        if len(self.ldr_addrs) > 0:
-            if not self.in_code:
-                lines.append("Code:")
+        num_ldrs = len(self.ldr_addrs)
+        if num_ldrs > 0:
+            lines.append(f"Pools ({num_ldrs}):")
             for addr in self.ldr_addrs:
                 lines.append(f"{addr:X}")
+            lines.append("")
 
-        if len(self.data_addrs) > 0:
-            if not self.in_code:
-                lines.append("Data:")
+        num_datas = len(self.data_addrs)
+        if num_datas > 0:
+            lines.append(f"Data ({num_datas}):")
             for addr in self.data_addrs:
                 lines.append(f"{addr:X}")
-        
-        if len(lines) == 0:
-            lines = ["None found"]
+            lines.append("")
+            
+        if num_bls + num_ldrs + num_datas == 0:
+            lines.append("None found")
         return lines
 
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("rom_path", type=str)
+    parser.add_argument("addr", type=str)
+    args = parser.parse_args()
 
-rom = Rom("/Users/labk/Desktop/mf_u.gba")
-refs = References(rom, 0xB44)
-lines = refs.output()
-for line in lines:
-    print(line)
+    if len(sys.argv) <= 2:
+        parser.print_help()
+        quit()
+    # load rom
+    rom = None
+    try:
+        rom = Rom(args.rom_path)
+    except:
+        print(f"Could not open rom at {args.rom_path}")
+        quit()
+    # get address
+    addr = None
+    try:
+        addr = int(args.addr, 16)
+    except:
+        print(f"Invalid hex address {args.addr}")
+        quit()
+    # find references and print
+    refs = References(rom, addr)
+    lines = refs.output()
+    for line in lines:
+        print(line)
