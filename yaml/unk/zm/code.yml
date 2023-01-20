@@ -1075,23 +1075,6 @@
   return: null
   notes: Music related
 -
-  label: InitSoundTrack?
-  addr:
-    U: 0x4B50
-    E: 0x4BA4
-    J: 0x4B50
-  size: 0xC0
-  mode: thumb
-  params:
-  - desc: Track data pointer
-    type: ptr
-  - desc: Sound data header pointer
-    type: ptr
-  return:
-    desc: '?'
-    type: '?'
-  notes: Initializes track data to play sound/music?
--
   addr:
     U: 0x4C10
     E: 0x4C64
@@ -3941,26 +3924,6 @@
   params: null
   return: null
 -
-  label: GradientRelated
-  addr:
-    U: 0x5D414
-    E: 0x5D4E8
-    J: 0x5D414
-  size: 0x1A8
-  mode: thumb
-  params: null
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x5DA40
-    E: 0x5DB14
-    J: 0x5DA40
-  size: 0xEC
-  mode: thumb
-  params: null
-  return: null
--
   label: '?'
   addr:
     U: 0x5E224
@@ -4000,55 +3963,6 @@
   params: null
   return: null
 -
-  label: '?'
-  addr:
-    U: 0x5E548
-    E: 0x5E63C
-    J: 0x5E548
-  size: 0x84
-  mode: thumb
-  params: null
-  return: null
--
-  label: OpeningHatchRelated?
-  addr:
-    U: 0x5E760
-    E: 0x5E854
-    J: 0x5E760
-  size: 0x198
-  mode: thumb
-  params: null
-  return: null
-  notes: Related to opening a hatch?
--
-  label: HatchRelated?
-  addr:
-    U: 0x5EA54
-    E: 0x5EB48
-    J: 0x5EA54
-  size: 0xC4
-  mode: thumb
-  params:
-  - desc: Hatch number
-    type: '?'
-  return: null
-  notes: 4 calls to SetBG1BlockValue, don't know when it's called?
--
-  label: HatchRelated?
-  addr:
-    U: 0x5EB18
-    E: 0x5EC0C
-    J: 0x5EB18
-  size: 0xD8
-  mode: thumb
-  params:
-  - desc: Hatch number
-    type: '?'
-  - desc: Hatch type
-    type: '?'
-  return: null
-  notes: 4 calls to both SetBG1BlockValue and SetClipdataBlockValue, don't know when it's called?
--
   addr:
     U: 0x5EFA8
     E: 0x5F09C
@@ -4057,23 +3971,6 @@
   mode: thumb
   params: '?'
   return: '?'
--
-  label: HatchAnimationRelated?
-  addr:
-    U: 0x5F0E4
-    E: 0x5F1D8
-    J: 0x5F0E4
-  size: 0x3C
-  mode: thumb
-  params:
-  - desc: Direction?
-    type: '?'
-  - desc: Hatch number
-    type: '?'
-  - desc: Hatch status?
-    type: '?'
-  return: null
-  notes: Calls UpdateHatchAnimation
 -
   label: '?'
   addr:
@@ -5398,18 +5295,6 @@
   params: null
   return: null
 -
-  label: MinimapCheckRelated?
-  addr:
-    U: 0x6C1C4
-    E: 0x6C2FC
-    J: 0x6C1E0
-  size: 0x1D8
-  mode: thumb
-  params:
-  - desc: Is after transition flag
-    type: '?'
-  return: null
--
   label: MinimapRelated?
   addr:
     U: 0x6C6B4
@@ -5660,17 +5545,6 @@
   mode: thumb
   params: null
   return: null
--
-  label: ItemBannerRelated?
-  addr:
-    U: 0x6FACC
-    E: 0x6FC18
-    J: 0x6FAE8
-  size: 0xEC
-  mode: thumb
-  params: null
-  return: null
-  notes: Item banner related?
 -
   label: ItemBannerRelated?
   addr:
@@ -6211,20 +6085,6 @@
 -
   label: '?'
   addr:
-    U: 0x755A4
-    E: 0x756DC
-    J: 0x755C0
-  size: 0x11C
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
     U: 0x756C0
     E: 0x757F8
     J: 0x756DC
@@ -6661,20 +6521,6 @@
 -
   label: '?'
   addr:
-    U: 0x78504
-    E: 0x78804
-    J: 0x78520
-  size: 0x24C
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: '?'
-    type: '?'
-  return: null
--
-  label: '?'
-  addr:
     U: 0x78750
     E: 0x78A50
     J: 0x7876C
@@ -6773,26 +6619,6 @@
     E: 0x79468
     J: 0x79194
   size: 0x98
-  mode: thumb
-  params: null
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x79210
-    E: 0x79500
-    J: 0x7922C
-  size: 0x590
-  mode: thumb
-  params: null
-  return: null
--
-  label: '?'
-  addr:
-    U: 0x797A0
-    E: 0x79A90
-    J: 0x797BC
-  size: 0x3B0
   mode: thumb
   params: null
   return: null
@@ -6967,24 +6793,6 @@
   return: null
   notes: Displays the timer on a save file?
 -
-  label: DisplaySaveFileAreaNameDifficulty?
-  addr:
-    U: 0x7CF98
-    E: 0x7D2CC
-    J: 0x7CF98
-  size:
-    U: 0x118
-    E: 0x118
-    J: 0x150
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  - desc: File number
-    type: '?'
-  return: null
-  notes: Displays the difficulty and the current area name on a save file?
--
   label: '?'
   addr:
     U: 0x7D0B0
@@ -7019,20 +6827,6 @@
 -
   label: '?'
   addr:
-    U: 0x7D62C
-    E: 0x7D964
-    J: 0x7D6B4
-  size:
-    U: 0xDD0
-    E: 0xDD0
-    J: 0xDA4
-  mode: thumb
-  params: null
-  return: null
-  notes: Wtf is this???
--
-  label: '?'
-  addr:
     U: 0x7E3FC
     E: 0x7E734
     J: 0x7E458
@@ -7064,18 +6858,6 @@
   mode: thumb
   params: '?'
   return: '?'
--
-  label: '?'
-  addr:
-    U: 0x7EF7C
-    E: 0x7F2B4
-    J: 0x7EFD8
-  size: 0x20
-  mode: thumb
-  params:
-  - desc: '?'
-    type: '?'
-  return: null
 -
   label: VBlankCodeDuringSoftReset?
   addr:

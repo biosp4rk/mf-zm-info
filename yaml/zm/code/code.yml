@@ -1063,6 +1063,26 @@
     label: Frequency
     type: u32
 -
+  desc: Init sound track
+  label: InitSoundTrack
+  addr:
+    U: 0x4B50
+    E: 0x4BA4
+    J: 0x4B50
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: u8 *
+  - desc: Sound header pointer
+    label: SoundHeaderPtr
+    type: u8 *
+  return:
+    desc: Unknown
+    label: unk
+    type: bool
+-
   desc: Stop music or sound
   label: StopMusicOrSound
   addr:
@@ -8638,7 +8658,7 @@
     type: bool
     notes: Returns 1 if block was destroyed, made solid, or hatch opened
 -
-  label: Update make solid block
+  desc: Update make solid block
   label: UpdateMakeSolidBlock
   addr:
     U: 0x599E0
@@ -9442,6 +9462,17 @@
   params: null
   return: null
 -
+  desc: Calculate gradient
+  label: CalculateGradient
+  addr:
+    U: 0x5D414
+    E: 0x5D4E8
+    J: 0x5D414
+  size: 0x1A8
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Process haze
   label: ProcessHaze
   addr:
@@ -9496,6 +9527,17 @@
     E: 0x5DA84
     J: 0x5D9B0
   size: 0x90
+  mode: thumb
+  params: null
+  return: null
+-
+  desc: Haze BG1 BG2 BG3
+  label: Haze_BG1_BG2_BG3
+  addr:
+    U: 0x5DA40
+    E: 0x5DB14
+    J: 0x5DA40
+  size: 0xEC
   mode: thumb
   params: null
   return: null
@@ -9598,6 +9640,17 @@
   params: null
   return: null
 -
+  desc: Check apply special background effect color
+  label: CheckApplySpecialBackgroundEffectColor
+  addr:
+    U: 0x5E548
+    E: 0x5E63C
+    J: 0x5E548
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Process special background effect
   label: ProcessSpecialBGEffect
   addr:
@@ -9630,6 +9683,17 @@
     label: EffectStarted
     type: bool
 -
+  desc: Update opening/closing hatches
+  label: UpdateOpeningOrClosingHatches
+  addr:
+    U: 0x5E760
+    E: 0x5E854
+    J: 0x5E760
+  size: 0x198
+  mode: thumb
+  params: null
+  return: null
+-
   desc: Update hatch animation
   label: UpdateHatchAnim
   addr:
@@ -9646,6 +9710,39 @@
     label: HatchNum
     type: u32
   return: null
+-
+  desc: Hatch flashing animation
+  label: HatchFlashingAnimation
+  addr:
+    U: 0x5EA54
+    E: 0x5EB48
+    J: 0x5EA54
+  size: 0xC4
+  mode: thumb
+  params:
+  - desc: Hatch number
+    label: HatchNum
+    type: u8
+  return: null
+-
+  desc: Override opened hatch
+  label: OverrideOpenedHatch
+  addr:
+    U: 0x5EB18
+    E: 0x5EC0C
+    J: 0x5EB18
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Hatch number
+    label: HatchNum
+    type: u8
+  - desc: Hatch type
+    label: HatchType
+    type: u8
+    enum: HatchType
+  return: null
+  notes: Sets missile, super missile, power bomb hatches to normal hatches if already opened
 -
   desc: Check enter door
   label: CheckEnterDoor
@@ -9751,6 +9848,27 @@
   mode: thumb
   params: null
   return: null
+-
+  desc: Hatch start lock animation
+  label: HatchStartLockAnimation
+  addr:
+    U: 0x5F0E4
+    E: 0x5F1D8
+    J: 0x5F0E4
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Don't set raw
+    label: DontSetRaw
+    type: bool
+  - desc: Hatch number
+    label: HatchNum
+    type: u8
+  - desc: Status
+    label: Status
+    type: u8
+  return: null
+  notes: Locks a hatch visually
 -
   desc: Lock hatches
   label: LockHatches
@@ -10905,6 +11023,21 @@
   params: null
   return: null
 -
+  desc: Check set area name tiles as explored
+  label: CheckSetAreaNameTilesAsExplored
+  addr:
+    U: 0x6C1C4
+    E: 0x6C2FC
+    J: 0x6C1E0
+  size: 0x1D8
+  mode: thumb
+  params:
+  - desc: After transition flag
+    label: AfterTransitionFlag
+    type: bool
+  return: null
+  notes: Checks if the area connection label tiles on the minimap should be set as explored
+-
   desc: Check for unexplored minimap square
   label: CheckForUnexploredMinimapSquare
   addr:
@@ -11276,6 +11409,17 @@
     label: LineState
     type: u8
     notes: 0 = no new line, 1 = new line, 2 = message end
+-
+  desc: Draw yes/no text for easy sleep
+  label: DrawYesNoTextForEasySleep
+  addr:
+    U: 0x6FACC
+    E: 0x6FC18
+    J: 0x6FAE8
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
 -
   desc: Update minimap animated palettes
   label: UpdateMinimapAnimatedPalettes
@@ -11671,6 +11815,26 @@
     label: Done
     type: bool
 -
+  desc: Copy file
+  label: CopyFile
+  addr:
+    U: 0x755A4
+    E: 0x756DC
+    J: 0x755C0
+  size: 0x11C
+  mode: thumb
+  params:
+  - desc: Source file
+    label: SourceFile
+    type: u8
+  - desc: Destination file
+    label: DestinationFile
+    type: u8
+  return:
+    desc: Done
+    label: Done
+    type: bool
+-
   desc: Check load save file
   label: CheckLoadSaveFile
   addr:
@@ -11953,6 +12117,52 @@
   params: null
   return: null
 -
+  desc: File select draw cursor
+  label: FileSelectDrawCursor
+  addr:
+    U: 0x78504
+    E: 0x78804
+    J: 0x78520
+  size: 0x24C
+  mode: thumb
+  params:
+  - desc: State
+    label: State
+    type: u8
+    enum: FileSelectCursorState
+  - desc: Sub-menu ID
+    label: SubMenuID
+    type: u8
+  return: null
+-
+  desc: Copy file menu subroutine
+  label: CopyFileMenuSubroutine
+  addr:
+    U: 0x79210
+    E: 0x79500
+    J: 0x7922C
+  size: 0x590
+  mode: thumb
+  params: null
+  return:
+    desc: Leaving
+    label: Leaving
+    type: bool
+-
+  desc: Erase file menu subroutine
+  label: EraseFileMenuSubroutine
+  addr:
+    U: 0x797A0
+    E: 0x79A90
+    J: 0x797BC
+  size: 0x3B0
+  mode: thumb
+  params: null
+  return:
+    desc: Leaving
+    label: Leaving
+    type: bool
+-
   desc: Copy time attack time
   label: CopyTimeAttackTime
   addr:
@@ -12161,6 +12371,27 @@
     type: u8
   return: null
 -
+  desc: Display save file info misc
+  label: DisplaySaveFileInfoMisc
+  addr:
+    U: 0x7CF98
+    E: 0x7D2CC
+    J: 0x7CF98
+  size:
+    U: 0x118
+    E: 0x118
+    J: 0x150
+  mode: thumb
+  params:
+  - desc: Save file info pointer
+    label: SaveFileInfoPtr
+    type: SaveFileInfo *
+  - desc: File number
+    label: FileNum
+    type: u8
+  return: null
+  notes: Displays the difficulty, area name, and other misc data on a save file
+-
   desc: File select menu selecting sub-menu
   label: FileSelectMenuSelectingSubMenu
   addr:
@@ -12193,6 +12424,38 @@
     desc: Fully entered
     label: FullyEntered
     type: bool
+-
+  desc: Process file selection
+  label: ProcessFileSelection
+  addr:
+    U: 0x7D62C
+    E: 0x7D964
+    J: 0x7D6B4
+  size:
+    U: 0xDD0
+    E: 0xDD0
+    J: 0xDA4
+  mode: thumb
+  params: null
+  return:
+    desc: Return to file select menu
+    label: ReturnToFileSelectMenu
+    type: bool
+-
+  desc: Play menu sound
+  label: PlayMenuSound
+  addr:
+    U: 0x7EF7C
+    E: 0x7F2B4
+    J: 0x7EFD8
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Menu sound ID
+    label: MenuSoundID
+    type: u8
+    enum: MenuSoundID
+  return: null
 -
   desc: Soft reset subroutine
   label: SoftResetSubroutine

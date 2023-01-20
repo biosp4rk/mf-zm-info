@@ -15,6 +15,16 @@
     E: 0x8D628
     J: 0x8C9F8
 -
+  desc: Interrupt handler pointers
+  label: InterruptHandlerPtrs
+  type: void *[0xD]
+  tags:
+  - thumb
+  addr:
+    U: 0x8CA9C
+    E: 0x8D728
+    J: 0x8CAF8
+-
   desc: Delay/note length table
   label: DelayNoteLengthTable
   type: u8 [0x31]
@@ -642,6 +652,14 @@
     E: 0x3468D4
     J: 0x345CA4
 -
+  desc: Hatch behaviors
+  label: HatchBehaviors
+  type: HatchBehavior [0x8]
+  addr:
+    U: 0x345CA8
+    E: 0x346934
+    J: 0x345D04
+-
   desc: BLDALPHA values for clipdata
   label: BLDALPHA_ValuesForClipdata
   type: u16 [0xB]
@@ -674,6 +692,14 @@
     E: 0x346D08
     J: 0x3460D8
 -
+  desc: Haze BG1 BG2 BG3 offsets
+  label: Haze_BG1_BG2_BG3_Offsets
+  type: s8 [0x20][0x9]
+  addr:
+    U: 0x35F7F4
+    E: 0x360480
+    J: 0x35F850
+-
   desc: Animated graphics entries
   label: AnimatedGraphicsEntries
   type: AnimatedGraphicsEntry [0x26]
@@ -697,6 +723,14 @@
     U: 0x35FBFC
     E: 0x360888
     J: 0x35FC58
+-
+  desc: Special BG effects color data
+  label: SpecialBGEffectsColorData
+  type: SpecialBGEffectColorData [0x9]
+  addr:
+    U: 0x35FC8C
+    E: 0x360918
+    J: 0x35FCE8
 -
   desc: Hatch lock events
   label: HatchLockEvents
@@ -722,6 +756,14 @@
     E: 0x360F00
     J: 0x3602D0
 -
+  desc: Hatches time between animations
+  label: HatchesTimeBetweenAnims
+  type: u8 [0x6]
+  addr:
+    U: 0x3602C2
+    E: 0x360F4E
+    J: 0x36031E
+-
   desc: Number of hatch lock events per area
   label: NumOfHatchLockEventsPerArea
   type: u16 [0x8]
@@ -729,6 +771,16 @@
     U: 0x3602D8
     E: 0x360F64
     J: 0x360334
+-
+  desc: Door transition tilemap (RLE compressed)
+  label: DoorTransitionTilemap_RLE
+  type: u8 [0xB8]
+  tags:
+  - rle
+  addr:
+    U: 0x364F80
+    E: 0x365C0C
+    J: 0x364FDC
 -
   desc: Clipdata behavior types (0x400)
   label: ClipdataBehaviorTypes400
@@ -774,24 +826,13 @@
     J: 0x365D1C
   enum: ClipdataBehaviorType
 -
-  desc: Return one pointer
-  label: ReturnOnePtr
-  type: void *
-  tags:
-  - thumb
-  addr:
-    U: 0x36BDB0
-    E: 0x36CA3C
-    J: 0x36BE0C
-  notes: Pointer to function that returns 1 (default cutscene pointer?)
--
   desc: Cutscene data
   label: CutsceneData
   type: CutsceneData [0xF]
   addr:
-    U: 0x36BDB4
-    E: 0x36CA40
-    J: 0x36BE10
+    U: 0x36BDAC
+    E: 0x36CA38
+    J: 0x36BE08
 -
   desc: Boss map icons
   label: BossMapIcons
@@ -833,6 +874,15 @@
     E: 0x40EE8C
     J: 0x40E0B4
   enum: Event
+-
+  desc: Default button assignments
+  label: DefaultButtonAssignments
+  type: u16 [0x8]
+  addr:
+    U: 0x411510
+    E: 0x412344
+    J: 0x41156C
+  enum: ButtonInput
 -
   desc: Time attack button code
   label: TimeAttackButtonCode
@@ -1232,6 +1282,16 @@
     U: 0x7606FC
     E: 0x7745A4
     J: 0x76080C
+-
+  desc: Menu sound IDs
+  label: MenuSoundIDs
+  type: u16 [0xD]
+  tags:
+  - text
+  addr:
+    U: 0x760C4C
+    E: 0x775328
+    J: 0x760D5C
 -
   desc: Time attack password seed function pointers
   label: TimeAttackPasswordSeedFunctionPtrs

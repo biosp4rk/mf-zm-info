@@ -52,6 +52,7 @@ class Validator(object):
                 prev = None
                 for entry in code:
                     self.entry = entry
+                    self.check_desc(entry)
                     self.check_label(entry)
                     self.check_addr(entry, 4)
                     self.check_size(entry, 2)
@@ -69,6 +70,7 @@ class Validator(object):
                     prev = None
                     for entry in entries:
                         self.entry = entry
+                        self.check_desc(entry)
                         self.check_label(entry)
                         self.check_type(entry)
                         self.check_tags(entry)

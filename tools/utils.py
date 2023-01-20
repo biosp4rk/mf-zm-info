@@ -149,7 +149,7 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     output = re.sub(r"\d+~", "", output)
     if isinstance(data, list):
         # add extra line breaks for lists
-        output = re.sub(r"^- ", "-\n  ", output, flags=re.MULTILINE)
+        output = re.sub(r"^- ", "-\n  ", output, flags=re.M)
     with open(path, "w") as f:
         f.write(output)
 

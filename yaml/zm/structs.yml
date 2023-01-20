@@ -922,30 +922,43 @@ CurrScrolls:
 CutsceneData:
   size: 0x10
   vars:
-  - desc: Cutscene number?
-    label: CutsceneNum
+  - desc: Unknown 00
+    label: unk_00
     type: u8
     offset: 0x0
-  - desc: Music related
-    label: MusicRelated
-    type: u16
+  - desc: Type
+    label: Type
+    type: u8
+    offset: 0x1
+    notes: 10 = elevator, 40 = can be skipped (unused)
+  - desc: Story text ID+1
+    label: StoryTextIDPlus1
+    type: u8
     offset: 0x2
-  - desc: Special background fade
-    label: SpecialBGFade
-    type: u8
-    offset: 0x4
-    enum: SpecialBGFadeType
-  - desc: Event
-    label: Event
-    type: u8
-    offset: 0x5
-    enum: Event
   - desc: Subroutine pointer
     label: SubroutinePtr
     type: void *
     tags:
     - thumb
+    offset: 0x4
+  - desc: Unknown 08
+    label: unk_08
+    type: u8
+    offset: 0x8
+  - desc: Music fade timer
+    label: MusicFadeTimer
+    type: u16
+    offset: 0xA
+  - desc: Special BG fade
+    label: SpecialBGFade
+    type: u8
     offset: 0xC
+    enum: SpecialBGFadeType
+  - desc: Event
+    label: Event
+    type: u8
+    offset: 0xD
+    enum: Event
 CutsceneInfo:
   size: 0x10
   vars:
@@ -1331,6 +1344,18 @@ GameCompletion:
     type: u8
     offset: 0x2
     enum: Language
+HatchBehavior:
+  size: 0x4
+  vars:
+  - desc: Hatch weakness flags
+    label: HatchWeaknessFlags
+    type: u8
+    offset: 0x0
+    enum: BlockWeaknessFlags
+  - desc: Health
+    label: Health
+    type: u16
+    offset: 0x2
 HatchData:
   size: 0x8
   vars:
@@ -1564,6 +1589,26 @@ InGameTimeAtBosses:
     label: WhenMechaRidleyKilled
     type: InGameTime
     offset: 0xC
+LastAreaConnectionVisited:
+  size: 0x4
+  vars:
+  - desc: Offset flag?
+    label: unk_00
+    type: u8
+    offset: 0x0
+  - desc: Area ID
+    label: AreaID
+    type: u8
+    offset: 0x1
+    enum: AreaID
+  - desc: Minimap X
+    label: MinimapX
+    type: u8
+    offset: 0x2
+  - desc: Minimap Y
+    label: MinimapY
+    type: u8
+    offset: 0x3
 LastElevatorUsed:
   size: 0x4
   vars:
@@ -1665,6 +1710,51 @@ MetroidFusionGalleryData:
     tags:
     - palette
     offset: 0x10
+MinimapAreaConnectionLabel:
+  size: 0xC
+  vars:
+  - desc: Area ID (top/left)
+    label: AreaID_TL
+    type: u8
+    offset: 0x0
+    enum: AreaID
+  - desc: Connection X position +1 (top/left)
+    label: ConnectionXPositionPlus1_TL
+    type: u8
+    offset: 0x1
+  - desc: Connection Y position +1 (top/left)
+    label: ConnectionYPositionPlus1_TL
+    type: u8
+    offset: 0x2
+  - desc: Label X offset (top/left)
+    label: LabelXOffset_TL
+    type: s8
+    offset: 0x3
+  - desc: Label Y offset (top/left)
+    label: LabelYOffset_TL
+    type: s8
+    offset: 0x4
+  - desc: Area ID (bottom/right)
+    label: AreaID_BR
+    type: u8
+    offset: 0x5
+    enum: AreaID
+  - desc: Connection X position +1 (bottom/right)
+    label: ConnectionXPositionPlus1_BR
+    type: u8
+    offset: 0x6
+  - desc: Connection Y position +1 (bottom/right)
+    label: ConnectionYPositionPlus1_TL
+    type: u8
+    offset: 0x7
+  - desc: Label X offset (bottom/right)
+    label: LabelXOffset_BR
+    type: s8
+    offset: 0x8
+  - desc: Label Y offset (bottom/right)
+    label: LabelYOffset_BR
+    type: s8
+    offset: 0x9
 MusicInfo:
   size: 0x1764
   vars:
@@ -1999,6 +2089,25 @@ ProjectileData:
     label: HitboxRightOffset
     type: s16
     offset: 0x1A
+QueuedSound:
+  size: 0x8
+  vars:
+  - desc: Exists
+    label: Exists
+    type: bool
+    offset: 0x0
+  - desc: Priority
+    label: Priority
+    type: u8
+    offset: 0x1
+  - desc: FadeTimer
+    label: FadeTimer
+    type: u16
+    offset: 0x2
+  - desc: Sound header pointer
+    label: SoundHeaderPtr
+    type: u8 *
+    offset: 0x3
 RevealableBlockData:
   size: 0x8
   vars:
@@ -2597,6 +2706,80 @@ SamusWeaponInfo:
     label: BeamReleasePaletteTimer
     type: u8
     offset: 0x6
+SaveFileInfo:
+  size: 0x18
+  vars:
+  - desc: Exists
+    label: Exists
+    type: bool
+    offset: 0x0
+  - desc: Unknown 01
+    label: unk_01
+    type: u8
+    offset: 0x1
+  - desc: Unknown 02
+    label: unk_02
+    type: u8
+    offset: 0x2
+  - desc: Current energy
+    label: CurrEnergy
+    type: u16
+    offset: 0x4
+  - desc: Max energy
+    label: MaxEnergy
+    type: u16
+    offset: 0x6
+  - desc: Current missiles
+    label: CurrMissiles
+    type: u16
+    offset: 0x8
+  - desc: Max missiles
+    label: MaxMissiles
+    type: u16
+    offset: 0xA
+  - desc: Suit type
+    label: SuitType
+    type: u8
+    offset: 0xC
+    enum: SuitType
+  - desc: In-game hours
+    label: InGameHours
+    type: u8
+    offset: 0xD
+  - desc: In-game minutes
+    label: InGameMinutes
+    type: u8
+    offset: 0xE
+  - desc: In-game seconds
+    label: InGameSeconds
+    type: u8
+    offset: 0xF
+  - desc: Has saved
+    label: HasSaved
+    type: bool
+    offset: 0x10
+  - desc: Completed game
+    label: CompletedGame
+    type: bool
+    offset: 0x11
+  - desc: Intro played
+    label: IntroPlayed
+    type: bool
+    offset: 0x12
+  - desc: Language
+    label: Language
+    type: u8
+    offset: 0x13
+    enum: Language
+  - desc: Difficulty
+    label: Difficulty
+    type: u8
+    offset: 0x14
+    enum: Difficulty
+  - desc: Time attack
+    label: TimeAttack
+    type: bool
+    offset: 0x15
 SaveFileRam:
   size: 0x1220
   vars:
@@ -2718,6 +2901,10 @@ SaveFileRam:
     label: SamusEcho
     type: SamusEcho
     offset: 0x88
+  - desc: Has saved
+    label: HasSaved
+    type: bool
+    offset: 0x9C
   - desc: Screw attack and speed booster animation
     label: ScrewAttackAndSpeedBoosterAnim
     type: ScrewAttackSpeedBoosterAnim
@@ -2956,6 +3143,25 @@ SpecialBGEffect:
     label: unk_07
     type: u8
     offset: 0x7
+SpecialBGEffectColorData:
+  size: 0x8
+  vars:
+  - desc: Color mask
+    label: ColorMask
+    type: u16
+    offset: 0x0
+  - desc: Color to apply
+    label: ColorToApply
+    type: u16
+    offset: 0x2
+  - desc: Second color to apply
+    label: SecondColorToApply
+    type: u16
+    offset: 0x4
+  - desc: Apply on OBJ flag
+    label: ApplyOnObjFlag
+    type: bool
+    offset: 0x6
 SpecialBGFade:
   size: 0x8
   vars:

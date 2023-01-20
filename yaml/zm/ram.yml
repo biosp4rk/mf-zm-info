@@ -775,6 +775,11 @@
   type: u16
   addr: 0x3000C06
 -
+  desc: Last area connection visited
+  label: LastAreaConnectionVisited
+  type: LastAreaConnectionVisited
+  addr: 0x3000C08
+-
   desc: Current message
   label: CurrMessage
   type: CurrMessage
@@ -784,6 +789,21 @@
   label: MostRecentSaveFile
   type: u8
   addr: 0x3000C1E
+-
+  desc: Has saved
+  label: HasSaved
+  type: bool
+  addr: 0x3000C1F
+-
+  desc: SRAM operation stage
+  label: SramOperationStage
+  type: u8
+  addr: 0x3000C21
+-
+  desc: Save files info
+  label: SaveFilesInfo
+  type: SaveFileInfo [0x3]
+  addr: 0x3000C24
 -
   desc: Game mode
   label: GameMode
@@ -1107,6 +1127,11 @@
   type: MusicInfo
   addr: 0x3001D00
 -
+  desc: Sound queue
+  label: SoundQueue
+  type: QueuedSound [0x9]
+  addr: 0x3003B44
+-
   desc: Sound code A pointer
   label: SoundCodeAPtr
   type: void *
@@ -1165,6 +1190,11 @@
   tags:
   - palette
   addr: 0x30053E0
+-
+  desc: Samus palette size
+  label: SamusPaletteSize
+  type: u16
+  addr: 0x3005440
 -
   desc: Written to WIN1H
   label: WrittenToWIN1H

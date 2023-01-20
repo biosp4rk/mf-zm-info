@@ -944,6 +944,28 @@ EscapeTimerStatus:
 - desc: Escape failed
   label: EscapeFailed
   val: 0x2
+FileSelectCursorState:
+- desc: Default
+  label: Default
+  val: 0x0
+- desc: Moving
+  label: Moving
+  val: 0x1
+- desc: Opening options
+  label: OpeningOptions
+  val: 0x2
+- desc: Selecting file
+  label: SelectingFile
+  val: 0x5
+- desc: Deselecting file
+  label: DeselectingFile
+  val: 0x6
+- desc: StartingGame
+  label: StartingGame
+  val: 0x7
+- desc: Unknown 08
+  label: unk_08
+  val: 0x8
 FloatingPointClass:
 - desc: Signaling NaN
   label: SignalingNan
@@ -1060,6 +1082,28 @@ GroundTypeUnderSamus:
 - desc: Bubbly ground
   label: BubblyGround
   val: 0x5
+HatchStatus:
+- desc: Opening
+  label: Opening
+  val: 0x1
+- desc: Opened
+  label: Opened
+  val: 0x2
+- desc: Locked
+  label: Locked
+  val: 0x4
+- desc: Unknown 08
+  label: unk_08
+  val: 0x8
+- desc: Flashing 1
+  label: Flashing1
+  val: 0x10
+- desc: Flashing 2
+  label: Flashing2
+  val: 0x20
+- desc: Flashing 3
+  label: Flashing3
+  val: 0x40
 HatchType:
 - desc: None
   label: None
@@ -1129,8 +1173,8 @@ HazeType:
 - desc: BG3/BG2 (strong in effect, weak outside for BG3)
   label: BG3_BG2_StrongInEffectWeakOutsideForBG3
   val: 0x5
-- desc: Unknown 06
-  label: unk_06
+- desc: BG1 BG2 BG3
+  label: BG1_BG2_BG3
   val: 0x6
   notes: Used by room effect 0xC
 - desc: Power bomb expanding
@@ -1191,6 +1235,46 @@ LiquidType:
 - desc: Acid
   label: Acid
   val: 0x4
+MenuSoundID:
+- desc: Sub-menu cursor
+  label: SubMenuCursor
+  val: 0x0
+- desc: Accept confirm menu
+  label: AcceptConfirmMenu
+  val: 0x1
+- desc: Menu cursor
+  label: MenuCurosr
+  val: 0x2
+- desc: File select
+  label: FileSelect
+  val: 0x3
+- desc: Start game
+  label: StartGame
+  val: 0x4
+- desc: Open sub-menu
+  label: OpenSubMenu
+  val: 0x5
+- desc: Close sub-menu
+  label: CloseSubMenu
+  val: 0x6
+- desc: Close sub-menu
+  label: CloseSubMenu
+  val: 0x7
+- desc: File select copy delete
+  label: FileSelectCopyDelete
+  val: 0x8
+- desc: File select copy delete moving
+  label: FileSelectCopyDeleteMoving
+  val: 0x9
+- desc: File copy confirm
+  label: FileCopyConfirm
+  val: 0xA
+- desc: Menu cursor
+  label: MenuCursor
+  val: 0xB
+- desc: Start game
+  label: StartGame
+  val: 0xC
 MovementPreventingClipdata:
 - desc: None
   label: None
@@ -1625,18 +1709,21 @@ RoomEffect:
 - desc: Snowflakes, cold damage
   label: Snowflakes_ColdDamage
   val: 0x7
-- desc: Heat haze (BG3)
+- desc: Heat haze BG3
   label: HeatHazeBG3
   val: 0x8
-- desc: Heat haze (BG2+3)
+- desc: Heat haze BG2 BG3
   label: HeatHaze_BG2_BG3
   val: 0x9
-- desc: Gradient (BG3)
+- desc: Gradient BG3
   label: Gradient_BG3
   val: 0xA
-- desc: Gradient (BG2)
+- desc: Gradient BG2
   label: Gradient_BG2
   val: 0xB
+- desc: Heat haze BG1 BG2 BG3
+  label: HeatHaze_BG1_BG2_BG3
+  val: 0xC
 SamusEnvironmentEffect:
 - desc: None
   label: None
@@ -1984,8 +2071,8 @@ SpecialBGEffect:
   label: AllWhite
   val: 0x8
 SpecialBGFadeType:
-- desc: Unknown 00
-  label: unk_00
+- desc: None
+  label: None
   val: 0x0
 - desc: Flash
   label: Flash
@@ -2017,17 +2104,17 @@ SpecialBGFadeType:
 - desc: Slow black fade
   label: SlowBlackFade
   val: 0xA
-- desc: Unknown 0B
-  label: unk_0B
+- desc: After enter mother ship cutscene
+  label: AfterEnterMotherShipCutscene
   val: 0xB
 - desc: Escape failed fade
   label: EscapeFailedFade
   val: 0xC
-- desc: Soft reset fade?
-  label: SoftResetFade
+- desc: Demo ending automatically fade
+  label: DemoEndingAutomaticallyFade
   val: 0xD
-- desc: Unknown 0E
-  label: unk_0E
+- desc: Demo ending from input fade
+  label: DemoEndingFromInputFade
   val: 0xE
 - desc: Chozodia escape fade
   label: ChozodiaEscapeFade
@@ -2038,8 +2125,8 @@ SpecialBGFadeType:
 - desc: Getting fully powered fade
   label: GettingFullyPoweredFade
   val: 0x11
-- desc: Before fidley fight fade
-  label: BeforeFidleyFightFade
+- desc: Before Ridley fight fade
+  label: BeforeRidleyFightFade
   val: 0x12
 - desc: Statue cutscene fade
   label: StatueCutsceneFade
@@ -2047,17 +2134,17 @@ SpecialBGFadeType:
 - desc: Intro text fade
   label: IntroTextFade
   val: 0x14
-- desc: Unknown 15
-  label: unk_15
+- desc: Landing ship cutscene fade
+  label: LandingShipCutsceneFade
   val: 0x15
 - desc: Blue ship fade
   label: BlueShipFade
   val: 0x16
-- desc: Unknown 17
-  label: unk_17
+- desc: To white
+  label: ToWhite
   val: 0x17
-- desc: Unknown 18
-  label: unk_18
+- desc: To black
+  label: ToBlack
   val: 0x18
 SpriteDebrisType:
 - desc: TODO
