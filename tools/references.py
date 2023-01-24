@@ -1,13 +1,37 @@
 import argparse
-from typing import List
+from constants import MAP_STRUCTS, MAP_CODE, MAP_DATA, MAP_RAM
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 import sys
 from thumb import ThumbForm, ThumbInstruct
+from typing import List
+from utils import read_yamls, get_entry_size_count
+
+
+class Ref(object):
+    def __init__(self, addr, label=None, offset=None, index=None):
+        self.addr = addr
+        self.label = label
+        self.index = index
+        self.offset = offset
+
+    def __str__(self) -> str:
+        s = f"{self.addr:X}"
+        if self.label is not None:
+            s += f" {self.label}"
+            if self.index is not None:
+                s += f"[{self.index:X}]"
+            if self.offset is not None:
+                s += f":{self.offset:X}"
+        return s
 
 
 class References(object):
 
-    def __init__(self, rom: Rom, addr: int):
+    def __init__(self, rom: Rom):
+        self.rom = rom
+
+    def find(self, addr: int):
+        rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
         data_end = rom.data_end()
@@ -17,72 +41,159 @@ class References(object):
             addr -= ROM_OFFSET
 
         # check if address is part of rom
-        self.in_rom = False
-        self.in_code = False
+        in_rom = False
+        in_code = False
         if addr < SIZE_32MB:
-            self.in_rom = True
+            in_rom = True
             # check if address is part of code
             if addr >= code_start and addr < code_end:
-                self.in_code = True
+                in_code = True
 
-        self.bl_addrs = []
-        self.ldr_addrs = []
-        self.data_addrs = []
+        bl_addrs = []
+        ldr_addrs = []
+        data_addrs = []
+        self.structs = read_yamls(rom.game, MAP_STRUCTS)
 
         # check bl and ldr in code
+        self.entries = self.load_entries(MAP_CODE)
+        self.idx = 0
         addr_val = addr
-        if self.in_rom:
+        if in_rom:
             addr_val += ROM_OFFSET
-            if self.in_code:
+            if in_code:
                 addr_val += 1
         for i in range(code_start, code_end, 2):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.LdPC:
                 val = rom.read32(inst.pc_rel_addr())
                 if addr_val == val:
-                    self.ldr_addrs.append(i)
-            elif self.in_code and inst.format == ThumbForm.Link:
+                    ref = self.get_ref(i)
+                    ldr_addrs.append(ref)
+            elif in_code and inst.format == ThumbForm.Link:
                 if addr == inst.branch_addr():
-                    self.bl_addrs.append(i)
-        
+                    ref = self.get_ref(i)
+                    bl_addrs.append(ref)
+
         # check data
+        self.entries = self.load_entries(MAP_DATA)
+        self.idx = 0
         for i in range(code_end, data_end, 4):
             val = rom.read32(i)
             if addr_val == val:
-                self.data_addrs.append(i)
+                ref = self.get_ref(i)
+                data_addrs.append(ref)
+        
+        return bl_addrs, ldr_addrs, data_addrs
 
-    def output(self) -> List[str]:
-        addr_type = None
-        if self.in_rom:
-            addr_type = "Code" if self.in_code else "Data"
-        else:
-            addr_type = "RAM"
-        lines = [f"Type: {addr_type}", ""]
+    def find_all(self):
+        # load all ram, code, data, and structs
+        rom = self.rom
+        ram_entries = read_yamls(rom.game, MAP_RAM)
+        code_entries = read_yamls(rom.game, MAP_CODE)
+        data_entries = read_yamls(rom.game, MAP_DATA)
+        structs = read_yamls(rom.game, MAP_STRUCTS)
 
-        num_bls = len(self.bl_addrs)
-        if num_bls > 0:
-            lines.append(f"Function calls ({num_bls}):")
-            for addr in self.bl_addrs:
-                lines.append(f"{addr:X}")
-            lines.append("")
+        # create dictionary of all labeled addresses
+        all_refs = {}
+        combined = ram_entries + code_entries + data_entries
+        for entry in combined:
+            addr = entry["addr"]
+            if isinstance(addr, dict):
+                if rom.region not in addr:
+                    continue
+                addr = addr[rom.region]
+            all_refs[addr] = entry
+        combined = None
 
-        num_ldrs = len(self.ldr_addrs)
-        if num_ldrs > 0:
-            lines.append(f"Pools ({num_ldrs}):")
-            for addr in self.ldr_addrs:
-                lines.append(f"{addr:X}")
-            lines.append("")
+        code_start = rom.code_start()
+        code_end = rom.code_end()
+        data_end = rom.data_end()
+        ptr_start = code_start + ROM_OFFSET
+        ptr_end = data_end + ROM_OFFSET
 
-        num_datas = len(self.data_addrs)
-        if num_datas > 0:
-            lines.append(f"Data ({num_datas}):")
-            for addr in self.data_addrs:
-                lines.append(f"{addr:X}")
-            lines.append("")
-            
-        if num_bls + num_ldrs + num_datas == 0:
-            lines.append("None found")
-        return lines
+        # check every ref in code
+        for i in range(code_start, code_end, 2):
+            # check for bl
+            inst = ThumbInstruct(rom, i)
+            if inst.format == ThumbForm.Link:
+                bl_addr = inst.branch_addr()
+                if bl_addr in all_refs:
+                    entry = all_refs[bl_addr]
+                    if "refs" not in entry:
+                        entry["refs"] = []
+                    entry["refs"].append((i, "bl"))
+            # check for pool
+            elif i % 4 == 0:
+                val = rom.read32(i)
+                if val >= ptr_start and val < ptr_end:
+                    val -= ROM_OFFSET
+                    if val >= code_start and val < code_end:
+                        # subtract one for thumb code pointers
+                        val -= 1
+                    if val in all_refs:
+                        entry = all_refs[val]
+                        if "refs" not in entry:
+                            entry["refs"] = []
+                        entry["refs"].append((i, "pool"))
+
+        # check every ref in data
+        for i in range(code_end, data_end, 4):
+            val = rom.read32(i)
+            if val >= ptr_start and val < ptr_end:
+                val -= ROM_OFFSET
+                if val >= code_start and val < code_end:
+                    # subtract one for thumb code pointers
+                    val -= 1
+                if val in all_refs:
+                    entry = all_refs[val]
+                    if "refs" not in entry:
+                        entry["refs"] = []
+                    entry["refs"].append((i, "data"))
+        
+        results = {}
+        for entry in all_refs.values():
+            if "refs" in entry:
+                label = entry["label"]
+                results[label] = entry["refs"]
+        return results
+
+    def get_ref(self, addr):
+        while self.entries[self.idx]["addr"] <= addr:
+            self.idx += 1
+        self.idx -= 1
+        entry = self.entries[self.idx]
+        size, count = get_entry_size_count(entry, self.structs)
+        size = size[self.rom.region]
+        length = size * count
+        if addr < entry["addr"] + length:
+            lab = entry["label"]
+            off = addr - entry["addr"]
+            num = None
+            if count > 1:
+                num = off // size
+                off %= size
+            return Ref(addr, lab, off, num)
+        return Ref(addr)
+
+    def load_entries(self, map_type: str):
+        entries = read_yamls(self.rom.game, map_type)
+        reg = self.rom.region
+        for entry in entries:
+            addr = entry["addr"]
+            if isinstance(addr, dict):
+                entry["addr"] = addr[reg] if reg in addr else None
+        return [entry for entry in entries if entry["addr"]]
+
+
+def output_section(title, refs) -> List[str]:
+    lines = []
+    num_refs = len(refs)
+    if num_refs > 0:
+        lines.append(f"{title} ({num_refs}):")
+        for ref in refs:
+            lines.append(str(ref))
+        lines.append("")
+    return lines
 
 
 if __name__ == "__main__":
@@ -94,6 +205,7 @@ if __name__ == "__main__":
     if len(sys.argv) <= 2:
         parser.print_help()
         quit()
+
     # load rom
     rom = None
     try:
@@ -101,6 +213,7 @@ if __name__ == "__main__":
     except:
         print(f"Could not open rom at {args.rom_path}")
         quit()
+
     # get address
     addr = None
     try:
@@ -108,8 +221,15 @@ if __name__ == "__main__":
     except:
         print(f"Invalid hex address {args.addr}")
         quit()
+
     # find references and print
-    refs = References(rom, addr)
-    lines = refs.output()
-    for line in lines:
-        print(line)
+    refs = References(rom)
+    bls, ldrs, dats = refs.find(addr)
+    lines = []
+    if bls:
+        lines += output_section("Calls", bls)
+    if ldrs:
+        lines += output_section("Pools", ldrs)
+    if dats:
+        lines += output_section("Data", dats)
+    print("\n".join(lines))

@@ -153,19 +153,29 @@ def write_yaml(path: str, data: InfoFile, map_type: str) -> None:
     with open(path, "w") as f:
         f.write(output)
 
+
 # gets the total physical size of all items
 def get_entry_length(
+    entry: Dict[str, Any], structs: Dict[str, Any]
+) -> Dict[str, int]:
+    size, count = get_entry_size_count(entry, structs)
+    return {r: s * count for r, s in size.items()}
+
+
+# gets the individual size and number of items
+def get_entry_size_count(
     entry: Dict[str, Any], structs: Dict[str, Any]
 ) -> Dict[str, int]:
     # return size field if present
     if K_SIZE in entry:
         regions = get_entry_regions(entry)
-        return region_int_to_dict(regions, entry[K_SIZE])
-    # parse type to get count and size
+        size = region_int_to_dict(regions, entry[K_SIZE])
+        return size, 1
+    # parse type to get size and count
+    size = get_entry_size(entry, structs)
     parts = entry[K_TYPE].split()
     count = get_type_count(parts)
-    size = get_entry_size(entry, structs)
-    return {r: s * count for r, s in size.items()}
+    return size, count
 
 
 # gets the number of items (1 unless array type)
