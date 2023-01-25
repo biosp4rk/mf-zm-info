@@ -64,10 +64,10 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
                 continue
             i = len(entries) - 1
             j = len(combined) - 1
-            while i > 0:
+            while i >= 0:
                 entry = entries[i]
                 addr = region_int_to_int(r, entry[K_ADDR])
-                while j > 0:
+                while j >= 0:
                     cmp_addr = combined[j][K_ADDR]
                     if isinstance(cmp_addr, dict):
                         cmp_addr = cmp_addr.get(r, 2e32)

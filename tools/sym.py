@@ -39,7 +39,7 @@ def gen_sym_file(rom: Rom):
 
     words = sorted(loaded_words)
     ram = read_yamls(rom.game, MAP_RAM)
-    ram_dict = {r["addr"][region]: r["label"] for r in ram if region in r["addr"]}
+    ram_dict = {r["addr"]: r["label"] for r in ram if r["addr"]}
     code = read_yamls(rom.game, MAP_CODE)
     code_dict = {r["addr"][region]: r["label"] for r in code if region in r["addr"]}
     data = read_yamls(rom.game, MAP_DATA)
