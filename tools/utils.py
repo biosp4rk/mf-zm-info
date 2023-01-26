@@ -21,7 +21,7 @@ def read_yaml(path: str) -> InfoFile:
         return yaml.full_load(f)
 
 
-def read_yamls(game: str, map_type: str) -> InfoFile:
+def read_yamls(game: str, map_type: str, region: str = None) -> InfoFile:
     dir_path = os.path.join(YAML_PATH, game, map_type)
     file_path = dir_path + YAML_EXT
     data_dict = None
@@ -33,7 +33,10 @@ def read_yamls(game: str, map_type: str) -> InfoFile:
         data_dict = {f: read_yaml(f) for f in files}
     else:
         raise ValueError("No file or directory found")
-    return combine_yamls(list(data_dict.values()))
+    combined = combine_yamls(list(data_dict.values()))
+    if region is not None:
+        combined = filter_by_region(combined, region)
+    return combined
 
 
 def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
@@ -77,6 +80,17 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
                 combined.insert(j + 1, entry)
                 i -= 1
     return combined
+
+
+def filter_by_region(data_list: List[Dict], region: str) -> List[Dict]:
+    filtered = []
+    for entry in data_list:
+        addr = entry["addr"]
+        addr = region_int_to_int(region, addr)
+        if addr is not None:
+            entry["addr"] = addr
+            filtered.append(entry)
+    return filtered
 
 
 def region_int_to_int(region: str, entry: RegionInt) -> int:

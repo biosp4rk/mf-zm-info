@@ -4,7 +4,7 @@ from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 import sys
 from thumb import ThumbForm, ThumbInstruct
 from typing import List
-from utils import read_yamls, get_entry_size_count
+from utils import read_yamls, get_entry_size_count, filter_by_region
 
 
 class Ref(object):
@@ -55,7 +55,7 @@ class References(object):
         self.structs = read_yamls(rom.game, MAP_STRUCTS)
 
         # check bl and ldr in code
-        self.entries = self.load_entries(MAP_CODE)
+        self.entries = read_yamls(rom.game, MAP_CODE, rom.region)
         self.idx = 0
         addr_val = addr
         if in_rom:
@@ -75,7 +75,7 @@ class References(object):
                     bl_addrs.append(ref)
 
         # check data
-        self.entries = self.load_entries(MAP_DATA)
+        self.entries = read_yamls(rom.game, MAP_DATA, rom.region)
         self.idx = 0
         for i in range(code_end, data_end, 4):
             val = rom.read32(i)
@@ -88,28 +88,19 @@ class References(object):
     def find_all(self):
         # load all ram, code, data, and structs
         rom = self.rom
-        ram_entries = read_yamls(rom.game, MAP_RAM)
-        code_entries = read_yamls(rom.game, MAP_CODE)
-        data_entries = read_yamls(rom.game, MAP_DATA)
-        structs = read_yamls(rom.game, MAP_STRUCTS)
+        ram_entries = read_yamls(rom.game, MAP_RAM, rom.region)
+        code_entries = read_yamls(rom.game, MAP_CODE, rom.region)
+        data_entries = read_yamls(rom.game, MAP_DATA, rom.region)
+        #structs = read_yamls(rom.game, MAP_STRUCTS)
 
         # create dictionary of all labeled addresses
-        all_refs = {}
         combined = ram_entries + code_entries + data_entries
-        for entry in combined:
-            addr = entry["addr"]
-            if isinstance(addr, dict):
-                if rom.region not in addr:
-                    continue
-                addr = addr[rom.region]
-            all_refs[addr] = entry
+        all_refs = {entry["addr"]: entry for entry in combined}
         combined = None
 
         code_start = rom.code_start()
         code_end = rom.code_end()
         data_end = rom.data_end()
-        ptr_start = code_start + ROM_OFFSET
-        ptr_end = data_end + ROM_OFFSET
 
         # check every ref in code
         for i in range(code_start, code_end, 2):
@@ -117,38 +108,15 @@ class References(object):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.Link:
                 bl_addr = inst.branch_addr()
-                if bl_addr in all_refs:
-                    entry = all_refs[bl_addr]
-                    if "refs" not in entry:
-                        entry["refs"] = []
-                    entry["refs"].append((i, "bl"))
+                self.check_ref(i, bl_addr, "bl", all_refs)
+
             # check for pool
             elif i % 4 == 0:
-                val = rom.read32(i)
-                if val >= ptr_start and val < ptr_end:
-                    val -= ROM_OFFSET
-                    if val >= code_start and val < code_end:
-                        # subtract one for thumb code pointers
-                        val -= 1
-                    if val in all_refs:
-                        entry = all_refs[val]
-                        if "refs" not in entry:
-                            entry["refs"] = []
-                        entry["refs"].append((i, "pool"))
+                self.check_addr(i, "pool", all_refs)
 
         # check every ref in data
         for i in range(code_end, data_end, 4):
-            val = rom.read32(i)
-            if val >= ptr_start and val < ptr_end:
-                val -= ROM_OFFSET
-                if val >= code_start and val < code_end:
-                    # subtract one for thumb code pointers
-                    val -= 1
-                if val in all_refs:
-                    entry = all_refs[val]
-                    if "refs" not in entry:
-                        entry["refs"] = []
-                    entry["refs"].append((i, "data"))
+            self.check_addr(i, "data", all_refs)
         
         results = {}
         for entry in all_refs.values():
@@ -156,6 +124,22 @@ class References(object):
                 label = entry["label"]
                 results[label] = entry["refs"]
         return results
+
+    def check_addr(self, addr, kind, refs):
+        val = self.rom.read32(addr)
+        if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
+            val -= ROM_OFFSET
+            if val >= self.rom.code_start() and val < self.rom.code_end():
+                # subtract one for thumb code pointers
+                val -= 1
+            self.check_ref(val, addr, kind, refs)
+
+    def check_ref(self, val, addr, kind, refs):
+        if val in refs:
+            entry = refs[val]
+            if "refs" not in entry:
+                entry["refs"] = []
+            entry["refs"].append((addr, kind))
 
     def get_ref(self, addr):
         while self.entries[self.idx]["addr"] <= addr:
@@ -174,15 +158,6 @@ class References(object):
                 off %= size
             return Ref(addr, lab, off, num)
         return Ref(addr)
-
-    def load_entries(self, map_type: str):
-        entries = read_yamls(self.rom.game, map_type)
-        reg = self.rom.region
-        for entry in entries:
-            addr = entry["addr"]
-            if isinstance(addr, dict):
-                entry["addr"] = addr[reg] if reg in addr else None
-        return [entry for entry in entries if entry["addr"]]
 
 
 def output_section(title, refs) -> List[str]:

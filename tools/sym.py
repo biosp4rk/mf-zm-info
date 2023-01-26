@@ -3,7 +3,6 @@ from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import Function
 from rom import Rom, ROM_OFFSET
 import sys
-from typing import List
 from utils import read_yamls
 
 
@@ -37,16 +36,17 @@ def gen_sym_file(rom: Rom):
                     loaded_words.add(word)
         addr = func.end_addr
 
-    words = sorted(loaded_words)
-    ram = read_yamls(rom.game, MAP_RAM)
-    ram_dict = {r["addr"]: r["label"] for r in ram if r["addr"]}
-    code = read_yamls(rom.game, MAP_CODE)
-    code_dict = {r["addr"][region]: r["label"] for r in code if region in r["addr"]}
-    data = read_yamls(rom.game, MAP_DATA)
-    data_dict = {r["addr"][region]: r["label"] for r in data if region in r["addr"]}
+    # get dictionaries with <addr, label>
+    ram = read_yamls(rom.game, MAP_RAM, region)
+    ram_dict = {r["addr"]: r["label"] for r in ram}
+    code = read_yamls(rom.game, MAP_CODE, region)
+    code_dict = {r["addr"]: r["label"] for r in code}
+    data = read_yamls(rom.game, MAP_DATA, region)
+    data_dict = {r["addr"]: r["label"] for r in data}
 
     # write to file
     lines = []
+    words = sorted(loaded_words)
     j = 0
 
     # WRAM [2]
