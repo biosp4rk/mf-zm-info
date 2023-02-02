@@ -1,8 +1,8 @@
 import argparse
 from constants import *
 import os
-from typing import Dict, List, Optional
 from rom import Rom
+from typing import Dict, List, Optional
 from utils import read_yamls
 
 TAB = "  "
@@ -16,7 +16,7 @@ def check_flatten_int(num: Dict[str, int]) -> RegionInt:
     return num
 
 
-def yaml_versioned_int(field: str, num: RegionInt) -> List[str]:
+def yaml_region_int(field: str, num: RegionInt) -> List[str]:
     if isinstance(num, int):
         return [f"{field}: 0x{num:X}"]
     return [f"{field}:"] + [f"{TAB}{k}: 0x{v:X}" for k, v in num.items()]
@@ -27,21 +27,18 @@ def yaml_data_entry(
     label: str,
     type: str,
     addr: RegionInt,
-    count: Optional[RegionInt] = None,
-    size: Optional[RegionInt] = None,
-    enum: Optional[str] = None
+    enum: Optional[str] = None,
+    notes: Optional[str] = None
 ) -> str:
     lines = [
         f"desc: {desc}",
         f"label: {label}",
         f"type: {type}"
-    ] + yaml_versioned_int("addr", addr)
-    if count is not None:
-        lines += yaml_versioned_int("count", count)
-    if size is not None:
-        lines += yaml_versioned_int("size", size)
+    ] + yaml_region_int("addr", addr)
     if enum is not None:
         lines.append(f"enum: 0x{enum}")
+    if notes is not None:
+        lines.append(f"notes: {notes}")
     return "-\n" + "\n".join(TAB + f for f in lines)
 
 

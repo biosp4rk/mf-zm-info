@@ -34,7 +34,7 @@ def read_yamls(game: str, map_type: str, region: str = None) -> InfoFile:
     else:
         raise ValueError("No file or directory found")
     combined = combine_yamls(list(data_dict.values()))
-    if region is not None:
+    if region is not None and isinstance(combined, list):
         combined = filter_by_region(combined, region)
     return combined
 

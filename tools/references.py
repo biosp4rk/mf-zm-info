@@ -4,7 +4,7 @@ from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 import sys
 from thumb import ThumbForm, ThumbInstruct
 from typing import List
-from utils import read_yamls, get_entry_size_count, filter_by_region
+from utils import read_yamls, get_entry_size_count
 
 
 class Ref(object):
@@ -108,8 +108,7 @@ class References(object):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.Link:
                 bl_addr = inst.branch_addr()
-                self.check_ref(i, bl_addr, "bl", all_refs)
-
+                self.check_ref(bl_addr, i, "bl", all_refs)
             # check for pool
             elif i % 4 == 0:
                 self.check_addr(i, "pool", all_refs)
@@ -174,7 +173,8 @@ def output_section(title, refs) -> List[str]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("rom_path", type=str)
-    parser.add_argument("addr", type=str)
+    parser.add_argument("-o", "--addr", type=str)
+    parser.add_argument("-a", "--all", action="store_true")
     args = parser.parse_args()
 
     if len(sys.argv) <= 2:
@@ -188,23 +188,29 @@ if __name__ == "__main__":
     except:
         print(f"Could not open rom at {args.rom_path}")
         quit()
-
-    # get address
-    addr = None
-    try:
-        addr = int(args.addr, 16)
-    except:
-        print(f"Invalid hex address {args.addr}")
-        quit()
-
-    # find references and print
     refs = References(rom)
-    bls, ldrs, dats = refs.find(addr)
-    lines = []
-    if bls:
-        lines += output_section("Calls", bls)
-    if ldrs:
-        lines += output_section("Pools", ldrs)
-    if dats:
-        lines += output_section("Data", dats)
-    print("\n".join(lines))
+
+    if args.all:
+        results = refs.find_all()
+        for k, v in results.items():
+            print(k + ":")
+            for ad, ki in v:
+                print(f"  {ad:X} {ki}")
+    else:
+        # get address
+        addr = None
+        try:
+            addr = int(args.addr, 16)
+        except:
+            print(f"Invalid hex address {args.addr}")
+            quit()
+        # find references and print
+        bls, ldrs, dats = refs.find(addr)
+        lines = []
+        if bls:
+            lines += output_section("Calls", bls)
+        if ldrs:
+            lines += output_section("Pools", ldrs)
+        if dats:
+            lines += output_section("Data", dats)
+        print("\n".join(lines))
