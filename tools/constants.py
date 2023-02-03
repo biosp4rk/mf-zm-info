@@ -119,6 +119,7 @@ TAGS = {
     "flags", "ascii", "text",
     "rle", "lz", "gfx", "tilemap",
     "palette", "oamframe",
+    "bg_blocks", "bg_map",
     "thumb", "arm"
 }
 
