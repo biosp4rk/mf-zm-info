@@ -52,11 +52,17 @@ def find_and_load_files(game: str, map_type: str) -> List[InfoFile]:
 
 def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
     combined = data_list[0]
-    for data in data_list[1:]:
-        if isinstance(combined, list) and isinstance(data, list):
-            combined += data
-        elif isinstance(combined, dict) and isinstance(data, dict):
-            combined.update(data)
-        else:
-            raise ValueError("Type mismatch")
+    if isinstance(combined, list):
+        for data in data_list[1:]:
+            if isinstance(data, list):
+                combined += data
+            else:
+                raise ValueError("Type mismatch")
+        combined.sort()
+    elif isinstance(combined, dict):
+        for data in data_list[1:]:
+            if isinstance(data, dict):
+                combined.update(data)
+            else:
+                raise ValueError("Type mismatch")
     return combined

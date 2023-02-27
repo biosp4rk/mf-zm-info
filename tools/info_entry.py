@@ -31,9 +31,30 @@ class DataTag(Enum):
     Gfx = 6
     Tilemap = 7
     Palette = 8
-    Oamframe = 9
-    Thumb = 10
-    Arm = 11
+    OamFrame = 9
+    BGBlocks = 10
+    BGMap = 11
+    Thumb = 12
+    Arm = 13
+
+TAG_TO_STR = {
+    DataTag.Flags: "flags",
+    DataTag.Ascii: "ascii",
+    DataTag.Text: "text",
+    DataTag.Rle: "rle",
+    DataTag.LZ: "lz",
+    DataTag.Gfx: "gfx",
+    DataTag.Tilemap: "tilemap",
+    DataTag.Palette: "palette",
+    # TODO: fix in data
+    DataTag.OamFrame: "oamframe",
+    DataTag.BGBlocks: "bg_blocks",
+    DataTag.BGMap: "bg_map",
+    DataTag.Thumb: "thumb",
+    DataTag.Arm: "arm"
+}
+
+STR_TO_TAG = {s: t for t, s in TAG_TO_STR.items()}
 
 
 class CodeMode(Enum):
@@ -78,12 +99,14 @@ class InfoEntry(object):
 class VarEntry(InfoEntry):
 
     def __init__(self,
+        desc: str,
         label: str,
         type: str,
         tags: List[DataTag] = [],
         enum: str = None,
         notes: str = None
     ):
+        self.desc = desc
         self.label = label
         self.parse_type(type)
         self.tags = tags
@@ -143,10 +166,10 @@ class VarEntry(InfoEntry):
             return size
         # get inner-most part of declaration
         decl = self.declaration
-        i = decl.rindex("(")
+        i = decl.rfind("(")
         if i != -1:
             i += 1
-            j = decl.index(")")
+            j = decl.find(")")
             decl = decl[i:j]
         # check for pointer
         if decl.startswith("*"):
@@ -188,9 +211,10 @@ class VarEntry(InfoEntry):
         #
         assert isinstance(node, dict)
         return VarEntry(
+            node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
-            node.get(K_TAGS),
+            VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
         )
@@ -198,21 +222,35 @@ class VarEntry(InfoEntry):
     @staticmethod
     def to_yaml(entry: "VarEntry") -> str:
         data = [
+            (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
         if entry.tags:
-            data.append((K_TAGS, [str(t) for t in entry.tags]))
+            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         if entry.enum:
             data.append((K_ENUM, entry.enum))
         if entry.notes:
             data.append((K_NOTES, entry.notes))
         return dict(data)
+    
+    @staticmethod
+    def tags_from_yaml(tags: List[str]) -> List[DataTag]:
+        if tags is None:
+            return None
+        return [STR_TO_TAG[s] for s in tags]
+
+    @staticmethod
+    def tags_to_yaml(tags: List[DataTag]) -> List[str]:
+        if tags is None:
+            return None
+        return [TAG_TO_STR[t] for t in tags]
 
 
 class DataEntry(VarEntry):
 
     def __init__(self,
+        desc: str,
         label: str,
         type: str,
         addr: RegionInt,
@@ -220,7 +258,7 @@ class DataEntry(VarEntry):
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(label, type, tags, enum, notes)
+        super().__init__(desc, label, type, tags, enum, notes)
         self.addr = addr
     
     def __str__(self) -> str:
@@ -241,10 +279,11 @@ class DataEntry(VarEntry):
     def from_yaml(node: Any) -> "DataEntry":
         assert isinstance(node, dict)
         return DataEntry(
+            node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
             region_int_from_yaml(node[K_ADDR]),
-            node.get(K_TAGS),
+            VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
         )
@@ -252,12 +291,13 @@ class DataEntry(VarEntry):
     @staticmethod
     def to_yaml(entry: "DataEntry") -> Any:
         data = [
+            (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str()),
             (K_ADDR, region_int_to_yaml(entry.addr))
         ]
         if entry.tags:
-            data.append((K_TAGS, [str(t) for t in entry.tags]))
+            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         if entry.enum:
             data.append((K_ENUM, entry.enum))
         if entry.notes:
@@ -268,6 +308,7 @@ class DataEntry(VarEntry):
 class StructVarEntry(VarEntry):
 
     def __init__(self,
+        desc: str,
         label: str,
         type: str,
         offset: RegionInt,
@@ -275,7 +316,7 @@ class StructVarEntry(VarEntry):
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(label, type, tags, enum, notes)
+        super().__init__(desc, label, type, tags, enum, notes)
         self.offset = offset
 
     def __str__(self) -> str:
@@ -296,10 +337,11 @@ class StructVarEntry(VarEntry):
     def from_yaml(node: Any) -> "StructVarEntry":
         assert isinstance(node, dict)
         return StructVarEntry(
+            node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
             region_int_from_yaml(node[K_OFFSET]),
-            node.get(K_TAGS),
+            VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
         )
@@ -307,12 +349,13 @@ class StructVarEntry(VarEntry):
     @staticmethod
     def to_yaml(entry: "StructVarEntry") -> Any:
         data = [
+            (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str()),
             (K_OFFSET, region_int_to_yaml(entry.offset))
         ]
         if entry.tags:
-            data.append((K_TAGS, entry.tags))
+            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         if entry.enum:
             data.append((K_ENUM, entry.enum))
         if entry.notes:
@@ -352,6 +395,7 @@ class StructEntry(InfoEntry):
 class CodeEntry(InfoEntry):
 
     def __init__(self,
+        desc: str,
         label: str,
         addr: RegionInt,
         size: RegionInt,
@@ -361,6 +405,7 @@ class CodeEntry(InfoEntry):
         notes: str = None
     ):
         super().__init__()
+        self.desc = desc
         self.label = label
         self.addr = addr
         self.size = size
@@ -395,6 +440,7 @@ class CodeEntry(InfoEntry):
         ret = node[K_RETURN]
         ret = VarEntry.from_yaml(ret) if ret else None
         return CodeEntry(
+            node[K_DESC],
             node[K_LABEL],
             region_int_from_yaml(node[K_ADDR]),
             region_int_from_yaml(node[K_SIZE]),
@@ -410,6 +456,7 @@ class CodeEntry(InfoEntry):
         params = [VarEntry.to_yaml(p) for p in entry.params] if entry.params else None
         ret = VarEntry.to_yaml(entry.ret) if entry.ret else None
         data = [
+            (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_ADDR, region_int_to_yaml(entry.addr)),
             (K_SIZE, region_int_to_yaml(entry.size)),
@@ -425,11 +472,13 @@ class CodeEntry(InfoEntry):
 class EnumValEntry(InfoEntry):
 
     def __init__(self,
+        desc: str,
         label: str,
         val: int,
         notes: str = None
     ):
         super().__init__()
+        self.desc = desc
         self.label = label
         self.val = val
         self.notes = notes
@@ -444,6 +493,7 @@ class EnumValEntry(InfoEntry):
     def from_yaml(node: Any) -> "EnumValEntry":
         assert isinstance(node, dict)
         return EnumValEntry(
+            node[K_DESC],
             node[K_LABEL],
             node[K_VAL],
             node.get(K_NOTES)
@@ -452,6 +502,7 @@ class EnumValEntry(InfoEntry):
     @staticmethod
     def to_yaml(entry: "EnumValEntry") -> Any:
         data = [
+            ("desc", entry.desc),
             ("label", entry.label),
             ("val", f"0x{entry.val:X}")
         ]
