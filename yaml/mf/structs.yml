@@ -173,6 +173,8 @@ ArmCannonDrawData:
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
+    tags:
+    - oam_frame
     offset: 0x4
 ArmCannonOpeningXYOffsets:
   size: 0x8
@@ -1381,7 +1383,7 @@ Oam:
     label: OamFramePtr
     type: u16 *
     tags:
-    - oamframe
+    - oam_frame
     offset: 0x0
   - desc: Duration
     label: Duration
@@ -1945,6 +1947,8 @@ SamusGraphicsInfo:
   - desc: Arm cannon OAM frame pointer
     label: ArmCannonOamFramePtr
     type: u16 *
+    tags:
+    - oam_frame
     offset: 0x28
   - desc: Arm cannon top graphics pointer
     label: ArmCannonTopGfxPtr
@@ -2367,7 +2371,7 @@ SaxData:
     label: OamFramePtr
     type: u16 *
     tags:
-    - oamframe
+    - oam_frame
     offset: 0x20
 ScreenPositionAndVelocity:
   size: 0x14

@@ -46,8 +46,7 @@ TAG_TO_STR = {
     DataTag.Gfx: "gfx",
     DataTag.Tilemap: "tilemap",
     DataTag.Palette: "palette",
-    # TODO: fix in data
-    DataTag.OamFrame: "oamframe",
+    DataTag.OamFrame: "oam_frame",
     DataTag.BGBlocks: "bg_blocks",
     DataTag.BGMap: "bg_map",
     DataTag.Thumb: "thumb",
