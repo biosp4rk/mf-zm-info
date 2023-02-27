@@ -1,10 +1,12 @@
 import argparse
-from constants import MAP_STRUCTS, MAP_CODE, MAP_DATA, MAP_RAM
-from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 import sys
+from typing import Dict, List
+
+from constants import MAP_STRUCTS, MAP_CODE, MAP_DATA, MAP_RAM
+from info_entry import StructEntry
+from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
-from typing import List
-from utils import read_yamls, get_entry_size_count
+from yaml_utils import load_yamls
 
 
 class Ref(object):
@@ -52,10 +54,10 @@ class References(object):
         bl_addrs = []
         ldr_addrs = []
         data_addrs = []
-        self.structs = read_yamls(rom.game, MAP_STRUCTS)
+        self.structs: Dict[str, StructEntry] = load_yamls(rom.game, MAP_STRUCTS)
 
         # check bl and ldr in code
-        self.entries = read_yamls(rom.game, MAP_CODE, rom.region)
+        self.entries = load_yamls(rom.game, MAP_CODE, rom.region)
         self.idx = 0
         addr_val = addr
         if in_rom:
@@ -75,7 +77,7 @@ class References(object):
                     bl_addrs.append(ref)
 
         # check data
-        self.entries = read_yamls(rom.game, MAP_DATA, rom.region)
+        self.entries = load_yamls(rom.game, MAP_DATA, rom.region)
         self.idx = 0
         for i in range(code_end, data_end, 4):
             val = rom.read32(i)
@@ -88,9 +90,9 @@ class References(object):
     def find_all(self):
         # load all ram, code, data, and structs
         rom = self.rom
-        ram_entries = read_yamls(rom.game, MAP_RAM, rom.region)
-        code_entries = read_yamls(rom.game, MAP_CODE, rom.region)
-        data_entries = read_yamls(rom.game, MAP_DATA, rom.region)
+        ram_entries = load_yamls(rom.game, MAP_RAM, rom.region)
+        code_entries = load_yamls(rom.game, MAP_CODE, rom.region)
+        data_entries = load_yamls(rom.game, MAP_DATA, rom.region)
         #structs = read_yamls(rom.game, MAP_STRUCTS)
 
         # create dictionary of all labeled addresses
@@ -141,16 +143,16 @@ class References(object):
             entry["refs"].append((addr, kind))
 
     def get_ref(self, addr):
-        while self.entries[self.idx]["addr"] <= addr:
+        while self.entries[self.idx].addr <= addr:
             self.idx += 1
         self.idx -= 1
         entry = self.entries[self.idx]
-        size, count = get_entry_size_count(entry, self.structs)
-        size = size[self.rom.region]
-        length = size * count
-        if addr < entry["addr"] + length:
-            lab = entry["label"]
-            off = addr - entry["addr"]
+        length = entry.size(self.structs)
+        count = entry.array_count()
+        size = length // count
+        if addr < entry.addr + length:
+            lab = entry.label
+            off = addr - entry.addr
             num = None
             if count > 1:
                 num = off // size

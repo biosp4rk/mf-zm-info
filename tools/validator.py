@@ -3,8 +3,12 @@ import json
 import os
 import re
 import sys
+from typing import Dict, List
+
 from constants import *
-from utils import *
+from game_info import GameInfo
+from info_entry import *
+from yaml_utils import load_yaml, load_yamls
 
 
 LABEL_PAT = re.compile(r"^[A-Za-z]\w*$", flags=re.A)
@@ -14,33 +18,32 @@ TYPE_SYMS = {"*", "[", "]", "(", ")"}
 
 class Validator(object):
     def __init__(self):
-        self.game = None
-        self.map_type = None
-        self.entry = None
-        self.enums = None
-        self.structs = None
+        self.game: str = None
+        self.map_type: str = None
+        self.entry: InfoEntry = None
+        self.structs: Dict[str, StructEntry] = None
+        self.enums: Dict[str, EnumEntry] = None
 
     def validate(self):
         try:
             for game in GAMES:
                 self.game = game
                 # get all info
-                infos = [read_yamls(game, map_type) for map_type in MAP_TYPES]
-                code, data, enums, ram, structs = infos
-                self.enums = enums
-                self.structs = structs
+                info = GameInfo(game)
+                self.enums = info.enums
+                self.structs = info.structs
 
                 # check enums
                 self.map_type = MAP_ENUMS
-                for key, vals in enums.items():
+                for key, en in self.enums.items():
                     self.entry = key
                     assert LABEL_PAT.match(
                         key), "enum name must be alphanumeric"
-                    self.check_vals(vals)
+                    self.check_vals(en)
 
                 # check structs
                 self.map_type = MAP_STRUCTS
-                for key, st in structs.items():
+                for key, st in self.structs.items():
                     self.entry = key
                     assert LABEL_PAT.match(
                         key), "struct name must be alphanumeric"
@@ -50,13 +53,13 @@ class Validator(object):
                 # check code
                 self.map_type = MAP_CODE
                 prev = None
-                for entry in code:
+                for entry in info.code.values():
                     self.entry = entry
                     self.check_desc(entry)
                     self.check_label(entry)
-                    self.check_addr(entry, 4)
-                    self.check_size(entry, 2)
-                    self.check_mode(entry)
+                    self.check_region_int(entry.addr, 4)
+                    self.check_region_int(entry.size, 2)
+                    # TODO: mode is already valid?
                     self.check_params(entry)
                     self.check_return(entry)
                     self.check_notes(entry)
@@ -64,20 +67,23 @@ class Validator(object):
                     prev = entry
 
                 # check data and ram
-                ram_rom = [(MAP_DATA, data), (MAP_RAM, ram)]
+                ram_rom = [
+                    (MAP_DATA, info.data.values()),
+                    (MAP_RAM, info.ram.values())
+                ]
                 for map_type, entries in ram_rom:
                     self.map_type = map_type
                     prev = None
                     for entry in entries:
                         self.entry = entry
-                        self.check_desc(entry)
-                        self.check_label(entry)
-                        self.check_type(entry)
-                        self.check_tags(entry)
+                        self.check_desc(entry.desc)
+                        self.check_label(entry.label)
+                        check_decl(entry.declaration)
+                        self.check_tags(entry.tags)
                         # TODO: check if address is aligned with type
-                        self.check_addr(entry)
-                        self.check_enum(entry)
-                        self.check_notes(entry)
+                        self.check_region_int(entry.addr)
+                        self.check_enum(entry.enum)
+                        self.check_notes(entry.notes)
                         self.check_overlap(entry, prev)
                         prev = entry
 
@@ -99,7 +105,7 @@ class Validator(object):
         prev_addr = prev[K_ADDR]
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
-        length = get_entry_length(prev, self.structs)
+        length = prev.size(self.structs)
         for r, len in length.items():
             prev_addr[r] += len - 1
         # compare
@@ -110,17 +116,15 @@ class Validator(object):
                 # so we only check against one region
                 break
 
-    def check_desc(self, entry) -> None:
-        assert K_DESC in entry, "desc is required"
-        desc = entry[K_DESC]
+    def check_desc(self, desc: str) -> None:
+        assert isinstance(desc, str), "desc must be a string"
         assert is_ascii(desc), "desc must be ascii"
 
-    def check_label(self, entry) -> None:
-        assert K_LABEL in entry, "label is required"
-        label = entry[K_LABEL]
+    def check_label(self, label: str) -> None:
+        assert isinstance(label, str), "label must be a string"
         assert LABEL_PAT.match(label), "label must be alphanumeric"
 
-    def check_region_int(self, entry, align=None) -> None:
+    def check_region_int(self, entry: RegionInt, align=None) -> None:
         nums = None
         assert isinstance(entry, (int, dict)), "Expected integer or dictionary"
         if isinstance(entry, int):
@@ -134,107 +138,58 @@ class Validator(object):
             for num in nums:
                 assert num % align == 0, f"Number must be {align} byte aligned"
 
-    def check_addr(self, entry, align: int = None) -> None:
-        assert K_ADDR in entry, "addr is required"
-        addr = entry[K_ADDR]
-        self.check_region_int(addr, align)
-
-    def check_offset(self, entry) -> None:
-        assert K_OFFSET in entry, "offset is required"
-        offset = entry[K_OFFSET]
-        assert isinstance(offset, int), "offset must be an integer"
-
-    def check_size(self, entry, align: int = None) -> None:
-        assert K_SIZE in entry, "size is required"
-        size = entry[K_SIZE]
-        self.check_region_int(size, align)
-
-    def check_vals(self, entry) -> None:
-        assert isinstance(entry, list), "enum entry must be a list"
+    def check_vals(self, vals: List[EnumValEntry]) -> None:
+        assert isinstance(vals, list), "vals must be a list"
         prev = -1
-        for val_dict in entry:
-            self.check_label(val_dict)
-            self.check_notes(val_dict)
+        for ve in vals:
+            self.check_label(ve.label)
+            self.check_notes(ve.notes)
             # check val
-            assert K_VAL in val_dict, "val is required"
-            val = val_dict[K_VAL]
-            assert isinstance(val, int), "val must be an integer"
-            assert prev < val, "vals should be in ascending order"
-            prev = val
+            assert isinstance(ve.val, int), "val must be an integer"
+            assert prev < ve.val, "vals should be in ascending order"
+            prev = ve.val
 
-    def check_vars(self, entry):
-        assert K_VARS in entry, "vars is required"
-        vars = entry[K_VARS]
+    def check_vars(self, vars: List[StructVarEntry]):
         assert isinstance(vars, list), "vars must be a list"
         prev = -1
-        for var in vars:
-            self.check_label(var)
-            self.check_type(var)
-            self.check_tags(entry)
-            self.check_offset(var)
-            self.check_enum(var)
-            self.check_notes(entry)
+        for ve in vars:
+            self.check_label(ve.label)
+            check_decl(ve.declaration)
+            self.check_tags(ve.tags)
+            self.check_enum(ve.enum)
+            self.check_notes(ve.notes)
             # check offset
-            offset = var[K_OFFSET]
-            assert prev < offset, "offsets should be in ascending order"
-            prev = offset
+            self.check_region_int(ve.offset)
+            assert prev < ve.offset, "offsets should be in ascending order"
+            prev = ve.offset
 
-    def check_mode(self, entry) -> None:
-        assert K_MODE in entry, "mode is required"
-        mode = entry[K_MODE]
-        assert mode in ASM_MODES, "Invalid mode"
-
-    def check_params(self, entry):
-        assert K_PARAMS in entry, "params is required"
-        params = entry[K_PARAMS]
+    def check_params(self, params: List[VarEntry]):
         assert params is None or isinstance(
             params, list), "params must be null or list"
         if isinstance(params, list):
             for param in params:
-                self.check_label(param)
-                self.check_type(param)
-                self.check_enum(param)
+                self.check_label(param.label)
+                check_decl(param.declaration)
+                self.check_enum(param.enum)
 
-    def check_return(self, entry):
-        assert K_RETURN in entry, "return is required"
-        ret = entry[K_RETURN]
+    def check_return(self, ret: VarEntry):
         assert ret is None or isinstance(
             ret, dict), "return must be null or dict"
         if isinstance(ret, dict):
-            self.check_label(ret)
-            self.check_type(ret)
-            self.check_enum(ret)
+            self.check_label(ret.label)
+            check_decl(ret.declaration)
+            self.check_enum(ret.enum)
 
-    def check_type(self, entry):
-        assert K_TYPE in entry, "type is required"
-        # parse type
-        t = entry[K_TYPE]
-        parts = t.split()
-        assert 1 <= len(parts) <= 2, f"Invalid type {t}"
-        # check specifier
-        spec = parts[0]
-        assert (spec in PRIMITIVES or
-            spec in self.structs), f"Invalid type specifier {spec}"
-        if len(parts) == 2:
-            check_decl(parts[1])
-
-    def check_tags(self, entry):
-        if K_TAGS not in entry:
-            return
-        tags = entry[K_TAGS]
+    def check_tags(self, tags: List[DataTag]):
         assert isinstance(tags, list), "tags must be a list"
         for tag in tags:
-            assert tag in TAGS, f"Invalid tag {tag}"
+            assert isinstance(tag, DataTag), f"Invalid tag {tag}"
 
-    def check_enum(self, entry):
-        if K_ENUM in entry:
-            n = entry[K_ENUM]
-            assert n in self.enums, "Invalid enum"
+    def check_enum(self, enm: str):
+        assert enm in self.enums, "Invalid enum"
 
-    def check_notes(self, entry) -> None:
-        if K_NOTES in entry:
-            notes = entry[K_NOTES]
-            assert is_ascii(notes), "notes must be ascii"
+    def check_notes(self, notes: str) -> None:
+        assert is_ascii(notes), "notes must be ascii"
 
 
 def is_ascii(s: str) -> bool:
@@ -321,8 +276,9 @@ def output_yamls() -> None:
                     yaml_files.append((path, name))
     # parse files and output
     for path, map_type in yaml_files:
-        data = read_yaml(path)
-        write_yaml(path, data, map_type)
+        data = load_yaml(path, map_type)
+        # TODO: fix
+        #write_yaml(path, data, map_type)
     print("Output YAML files")
 
 
@@ -331,8 +287,8 @@ def output_jsons() -> None:
         json_dir = os.path.join(JSON_PATH, game)
         # convert each to json
         for map_type in MAP_TYPES:
-            data = read_yamls(game, map_type)
-            ints_to_strs(data)
+            data = load_yamls(game, map_type)
+            # TODO: convert int format if necessary
             p = os.path.join(json_dir, map_type + JSON_EXT)
             with open(p, "w") as f:
                 json.dump(data, f)

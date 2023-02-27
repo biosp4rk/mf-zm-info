@@ -106,7 +106,7 @@
 -
   desc: Items collected
   label: ItemsCollected
-  type: u8 [0x800]
+  type: CollectedItem [0x40][0x8]
   addr: 0x2036C00
 -
   desc: Visited minimap tiles
@@ -123,6 +123,14 @@
   label: EventsTriggered
   type: u8 [0x20]
   addr: 0x2037E00
+-
+  desc: Minimap tile graphics
+  label: MinimapTileGfx
+  type: u8 [0x1E0]
+  tags:
+  - gfx
+  addr: 0x2037E20
+  notes: Transferred to 6011F80 in VRAM
 -
   desc: SRAM
   label: Sram
@@ -182,7 +190,7 @@
 -
   desc: Written to BLDY
   label: WrittenToBLDY
-  type: s8
+  type: u16
   addr: 0x3000012
   notes: Brightness coefficient
 -
@@ -244,9 +252,9 @@
   type: u8
   addr: 0x300002F
 -
-  desc: Room's music track
-  label: RoomMusicTrack
-  type: u16
+  desc: Music track info
+  label: MusicTrackInfo
+  type: MusicTrackInfo
   addr: 0x3000030
 -
   desc: Current demo
@@ -1180,6 +1188,11 @@
   type: void [0xAC]
   addr: 0x3004294
 -
+  desc: Demo input durations
+  label: DemoInputDurations
+  type: u16 [0x100]
+  addr: 0x30051CA
+-
   desc: Demo input number
   label: DemoInputNumber
   type: u16
@@ -1330,6 +1343,11 @@
   type: AnimatedPaletteTiming
   addr: 0x30056EC
 -
+  desc: Hatch flashing animation
+  label: HatchFlashingAnim
+  type: HatchFlashingAnim
+  addr: 0x30056F0
+-
   desc: Animated palette and tileset number
   label: AnimatedPaletteAndTilesetNum
   type: AnimatedPaletteAndTilesetNum
@@ -1366,6 +1384,11 @@
   label: AnimatedTilesetData
   type: u8 [0xC0]
   addr: 0x3005730
+-
+  desc: Tank animations
+  label: TankAnimations
+  type: TankAnim [0x4]
+  addr: 0x30057F0
 -
   desc: Maintained input data
   label: MaintainedInputData

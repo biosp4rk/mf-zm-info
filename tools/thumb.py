@@ -1,6 +1,8 @@
 from enum import Enum
-from typing import List
+from typing import List, Set
+
 from rom import Rom, ROM_OFFSET
+from symbols import Symbols, LabelType
 
 
 class ThumbOp(Enum):
@@ -141,7 +143,7 @@ class ThumbInstruct(object):
             regs = ", ".join(str(r) for r in self.rlist)
             fields.append(f"Rlist=[{regs}]")
         if self.imm is not None:
-            fields.append(f"Imm={self.imm}");
+            fields.append(f"Imm={self.imm}")
         return ", ".join(fields)
 
     def set_format(self, val: int) -> None:
@@ -475,7 +477,7 @@ class ThumbInstruct(object):
     def rlist_bits(self) -> int:
         if (self.format != ThumbForm.PushPop and
             self.format != ThumbForm.LdStM):
-            raise ValueError()  
+            raise ValueError()
         regs = 0
         for reg in self.rlist:
             if reg <= Reg.LoMax:
@@ -486,3 +488,147 @@ class ThumbInstruct(object):
             else:
                 raise ValueError()
         return regs
+
+    def imm_str(self) -> str:
+        val = None
+        if self.format in {
+            ThumbForm.Shift,
+            ThumbForm.AddSub,
+            ThumbForm.Immed,
+            ThumbForm.Swi
+        }:
+            val = self.imm
+        elif self.format == ThumbForm.LdStI:
+            if self.opcode < 2:
+                val = self.imm * 4
+            else:
+                val = self.imm
+        elif self.format == ThumbForm.LdStIH:
+            val = self.imm * 2
+        elif (self.format == ThumbForm.LdStSP or
+            self.format == ThumbForm.AddSP):
+            val = self.imm * 4
+        else:
+            raise ValueError()
+        return hex_str(val, True)
+
+    def rlist_str(self) -> str:
+        bits = self.rlist_bits()
+        regs = ""
+        run = 0
+        for i in range(8):
+            if (bits >> i & 1) == 0:
+                run = 0
+            else:
+                if run < 2:
+                    regs += f"r{i},"
+                else:
+                    regs = regs[:-4] + f"-r{i},"
+                run += 1
+        if self.format == ThumbForm.PushPop and (bits & 0x100) != 0:
+            if self.opname == ThumbOp.PUSH:
+                regs += "r14"
+            else:
+                regs += "r15"
+        return regs.rstrip(",")
+
+
+    def asm_str(self, rom: Rom, symbols: Symbols, branches: Set) -> str:
+        args = []
+
+        if self.format == ThumbForm.Shift:
+            args.append(f"r{self.rd}")
+            args.append(f"r{self.rs}")
+            args.append(self.imm_str())
+        elif self.format == ThumbForm.AddSub:
+            args.append(f"r{self.rd}")
+            args.append(f"r{self.rs}")
+            if self.opname != ThumbOp.MOV:
+                if self.rn is not None:
+                    args.append(f"r{self.rn}")
+                else:
+                    args.append(self.imm_str())
+        elif self.format == ThumbForm.Immed:
+            args.append(f"r{self.rd}")
+            args.append(self.imm_str())
+        elif self.format == ThumbForm.AluOp:
+            args.append(f"r{self.rd}")
+            args.append(f"r{self.rs}")
+        elif self.format == ThumbForm.HiReg:
+            if self.opname != ThumbOp.NOP:
+                if (self.opname == ThumbOp.ADD or
+                    self.opname == ThumbOp.CMP or
+                    self.opname == ThumbOp.MOV):
+                    args.append(f"r{self.rd}")
+                args.append(f"r{self.rs}")
+        elif self.format == ThumbForm.LdPC:
+            args.append(f"r{self.rd}")
+            word = rom.read32(self.pc_rel_addr())
+            args.append("=" + symbols.get_label(word, LabelType.Imm))
+        elif (self.format == ThumbForm.LdStR or
+            self.format == ThumbForm.LdStRS):
+            args.append(f"r{self.rd}")
+            args.append(f"[r{self.rs}")
+            args.append(f"r{self.ro}]")
+        elif (self.format == ThumbForm.LdStI or
+            self.format == ThumbForm.LdStIH):
+            args.append(f"r{self.rd}")
+            if self.imm == 0:
+                args.append(f"[r{self.rs}]")
+            else:
+                args.append(f"[r{self.rs}")
+                args.append(f"{self.imm_str()}]")
+        elif self.format == ThumbForm.LdStSP:
+            args.append(f"r{self.rd}")
+            if self.imm == 0:
+                args.append("[sp]")
+            else:
+                args.append("[sp")
+                args.append(f"{self.imm_str()}]")
+        elif self.format == ThumbForm.RelAddr:
+            args.append(f"r{self.rd}")
+            if self.rs == Reg.PC:
+                pa = self.pc_rel_addr()
+                if pa in branches:
+                    args.append(symbols.get_local(pa))
+                else:
+                    va = pa + ROM_OFFSET
+                    args.append("=" + symbols.get_label(va, LabelType.Imm))
+            else:
+                args.append("sp")
+                args.append(hex_str(self.imm * 4, True))
+        elif self.format == ThumbForm.AddSP:
+            args.append("sp")
+            args.append(self.imm_str())
+        elif self.format == ThumbForm.PushPop:
+            args.append(self.rlist_str())
+        elif self.format == ThumbForm.LdStM:
+            args.append(f"[r{self.rd}]!")
+            args.append(self.rlist_str())
+        elif (self.format == ThumbForm.CondB or
+            self.format == ThumbForm.UncondB):
+            args.append(symbols.get_local(self.branch_addr()))
+        elif self.format == ThumbForm.Swi:
+            args.append(self.imm_str())
+        elif self.format == ThumbForm.Link:
+            pa = self.branch_addr()
+            if pa in branches:
+                args.append(symbols.get_local(pa))
+            else:
+                va = pa + ROM_OFFSET
+                args.append(symbols.get_label(va, LabelType.Code))
+        else:
+            raise ValueError()
+        
+        lhs = self.opname.name.lower()
+        rhs = ",".join(args)
+        if rhs == "":
+            return f"    {lhs}"
+        return f"    {lhs:8}{rhs}"
+
+
+def hex_str(number: int, prefix: bool = False) -> str:
+    text = f"{number:X}"
+    if prefix and number >= 0xA:
+        text = "0x" + text
+    return text

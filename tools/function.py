@@ -1,5 +1,11 @@
+import argparse
+import sys
 from typing import Dict, List, Set, Tuple
+
+from constants import *
+from game_info import GameInfo
 from rom import Rom, ROM_OFFSET
+from symbols import LabelType, Symbols
 from thumb import *
 
 
@@ -7,11 +13,10 @@ class Function(object):
     INDENT = " " * 4
     DOT_POOL = ".pool"
 
-    # TODO: fix symbols
-    def __init__(self, rom: Rom, addr: int):
+    def __init__(self, rom: Rom, addr: int, symbols: Symbols):
         self.rom = rom
         self.addr = addr
-        self.symbols = {}
+        self.symbols = symbols
         self.start_addr = addr
         self.end_addr = -1
         self.instructs: Dict[int, ThumbInstruct] = {}
@@ -28,6 +33,7 @@ class Function(object):
     def step_through(self) -> None:
         # step through each instruction
         while not self.at_end:
+
             # skip if in data pool
             if self.addr in self.data_pool:
                 self.addr += 4
@@ -86,6 +92,11 @@ class Function(object):
                 if pa > self.start_addr and pa < self.end_addr:
                     self.branches.add(pa)
 
+        # add local labels for branches
+        for branch in self.branches:
+            self.symbols.add_local(branch)
+        self.symbols.finalize_locals()
+
     def align(self, num: int) -> None:
         r = self.addr % num
         if r != 0:
@@ -98,7 +109,7 @@ class Function(object):
             self.addr += 4
         # add offset to jump tables and symbols
         self.jump_tables.add(self.addr)
-        self.symbols[self.addr + ROM_OFFSET] = f"@@_{self.addr:X}"
+        self.symbols.add_local(self.addr)
         # find all branches in table
         while True:
             if self.addr in self.branches:
@@ -135,3 +146,94 @@ class Function(object):
                 pools.append((addr, 4))
             prev_addr = addr
         return pools
+
+    def get_lines(self) -> List[str]:
+        lines = []
+        # get label for function name
+        func_addr = self.start_addr + ROM_OFFSET
+        label = self.symbols.get_label(func_addr, LabelType.Code)
+        lines.append(label + ":")
+
+        # go until end of function
+        self.addr = self.start_addr
+        in_pool = False
+        while self.addr < self.end_addr:
+            # check if anything branches to current offset
+            if self.addr in self.branches:
+                lines.append(self.symbols.get_local(self.addr) + ":")
+            if self.addr in self.data_pool or (
+                self.addr % 4 == 2 and
+                self.rom.read16(self.addr) == 0 and
+                self.addr + 2 in self.data_pool):
+                # if already in a data pool, do nothing
+                # if just entered a data pool, write .pool
+                if not in_pool:
+                    lines.append(self.INDENT + self.DOT_POOL)
+                    in_pool = True
+                    self.align(4)
+                self.addr += 4
+            elif self.addr in self.jump_tables:
+                lines.append(self.symbols.get_local(self.addr) + ":")
+                jumps = []
+                while True:
+                    if self.addr in self.branches:
+                        break
+                    jump = self.rom.read_ptr(self.addr)
+                    jumps.append(self.symbols.get_local(jump))
+                    self.addr += 4
+                num_jumps = len(jumps)
+                for j in range(0, num_jumps, 4):
+                    end = j + min(4, num_jumps - j)
+                    jump_labels = ",".join(jumps[j:end])
+                    lines.append(f"{self.INDENT}.dw {jump_labels}")
+                in_pool = False
+            elif self.addr in self.instructs:
+                inst = self.instructs[self.addr]
+                lines.append(inst.asm_str(self.rom, self.symbols, self.branches))
+                if inst.format == ThumbForm.Link:
+                    self.addr += 4
+                else:
+                    self.addr += 2
+                in_pool = False
+            elif self.addr + 2 == self.end_addr:
+                break
+            else:
+                err = f"Unsure what to output at {self.addr:X}"
+                raise ValueError(err)
+        return lines
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("rom_path", type=str)
+    parser.add_argument("addr", type=str)
+    args = parser.parse_args()
+
+    if len(sys.argv) <= 2:
+        parser.print_help()
+        quit()
+
+    # load rom
+    rom = None
+    try:
+        rom = Rom(args.rom_path)
+    except:
+        print(f"Could not open rom at {args.rom_path}")
+        quit()
+
+    # get address
+    addr = None
+    try:
+        addr = int(args.addr, 16)
+    except:
+        print(f"Invalid hex address {args.addr}")
+        quit()
+    
+    # load symbols
+    info = GameInfo(rom.game, rom.region)
+    syms = Symbols(info)
+
+    # print function
+    func = Function(rom, addr, syms)
+    lines = func.get_lines()
+    print("\n".join(lines))

@@ -1,4 +1,3 @@
-from typing import Dict, Union
 
 # paths and extensions
 YAML_PATH = "../yaml"
@@ -44,6 +43,7 @@ K_TAGS = "tags"
 K_TYPE = "type"
 K_VAL = "val"
 K_VARS = "vars"
+K_VALS = "vals"
 
 # entry valid fields
 # fields are in preferred output order
@@ -122,6 +122,3 @@ TAGS = {
     "bg_blocks", "bg_map",
     "thumb", "arm"
 }
-
-# type for numbers that can vary by region (addr, size)
-RegionInt = Union[int, Dict[str, int]]

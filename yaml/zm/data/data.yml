@@ -732,6 +732,62 @@
     E: 0x360918
     J: 0x35FCE8
 -
+  desc: Special background effect behavior lightning
+  label: SpecialBGEffectBehavior_Lightning
+  type: SpecialBGEffectBehavior [0x22]
+  addr:
+    U: 0x35FCD4
+    E: 0x360960
+    J: 0x35FD30
+-
+  desc: Special background effect behavior quick flash
+  label: SpecialBGEffectBehavior_QuickFlash
+  type: SpecialBGEffectBehavior [0xC]
+  addr:
+    U: 0x35FDA0
+    E: 0x360A2C
+    J: 0x35FDFC
+-
+  desc: Special background effect behavior slight yellow
+  label: SpecialBGEffectBehavior_SlightYellow
+  type: SpecialBGEffectBehavior [0x15]
+  addr:
+    U: 0x35FDE8
+    E: 0x360A74
+    J: 0x35FE44
+-
+  desc: Special background effect behavior heavy yellow
+  label: SpecialBGEffectBehavior_HeavyYellow
+  type: SpecialBGEffectBehavior [0x14]
+  addr:
+    U: 0x35FE66
+    E: 0x360AF2
+    J: 0x35FEC2
+-
+  desc: Special background effect behavior exit Zebes
+  label: SpecialBGEffectBehavior_ExitZebes
+  type: SpecialBGEffectBehavior [0x1E]
+  addr:
+    U: 0x35FEDE
+    E: 0x360B6A
+    J: 0x35FF3A
+-
+  desc: Special background effect behavior intro text
+  label: SpecialBGEffectBehavior_IntroText
+  type: SpecialBGEffectBehavior [0x1E]
+  addr:
+    U: 0x35FF92
+    E: 0x360C1E
+    J: 0x35FFEE
+-
+  desc: Special background effect behavior all black/white
+  label: SpecialBGEffectBehavior_AllBlackWhite
+  type: SpecialBGEffectBehavior [0x27]
+  addr:
+    U: 0x360046
+    E: 0x360CD2
+    J: 0x3600A2
+-
   desc: Hatch lock events
   label: HatchLockEvents
   type: HatchLockEvent [0x13]
@@ -771,6 +827,14 @@
     U: 0x3602D8
     E: 0x360F64
     J: 0x360334
+-
+  desc: Demo input data
+  label: DemoInputData
+  type: DemoInputData [0x10]
+  addr:
+    U: 0x363BE8
+    E: 0x364874
+    J: 0x363C44
 -
   desc: Door transition tilemap (RLE compressed)
   label: DoorTransitionTilemap_RLE
@@ -1013,6 +1077,38 @@
     E: 0x762700
     J: 0x74F9C4
 -
+  desc: EWRAM pointer (2000000)
+  label: EWRAM_Ptr
+  type: u32 *
+  addr:
+    U: 0x754BB4
+    E: 0x767900
+    J: 0x754CC4
+-
+  desc: PALRAM BG pointer (5000000)
+  label: PALRAM_BG_Ptr
+  type: u32 *
+  addr:
+    U: 0x754BB8
+    E: 0x767904
+    J: 0x754CC8
+-
+  desc: PALRAM OBJ pointer (5000200)
+  label: PALRAM_OBJ_Ptr
+  type: u32 *
+  addr:
+    U: 0x754BBC
+    E: 0x767908
+    J: 0x754CCC
+-
+  desc: Visited minimap tiles pointer (2037400)
+  label: VisitedMinimapTilesPtr
+  type: u32 *
+  addr:
+    U: 0x754BC0
+    E: 0x76790C
+    J: 0x754CD0
+-
   desc: Non-gameplay RAM pointer
   label: NonGameplayRamPtr
   type: NonGameplayRam *
@@ -1020,6 +1116,22 @@
     U: 0x754BC4
     E: 0x767910
     J: 0x754CD4
+-
+  desc: SRAM EWRAM Pointer (2038000)
+  label: SRAM_EWRAM_Ptr
+  type: u32 *
+  addr:
+    U: 0x754BC8
+    E: 0x767914
+    J: 0x754CD8
+-
+  desc: SRAM flash pointer (E000000)
+  label: SRAM_Flash_Ptr
+  type: u32 *
+  addr:
+    U: 0x754BCC
+    E: 0x767918
+    J: 0x754CDC
 -
   desc: Samus pose function pointers
   label: SamusPoseFunctionPtrs
@@ -1160,6 +1272,14 @@
     E: 0x773C28
     J: 0x75FE98
 -
+  desc: Special background effect behavior pointers
+  label: SpecialBGEffectBehaviorPtrs
+  type: SpecialBGEffectBehavior *[0x9]
+  addr:
+    U: 0x75FDBC
+    E: 0x773C5C
+    J: 0x75FECC
+-
   desc: Hatch lock event pointers
   label: HatchLockEventPtrs
   type: HatchLockEvent *[0x7]
@@ -1204,6 +1324,14 @@
     U: 0x760218
     E: 0x7740C0
     J: 0x760328
+-
+  desc: Copy minimap tile graphics function pointers
+  label: CopyMinimapTileGfxFunctionPtrs
+  type: void *[0x4]
+  addr:
+    U: 0x760298
+    E: 0x774140
+    J: 0x7603A8
 -
   desc: Description text pointers
   label: DescriptionTextPtrs

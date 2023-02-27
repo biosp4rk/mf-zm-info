@@ -1,9 +1,12 @@
 import argparse
+import sys
+from typing import List
+
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import Function
+from info_entry import DataEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
-import sys
-from utils import read_yamls
+from yaml_utils import load_yamls
 
 
 def gen_sym_file(rom: Rom):
@@ -37,12 +40,12 @@ def gen_sym_file(rom: Rom):
         addr = func.end_addr
 
     # get dictionaries with <addr, label>
-    ram = read_yamls(rom.game, MAP_RAM, region)
-    ram_dict = {r["addr"]: r["label"] for r in ram}
-    code = read_yamls(rom.game, MAP_CODE, region)
-    code_dict = {r["addr"]: r["label"] for r in code}
-    data = read_yamls(rom.game, MAP_DATA, region)
-    data_dict = {r["addr"]: r["label"] for r in data}
+    ram: List[DataEntry] = load_yamls(rom.game, MAP_RAM, region)
+    ram_dict = {r.addr: r.label for r in ram}
+    code: List[CodeEntry] = load_yamls(rom.game, MAP_CODE, region)
+    code_dict = {r.addr: r.label for r in code}
+    data: List[DataEntry] = load_yamls(rom.game, MAP_DATA, region)
+    data_dict = {r.addr: r.label for r in data}
 
     # write to file
     lines = []

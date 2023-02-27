@@ -5785,6 +5785,31 @@
   mode: thumb
   params: null
   return: null
+
+-
+  desc: Setup title screen OAM
+  label: SetupTitleScreenOam
+  addr:
+    U: 0x86BEC
+    E: 0x86C10
+    J: 0x878A8
+  size:
+    U: 0x104
+    E: 0x120
+    J: 0x144
+  mode: thumb
+  params:
+  - desc: Section
+    label: Section
+    type: u8
+    notes: 1 = copyright, 2 = press start, 3 = language (unused?), 4 = unused?, 5 = gallery (J only)
+  - desc: X position
+    label: XPosition
+    type: u16
+  - desc: Y position
+    label: YPosition
+    type: u16
+  return: '?'
 -
   desc: New file intro subroutine
   label: NewFileIntroSubroutine

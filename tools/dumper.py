@@ -1,9 +1,11 @@
 import argparse
-from constants import *
 import os
-from rom import Rom
 from typing import Dict, List, Optional
-from utils import read_yamls
+
+from constants import *
+from info_entry import RegionInt
+from rom import Rom
+
 
 TAB = "  "
 RomDict = Dict[str, Dict[str, Rom]]
