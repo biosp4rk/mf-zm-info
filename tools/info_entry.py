@@ -7,7 +7,6 @@ from constants import *
 
 # type for numbers that can vary by region (addr, size)
 RegionInt = Union[int, Dict[str, int]]
-RegionIntHex = Union[str, Dict[str, str]]
 
 
 class PrimType(Enum):
@@ -281,7 +280,7 @@ class DataEntry(VarEntry):
             node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
-            region_int_from_yaml(node[K_ADDR]),
+            node[K_ADDR],
             VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
@@ -293,7 +292,7 @@ class DataEntry(VarEntry):
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str()),
-            (K_ADDR, region_int_to_yaml(entry.addr))
+            (K_ADDR, entry.addr)
         ]
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
@@ -339,7 +338,7 @@ class StructVarEntry(VarEntry):
             node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
-            region_int_from_yaml(node[K_OFFSET]),
+            node[K_OFFSET],
             VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
@@ -351,7 +350,7 @@ class StructVarEntry(VarEntry):
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str()),
-            (K_OFFSET, region_int_to_yaml(entry.offset))
+            (K_OFFSET, entry.offset)
         ]
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
@@ -441,8 +440,8 @@ class CodeEntry(InfoEntry):
         return CodeEntry(
             node[K_DESC],
             node[K_LABEL],
-            region_int_from_yaml(node[K_ADDR]),
-            region_int_from_yaml(node[K_SIZE]),
+            node[K_ADDR],
+            node[K_SIZE],
             mode,
             params,
             ret,
@@ -457,8 +456,8 @@ class CodeEntry(InfoEntry):
         data = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
-            (K_ADDR, region_int_to_yaml(entry.addr)),
-            (K_SIZE, region_int_to_yaml(entry.size)),
+            (K_ADDR, entry.addr),
+            (K_SIZE, entry.size),
             (K_MODE, mode),
             (K_PARAMS, params),
             (K_RETURN, ret),
@@ -503,7 +502,7 @@ class EnumValEntry(InfoEntry):
         data = [
             ("desc", entry.desc),
             ("label", entry.label),
-            ("val", f"0x{entry.val:X}")
+            ("val", entry.val)
         ]
         if entry.notes:
             data.append(("notes", entry.notes))
@@ -532,25 +531,3 @@ class EnumEntry(InfoEntry):
             (K_VALS, vals)
         ]
         return dict(data)
-
-
-def region_int_from_yaml(region_int: RegionIntHex) -> RegionInt:
-    # REMOVE
-    if isinstance(region_int, int):
-        return region_int
-    #
-    if isinstance(region_int, str):
-        return int(region_int, 16)
-    if isinstance(region_int, dict):
-        return {k: v for k, v in region_int.items()}
-        #return {k: int(v, 16) for k, v in region_int.items()}
-    print(region_int)
-    raise ValueError()
-
-
-def region_int_to_yaml(region_int: RegionInt) -> RegionIntHex:
-    if isinstance(region_int, int):
-        return f"0x{region_int:X}"
-    elif isinstance(region_int, dict):
-        return {k: f"0x{v:X}" for k, v in region_int.items()}
-    raise ValueError()
