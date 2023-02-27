@@ -462,7 +462,7 @@ class EnumValEntry(InfoEntry):
 
 class EnumEntry(InfoEntry):
 
-    def __init__(self, size: int, vals: List[EnumValEntry]):
+    def __init__(self, vals: List[EnumValEntry]):
         super().__init__()
         self.vals = vals
 
