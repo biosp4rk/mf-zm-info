@@ -93,7 +93,3 @@ def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
             else:
                 raise ValueError("Type mismatch")
     return combined
-
-
-tst = load_yaml("/Users/labk/Documents/mf-zm-info/yaml/mf/code/code.yml", MAP_CODE)
-write_yaml("_test.yml", MAP_CODE, tst)

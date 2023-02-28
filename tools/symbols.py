@@ -15,22 +15,23 @@ class LabelType(Enum):
 
 class Symbols(object):
 
-    def __init__(self, info: GameInfo):
+    def __init__(self, info: GameInfo = None):
         self.globals: Dict[int, str] = {}
         self.locals: Set[int] = set()
         self.localIndexes: Dict[int, int] = {}
-        for entry in info.ram:
-            addr = entry.addr
-            assert isinstance(addr, int)
-            self.globals[addr] = entry.label
-        for entry in info.code:
-            addr = entry.addr
-            assert isinstance(addr, int)
-            self.globals[addr + ROM_OFFSET] = entry.label
-        for entry in info:
-            addr = entry.addr
-            assert isinstance(addr, int)
-            self.globals[addr + ROM_OFFSET] = entry.label
+        if info is not None:
+            for entry in info.ram:
+                addr = entry.addr
+                assert isinstance(addr, int)
+                self.globals[addr] = entry.label
+            for entry in info.code:
+                addr = entry.addr
+                assert isinstance(addr, int)
+                self.globals[addr + ROM_OFFSET] = entry.label
+            for entry in info:
+                addr = entry.addr
+                assert isinstance(addr, int)
+                self.globals[addr + ROM_OFFSET] = entry.label
 
     def add_global(self, offset: int, label: str):
         self.globals[offset] = label

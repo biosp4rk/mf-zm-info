@@ -13,7 +13,7 @@ class Function(object):
     INDENT = " " * 4
     DOT_POOL = ".pool"
 
-    def __init__(self, rom: Rom, addr: int, symbols: Symbols):
+    def __init__(self, rom: Rom, addr: int, symbols: Symbols = Symbols()):
         self.rom = rom
         self.addr = addr
         self.symbols = symbols

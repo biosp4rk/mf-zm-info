@@ -32,7 +32,7 @@ class References(object):
         self.rom = rom
         self.info = GameInfo(rom.game, rom.region)
         # label: [(addr, kind)]
-        self.refs: Dict[str, List[Tuple[int, str]]] = {}
+        self.refs: Dict[str, List[Ref]] = {}
 
     def find(self, addr: int):
         rom = self.rom
@@ -56,7 +56,6 @@ class References(object):
         bl_addrs = []
         ldr_addrs = []
         data_addrs = []
-        self.structs = self.info.structs
 
         # check bl and ldr in code
         self.entries = self.info.code
@@ -95,7 +94,6 @@ class References(object):
         ram_entries = self.info.ram
         code_entries = self.info.code
         data_entries = self.info.data
-        structs = self.info.structs
 
         # create dictionary of all labeled addresses
         combined = ram_entries + code_entries + data_entries
@@ -107,6 +105,7 @@ class References(object):
         data_end = rom.data_end()
 
         # check every ref in code
+        self.entries = code_entries
         for i in range(code_start, code_end, 2):
             # check for bl
             inst = ThumbInstruct(rom, i)
@@ -118,6 +117,7 @@ class References(object):
                 self.check_addr(i, "pool", all_refs)
 
         # check every ref in data
+        self.entries = data_entries
         for i in range(code_end, data_end, 4):
             self.check_addr(i, "data", all_refs)
         
@@ -142,13 +142,31 @@ class References(object):
             entry = refs[val]
             if entry.label not in self.refs:
                 self.refs[entry.label] = []
-            self.refs[entry.label].append((addr, kind))
+            self.idx = self.find_prev_entry(addr)
+            ref = self.get_ref(addr)
+            self.refs[entry.label].append(ref)
 
-    def get_ref(self, addr):
+    def find_prev_entry(self, addr: int):
+        left = 0
+        right = len(self.entries) - 1
+        mid: int = -1
+        while left <= right:
+            mid = (left + right) // 2
+            if self.entries[mid].addr < addr:
+                left = mid + 1
+            elif self.entries[mid].addr > addr:
+                right = mid - 1
+            else:
+                return mid
+        return mid
+
+    def get_ref(self, addr: int) -> Ref:
+        # find next entry before address
         while self.entries[self.idx].addr <= addr:
             self.idx += 1
         self.idx -= 1
         entry = self.entries[self.idx]
+        # get length and count of entry
         length = None
         count = 1
         if isinstance(entry, CodeEntry):
@@ -157,14 +175,15 @@ class References(object):
             else:
                 length = entry.size[self.rom.region]
         else:
-            length = entry.size(self.structs)
+            length = entry.size(self.info.structs)
             count = entry.array_count()
-        size = length // count
+        # check if addr falls within entry
         if addr < entry.addr + length:
             lab = entry.label
             off = addr - entry.addr
             num = None
             if count > 1:
+                size = length // count
                 num = off // size
                 off %= size
             return Ref(addr, lab, off, num)
@@ -205,10 +224,10 @@ if __name__ == "__main__":
 
     if args.all:
         results = refs.find_all()
-        for k, v in results.items():
-            print(k + ":")
-            for ad, ki in v:
-                print(f"  {ad:X} {ki}")
+        for name, refs in results.items():
+            print(name + ":")
+            for ref in refs:
+                print(f"  {ref}")
     else:
         # get address
         addr = None
