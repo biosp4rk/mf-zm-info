@@ -135,7 +135,6 @@ if __name__ == "__main__":
         print(f"Could not open rom at {args.rom_path}")
         quit()
     
-    
     lines = gen_sym_file(rom)
     with open(args.out_path, 'w') as f:
         for line in lines:

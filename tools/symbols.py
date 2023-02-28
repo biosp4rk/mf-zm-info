@@ -19,15 +19,15 @@ class Symbols(object):
         self.globals: Dict[int, str] = {}
         self.locals: Set[int] = set()
         self.localIndexes: Dict[int, int] = {}
-        for entry in info.ram.values():
+        for entry in info.ram:
             addr = entry.addr
             assert isinstance(addr, int)
             self.globals[addr] = entry.label
-        for entry in info.code.values():
+        for entry in info.code:
             addr = entry.addr
             assert isinstance(addr, int)
             self.globals[addr + ROM_OFFSET] = entry.label
-        for entry in info.data.values():
+        for entry in info:
             addr = entry.addr
             assert isinstance(addr, int)
             self.globals[addr + ROM_OFFSET] = entry.label

@@ -1,12 +1,11 @@
 import argparse
 import sys
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
-from constants import MAP_STRUCTS, MAP_CODE, MAP_DATA, MAP_RAM
-from info_entry import StructEntry
+from game_info import GameInfo
+from info_entry import CodeEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
-from yaml_utils import load_yamls
 
 
 class Ref(object):
@@ -31,6 +30,9 @@ class References(object):
 
     def __init__(self, rom: Rom):
         self.rom = rom
+        self.info = GameInfo(rom.game, rom.region)
+        # label: [(addr, kind)]
+        self.refs: Dict[str, List[Tuple[int, str]]] = {}
 
     def find(self, addr: int):
         rom = self.rom
@@ -54,10 +56,10 @@ class References(object):
         bl_addrs = []
         ldr_addrs = []
         data_addrs = []
-        self.structs: Dict[str, StructEntry] = load_yamls(rom.game, MAP_STRUCTS)
+        self.structs = self.info.structs
 
         # check bl and ldr in code
-        self.entries = load_yamls(rom.game, MAP_CODE, rom.region)
+        self.entries = self.info.code
         self.idx = 0
         addr_val = addr
         if in_rom:
@@ -77,7 +79,7 @@ class References(object):
                     bl_addrs.append(ref)
 
         # check data
-        self.entries = load_yamls(rom.game, MAP_DATA, rom.region)
+        self.entries = self.info.data
         self.idx = 0
         for i in range(code_end, data_end, 4):
             val = rom.read32(i)
@@ -90,14 +92,14 @@ class References(object):
     def find_all(self):
         # load all ram, code, data, and structs
         rom = self.rom
-        ram_entries = load_yamls(rom.game, MAP_RAM, rom.region)
-        code_entries = load_yamls(rom.game, MAP_CODE, rom.region)
-        data_entries = load_yamls(rom.game, MAP_DATA, rom.region)
-        #structs = read_yamls(rom.game, MAP_STRUCTS)
+        ram_entries = self.info.ram
+        code_entries = self.info.code
+        data_entries = self.info.data
+        structs = self.info.structs
 
         # create dictionary of all labeled addresses
         combined = ram_entries + code_entries + data_entries
-        all_refs = {entry["addr"]: entry for entry in combined}
+        all_refs = {entry.addr: entry for entry in combined}
         combined = None
 
         code_start = rom.code_start()
@@ -121,9 +123,9 @@ class References(object):
         
         results = {}
         for entry in all_refs.values():
-            if "refs" in entry:
-                label = entry["label"]
-                results[label] = entry["refs"]
+            entry_refs = self.refs.get(entry.label)
+            if entry_refs is not None:
+                results[entry.label] = entry_refs
         return results
 
     def check_addr(self, addr, kind, refs):
@@ -138,17 +140,25 @@ class References(object):
     def check_ref(self, val, addr, kind, refs):
         if val in refs:
             entry = refs[val]
-            if "refs" not in entry:
-                entry["refs"] = []
-            entry["refs"].append((addr, kind))
+            if entry.label not in self.refs:
+                self.refs[entry.label] = []
+            self.refs[entry.label].append((addr, kind))
 
     def get_ref(self, addr):
         while self.entries[self.idx].addr <= addr:
             self.idx += 1
         self.idx -= 1
         entry = self.entries[self.idx]
-        length = entry.size(self.structs)
-        count = entry.array_count()
+        length = None
+        count = 1
+        if isinstance(entry, CodeEntry):
+            if isinstance(entry.size, int):
+                length = entry.size
+            else:
+                length = entry.size[self.rom.region]
+        else:
+            length = entry.size(self.structs)
+            count = entry.array_count()
         size = length // count
         if addr < entry.addr + length:
             lab = entry.label
@@ -175,8 +185,9 @@ def output_section(title, refs) -> List[str]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("rom_path", type=str)
-    parser.add_argument("-o", "--addr", type=str)
-    parser.add_argument("-a", "--all", action="store_true")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-s", "--specific", metavar="addr", type=str)
+    group.add_argument("-a", "--all", action="store_true")
     args = parser.parse_args()
 
     if len(sys.argv) <= 2:
@@ -202,9 +213,9 @@ if __name__ == "__main__":
         # get address
         addr = None
         try:
-            addr = int(args.addr, 16)
+            addr = int(args.specific, 16)
         except:
-            print(f"Invalid hex address {args.addr}")
+            print(f"Invalid hex address {args.specific}")
             quit()
         # find references and print
         bls, ldrs, dats = refs.find(addr)
