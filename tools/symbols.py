@@ -28,7 +28,7 @@ class Symbols(object):
                 addr = entry.addr
                 assert isinstance(addr, int)
                 self.globals[addr + ROM_OFFSET] = entry.label
-            for entry in info:
+            for entry in info.data:
                 addr = entry.addr
                 assert isinstance(addr, int)
                 self.globals[addr + ROM_OFFSET] = entry.label

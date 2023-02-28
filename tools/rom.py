@@ -30,6 +30,9 @@ class Rom(object):
         elif title == "METROID4JPN\0AMTJ":
             self.game = GAME_MF
             self.region = REGION_J
+        elif title == "METFUSIONCHNAMTC":
+            self.game = GAME_MF
+            self.region = REGION_C
         elif title == "ZEROMISSIONEBMXE":
             self.game = GAME_ZM
             self.region = REGION_U
@@ -39,6 +42,9 @@ class Rom(object):
         elif title == "ZEROMISSIONJBMXJ":
             self.game = GAME_ZM
             self.region = REGION_J
+        elif title == "ZEROMISSIONCBMXC":
+            self.game = GAME_ZM
+            self.region = REGION_C
         else:
             raise ValueError("Not a valid GBA Metroid ROM")
 
@@ -75,6 +81,7 @@ class Rom(object):
         addr = None
         if self.game == GAME_MF:
             addr = 0x230
+            # C also has code starting at 0x7FD354
         elif self.game == GAME_ZM:
             addr = 0x23C
         if virt:
@@ -90,6 +97,10 @@ class Rom(object):
                 addr = 0xA5600
             elif self.region == REGION_J:
                 addr = 0xA7290
+            elif self.region == REGION_C:
+                addr = 0xA72D4
+                # C also has code ending at 0x7FD6E8
+
         elif self.game == GAME_ZM:
             if self.region == REGION_U:
                 addr = 0x8C71C
@@ -97,6 +108,8 @@ class Rom(object):
                 addr = 0x8D3A8
             elif self.region == REGION_J:
                 addr = 0x8C778
+            elif self.region == REGION_C:
+                addr = 0x90294
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -113,6 +126,9 @@ class Rom(object):
                 addr = 0x79F524
             elif self.region == REGION_J:
                 addr = 0x7F145C
+            elif self.region == REGION_C:
+                addr = 0x77ECC8
+                # C also has data ending at 0x8000000
         elif self.game == GAME_ZM:
             if self.region == REGION_U:
                 addr = 0x760D38
@@ -120,6 +136,8 @@ class Rom(object):
                 addr = 0x775414
             elif self.region == REGION_J:
                 addr = 0x760E48
+            elif self.region == REGION_C:
+                addr = 0x79FF38
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -143,6 +161,14 @@ class Rom(object):
                     0x4534: 0x45A8
                 }
             elif self.region == REGION_J:
+                return {
+                    0x3DDC: 0x3E70,
+                    0x3E80: 0x3F20,
+                    0x3F30: 0x4578,
+                    0x457C: 0x4594,
+                    0x4598: 0x460C
+                }
+            elif self.region == REGION_C:
                 return {
                     0x3DDC: 0x3E70,
                     0x3E80: 0x3F20,
@@ -174,6 +200,14 @@ class Rom(object):
                     0x4474: 0x4ABC,
                     0x4AC0: 0x4AD8,
                     0x4ADC: 0x4B50
+                }
+            elif self.region == REGION_C:
+                return {
+                    0x6CD4: 0x6D68,
+                    0x6D78: 0x6E18,
+                    0x6E28: 0x7470,
+                    0x7474: 0x748C,
+                    0x7490: 0x7504
                 }
 
     def find_bytes(self, pat: bytes, start: int = 0) -> int:

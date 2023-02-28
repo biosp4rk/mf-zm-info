@@ -453,19 +453,21 @@ class ThumbInstruct(object):
         return self.phys_addr + ROM_OFFSET
 
     def branch_addr(self) -> int:
-        off = self.imm * 2
+        bits = None
         if self.format == ThumbForm.CondB:
-            if off >= 256:
-                off -= 4096
+            bits = 8
         elif self.format == ThumbForm.UncondB:
-            if off >= 2048:
-                off -= 4096
+            bits = 11
         elif self.format == ThumbForm.Link:
-            if off >= 0x400000:
-                off -= 0x800000
+            bits = 22
         else:
             raise ValueError()
-        return self.phys_addr + 4 + off
+        off = self.imm
+        # check if negative
+        flag = 1 << (bits - 1)
+        if off >= flag:
+            off -= flag << 1
+        return self.phys_addr + 4 + off * 2
 
     def pc_rel_addr(self) -> int:
         if (self.format != ThumbForm.LdPC and
@@ -533,9 +535,8 @@ class ThumbInstruct(object):
         return regs.rstrip(",")
 
 
-    def asm_str(self, rom: Rom, symbols: Symbols, branches: Set) -> str:
+    def asm_str(self, rom: Rom, symbols: Symbols, branches: Set[int]) -> str:
         args = []
-
         if self.format == ThumbForm.Shift:
             args.append(f"r{self.rd}")
             args.append(f"r{self.rs}")
