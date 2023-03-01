@@ -203,10 +203,6 @@ class VarEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "VarEntry":
-        # TODO: remove
-        if isinstance(node, str):
-            return None
-        #
         assert isinstance(node, dict)
         return VarEntry(
             node[K_DESC],
@@ -434,9 +430,13 @@ class CodeEntry(InfoEntry):
         assert isinstance(node, dict)
         mode = CodeMode.Arm if node[K_MODE] == "arm" else CodeMode.Thumb
         params = node[K_PARAMS]
-        params = [VarEntry.from_yaml(p) for p in params] if params else None
+        # TODO: don't allow str for params
+        if not isinstance(params, str):
+            params = [VarEntry.from_yaml(p) for p in params] if params else None
         ret = node[K_RETURN]
-        ret = VarEntry.from_yaml(ret) if ret else None
+        # TODO: don't allow str for return
+        if not isinstance(ret, str):
+            ret = VarEntry.from_yaml(ret) if ret else None
         return CodeEntry(
             node[K_DESC],
             node[K_LABEL],
@@ -451,8 +451,14 @@ class CodeEntry(InfoEntry):
     @staticmethod
     def to_yaml(entry: "CodeEntry") -> Any:
         mode = "arm" if entry.mode == CodeMode.Arm else "thumb"
-        params = [VarEntry.to_yaml(p) for p in entry.params] if entry.params else None
-        ret = VarEntry.to_yaml(entry.ret) if entry.ret else None
+        # TODO: don't allow str for params
+        params = entry.params
+        if not isinstance(entry.params, str):
+            params = [VarEntry.to_yaml(p) for p in entry.params] if entry.params else None
+        # TODO: don't allow str for return
+        ret = entry.ret
+        if not isinstance(entry.ret, str):
+            ret = VarEntry.to_yaml(entry.ret) if entry.ret else None
         data = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
