@@ -2048,7 +2048,8 @@ SaveFileRam:
   vars:
   - desc: MetroidEpisode4A text
     label: MetroidEpisode4A_Text
-    type: s8 [0x10]
+    type: s8
+    count: 0x10
     tags:
     - ascii
     offset: 0x0
@@ -2265,25 +2266,30 @@ SaveFileRam:
     enum: Difficulty
   - desc: Best completion times (unused?)
     label: BestCompletionTimes_Unused
-    type: InGameTime [0xC]
+    type: InGameTime
+    count: 0xC
     offset: 0xF4
   - desc: SAVE_END text
     label: SAVE_END_Text
-    type: s8 [0x8]
+    type: s8
+    count: 0x8
     tags:
     - ascii
     offset: 0x124
   - desc: Minimap visited tiles
     label: MinimapVisitedTiles
-    type: u8 [0x380]
+    type: u8
+    count: 0x380
     offset: 0x300
   - desc: Never reform blocks
     label: NeverReformBlocks
-    type: NeverReformBlock [0x300]
+    type: NeverReformBlock
+    count: 0x300
     offset: 0x680
   - desc: Tanks collected
     label: TanksCollected
-    type: CollectedTank [0xA0]
+    type: CollectedTank
+    count: 0xA0
     offset: 0xF80
 SaxData:
   size: 0x24

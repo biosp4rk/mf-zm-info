@@ -29,6 +29,7 @@ ASM_MODES = ("thumb", "arm")
 
 # entry field keys
 K_ADDR = "addr"
+K_COUNT = "count"
 K_DESC = "desc"
 K_ENUM = "enum"
 K_LABEL = "label"

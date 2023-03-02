@@ -1,6 +1,7 @@
 - desc: Sine Y values
   label: SineYValues
-  type: u16 [0x140]
+  type: u16
+  count: 0x140
   addr:
     U: 0x8C71C
     E: 0x8D3A8
@@ -8,7 +9,8 @@
     C: 0x90494
 - desc: Random number table
   label: RandomNumberTable
-  type: u8 [0x100]
+  type: u8
+  count: 0x100
   addr:
     U: 0x8C99C
     E: 0x8D628
@@ -16,7 +18,8 @@
     C: 0x90714
 - desc: Interrupt handler pointers
   label: InterruptHandlerPtrs
-  type: void *[0xD]
+  type: void *
+  count: 0xD
   tags:
   - thumb
   addr:
@@ -26,7 +29,8 @@
     C: 0x90814
 - desc: Delay/note length table
   label: DelayNoteLengthTable
-  type: u8 [0x31]
+  type: u8
+  count: 0x31
   addr:
     U: 0x8CBD0
     E: 0x8D85C
@@ -34,7 +38,8 @@
     C: 0xA63BC
 - desc: Sound channel 3 square 50% waveform
   label: Sound3Waveform_Square50
-  type: u8 [0x10]
+  type: u8
+  count: 0x10
   addr:
     U: 0x8F244
     E: 0x8FED0
@@ -42,7 +47,8 @@
     C: 0xA8A30
 - desc: Sound data entries
   label: SoundDataEntries
-  type: SoundDataEntry [0x2C4]
+  type: SoundDataEntry
+  count: 0x2C4
   addr:
     U: 0x8F2C0
     E: 0x8FF4C
@@ -50,7 +56,8 @@
     C: 0xA8AAC
 - desc: Samus pose draw info
   label: SamusPoseDrawInfo
-  type: SamusPoseDrawInfo [0x3]
+  type: SamusPoseDrawInfo
+  count: 0x3
   addr:
     U: 0x239464
     E: 0x23A0F0
@@ -58,7 +65,8 @@
     C: 0x252C50
 - desc: Samus draw distance offsets
   label: SamusDrawDistanceOffsets
-  type: BoxBounds [0x4]
+  type: BoxBounds
+  count: 0x4
   addr:
     U: 0x23A534
     E: 0x23B1C0
@@ -66,7 +74,8 @@
     C: 0x253D20
 - desc: Samus hitbox data
   label: SamusHitboxData
-  type: SamusHitbox [0x4]
+  type: SamusHitbox
+  count: 0x4
   addr:
     U: 0x23A554
     E: 0x23B1E0
@@ -74,7 +83,8 @@
     C: 0x253D40
 - desc: Samus environmental effects OAM pointers
   label: SamusEnvironEffectsOamPtrs
-  type: Oam *[0x12]
+  type: Oam *
+  count: 0x12
   addr:
     U: 0x23A56C
     E: 0x23B1F8
@@ -82,7 +92,8 @@
     C: 0x253D58
 - desc: Samus pulling self up Y velocity
   label: SamusPullingSelfUpYVelocity
-  type: s16 [0x4]
+  type: s16
+  count: 0x4
   addr:
     U: 0x23A5B4
     E: 0x23B240
@@ -90,7 +101,8 @@
     C: 0x253DA0
 - desc: Random number table (0-F)
   label: RandomNumTable_0_F
-  type: u8 [0x20]
+  type: u8
+  count: 0x20
   addr:
     U: 0x2B0CAC
     E: 0x2B1938
@@ -99,7 +111,8 @@
   notes: Random number table used for most sprite randomness, values range from 0-F
 - desc: Dessgeega/Sidehopper jump speeds
   label: DessgeegaAndSidehopperJumpSpeeds
-  type: s16 [0x10]
+  type: s16
+  count: 0x10
   addr:
     U: 0x2B0CE4
     E: 0x2B1970
@@ -107,7 +120,8 @@
     C: 0x2CA4D0
 - desc: Enemy fall speeds
   label: EnemyFallSpeeds
-  type: s16 [0x28]
+  type: s16
+  count: 0x28
   addr:
     U: 0x2B0D04
     E: 0x2B1990
@@ -115,7 +129,8 @@
     C: 0x2CA4F0
 - desc: Worker robot falling while sleeping speeds
   label: WorkerRobotFallingWhileSleepingSpeeds
-  type: s16 [0xA]
+  type: s16
+  count: 0xA
   addr:
     U: 0x2B0D54
     E: 0x2B19E0
@@ -123,7 +138,8 @@
     C: 0x2CA540
 - desc: Primary sprite stats
   label: PrimarySpriteStats
-  type: SpriteStats [0xCE]
+  type: SpriteStats
+  count: 0xCE
   addr:
     U: 0x2B0D68
     E: 0x2B19F4
@@ -131,7 +147,8 @@
     C: 0x2CA554
 - desc: Secondary sprite stats
   label: SecondarySpriteStats
-  type: SpriteStats [0x4D]
+  type: SpriteStats
+  count: 0x4D
   addr:
     U: 0x2B1BE4
     E: 0x2B2870
@@ -139,7 +156,8 @@
     C: 0x2CB3D0
 - desc: Charge beam sprite Y position offsets
   label: ChargeBeamSpriteYPositionOffsets
-  type: s16 [0x42]
+  type: s16
+  count: 0x42
   addr:
     U: 0x2B31AC
     E: 0x2B3E38
@@ -147,7 +165,8 @@
     C: 0x2CC998
 - desc: Chozo statue hint flashing palette rows
   label: ChozoStatueHintFlashingPaletteRows
-  type: u16 [0x40]
+  type: u16
+  count: 0x40
   tags:
   - palette
   addr:
@@ -157,7 +176,8 @@
     C: 0x2CD3C0
 - desc: Zeela eyes falling from top speeds
   label: ZeelaEyesFallingFromTopSpeeds
-  type: s16 [0x10]
+  type: s16
+  count: 0x10
   addr:
     U: 0x2C4B88
     E: 0x2C5814
@@ -165,7 +185,8 @@
     C: 0x2DE374
 - desc: Zeela eyes falling from bottom speeds
   label: ZeelaEyesFallingFromBottomSpeeds
-  type: s16 [0xC]
+  type: s16
+  count: 0xC
   addr:
     U: 0x2C4BA8
     E: 0x2C5834
@@ -173,7 +194,8 @@
     C: 0x2DE394
 - desc: Skree diving speeds
   label: SkreeDivingSpeeds
-  type: s16 [0x8]
+  type: s16
+  count: 0x8
   addr:
     U: 0x2CCA7C
     E: 0x2CD708
@@ -181,7 +203,8 @@
     C: 0x2E6268
 - desc: Reo idle animation Y position offsets
   label: ReoIdleAnimYPositionOffsets
-  type: s16 [0x41]
+  type: s16
+  count: 0x41
   addr:
     U: 0x2CD604
     E: 0x2CE290
@@ -189,7 +212,8 @@
     C: 0x2E6DF0
 - desc: Reo idle animation X position offsets
   label: ReoIdleAnimXPositionOffsets
-  type: s16 [0x51]
+  type: s16
+  count: 0x51
   addr:
     U: 0x2CD686
     E: 0x2CE312
@@ -197,7 +221,8 @@
     C: 0x2E6E72
 - desc: Mellow idle Y velocity
   label: MellowIdleYVelocity
-  type: s16 [0x41]
+  type: s16
+  count: 0x41
   addr:
     U: 0x2D88E4
     E: 0x2D9570
@@ -205,7 +230,8 @@
     C: 0x2F20D0
 - desc: Mellow idle X velocity
   label: MellowIdleXVelocity
-  type: s16 [0x51]
+  type: s16
+  count: 0x51
   addr:
     U: 0x2D8966
     E: 0x2D95F2
@@ -213,7 +239,8 @@
     C: 0x2F2152
 - desc: Imago larva flashing belly palette rows
   label: ImagoLarvaFlashingBellyPaletteRows
-  type: u16 [0x40]
+  type: u16
+  count: 0x40
   tags:
   - palette
   addr:
@@ -223,7 +250,8 @@
     C: 0x2F4A34
 - desc: Metroid spawning Y position offsets
   label: MetroidSpawningYPositionOffsets
-  type: s16 [0x41]
+  type: s16
+  count: 0x41
   addr:
     U: 0x2ECB60
     E: 0x2ED7EC
@@ -231,7 +259,8 @@
     C: 0x30634C
 - desc: Metroid spawning X position offsets
   label: MetroidSpawningXPositionOffsets
-  type: s16 [0x52]
+  type: s16
+  count: 0x52
   addr:
     U: 0x2ECBE2
     E: 0x2ED86E
@@ -239,7 +268,8 @@
     C: 0x3063CE
 - desc: Metroid Samus grabbed palette
   label: MetroidSamusGrabbedPalette
-  type: u16 [0x50]
+  type: u16
+  count: 0x50
   tags:
   - palette
   addr:
@@ -249,7 +279,8 @@
     C: 0x307174
 - desc: Gunship taking off Y velocity
   label: GunshipTakingOffYVelocity
-  type: s16 [0x99]
+  type: s16
+  count: 0x99
   addr:
     U: 0x309470
     E: 0x30A0FC
@@ -257,7 +288,8 @@
     C: 0x322C5C
 - desc: Gunship flying Y velocity
   label: GunshipFlyingYVelocity
-  type: s16 [0x17]
+  type: s16
+  count: 0x17
   addr:
     U: 0x3095A2
     E: 0x30A22E
@@ -265,7 +297,8 @@
     C: 0x322D8E
 - desc: Tumbling missile speeds
   label: TumblingMissileSpeeds
-  type: s16 [0x10]
+  type: s16
+  count: 0x10
   addr:
     U: 0x326CA8
     E: 0x327934
@@ -273,7 +306,8 @@
     C: 0x340494
 - desc: Common sprite palette
   label: CommonSpritePalette
-  type: u16 [0x60]
+  type: u16
+  count: 0x60
   tags:
   - palette
   addr:
@@ -283,7 +317,8 @@
     C: 0x3451F4
 - desc: Common sprite graphics
   label: CommonSpriteGfx
-  type: u8 [0x3800]
+  type: u8
+  count: 0x3800
   tags:
   - gfx
   addr:
@@ -293,7 +328,8 @@
     C: 0x3452B4
 - desc: Missile digit graphics
   label: MissileDigitGfx
-  type: u8 [0x900]
+  type: u8
+  count: 0x900
   tags:
   - gfx
   addr:
@@ -303,7 +339,8 @@
     C: 0x348AB4
 - desc: Power bomb digit graphics
   label: PowerBombDigitGfx
-  type: u8 [0x900]
+  type: u8
+  count: 0x900
   tags:
   - gfx
   addr:
@@ -313,7 +350,8 @@
     C: 0x3493B4
 - desc: Suitless HUD charged bar graphics
   label: SuitlessHudChargedBarGfx
-  type: u8 [0x100]
+  type: u8
+  count: 0x100
   tags:
   - gfx
   addr:
@@ -323,7 +361,8 @@
     C: 0x34FA94
 - desc: Samus environmental effect running on dusty ground OAM
   label: SamusEnvironEffect_RunningOnDustyGroundOAM
-  type: Oam [0x6]
+  type: Oam
+  count: 0x6
   addr:
     U: 0x33C778
     E: 0x33D404
@@ -331,7 +370,8 @@
     C: 0x355F64
 - desc: Samus environmental effect landing/skidding on dusty ground OAM
   label: SamusEnvironEffect_LandingOrSkiddingOnDustyGroundOAM
-  type: Oam [0x7]
+  type: Oam
+  count: 0x7
   addr:
     U: 0x33C7A8
     E: 0x33D434
@@ -339,7 +379,8 @@
     C: 0x355F94
 - desc: Samus environmental effect taking damage in lava OAM
   label: SamusEnvironEffect_TakingDamageInLavaOAM
-  type: Oam [0x9]
+  type: Oam
+  count: 0x9
   addr:
     U: 0x33C7E8
     E: 0x33D474
@@ -347,7 +388,8 @@
     C: 0x355FD4
 - desc: Samus environmental effect taking damage in acid OAM
   label: SamusEnvironEffect_TakingDamageInAcidOAM
-  type: Oam [0x9]
+  type: Oam
+  count: 0x9
   addr:
     U: 0x33C830
     E: 0x33D4BC
@@ -355,7 +397,8 @@
     C: 0x35601C
 - desc: Samus environmental effect running on wet ground OAM
   label: SamusEnvironEffect_RunningOnWetGroundOAM
-  type: Oam [0x6]
+  type: Oam
+  count: 0x6
   addr:
     U: 0x33C878
     E: 0x33D504
@@ -363,7 +406,8 @@
     C: 0x356064
 - desc: Samus environmental effect landing/skidding on wet ground OAM
   label: SamusEnvironEffect_LandingOrSkiddingOnWetGroundOAM
-  type: Oam [0x6]
+  type: Oam
+  count: 0x6
   addr:
     U: 0x33C8A8
     E: 0x33D534
@@ -371,7 +415,8 @@
     C: 0x356094
 - desc: Samus environmental effect going out of water OAM
   label: SamusEnvironEffect_GoingOutOfWaterOAM
-  type: Oam [0xA]
+  type: Oam
+  count: 0xA
   addr:
     U: 0x33C8D8
     E: 0x33D564
@@ -379,7 +424,8 @@
     C: 0x3560C4
 - desc: Samus environmental effect running into water OAM
   label: SamusEnvironEffect_RunningIntoWaterOAM
-  type: Oam [0x7]
+  type: Oam
+  count: 0x7
   addr:
     U: 0x33C928
     E: 0x33D5B4
@@ -387,7 +433,8 @@
     C: 0x356114
 - desc: Samus environmental effect going out of lava OAM
   label: SamusEnvironEffect_GoingOutOfLavaOAM
-  type: Oam [0xA]
+  type: Oam
+  count: 0xA
   addr:
     U: 0x33C960
     E: 0x33D5EC
@@ -395,7 +442,8 @@
     C: 0x35614C
 - desc: Samus environmental effect running into lava OAM
   label: SamusEnvironEffect_RunningIntoLavaOAM
-  type: Oam [0x7]
+  type: Oam
+  count: 0x7
   addr:
     U: 0x33C9B0
     E: 0x33D63C
@@ -403,7 +451,8 @@
     C: 0x35619C
 - desc: Samus environmental effect going out of acid OAM
   label: SamusEnvironEffect_GoingOutOfAcidOAM
-  type: Oam [0xB]
+  type: Oam
+  count: 0xB
   addr:
     U: 0x33C9E8
     E: 0x33D674
@@ -411,7 +460,8 @@
     C: 0x3561D4
 - desc: Samus environmental effect running into acid OAM
   label: SamusEnvironEffect_RunningIntoAcidOAM
-  type: Oam [0x7]
+  type: Oam
+  count: 0x7
   addr:
     U: 0x33CA40
     E: 0x33D6CC
@@ -419,7 +469,8 @@
     C: 0x35622C
 - desc: Samus environmental effect landing on bubbly ground OAM
   label: SamusEnvironEffect_LandingOnBubblyGroundOAM
-  type: Oam [0x7]
+  type: Oam
+  count: 0x7
   addr:
     U: 0x33CA78
     E: 0x33D704
@@ -427,7 +478,8 @@
     C: 0x356264
 - desc: Samus environmental effect breathing bubbles OAM
   label: SamusEnvironEffect_BreathingBubblesOAM
-  type: Oam [0x8]
+  type: Oam
+  count: 0x8
   addr:
     U: 0x33CAB0
     E: 0x33D73C
@@ -435,7 +487,8 @@
     C: 0x35629C
 - desc: Samus environmental effect running on very dusty ground OAM
   label: SamusEnvironEffect_RunningOnVeryDustyGroundOAM
-  type: Oam [0xC]
+  type: Oam
+  count: 0xC
   addr:
     U: 0x33CAF0
     E: 0x33D77C
@@ -443,7 +496,8 @@
     C: 0x3562DC
 - desc: Samus environmental effect landing on very dusty ground OAM
   label: SamusEnvironEffect_LandingOnVeryDustyGroundOAM
-  type: Oam [0x10]
+  type: Oam
+  count: 0x10
   addr:
     U: 0x33CB50
     E: 0x33D7DC
@@ -451,7 +505,8 @@
     C: 0x35633C
 - desc: Tileset entries
   label: TilesetEntries
-  type: TilesetEntry [0x4F]
+  type: TilesetEntry
+  count: 0x4F
   addr:
     U: 0x33DFDC
     E: 0x33EC68
@@ -459,7 +514,8 @@
     C: 0x3577C8
 - desc: Brinstar doors
   label: BrinstarDoors
-  type: DoorEntry [0x63]
+  type: DoorEntry
+  count: 0x63
   addr:
     U: 0x33E608
     E: 0x33F294
@@ -467,7 +523,8 @@
     C: 0x357DF4
 - desc: Kraid doors
   label: KraidDoors
-  type: DoorEntry [0x6B]
+  type: DoorEntry
+  count: 0x6B
   addr:
     U: 0x33EAAC
     E: 0x33F738
@@ -475,7 +532,8 @@
     C: 0x358298
 - desc: Norfair doors
   label: NorfairDoors
-  type: DoorEntry [0x85]
+  type: DoorEntry
+  count: 0x85
   addr:
     U: 0x33EFB0
     E: 0x33FC3C
@@ -483,7 +541,8 @@
     C: 0x35879C
 - desc: Ridley doors
   label: RidleyDoors
-  type: DoorEntry [0x4D]
+  type: DoorEntry
+  count: 0x4D
   addr:
     U: 0x33F5EC
     E: 0x340278
@@ -491,7 +550,8 @@
     C: 0x358DD8
 - desc: Tourian doors
   label: TourianDoors
-  type: DoorEntry [0x2C]
+  type: DoorEntry
+  count: 0x2C
   addr:
     U: 0x33F988
     E: 0x340614
@@ -499,7 +559,8 @@
     C: 0x359174
 - desc: Crateria doors
   label: CrateriaDoors
-  type: DoorEntry [0x35]
+  type: DoorEntry
+  count: 0x35
   addr:
     U: 0x33FB98
     E: 0x340824
@@ -507,7 +568,8 @@
     C: 0x359384
 - desc: Chozodia doors
   label: ChozodiaDoors
-  type: DoorEntry [0xF6]
+  type: DoorEntry
+  count: 0xF6
   addr:
     U: 0x33FE14
     E: 0x340AA0
@@ -515,7 +577,8 @@
     C: 0x359600
 - desc: Brinstar room entries
   label: BrinstarRoomEntries
-  type: RoomEntry [0x2A]
+  type: RoomEntry
+  count: 0x2A
   addr:
     U: 0x340AD4
     E: 0x341760
@@ -523,7 +586,8 @@
     C: 0x35A2C0
 - desc: Kraid room entries
   label: KraidRoomEntries
-  type: RoomEntry [0x2A]
+  type: RoomEntry
+  count: 0x2A
   addr:
     U: 0x3414AC
     E: 0x342138
@@ -531,7 +595,8 @@
     C: 0x35AC98
 - desc: Norfair room entries
   label: NorfairRoomEntries
-  type: RoomEntry [0x39]
+  type: RoomEntry
+  count: 0x39
   addr:
     U: 0x341E84
     E: 0x342B10
@@ -539,7 +604,8 @@
     C: 0x35B670
 - desc: Ridley room entries
   label: RidleyRoomEntries
-  type: RoomEntry [0x21]
+  type: RoomEntry
+  count: 0x21
   addr:
     U: 0x342BE0
     E: 0x34386C
@@ -547,7 +613,8 @@
     C: 0x35C3CC
 - desc: Tourian room entries
   label: TourianRoomEntries
-  type: RoomEntry [0x14]
+  type: RoomEntry
+  count: 0x14
   addr:
     U: 0x34339C
     E: 0x344028
@@ -555,7 +622,8 @@
     C: 0x35CB88
 - desc: Crateria room entries
   label: CrateriaRoomEntries
-  type: RoomEntry [0x16]
+  type: RoomEntry
+  count: 0x16
   addr:
     U: 0x34384C
     E: 0x3444D8
@@ -563,7 +631,8 @@
     C: 0x35D038
 - desc: Chozodia room entries
   label: ChozodiaRoomEntries
-  type: RoomEntry [0x73]
+  type: RoomEntry
+  count: 0x73
   addr:
     U: 0x343D74
     E: 0x344A00
@@ -571,7 +640,8 @@
     C: 0x35D560
 - desc: Movement preventing clipdata values
   label: MovementPreventingClipdataValues
-  type: u16 [0xF]
+  type: u16
+  count: 0xF
   addr:
     U: 0x3458E4
     E: 0x346570
@@ -579,7 +649,8 @@
     C: 0x35F0D0
 - desc: Elevator room pairs
   label: ElevatorRoomPairs
-  type: ElevatorRoomPair [0x9]
+  type: ElevatorRoomPair
+  count: 0x9
   addr:
     U: 0x345934
     E: 0x3465C0
@@ -587,7 +658,8 @@
     C: 0x35F120
 - desc: Number of tanks per area
   label: NumTanksPerArea
-  type: NumTanksInArea [0x8]
+  type: NumTanksInArea
+  count: 0x8
   addr:
     U: 0x3459A0
     E: 0x34662C
@@ -604,7 +676,8 @@
     C: 0x35F1AC
 - desc: Tank increase amounts
   label: TankIncreaseAmounts
-  type: TankIncreaseAmounts [0x3]
+  type: TankIncreaseAmounts
+  count: 0x3
   addr:
     U: 0x3459C4
     E: 0x346650
@@ -612,7 +685,8 @@
     C: 0x35F1B0
 - desc: Clipdata affecting action damage type
   label: ClipdataAffectingActionDamageType
-  type: u16 [0x10]
+  type: u16
+  count: 0x10
   addr:
     U: 0x3459D0
     E: 0x34665C
@@ -620,7 +694,8 @@
     C: 0x35F1BC
 - desc: Breakable block behavior
   label: BreakableBlockBehavior
-  type: BreakableBlockBehavior [0x30]
+  type: BreakableBlockBehavior
+  count: 0x30
   addr:
     U: 0x3459F0
     E: 0x34667C
@@ -628,7 +703,8 @@
     C: 0x35F1DC
 - desc: Block weaknesses
   label: BlockWeaknesses
-  type: u16 [0x16]
+  type: u16
+  count: 0x16
   addr:
     U: 0x345AB0
     E: 0x34673C
@@ -637,7 +713,8 @@
   enum: BlockWeaknessFlags
 - desc: Reform blocks time to reform
   label: ReformBlocksTimeToReform
-  type: u8 [0x120]
+  type: u8
+  count: 0x120
   addr:
     U: 0x345B08
     E: 0x346794
@@ -645,7 +722,8 @@
     C: 0x35F2F4
 - desc: Tank collection info
   label: TankCollectionInfo
-  type: TankCollectionInfo [0xC]
+  type: TankCollectionInfo
+  count: 0xC
   addr:
     U: 0x345C48
     E: 0x3468D4
@@ -653,7 +731,8 @@
     C: 0x35F434
 - desc: Hatch behaviors
   label: HatchBehaviors
-  type: HatchBehavior [0x8]
+  type: HatchBehavior
+  count: 0x8
   addr:
     U: 0x345CA8
     E: 0x346934
@@ -661,7 +740,8 @@
     C: 0x35F494
 - desc: BLDALPHA values for clipdata
   label: BLDALPHA_ValuesForClipdata
-  type: u16 [0xB]
+  type: u16
+  count: 0xB
   addr:
     U: 0x345CC8
     E: 0x346954
@@ -669,7 +749,8 @@
     C: 0x35F4B4
 - desc: Sub-bomb chain trigger position offset
   label: SubBombChainTriggerPositionOffset
-  type: s8 [0x10]
+  type: s8
+  count: 0x10
   addr:
     U: 0x345CDE
     E: 0x34696A
@@ -677,7 +758,8 @@
     C: 0x35F4CA
 - desc: Mother Brain glass breaking BG values start
   label: MotherBrainGlassBreakingBGValuesStart
-  type: u16 [0x5]
+  type: u16
+  count: 0x5
   addr:
     U: 0x345CF6
     E: 0x346982
@@ -685,7 +767,8 @@
     C: 0x35F4E2
 - desc: Strong BG3 haze movement
   label: StrongBG3HazeMovement
-  type: s8 [0x30]
+  type: s8
+  count: 0x30
   addr:
     U: 0x34607C
     E: 0x346D08
@@ -693,7 +776,8 @@
     C: 0x35F868
 - desc: Haze BG1 BG2 BG3 offsets
   label: Haze_BG1_BG2_BG3_Offsets
-  type: s8 [0x20][0x9]
+  type: s8 [0x9]
+  count: 0x20
   addr:
     U: 0x35F7F4
     E: 0x360480
@@ -701,7 +785,8 @@
     C: 0x378FE0
 - desc: Animated graphics entries
   label: AnimatedGraphicsEntries
-  type: AnimatedGraphicsEntry [0x26]
+  type: AnimatedGraphicsEntry
+  count: 0x26
   addr:
     U: 0x35F948
     E: 0x3605D4
@@ -709,7 +794,8 @@
     C: 0x379134
 - desc: Animated tileset entries
   label: AnimatedTilesetEntries
-  type: u8 [0x8][0x30]
+  type: u8 [0x30]
+  count: 0x8
   addr:
     U: 0x35FA78
     E: 0x360704
@@ -717,7 +803,8 @@
     C: 0x379264
 - desc: Animated palette entries
   label: AnimatedPaletteEntries
-  type: AnimatedPaletteEntry [0x12]
+  type: AnimatedPaletteEntry
+  count: 0x12
   addr:
     U: 0x35FBFC
     E: 0x360888
@@ -725,7 +812,8 @@
     C: 0x3793E8
 - desc: Special BG effects color data
   label: SpecialBGEffectsColorData
-  type: SpecialBGEffectColorData [0x9]
+  type: SpecialBGEffectColorData
+  count: 0x9
   addr:
     U: 0x35FC8C
     E: 0x360918
@@ -733,7 +821,8 @@
     C: 0x379478
 - desc: Special background effect behavior lightning
   label: SpecialBGEffectBehavior_Lightning
-  type: SpecialBGEffectBehavior [0x22]
+  type: SpecialBGEffectBehavior
+  count: 0x22
   addr:
     U: 0x35FCD4
     E: 0x360960
@@ -741,7 +830,8 @@
     C: 0x3794C0
 - desc: Special background effect behavior quick flash
   label: SpecialBGEffectBehavior_QuickFlash
-  type: SpecialBGEffectBehavior [0xC]
+  type: SpecialBGEffectBehavior
+  count: 0xC
   addr:
     U: 0x35FDA0
     E: 0x360A2C
@@ -749,7 +839,8 @@
     C: 0x37958C
 - desc: Special background effect behavior slight yellow
   label: SpecialBGEffectBehavior_SlightYellow
-  type: SpecialBGEffectBehavior [0x15]
+  type: SpecialBGEffectBehavior
+  count: 0x15
   addr:
     U: 0x35FDE8
     E: 0x360A74
@@ -757,7 +848,8 @@
     C: 0x3795D4
 - desc: Special background effect behavior heavy yellow
   label: SpecialBGEffectBehavior_HeavyYellow
-  type: SpecialBGEffectBehavior [0x14]
+  type: SpecialBGEffectBehavior
+  count: 0x14
   addr:
     U: 0x35FE66
     E: 0x360AF2
@@ -765,7 +857,8 @@
     C: 0x379652
 - desc: Special background effect behavior exit Zebes
   label: SpecialBGEffectBehavior_ExitZebes
-  type: SpecialBGEffectBehavior [0x1E]
+  type: SpecialBGEffectBehavior
+  count: 0x1E
   addr:
     U: 0x35FEDE
     E: 0x360B6A
@@ -773,7 +866,8 @@
     C: 0x3796CA
 - desc: Special background effect behavior intro text
   label: SpecialBGEffectBehavior_IntroText
-  type: SpecialBGEffectBehavior [0x1E]
+  type: SpecialBGEffectBehavior
+  count: 0x1E
   addr:
     U: 0x35FF92
     E: 0x360C1E
@@ -781,7 +875,8 @@
     C: 0x37977E
 - desc: Special background effect behavior all black/white
   label: SpecialBGEffectBehavior_AllBlackWhite
-  type: SpecialBGEffectBehavior [0x27]
+  type: SpecialBGEffectBehavior
+  count: 0x27
   addr:
     U: 0x360046
     E: 0x360CD2
@@ -789,7 +884,8 @@
     C: 0x379832
 - desc: Hatch lock events
   label: HatchLockEvents
-  type: HatchLockEvent [0x13]
+  type: HatchLockEvent
+  count: 0x13
   addr:
     U: 0x360138
     E: 0x360DC4
@@ -797,7 +893,8 @@
     C: 0x379924
 - desc: Event based connections
   label: EventBasedConnections
-  type: EventBasedConnection [0x29]
+  type: EventBasedConnection
+  count: 0x29
   addr:
     U: 0x3601D0
     E: 0x360E5C
@@ -805,7 +902,8 @@
     C: 0x3799BC
 - desc: Area connections
   label: AreaConnections
-  type: AreaConnection [0x1A]
+  type: AreaConnection
+  count: 0x1A
   addr:
     U: 0x360274
     E: 0x360F00
@@ -813,7 +911,8 @@
     C: 0x379A60
 - desc: Hatches time between animations
   label: HatchesTimeBetweenAnims
-  type: u8 [0x6]
+  type: u8
+  count: 0x6
   addr:
     U: 0x3602C2
     E: 0x360F4E
@@ -821,7 +920,8 @@
     C: 0x379AAE
 - desc: Number of hatch lock events per area
   label: NumOfHatchLockEventsPerArea
-  type: u16 [0x8]
+  type: u16
+  count: 0x8
   addr:
     U: 0x3602D8
     E: 0x360F64
@@ -829,7 +929,8 @@
     C: 0x379AC4
 - desc: Demo input data
   label: DemoInputData
-  type: DemoInputData [0x10]
+  type: DemoInputData
+  count: 0x10
   addr:
     U: 0x363BE8
     E: 0x364874
@@ -837,7 +938,8 @@
     C: 0x37D3D4
 - desc: Door transition tilemap (RLE compressed)
   label: DoorTransitionTilemap_RLE
-  type: u8 [0xB8]
+  type: u8
+  count: 0xB8
   tags:
   - rle
   addr:
@@ -847,7 +949,8 @@
     C: 0x37E76C
 - desc: Clipdata behavior types (0x400)
   label: ClipdataBehaviorTypes400
-  type: u16 [0xD0]
+  type: u16
+  count: 0xD0
   addr:
     U: 0x365330
     E: 0x365FBC
@@ -856,7 +959,8 @@
   enum: ClipdataBehaviorType
 - desc: Clipdata collision types (0x400)
   label: ClipdataCollisionTypes400
-  type: u8 [0xD0]
+  type: u8
+  count: 0xD0
   addr:
     U: 0x3654D0
     E: 0x36615C
@@ -865,7 +969,8 @@
   enum: ClipdataCollisionType
 - desc: Tilemap (0x400)
   label: Tilemap400
-  type: u16 [0x340]
+  type: u16
+  count: 0x340
   addr:
     U: 0x3655A0
     E: 0x36622C
@@ -873,7 +978,8 @@
     C: 0x37ED8C
 - desc: Clipdata collision types (debug)
   label: ClipdataCollisionTypes_Debug
-  type: u8 [0xA0]
+  type: u8
+  count: 0xA0
   addr:
     U: 0x365C20
     E: 0x3668AC
@@ -882,7 +988,8 @@
   enum: ClipdataCollisionType
 - desc: Clipdata behavior types (debug)
   label: ClipdataBehaviorTypes_Debug
-  type: u16 [0xA0]
+  type: u16
+  count: 0xA0
   addr:
     U: 0x365CC0
     E: 0x36694C
@@ -891,7 +998,8 @@
   enum: ClipdataBehaviorType
 - desc: Cutscene data
   label: CutsceneData
-  type: CutsceneData [0xF]
+  type: CutsceneData
+  count: 0xF
   addr:
     U: 0x36BDAC
     E: 0x36CA38
@@ -899,7 +1007,8 @@
     C: 0x385598
 - desc: Boss map icons
   label: BossMapIcons
-  type: BossMapIcon [0x7]
+  type: BossMapIcon
+  count: 0x7
   addr:
     U: 0x40D200
     E: 0x40E02C
@@ -907,7 +1016,8 @@
     C: 0x42ED94
 - desc: Character widths
   label: CharacterWidths
-  type: u8 [0x4A0]
+  type: u8
+  count: 0x4A0
   addr:
     U: 0x40D7B0
     E: 0x40E5E4
@@ -915,7 +1025,8 @@
     C: 0x42F34C
 - desc: Chozo statue targets
   label: ChozoStatueTargets
-  type: ChozoStatueTarget [0xA]
+  type: ChozoStatueTarget
+  count: 0xA
   addr:
     U: 0x40DF78
     E: 0x40EDAC
@@ -923,7 +1034,8 @@
     C: 0x42FB14
 - desc: Chozo target checks
   label: ChozoTargetChecks
-  type: ChozoTargetCheck [0x10]
+  type: ChozoTargetCheck
+  count: 0x10
   addr:
     U: 0x40E038
     E: 0x40EE6C
@@ -931,7 +1043,8 @@
     C: 0x42FBD4
 - desc: Chozo target trigger events
   label: ChozoTargetTriggerEvents
-  type: u8 [0x10]
+  type: u8
+  count: 0x10
   addr:
     U: 0x40E058
     E: 0x40EE8C
@@ -940,7 +1053,8 @@
   enum: Event
 - desc: Default button assignments
   label: DefaultButtonAssignments
-  type: u16 [0x8]
+  type: u16
+  count: 0x8
   addr:
     U: 0x411510
     E: 0x412344
@@ -949,7 +1063,8 @@
   enum: ButtonInput
 - desc: Time attack button code
   label: TimeAttackButtonCode
-  type: u16 [0x5]
+  type: u16
+  count: 0x5
   addr:
     U: 0x45F452
     E: 0x46C986
@@ -958,7 +1073,8 @@
   enum: ButtonInput
 - desc: Time attack password characters
   label: TimeAttackPasswordChars
-  type: s8 [0x20]
+  type: s8
+  count: 0x20
   tags:
   - ascii
   addr:
@@ -968,7 +1084,8 @@
     C: 0x481FD0
 - desc: Metroid Fusion gallery data
   label: MetroidFusionGalleryData
-  type: MetroidFusionGalleryData [0xD]
+  type: MetroidFusionGalleryData
+  count: 0xD
   addr:
     U: 0x4C18E4
     E: 0x4CF3F8
@@ -976,7 +1093,8 @@
     C: 0x4E3BC0
 - desc: Ending images top half graphics pointers
   label: EndingImagesTopHalfGfxPtrs
-  type: u8 *[0x8]
+  type: u8 *
+  count: 0x8
   tags:
   - lz
   - gfx
@@ -987,7 +1105,8 @@
     C: 0x56EA74
 - desc: Ending images bottom half graphics pointers
   label: EndingImagesBottomHalfGfxPtrs
-  type: u8 *[0x8]
+  type: u8 *
+  count: 0x8
   tags:
   - lz
   - gfx
@@ -998,7 +1117,8 @@
     C: 0x56EA94
 - desc: Ending images top half tilemap pointers
   label: EndingImagesTopHalfTilemapPtrs
-  type: u16 *[0x8]
+  type: u16 *
+  count: 0x8
   tags:
   - lz
   - tilemap
@@ -1009,7 +1129,8 @@
     C: 0x56EAB4
 - desc: Ending images bottom half tilemap pointers
   label: EndingImagesBottomHalfTilemapPtrs
-  type: u16 *[0x8]
+  type: u16 *
+  count: 0x8
   tags:
   - lz
   - tilemap
@@ -1020,7 +1141,8 @@
     C: 0x56EAD4
 - desc: Ending images palette pointers
   label: EndingImagesPalettePtrs
-  type: u16 *[0x8]
+  type: u16 *
+  count: 0x8
   tags:
   - palette
   addr:
@@ -1030,7 +1152,8 @@
     C: 0x56EAF4
 - desc: Clipdata collision types
   label: ClipdataCollisionTypes
-  type: u8 [0xB0]
+  type: u8
+  count: 0xB0
   addr:
     U: 0x5D91FC
     E: 0x5EC250
@@ -1039,7 +1162,8 @@
   enum: ClipdataCollisionType
 - desc: Clipdata behavior types
   label: ClipdataBehaviorTypes
-  type: u16 [0xB0]
+  type: u16
+  count: 0xB0
   addr:
     U: 0x5D92AC
     E: 0x5EC300
@@ -1048,7 +1172,8 @@
   enum: ClipdataBehaviorType
 - desc: Common background graphics
   label: CommonBGGfx
-  type: u8 [0x1000]
+  type: u8
+  count: 0x1000
   tags:
   - gfx
   addr:
@@ -1058,7 +1183,8 @@
     C: 0x600614
 - desc: Common background palette
   label: CommonBGPalette
-  type: u16 [0xA0]
+  type: u16
+  count: 0xA0
   tags:
   - palette
   addr:
@@ -1068,7 +1194,8 @@
     C: 0x607028
 - desc: Graphics for animated graphics
   label: GfxForAnimGraphics
-  type: u8 [0x5200]
+  type: u8
+  count: 0x5200
   tags:
   - gfx
   addr:
@@ -1134,7 +1261,8 @@
     C: 0x7925AC
 - desc: Samus pose function pointers
   label: SamusPoseFunctionPtrs
-  type: void *[0x43]
+  type: void *
+  count: 0x43
   tags:
   - thumb
   addr:
@@ -1144,7 +1272,8 @@
     C: 0x79D8A0
 - desc: Samus pose graphics function pointers
   label: SamusPoseGfxFunctionPtrs
-  type: void *[0x43]
+  type: void *
+  count: 0x43
   tags:
   - thumb
   addr:
@@ -1154,7 +1283,8 @@
     C: 0x79D9AC
 - desc: Primary sprite AI pointers
   label: PrimarySpriteAIPtrs
-  type: void *[0xCE]
+  type: void *
+  count: 0xCE
   tags:
   - thumb
   addr:
@@ -1164,7 +1294,8 @@
     C: 0x79DAB8
 - desc: Sprite graphics pointers
   label: SpriteGraphicsPtrs
-  type: u8 *[0xBE]
+  type: u8 *
+  count: 0xBE
   tags:
   - lz
   - gfx
@@ -1175,7 +1306,8 @@
     C: 0x79DDF0
 - desc: Sprite palette pointers
   label: SpritePalettePtrs
-  type: u16 *[0xBE]
+  type: u16 *
+  count: 0xBE
   tags:
   - palette
   addr:
@@ -1185,7 +1317,8 @@
     C: 0x79E0E8
 - desc: Secondary sprite AI pointers
   label: SecondarySpriteAIPtrs
-  type: void *[0x4D]
+  type: void *
+  count: 0x4D
   tags:
   - thumb
   addr:
@@ -1195,7 +1328,8 @@
     C: 0x79E3E0
 - desc: Spriteset pointers
   label: SpritesetPtrs
-  type: SpritesetEntry *[0x72]
+  type: SpritesetEntry *
+  count: 0x72
   addr:
     U: 0x75F31C
     E: 0x7731BC
@@ -1203,7 +1337,8 @@
     C: 0x79E514
 - desc: Process projectile pointers
   label: ProcessProjectilePtrs
-  type: void *[0x10]
+  type: void *
+  count: 0x10
   tags:
   - thumb
   addr:
@@ -1213,7 +1348,8 @@
     C: 0x79EB6C
 - desc: Process particle effect pointers
   label: ProcessParticleEffectPtrs
-  type: void *[0x3D]
+  type: void *
+  count: 0x3D
   tags:
   - thumb
   addr:
@@ -1223,7 +1359,8 @@
     C: 0x79EBAC
 - desc: Area doors pointers
   label: AreaDoorsPtrs
-  type: DoorEntry *[0x7]
+  type: DoorEntry *
+  count: 0x7
   addr:
     U: 0x75FAA8
     E: 0x773948
@@ -1231,7 +1368,8 @@
     C: 0x79ECA0
 - desc: Area room entry pointers
   label: AreaRoomEntryPtrs
-  type: RoomEntry *[0x7]
+  type: RoomEntry *
+  count: 0x7
   addr:
     U: 0x75FAC4
     E: 0x773964
@@ -1239,7 +1377,8 @@
     C: 0x79ECBC
 - desc: Room scrolls pointers
   label: RoomScrollsPtrs
-  type: u8 *[0x92]
+  type: u8 *
+  count: 0x92
   addr:
     U: 0x75FAE0
     E: 0x773980
@@ -1247,7 +1386,8 @@
     C: 0x79ECD8
 - desc: Area scrolls pointers
   label: AreaScrollsPtrs
-  type: u8 **[0xB]
+  type: u8 **
+  count: 0xB
   addr:
     U: 0x75FD28
     E: 0x773BC8
@@ -1255,7 +1395,8 @@
     C: 0x79EF20
 - desc: No/never reform block destroy function pointers
   label: NonReformDestroyFunctionPtrs
-  type: void *[0x5]
+  type: void *
+  count: 0x5
   tags:
   - thumb
   addr:
@@ -1265,7 +1406,8 @@
     C: 0x79EF5C
 - desc: Haze data
   label: HazeData
-  type: HazeData [0xD]
+  type: HazeData
+  count: 0xD
   addr:
     U: 0x75FD88
     E: 0x773C28
@@ -1273,7 +1415,8 @@
     C: 0x79EF80
 - desc: Special background effect behavior pointers
   label: SpecialBGEffectBehaviorPtrs
-  type: SpecialBGEffectBehavior *[0x9]
+  type: SpecialBGEffectBehavior *
+  count: 0x9
   addr:
     U: 0x75FDBC
     E: 0x773C5C
@@ -1281,7 +1424,8 @@
     C: 0x79EFB4
 - desc: Hatch lock event pointers
   label: HatchLockEventPtrs
-  type: HatchLockEvent *[0x7]
+  type: HatchLockEvent *
+  count: 0x7
   addr:
     U: 0x75FDE0
     E: 0x773C80
@@ -1289,7 +1433,8 @@
     C: 0x79EFD8
 - desc: Demo RAM data pointers
   label: DemoRamDataPtrs
-  type: DemoRam *[0x10]
+  type: DemoRam *
+  count: 0x10
   addr:
     U: 0x75FDFC
     E: 0x773C9C
@@ -1297,7 +1442,8 @@
     C: 0x79EFF4
 - desc: Story text pointers
   label: StoryTextPtrs
-  type: u16 **[0x7]
+  type: u16 **
+  count: 0x7
   tags:
   - text
   addr:
@@ -1307,7 +1453,8 @@
     C: 0x79F0D8
 - desc: Minimap data pointers
   label: MinimapDataPtrs
-  type: u16 *[0xB]
+  type: u16 *
+  count: 0xB
   tags:
   - lz
   - tilemap
@@ -1318,7 +1465,8 @@
     C: 0x79F3EC
 - desc: Explored minimap bit flags
   label: ExploredMinimapBitFlags
-  type: u8 [0x80]
+  type: u8
+  count: 0x80
   addr:
     U: 0x760218
     E: 0x7740C0
@@ -1326,7 +1474,8 @@
     C: 0x79F418
 - desc: Copy minimap tile graphics function pointers
   label: CopyMinimapTileGfxFunctionPtrs
-  type: void *[0x4]
+  type: void *
+  count: 0x4
   addr:
     U: 0x760298
     E: 0x774140
@@ -1334,7 +1483,8 @@
     C: 0x79F498
 - desc: Description text pointers
   label: DescriptionTextPtrs
-  type: u16 **[0x7]
+  type: u16 **
+  count: 0x7
   tags:
   - text
   addr:
@@ -1344,7 +1494,8 @@
     C: 0x79F4D4
 - desc: Chozo statue target path pointers
   label: ChozoStatueTargetPathPtrs
-  type: u8 *[0x6]
+  type: u8 *
+  count: 0x6
   addr:
     U: 0x7603F0
     E: 0x774298
@@ -1352,7 +1503,8 @@
     C: 0x79F5F0
 - desc: Japanese message text pointers
   label: JapaneseMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
@@ -1362,7 +1514,8 @@
     C: 0x79F658
 - desc: Japanese location text pointers
   label: JapaneseLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
@@ -1372,7 +1525,8 @@
     C: 0x79F6F4
 - desc: Hiragana message text pointers
   label: HiraganaMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
@@ -1382,7 +1536,8 @@
     C: 0x79F75C
 - desc: Hiragana location text pointers
   label: HiraganaLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
@@ -1392,7 +1547,8 @@
     C: 0x79F7F8
 - desc: English message text pointers
   label: EnglishMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
@@ -1402,7 +1558,8 @@
     C: 0x79F860
 - desc: English location text pointers
   label: EnglishLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
@@ -1412,63 +1569,72 @@
     C: 0x79F8FC
 - desc: German message text pointers
   label: GermanMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
     E: 0x77460C
 - desc: German location text pointers
   label: GermanLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
     E: 0x7746A8
 - desc: French message text pointers
   label: FrenchMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
     E: 0x774710
 - desc: French location text pointers
   label: FrenchLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
     E: 0x7747AC
 - desc: Italian message text pointers
   label: ItalianMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
     E: 0x774814
 - desc: Italian location text pointers
   label: ItalianLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
     E: 0x7748B0
 - desc: Spanish message text pointers
   label: SpanishMessageTextPtrs
-  type: u16 *[0x27]
+  type: u16 *
+  count: 0x27
   tags:
   - text
   addr:
     E: 0x774918
 - desc: Spanish location text pointers
   label: SpanishLocationTextPtrs
-  type: u16 *[0x1A]
+  type: u16 *
+  count: 0x1A
   tags:
   - text
   addr:
     E: 0x7749B4
 - desc: Location text pointers
   label: LocationTextPtrs
-  type: u16 **[0x7]
+  type: u16 **
+  count: 0x7
   tags:
   - text
   addr:
@@ -1478,7 +1644,8 @@
     C: 0x79F964
 - desc: Message text pointers
   label: MessageTextPtrs
-  type: u16 **[0x7]
+  type: u16 **
+  count: 0x7
   tags:
   - text
   addr:
@@ -1488,7 +1655,8 @@
     C: 0x79F980
 - desc: File screen text pointers
   label: FileScreenTextPtrs
-  type: u16 **[0x7]
+  type: u16 **
+  count: 0x7
   tags:
   - text
   addr:
@@ -1498,7 +1666,8 @@
     C: 0x79F99C
 - desc: Japanese description text pointers
   label: JapaneseDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
@@ -1508,7 +1677,8 @@
     C: 0x79F9B8
 - desc: Japanese story text pointers
   label: JapaneseStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
@@ -1518,7 +1688,8 @@
     C: 0x79FA04
 - desc: Japanese file screen text pointers
   label: JapaneseFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
@@ -1528,7 +1699,8 @@
     C: 0x79FA1C
 - desc: Hiragana description text pointers
   label: HiraganaDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
@@ -1538,7 +1710,8 @@
     C: 0x79FAB0
 - desc: Hiragana story text pointers
   label: HiraganaStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
@@ -1548,7 +1721,8 @@
     C: 0x79FAFC
 - desc: Hiragana file screen text pointers
   label: HiraganaFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
@@ -1558,7 +1732,8 @@
     C: 0x79FB14
 - desc: English description text pointers
   label: EnglishDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
@@ -1568,7 +1743,8 @@
     C: 0x79FBA8
 - desc: English story text pointers
   label: EnglishStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
@@ -1578,7 +1754,8 @@
     C: 0x79FBF4
 - desc: English file screen text pointers
   label: EnglishFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
@@ -1588,91 +1765,104 @@
     C: 0x79FC0C
 - desc: German description text pointers
   label: GermanDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
     E: 0x774D58
 - desc: German story text pointers
   label: GermanStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
     E: 0x774DA4
 - desc: German file screen text pointers
   label: GermanFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
     E: 0x774DBC
 - desc: French description text pointers
   label: FrenchDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
     E: 0x774E50
 - desc: French story text pointers
   label: FrenchStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
     E: 0x774E9C
 - desc: French file screen text pointers
   label: FrenchFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
     E: 0x774EB4
 - desc: Italian description text pointers
   label: ItalianDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
     E: 0x774F48
 - desc: Italian story text pointers
   label: ItalianStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
     E: 0x774F94
 - desc: Italian file screen text pointers
   label: ItalianFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
     E: 0x774FAC
 - desc: Spanish description text pointers
   label: SpanishDescriptionTextPtrs
-  type: u16 *[0x13]
+  type: u16 *
+  count: 0x13
   tags:
   - text
   addr:
     E: 0x775040
 - desc: Spanish story text pointers
   label: SpanishStoryTextPtrs
-  type: u16 *[0x6]
+  type: u16 *
+  count: 0x6
   tags:
   - text
   addr:
     E: 0x77508C
 - desc: Spanish file screen text pointers
   label: SpanishFileScreenTextPtrs
-  type: u16 *[0x25]
+  type: u16 *
+  count: 0x25
   tags:
   - text
   addr:
     E: 0x7750A4
 - desc: Sound test sound IDs
   label: SoundTestSoundIDs
-  type: u16 [0x18]
+  type: u16
+  count: 0x18
   addr:
     U: 0x760BAC
     E: 0x775288
@@ -1680,7 +1870,8 @@
     C: 0x79FDA0
 - desc: Menu sound IDs
   label: MenuSoundIDs
-  type: u16 [0xD]
+  type: u16
+  count: 0xD
   tags:
   - text
   addr:
@@ -1690,7 +1881,8 @@
     C: 0x79FE4C
 - desc: Time attack password seed function pointers
   label: TimeAttackPasswordSeedFunctionPtrs
-  type: void *[0xF]
+  type: void *
+  count: 0xF
   tags:
   - thumb
   addr:
@@ -1700,7 +1892,8 @@
     C: 0x79FE68
 - desc: NES Metroid data
   label: NesMetroidData
-  type: u8 [0x1F734]
+  type: u8
+  count: 0x1F734
   addr:
     U: 0x7D8000
     E: 0x7D8000

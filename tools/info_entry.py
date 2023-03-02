@@ -100,6 +100,9 @@ class VarEntry(InfoEntry):
         desc: str,
         label: str,
         type: str,
+        # arr_count of None implies no array
+        # arr_count of 1 implies array [1]
+        arr_count: RegionInt,
         tags: List[DataTag] = [],
         enum: str = None,
         notes: str = None
@@ -107,6 +110,7 @@ class VarEntry(InfoEntry):
         self.desc = desc
         self.label = label
         self.parse_type(type)
+        self.arr_count = arr_count
         self.tags = tags
         self.enum = enum
         self.notes = notes
@@ -151,14 +155,10 @@ class VarEntry(InfoEntry):
     def is_ptr(self) -> bool:
         return self.declaration.startswith("*")
 
-    def array_count(self) -> int:
-        if self.declaration is None:
-            return -1
-        # check for array
-        mc = re.findall(r"\w+", self.declaration)
-        if len(mc) != 1:
-            return -1
-        return int(mc[0], 16)
+    def get_count(self) -> int:
+        if self.arr_count is None:
+            return 1
+        return self.arr_count
 
     def size(self, structs: Dict[str, "StructEntry"]) -> int:
         size = self.get_spec_size(structs)
@@ -180,7 +180,7 @@ class VarEntry(InfoEntry):
         for m in mc:
             dim = int(m, 16)
             size *= dim
-        return size
+        return size * self.get_count()
 
     def get_spec_size(self, structs: Dict[str, "StructEntry"]) -> int:
         if self.primitive in {
@@ -210,6 +210,7 @@ class VarEntry(InfoEntry):
             node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
+            node.get(K_COUNT),
             VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
             node.get(K_NOTES)
@@ -222,6 +223,8 @@ class VarEntry(InfoEntry):
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
+        if entry.arr_count:
+            data.append((K_COUNT, entry.arr_count))
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         if entry.enum:
@@ -249,12 +252,13 @@ class DataEntry(VarEntry):
         desc: str,
         label: str,
         type: str,
+        arr_count: RegionInt,
         addr: RegionInt,
         tags: List[DataTag] = [],
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(desc, label, type, tags, enum, notes)
+        super().__init__(desc, label, type, arr_count, tags, enum, notes)
         self.addr = addr
     
     def __str__(self) -> str:
@@ -278,6 +282,7 @@ class DataEntry(VarEntry):
             node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
+            node.get(K_COUNT),
             node[K_ADDR],
             VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
@@ -291,6 +296,8 @@ class DataEntry(VarEntry):
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
+        if entry.arr_count:
+            data.append((K_COUNT, entry.arr_count))
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         data.append((K_ADDR, entry.addr))
@@ -307,12 +314,13 @@ class StructVarEntry(VarEntry):
         desc: str,
         label: str,
         type: str,
+        arr_count: RegionInt,
         offset: RegionInt,
         tags: List[DataTag] = [],
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(desc, label, type, tags, enum, notes)
+        super().__init__(desc, label, type, arr_count, tags, enum, notes)
         self.offset = offset
 
     def __str__(self) -> str:
@@ -336,6 +344,7 @@ class StructVarEntry(VarEntry):
             node[K_DESC],
             node[K_LABEL],
             node[K_TYPE],
+            node.get(K_COUNT),
             node[K_OFFSET],
             VarEntry.tags_from_yaml(node.get(K_TAGS)),
             node.get(K_ENUM),
@@ -349,6 +358,8 @@ class StructVarEntry(VarEntry):
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
+        if entry.arr_count:
+            data.append((K_COUNT, entry.arr_count))
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
         data.append((K_OFFSET, entry.offset))

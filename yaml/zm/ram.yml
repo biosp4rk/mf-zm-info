@@ -1,115 +1,140 @@
 - desc: Clipdata collision types
   label: ClipdataCollisionTypes_Ram
-  type: u8 [0x400]
+  type: u8
+  count: 0x400
   addr: 0x2002000
   enum: ClipdataCollisionType
 - desc: Clipdata collision types (0x400)
   label: ClipdataCollisionTypes_400_Ram
-  type: u8 [0x400]
+  type: u8
+  count: 0x400
   addr: 0x2002400
   enum: ClipdataCollisionType
 - desc: Clipdata behavior types
   label: ClipdataBehaviorTypes_Ram
-  type: u16 [0x400]
+  type: u16
+  count: 0x400
   addr: 0x2003000
   enum: ClipdataBehaviorType
 - desc: Clipdata behavior types (0x400)
   label: ClipdataBehaviorTypes_400_Ram
-  type: u16 [0x400]
+  type: u16
+  count: 0x400
   addr: 0x2003800
   enum: ClipdataBehaviorType
 - desc: Tilemap
   label: Tilemap_Ram
-  type: u16 [0x1000]
+  type: u16
+  count: 0x1000
   addr: 0x2004000
 - desc: Tilemap (0x400)
   label: Tilemap_400_Ram
-  type: u16 [0x1000]
+  type: u16
+  count: 0x1000
   addr: 0x2006000
 - desc: Pause overlay tilemap
   label: PauseOverlayTilemap
-  type: u16 [0x400]
+  type: u16
+  count: 0x400
   addr: 0x2009800
 - desc: Animated graphics
   label: AnimatedGfx
-  type: u8 [0x800]
+  type: u8
+  count: 0x800
   addr: 0x201B000
 - desc: Current character graphics
   label: CurrCharacterGfx
-  type: u8 [0x80]
+  type: u8
+  count: 0x80
   tags:
   - gfx
   addr: 0x2027700
 - desc: Make solid blocks
   label: MakeSolidBlocks
-  type: u16 [0x40]
+  type: u16
+  count: 0x40
   addr: 0x2027780
   notes: Two byte pairs of Y position and X position
 - desc: Decompressed clipdata
   label: DecompClipdata
-  type: u16 [0x1800]
+  type: u16
+  count: 0x1800
   addr: 0x2027800
 - desc: Decompressed BG0 data
   label: DecompBG0Data
-  type: u16 [0x1800]
+  type: u16
+  count: 0x1800
   addr: 0x202A800
 - desc: Decompressed BG1 data
   label: DecompBG1Data
-  type: u16 [0x1800]
+  type: u16
+  count: 0x1800
   addr: 0x202D800
 - desc: Decompressed BG2 data
   label: DecompBG2Data
-  type: u16 [0x1800]
+  type: u16
+  count: 0x1800
   addr: 0x2030800
 - desc: Minimap tiles with obtained items
   label: MinimapTilesWithObtainedItems
-  type: u8 [0x800]
+  type: u8
+  count: 0x800
   addr: 0x2033800
 - desc: Decompressed explored minimap
   label: DecompExploredMinimap
-  type: u8 [0x800]
+  type: u8
+  count: 0x800
   addr: 0x2034000
 - desc: Decompressed minimap data
   label: DecompMinimapData
-  type: u8 [0x800]
+  type: u8
+  count: 0x800
   addr: 0x2034800
 - desc: Palette RAM copy
   label: PaletteRamCopy
-  type: u16 [0x200]
+  type: u16
+  count: 0x200
   tags:
   - palette
   addr: 0x2035000
 - desc: Never reform blocks
   label: NeverReformBlocks
-  type: u8 [0x200][0x8]
+  type: u8 [0x8]
+  count: 0x200
   addr: 0x2035C00
   notes: One array per area (last is unused)
 - desc: Items collected
   label: ItemsCollected
-  type: CollectedItem [0x40][0x8]
+  type: CollectedItem [0x8]
+  count: 0x40
   addr: 0x2036C00
 - desc: Visited minimap tiles
   label: VisitedMinimapTiles
-  type: u8 [0x400]
+  type: u8
+  count: 0x400
   addr: 0x2037400
 - desc: Hatches opened
   label: HatchesOpened
-  type: u8 [0x100]
+  type: u8
+  count: 0x100
   addr: 0x2037C00
 - desc: Events triggered
   label: EventsTriggered
-  type: u8 [0x20]
+  type: u8
+  count: 0x20
   addr: 0x2037E00
 - desc: Minimap tile graphics
   label: MinimapTileGfx
-  type: u8 [0x1E0]
+  type: u8
+  count: 0x1E0
   tags:
   - gfx
   addr: 0x2037E20
   notes: Transferred to 6011F80 in VRAM
 - desc: SRAM
   label: Sram
-  type: SaveFileRam [0x6]
+  type: SaveFileRam
+  count: 0x6
   addr: 0x2038000
 - desc: Debug flag
   label: DebugFlag
@@ -413,7 +438,8 @@
   addr: 0x3000150
 - desc: Best completion times
   label: BestCompletionTimes
-  type: InGameTime [0xC]
+  type: InGameTime
+  count: 0xC
   addr: 0x3000154
   notes: Unused
 - desc: In-game time at bosses
@@ -430,16 +456,19 @@
   addr: 0x30001A8
 - desc: Sprite data
   label: SpriteData
-  type: SpriteData [0x18]
+  type: SpriteData
+  count: 0x18
   addr: 0x30001AC
 - desc: Spriteset sprite IDs
   label: SpritesetSpriteIDs
-  type: u8 [0xF]
+  type: u8
+  count: 0xF
   addr: 0x30006EC
   enum: PrimarySpriteID
 - desc: Spriteset sprite graphics slots
   label: SpritesetSpriteGfxSlots
-  type: u8 [0xF]
+  type: u8
+  count: 0xF
   addr: 0x30006FB
 - desc: Sub-sprite data 1
   label: SubSpriteData1
@@ -456,7 +485,8 @@
   notes: Current sprite being processed
 - desc: Sprite debris
   label: SpriteDebris
-  type: SpriteDebris [0x8]
+  type: SpriteDebris
+  count: 0x8
   addr: 0x3000770
 - desc: Previous center collision check
   label: PrevCenterCollisionCheck
@@ -470,7 +500,8 @@
   enum: CollisionCheck
 - desc: Sprite draw order
   label: SpriteDrawOrder
-  type: u8 [0x18]
+  type: u8
+  count: 0x18
   addr: 0x30007F3
 - desc: Boss work variables
   label: BossWork
@@ -483,7 +514,8 @@
   notes: Ranges between 0-F
 - desc: Particle effects
   label: ParticleEffects
-  type: ParticleEffect [0x10]
+  type: ParticleEffect
+  count: 0x10
   addr: 0x3000840
 - desc: Missile highlight status
   label: MissileHighlightStatus
@@ -529,7 +561,8 @@
   addr: 0x3000918
 - desc: Ammo digit graphics
   label: AmmoDigitGfx
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   tags:
   - gfx
   addr: 0x300091C
@@ -548,7 +581,8 @@
   addr: 0x300095E
 - desc: Particle escape OAM frames
   label: ParticleEscapeOamFrames
-  type: u16 [0x19]
+  type: u16
+  count: 0x19
   tags:
   - oam_frame
   addr: 0x3000964
@@ -570,13 +604,15 @@
   addr: 0x3000999
 - desc: Particle Samus reflection OAM frames
   label: ParticleSamusReflectionOamFrames
-  type: u16 [0x49]
+  type: u16
+  count: 0x49
   tags:
   - oam_frame
   addr: 0x300099A
 - desc: Projectile data
   label: ProjectileData
-  type: ProjectileData [0x10]
+  type: ProjectileData
+  count: 0x10
   addr: 0x3000A2C
 - desc: Arm cannon Y position
   label: ArmCannonYPosition
@@ -666,7 +702,8 @@
   addr: 0x3000C21
 - desc: Save files info
   label: SaveFilesInfo
-  type: SaveFileInfo [0x3]
+  type: SaveFileInfo
+  count: 0x3
   addr: 0x3000C24
 - desc: Game mode
   label: GameMode
@@ -699,11 +736,13 @@
   addr: 0x3000C78
 - desc: Interrupt code
   label: InterruptCode
-  type: void [0x200]
+  type: void
+  count: 0x200
   addr: 0x3000C7C
 - desc: OAM data
   label: OamData
-  type: u16 [0xA0][4]
+  type: u16 [4]
+  count: 0xA0
   addr: 0x3000E7C
 - desc: Button input
   label: ButtonInput
@@ -842,7 +881,8 @@
   addr: 0x3001544
 - desc: Samus environment effects
   label: SamusEnvironmentEffects
-  type: SamusEnvironmentEffect [0x5]
+  type: SamusEnvironmentEffect
+  count: 0x5
   addr: 0x300154C
 - desc: Samus physics
   label: SamusPhysics
@@ -875,7 +915,8 @@
   addr: 0x300168C
 - desc: Time attack best time password
   label: TimeAttackBestTimePassword
-  type: u8 [0x14]
+  type: u8
+  count: 0x14
   addr: 0x3001694
 - desc: Time attack best in-game time
   label: TimeAttackBestInGameTime
@@ -883,7 +924,8 @@
   addr: 0x30016A8
 - desc: Time attack best 100% time password
   label: TimeAttackBest100pTimePassword
-  type: u8 [0x14]
+  type: u8
+  count: 0x14
   addr: 0x30016AC
 - desc: Time attack best 100% in-game time
   label: TimeAttackBest100pInGameTime
@@ -895,7 +937,8 @@
   addr: 0x30016C4
 - desc: Haze process code
   label: HazeProcessCode
-  type: u8 [0x200]
+  type: u8
+  count: 0x200
   addr: 0x3001944
 - desc: V-Blank code pointer
   label: VBlankCodePtr
@@ -933,7 +976,8 @@
   addr: 0x3001D00
 - desc: Sound queue
   label: SoundQueue
-  type: QueuedSound [0x9]
+  type: QueuedSound
+  count: 0x9
   addr: 0x3003B44
 - desc: Sound code A pointer
   label: SoundCodeAPtr
@@ -943,7 +987,8 @@
   addr: 0x3003B8C
 - desc: Sound code A
   label: SoundCodeARam
-  type: void [0x658]
+  type: void
+  count: 0x658
   addr: 0x3003B90
 - desc: Sound code B pointer
   label: SoundCodeBPtr
@@ -953,7 +998,8 @@
   addr: 0x30041E8
 - desc: Sound code B
   label: SoundCodeBRam
-  type: void [0xA4]
+  type: void
+  count: 0xA4
   addr: 0x30041EC
 - desc: Sound code C pointer
   label: SoundCodeCPtr
@@ -963,11 +1009,13 @@
   addr: 0x3004290
 - desc: Sound code C
   label: SoundCodeCRam
-  type: void [0xAC]
+  type: void
+  count: 0xAC
   addr: 0x3004294
 - desc: Demo input durations
   label: DemoInputDurations
-  type: u16 [0x100]
+  type: u16
+  count: 0x100
   addr: 0x30051CA
 - desc: Demo input number
   label: DemoInputNumber
@@ -984,7 +1032,8 @@
   enum: ButtonInput
 - desc: Samus palette
   label: SamusPalette
-  type: u16 [0x2]
+  type: u16
+  count: 0x2
   tags:
   - palette
   addr: 0x30053E0
@@ -1010,7 +1059,8 @@
   addr: 0x3005450
 - desc: Hatch data
   label: HatchData
-  type: HatchData [0x10]
+  type: HatchData
+  count: 0x10
   addr: 0x300545C
 - desc: Number of valid hatches in current room
   label: NumValidHatchesInCurrRoom
@@ -1062,7 +1112,8 @@
   addr: 0x3005520
 - desc: Breaking and reforming blocks
   label: BreakingAndReformingBlocks
-  type: BreakingOrReformingBlock [0x30]
+  type: BreakingOrReformingBlock
+  count: 0x30
   addr: 0x3005528
 - desc: Last tank collected
   label: LastTankCollected
@@ -1070,7 +1121,8 @@
   addr: 0x30056A8
 - desc: Bomb chain data
   label: BombChainData
-  type: BombChainData [0x4]
+  type: BombChainData
+  count: 0x4
   addr: 0x30056AC
 - desc: Active bomb chain types
   label: ActiveBombChainTypes
@@ -1122,11 +1174,13 @@
   addr: 0x300572C
 - desc: Animated tileset data
   label: AnimatedTilesetData
-  type: u8 [0xC0]
+  type: u8
+  count: 0xC0
   addr: 0x3005730
 - desc: Tank animations
   label: TankAnimations
-  type: TankAnim [0x4]
+  type: TankAnim
+  count: 0x4
   addr: 0x30057F0
 - desc: Maintained input data
   label: MaintainedInputData
@@ -1159,39 +1213,48 @@
   enum: ErrorFlags
 - desc: Track 8
   label: Track8
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005910
 - desc: Track 3
   label: Track3
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005950
 - desc: Track 1
   label: Track1
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005990
 - desc: Track 6
   label: Track6
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x30059D0
 - desc: Track 4
   label: Track4
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005A10
 - desc: Track 0
   label: Track0
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005A50
 - desc: Track 7
   label: Track7
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005A90
 - desc: Track 2
   label: Track2
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005AD0
 - desc: Track 5
   label: Track5
-  type: u8 [0x40]
+  type: u8
+  count: 0x40
   addr: 0x3005B10
 - desc: Interrupt code pointer
   label: InterruptCodePtr

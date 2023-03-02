@@ -1859,7 +1859,8 @@ MusicInfo:
     offset: 0x21
   - desc: Raw sound data
     label: RawSoundData
-    type: s8 [0xB40]
+    type: s8
+    count: 0xB40
     offset: 0xC24
 MusicTrackInfo:
   size: 0x8
@@ -2001,7 +2002,8 @@ NonGameplayRam_Cutscene:
     offset: 0x1E
   - desc: BGCNT
     label: BGCNT
-    type: u16 [0x4]
+    type: u16
+    count: 0x4
     offset: 0x20
   - desc: BG0VOFS
     label: BG0VOFS
@@ -2041,7 +2043,8 @@ NonGameplayRam_Cutscene:
     offset: 0x38
   - desc: Graphics data 2
     label: GfxData2
-    type: CutsceneGfxData [0x3]
+    type: CutsceneGfxData
+    count: 0x3
     offset: 0xC0
 NumItemsCollected:
   size: 0x8
@@ -2556,11 +2559,13 @@ SamusEcho:
     offset: 0x3
   - desc: Previous 64 X positions
     label: Prev64XPositions
-    type: u16 [0x40]
+    type: u16
+    count: 0x40
     offset: 0x8
   - desc: Previous 64 Y positions
     label: Prev64YPositions
-    type: u16 [0x40]
+    type: u16
+    count: 0x40
     offset: 0x88
   - desc: Previous position counter
     label: PrevPositionCounter
@@ -2971,7 +2976,8 @@ SaveFileRam:
   vars:
   - desc: ZERO_MISSION_010 text
     label: ZERO_MISSION_010_text
-    type: s8 [0x10]
+    type: s8
+    count: 0x10
     tags:
     - ascii
     offset: 0x0
@@ -3071,7 +3077,8 @@ SaveFileRam:
     offset: 0x47
   - desc: Planet Zebes... text
     label: PlanetZebes_Text
-    type: s8 [0x11]
+    type: s8
+    count: 0x11
     tags:
     - ascii
     offset: 0x4F
@@ -3105,7 +3112,8 @@ SaveFileRam:
     offset: 0x1B0
   - desc: Samus environment effects
     label: SamusEnvironmentEffects
-    type: SamusEnvironmentEffect [0x5]
+    type: SamusEnvironmentEffect
+    count: 0x5
     offset: 0x1B8
   - desc: Prevent movement timer
     label: PreventMovementTimer
@@ -3125,7 +3133,8 @@ SaveFileRam:
     offset: 0x1FC
   - desc: Best completion times
     label: BestCompletionTimes
-    type: InGameTime [0xC]
+    type: InGameTime
+    count: 0xC
     offset: 0x200
   - desc: In-game time at bosses
     label: InGameTimeAtBosses
@@ -3149,15 +3158,18 @@ SaveFileRam:
     offset: 0x24C
   - desc: Visited minimap tiles
     label: VisitedMinimapTiles
-    type: u8 [0x400]
+    type: u8
+    count: 0x400
     offset: 0x300
   - desc: Hatches opened
     label: HatchesOpened
-    type: u8 [0x100]
+    type: u8
+    count: 0x100
     offset: 0x1100
   - desc: Events triggered
     label: EventsTriggered
-    type: u8 [0x20]
+    type: u8
+    count: 0x20
     offset: 0x1200
 ScreenPositionAndVelocity:
   size: 0x8
@@ -3906,7 +3918,8 @@ TimeAttackData:
     offset: 0xF
   - desc: Password
     label: Password
-    type: u8 [0x14]
+    type: u8
+    count: 0x14
     offset: 0x10
   - desc: Unknown 24
     label: unk_24
@@ -3914,5 +3927,6 @@ TimeAttackData:
     offset: 0x24
   - desc: Password seed
     label: PasswordSeed
-    type: u8 [0x3E]
+    type: u8
+    count: 0x3E
     offset: 0x25
