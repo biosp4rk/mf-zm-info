@@ -74,7 +74,7 @@
 02037400 VisitedMinimapTiles
 02037C00 HatchesOpened
 02037E00 EventsTriggered
-;02037E20
+02037E20 MinimapTileGfx
 02038000 Sram
 ;0203F080
 ;0203F280
@@ -105,7 +105,7 @@
 0300002D MothershipDoorsFlag
 0300002E TimeAttackFlag
 0300002F CutsceneToSkip
-03000030 RoomMusicTrack
+03000030 MusicTrackInfo
 03000038 CurrDemo
 0300003C RebootGameFlag
 0300003D DisableScrollingFlag
@@ -315,7 +315,7 @@
 ;03004295
 ;03004FC9
 ;03004FCA
-;030051CA
+030051CA DemoInputDurations
 030053CA DemoInputNumber
 030053CC DemoInputTimer
 030053CE DemoButtonInput
@@ -355,7 +355,7 @@
 ;030056DC
 ;030056E4
 030056EC AnimatedPaletteTiming
-;030056F0
+030056F0 HatchFlashingAnim
 030056F4 AnimatedPaletteAndTilesetNum
 030056F8 CurrSpecialBGEffect
 ;03005700
@@ -367,7 +367,7 @@
 ;03005729
 0300572C HazeProcessCodePtr
 03005730 AnimatedTilesetData
-;030057F0
+030057F0 TankAnimations
 03005800 MaintainedInputData
 ;03005804
 ;03005806
@@ -593,12 +593,12 @@
 080051C0 SoundBias_200
 080051C8 Sqrt
 080051CC VBlankIntrWait
-;080051D4
+080051D4 SramWriteUncheckedInternal
 ;080051F8
-;0800525C
-;0800529C
-;080052CC
-;08005330
+0800525C SramWrite
+0800529C SramCheckInteral
+080052CC SramCheck
+08005330 SramWriteChecked
 08005368 SamusCheckScrewSpeedAffectingEnvironment
 ;08005474
 ;08005604
@@ -2315,7 +2315,7 @@
 08056D18 RleDecompress
 ;08056E28
 08056E74 UpdateAnimatedGraphicsAndPalette
-;08056EF4
+08056EF4 UpdateHatchFlashingAnimation
 08056FD0 UpdateRoomInfo
 080570AC UpdateBGPositions
 ;080571D4
@@ -2466,8 +2466,8 @@
 0805DD5C TransferAnimatedGraphics
 0805DFCC UpdateAnimatedGraphics
 0805E130 LoadAnimatedTileset
-;0805E224
-;0805E248
+0805E224 ResetTanksAnimation
+0805E248 UpdateTanksAnimation
 0805E2B4 UpdateAnimatedPalette
 0805E424 CheckDisableAnimatedPaletteOnTransition
 0805E500 CheckPlayLightningEffect
@@ -2520,14 +2520,14 @@
 08060EF4 EndCutscene
 08061044 CutscenesSubroutine
 08061228 EndCutscene
-;0806122C
+0806122C VBlankCodeDuringCutscenes
 ;080612D4
 ;080612E0
 ;0806141C
 08061484 CutsceneUpdateBGCNT
-;080614D4
-;08061578
-;080615C8
+080614D4 CutsceneUpdateBackgroundPosition
+08061578 CutsceneGetHOFSPtr
+080615C8 CutsceneGetVOFSPtr
 ;08061618
 ;080618D8
 ;08061944
@@ -2684,10 +2684,10 @@
 0806C490 CheckUpdateMinimapOnDoorTransition
 0806C534 UpdateCornerMinimapNewSquareEntered
 0806C5D0 DrawCornerMinimap
-;0806C6D0
-;0806C7A8
-;0806C894
-;0806C970
+0806C6D0 CopyMinimapTileGfx
+0806C7A8 CopyMinimapTileGfx_XFlip
+0806C894 CopyMinimapTileGfx_YFlip
+0806C970 CopyMinimapTileGfx_XYFlip
 0806CA60 SetMinimapSquaresWithObtainedItems
 0806CACC MinimapSetDownloadedSquares
 0806CBF4 UpdateMinimapSquareForCollectedItem
@@ -4378,7 +4378,7 @@
 ;08360324
 08360334 NumOfHatchLockEventsPerArea
 ;08360344
-;08363C44
+08363C44 DemoInputData
 ;08363D44
 08364FDC DoorTransitionTilemap_RLE
 0836538C ClipdataBehaviorTypes400
@@ -4978,13 +4978,13 @@
 ;085FE5D8
 ;0861AD60
 ;08752BC4
-;08754CC4
-;08754CC8
-;08754CCC
-;08754CD0
+08754CC4 EWRAM_Ptr
+08754CC8 PALRAM_BG_Ptr
+08754CCC PALRAM_OBJ_Ptr
+08754CD0 VisitedMinimapTilesPtr
 08754CD4 NonGameplayRamPtr
-;08754CD8
-;08754CDC
+08754CD8 SRAM_EWRAM_Ptr
+08754CDC SRAM_Flash_Ptr
 ;08754CE0
 ;087567D4
 0875E7B8 SamusPoseFunctionPtrs
@@ -5015,7 +5015,7 @@
 0875FE74 NonReformDestroyFunctionPtrs
 ;0875FE88
 0875FE98 HazeData
-;0875FECC
+0875FECC SpecialBGEffectBehaviorPtrs
 0875FEF0 HatchLockEventPtrs
 0875FF0C DemoRamDataPtrs
 ;0875FF4C
@@ -5057,7 +5057,7 @@
 ;087602EC
 087602FC MinimapDataPtrs
 08760328 ExploredMinimapBitFlags
-;087603A8
+087603A8 CopyMinimapTileGfxFunctionPtrs
 ;087603B8
 ;087603BC
 ;087603C0
