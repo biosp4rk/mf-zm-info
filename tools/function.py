@@ -236,4 +236,6 @@ if __name__ == "__main__":
     # print function
     func = Function(rom, addr, syms)
     lines = func.get_lines()
+    size = func.end_addr - addr
+    print(f"; Size: {size:X}")
     print("\n".join(lines))

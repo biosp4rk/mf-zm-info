@@ -570,22 +570,21 @@
   addr:
     J: 0x3CB898
     C: 0x3CB8DC
-  notes: Tank increase amounts for each difficulty (J only)
+  notes: Tank increase amounts for each difficulty (J and C only)
 - desc: Animated palette entries
   label: AnimatedPaletteEntries
   type: AnimatedPaletteEntry
-  count: 0x21
+  count:
+    U: 0x21
+    E: 0x21
+    J: 0x22
+    C: 0x22
   addr:
     U: 0x3E3764
     E: 0x3E3DC0
-- desc: Animated palette entries (J)
-  label: AnimatedPaletteEntries_J
-  type: AnimatedPaletteEntry
-  count: 0x22
-  addr:
     J: 0x3E5D38
     C: 0x3E5D7C
-  notes: J has 1 more entry, used for flashing numbers in sector connectors
+  notes: J and C have 1 more entry, used for flashing numbers in sector connectors
 - desc: Demo input data
   label: DemoInputData
   type: DemoInputData
@@ -836,7 +835,11 @@
 - desc: Credits text
   label: CreditsText
   type: s8
-  count: 0x2ED4
+  count:
+    U: 0x2ED4
+    E: 0x2ED4
+    J: 0x2ED4
+    C: 0x3A70
   tags:
   - ascii
   addr:
@@ -1206,19 +1209,15 @@
 - desc: Hiragana pause screen text pointers
   label: HiraganaPauseScreenTextPtrs
   type: u16 *
-  count: 0x6C
+  count:
+    U: 0x6C
+    E: 0x6C
+    J: 0x6F
   tags:
   - text
   addr:
     U: 0x79D35C
     E: 0x79DB90
-- desc: Hiragana pause screen text pointers (J)
-  label: HiraganaPauseScreenTextPtrs_J
-  type: u16 *
-  count: 0x6F
-  tags:
-  - text
-  addr:
     J: 0x7EF9F8
   notes: J has 3 more entries
 - desc: English navigation text pointers

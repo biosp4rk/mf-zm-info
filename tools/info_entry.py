@@ -158,7 +158,12 @@ class VarEntry(InfoEntry):
     def get_count(self) -> int:
         if self.arr_count is None:
             return 1
-        return self.arr_count
+        if isinstance(self.arr_count, dict):
+            for r in REGIONS:
+                if r in self.arr_count:
+                    return self.arr_count[r]
+        else:
+            return self.arr_count
 
     def size(self, structs: Dict[str, "StructEntry"]) -> int:
         size = self.get_spec_size(structs)
