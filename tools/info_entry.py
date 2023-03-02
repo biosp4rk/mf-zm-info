@@ -121,6 +121,7 @@ class VarEntry(InfoEntry):
         prim = prim[0].upper() + prim[1:]
         pt = None
         try:
+            # TODO: use dictionary of strings instead
             pt = PrimType[prim]
         except KeyError:
             pt = None
@@ -139,6 +140,7 @@ class VarEntry(InfoEntry):
     def spec(self) -> str:
         if self.primitive == PrimType.Struct:
             return self.struct_name
+        # TODO: use dictionary instead
         return self.primitive.name.lower()
 
     def type_str(self) -> str:
@@ -287,11 +289,11 @@ class DataEntry(VarEntry):
         data = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
-            (K_TYPE, entry.type_str()),
-            (K_ADDR, entry.addr)
+            (K_TYPE, entry.type_str())
         ]
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
+        data.append((K_ADDR, entry.addr))
         if entry.enum:
             data.append((K_ENUM, entry.enum))
         if entry.notes:
@@ -345,11 +347,11 @@ class StructVarEntry(VarEntry):
         data = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
-            (K_TYPE, entry.type_str()),
-            (K_OFFSET, entry.offset)
+            (K_TYPE, entry.type_str())
         ]
         if entry.tags:
             data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
+        data.append((K_OFFSET, entry.offset))
         if entry.enum:
             data.append((K_ENUM, entry.enum))
         if entry.notes:
