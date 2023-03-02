@@ -31,23 +31,22 @@ def load_yaml(path: str, map_type: str) -> InfoFile:
             return {k: EnumEntry.from_yaml(v) for k, v in data.items()}
     raise ValueError()
 
+def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
+    if map_type == MAP_RAM:
+        return [DataEntry.to_yaml(d) for d in data]
+    elif map_type == MAP_CODE:
+        return [CodeEntry.to_yaml(d) for d in data]
+    elif map_type == MAP_DATA:
+        return [DataEntry.to_yaml(d) for d in data]
+    elif map_type == MAP_STRUCTS:
+        return {k: StructEntry.to_yaml(v) for k, v in data.items()}
+    elif map_type == MAP_ENUMS:
+        return {k: EnumEntry.to_yaml(v) for k, v in data.items()}
+    else:
+        raise ValueError()
 
 def write_yaml(path: str, map_type: str, data: InfoFile) -> None:
-    # convert data to be yaml friendly
-    yml = None
-    if map_type == MAP_RAM:
-        yml = [DataEntry.to_yaml(d) for d in data]
-    elif map_type == MAP_CODE:
-        yml = [CodeEntry.to_yaml(d) for d in data]
-    elif map_type == MAP_DATA:
-        yml = [DataEntry.to_yaml(d) for d in data]
-    elif map_type == MAP_STRUCTS:
-        yml = {k: StructEntry.to_yaml(v) for k, v in data.items()}
-    elif map_type == MAP_ENUMS:
-        yml = {k: EnumEntry.to_yaml(v) for k, v in data.items()}
-    # write data
-    if yml is None:
-        raise ValueError()
+    yml = info_file_yaml(map_type, data)
     with open(path, "w") as f:
         yaml.safe_dump(yml, f, width=math.inf, sort_keys=False)
 
