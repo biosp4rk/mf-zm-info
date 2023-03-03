@@ -1,3 +1,109 @@
+- desc: iQue Set V-Blank request flag
+  label: iQue_SetVBlankRequestFlag
+  addr:
+    C: 0x7FD354
+  size:
+    C: 0xC
+  mode: thumb
+  params: null
+  return: null
+- desc: Display iQue boot screens
+  label: iQue_DisplayBootScreens
+  addr:
+    C: 0x7FD360
+  size:
+    C: 0x120
+  mode: thumb
+  params: null
+  return: null
+  notes: Jumps to normal InterruptSetup at end
+- desc: Setup iQue logo screen
+  label: iQue_SetupLogoScreen
+  addr:
+    C: 0x7FD480
+  size:
+    C: 0x100
+  mode: thumb
+  params: null
+  return: null
+- desc: Display iQue logo screen
+  label: iQue_DisplayLogoScreen
+  addr:
+    C: 0x7FD580
+  size:
+    C: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: iQue setup info screen
+  label: iQue_SetupInfoScreen
+  addr:
+    C: 0x7FD5FC
+  size:
+    C: 0x70
+  mode: thumb
+  params: null
+  return: null
+- desc: iQue display info screen
+  label: iQue_DisplayInfoScreen
+  addr:
+    C: 0x7FD66C
+  size:
+    C: 0x34
+  mode: thumb
+  params: null
+  return: null
+  notes: Waits on the screen for 100 frames
+- desc: iQue CpuSet
+  label: iQue_CpuSet
+  addr:
+    C: 0x7FD6A0
+  size:
+    C: 0x4
+  mode: thumb
+  params:
+  - desc: Source address
+    label: SourceAddress
+    type: u8 *
+  - desc: Destination address
+    label: DestinationAddress
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: u32
+  return: null
+  notes: Calls software interrupt 0xB
+- desc: iQue LZ77UnCompReadNormalWrite16bit
+  label: iQue_LZ77UnCompReadNormalWrite16bit
+  addr:
+    C: 0x7FD6A4
+  size:
+    C: 0x4
+  mode: thumb
+  params:
+  - desc: Source address
+    label: SourceAddress
+    type: u16 *
+  - desc: Destination address
+    label: DestinationAddress
+    type: u16 *
+  return: null
+  notes: Calls software interrupt 0x12
+- desc: iQue RegisterRamReset
+  label: iQue_RegisterRamReset
+  addr:
+    C: 0x7FD6A8
+  size:
+    C: 0x4
+  mode: thumb
+  params:
+  - desc: Reset flags
+    label: ResetFlags
+    type: u8
+    tags:
+    - flags
+  return: null
+  notes: Calls software interrupt 0x1
 - desc: iQue bx_r0
   label: iQue_bx_r0
   addr:
