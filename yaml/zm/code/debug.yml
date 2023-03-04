@@ -1,0 +1,535 @@
+- desc: Erase SRAM
+  label: EraseSram
+  addr:
+    U: 0xC04
+    E: 0xC58
+    J: 0xC04
+    C: 0x1404
+    B: 0xE14
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+  notes: Fills SRAM with 0xFFFF
+- desc: SRAM read related
+  label: SramReadRelated_C9C
+  addr:
+    U: 0xC48
+    E: 0xC9C
+    J: 0xC48
+    C: 0x1448
+    B: 0xE58
+  size: 0x374
+  mode: thumb
+  params: null
+  return: null
+  notes: Read from SRAM?
+- desc: Sound related
+  label: SoundRelated_284C
+  addr:
+    U: 0x27F8
+    E: 0x284C
+    J: 0x27F8
+    C: 0x51AC
+    B: 0x2A08
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+  notes: Updates the SOUNDCNT_H register?
+- desc: Music related
+  label: MusicRelated_3430
+  addr:
+    U: 0x33DC
+    E: 0x3430
+    J: 0x33DC
+    C: 0x5D90
+    B: 0x35EC
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Music related
+  label: MusicRelated_3EB4
+  addr:
+    U: 0x3E60
+    E: 0x3EB4
+    J: 0x3E60
+    C: 0x6814
+    B: 0x4070
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+  notes: Updates the current music priority?
+- desc: Map OAM related
+  label: MapOamRelated_697C8
+  addr:
+    U: 0x696AC
+    E: 0x697C8
+    J: 0x696AC
+    C: 0x6C514
+    B: 0x69FB0
+  size:
+    U: 0x364
+    E: 0x364
+    J: 0x364
+    C: 0x360
+    B: 0x364
+  mode: thumb
+  params: null
+  return: null
+- desc: File screen options related
+  label: FileScreenOptionsRelated_73438
+  addr:
+    U: 0x73300
+    E: 0x73438
+    J: 0x7331C
+    C: 0x765B4
+    B: 0x75A94
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Save file related
+  label: SaveFileRelated_748C4
+  addr:
+    U: 0x7478C
+    E: 0x748C4
+    J: 0x747A8
+    C: 0x77A40
+    B: 0x76F30
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_74CA4
+  addr:
+    U: 0x74B6C
+    E: 0x74CA4
+    J: 0x74B88
+    C: 0x77E20
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_74D40
+  addr:
+    U: 0x74C08
+    E: 0x74D40
+    J: 0x74C24
+    C: 0x77EBC
+    B: 0x773AC
+  size: 0xF0
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_74E30
+  addr:
+    U: 0x74CF8
+    E: 0x74E30
+    J: 0x74D14
+    C: 0x77FAC
+    B: 0x7749C
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_74EDC
+  addr:
+    U: 0x74DA4
+    E: 0x74EDC
+    J: 0x74DC0
+    C: 0x78058
+    B: 0x77548
+  size: 0x1B4
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_757F8
+  addr:
+    U: 0x756C0
+    E: 0x757F8
+    J: 0x756DC
+    C: 0x78974
+    B: 0x77E64
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+- desc: Load save related?
+  label: LoadSaveRelated_75984
+  addr:
+    U: 0x7584C
+    E: 0x75984
+    J: 0x75868
+    C: 0x78AFC
+    B: 0x77FF0
+  size:
+    U: 0x120
+    E: 0x12C
+    J: 0x128
+    C: 0x128
+    B: 0x194
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug update menu OAM?
+  label: DebugUpdateMenuOam
+  addr:
+    B: 0x78448
+  size:
+    B: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_78490
+  label: debug_78490
+  addr:
+    B: 0x78490
+  size:
+    B: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug draw menu related
+  label: DebugDrawMenuRelated_1
+  addr:
+    B: 0x7857C
+  size:
+    B: 0x23C
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_787B8
+  label: debug_787B8
+  addr:
+    B: 0x787B8
+  size:
+    B: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug draw menu related
+  label: DebugDrawMenuRelated_2
+  addr:
+    B: 0x78854
+  size:
+    B: 0x168
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_789BC
+  label: debug_789BC
+  addr:
+    B: 0x789BC
+  size:
+    B: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_78A30
+  label: debug_78A30
+  addr:
+    B: 0x78A30
+  size:
+    B: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug subroutine?
+  label: DebugSubroutine
+  addr:
+    B: 0x78AA4
+  size:
+    B: 0x204
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug set V-Blank code pointer
+  label: DebugSetVBlankCodePtr
+  addr:
+    B: 0x78CA8
+  size:
+    B: 0x10
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank code during debug
+  label: VBlankCodeDuringDebug
+  addr:
+    B: 0x78CB8
+  size:
+    B: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug setup menu?
+  label: DebugSetupMenu
+  addr:
+    B: 0x78D54
+  size:
+    B: 0x32C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug handle input?
+  label: DebugHandleInput
+  addr:
+    B: 0x79080
+  size:
+    B: 0x4E8
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SECTION" subroutine?
+  label: Debug_SECTION_Subroutine
+  addr:
+    B: 0x79568
+  size:
+    B: 0x1D8
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SECTION" map related?
+  label: Debug_SECTION_MapRelated_1
+  addr:
+    B: 0x79740
+  size:
+    B: 0x13C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SECTION" map related?
+  label: Debug_SECTION_MapRelated_2
+  addr:
+    B: 0x7987C
+  size:
+    B: 0x144
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "MODE" subroutine?
+  label: Debug_MODE_Subroutine
+  addr:
+    B: 0x799C0
+  size:
+    B: 0x164
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SAVE" subroutine?
+  label: Debug_SAVE_Subroutine
+  addr:
+    B: 0x79B24
+  size:
+    B: 0x1B4
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug time attack related?
+  label: DebugTimeAttackRelated
+  addr:
+    B: 0x79CD8
+  size:
+    B: 0x1C0
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_79E98
+  label: debug_79E98
+  addr:
+    B: 0x79E98
+  size:
+    B: 0x58
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SAMUS" subroutine?
+  label: Debug_SAMUS_Subroutine
+  addr:
+    B: 0x79EF0
+  size:
+    B: 0x2C0
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "Sound" subroutine?
+  label: Debug_Sound_Subroutine
+  addr:
+    B: 0x7A1B0
+  size:
+    B: 0x1A0
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7A350
+  label: debug_7A350
+  addr:
+    B: 0x7A350
+  size:
+    B: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "DEMO" (cutscene) subroutine?
+  label: Debug_DEMO_Subroutine
+  addr:
+    B: 0x7A39C
+  size:
+    B: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "etc" subroutine?
+  label: Debug_etc_Subroutine
+  addr:
+    B: 0x7A590
+  size:
+    B: 0xF4
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7A684
+  label: debug_7A684
+  addr:
+    B: 0x7A684
+  size:
+    B: 0x8C
+  mode: thumb
+  params: null
+  return: null
+- desc: Debug "SAVE" related?
+  label: Debug_SAVE_Related
+  addr:
+    B: 0x7A710
+  size:
+    B: 0x23C
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7A94C
+  label: debug_7A94C
+  addr:
+    B: 0x7A94C
+  size:
+    B: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7A9E8
+  label: debug_7A9E8
+  addr:
+    B: 0x7A9E8
+  size:
+    B: 0x90
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7AA78
+  label: debug_7AA78
+  addr:
+    B: 0x7AA78
+  size:
+    B: 0x19C
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7AC14
+  label: debug_7AC14
+  addr:
+    B: 0x7AC14
+  size:
+    B: 0x484
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7B098
+  label: debug_7B098
+  addr:
+    B: 0x7B098
+  size:
+    B: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: debug_7B114
+  label: debug_7B114
+  addr:
+    B: 0x7B114
+  size:
+    B: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Stereo related
+  label: StereoRelated_78528
+  addr:
+    U: 0x78228
+    E: 0x78528
+    J: 0x78244
+    C: 0x7B4C8
+    B: 0x7DB18
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Time attack related?
+  label: TimeAttackRelated_7FD08
+  addr:
+    U: 0x7F60C
+    E: 0x7FD08
+    J: 0x7F668
+    C: 0x82B38
+    B: 0x85508
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Process link cable connection?
+  label: ProcessLinkCableConnection
+  addr:
+    U: 0x88EA0
+    E: 0x89B2C
+    J: 0x88EFC
+    C: 0x8CA0C
+    B: 0x8F350
+  size:
+    U: 0x270
+    E: 0x270
+    J: 0x270
+    C: 0x270
+    B: 0x514
+  mode: thumb
+  params: null
+  return: null
+  notes: Main loop for the SIO connection code?
+- desc: Link cable related?
+  label: LinkCableRelated_8AABC
+  addr:
+    U: 0x89E30
+    E: 0x8AABC
+    J: 0x89E8C
+    C: 0x8D9A8
+    B: 0x90584
+  size: 0x164
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: fixme_8B3BC
+  addr:
+    U: 0x8A730
+    E: 0x8B3BC
+    J: 0x8A78C
+    C: 0x8E2A8
+    B: 0x90E84
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null

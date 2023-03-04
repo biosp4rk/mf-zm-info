@@ -23,36 +23,6 @@
   return: null
   notes: Test DivArm and Sqrt?
 - desc: '?'
-  label: EraseSram?
-  addr:
-    U: 0xC04
-    E: 0xC58
-    J: 0xC04
-    C: 0x1404
-  size: 0x44
-  mode: thumb
-  params: null
-  return: null
-  notes: Fills SRAM with 0xFFFF
-- desc: '?'
-  label: SramReadRelated?
-  addr:
-    U: 0xC48
-    E: 0xC9C
-    J: 0xC48
-    C: 0x1448
-  size: 0x374
-  mode: thumb
-  params:
-  - desc: '?'
-    label: '?'
-    type: '?'
-  return:
-    desc: '?'
-    label: '?'
-    type: '?'
-  notes: Read from SRAM?
-- desc: '?'
   label: SRAMRelated
   addr:
     U: 0xFBC
@@ -643,21 +613,6 @@
     type: '?'
   return: null
 - desc: '?'
-  label: UpdateSOUNDCNT_H?
-  addr:
-    U: 0x27F8
-    E: 0x284C
-    J: 0x27F8
-    C: 0x51AC
-  size: 0xFC
-  mode: thumb
-  params:
-  - desc: Action?
-    label: '?'
-    type: '?'
-  return: null
-  notes: Updates the SOUNDCNT_H register?
-- desc: '?'
   label: SoundRelated?
   addr:
     U: 0x2A38
@@ -937,17 +892,6 @@
 - desc: '?'
   label: MusicRelated
   addr:
-    U: 0x33DC
-    E: 0x3430
-    J: 0x33DC
-    C: 0x5D90
-  size: 0x7C
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: MusicRelated
-  addr:
     U: 0x3458
     E: 0x34AC
     J: 0x3458
@@ -1134,21 +1078,6 @@
     label: '?'
     type: '?'
   return: null
-- desc: '?'
-  label: UpdateMusicPriority?
-  addr:
-    U: 0x3E60
-    E: 0x3EB4
-    J: 0x3E60
-    C: 0x6814
-  size: 0x58
-  mode: thumb
-  params:
-  - desc: Priority
-    label: '?'
-    type: '?'
-  return: null
-  notes: Updates the current music priority?
 - desc: '?'
   label: MusicRelated
   addr:
@@ -5567,30 +5496,6 @@
 - desc: '?'
   label: OAMRelated?
   addr:
-    U: 0x696AC
-    E: 0x697C8
-    J: 0x696AC
-    C: 0x6C514
-  size:
-    U: 0x364
-    E: 0x364
-    J: 0x364
-    C: 0x360
-  mode: thumb
-  params:
-  - desc: '?'
-    label: '?'
-    type: '?'
-  - desc: '?'
-    label: '?'
-    type: '?'
-  - desc: '?'
-    label: '?'
-    type: '?'
-  return: null
-- desc: '?'
-  label: OAMRelated?
-  addr:
     U: 0x69A10
     E: 0x69B2C
     J: 0x69A10
@@ -6359,17 +6264,6 @@
     type: '?'
   return: null
 - desc: '?'
-  label: FileScreenOptionsRelated?
-  addr:
-    U: 0x73300
-    E: 0x73438
-    J: 0x7331C
-    C: 0x765B4
-  size: 0x94
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
   label: SRAMRelated
   addr:
     U: 0x73394
@@ -6529,17 +6423,6 @@
 - desc: '?'
   label: '?'
   addr:
-    U: 0x7478C
-    E: 0x748C4
-    J: 0x747A8
-    C: 0x77A40
-  size: 0x20
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
     U: 0x747AC
     E: 0x748E4
     J: 0x747C8
@@ -6573,50 +6456,6 @@
 - desc: '?'
   label: '?'
   addr:
-    U: 0x74B6C
-    E: 0x74CA4
-    J: 0x74B88
-    C: 0x77E20
-  size: 0x9C
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
-    U: 0x74C08
-    E: 0x74D40
-    J: 0x74C24
-    C: 0x77EBC
-  size: 0xF0
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
-    U: 0x74CF8
-    E: 0x74E30
-    J: 0x74D14
-    C: 0x77FAC
-  size: 0xAC
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
-    U: 0x74DA4
-    E: 0x74EDC
-    J: 0x74DC0
-    C: 0x78058
-  size: 0x1B4
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
     U: 0x75010
     E: 0x75148
     J: 0x7502C
@@ -6639,17 +6478,6 @@
 - desc: '?'
   label: '?'
   addr:
-    U: 0x756C0
-    E: 0x757F8
-    J: 0x756DC
-    C: 0x78974
-  size: 0x108
-  mode: thumb
-  params: null
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
     U: 0x757C8
     E: 0x75900
     J: 0x757E4
@@ -6659,24 +6487,6 @@
     E: 0x84
     J: 0x84
     C: 0x80
-  mode: thumb
-  params:
-  - desc: '?'
-    label: '?'
-    type: '?'
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
-    U: 0x7584C
-    E: 0x75984
-    J: 0x75868
-    C: 0x78AFC
-  size:
-    U: 0x120
-    E: 0x12C
-    J: 0x128
-    C: 0x128
   mode: thumb
   params:
   - desc: '?'
@@ -7120,17 +6930,6 @@
     type: '?'
   return: null
   notes: Handles samus' head and the black bar over the selected option?
-- desc: '?'
-  label: StereoRelated
-  addr:
-    U: 0x78228
-    E: 0x78528
-    J: 0x78244
-    C: 0x7B4C8
-  size: 0x24
-  mode: thumb
-  params: null
-  return: null
 - desc: '?'
   label: '?'
   addr:
@@ -7746,20 +7545,6 @@
 - desc: '?'
   label: '?'
   addr:
-    U: 0x7F60C
-    E: 0x7FD08
-    J: 0x7F668
-    C: 0x82B38
-  size: 0x88
-  mode: thumb
-  params:
-  - desc: '?'
-    label: '?'
-    type: '?'
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
     U: 0x7FD64
     E: 0x80460
     J: 0x7FDC0
@@ -8014,21 +7799,6 @@
   mode: thumb
   params: null
   return: null
-- desc: '?'
-  label: ProcessCableLinkConnection?
-  addr:
-    U: 0x88EA0
-    E: 0x89B2C
-    J: 0x88EFC
-    C: 0x8CA0C
-  size: 0x270
-  mode: thumb
-  params: null
-  return:
-    desc: Connection result
-    label: '?'
-    type: '?'
-  notes: Main loop for the SIO connection code?
 - desc: '?'
   label: DisplayError?
   addr:
@@ -8380,20 +8150,6 @@
 - desc: '?'
   label: '?'
   addr:
-    U: 0x89E30
-    E: 0x8AABC
-    J: 0x89E8C
-    C: 0x8D9A8
-  size: 0x164
-  mode: thumb
-  params: null
-  return:
-    desc: Connection result
-    label: '?'
-    type: '?'
-- desc: '?'
-  label: '?'
-  addr:
     U: 0x8A12C
     E: 0x8ADB8
     J: 0x8A188
@@ -8498,17 +8254,6 @@
   - desc: '?'
     label: '?'
     type: '?'
-  return: null
-- desc: '?'
-  label: '?'
-  addr:
-    U: 0x8A730
-    E: 0x8B3BC
-    J: 0x8A78C
-    C: 0x8E2A8
-  size: 0x70
-  mode: thumb
-  params: null
   return: null
 - desc: '?'
   label: Timer3OverflowTransfering?

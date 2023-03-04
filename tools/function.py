@@ -181,10 +181,17 @@ class Function(object):
                 lines.append(f".definelabel {label},0x{addr:X}")
             lines.append("")
 
+        # add address
+        lines.append(f"; {self.start_addr:X}")
+
         # get label for function name
         func_addr = self.start_addr + ROM_OFFSET
         label = self.symbols.get_label(func_addr, LabelType.Code)
         lines.append(label + ":")
+
+        # add size
+        size = self.end_addr - self.start_addr
+        lines.append(f"; Size: {size:X}")
 
         # go until end of function
         self.addr = self.start_addr
@@ -253,6 +260,4 @@ if __name__ == "__main__":
     # print function
     func = Function(rom, addr, syms)
     lines = func.get_lines(True)
-    size = func.end_addr - addr
-    print(f"; Size: {size:X}")
     print("\n".join(lines))

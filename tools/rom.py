@@ -38,7 +38,10 @@ class Rom(object):
             self.region = REGION_U
         elif title == "ZEROMISSIONPBMXP":
             self.game = GAME_ZM
-            self.region = REGION_E
+            if self.data[0x238] == 0xF0:
+                self.region = REGION_B
+            else:
+                self.region = REGION_E
         elif title == "ZEROMISSIONJBMXJ":
             self.game = GAME_ZM
             self.region = REGION_J
@@ -109,6 +112,8 @@ class Rom(object):
                 addr = 0x8C778
             elif self.region == REGION_C:
                 addr = 0x90294
+            elif self.region == REGION_B:
+                addr = 0x92E70
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -137,6 +142,8 @@ class Rom(object):
                 addr = 0x760E48
             elif self.region == REGION_C:
                 addr = 0x79FF38
+            elif self.region == REGION_B:
+                addr = 0x77DEF8
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -207,6 +214,15 @@ class Rom(object):
                     0x6E28: 0x7470,
                     0x7474: 0x748C,
                     0x7490: 0x7504
+                }
+            elif self.region == REGION_B:
+                # fix
+                return {
+                    0x4374: 0x4408,
+                    0x4418: 0x44B8,
+                    0x44C8: 0x4B10,
+                    0x4B14: 0x4B2C,
+                    0x4B30: 0x4BA4
                 }
 
     def find_bytes(self, pat: bytes, start: int = 0) -> int:
