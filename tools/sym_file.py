@@ -118,22 +118,13 @@ def gen_sym_file(rom: Rom):
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    parser.add_argument("rom_path", type=str)
+    apu.add_rom_path_arg(parser)
     parser.add_argument("out_path", type=str)
+
     args = parser.parse_args()
-
-    if len(sys.argv) <= 2:
-        parser.print_help()
-        quit()
-
-    # load rom
-    rom = None
-    try:
-        rom = Rom(args.rom_path)
-    except:
-        print(f"Could not open rom at {args.rom_path}")
-        quit()
+    rom = apu.get_rom(args)
     
     lines = gen_sym_file(rom)
     with open(args.out_path, 'w') as f:

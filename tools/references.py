@@ -202,24 +202,15 @@ def output_section(title, refs) -> List[str]:
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    parser.add_argument("rom_path", type=str)
+    apu.add_rom_path_arg(parser)
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-s", "--specific", metavar="addr", type=str)
     group.add_argument("-a", "--all", action="store_true")
+
     args = parser.parse_args()
-
-    if len(sys.argv) <= 2:
-        parser.print_help()
-        quit()
-
-    # load rom
-    rom = None
-    try:
-        rom = Rom(args.rom_path)
-    except:
-        print(f"Could not open rom at {args.rom_path}")
-        quit()
+    rom = apu.get_rom(args)
     refs = References(rom)
 
     if args.all:

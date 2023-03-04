@@ -147,8 +147,40 @@ class Function(object):
             prev_addr = addr
         return pools
 
-    def get_lines(self) -> List[str]:
+    def get_symbols(self) -> Dict[int, str]:
+        syms = {}
+        # find all bls
+        for inst in self.instructs.values():
+            if inst.format == ThumbForm.Link:
+                addr = inst.branch_addr() + ROM_OFFSET
+                label = self.symbols.get_label(addr, LabelType.Code)
+                syms[addr] = label
+        # check all data pools
+        pools = self.get_data_pools()
+        rom_start = self.rom.code_start(True)
+        rom_end = self.rom.data_end(True)
+        for addr, size in pools:
+            end = addr + size
+            for i in range(addr, end, 4):
+                val = self.rom.read32(i)
+                if val >= rom_start and val < rom_end:
+                    pa = val - ROM_OFFSET
+                    if pa >= self.start_addr and pa < self.end_addr:
+                        continue
+                    label = self.symbols.get_label(val, LabelType.Data)
+                    syms[val] = label
+        return syms
+
+
+    def get_lines(self, include_syms: bool) -> List[str]:
         lines = []
+        if include_syms:
+            syms = self.get_symbols()
+            syms = sorted(syms.items())
+            for addr, label in syms:
+                lines.append(f".definelabel {label},0x{addr:X}")
+            lines.append("")
+
         # get label for function name
         func_addr = self.start_addr + ROM_OFFSET
         label = self.symbols.get_label(func_addr, LabelType.Code)
@@ -204,30 +236,15 @@ class Function(object):
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    parser.add_argument("rom_path", type=str)
-    parser.add_argument("addr", type=str)
+    apu.add_rom_path_arg(parser)
+    apu.add_addr_arg(parser)
+    parser.add_argument("-s", "--symbols", action="store_true")
+
     args = parser.parse_args()
-
-    if len(sys.argv) <= 2:
-        parser.print_help()
-        quit()
-
-    # load rom
-    rom = None
-    try:
-        rom = Rom(args.rom_path)
-    except:
-        print(f"Could not open rom at {args.rom_path}")
-        quit()
-
-    # get address
-    addr = None
-    try:
-        addr = int(args.addr, 16)
-    except:
-        print(f"Invalid hex address {args.addr}")
-        quit()
+    rom = apu.get_rom(args)
+    addr = apu.get_addr(args)
     
     # load symbols
     info = GameInfo(rom.game, rom.region)
@@ -235,7 +252,7 @@ if __name__ == "__main__":
 
     # print function
     func = Function(rom, addr, syms)
-    lines = func.get_lines()
+    lines = func.get_lines(True)
     size = func.end_addr - addr
     print(f"; Size: {size:X}")
     print("\n".join(lines))

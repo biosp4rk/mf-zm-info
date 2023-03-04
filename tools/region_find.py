@@ -50,21 +50,22 @@ class Finder(object):
             if size > best_size:
                 best_addr = i
                 best_size = size
-                if best_size > 0x1000:
+                if best_size > 0x10000:
                     break
         return best_addr, best_size
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     parser.add_argument("src_rom_path", type=str)
     parser.add_argument("target_rom_path", type=str)
-    parser.add_argument("addr", type=str)
-    args = parser.parse_args()
+    apu.add_addr_arg(parser)
 
+    args = parser.parse_args()
     src_rom = Rom(args.src_rom_path)
     target_rom = Rom(args.target_rom_path)
-    addr = int(args.addr, 16)
+    addr = apu.get_rom(args)
 
     finder = Finder(src_rom, target_rom)
     ta, ts = finder.find(addr)

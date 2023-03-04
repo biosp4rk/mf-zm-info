@@ -41,6 +41,7 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
   - **`desc`** : `str`
   - **`label`** : `str`
   - **`type`** : `str`
+  - **`count`** : `RegionInt`
   - **`tags`** : `Optional[List[str]]`
   - **`enum`** : `Optional[str]`
   - **`notes`** : `Optional[str]`

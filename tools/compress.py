@@ -158,14 +158,16 @@ def is_lz77(input: bytes, idx: int) -> int:
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     parser.add_argument("action", type=str, choices=["rle", "lz", "is-lz"])
-    parser.add_argument("rom_path", type=str)
-    parser.add_argument("addr", type=str)
-    args = parser.parse_args()
+    apu.add_rom_path_arg(parser)
+    apu.add_addr_arg(parser)
 
-    rom = Rom(args.rom_path)
-    addr = int(args.addr, 16)
+    args = parser.parse_args()
+    rom = apu.get_rom(args)
+    addr = apu.get_addr(args)
+
     if args.action == "rle":
         raw, size = decomp_lz77(rom.data, addr)
         print(f"{len(raw):X}\t{size:X}")

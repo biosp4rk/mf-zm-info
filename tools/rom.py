@@ -100,7 +100,6 @@ class Rom(object):
             elif self.region == REGION_C:
                 addr = 0xA72D4
                 # C also has code ending at 0x7FD6E8
-
         elif self.game == GAME_ZM:
             if self.region == REGION_U:
                 addr = 0x8C71C

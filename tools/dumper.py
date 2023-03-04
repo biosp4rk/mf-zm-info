@@ -15,6 +15,7 @@ def dump_bytes(rom: Rom, start: int, length: int):
 def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
     addr = rom.code_start()
     code_end = rom.code_end()
+    print(f"{code_end:X}")
     arm_funcs = rom.arm_functions()
     all_funcs: List[Tuple[int, int]] = []
     while addr < code_end:
@@ -32,23 +33,26 @@ def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
 
 
 if __name__ == "__main__":
+    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command")
     parser1 = subparsers.add_parser("bytes")
-    parser1.add_argument("rom_path", type=str)
-    parser1.add_argument("addr", type=str)
+    apu.add_rom_path_arg(parser1)
+    apu.add_addr_arg(parser1)
     parser1.add_argument("count", type=str)
     parser1 = subparsers.add_parser("all_funcs")
-    parser1.add_argument("rom_path", type=str)
+    apu.add_rom_path_arg(parser1)
     args = parser.parse_args()
 
     if args.command == "bytes":
-        rom = Rom(args.rom_path)
-        addr = int(args.addr, 16)
+        rom = apu.get_rom(args)
+        addr = apu.get_addr(args)
         count = int(args.count, 16)
         dump_bytes(rom, addr, count)
-    if args.command == "all_funcs":
-        rom = Rom(args.rom_path)
+    elif args.command == "all_funcs":
+        rom = apu.get_rom(args)
         funcs = all_funcs(rom)
         for addr, size in funcs:
             print(f"{addr:X}\t{size:X}")
+    else:
+        parser.print_help()
