@@ -298,7 +298,7 @@ ButtonInput:
   - desc: L
     label: L
     val: 0x200
-ChozoTargetCheckType:
+ChozoHintCheckType:
   vals:
   - desc: Beam/bombs
     label: BeamBombs
@@ -309,7 +309,7 @@ ChozoTargetCheckType:
   - desc: Event
     label: Event
     val: 0x2
-ChozoTargetIcon:
+ChozoHintIcon:
   vals:
   - desc: Target
     label: Target
@@ -332,7 +332,7 @@ ChozoTargetIcon:
   - desc: Pink flame (moves up/down)
     label: PinkFlame_MovesUpDown
     val: 0xE
-ChozoTargetLoc:
+ChozoHintLocation:
   vals:
   - desc: Long beam
     label: LongBeam
@@ -798,6 +798,23 @@ CutsceneRequest:
     val: 0x7
   - desc: Activating escape ship
     label: ActivatingEscapeShip
+    val: 0x8
+CutsceneSpecialEffectStatus:
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: On OBJ
+    label: OnOBJ
+    val: 0x1
+  - desc: OBJ effect ended
+    label: OBJEffectEnded
+    val: 0x2
+  - desc: On BG
+    label: OnBG
+    val: 0x4
+  - desc: BG effect ended
+    label: BGEffectEnded
     val: 0x8
 DebrisCloudType:
   vals:
@@ -2407,7 +2424,7 @@ SpriteStatus:
   - desc: Not drawn
     label: NotDrawn
     val: 0x4
-  - desc: Rotation scaling flag
+  - desc: Rotation/scaling flag
     label: RotationScalingFlag
     val: 0x8
   - desc: Mosaic flag?

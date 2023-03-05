@@ -1268,7 +1268,7 @@ NeverReformBlock:
     label: YPosition
     type: u8
     offset: 0x2
-NonGameplayRam:
+NonGameplayRam_Ending:
   size: 0x540
   vars:
   - desc: Ending image tier
@@ -1279,6 +1279,16 @@ NonGameplayRam:
     label: EndingPercent
     type: u8
     offset: 0x9A
+NonGameplayRam_FileSelect:
+  size: 0x540
+  vars:
+  - desc: Stereo flag
+    label: StereoFlag
+    type: u8
+    offset: 0x26D
+NonGameplayRam_Pause:
+  size: 0x540
+  vars:
   - desc: Map target X position
     label: MapTargetXPosition
     type: u8
@@ -1287,10 +1297,13 @@ NonGameplayRam:
     label: MapTargetYPosition
     type: u8
     offset: 0x20D
-  - desc: Stereo flag
-    label: StereoFlag
+NonGameplayRam_Title:
+  size: 0x540
+  vars:
+  - desc: TODO
+    label: TODO
     type: u8
-    offset: 0x26D
+    offset: 0x0
 NumNeverReformBlocksBroken:
   size: 0x8
   vars:
