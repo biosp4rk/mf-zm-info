@@ -1023,26 +1023,26 @@
     E: 0x40E5E4
     J: 0x40D80C
     C: 0x42F34C
-- desc: Chozo statue targets
-  label: ChozoStatueTargets
-  type: ChozoStatueTarget
+- desc: Chozo statue hints
+  label: ChozoStatueHints
+  type: ChozoHint
   count: 0xA
   addr:
     U: 0x40DF78
     E: 0x40EDAC
     J: 0x40DFD4
     C: 0x42FB14
-- desc: Chozo target checks
-  label: ChozoTargetChecks
-  type: ChozoTargetCheck
+- desc: Chozo hint checks
+  label: ChozoHintChecks
+  type: ChozoHintCheck
   count: 0x10
   addr:
     U: 0x40E038
     E: 0x40EE6C
     J: 0x40E094
     C: 0x42FBD4
-- desc: Chozo target trigger events
-  label: ChozoTargetTriggerEvents
+- desc: Chozo hint trigger events
+  label: ChozoHintTriggerEvents
   type: u8
   count: 0x10
   addr:
@@ -1237,7 +1237,7 @@
     C: 0x7924FC
 - desc: Non-gameplay RAM pointer
   label: NonGameplayRamPtr
-  type: NonGameplayRam *
+  type: u8 **
   addr:
     U: 0x754BC4
     E: 0x767910
@@ -1492,8 +1492,8 @@
     E: 0x77417C
     J: 0x7603E4
     C: 0x79F4D4
-- desc: Chozo statue target path pointers
-  label: ChozoStatueTargetPathPtrs
+- desc: Chozo statue hint path pointers
+  label: ChozoStatueHintPathPtrs
   type: u8 *
   count: 0x6
   addr:

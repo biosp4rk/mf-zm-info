@@ -10472,7 +10472,7 @@
   return: null
   notes: Updates the BGCNT of the provided background
 - desc: Cutscene update background position
-  label: CutsceneUpdateBackgroundPosition
+  label: CutsceneUpdateBGPosition
   addr:
     U: 0x614D4
     E: 0x615EC
@@ -10529,6 +10529,181 @@
     desc: VOFS pointer
     label: VOFSPtr
     type: u16 *
+- desc: Cutscene start automatic background scrolling
+  label: CutsceneStartAutomaticBGScrolling
+  addr:
+    U: 0x61618
+    E: 0x61730
+    J: 0x61618
+    C: 0x64474
+  size: 0x2C0
+  mode: thumb
+  params:
+  - desc: Type?
+    label: Type
+    type: u8
+  - desc: Param 1
+    label: param_01
+    type: u32
+  - desc: Background
+    label: Background
+    type: u8
+  return: null
+- desc: Cutscene update automatic background scrolling
+  label: CutsceneUpdateAutomaticBGScrolling
+  addr:
+    U: 0x618D8
+    E: 0x619F0
+    J: 0x618D8
+    C: 0x64734
+  size: 0x6C
+  mode: thumb
+  params:
+  - desc: Cutscene background scrolling pointer
+    label: CutsceneBGScrollingPtr
+    type: CutsceneBGScrolling *
+  return: null
+- desc: Cutscene check background scrolling active
+  label: CutsceneCheckBGScrollingActive
+  addr:
+    U: 0x61944
+    E: 0x61A5C
+    J: 0x61944
+    C: 0x647A0
+  size:
+    U: 0x80
+    E: 0x80
+    J: 0x80
+    C: 0x84
+  mode: thumb
+  params:
+  - desc: Background
+    label: Background
+    type: u16
+  return:
+    desc: Status
+    label: Status
+    type: u8
+    notes: 0 = not active, 1 = horizontal, 2 = vertical, 3 = both
+- desc: Cutscene update backgrounds position
+  label: CutsceneUpdateBGsPosition
+  addr:
+    U: 0x619C4
+    E: 0x61ADC
+    J: 0x619C4
+    C: 0x64824
+  size: 0xC4
+  mode: thumb
+  params:
+  - desc: Update scrolling flag
+    label: UpdateScrollingFlag
+    type: bool
+  return: null
+- desc: Cutscene update screen shake
+  label: CutsceneUpdateScreenShake
+  addr:
+    U: 0x61A88
+    E: 0x61BA0
+    J: 0x61A88
+    C: 0x648E8
+  size: 0x110
+  mode: thumb
+  params:
+  - desc: Is vertical flag
+    label: IsVerticalFlag
+    type: bool
+  - desc: Cutscene screen shake pointer
+    label: CutsceneScreenShakePtr
+    type: CutsceneScreenShake *
+  return: null
+- desc: Cutscene start screen shake
+  label: CutsceneStartScreenShake
+  addr:
+    U: 0x61B98
+    E: 0x61CB0
+    J: 0x61B98
+    C: 0x649F8
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Type?
+    label: Type
+    type: u8
+  - desc: Affected background
+    label: AffectedBG
+    type: u16
+  return: null
+- desc: Update cutscene special effect
+  label: UpdateCutsceneSpecialEffect
+  addr:
+    U: 0x61BE4
+    E: 0x61CFC
+    J: 0x61BE4
+    C: 0x64A44
+  size: 0x184
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene start OBJ effect
+  label: CutsceneStartOBJEffect
+  addr:
+    U: 0x61D68
+    E: 0x61E80
+    J: 0x61D68
+    C: 0x64BC8
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: BLDCNT
+    label: BLDCNT
+    type: u16
+  - desc: BLDY
+    label: BLDY
+    type: u16
+  - desc: Interval
+    label: Interval
+    type: u8
+  - desc: Intensity
+    label: Intensity
+    type: u8
+  return: null
+- desc: Cutscene start background effect
+  label: CutsceneStartBGEffect
+  addr:
+    U: 0x61DC8
+    E: 0x61EE0
+    J: 0x61DC8
+    C: 0x64C28
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: BLDCNT
+    label: BLDCNT
+    type: u16
+  - desc: BLDALPHA_L
+    label: BLDALPHA_L
+    type: u8
+  - desc: BLDALPHA_H
+    label: BLDALPHA_H
+    type: u8
+  - desc: Interval
+    label: Interval
+    type: u8
+  - desc: Intensity
+    label: Intensity
+    type: u8
+  return: null
+- desc: Cutscene reset data
+  label: CutsceneResetData
+  addr:
+    U: 0x61E38
+    E: 0x61F50
+    J: 0x61E38
+    C: 0x64C98
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: null
 - desc: Kraid rising rising
   label: KraidRisingRising
   addr:

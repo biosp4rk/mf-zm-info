@@ -567,7 +567,7 @@ ButtonAssignments:
     type: u16
     offset: 0x6
     enum: ButtonInput
-ChozoStatueTarget:
+ChozoHint:
   size: 0xC
   vars:
   - desc: Statue area
@@ -595,35 +595,35 @@ ChozoStatueTarget:
     label: StartIcon
     type: u8
     offset: 0x5
-    enum: ChozoTargetIcon
-  - desc: Target area
-    label: TargetArea
+    enum: ChozoHintIcon
+  - desc: Hint area
+    label: HintArea
     type: u8
     offset: 0x6
     enum: AreaID
-  - desc: Target X position
-    label: TargetXPosition
+  - desc: Hint X position
+    label: HintXPosition
     type: u8
     offset: 0x7
-  - desc: Target Y position
-    label: TargetYPosition
+  - desc: Hint Y position
+    label: HintYPosition
     type: u8
     offset: 0x8
   - desc: End icon
     label: EndIcon
     type: u8
     offset: 0x9
-    enum: ChozoTargetIcon
-ChozoTargetCheck:
+    enum: ChozoHintIcon
+ChozoHintCheck:
   size: 0x2
   vars:
   - desc: Check type
     label: CheckType
     type: u8
     offset: 0x0
-    enum: ChozoTargetCheckType
+    enum: ChozoHintCheckType
   - desc: Equipment bit flag or event number
-    label: EquipmentBitFlagOrEventNum
+    label: EquipmentFlagOrEventNum
     type: u8
     offset: 0x1
 CollectedItem:
@@ -939,6 +939,29 @@ CurrScrolls:
     label: SecondScroll
     type: ActiveScroll
     offset: 0xC
+CutsceneBGScrolling:
+  size: 0xC
+  vars:
+  - desc: Background position pointer
+    label: BGPositionPtr
+    type: u16 *
+    offset: 0x0
+  - desc: Unknown 04
+    label: unk_04
+    type: u16
+    offset: 0x4
+  - desc: Unknown 06
+    label: unk_06
+    type: u8
+    offset: 0x6
+  - desc: Unknown 07
+    label: unk_07
+    type: u8
+    offset: 0x7
+  - desc: Unknown 08
+    label: unk_08
+    type: u8
+    offset: 0x8
 CutsceneData:
   size: 0x10
   vars:
@@ -1042,6 +1065,152 @@ CutsceneInfo:
     type: u8
     offset: 0xD
     enum: Event
+CutsceneOamData:
+  size: 0x20
+  vars:
+  - desc: Y position
+    label: YPosition
+    type: u16
+    offset: 0x0
+  - desc: X position
+    label: XPosition
+    type: u16
+    offset: 0x2
+  - desc: Unknown 04
+    label: unk_04
+    type: u8
+    offset: 0x4
+  - desc: Animation timer
+    label: AnimTimer
+    type: u8
+    offset: 0x8
+  - desc: Current animation
+    label: CurrAnim
+    type: u8
+    offset: 0x9
+  - desc: OAM ID
+    label: OamID
+    type: u8
+    offset: 0xA
+  - desc: Status
+    label: Status
+    type: u8
+    offset: 0xB
+  - desc: Unknown 0C
+    label: unk_0C
+    type: u8
+    offset: 0xC
+  - desc: Unknown 0D
+    label: unk_0D
+    type: u8
+    offset: 0xD
+  - desc: Unknown 0E
+    label: unk_0E
+    type: u16
+    offset: 0xE
+  - desc: Velocity?
+    label: Velocity
+    type: u16
+    offset: 0x10
+  - desc: Unknown 12
+    label: unk_12
+    type: u16
+    offset: 0x12
+  - desc: Timer
+    label: Timer
+    type: u16
+    offset: 0x14
+  - desc: Unknown 16
+    label: unk_16
+    type: u16
+    offset: 0x16
+  - desc: Unknown 18
+    label: unk_18
+    type: u16
+    offset: 0x18
+  - desc: Unknown 1A
+    label: unk_1A
+    type: u16
+    offset: 0x1A
+  - desc: Unknown 1E
+    label: unk_1E
+    type: u8
+    offset: 0x1E
+CutsceneScreenShake:
+  size: 0x8
+  vars:
+  - desc: Affected background flag
+    label: AffectedBGFlag
+    type: u16
+    offset: 0x0
+  - desc: Unknown 02
+    label: unk_02
+    type: u8
+    offset: 0x2
+  - desc: Unknown 03
+    label: unk_03
+    type: u8
+    offset: 0x3
+  - desc: Unknown 04
+    label: unk_04
+    type: u8
+    offset: 0x4
+  - desc: Unknown 05
+    label: unk_05
+    type: u8
+    offset: 0x5
+CutsceneSpecialEffect:
+  size: 0x10
+  vars:
+  - desc: Status
+    label: Status
+    type: u8
+    offset: 0x0
+    enum: CutsceneSpecialEffectStatus
+  - desc: Written to BLDY (OBJ)
+    label: WrittenToBLDY_OBJ
+    type: u8
+    offset: 0x1
+  - desc: Written to BLDALPHA_L (BG)
+    label: WrittenToBLDALPHA_L_BG
+    type: u8
+    offset: 0x2
+  - desc: Written to BLDALPHA_H (BG)
+    label: WrittenToBLDALPHA_H_BG
+    type: u8
+    offset: 0x3
+  - desc: BLDCNT copy (OBJ)
+    label: BLDCNTCopy_OBJ
+    type: u16
+    offset: 0x4
+  - desc: Intensity (OBJ)
+    label: Intensity_OBJ
+    type: u8
+    offset: 0x6
+  - desc: Interval (OBJ)
+    label: Interval_OBJ
+    type: u8
+    offset: 0x7
+  - desc: Timer (OBJ)
+    label: Timer_OBJ
+    type: u8
+    offset: 0x8
+  - desc: Written to BLDCNT (BG)
+    label: WrittenToBLDCNT_BG
+    type: u16
+    offset: 0xA
+  - desc: Intensity (BG)
+    label: Intensity_BG
+    type: u8
+    offset: 0xC
+  - desc: Interval (BG)
+    label: Interval_BG
+    type: u8
+    offset: 0xD
+  - desc: Timer (BG)
+    label: Timer_BG
+    type: u8
+    offset: 0xE
 CutsceneSubroutineData:
   size: 0x8
   vars:
@@ -1110,6 +1279,69 @@ DemoRam:
     label: SamusHazardDamage
     type: SamusHazardDamage
     offset: 0x154
+  - desc: Samus environment effects
+    label: SamusEnvironmentEffects
+    type: SamusEnvironmentEffect
+    count: 0x5
+    offset: 0x15C
+  - desc: Visited minimap tiles
+    label: VisitedMinimapTiles
+    type: u8
+    count: 0x80
+    offset: 0x198
+  - desc: Hatches opened
+    label: HatchesOpened
+    type: u8
+    count: 0x20
+    offset: 0x218
+  - desc: ATRUNEND character 0
+    label: ATRUNEND_Char0
+    type: s8
+    tags:
+    - ascii
+    offset: 0x238
+  - desc: ATRUNEND character 1
+    label: ATRUNEND_Char1
+    type: s8
+    tags:
+    - ascii
+    offset: 0x239
+  - desc: ATRUNEND character 2
+    label: ATRUNEND_Char2
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23A
+  - desc: ATRUNEND character 3
+    label: ATRUNEND_Char3
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23B
+  - desc: ATRUNEND character 3
+    label: ATRUNEND_Char3
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23C
+  - desc: ATRUNEND character 4
+    label: ATRUNEND_Char5
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23D
+  - desc: ATRUNEND character 6
+    label: ATRUNEND_Char6
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23E
+  - desc: ATRUNEND character 7
+    label: ATRUNEND_Char7
+    type: s8
+    tags:
+    - ascii
+    offset: 0x23F
   - desc: Mothership doors flag
     label: MothershipDoorsFlag
     type: u8
@@ -1881,90 +2113,6 @@ MusicTrackInfo:
     label: unk_04
     type: u8
     offset: 0x4
-NonGameplayRam:
-  size: 0x280
-  vars:
-  - desc: Debug menu related?
-    label: DebugMenuRelated
-    type: u8
-    offset: 0x0
-  - desc: Chozo statue area
-    label: ChozoStatueArea
-    type: u8
-    offset: 0x12
-    enum: AreaID
-  - desc: Chozo statue X position
-    label: ChozoStatueXPosition
-    type: u8
-    offset: 0x13
-  - desc: Chozo statue Y position
-    label: ChozoStatueYPosition
-    type: u8
-    offset: 0x14
-  - desc: Chozo statue target X position
-    label: ChozoStatueTargetXPosition
-    type: u8
-    offset: 0x15
-  - desc: Chozo statue target Y position
-    label: ChozoStatueTargetYPosition
-    type: u8
-    offset: 0x16
-  - desc: File number
-    label: FileNum
-    type: u8
-    offset: 0x27
-  - desc: Activated Chozo statue targets
-    label: ActivatedChozoStatueTargets
-    type: u16
-    tags:
-    - flags
-    offset: 0x44
-    enum: ChozoTargetLoc
-  - desc: Sound test sound ID
-    label: SoundTestSoundID
-    type: u8
-    offset: 0x63
-  - desc: Inputting time attack code flag
-    label: InputtingTimeAttackCodeFlag
-    type: u8
-    offset: 0x6C
-  - desc: Number of time attack code buttons input
-    label: NumOfTimeAttackCodeButtonsInput
-    type: u8
-    offset: 0x6D
-  - desc: Time attack code cooldown timer
-    label: TimeAttackCodeCooldownTimer
-    type: u8
-    offset: 0x6E
-  - desc: Ending number
-    label: EndingNum
-    type: u8
-    offset: 0x98
-  - desc: Changing map screen stage
-    label: ChangingMapScreenStage
-    type: u8
-    offset: 0xB4
-  - desc: Visited areas
-    label: VisitedAreas
-    type: u8
-    tags:
-    - flags
-    offset: 0xB8
-    enum: AreaBitFlags
-  - desc: Areas with hints
-    label: AreasWithHints
-    type: u8
-    tags:
-    - flags
-    offset: 0xB9
-    enum: AreaBitFlags
-  - desc: Viewable areas
-    label: ViewableAreas
-    type: u8
-    tags:
-    - flags
-    offset: 0xBA
-    enum: AreaBitFlags
 NonGameplayRam_Cutscene:
   size: 0x628
   vars:
@@ -2037,15 +2185,153 @@ NonGameplayRam_Cutscene:
     label: BG3HOFS
     type: u16
     offset: 0x36
-  - desc: TODO
-    label: TODO
-    type: u8
+  - desc: BG scrolling
+    label: BGScrolling
+    type: CutsceneBGScrolling
+    count: 0x8
     offset: 0x38
+  - desc: Horizontal screen shake
+    label: HorizontalScreenShake
+    type: CutsceneScreenShake
+    offset: 0x98
+  - desc: Vertical screen shake
+    label: VerticalScreenShake
+    type: CutsceneScreenShake
+    offset: 0xA0
+  - desc: Special effect
+    label: SpecialEffect
+    type: CutsceneSpecialEffect
+    offset: 0xA8
+  - desc: Unknown B8
+    label: unk_B8
+    type: u16
+    offset: 0xB8
+  - desc: Unknown BA
+    label: unk_BA
+    type: u8
+    offset: 0xBA
+  - desc: Unknown BB
+    label: unk_BB
+    type: u8
+    offset: 0xBB
+  - desc: Unknown BC
+    label: unk_BC
+    type: u8
+    offset: 0xBC
+  - desc: Unknown BD
+    label: unk_BD
+    type: u8
+    offset: 0xBD
+  - desc: Unknown BE
+    label: unk_BE
+    type: u8
+    offset: 0xBE
+  - desc: Unknown BF
+    label: unk_BF
+    type: u8
+    offset: 0xBF
   - desc: Graphics data 2
     label: GfxData2
     type: CutsceneGfxData
     count: 0x3
     offset: 0xC0
+  - desc: OAM data
+    label: OamData
+    type: CutsceneOamData
+    count: 0x30
+    offset: 0xF0
+NonGameplayRam_Ending:
+  size: 0x280
+  vars:
+  - desc: Ending number
+    label: EndingNum
+    type: u8
+    offset: 0x98
+NonGameplayRam_FileSelect:
+  size: 0x280
+  vars:
+  - desc: File number
+    label: FileNum
+    type: u8
+    offset: 0x27
+  - desc: Sound test sound ID
+    label: SoundTestSoundID
+    type: u8
+    offset: 0x63
+  - desc: Inputting time attack code flag
+    label: InputtingTimeAttackCodeFlag
+    type: u8
+    offset: 0x6C
+  - desc: Number of time attack code inputs
+    label: NumOfTimeAttackCodeInputs
+    type: u8
+    offset: 0x6D
+  - desc: Time attack code input cooldown
+    label: TimeAttackCodeInputCooldown
+    type: u16
+    offset: 0x6E
+NonGameplayRam_Pause:
+  size: 0x628
+  vars:
+  - desc: Pause screen type
+    label: PauseScreenType
+    type: u16
+    tags:
+    - flags
+    offset: 0x0
+  - desc: Current area
+    label: CurrArea
+    type: u8
+    offset: 0x12
+    enum: AreaID
+  - desc: Minimap X position
+    label: MinimapXPosition
+    type: u8
+    offset: 0x13
+  - desc: Minimap Y position
+    label: MinimapYPosition
+    type: u8
+    offset: 0x14
+  - desc: Chozo hint X position
+    label: ChozoHintXPosition
+    type: u8
+    offset: 0x15
+  - desc: Chozo hint Y position
+    label: ChozoHintYPosition
+    type: u8
+    offset: 0x16
+  - desc: Activated Chozo hints
+    label: ActivatedChozoHints
+    type: u16
+    tags:
+    - flags
+    offset: 0x44
+    enum: ChozoHintLocation
+  - desc: Changing minimap stage
+    label: ChangingMinimapStage
+    type: u8
+    offset: 0xB4
+  - desc: Visited areas
+    label: VisitedAreas
+    type: u8
+    tags:
+    - flags
+    offset: 0xB8
+    enum: AreaBitFlags
+  - desc: Areas with hints
+    label: AreasWithHints
+    type: u8
+    tags:
+    - flags
+    offset: 0xB9
+    enum: AreaBitFlags
+  - desc: Viewable areas
+    label: ViewableAreas
+    type: u8
+    tags:
+    - flags
+    offset: 0xBA
+    enum: AreaBitFlags
 NumItemsCollected:
   size: 0x8
   vars:

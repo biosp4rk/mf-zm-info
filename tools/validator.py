@@ -68,8 +68,7 @@ class Validator(object):
             for key, st in self.structs.items():
                 self.entry_loc.entry_name = key
                 self.check_label(key)
-                self.entry_loc.field_name = K_SIZE
-                self.check_region_int(st.size)
+                self.check_region_int(K_SIZE, st.size)
                 self.check_vars(st.vars)
 
             # check code
@@ -79,10 +78,8 @@ class Validator(object):
                 self.entry_loc.entry_name = entry.label
                 self.check_desc(entry.desc)
                 self.check_label(entry.label)
-                self.entry_loc.field_name = K_ADDR
-                self.check_region_int(entry.addr, 4)
-                self.entry_loc.field_name = K_SIZE
-                self.check_region_int(entry.size, 2)
+                self.check_region_int(K_ADDR, entry.addr, 4)
+                self.check_region_int(K_SIZE, entry.size, 2)
                 self.check_mode(entry.mode)
                 self.check_params(entry.params)
                 self.check_return(entry.ret)
@@ -102,17 +99,19 @@ class Validator(object):
                     self.entry_loc.entry_name = entry.label
                     self.check_desc(entry.desc)
                     self.check_label(entry.label)
-                    self.check_decl(entry.declaration)
+                    valid_type = self.check_type(entry)
                     self.check_tags(entry.tags)
                     self.entry_loc.field_name = K_ADDR
                     align = None
                     if entry.primitive != PrimType.Struct:
                         align = entry.get_spec_size(self.structs)
-                    self.check_region_int(entry.addr, align)
+                    self.check_region_int(K_ADDR, entry.addr, align)
                     self.check_enum(entry.enum)
                     self.check_notes(entry.notes)
-                    self.check_data_overlap(entry, prev)
-                    prev = entry
+                    if valid_type:
+                        # can only check size if type is valid
+                        self.check_data_overlap(entry, prev)
+                        prev = entry
 
         # print any errors
         if len(self.errors) == 0:
@@ -200,7 +199,8 @@ class Validator(object):
         if not LABEL_PAT.match(label):
             self.add_error("label must be alphanumeric")
 
-    def check_region_int(self, entry: RegionInt, align=None) -> None:
+    def check_region_int(self, name: str, entry: RegionInt, align=None) -> None:
+        self.entry_loc.field_name = name
         nums = None
         if not isinstance(entry, (int, dict)):
             self.add_error("Expected integer or dictionary")
@@ -220,14 +220,22 @@ class Validator(object):
                 if num % align != 0:
                     self.add_error(f"Number must be {align} byte aligned")
 
-    def check_decl(self, decl: str) -> None:
-        if decl is None:
-            return
+    def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
-        tokens = tokenize_decl(decl)
+        # check struct
+        if (entry.primitive == PrimType.Struct and
+            entry.struct_name not in self.structs):
+            self.add_error("Invalid type")
+            return False
+        if entry.declaration is None:
+            return True
+        # check that declaration can be fully parsed
+        tokens = tokenize_decl(entry.declaration)
         index = parse_decl(tokens, 0)
         if index != len(tokens):
             self.add_error("Invalid type")
+            return False
+        return True
 
     def check_vals(self, vals: List[EnumValEntry]) -> None:
         self.entry_loc.field_name = K_VALS
@@ -254,12 +262,11 @@ class Validator(object):
         prev = -1
         for ve in vars:
             self.check_label(ve.label)
-            self.check_decl(ve.declaration)
+            self.check_type(ve)
             self.check_tags(ve.tags)
             self.check_enum(ve.enum)
             self.check_notes(ve.notes)
-            # check offset
-            self.check_region_int(ve.offset)
+            self.check_region_int(K_OFFSET, ve.offset)
             if prev >= ve.offset:
                 self.add_error("offsets should be in ascending order")
             prev = ve.offset
@@ -276,7 +283,7 @@ class Validator(object):
         if isinstance(params, list):
             for param in params:
                 self.check_label(param.label)
-                self.check_decl(param.declaration)
+                self.check_type(param)
                 self.check_enum(param.enum)
 
     def check_return(self, ret: VarEntry):
@@ -285,7 +292,7 @@ class Validator(object):
             self.add_error("return must be null or dict")
         if isinstance(ret, dict):
             self.check_label(ret.label)
-            self.check_decl(ret.declaration)
+            self.check_type(ret)
             self.check_enum(ret.enum)
 
     def check_tags(self, tags: List[DataTag]):

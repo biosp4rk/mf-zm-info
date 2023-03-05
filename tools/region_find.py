@@ -65,7 +65,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     src_rom = Rom(args.src_rom_path)
     target_rom = Rom(args.target_rom_path)
-    addr = apu.get_rom(args)
+    addr = apu.get_addr(args)
 
     finder = Finder(src_rom, target_rom)
     ta, ts = finder.find(addr)

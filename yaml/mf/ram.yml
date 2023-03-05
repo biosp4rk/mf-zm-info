@@ -1629,12 +1629,14 @@
     C: 0x300148C
 - desc: Non-gameplay RAM
   label: NonGameplayRam
-  type: NonGameplayRam
+  type: u8
+  count: 0x540
   addr:
     U: 0x3001484
     E: 0x3001484
     J: 0x30014B8
     C: 0x30014B8
+  notes: Shared portion of RAM used for title, file select, pause screen, game over, and erase SRAM
 - desc: V-Blank code pointer
   label: VBlankCodePtr
   type: void *
