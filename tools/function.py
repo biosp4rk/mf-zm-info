@@ -163,8 +163,17 @@ class Function(object):
             end = addr + size
             for i in range(addr, end, 4):
                 val = self.rom.read32(i)
+                # check if in ram
+                if (
+                    (val >= 0x2000000 and val < 0x203FFFF) or
+                    (val >= 0x3000000 and val < 0x3007FFF)
+                ):
+                    label = self.symbols.get_label(val, LabelType.Data)
+                    syms[val] = label
+                # check if in rom
                 if val >= rom_start and val < rom_end:
                     pa = val - ROM_OFFSET
+                    # skip if within this function
                     if pa >= self.start_addr and pa < self.end_addr:
                         continue
                     label = self.symbols.get_label(val, LabelType.Data)

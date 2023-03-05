@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 from constants import *
-from info_entry import EnumEntry, StructEntry, DataEntry, CodeEntry, DataTag
+from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, DataTag
 from yaml_utils import load_yamls
 
 
@@ -20,19 +20,22 @@ class GameInfo(object):
 
     def get_struct(self, key: str) -> StructEntry:
         return self.structs[key]
-
-    def label_exists(self, label: str) -> bool:
+    
+    def get_entry(self, label: str) -> InfoEntry:
         for gv in self.ram:
             if gv.label == label:
-                return True
+                return gv
         for ce in self.code:
             if ce.label == label:
-                return True
+                return ce
         for gv in self.data:
             if gv.label == label:
-                return True
-        return False
+                return gv
+        return None
     
+    def label_exists(self, label: str) -> bool:
+        return self.get_entry(label) is not None
+
     def find_data_by_label(self, tokens: str) -> List[DataEntry]:
         tokens = tokens.lower()
         game_vars: List[DataEntry] = []
