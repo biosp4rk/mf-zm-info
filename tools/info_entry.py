@@ -165,26 +165,25 @@ class VarEntry(InfoEntry):
         else:
             return self.arr_count
 
-    def size(self, structs: Dict[str, "StructEntry"]) -> int:
+    def get_size(self, structs: Dict[str, "StructEntry"]) -> int:
         size = self.get_spec_size(structs)
-        if self.declaration is None:
-            return size
-        # get inner-most part of declaration
-        decl = self.declaration
-        i = decl.rfind("(")
-        if i != -1:
-            i += 1
-            j = decl.find(")")
-            decl = decl[i:j]
-        # check for pointer
-        if decl.startswith("*"):
-            size = 4
-            decl = decl.lstrip("*")
-        # check for array
-        mc = re.findall(r"\w+", decl)
-        for m in mc:
-            dim = int(m, 16)
-            size *= dim
+        if self.declaration is not None:
+            # get inner-most part of declaration
+            decl = self.declaration
+            i = decl.rfind("(")
+            if i != -1:
+                i += 1
+                j = decl.find(")")
+                decl = decl[i:j]
+            # check for pointer
+            if decl.startswith("*"):
+                size = 4
+                decl = decl.lstrip("*")
+            # check for array
+            mc = re.findall(r"\w+", decl)
+            for m in mc:
+                dim = int(m, 16)
+                size *= dim
         return size * self.get_count()
 
     def get_spec_size(self, structs: Dict[str, "StructEntry"]) -> int:
@@ -273,12 +272,16 @@ class DataEntry(VarEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.addr, int):
-            return True
-        if region in self.addr:
+        # check addr
+        if isinstance(self.addr, dict):
+            if region not in self.addr:
+                return False
             self.addr = self.addr[region]
-            return True
-        return False
+        # check arr_count
+        if isinstance(self.arr_count, dict):
+            if region in self.arr_count:
+                self.arr_count = self.arr_count[region]
+        return True
 
     @staticmethod
     def from_yaml(node: Any) -> "DataEntry":
@@ -335,12 +338,16 @@ class StructVarEntry(VarEntry):
         return InfoEntry.less_than(self.offset, other.offset)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.offset, int):
-            return True
-        if region in self.offset:
+        # check offset
+        if isinstance(self.offset, dict):
+            if region not in self.offset:
+                return False
             self.offset = self.offset[region]
-            return True
-        return False
+        # check arr_count
+        if isinstance(self.arr_count, dict):
+            if region in self.arr_count:
+                self.arr_count = self.arr_count[region]
+        return True
 
     @staticmethod
     def from_yaml(node: Any) -> "StructVarEntry":
@@ -433,12 +440,16 @@ class CodeEntry(InfoEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.addr, int):
-            return True
-        if region in self.addr:
+        # check addr
+        if isinstance(self.addr, dict):
+            if region not in self.addr:
+                return False
             self.addr = self.addr[region]
-            return True
-        return False
+        # check size
+        if isinstance(self.size, dict):
+            if region in self.size:
+                self.size = self.size[region]
+        return True
 
     def is_thumb(self) -> bool:
         return self.mode == CodeMode.Thumb

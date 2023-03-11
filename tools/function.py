@@ -159,15 +159,31 @@ class Function(object):
         pools = self.get_data_pools()
         rom_start = self.rom.code_start(True)
         rom_end = self.rom.data_end(True)
+        code_end = self.rom.data_end()
         for addr, size in pools:
             end = addr + size
             for i in range(addr, end, 4):
                 val = self.rom.read32(i)
-                if val >= rom_start and val < rom_end:
-                    pa = val - ROM_OFFSET
-                    if pa >= self.start_addr and pa < self.end_addr:
-                        continue
+                # check if in ram
+                if (
+                    (val >= 0x2000000 and val < 0x2040000) or
+                    (val >= 0x3000000 and val < 0x3008000)
+                ):
                     label = self.symbols.get_label(val, LabelType.Data)
+                    syms[val] = label
+                # check if in rom
+                elif val >= rom_start and val < rom_end:
+                    pa = val - ROM_OFFSET
+                    label_type = None
+                    if pa < code_end:
+                        # skip if within this function
+                        if pa >= self.start_addr and pa < self.end_addr:
+                            continue
+                        label_type = LabelType.Code
+                        val -= 1
+                    else:
+                        label_type = LabelType.Data
+                    label = self.symbols.get_label(val, label_type)
                     syms[val] = label
         return syms
 

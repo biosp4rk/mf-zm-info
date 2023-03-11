@@ -16,9 +16,10 @@ class LabelType(Enum):
 class Symbols(object):
 
     def __init__(self, info: GameInfo = None):
+        self.thumb_code: Set[int] = set()
         self.globals: Dict[int, str] = {}
         self.locals: Set[int] = set()
-        self.localIndexes: Dict[int, int] = {}
+        self.local_indexes: Dict[int, int] = {}
         if info is not None:
             for entry in info.ram:
                 addr = entry.addr
@@ -28,6 +29,7 @@ class Symbols(object):
                 addr = entry.addr
                 assert isinstance(addr, int)
                 self.globals[addr + ROM_OFFSET] = entry.label
+                self.thumb_code.add(addr + ROM_OFFSET + 1)
             for entry in info.data:
                 addr = entry.addr
                 assert isinstance(addr, int)
@@ -42,17 +44,20 @@ class Symbols(object):
     def finalize_locals(self):
         idx = 0
         for addr in sorted(self.locals):
-            self.localIndexes[addr] = idx
+            self.local_indexes[addr] = idx
             idx += 1
 
     def get_local(self, offset: int) -> str:
-        idx = self.localIndexes[offset]
+        idx = self.local_indexes[offset]
         return f"@@_{idx:03X}"
 
     def get_label(self, offset: int, type: LabelType = LabelType.Undef) -> str:
         # check for existing label
         if offset in self.globals:
             return self.globals[offset]
+        # check for code
+        if offset % 4 == 1 and offset in self.thumb_code:
+            return self.globals[offset - 1] + "+1"
         pa = offset - ROM_OFFSET
         if pa in self.locals:
             return self.get_local(pa)
@@ -68,4 +73,4 @@ class Symbols(object):
 
     def reset_locals(self):
         self.locals = set()
-        self.localIndexes = {}
+        self.local_indexes = {}

@@ -143,7 +143,7 @@ class Validator(object):
         prev_addr = prev.addr
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
-        prev_len = prev.size(self.structs)
+        prev_len = prev.get_size(self.structs)
         for r in prev_addr:
             prev_addr[r] += prev_len - 1
         # compare
