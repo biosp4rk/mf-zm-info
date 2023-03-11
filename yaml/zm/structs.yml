@@ -1,4 +1,5 @@
-ActiveScroll:
+- desc: Active scroll
+  label: ActiveScroll
   size: 0xC
   vars:
   - desc: Samus within scroll flag
@@ -21,7 +22,8 @@ ActiveScroll:
     label: YEnd
     type: u16
     offset: 0x8
-AmmoDigits:
+- desc: Ammo digits
+  label: AmmoDigits
   size: 0x4
   vars:
   - desc: Ones place
@@ -40,7 +42,8 @@ AmmoDigits:
     label: ThousandsPlace
     type: u8
     offset: 0x3
-AnimatedGraphicsEntry:
+- desc: Animated graphics entry
+  label: AnimatedGraphicsEntry
   size: 0x8
   vars:
   - desc: Animation type
@@ -62,7 +65,8 @@ AnimatedGraphicsEntry:
     tags:
     - gfx
     offset: 0x4
-AnimatedPaletteAndTilesetNum:
+- desc: Animated palette and tileset number
+  label: AnimatedPaletteAndTilesetNum
   size: 0x2
   vars:
   - desc: Animated palette number
@@ -73,7 +77,8 @@ AnimatedPaletteAndTilesetNum:
     label: AnimatedTilesetNum
     type: u8
     offset: 0x1
-AnimatedPaletteEntry:
+- desc: Animated palette entry
+  label: AnimatedPaletteEntry
   size: 0x8
   vars:
   - desc: Animation type
@@ -95,7 +100,8 @@ AnimatedPaletteEntry:
     tags:
     - palette
     offset: 0x4
-AnimatedPaletteTiming:
+- desc: Animated palette timing
+  label: AnimatedPaletteTiming
   size: 0x3
   vars:
   - desc: Counter
@@ -110,7 +116,8 @@ AnimatedPaletteTiming:
     label: unk_02
     type: u8
     offset: 0x2
-AreaConnection:
+- desc: Area connection
+  label: AreaConnection
   size: 0x3
   vars:
   - desc: Source area
@@ -127,7 +134,8 @@ AreaConnection:
     type: u8
     offset: 0x2
     enum: AreaID
-BG0Movement:
+- desc: BG0 movement
+  label: BG0Movement
   size: 0x8
   vars:
   - desc: Type
@@ -155,7 +163,8 @@ BG0Movement:
     label: SnowflakesRelated
     type: u16
     offset: 0x6
-BG0WaterMovement:
+- desc: BG0 water movement
+  label: BG0WaterMovement
   size: 0x4
   vars:
   - desc: Moving flag
@@ -174,7 +183,8 @@ BG0WaterMovement:
     label: YPositionOffset
     type: s8
     offset: 0x3
-BG2Movement:
+- desc: BG2 movement
+  label: BG2Movement
   size: 0x4
   vars:
   - desc: X position offset
@@ -185,7 +195,8 @@ BG2Movement:
     label: YPositionOffset
     type: u16
     offset: 0x2
-BG3Movement:
+- desc: BG3 movement
+  label: BG3Movement
   size: 0x6
   vars:
   - desc: Direction
@@ -204,7 +215,8 @@ BG3Movement:
     label: XPositionOffset
     type: u16
     offset: 0x4
-BGPositions:
+- desc: BG positions
+  label: BGPositions
   size: 0x14
   vars:
   - desc: BG0 X position
@@ -247,7 +259,8 @@ BGPositions:
     label: DoorTransitionYPosition
     type: u16
     offset: 0x12
-BGPtrsAndDimensions:
+- desc: BG pointers and dimensions
+  label: BGPtrsAndDimensions
   size: 0x20
   vars:
   - desc: Decompressed BG0 pointer
@@ -298,7 +311,8 @@ BGPtrsAndDimensions:
     label: HeightOfClipdataInBlocks
     type: u16
     offset: 0x1E
-BLDALPHAData:
+- desc: BLDALPHA data
+  label: BLDALPHAData
   size: 0x8
   vars:
   - desc: Unknown 00
@@ -329,7 +343,8 @@ BLDALPHAData:
     label: FadingRelated
     type: u8
     offset: 0x7
-BackupOfIORegisters:
+- desc: Backup of IO registers
+  label: BackupOfIORegisters
   size: 0x12
   vars:
   - desc: Backup of DISPCNT during non-gameplay
@@ -382,7 +397,8 @@ BackupOfIORegisters:
     type: u16
     offset: 0x10
     notes: BG0 control
-BombChainData:
+- desc: Bomb chain data
+  label: BombChainData
   size: 0x4
   vars:
   - desc: Current block offset
@@ -402,7 +418,8 @@ BombChainData:
     type: u8
     offset: 0x3
     notes: Bits 0-2 = type, 0x40 = going left or up, 0x80 = ?
-BossMapIcon:
+- desc: Boss map icon
+  label: BossMapIcon
   size: 0x5
   vars:
   - desc: Event number
@@ -427,7 +444,8 @@ BossMapIcon:
     label: PixelOffset
     type: u8
     offset: 0x4
-BossWork:
+- desc: Boss work
+  label: BossWork
   size: 0x16
   vars:
   - desc: Work 1
@@ -477,7 +495,8 @@ BossWork:
     label: Work11
     type: u16
     offset: 0x14
-BoxBounds:
+- desc: Box bounds
+  label: BoxBounds
   size: 0x8
   vars:
   - desc: Left offset
@@ -496,7 +515,8 @@ BoxBounds:
     label: BottomOffset
     type: s16
     offset: 0x6
-BreakableBlockBehavior:
+- desc: Breakable block behavior
+  label: BreakableBlockBehavior
   size: 0x4
   vars:
   - desc: Reform type
@@ -517,7 +537,8 @@ BreakableBlockBehavior:
     label: unk_03
     type: u8
     offset: 0x3
-BreakingOrReformingBlock:
+- desc: Breaking or reforming block
+  label: BreakingOrReformingBlock
   size: 0x8
   vars:
   - desc: Exists flag
@@ -544,7 +565,8 @@ BreakingOrReformingBlock:
     label: Timer
     type: u16
     offset: 0x6
-ButtonAssignments:
+- desc: Button assignments
+  label: ButtonAssignments
   size: 0x8
   vars:
   - desc: Arm missiles button
@@ -567,7 +589,8 @@ ButtonAssignments:
     type: u16
     offset: 0x6
     enum: ButtonInput
-ChozoHint:
+- desc: Chozo hint
+  label: ChozoHint
   size: 0xC
   vars:
   - desc: Statue area
@@ -614,7 +637,8 @@ ChozoHint:
     type: u8
     offset: 0x9
     enum: ChozoHintIcon
-ChozoHintCheck:
+- desc: Chozo hint check
+  label: ChozoHintCheck
   size: 0x2
   vars:
   - desc: Check type
@@ -626,7 +650,8 @@ ChozoHintCheck:
     label: EquipmentFlagOrEventNum
     type: u8
     offset: 0x1
-CollectedItem:
+- desc: Collected item
+  label: CollectedItem
   size: 0x4
   vars:
   - desc: Room ID
@@ -646,7 +671,8 @@ CollectedItem:
     label: YPosition
     type: u8
     offset: 0x3
-CollisionData:
+- desc: Collision data
+  label: CollisionData
   size: 0x10
   vars:
   - desc: Clipdata collision type
@@ -666,7 +692,8 @@ CollisionData:
     label: unk_0C
     type: u32
     offset: 0xC
-CurrAffectingClipdata:
+- desc: Current affecting clipdata
+  label: CurrAffectingClipdata
   size: 0x4
   vars:
   - desc: Movement preventing clipdata
@@ -679,7 +706,8 @@ CurrAffectingClipdata:
     type: u16
     offset: 0x2
     enum: HazardType
-CurrDemo:
+- desc: Current demo
+  label: CurrDemo
   size: 0x4
   vars:
   - desc: Number
@@ -699,7 +727,8 @@ CurrDemo:
     label: unk_03
     type: u8
     offset: 0x3
-CurrMessage:
+- desc: Current message
+  label: CurrMessage
   size: 0x10
   vars:
   - desc: Sub data 1
@@ -718,7 +747,8 @@ CurrMessage:
     label: SubData4
     type: CurrMessageSubData4
     offset: 0xC
-CurrMessageSubData1:
+- desc: Current message sub-data 1
+  label: CurrMessageSubData1
   size: 0x4
   vars:
   - desc: Current character index
@@ -729,7 +759,8 @@ CurrMessageSubData1:
     label: CurrIndent
     type: u16
     offset: 0x2
-CurrMessageSubData2:
+- desc: Current message sub-data 2
+  label: CurrMessageSubData2
   size: 0x4
   vars:
   - desc: Letter delay
@@ -744,7 +775,8 @@ CurrMessageSubData2:
     label: CurrLine
     type: u8
     offset: 0x3
-CurrMessageSubData3:
+- desc: Current message sub-data 3
+  label: CurrMessageSubData3
   size: 0x4
   vars:
   - desc: Sub data
@@ -759,7 +791,8 @@ CurrMessageSubData3:
     label: GfxSlot
     type: u8
     offset: 0x3
-CurrMessageSubData4:
+- desc: Current message sub-data 4
+  label: CurrMessageSubData4
   size: 0x4
   vars:
   - desc: Unknown 00
@@ -774,7 +807,8 @@ CurrMessageSubData4:
     label: unk_02
     type: u8
     offset: 0x2
-CurrPowerBomb:
+- desc: Current power bomb
+  label: CurrPowerBomb
   size: 0x14
   vars:
   - desc: Animation state
@@ -827,7 +861,8 @@ CurrPowerBomb:
     type: u8
     offset: 0x12
     notes: Always 0 (unused)
-CurrRoomEntry:
+- desc: Current room entry
+  label: CurrRoomEntry
   size: 0x20
   vars:
   - desc: Tileset number
@@ -928,7 +963,8 @@ CurrRoomEntry:
     label: AnimatedPaletteNum
     type: u8
     offset: 0x1C
-CurrScrolls:
+- desc: Current scrolls
+  label: CurrScrolls
   size: 0x18
   vars:
   - desc: First scroll
@@ -939,7 +975,8 @@ CurrScrolls:
     label: SecondScroll
     type: ActiveScroll
     offset: 0xC
-CutsceneBGScrolling:
+- desc: Cutscene BG scrolling
+  label: CutsceneBGScrolling
   size: 0xC
   vars:
   - desc: Background position pointer
@@ -962,7 +999,8 @@ CutsceneBGScrolling:
     label: unk_08
     type: u8
     offset: 0x8
-CutsceneData:
+- desc: Cutscene data
+  label: CutsceneData
   size: 0x10
   vars:
   - desc: Unknown 00
@@ -1002,7 +1040,8 @@ CutsceneData:
     type: u8
     offset: 0xD
     enum: Event
-CutsceneGfxData:
+- desc: Cutscene graphics data
+  label: CutsceneGfxData
   size: 0xC
   vars:
   - desc: Active flag
@@ -1025,7 +1064,8 @@ CutsceneGfxData:
     label: Timer
     type: u16
     offset: 0x4
-CutsceneInfo:
+- desc: Cutscene info
+  label: CutsceneInfo
   size: 0x10
   vars:
   - desc: Cutscene type
@@ -1065,7 +1105,8 @@ CutsceneInfo:
     type: u8
     offset: 0xD
     enum: Event
-CutsceneOamData:
+- desc: Cutscene OAM data
+  label: CutsceneOamData
   size: 0x20
   vars:
   - desc: Y position
@@ -1136,7 +1177,8 @@ CutsceneOamData:
     label: unk_1E
     type: u8
     offset: 0x1E
-CutsceneScreenShake:
+- desc: Cutscene screen shake
+  label: CutsceneScreenShake
   size: 0x8
   vars:
   - desc: Affected background flag
@@ -1159,7 +1201,8 @@ CutsceneScreenShake:
     label: unk_05
     type: u8
     offset: 0x5
-CutsceneSpecialEffect:
+- desc: Cutscene special effect
+  label: CutsceneSpecialEffect
   size: 0x10
   vars:
   - desc: Status
@@ -1211,7 +1254,8 @@ CutsceneSpecialEffect:
     label: Timer_BG
     type: u8
     offset: 0xE
-CutsceneSubroutineData:
+- desc: Cutscene subroutine data
+  label: CutsceneSubroutineData
   size: 0x8
   vars:
   - desc: Function pointer
@@ -1224,7 +1268,8 @@ CutsceneSubroutineData:
     label: OamRelatedNum
     type: u8
     offset: 0x4
-DemoInputData:
+- desc: Demo input data
+  label: DemoInputData
   size: 0x10
   vars:
   - desc: Inputs pointer
@@ -1243,7 +1288,8 @@ DemoInputData:
     label: NumOfDurations
     type: u16
     offset: 0xC
-DemoRam:
+- desc: Demo RAM
+  label: DemoRam
   size: 0x280
   vars:
   - desc: Area ID
@@ -1346,7 +1392,8 @@ DemoRam:
     label: MothershipDoorsFlag
     type: u8
     offset: 0x240
-DoorEntry:
+- desc: Door entry
+  label: DoorEntry
   size: 0xC
   vars:
   - desc: Type
@@ -1386,7 +1433,8 @@ DoorEntry:
     label: YExitDistance
     type: u8
     offset: 0x8
-DoorPositionStart:
+- desc: Door position start
+  label: DoorPositionStart
   size: 0x4
   vars:
   - desc: X position start
@@ -1397,7 +1445,8 @@ DoorPositionStart:
     label: YPositionStart
     type: u16
     offset: 0x2
-ElevatorRoomPair:
+- desc: Elevator room pair
+  label: ElevatorRoomPair
   size: 0x8
   vars:
   - desc: Area ID 1
@@ -1434,7 +1483,8 @@ ElevatorRoomPair:
     label: MapYCoordinate2
     type: u8
     offset: 0x7
-Equipment:
+- desc: Equipment
+  label: Equipment
   size: 0x14
   vars:
   - desc: Max energy
@@ -1517,7 +1567,8 @@ Equipment:
     label: GrabbedByMetroidFlag
     type: u8
     offset: 0x13
-EscapeTimerDigits:
+- desc: Escape timer digits
+  label: EscapeTimerDigits
   size: 0x6
   vars:
   - desc: Hundredths of a second
@@ -1544,7 +1595,8 @@ EscapeTimerDigits:
     label: MinutesTensPlace
     type: u8
     offset: 0x5
-EventBasedConnection:
+- desc: Event based connection
+  label: EventBasedConnection
   size: 0x4
   vars:
   - desc: Source area
@@ -1565,7 +1617,8 @@ EventBasedConnection:
     label: DestinationDoor
     type: u8
     offset: 0x3
-FileScreenOptionsUnlocked:
+- desc: File screen options unlocked
+  label: FileScreenOptionsUnlocked
   size: 0xC
   vars:
   - desc: Gallery images unlocked
@@ -1598,7 +1651,8 @@ FileScreenOptionsUnlocked:
     label: TimeAttackRelated
     type: u32
     offset: 0x8
-FloatingPointNum:
+- desc: Floating point number
+  label: FloatingPointNum
   size: 0x14
   vars:
   - desc: Class
@@ -1622,7 +1676,8 @@ FloatingPointNum:
     label: FractionUpperBits
     type: u32
     offset: 0x10
-GameCompletion:
+- desc: Game completion
+  label: GameCompletion
   size: 0x4
   vars:
   - desc: Completed game flag
@@ -1638,7 +1693,8 @@ GameCompletion:
     type: u8
     offset: 0x2
     enum: Language
-HatchBehavior:
+- desc: Hatch behavior
+  label: HatchBehavior
   size: 0x4
   vars:
   - desc: Hatch weakness flags
@@ -1650,7 +1706,8 @@ HatchBehavior:
     label: Health
     type: u16
     offset: 0x2
-HatchData:
+- desc: Hatch data
+  label: HatchData
   size: 0x8
   vars:
   - desc: Direction
@@ -1685,7 +1742,8 @@ HatchData:
     label: SourceDoorNum
     type: u8
     offset: 0x7
-HatchFlashingAnim:
+- desc: Hatch flashing animation
+  label: HatchFlashingAnim
   size: 0x4
   vars:
   - desc: Delay for unlocking
@@ -1706,7 +1764,8 @@ HatchFlashingAnim:
     type: u8
     offset: 0x3
     notes: Possibly leftover from Fusion
-HatchLockEvent:
+- desc: Hatch lock event
+  label: HatchLockEvent
   size: 0x8
   vars:
   - desc: Destination room
@@ -1729,7 +1788,8 @@ HatchLockEvent:
     tags:
     - flags
     offset: 0x3
-HatchLockingData:
+- desc: Hatch locking data
+  label: HatchLockingData
   size: 0x8
   vars:
   - desc: Unlocking
@@ -1756,7 +1816,8 @@ HatchLockingData:
     label: unk_06
     type: u16
     offset: 0x6
-HatchesLocked:
+- desc: Hatches locked
+  label: HatchesLocked
   size: 0x6
   vars:
   - desc: Hatches locked with timer
@@ -1772,7 +1833,8 @@ HatchesLocked:
     type: u16
     offset: 0x4
     notes: Unused?
-HazeData:
+- desc: Haze data
+  label: HazeData
   size: 0x4
   vars:
   - desc: Haze value
@@ -1793,7 +1855,8 @@ HazeData:
     label: PowerBombRelated
     type: u8
     offset: 0x3
-HazeLoops:
+- desc: Haze loops
+  label: HazeLoops
   size: 0x8
   vars:
   - desc: Speed?
@@ -1820,7 +1883,8 @@ HazeLoops:
     label: Flag
     type: u8
     offset: 0x7
-HazeVramInfo:
+- desc: Haze VRAM info
+  label: HazeVramInfo
   size: 0x8
   vars:
   - desc: Affected data pointer
@@ -1840,7 +1904,8 @@ HazeVramInfo:
     label: HazeFlag
     type: u8
     offset: 0x7
-InGameCutsceneData:
+- desc: In-game cutscene data
+  label: InGameCutsceneData
   size: 0xC
   vars:
   - desc: Timer
@@ -1866,7 +1931,8 @@ InGameCutsceneData:
     tags:
     - thumb
     offset: 0x8
-InGameTime:
+- desc: In-game time
+  label: InGameTime
   size: 0x4
   vars:
   - desc: In-game hours
@@ -1885,7 +1951,8 @@ InGameTime:
     label: InGameFrames
     type: u8
     offset: 0x3
-InGameTimeAtBosses:
+- desc: In-game time at bosses
+  label: InGameTimeAtBosses
   size: 0x10
   vars:
   - desc: When Kraid killed
@@ -1904,7 +1971,8 @@ InGameTimeAtBosses:
     label: WhenMechaRidleyKilled
     type: InGameTime
     offset: 0xC
-LastAreaConnectionVisited:
+- desc: Last area connection visited
+  label: LastAreaConnectionVisited
   size: 0x4
   vars:
   - desc: Offset flag?
@@ -1924,7 +1992,8 @@ LastAreaConnectionVisited:
     label: MinimapY
     type: u8
     offset: 0x3
-LastElevatorUsed:
+- desc: Last elevator used
+  label: LastElevatorUsed
   size: 0x4
   vars:
   - desc: Unused?
@@ -1940,7 +2009,8 @@ LastElevatorUsed:
     label: TravelDirection
     type: u8
     offset: 0x3
-LastTankCollected:
+- desc: Last tank collected
+  label: LastTankCollected
   size: 0x4
   vars:
   - desc: Behavior type
@@ -1955,7 +2025,8 @@ LastTankCollected:
     label: YPosition
     type: u8
     offset: 0x3
-LavaDamageTimer:
+- desc: Lava damage timer
+  label: LavaDamageTimer
   size: 0x8
   vars:
   - desc: Lava damage timer
@@ -1966,7 +2037,8 @@ LavaDamageTimer:
     label: Counter
     type: u8
     offset: 0x4
-LockScreenPosition:
+- desc: Lock screen position
+  label: LockScreenPosition
   size: 0x6
   vars:
   - desc: Lock position flag
@@ -1981,7 +2053,8 @@ LockScreenPosition:
     label: YPositionOfScreenCenter
     type: u16
     offset: 0x4
-MaintainedInputData:
+- desc: Maintained input data
+  label: MaintainedInputData
   size: 0x4
   vars:
   - desc: Delay
@@ -1992,7 +2065,8 @@ MaintainedInputData:
     label: Timer
     type: u8
     offset: 0x1
-MetroidFusionGalleryData:
+- desc: Metroid Fusion gallery data
+  label: MetroidFusionGalleryData
   size: 0x14
   vars:
   - desc: Top half graphics pointer
@@ -2025,7 +2099,8 @@ MetroidFusionGalleryData:
     tags:
     - palette
     offset: 0x10
-MinimapAreaConnectionLabel:
+- desc: Minimap area connection label
+  label: MinimapAreaConnectionLabel
   size: 0xC
   vars:
   - desc: Area ID (top/left)
@@ -2070,7 +2145,8 @@ MinimapAreaConnectionLabel:
     label: LabelYOffset_BR
     type: s8
     offset: 0x9
-MusicInfo:
+- desc: Music info
+  label: MusicInfo
   size: 0x1764
   vars:
   - desc: New music track set flag?
@@ -2094,7 +2170,8 @@ MusicInfo:
     type: s8
     count: 0xB40
     offset: 0xC24
-MusicTrackInfo:
+- desc: Music track info
+  label: MusicTrackInfo
   size: 0x8
   vars:
   - desc: Current room music track
@@ -2113,7 +2190,8 @@ MusicTrackInfo:
     label: unk_04
     type: u8
     offset: 0x4
-NonGameplayRam_Cutscene:
+- desc: Cutscene data (non-gameplay RAM)
+  label: NonGameplayRam_Cutscene
   size: 0x628
   vars:
   - desc: Cutscene stage
@@ -2240,14 +2318,16 @@ NonGameplayRam_Cutscene:
     type: CutsceneOamData
     count: 0x30
     offset: 0xF0
-NonGameplayRam_Ending:
+- desc: Ending data (non-gameplay RAM)
+  label: NonGameplayRam_Ending
   size: 0x280
   vars:
   - desc: Ending number
     label: EndingNum
     type: u8
     offset: 0x98
-NonGameplayRam_FileSelect:
+- desc: File select data (non-gameplay RAM)
+  label: NonGameplayRam_FileSelect
   size: 0x280
   vars:
   - desc: File number
@@ -2270,7 +2350,8 @@ NonGameplayRam_FileSelect:
     label: TimeAttackCodeInputCooldown
     type: u16
     offset: 0x6E
-NonGameplayRam_Pause:
+- desc: Pause data (non-gameplay RAM)
+  label: NonGameplayRam_Pause
   size: 0x628
   vars:
   - desc: Pause screen type
@@ -2332,7 +2413,8 @@ NonGameplayRam_Pause:
     - flags
     offset: 0xBA
     enum: AreaBitFlags
-NumItemsCollected:
+- desc: Number of items collected
+  label: NumItemsCollected
   size: 0x8
   vars:
   - desc: Number of items collected in Brinstar
@@ -2363,7 +2445,8 @@ NumItemsCollected:
     label: NumItemsCollectedInChozodia
     type: u8
     offset: 0x6
-NumNeverReformBlocksBroken:
+- desc: Number of never reform blocks broken
+  label: NumNeverReformBlocksBroken
   size: 0x8
   vars:
   - desc: Number of never reform blocks broken in Brinstar
@@ -2394,7 +2477,8 @@ NumNeverReformBlocksBroken:
     label: NumNeverReformBlocksBrokenInChozodia
     type: u8
     offset: 0x6
-NumTanksInArea:
+- desc: Number of tanks in area
+  label: NumTanksInArea
   size: 0x4
   vars:
   - desc: Energy tanks
@@ -2413,7 +2497,8 @@ NumTanksInArea:
     label: PowerBombTanks
     type: u8
     offset: 0x3
-Oam:
+- desc: OAM
+  label: Oam
   size: 0x8
   vars:
   - desc: OAM frame pointer
@@ -2426,7 +2511,8 @@ Oam:
     label: Duration
     type: u8
     offset: 0x4
-OamArray:
+- desc: OAM array
+  label: OamArray
   size: 0x8
   vars:
   - desc: OAM pointer
@@ -2438,7 +2524,8 @@ OamArray:
     type: u8
     offset: 0x4
     enum: OamPreAction
-ParticleEffect:
+- desc: Particle effect
+  label: ParticleEffect
   size: 0xC
   vars:
   - desc: Status
@@ -2476,7 +2563,8 @@ ParticleEffect:
     label: XPosition
     type: u16
     offset: 0xA
-PcmSample:
+- desc: PCM sample
+  label: PcmSample
   size: 0x10
   vars:
   - desc: Looped flag
@@ -2495,7 +2583,8 @@ PcmSample:
     label: SampleSize
     type: u32
     offset: 0xC
-ProjectileData:
+- desc: Projectile data
+  label: ProjectileData
   size: 0x1C
   vars:
   - desc: Status
@@ -2563,7 +2652,8 @@ ProjectileData:
     label: HitboxRightOffset
     type: s16
     offset: 0x1A
-QueuedSound:
+- desc: Queued sound
+  label: QueuedSound
   size: 0x8
   vars:
   - desc: Exists
@@ -2582,7 +2672,8 @@ QueuedSound:
     label: SoundHeaderPtr
     type: u8 *
     offset: 0x3
-RevealableBlockData:
+- desc: Revealable block data
+  label: RevealableBlockData
   size: 0x8
   vars:
   - desc: X position
@@ -2602,7 +2693,8 @@ RevealableBlockData:
     label: BlockBehaviorType
     type: u8
     offset: 0x6
-RoomEntry:
+- desc: Room entry
+  label: RoomEntry
   size: 0x3C
   vars:
   - desc: Tileset
@@ -2714,7 +2806,8 @@ RoomEntry:
     label: MusicTrack
     type: u16
     offset: 0x3A
-RoomSpriteEntry:
+- desc: Room sprite entry
+  label: RoomSpriteEntry
   size: 0x3
   vars:
   - desc: Y position
@@ -2729,7 +2822,8 @@ RoomSpriteEntry:
     label: Properties
     type: u8
     offset: 0x2
-SamusData:
+- desc: Samus data
+  label: SamusData
   size: 0x20
   vars:
   - desc: Current pose
@@ -2824,7 +2918,8 @@ SamusData:
     label: CurrAnim
     type: u8
     offset: 0x1D
-SamusEcho:
+- desc: Samus echo
+  label: SamusEcho
   size: 0x10C
   vars:
   - desc: Echo flag
@@ -2861,7 +2956,8 @@ SamusEcho:
     label: unk_10A
     type: u8
     offset: 0x10A
-SamusEnvironmentEffect:
+- desc: Samus environment effect
+  label: SamusEnvironmentEffect
   size: 0xC
   vars:
   - desc: Effect type
@@ -2895,7 +2991,8 @@ SamusEnvironmentEffect:
     tags:
     - oam_frame
     offset: 0x8
-SamusHazardDamage:
+- desc: Samus hazard damage
+  label: SamusHazardDamage
   size: 0x8
   vars:
   - desc: Hazard damage timer
@@ -2910,7 +3007,8 @@ SamusHazardDamage:
     label: PaletteTimer
     type: u8
     offset: 0x4
-SamusHitbox:
+- desc: Samus hitbox
+  label: SamusHitbox
   size: 0x6
   vars:
   - desc: Left offset
@@ -2925,7 +3023,8 @@ SamusHitbox:
     label: TopOffset
     type: s16
     offset: 0x4
-SamusPhysics:
+- desc: Samus physics
+  label: SamusPhysics
   size: 0x78
   vars:
   - desc: Body OAM frame pointer
@@ -3134,7 +3233,8 @@ SamusPhysics:
     label: DrawDistanceBottomOffset
     type: s16
     offset: 0x74
-SamusPoseDrawInfo:
+- desc: Samus pose draw info
+  label: SamusPoseDrawInfo
   size: 0x3
   vars:
   - desc: Draw distance array offset
@@ -3150,7 +3250,8 @@ SamusPoseDrawInfo:
     type: u8
     offset: 0x2
     enum: SamusStandingStatus
-SamusWeaponInfo:
+- desc: Samus weapon info
+  label: SamusWeaponInfo
   size: 0x8
   vars:
   - desc: Diagonal aim
@@ -3183,7 +3284,8 @@ SamusWeaponInfo:
     label: BeamReleasePaletteTimer
     type: u8
     offset: 0x6
-SaveFileInfo:
+- desc: Save file info
+  label: SaveFileInfo
   size: 0x18
   vars:
   - desc: Exists
@@ -3257,7 +3359,8 @@ SaveFileInfo:
     label: TimeAttack
     type: bool
     offset: 0x15
-SaveFileRam:
+- desc: Save file RAM
+  label: SaveFileRam
   size: 0x1220
   vars:
   - desc: ZERO_MISSION_010 text
@@ -3457,7 +3560,8 @@ SaveFileRam:
     type: u8
     count: 0x20
     offset: 0x1200
-ScreenPositionAndVelocity:
+- desc: Screen position and velocity
+  label: ScreenPositionAndVelocity
   size: 0x8
   vars:
   - desc: Screen X position
@@ -3476,7 +3580,8 @@ ScreenPositionAndVelocity:
     label: ScreenYVelocity
     type: u8
     offset: 0x5
-ScreenShake:
+- desc: Screen shake
+  label: ScreenShake
   size: 0x4
   vars:
   - desc: Timer
@@ -3495,7 +3600,8 @@ ScreenShake:
     label: unk_03
     type: u8
     offset: 0x3
-ScrewAttackSpeedBoosterAnim:
+- desc: Screw attack speed booster animation
+  label: ScrewAttackSpeedBoosterAnim
   size: 0x8
   vars:
   - desc: Status flags
@@ -3513,7 +3619,8 @@ ScrewAttackSpeedBoosterAnim:
     label: CurrAnim
     type: u8
     offset: 0x2
-SharedSram:
+- desc: Shared SRAM
+  label: SharedSram
   size: 0x80
   vars:
   - desc: Checksum
@@ -3580,7 +3687,8 @@ SharedSram:
     label: unk_40
     type: u8
     offset: 0x40
-SoundDataEntry:
+- desc: Sound data entry
+  label: SoundDataEntry
   size: 0x8
   vars:
   - desc: Sound header pointer
@@ -3595,7 +3703,8 @@ SoundDataEntry:
     label: TrackGroupNum
     type: u16
     offset: 0x6
-SpecialBGEffect:
+- desc: Special BG effect
+  label: SpecialBGEffect
   size: 0x8
   vars:
   - desc: Unused
@@ -3619,7 +3728,8 @@ SpecialBGEffect:
     label: Stage
     type: u8
     offset: 0x6
-SpecialBGEffectBehavior:
+- desc: Special BG effect behavior
+  label: SpecialBGEffectBehavior
   size: 0x6
   vars:
   - desc: Current behavior
@@ -3635,7 +3745,8 @@ SpecialBGEffectBehavior:
     label: ColorStage_SoundID
     type: u16
     offset: 0x4
-SpecialBGEffectColorData:
+- desc: Special BG effect color data
+  label: SpecialBGEffectColorData
   size: 0x8
   vars:
   - desc: Color mask
@@ -3654,7 +3765,8 @@ SpecialBGEffectColorData:
     label: ApplyOnObjFlag
     type: bool
     offset: 0x6
-SpecialBGFade:
+- desc: Special BG fade
+  label: SpecialBGFade
   size: 0x8
   vars:
   - desc: Type
@@ -3686,7 +3798,8 @@ SpecialBGFade:
     label: unk_06
     type: u16
     offset: 0x6
-SpriteData:
+- desc: Sprite data
+  label: SpriteData
   size: 0x38
   vars:
   - desc: Status
@@ -3848,7 +3961,8 @@ SpriteData:
     label: AbsolutePaletteRow
     type: u8
     offset: 0x34
-SpriteDebris:
+- desc: Sprite debris
+  label: SpriteDebris
   size: 0x10
   vars:
   - desc: OAM pointer
@@ -3887,7 +4001,8 @@ SpriteDebris:
     label: VelocityArrayOffset
     type: u8
     offset: 0xE
-SpriteStats:
+- desc: Sprite stats
+  label: SpriteStats
   size: 0x12
   vars:
   - desc: Spawn health
@@ -3935,7 +4050,8 @@ SpriteStats:
     type: u16
     offset: 0x10
     notes: Out of 0x400
-SpritesetEntry:
+- desc: Spriteset entry
+  label: SpritesetEntry
   size: 0x2
   vars:
   - desc: Sprite ID
@@ -3947,7 +4063,8 @@ SpritesetEntry:
     label: GfxRow
     type: u8
     offset: 0x1
-StartingHealthAmmo:
+- desc: Starting health ammo
+  label: StartingHealthAmmo
   size: 0x4
   vars:
   - desc: Energy
@@ -3966,7 +4083,8 @@ StartingHealthAmmo:
     label: PowerBombs
     type: u8
     offset: 0x3
-SubSpriteData:
+- desc: Sub-sprite data
+  label: SubSpriteData
   size: 0x14
   vars:
   - desc: OAM pointer
@@ -4021,7 +4139,8 @@ SubSpriteData:
     label: unk_13
     type: u8
     offset: 0x13
-SuitFlashEffect:
+- desc: Suit flash effect
+  label: SuitFlashEffect
   size: 0x8
   vars:
   - desc: X left
@@ -4044,7 +4163,8 @@ SuitFlashEffect:
     label: Timer
     type: u8
     offset: 0x4
-TankAnim:
+- desc: Tank animation
+  label: TankAnim
   size: 0x2
   vars:
   - desc: Delay
@@ -4055,7 +4175,8 @@ TankAnim:
     label: Frame
     type: u8
     offset: 0x1
-TankCollectionInfo:
+- desc: Tank collection info
+  label: TankCollectionInfo
   size: 0x8
   vars:
   - desc: Type
@@ -4074,7 +4195,8 @@ TankCollectionInfo:
     label: RevealedClipdata
     type: u16
     offset: 0x4
-TankIncreaseAmounts:
+- desc: Tank increase amounts
+  label: TankIncreaseAmounts
   size: 0x4
   vars:
   - desc: Energy
@@ -4093,7 +4215,8 @@ TankIncreaseAmounts:
     label: PowerBombs
     type: u8
     offset: 0x3
-TilemapAndClipdataPtrs:
+- desc: Tilemap and clipdata pointers
+  label: TilemapAndClipdataPtrs
   size: 0xC
   vars:
   - desc: Tilemap pointer
@@ -4110,7 +4233,8 @@ TilemapAndClipdataPtrs:
     label: ClipdataBehaviorTypesPtr
     type: u16 *
     offset: 0x8
-TilesetEntry:
+- desc: Tileset entry
+  label: TilesetEntry
   size: 0x14
   vars:
   - desc: RLE background graphics pointer
@@ -4147,7 +4271,8 @@ TilesetEntry:
     label: AnimatedPalette
     type: u8
     offset: 0x11
-TimeAttackData:
+- desc: Time attack data
+  label: TimeAttackData
   size: 0x62
   vars:
   - desc: Copy of 300001C

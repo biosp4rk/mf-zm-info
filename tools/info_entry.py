@@ -62,6 +62,14 @@ class CodeMode(Enum):
 
 class InfoEntry(object):
 
+    def __init__(self, desc: str, label: str, notes: str = None):
+        self.desc = desc
+        self.label = label  
+        self.notes = notes      
+
+    def __lt__(self, other: "InfoEntry") -> bool:
+        return self.label < other.label
+
     def to_region(self, region: str) -> bool:
         return True
 
@@ -107,13 +115,11 @@ class VarEntry(InfoEntry):
         enum: str = None,
         notes: str = None
     ):
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.parse_type(type)
         self.arr_count = arr_count
         self.tags = tags
         self.enum = enum
-        self.notes = notes
 
     def __str__(self) -> str:
         return self.label
@@ -384,8 +390,14 @@ class StructVarEntry(VarEntry):
 
 class StructEntry(InfoEntry):
 
-    def __init__(self, size: int, vars: List[StructVarEntry]):
-        super().__init__()
+    def __init__(self,
+        desc: str,
+        label: str,
+        size: int,
+        vars: List[StructVarEntry],
+        notes: str = None
+    ):
+        super().__init__(desc, label, notes)
         self.size = size
         self.vars = vars
 
@@ -397,17 +409,24 @@ class StructEntry(InfoEntry):
         assert isinstance(node, dict)
         vars = [StructVarEntry.from_yaml(e) for e in node[K_VARS]]
         return StructEntry(
+            node[K_DESC],
+            node[K_LABEL],
             node[K_SIZE],
             vars,
+            node.get(K_NOTES)
         )
 
     @staticmethod
     def to_yaml(entry: "StructEntry") -> Any:
         vars = [StructVarEntry.to_yaml(e) for e in entry.vars]
         data = [
+            (K_DESC, entry.desc),
+            (K_LABEL, entry.label),
             (K_SIZE, entry.size),
             (K_VARS, vars)
         ]
+        if entry.notes:
+            data.append((K_NOTES, entry.notes))
         return dict(data)
 
 
@@ -423,15 +442,12 @@ class CodeEntry(InfoEntry):
         ret: VarEntry,
         notes: str = None
     ):
-        super().__init__()
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.addr = addr
         self.size = size
         self.mode = mode
         self.params = params
         self.ret = ret
-        self.notes = notes
 
     def __str__(self) -> str:
         return f"{self.label}"
@@ -510,11 +526,8 @@ class EnumValEntry(InfoEntry):
         val: int,
         notes: str = None
     ):
-        super().__init__()
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.val = val
-        self.notes = notes
 
     def __str__(self) -> str:
         return f"{self.val:X} {self.label}"
@@ -546,8 +559,13 @@ class EnumValEntry(InfoEntry):
 
 class EnumEntry(InfoEntry):
 
-    def __init__(self, vals: List[EnumValEntry]):
-        super().__init__()
+    def __init__(self,
+        desc: str,
+        label: str,
+        vals: List[EnumValEntry],
+        notes: str = None
+    ):
+        super().__init__(desc, label, notes)
         self.vals = vals
 
     def __str__(self) -> str:
@@ -557,12 +575,21 @@ class EnumEntry(InfoEntry):
     def from_yaml(node: Any) -> "EnumEntry":
         assert isinstance(node, dict)
         vals = [EnumValEntry.from_yaml(e) for e in node[K_VALS]]
-        return EnumEntry(vals)
+        return EnumEntry(
+            node[K_DESC],
+            node[K_LABEL],
+            vals,
+            node.get(K_NOTES)
+        )
 
     @staticmethod
     def to_yaml(entry: "EnumEntry") -> Any:
         vals = [EnumValEntry.to_yaml(e) for e in entry.vals]
         data = [
+            (K_DESC, entry.desc),
+            (K_LABEL, entry.label),
             (K_VALS, vals)
         ]
+        if entry.notes:
+            data.append((K_NOTES, entry.notes))
         return dict(data)

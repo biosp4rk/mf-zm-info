@@ -7,7 +7,7 @@ from constants import *
 from info_entry import *
 from typing import Dict, List, Union
 
-InfoFile = Union[Dict[str, InfoEntry], List[InfoEntry]]
+InfoFile = List[InfoEntry]
 
 
 def hex_int_presenter(dumper, data: int):
@@ -26,9 +26,9 @@ def load_yaml(path: str, map_type: str) -> InfoFile:
         elif map_type == MAP_DATA:
             return [DataEntry.from_yaml(d) for d in data]
         elif map_type == MAP_STRUCTS:
-            return {k: StructEntry.from_yaml(v) for k, v in data.items()}
+            return [StructEntry.from_yaml(d) for d in data]
         elif map_type == MAP_ENUMS:
-            return {k: EnumEntry.from_yaml(v) for k, v in data.items()}
+            return [EnumEntry.from_yaml(d) for d in data]
     raise ValueError()
 
 def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
@@ -39,9 +39,9 @@ def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
     elif map_type == MAP_DATA:
         return [DataEntry.to_yaml(d) for d in data]
     elif map_type == MAP_STRUCTS:
-        return {k: StructEntry.to_yaml(v) for k, v in data.items()}
+        return [StructEntry.to_yaml(d) for d in data]
     elif map_type == MAP_ENUMS:
-        return {k: EnumEntry.to_yaml(v) for k, v in data.items()}
+        return [EnumEntry.to_yaml(d) for d in data]
     else:
         raise ValueError()
 
