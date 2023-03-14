@@ -1,29 +1,35 @@
 import argparse
-import sys
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 from game_info import GameInfo
-from info_entry import CodeEntry
+from info_entry import CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
 
 
 class Ref(object):
-    def __init__(self, addr, label=None, offset=None, index=None):
+    def __init__(self,
+        addr: int,
+        kind: str,
+        label: str = None,
+        offset: int = None,
+        index: int = None
+    ):
         self.addr = addr
+        self.kind = kind
         self.label = label
         self.index = index
         self.offset = offset
 
     def __str__(self) -> str:
-        s = f"{self.addr:X}"
-        if self.label is not None:
-            s += f" {self.label}"
-            if self.index is not None:
-                s += f"[{self.index:X}]"
-            if self.offset is not None:
-                s += f":{self.offset:X}"
-        return s
+        items = [
+            f"{self.addr:X}",
+            self.kind,
+            "" if self.label is None else self.label,
+            "" if self.index is None else f"{self.index:X}",
+            "" if self.offset is None else f"{self.offset:X}",
+        ]
+        return "\t".join(items)
 
 
 class References(object):
@@ -31,8 +37,7 @@ class References(object):
     def __init__(self, rom: Rom):
         self.rom = rom
         self.info = GameInfo(rom.game, rom.region)
-        # label: [(addr, kind)]
-        self.refs: Dict[str, List[Ref]] = {}
+        self.refs: Dict[int, List[Ref]] = {}
 
     def find(self, addr: int):
         rom = self.rom
@@ -70,11 +75,11 @@ class References(object):
             if inst.format == ThumbForm.LdPC:
                 val = rom.read32(inst.pc_rel_addr())
                 if addr_val == val:
-                    ref = self.get_ref(i)
+                    ref = self.get_ref(i, "pool")
                     ldr_addrs.append(ref)
             elif in_code and inst.format == ThumbForm.Link:
                 if addr == inst.branch_addr():
-                    ref = self.get_ref(i)
+                    ref = self.get_ref(i, "bl")
                     bl_addrs.append(ref)
 
         # check data
@@ -83,7 +88,7 @@ class References(object):
         for i in range(code_end, data_end, 4):
             val = rom.read32(i)
             if addr_val == val:
-                ref = self.get_ref(i)
+                ref = self.get_ref(i, "data")
                 data_addrs.append(ref)
         
         return bl_addrs, ldr_addrs, data_addrs
@@ -111,40 +116,47 @@ class References(object):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.Link:
                 bl_addr = inst.branch_addr()
-                self.check_ref(bl_addr, i, "bl", all_refs)
+                if bl_addr >= code_start and bl_addr < code_end:
+                    self.check_ref(bl_addr, i, "bl", all_refs)
             # check for pool
             elif i % 4 == 0:
                 self.check_addr(i, "pool", all_refs)
 
         # check every ref in data
         self.entries = data_entries
+        self.entries.append(DataEntry(None, None, "u8", 1, data_end))
         for i in range(code_end, data_end, 4):
             self.check_addr(i, "data", all_refs)
         
-        results = {}
-        for entry in all_refs.values():
-            entry_refs = self.refs.get(entry.label)
-            if entry_refs is not None:
-                results[entry.label] = entry_refs
+        # return results
+        results = []
+        for addr, refs in sorted(self.refs.items()):
+            entry = all_refs[addr]
+            results.append((entry.label, addr, refs))
         return results
 
     def check_addr(self, addr, kind, refs):
         val = self.rom.read32(addr)
         if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
             val -= ROM_OFFSET
-            if val >= self.rom.code_start() and val < self.rom.code_end():
+            if val < self.rom.code_end() and val % 4 == 1:
                 # subtract one for thumb code pointers
                 val -= 1
             self.check_ref(val, addr, kind, refs)
 
     def check_ref(self, val, addr, kind, refs):
+        entry = None
         if val in refs:
             entry = refs[val]
-            if entry.label not in self.refs:
-                self.refs[entry.label] = []
-            self.idx = self.find_prev_entry(addr)
-            ref = self.get_ref(addr)
-            self.refs[entry.label].append(ref)
+        else:
+            label = f"unk_{val:X}"
+            entry = DataEntry("", label, "u8", 1, val)
+            refs[val] = entry
+        if entry.addr not in self.refs:
+            self.refs[entry.addr] = []
+        self.idx = self.find_prev_entry(addr)
+        ref = self.get_ref(addr, kind)
+        self.refs[entry.addr].append(ref)
 
     def find_prev_entry(self, addr: int):
         left = 0
@@ -160,7 +172,7 @@ class References(object):
                 return mid
         return mid
 
-    def get_ref(self, addr: int) -> Ref:
+    def get_ref(self, addr: int, kind: str) -> Ref:
         # find next entry before address
         while self.entries[self.idx].addr <= addr:
             self.idx += 1
@@ -175,8 +187,8 @@ class References(object):
             else:
                 length = entry.size[self.rom.region]
         else:
-            length = entry.size(self.info.structs)
-            count = entry.array_count()
+            length = entry.get_size(self.info.structs)
+            count = entry.arr_count
         # check if addr falls within entry
         if addr < entry.addr + length:
             lab = entry.label
@@ -186,8 +198,8 @@ class References(object):
                 size = length // count
                 num = off // size
                 off %= size
-            return Ref(addr, lab, off, num)
-        return Ref(addr)
+            return Ref(addr, kind, lab, off, num)
+        return Ref(addr, kind)
 
 
 def output_section(title, refs) -> List[str]:
@@ -215,10 +227,8 @@ if __name__ == "__main__":
 
     if args.all:
         results = refs.find_all()
-        for name, refs in results.items():
-            print(name + ":")
-            for ref in refs:
-                print(f"  {ref}")
+        for name, addr, refs in results:
+            print(f"{name}\t{addr:06X}\t{len(refs)}")
     else:
         # get address
         addr = None

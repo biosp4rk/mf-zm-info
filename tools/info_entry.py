@@ -62,6 +62,14 @@ class CodeMode(Enum):
 
 class InfoEntry(object):
 
+    def __init__(self, desc: str, label: str, notes: str = None):
+        self.desc = desc
+        self.label = label  
+        self.notes = notes      
+
+    def __lt__(self, other: "InfoEntry") -> bool:
+        return self.label < other.label
+
     def to_region(self, region: str) -> bool:
         return True
 
@@ -107,13 +115,11 @@ class VarEntry(InfoEntry):
         enum: str = None,
         notes: str = None
     ):
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.parse_type(type)
         self.arr_count = arr_count
         self.tags = tags
         self.enum = enum
-        self.notes = notes
 
     def __str__(self) -> str:
         return self.label
@@ -165,26 +171,25 @@ class VarEntry(InfoEntry):
         else:
             return self.arr_count
 
-    def size(self, structs: Dict[str, "StructEntry"]) -> int:
+    def get_size(self, structs: Dict[str, "StructEntry"]) -> int:
         size = self.get_spec_size(structs)
-        if self.declaration is None:
-            return size
-        # get inner-most part of declaration
-        decl = self.declaration
-        i = decl.rfind("(")
-        if i != -1:
-            i += 1
-            j = decl.find(")")
-            decl = decl[i:j]
-        # check for pointer
-        if decl.startswith("*"):
-            size = 4
-            decl = decl.lstrip("*")
-        # check for array
-        mc = re.findall(r"\w+", decl)
-        for m in mc:
-            dim = int(m, 16)
-            size *= dim
+        if self.declaration is not None:
+            # get inner-most part of declaration
+            decl = self.declaration
+            i = decl.rfind("(")
+            if i != -1:
+                i += 1
+                j = decl.find(")")
+                decl = decl[i:j]
+            # check for pointer
+            if decl.startswith("*"):
+                size = 4
+                decl = decl.lstrip("*")
+            # check for array
+            mc = re.findall(r"\w+", decl)
+            for m in mc:
+                dim = int(m, 16)
+                size *= dim
         return size * self.get_count()
 
     def get_spec_size(self, structs: Dict[str, "StructEntry"]) -> int:
@@ -273,12 +278,16 @@ class DataEntry(VarEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.addr, int):
-            return True
-        if region in self.addr:
+        # check addr
+        if isinstance(self.addr, dict):
+            if region not in self.addr:
+                return False
             self.addr = self.addr[region]
-            return True
-        return False
+        # check arr_count
+        if isinstance(self.arr_count, dict):
+            if region in self.arr_count:
+                self.arr_count = self.arr_count[region]
+        return True
 
     @staticmethod
     def from_yaml(node: Any) -> "DataEntry":
@@ -335,12 +344,16 @@ class StructVarEntry(VarEntry):
         return InfoEntry.less_than(self.offset, other.offset)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.offset, int):
-            return True
-        if region in self.offset:
+        # check offset
+        if isinstance(self.offset, dict):
+            if region not in self.offset:
+                return False
             self.offset = self.offset[region]
-            return True
-        return False
+        # check arr_count
+        if isinstance(self.arr_count, dict):
+            if region in self.arr_count:
+                self.arr_count = self.arr_count[region]
+        return True
 
     @staticmethod
     def from_yaml(node: Any) -> "StructVarEntry":
@@ -377,8 +390,14 @@ class StructVarEntry(VarEntry):
 
 class StructEntry(InfoEntry):
 
-    def __init__(self, size: int, vars: List[StructVarEntry]):
-        super().__init__()
+    def __init__(self,
+        desc: str,
+        label: str,
+        size: int,
+        vars: List[StructVarEntry],
+        notes: str = None
+    ):
+        super().__init__(desc, label, notes)
         self.size = size
         self.vars = vars
 
@@ -390,17 +409,24 @@ class StructEntry(InfoEntry):
         assert isinstance(node, dict)
         vars = [StructVarEntry.from_yaml(e) for e in node[K_VARS]]
         return StructEntry(
+            node[K_DESC],
+            node[K_LABEL],
             node[K_SIZE],
             vars,
+            node.get(K_NOTES)
         )
 
     @staticmethod
     def to_yaml(entry: "StructEntry") -> Any:
         vars = [StructVarEntry.to_yaml(e) for e in entry.vars]
         data = [
+            (K_DESC, entry.desc),
+            (K_LABEL, entry.label),
             (K_SIZE, entry.size),
             (K_VARS, vars)
         ]
+        if entry.notes:
+            data.append((K_NOTES, entry.notes))
         return dict(data)
 
 
@@ -416,15 +442,12 @@ class CodeEntry(InfoEntry):
         ret: VarEntry,
         notes: str = None
     ):
-        super().__init__()
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.addr = addr
         self.size = size
         self.mode = mode
         self.params = params
         self.ret = ret
-        self.notes = notes
 
     def __str__(self) -> str:
         return f"{self.label}"
@@ -433,12 +456,16 @@ class CodeEntry(InfoEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        if isinstance(self.addr, int):
-            return True
-        if region in self.addr:
+        # check addr
+        if isinstance(self.addr, dict):
+            if region not in self.addr:
+                return False
             self.addr = self.addr[region]
-            return True
-        return False
+        # check size
+        if isinstance(self.size, dict):
+            if region in self.size:
+                self.size = self.size[region]
+        return True
 
     def is_thumb(self) -> bool:
         return self.mode == CodeMode.Thumb
@@ -499,11 +526,8 @@ class EnumValEntry(InfoEntry):
         val: int,
         notes: str = None
     ):
-        super().__init__()
-        self.desc = desc
-        self.label = label
+        super().__init__(desc, label, notes)
         self.val = val
-        self.notes = notes
 
     def __str__(self) -> str:
         return f"{self.val:X} {self.label}"
@@ -535,8 +559,13 @@ class EnumValEntry(InfoEntry):
 
 class EnumEntry(InfoEntry):
 
-    def __init__(self, vals: List[EnumValEntry]):
-        super().__init__()
+    def __init__(self,
+        desc: str,
+        label: str,
+        vals: List[EnumValEntry],
+        notes: str = None
+    ):
+        super().__init__(desc, label, notes)
         self.vals = vals
 
     def __str__(self) -> str:
@@ -546,12 +575,21 @@ class EnumEntry(InfoEntry):
     def from_yaml(node: Any) -> "EnumEntry":
         assert isinstance(node, dict)
         vals = [EnumValEntry.from_yaml(e) for e in node[K_VALS]]
-        return EnumEntry(vals)
+        return EnumEntry(
+            node[K_DESC],
+            node[K_LABEL],
+            vals,
+            node.get(K_NOTES)
+        )
 
     @staticmethod
     def to_yaml(entry: "EnumEntry") -> Any:
         vals = [EnumValEntry.to_yaml(e) for e in entry.vals]
         data = [
+            (K_DESC, entry.desc),
+            (K_LABEL, entry.label),
             (K_VALS, vals)
         ]
+        if entry.notes:
+            data.append((K_NOTES, entry.notes))
         return dict(data)

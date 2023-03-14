@@ -53,23 +53,27 @@ class Validator(object):
             self.entry_loc.game = game
             # get all info
             info = GameInfo(game)
-            self.enums = info.enums
-            self.structs = info.structs
+            self.enums = {d.label: d for d in info.enums}
+            self.structs = {d.label: d for d in info.structs}
 
             # check enums
             self.entry_loc.map_type = MAP_ENUMS
-            for key, en in self.enums.items():
-                self.entry_loc.entry_name = key
-                self.check_label(key)
-                self.check_vals(en.vals)
+            for entry in info.enums:
+                self.entry_loc.entry_name = entry.label
+                self.check_desc(entry.desc)
+                self.check_label(entry.label)
+                self.check_vals(entry.vals)
+                self.check_notes(entry.notes)
 
             # check structs
             self.entry_loc.map_type = MAP_STRUCTS
-            for key, st in self.structs.items():
-                self.entry_loc.entry_name = key
-                self.check_label(key)
-                self.check_region_int(K_SIZE, st.size)
-                self.check_vars(st.vars)
+            for entry in info.structs:
+                self.entry_loc.entry_name = entry.label
+                self.check_desc(entry.desc)
+                self.check_label(entry.label)
+                self.check_region_int(K_SIZE, entry.size)
+                self.check_vars(entry.vars)
+                self.check_notes(entry.notes)
 
             # check code
             self.entry_loc.map_type = MAP_CODE
@@ -143,7 +147,7 @@ class Validator(object):
         prev_addr = prev.addr
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
-        prev_len = prev.size(self.structs)
+        prev_len = prev.get_size(self.structs)
         for r in prev_addr:
             prev_addr[r] += prev_len - 1
         # compare
