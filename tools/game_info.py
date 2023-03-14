@@ -20,17 +20,31 @@ class GameInfo(object):
 
     def get_struct(self, key: str) -> StructEntry:
         return self.structs[key]
-    
-    def get_entry(self, label: str) -> InfoEntry:
+
+    def get_ram(self, label: str) -> DataEntry:
         for gv in self.ram:
             if gv.label == label:
                 return gv
+        return None
+
+    def get_code(self, label: str) -> CodeEntry:
         for ce in self.code:
             if ce.label == label:
                 return ce
+        return None
+    
+    def get_data(self, label: str) -> DataEntry:
         for gv in self.data:
             if gv.label == label:
                 return gv
+        return None
+
+    def get_entry(self, label: str) -> InfoEntry:
+        getters = (self.get_ram, self.get_code, self.get_data)
+        for getter in getters:
+            entry = getter(label)
+            if entry is not None:
+                return entry
         return None
     
     def label_exists(self, label: str) -> bool:
