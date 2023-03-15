@@ -152,7 +152,11 @@ class Function(object):
         # find all bls
         for inst in self.instructs.values():
             if inst.format == ThumbForm.Link:
-                addr = inst.branch_addr() + ROM_OFFSET
+                addr = inst.branch_addr()
+                # skip if within this function
+                if addr >= self.start_addr and addr < self.end_addr:
+                    continue
+                addr += ROM_OFFSET
                 label = self.symbols.get_label(addr, LabelType.Code)
                 syms[addr] = label
         # check all data pools
