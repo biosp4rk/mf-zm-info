@@ -37,32 +37,28 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 
 ### Entry Attributes
 
-- GameVar
+- GameEntry
   - **`desc`** : `str`
   - **`label`** : `str`
+  - **`notes`** : `Optional[str]`
+- GameVar (extends GameEntry)
   - **`type`** : `str`
   - **`count`** : `RegionInt`
   - **`tags`** : `Optional[List[str]]`
   - **`enum`** : `Optional[str]`
-  - **`notes`** : `Optional[str]`
-- RAM / ROM
-  - Extends GameVar
+- RAM / ROM (extends GameVar)
   - **`addr`** : `RegionInt`
-- Code
-  - **`desc`** : `str`
-  - **`label`** : `str`
+- Code (extends GameEntry)
   - **`addr`** : `RegionInt`
   - **`size`** : `RegionInt`
   - **`mode`** : `Literal['thumb', 'arm']`
   - **`params`** : `Union[List[GameVar], None]`
   - **`return`** : `Union[GameVar, None]`
-  - **`notes`** : `Optional[str]`
-- Structs
+- Struct (extends GameEntry)
   - **`size`** : `hex`
-  - **`vars`** : `List`
-    - Extends GameVar
+  - **`vars`** : `List` (Extends GameVar)
     - **`offset`** : `hex`
-- Enums
+- Enum (extends GameEntry)
   - **`vals`**: `List`
     - **`desc`** : `str`
     - **`label`** : `str`
