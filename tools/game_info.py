@@ -45,7 +45,7 @@ class GameInfo(object):
             entry = getter(label)
             if entry is not None:
                 return entry
-            return None
+        return None
 
     def label_exists(self, label: str) -> bool:
         return self.get_entry(label) is not None
