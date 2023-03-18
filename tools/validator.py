@@ -53,12 +53,12 @@ class Validator(object):
             self.entry_loc.game = game
             # get all info
             info = GameInfo(game)
-            self.enums = {d.label: d for d in info.enums}
-            self.structs = {d.label: d for d in info.structs}
+            self.enums = info.enums
+            self.structs = info.structs
 
             # check enums
             self.entry_loc.map_type = MAP_ENUMS
-            for entry in info.enums:
+            for entry in info.enums.values():
                 self.entry_loc.entry_name = entry.label
                 self.check_desc(entry.desc)
                 self.check_label(entry.label)
@@ -67,7 +67,7 @@ class Validator(object):
 
             # check structs
             self.entry_loc.map_type = MAP_STRUCTS
-            for entry in info.structs:
+            for entry in info.structs.values():
                 self.entry_loc.entry_name = entry.label
                 self.check_desc(entry.desc)
                 self.check_label(entry.label)

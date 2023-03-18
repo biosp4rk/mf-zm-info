@@ -2,15 +2,20 @@ import argparse
 from typing import List, Tuple
 
 from function import Function
-from game_info import GameInfo
 from rom import Rom, ROM_OFFSET
 
 
-def dump_bytes(rom: Rom, start: int, length: int):
+def dump_bytes(rom: Rom, start: int, length: int, size: int = 1):
+    assert size in {1, 2, 4}, "Invalid byte size"
     end = start + length
     for i in range(start, end, 16):
         j = min(i + 16, end)
-        print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
+        if size == 1:
+            print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
+        elif size == 2:
+            print(" ".join(f"{rom.read16(a):04X}" for a in range(i, j, 2)))
+        elif size == 4:
+            print(" ".join(f"{rom.read32(a):08X}" for a in range(i, j, 4)))
 
 
 def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
@@ -53,29 +58,6 @@ def coverage(rom: Rom):
     print(f"Total:\t{(code_cov + data_cov) / rom_size:.2%}")
 
 
-def find_ptrs(rom: Rom):
-    start = rom.data_start()
-    end = rom.data_end()
-    v_code_start = rom.code_start(True)
-    v_data_end = rom.data_end(True)
-    p_code_end = rom.code_end()
-    locs = []
-    for addr in range(start, end, 4):
-        val = rom.read32(addr)
-        if val >= v_code_start and val < v_data_end:
-            val -= ROM_OFFSET
-            err = ""
-            # check if code
-            if val < p_code_end:
-                # check if valid code pointer
-                if val % 4 != 1:
-                    err = "BAD_CODE_PTR"
-            # get difference
-            diff = val - addr
-            locs.append((addr, val, diff, err))
-    return locs
-
-
 if __name__ == "__main__":
     import argparse_utils as apu
     parser = argparse.ArgumentParser()
@@ -85,14 +67,13 @@ if __name__ == "__main__":
     apu.add_rom_path_arg(subparser)
     apu.add_addr_arg(subparser)
     subparser.add_argument("count", type=str)
+    subparser.add_argument("-s", "--size", type=int,
+        choices=[1, 2, 4], default=1)
     # all_funcs command
     subparser = subparsers.add_parser("all_funcs")
     apu.add_rom_path_arg(subparser)
     # coverage command
     subparser = subparsers.add_parser("coverage")
-    apu.add_rom_path_arg(subparser)
-    # find_ptrs command
-    subparser = subparsers.add_parser("find_ptrs")
     apu.add_rom_path_arg(subparser)
 
     args = parser.parse_args()
@@ -100,7 +81,7 @@ if __name__ == "__main__":
         rom = apu.get_rom(args)
         addr = apu.get_addr(args)
         count = int(args.count, 16)
-        dump_bytes(rom, addr, count)
+        dump_bytes(rom, addr, count, args.size)
     elif args.command == "all_funcs":
         rom = apu.get_rom(args)
         funcs = all_funcs(rom)
@@ -109,10 +90,5 @@ if __name__ == "__main__":
     elif args.command == "coverage":
         rom = apu.get_rom(args)
         coverage(rom)
-    elif args.command == "find_ptrs":
-        rom = apu.get_rom(args)
-        results = find_ptrs(rom)
-        for loc, addr, diff, err in results:
-            print(f"{loc:X}\t{addr:X}\t{diff}\t{err}")
     else:
         parser.print_help()

@@ -60,13 +60,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("src_rom_path", type=str)
     parser.add_argument("target_rom_path", type=str)
-    apu.add_addr_arg(parser)
+    apu.add_addrs_arg(parser)
 
     args = parser.parse_args()
     src_rom = Rom(args.src_rom_path)
     target_rom = Rom(args.target_rom_path)
-    addr = apu.get_addr(args)
+    addrs = apu.get_addrs(args)
 
     finder = Finder(src_rom, target_rom)
-    ta, ts = finder.find(addr)
-    print(f"{ta:X}\t{ts:X}")
+    for addr in addrs:
+        ta, ts = finder.find(addr)
+        print(f"{ta:X}\t{ts:X}")

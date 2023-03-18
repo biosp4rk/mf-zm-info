@@ -12,8 +12,10 @@ class GameInfo(object):
         self.ram: List[DataEntry] = load_yamls(game, MAP_RAM, region)
         self.code: List[CodeEntry] = load_yamls(game, MAP_CODE, region)
         self.data: List[DataEntry] = load_yamls(game, MAP_DATA, region)
-        self.structs: Dict[str, StructEntry] = load_yamls(game, MAP_STRUCTS, region)
-        self.enums: Dict[str, EnumEntry] = load_yamls(game, MAP_ENUMS, region)
+        struct_list = load_yamls(game, MAP_STRUCTS, region)
+        self.structs: Dict[str, StructEntry] = {e.label: e for e in struct_list}
+        enum_list = load_yamls(game, MAP_ENUMS, region)
+        self.enums: Dict[str, EnumEntry] = {e.label: e for e in enum_list}
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]

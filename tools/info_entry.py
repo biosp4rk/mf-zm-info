@@ -159,6 +159,8 @@ class VarEntry(InfoEntry):
         return f"{self.spec()} {self.declaration}"
 
     def is_ptr(self) -> bool:
+        if not self.declaration:
+            return False
         return self.declaration.startswith("*")
 
     def get_count(self) -> int:
@@ -170,6 +172,22 @@ class VarEntry(InfoEntry):
                     return self.arr_count[r]
         else:
             return self.arr_count
+
+    def get_total_count(self) -> int:
+        count = self.get_count()
+        if self.declaration is not None:
+            # get inner-most part of declaration
+            decl = self.declaration
+            i = decl.rfind("(")
+            if i != -1:
+                i += 1
+                j = decl.find(")")
+                decl = decl[i:j]
+            # check for array
+            mc = re.findall(r"\w+", decl)
+            for m in mc:
+                count *= int(m, 16)
+        return count
 
     def get_size(self, structs: Dict[str, "StructEntry"]) -> int:
         size = self.get_spec_size(structs)
