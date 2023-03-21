@@ -48,6 +48,14 @@ class GameInfo(object):
             if entry is not None:
                 return entry
         return None
+    
+    def get_entry_by_addr(self, addr: int) -> InfoEntry:
+        entry_lists = (self.ram, self.code, self.data)
+        for entry_list in entry_lists:
+            for entry in entry_list:
+                if entry.addr == addr:
+                    return entry
+        return None
 
     def label_exists(self, label: str) -> bool:
         return self.get_entry(label) is not None

@@ -7,6 +7,7 @@ from constants import *
 
 # type for numbers that can vary by region (addr, size)
 RegionInt = Union[int, Dict[str, int]]
+StructDict = Dict[str, "StructEntry"]
 
 
 class PrimType(Enum):
@@ -147,6 +148,16 @@ class VarEntry(InfoEntry):
         else:
             self.declaration = None
 
+    def inner_decl(self) -> str:
+        # get inner-most part of declaration
+        decl = self.declaration
+        i = decl.rfind("(")
+        if i != -1:
+            i += 1
+            j = decl.find(")")
+            decl = decl[i:j]
+        return decl
+
     def spec(self) -> str:
         if self.primitive == PrimType.Struct:
             return self.struct_name
@@ -161,7 +172,16 @@ class VarEntry(InfoEntry):
     def is_ptr(self) -> bool:
         if not self.declaration:
             return False
-        return self.declaration.startswith("*")
+        return self.inner_decl().startswith("*")
+
+    def has_ptr(self, structs: StructDict) -> bool:
+        if self.is_ptr():
+            return True
+        if self.primitive == PrimType.Struct:
+            se = structs[self.struct_name]
+            if any(v.has_ptr(structs) for v in se.vars):
+                return True
+        return False
 
     def get_count(self) -> int:
         if self.arr_count is None:
@@ -176,41 +196,18 @@ class VarEntry(InfoEntry):
     def get_total_count(self) -> int:
         count = self.get_count()
         if self.declaration is not None:
-            # get inner-most part of declaration
-            decl = self.declaration
-            i = decl.rfind("(")
-            if i != -1:
-                i += 1
-                j = decl.find(")")
-                decl = decl[i:j]
+            decl = self.inner_decl()
             # check for array
             mc = re.findall(r"\w+", decl)
             for m in mc:
                 count *= int(m, 16)
         return count
 
-    def get_size(self, structs: Dict[str, "StructEntry"]) -> int:
-        size = self.get_spec_size(structs)
-        if self.declaration is not None:
-            # get inner-most part of declaration
-            decl = self.declaration
-            i = decl.rfind("(")
-            if i != -1:
-                i += 1
-                j = decl.find(")")
-                decl = decl[i:j]
-            # check for pointer
-            if decl.startswith("*"):
-                size = 4
-                decl = decl.lstrip("*")
-            # check for array
-            mc = re.findall(r"\w+", decl)
-            for m in mc:
-                dim = int(m, 16)
-                size *= dim
-        return size * self.get_count()
+    def get_size(self, structs: StructDict) -> int:
+        size = 4 if self.is_ptr() else self.get_spec_size(structs)
+        return size * self.get_total_count()
 
-    def get_spec_size(self, structs: Dict[str, "StructEntry"]) -> int:
+    def get_spec_size(self, structs: StructDict) -> int:
         if self.primitive in {
             PrimType.Void,
             PrimType.U8,
@@ -230,6 +227,14 @@ class VarEntry(InfoEntry):
                 return se.size
             msg = f"Invalid struct name {self.struct_name}"
             raise ValueError(msg)
+
+    def get_alignment(self, structs: StructDict) -> int:
+        if self.is_ptr():
+            return 4
+        if self.primitive == PrimType.Struct:
+            se = structs[self.struct_name]
+            return max(v.get_alignment(structs) for v in se.vars)
+        return self.get_spec_size(structs)
 
     @staticmethod
     def from_yaml(node: Any) -> "VarEntry":

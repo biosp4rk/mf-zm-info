@@ -55,6 +55,91 @@ class Finder(object):
         return best_addr, best_size
 
 
+class SeqAlign(object):
+    def __init__(self, rom1: Rom, rom2: Rom):
+        self.rom1 = rom1
+        self.rom2 = rom2
+
+    def align(self,
+        rom1_start: int,
+        rom1_end: int,
+        rom2_start: int,
+        rom2_end: int
+    ):
+        # check sizes
+        m = rom1_end - rom1_start
+        n = rom2_end - rom2_start
+        if m * n > 100_000_000:
+            print(f"{m} x {n} ({m * n}) is too big")
+            return
+
+        # create matrix of distances
+        d = [[0 for _ in range(n+1)] for _ in range(m+1)]
+
+        # fill distances for source prefixes
+        for i in range(1, m+1):
+            d[i][0] = i
+        # fill distances for target prefixes
+        for j in range(1, n+1):
+            d[0][j] = j
+        
+        # fill in remainder of matrix
+        for j in range(1, n+1):
+            b2 = self.rom2.data[rom2_start + j - 1]
+            for i in range(1, m+1):
+                b1 = self.rom1.data[rom1_start + i - 1]
+                sub_cost = 0 if b1 == b2 else 1
+                d[i][j] = min(
+                    d[i-1][j] + 1, # deletion
+                    d[i][j-1] + 1, # insertion
+                    d[i-1][j-1] + sub_cost, # substitution
+                )
+        # get path taken
+        i = m
+        j = n
+        path = []
+        while i > 0 or j > 0:
+            # get costs
+            del_cost = 0x2000000
+            ins_cost = 0x2000000
+            sub_cost = 0x2000000
+            if i > 0:
+                del_cost = d[i-1][j]
+            if j > 0:
+                ins_cost = d[i][j-1]
+            if i > 0 and j > 0:
+                sub_cost = d[i-1][j-1]
+            # find best
+            if del_cost < ins_cost and del_cost < sub_cost:
+                path.append((i, j, "DEL"))
+                i -= 1
+            elif ins_cost < sub_cost:
+                path.append((i, j, "INS"))
+                j -= 1
+            else:
+                if d[i-1][j-1] < d[i][j]:
+                    path.append((i, j, "SUB"))
+                i -= 1
+                j -= 1
+        # get addresses and values involved
+        details = []
+        for i, j, act in reversed(path):
+            s = None
+            addr1 = rom1_start + i - 1
+            if act == "DEL":
+                b = self.rom1.data[addr1]
+                s = f"DEL {b:02X}"
+            elif act == "INS":
+                b = self.rom2.data[rom2_start + j - 1]
+                s = f"INS {b:02X}"
+            elif act == "SUB":
+                b1 = self.rom1.data[addr1]
+                b2 = self.rom2.data[rom2_start + j - 1]
+                s = f"SUB {b1:02X} -> {b2:02X}"
+            details.append(f"{addr1:X}: {s}")
+        return details
+
+
 if __name__ == "__main__":
     import argparse_utils as apu
     parser = argparse.ArgumentParser()
