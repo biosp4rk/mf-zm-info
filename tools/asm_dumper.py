@@ -240,7 +240,7 @@ if __name__ == "__main__":
     if args.command == "funcs":
         rom = apu.get_rom(args)
         addrs = apu.get_addrs(args)
-        dump_funcs(rom, addrs)
+        dump_funcs("_code", rom, addrs)
     elif args.command == "data":
         rom = apu.get_rom(args)
         labels = args.labels.split(",")
