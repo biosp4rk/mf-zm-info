@@ -2,14 +2,20 @@ import argparse
 from typing import List, Tuple
 
 from function import Function
-from rom import Rom
+from rom import Rom, ROM_OFFSET
 
 
-def dump_bytes(rom: Rom, start: int, length: int):
+def dump_bytes(rom: Rom, start: int, length: int, size: int = 1):
+    assert size in {1, 2, 4}, "Invalid byte size"
     end = start + length
     for i in range(start, end, 16):
         j = min(i + 16, end)
-        print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
+        if size == 1:
+            print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
+        elif size == 2:
+            print(" ".join(f"{rom.read16(a):04X}" for a in range(i, j, 2)))
+        elif size == 4:
+            print(" ".join(f"{rom.read32(a):08X}" for a in range(i, j, 4)))
 
 
 def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
@@ -61,6 +67,8 @@ if __name__ == "__main__":
     apu.add_rom_path_arg(subparser)
     apu.add_addr_arg(subparser)
     subparser.add_argument("count", type=str)
+    subparser.add_argument("-s", "--size", type=int,
+        choices=[1, 2, 4], default=1)
     # all_funcs command
     subparser = subparsers.add_parser("all_funcs")
     apu.add_rom_path_arg(subparser)
@@ -73,7 +81,7 @@ if __name__ == "__main__":
         rom = apu.get_rom(args)
         addr = apu.get_addr(args)
         count = int(args.count, 16)
-        dump_bytes(rom, addr, count)
+        dump_bytes(rom, addr, count, args.size)
     elif args.command == "all_funcs":
         rom = apu.get_rom(args)
         funcs = all_funcs(rom)
