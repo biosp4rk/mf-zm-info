@@ -1,4 +1,5 @@
 import argparse
+import os
 from typing import List
 
 from constants import *
@@ -7,18 +8,6 @@ from game_info import GameInfo
 from info_entry import PrimType, DataEntry, VarEntry
 from rom import Rom, ROM_OFFSET
 from symbols import Symbols, LabelType
-
-
-def data_files(path: str, rom: Rom, info: GameInfo, labels: List[str]):
-    for lab in labels:
-        entry = info.get_data(lab)
-        if not entry:
-            raise ValueError(lab)
-        addr = entry.addr
-        size = entry.size(info.structs)
-        dat = rom.read_bytes(addr, size)
-        with open(path + f"{lab}.bin", "wb") as f:
-            f.write(dat)
 
 
 def unk_asm(rom: Rom, addr: int, count: int, per_line: int = 16) -> str:
@@ -149,20 +138,20 @@ def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
     raise ValueError(prim)
 
 
-def dump_data(rom: Rom, info: GameInfo, entry: DataEntry):
+def dump_data(path: str, rom: Rom, info: GameInfo, entry: DataEntry):
     # write file
     if entry.has_ptr(info.structs):
         # asm file
         asm = data_asm(rom, info, entry, entry.addr)
-        path = f"{entry.label}.asm"
-        with open(path, "w") as f:
+        fp = os.path.join(path, f"{entry.label}.asm")
+        with open(fp, "w") as f:
             f.write(asm)
     else:
         # bin file
         size = entry.get_size(info.structs)
         data = rom.read_bytes(entry.addr, size)
-        path = f"{entry.label}.asm"
-        with open(path, "wb") as f:
+        fp = os.path.join(path, f"{entry.label}.bin")
+        with open(fp, "wb") as f:
             f.write(data)
 
 
@@ -176,49 +165,55 @@ def dump_funcs(path: str, rom: Rom, addrs: List[int]):
     for func in funcs:
         used.update(func.get_symbols())
     
+    if not os.path.exists(path):
+        os.makedirs(path)
+
     # get lines for labels and includes
-    label_defs = []
-    includes = []
-    imports = []
+    ram_defs = []
+    code_defs = []
+    data_defs = []
     missing = []
+    code_end = rom.code_end(True)
     for addr, lab in sorted(used.items()):
         # check if in ram
         if (
             (addr >= 0x2000000 and addr < 0x2040000) or
             (addr >= 0x3000000 and addr < 0x3008000)
         ):
-            label_defs.append(f".definelabel {lab},0x{addr:X}")
+            ram_defs.append((lab, addr))
         else:
-            addr -= ROM_OFFSET
-            if addr < rom.code_end():
-                # code
-                includes.append(f".include {lab}.asm ; {addr:X}")
+            if addr < code_end:
+                code_defs.append((lab, addr))
             else:
-                # data
-                imports.append(f".import {lab}.bin ; {addr:X}")
-                # check if labeled
-                entry = info.get_entry(lab)
-                if entry is None:
-                    missing.append(lab)
+                data_defs.append((lab, addr))
+        # check if labeled
+        entry = info.get_entry(lab)
+        if entry is None:
+            missing.append(lab)
 
+    # output symbols
     sym_lines = []
-    for lines in (label_defs, includes, imports):
-        if len(lines) > 0:
-            sym_lines += lines
-            sym_lines.append("")
+    for defs in (ram_defs, code_defs, data_defs):
+        if len(defs) > 0:
+            for lab, addr in defs:
+                sym_lines.append(f".definelabel {lab},0x{addr:X}")
+            sym_lines.append("")    
     if missing:
         sym_lines.append("; missing")
         for lab in missing:
             sym_lines.append(f"; {lab}")
-    for line in sym_lines:
-        print(line)
+    fp = os.path.join(path, "symbols.asm")
+    with open(fp, "w") as f:
+        for line in sym_lines:
+            f.write(line + "\n")
 
     # output functions as asm files
     for func in funcs:
         func_addr = func.start_addr + ROM_OFFSET
         label = syms.get_label(func_addr, LabelType.Code)
         lines = func.get_lines(False)
-        with open(path + f"{label}.asm", "w") as f:
+        fp = os.path.join(path, f"{label}.asm")
+        with open(fp, "w") as f:
             for line in lines:
                 f.write(line + "\n")
 
@@ -240,7 +235,7 @@ if __name__ == "__main__":
     if args.command == "funcs":
         rom = apu.get_rom(args)
         addrs = apu.get_addrs(args)
-        dump_funcs("_code", rom, addrs)
+        dump_funcs("_asm", rom, addrs)
     elif args.command == "data":
         rom = apu.get_rom(args)
         labels = args.labels.split(",")

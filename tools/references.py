@@ -188,7 +188,7 @@ class References(object):
                 length = entry.size[self.rom.region]
         else:
             length = entry.get_size(self.info.structs)
-            count = entry.arr_count
+            count = entry.get_count()
         # check if addr falls within entry
         if addr < entry.addr + length:
             lab = entry.label
