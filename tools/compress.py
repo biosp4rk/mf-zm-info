@@ -169,10 +169,10 @@ if __name__ == "__main__":
     addr = apu.get_addr(args)
 
     if args.action == "rle":
-        raw, size = decomp_lz77(rom.data, addr)
+        raw, size = decomp_rle(rom.data, addr)
         print(f"{len(raw):X}\t{size:X}")
     elif args.action == "lz":
-        raw, size = decomp_rle(rom.data, addr)
+        raw, size = decomp_lz77(rom.data, addr)
         print(f"{len(raw):X}\t{size:X}")
     if args.action == "is-lz":
         size = is_lz77(rom.data, addr)

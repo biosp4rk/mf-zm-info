@@ -3,6 +3,7 @@ from typing import Dict, List, Set
 
 from constants import *
 from function import Function
+from game_info import GameInfo
 from rom import Rom
 from symbols import Symbols
 from thumb import ThumbForm
@@ -11,6 +12,7 @@ from thumb import ThumbForm
 class CallStack(object):
     def __init__(self, rom: Rom, addr: int, symbols: Symbols = Symbols()):
         self.rom = rom
+        self.info = GameInfo(rom.game, rom.region)
         self.symbols = symbols
         self.stack = self.recurse(addr, 0, set())
 
@@ -44,7 +46,11 @@ class CallStack(object):
     ):
         tab = depth * indent * " "
         for addr, calls in subs.items():
-            lines.append(f"{tab}{addr:05X}")
+            line = f"{tab}{addr:05X}"
+            entry = self.info.get_entry_by_addr(addr)
+            if entry:
+                line += f" {entry.label}"
+            lines.append(line)
             self.add_lines(calls, depth + 1, indent, lines)
 
 
