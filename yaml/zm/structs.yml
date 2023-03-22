@@ -1268,6 +1268,79 @@
     label: OamRelatedNum
     type: u8
     offset: 0x4
+- desc: Debug area info
+  label: DebugAreaInfo
+  size: 0x4
+  vars:
+  - desc: Area ID
+    label: AreaID
+    type: u8
+    offset: 0x0
+  - desc: Selected section
+    label: SelectedSection
+    type: u8
+    offset: 0x1
+  - desc: Downloaded map status
+    label: DownloadedMapStatus
+    type: u8
+    tags:
+    - flags
+    offset: 0x2
+  - desc: '?'
+    label: unk_03
+    type: u8
+    tags:
+    - flags
+    offset: 0x3
+- desc: Debug "SECTION" cursor movement
+  label: Debug_SECTION_CursorMovement
+  size: 0x4
+  vars:
+  - desc: Right text ID
+    label: RightTextID
+    type: u8
+    offset: 0x0
+  - desc: Left text ID
+    label: LeftTextID
+    type: u8
+    offset: 0x1
+  - desc: Up text ID
+    label: UpTextID
+    type: u8
+    offset: 0x2
+  - desc: Down text ID
+    label: DownTextID
+    type: u8
+    offset: 0x3
+- desc: Debug text info
+  label: DebugTextInfo
+  size: 0xC
+  vars:
+  - desc: VRAM section
+    label: VramSection
+    type: u8
+    offset: 0x0
+    notes: Ranges from 0-3
+  - desc: X position
+    label: XPosition
+    type: u8
+    offset: 0x1
+  - desc: Y offset
+    label: YOffset
+    type: u8
+    offset: 0x2
+  - desc: Palette
+    label: Palette
+    type: u8
+    offset: 0x3
+  - desc: Length
+    label: Length
+    type: u8
+    offset: 0x4
+  - desc: Text pointer
+    label: TextPtr
+    type: s8 *
+    offset: 0x8
 - desc: Demo input data
   label: DemoInputData
   size: 0x10

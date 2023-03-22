@@ -1,207 +1,165 @@
-- desc: Fix me
-  label: fixme_40DE54
+- desc: Difficulty event actions
+  label: DifficultyEventActions
   type: u8
-  count: 0x10
-  addr:
-    E: 0x40DE54
-    B: 0x41391C
-- desc: Fix me
-  label: fixme_40EEF8
-  type: u8
-  count: 0x1400
-  addr:
-    E: 0x40EEF8
-    B: 0x415A1C
-- desc: Fix me
-  label: fixme_412194
-  type: u16
-  count: 0x50
-  addr:
-    E: 0x412194
-    B: 0x418CB8
-- desc: debug_415642
-  label: debug_415642
-  type: u8
-  count: 0x26
+  count: 0x6
   addr:
     B: 0x415642
-- desc: debug_418E68
-  label: debug_418E68
-  type: u8
-  count: 0x14
-  addr:
-    B: 0x418E68
-- desc: debug_418E7C
-  label: debug_418E7C
-  type: u16
-  count: 0x82
+  notes: Each difficulty is 2 bytes, 1st is action for easy event and 2nd is action for hard event
+- desc: Debug default area info
+  label: DebugDefaultAreaInfo
+  type: DebugAreaInfo
   addr:
     B: 0x418E7C
-- desc: debug_418F80
-  label: debug_418F80
-  type: u8
-  count: 0x100
+- desc: Debug BG palette 2?
+  label: DebugBGPalette2
+  type: u16
+  count: 0x80
   addr:
     B: 0x418F80
-- desc: debug_419080
-  label: debug_419080
+- desc: Debug OBJ palette?
+  label: DebugObjPalette
   type: u16
   count: 0x30
+  tags:
+  - palette
   addr:
     B: 0x419080
-- desc: debug_4190E0
-  label: debug_4190E0
+- desc: Debug OBJ graphics?
+  label: DebugObjGfx
   type: u8
   count: 0x377
   tags:
   - lz
+  - gfx
   addr:
     B: 0x4190E0
-- desc: debug_419680
-  label: debug_419680
+- desc: Debug Shift JIS text graphics
+  label: DebugSjisTextGfx
   type: u8
   count: 0xC0B
   tags:
   - lz
+  - gfx
   addr:
     B: 0x419680
-- desc: debug_41A56C
-  label: debug_41A56C
-  type: u8
-  count: 0x78
+- desc: Debug main menu text info
+  label: DebugMainMenuTextInfo
+  type: DebugTextInfo
+  count: 0xA
   addr:
     B: 0x41A56C
-  notes: Struct of size C, offset 8 is a pointer
-- desc: debug_41A5E4
-  label: debug_41A5E4
-  type: u8
-  count: 0xC0
+- desc: Debug "SECTION" text info
+  label: Debug_SECTION_TextInfo
+  type: DebugTextInfo
+  count: 0x10
   addr:
     B: 0x41A5E4
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A6A4
-  label: debug_41A6A4
-  type: u8
-  count: 0x18
+- desc: Debug "MODE" text info
+  label: Debug_MODE_TextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A6A4
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A6BC
-  label: debug_41A6BC
-  type: u8
-  count: 0x54
+- desc: Debug "MODE" language text info
+  label: Debug_MODE_LanguageTextInfo
+  type: DebugTextInfo
+  count: 0x7
   addr:
     B: 0x41A6BC
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A710
-  label: debug_41A710
-  type: u8
-  count: 0x24
+- desc: Debug "MODE" dfficulty text info
+  label: Debug_MODE_DifficultyTextInfo
+  type: DebugTextInfo
+  count: 0x3
   addr:
     B: 0x41A710
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A734
-  label: debug_41A734
-  type: u8
-  count: 0x3C
+- desc: Debug "SAVE" text info
+  label: Debug_SAVE_TextInfo
+  type: DebugTextInfo
+  count: 0x5
   addr:
     B: 0x41A734
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A770
-  label: debug_41A770
-  type: u8
-  count: 0x3C
+- desc: Debug "SAMUS" text info
+  label: Debug_SAMUS_TextInfo
+  type: DebugTextInfo
+  count: 0x5
   addr:
     B: 0x41A770
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A7AC
-  label: debug_41A7AC
-  type: u8
-  count: 0x18
+- desc: Debug "SAMUS" L/R button 1 text info
+  label: Debug_SAMUS_LRButton1TextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A7AC
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A7C4
-  label: debug_41A7C4
-  type: u8
-  count: 0x18
+- desc: Debug "SAMUS" L/R button 2 text info
+  label: Debug_SAMUS_LRButton2TextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A7C4
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A7DC
-  label: debug_41A7DC
-  type: u8
-  count: 0x18
+- desc: Debug "SAMUS" start/select 1 text info
+  label: Debug_SAMUS_StartSelect1TextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A7DC
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A7F4
-  label: debug_41A7F4
-  type: u8
-  count: 0x18
+- desc: Debug "SAMUS" start/select 2 text info
+  label: Debug_SAMUS_StartSelect2TextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A7F4
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A80C
-  label: debug_41A80C
-  type: u8
-  count: 0x30
+- desc: Debug "Sound" text info
+  label: Debug_Sound_TextInfo
+  type: DebugTextInfo
+  count: 0x4
   addr:
     B: 0x41A80C
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A83C
-  label: debug_41A83C
-  type: u8
-  count: 0x18
+- desc: Debug "Sound" BGM on/off text info
+  label: Debug_Sound_BgmOnOffTextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A83C
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A854
-  label: debug_41A854
-  type: u8
-  count: 0x3C
+- desc: Debug "DEMO" text info
+  label: Debug_DEMO_TextInfo
+  type: DebugTextInfo
+  count: 0x5
   addr:
     B: 0x41A854
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A890
-  label: debug_41A890
-  type: u8
-  count: 0x18
+- desc: Debug "DEMO" on/off text info
+  label: Debug_DEMO_OnOffTextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A890
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A8A8
-  label: debug_41A8A8
-  type: u8
-  count: 0x30
+- desc: Debug "etc" text info
+  label: Debug_etc_TextInfo
+  type: DebugTextInfo
+  count: 0x4
   addr:
     B: 0x41A8A8
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A8D8
-  label: debug_41A8D8
-  type: u8
-  count: 0x18
+- desc: Debug "etc" main-end OBJ on/off text info
+  label: Debug_etc_MainEndObjOnOffTextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A8D8
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A8F0
-  label: debug_41A8F0
-  type: u8
-  count: 0x18
+- desc: Debug "etc" door transition on/off text info
+  label: Debug_etc_DoorTransitionOnOffTextInfo
+  type: DebugTextInfo
+  count: 0x2
   addr:
     B: 0x41A8F0
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A908
-  label: debug_41A908
-  type: u8
-  count: 0x24
+- desc: Debug "ERASE" text info
+  label: Debug_ERASE_TextInfo
+  type: DebugTextInfo
+  count: 0x3
   addr:
     B: 0x41A908
-  notes: Struct of size 0xC, offset 8 is a pointer
-- desc: debug_41A953
-  label: debug_41A953
-  type: u8
-  count: 0x3D
+- desc: Debug "SECTION" cursor movements
+  label: Debug_SECTION_CursorMovements
+  type: Debug_SECTION_CursorMovement
+  count: 0xF
   addr:
     B: 0x41A953
 - desc: Map OAM related?
@@ -218,13 +176,6 @@
   - ascii
   addr:
     B: 0x41A9C0
-- desc: Fix me
-  label: fixme_5EC1A0
-  type: u8
-  count: 0x28
-  addr:
-    E: 0x5EC1A0
-    B: 0x5F480C
 - desc: Debug spaces text
   label: DebugSpacesText
   type: s8
@@ -465,68 +416,31 @@
   - ascii
   addr:
     B: 0x5F4A40
-- desc: debug_770220
-  label: debug_770220
-  type: u8
-  count: 0x2CDC
-  addr:
-    E: 0x76791C
-    B: 0x770220
-  notes: Pointer to RAM addr?
-- desc: debug_772EFC
-  label: debug_772EFC
-  type: u8
-  count: 0x7F50
-  addr:
-    E: 0x76A5F8
-    B: 0x772EFC
-- desc: debug_77AE4C
-  label: debug_77AE4C
-  type: u8
-  addr:
-    B: 0x77AE4C
-- desc: debug_77C24C
-  label: debug_77C24C
-  type: u8
-  addr:
-    B: 0x77C24C
-- desc: debug_77C278
-  label: debug_77C278
-  type: u8
-  addr:
-    B: 0x77C278
-- desc: debug_77C9B0
-  label: debug_77C9B0
-  type: u8
-  addr:
-    B: 0x77C9B0
-- desc: debug_77CD28
-  label: debug_77CD28
+- desc: Debug demo B dashes text pointer
+  label: DebugDemoBDashesTextPtr
   type: u8
   addr:
     B: 0x77CD28
-- desc: debug_77CD64
-  label: debug_77CD64
-  type: u8
+- desc: Debug demo A dashes text pointer
+  label: DebugDemoADashesTextPtr
+  type: s8 *
   addr:
     B: 0x77CD64
-- desc: debug_77CD6C
-  label: debug_77CD6C
-  type: u8
+- desc: Debug demo mode spaces text pointer
+  label: DebugDemoModeSpacesTextPtr
+  type: s8 *
   addr:
     B: 0x77CD6C
-- desc: debug_77CD80
-  label: debug_77CD80
+- desc: Debug "SAVE" text colors
+  label: Debug_SAVE_TextColors
   type: u8
+  count: 0x4
   addr:
     B: 0x77CD80
-- desc: debug_77CD81
-  label: debug_77CD81
-  type: u8
-  addr:
-    B: 0x77CD81
-- desc: debug_77DEE8
-  label: debug_77DEE8
-  type: u8
+  notes: Palette row toggle for save related text?
+- desc: Debug link cable error string pointers
+  label: DebugLinkCableErrorStringPtrs
+  type: s8 *
+  count: 0x4
   addr:
     B: 0x77DEE8

@@ -7,6 +7,7 @@
     E: 0x8D3A8
     J: 0x8C778
     C: 0x90494
+    B: 0x92E70
 - desc: Random number table
   label: RandomNumberTable
   type: u8
@@ -1440,6 +1441,13 @@
     E: 0x40E5E4
     J: 0x40D80C
     C: 0x42F34C
+- desc: unk_40DE54
+  label: unk_40DE54
+  type: u8
+  count: 0x10
+  addr:
+    E: 0x40DE54
+    B: 0x41391C
 - desc: Chozo statue hints
   label: ChozoStatueHints
   type: ChozoHint
@@ -1468,16 +1476,33 @@
     J: 0x40E0B4
     C: 0x42FBF4
   enum: Event
+- desc: Minimap tile graphics
+  label: MinimapTileGfx
+  type: u8
+  count: 0x3000
+  tags:
+  - gfx
+  addr:
+    E: 0x40EEF8
+    B: 0x415A1C
+- desc: Debug BG palette 1?
+  label: DebugBGPalette1
+  type: u16
+  count: 0x50
+  tags:
+  - palette
+  addr:
+    E: 0x412194
+    B: 0x418CB8
 - desc: Default button assignments
   label: DefaultButtonAssignments
-  type: u16
-  count: 0x8
+  type: ButtonAssignments
   addr:
     U: 0x411510
     E: 0x412344
     J: 0x41156C
     C: 0x4340AC
-  enum: ButtonInput
+    B: 0x418E68
 - desc: Time attack button code
   label: TimeAttackButtonCode
   type: u16
@@ -1567,6 +1592,13 @@
     E: 0x55A3CC
     J: 0x54C148
     C: 0x56EAF4
+- desc: IO transfer related?
+  label: unk_5EC1A0
+  type: u8
+  count: 0x18
+  addr:
+    E: 0x5EC1A0
+    B: 0x5F480C
 - desc: Clipdata collision types
   label: ClipdataCollisionTypes
   type: u8
@@ -1677,6 +1709,20 @@
     E: 0x767918
     J: 0x754CDC
     C: 0x7925AC
+- desc: Link cable payload 1?
+  label: LinkCablePayload1
+  type: u8
+  count: 0x2CDC
+  addr:
+    E: 0x76791C
+    B: 0x770220
+- desc: Link cable payload 2?
+  label: LinkCablePayload2
+  type: u8
+  count: 0x7F50
+  addr:
+    E: 0x76A5F8
+    B: 0x772EFC
 - desc: Samus pose function pointers
   label: SamusPoseFunctionPtrs
   type: void *
@@ -1688,6 +1734,7 @@
     E: 0x772548
     J: 0x75E7B8
     C: 0x79D8A0
+    B: 0x77AE4C
 - desc: Samus pose graphics function pointers
   label: SamusPoseGfxFunctionPtrs
   type: void *
@@ -1784,6 +1831,7 @@
     E: 0x773948
     J: 0x75FBB8
     C: 0x79ECA0
+    B: 0x77C24C
 - desc: Area room entry pointers
   label: AreaRoomEntryPtrs
   type: RoomEntry *
@@ -1793,6 +1841,7 @@
     E: 0x773964
     J: 0x75FBD4
     C: 0x79ECBC
+    B: 0x77C278
 - desc: Room scrolls pointers
   label: RoomScrollsPtrs
   type: u8 *
@@ -1881,6 +1930,7 @@
     E: 0x77408C
     J: 0x7602FC
     C: 0x79F3EC
+    B: 0x77C9B0
 - desc: Explored minimap bit flags
   label: ExploredMinimapBitFlags
   type: u8
