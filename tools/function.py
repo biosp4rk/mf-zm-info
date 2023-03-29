@@ -25,6 +25,8 @@ class Function(object):
         self.data_pool: Set[int] = set()
         self.at_end = False
         self.at_jump = False
+        self.locals: Set[int] = None
+        self.local_indexes: Dict[int, int] = None
         self.step_through()
 
     def get_instructions(self) -> List[ThumbInstruct]:
@@ -96,6 +98,9 @@ class Function(object):
         for branch in self.branches:
             self.symbols.add_local(branch)
         self.symbols.finalize_locals()
+        self.locals = self.symbols.locals
+        self.local_indexes = self.symbols.local_indexes
+        self.symbols.reset_locals()
 
     def align(self, num: int) -> None:
         r = self.addr % num
@@ -193,6 +198,9 @@ class Function(object):
 
 
     def get_lines(self, include_syms: bool) -> List[str]:
+        self.symbols.locals = self.locals
+        self.symbols.local_indexes = self.local_indexes
+
         lines = []
         if include_syms:
             syms = self.get_symbols()

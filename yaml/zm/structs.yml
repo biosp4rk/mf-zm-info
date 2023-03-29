@@ -2044,6 +2044,63 @@
     label: WhenMechaRidleyKilled
     type: InGameTime
     offset: 0xC
+- desc: IO transfer info
+  label: IOTransferInfo
+  size: 0x18
+  vars:
+  - desc: Function pointer
+    label: FunctionPtr
+    type: void *
+    offset: 0x0
+  - desc: unk_04
+    label: unk_04
+    type: u8
+    offset: 0x4
+  - desc: Timer
+    label: Timer
+    type: u16
+    offset: 0x6
+  - desc: Active
+    label: Active
+    type: u8
+    offset: 0x8
+  - desc: unk_09
+    label: unk_09
+    type: u8
+    offset: 0x9
+  - desc: unk_0A
+    label: unk_0A
+    type: u8
+    offset: 0xA
+  - desc: Result
+    label: Result
+    type: u8
+    offset: 0xB
+  - desc: Error flag
+    label: ErrorFlag
+    type: u8
+    offset: 0xC
+  - desc: unk_0E
+    label: unk_0E
+    type: u16
+    offset: 0xE
+  - desc: Fusion gallery images
+    label: FusionGalleryImages
+    type: s8
+    offset: 0x10
+  - desc: Language
+    label: Language
+    type: u8
+    offset: 0x11
+    enum: Language
+  - desc: Music track
+    label: MusicTrack
+    type: u8
+    offset: 0x12
+  - desc: Music priority
+    label: MusicPriority
+    type: u8
+    offset: 0x14
 - desc: Last area connection visited
   label: LastAreaConnectionVisited
   size: 0x4
@@ -2138,6 +2195,14 @@
     label: Timer
     type: u8
     offset: 0x1
+- desc: Menu OAM data
+  label: MenuOamData
+  size: 0x10
+  vars:
+  - desc: TODO
+    label: TODO
+    type: u8
+    offset: 0x0
 - desc: Metroid Fusion gallery data
   label: MetroidFusionGalleryData
   size: 0x14
@@ -2636,6 +2701,26 @@
     label: XPosition
     type: u16
     offset: 0xA
+- desc: Pause debug health/ammo draw info
+  label: PauseDebugHealthAmmoDrawInfo
+  size: 0x4
+  vars:
+  - desc: Line offset
+    label: LineOffset
+    type: u8
+    offset: 0x0
+  - desc: Two bytes flag
+    label: TwoBytesFlag
+    type: bool
+    offset: 0x1
+  - desc: Is max health/ammo
+    label: IsMaxHealthAmmo
+    type: bool
+    offset: 0x2
+  - desc: Last cursor index
+    label: LastCursorIndex
+    type: u8
+    offset: 0x3
 - desc: PCM sample
   label: PcmSample
   size: 0x10

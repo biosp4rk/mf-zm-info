@@ -131,7 +131,7 @@
   - gfx
   addr: 0x2037E20
   notes: Transferred to 6011F80 in VRAM
-- desc: Fix me
+- desc: Debug saved info?
   label: ram_203FF70
   type: u8
   addr: 0x203FF70
@@ -157,10 +157,11 @@
   label: StereoFlag
   type: u8
   addr: 0x3000004
-- desc: Fix me
+- desc: Cutscene stage?
   label: ram_3000005
   type: u8
   addr: 0x3000005
+  notes: 1 = loading, 2 = ?, 3 = playing
 - desc: Written to BLDALPHA
   label: WrittenToBLDALPHA
   type: u16
@@ -263,7 +264,7 @@
   label: ram_3000040
   type: u8
   addr: 0x3000040
-- desc: Fix me
+- desc: Debug "DEMO SW" option (unused?)
   label: ram_3000041
   type: u8
   addr: 0x3000041
@@ -393,8 +394,8 @@
   label: CurrCutscene
   type: u8
   addr: 0x300007D
-- desc: Fix me
-  label: ram_300007E
+- desc: Tourian escape cutscene stage
+  label: TourianEscapeCutsceneStage
   type: u8
   addr: 0x300007E
 - desc: Haze VRAM info
@@ -709,6 +710,10 @@
   label: CurrMessage
   type: CurrMessage
   addr: 0x3000C0C
+- desc: SRAM corrupt flag
+  label: SramCorruptFlag
+  type: bool
+  addr: 0x3000C1C
 - desc: Loading file flag
   label: LoadingFileFlag
   type: bool
@@ -879,10 +884,11 @@
   label: BG3YPosition
   type: u16
   addr: 0x30013C2
-- desc: Fix me
-  label: ram_30013D2
+- desc: Demo mode
+  label: DemoMode
   type: u8
   addr: 0x30013D2
+  enum: DemoMode
 - desc: Samus data
   label: SamusData
   type: SamusData
@@ -1216,18 +1222,17 @@
   label: MaintainedInputData
   type: MaintainedInputData
   addr: 0x3005800
-- desc: Fix me
-  label: ram_3005806
+- desc: OAM X offset (non-gameplay)
+  label: OamXOffset_NonGameplay
   type: u8
   addr: 0x3005806
-- desc: Fix me
-  label: ram_3005807
+- desc: OAM Y offset (non-gameplay)
+  label: OamYOffset_NonGameplay
   type: u8
   addr: 0x3005807
-- desc: IO transfer related?
-  label: ram_3005808
-  type: u8
-  count: 0x18
+- desc: IO transfer info
+  label: IOTransferInfo
+  type: IOTransferInfo
   addr: 0x3005808
 - desc: Fix me
   label: ram_3005820

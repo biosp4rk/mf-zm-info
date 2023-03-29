@@ -5,10 +5,10 @@ from function import Function
 from rom import Rom, ROM_OFFSET
 
 
-def dump_bytes(rom: Rom, start: int, length: int, size: int = 1):
+def dump_bytes(rom: Rom, addr: int, length: int, size: int = 1):
     assert size in {1, 2, 4}, "Invalid byte size"
-    end = start + length
-    for i in range(start, end, 16):
+    end = addr + length
+    for i in range(addr, end, 16):
         j = min(i + 16, end)
         if size == 1:
             print(" ".join(f"{b:02X}" for b in rom.data[i:j]))

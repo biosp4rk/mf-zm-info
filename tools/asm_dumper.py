@@ -1,4 +1,5 @@
 import argparse
+import codecs
 import os
 from typing import List
 
@@ -91,6 +92,12 @@ def ptr_asm(
             line += f" {i:02X}"
         lines.append(line)
     return "\n".join(lines)
+
+
+def sjis_asm(rom: Rom, addr: int, count: int):
+    chars = rom.read_bytes(addr, count)
+    chars = bytes(c if c != 0 else 0x7E for c in chars)
+    return codecs.decode(chars, "shift_jis")
 
 
 def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
@@ -230,6 +237,11 @@ if __name__ == "__main__":
     subparser = subparsers.add_parser("data")
     apu.add_rom_path_arg(subparser)
     subparser.add_argument("labels", type=str)
+    # sjis command
+    subparser = subparsers.add_parser("sjis")
+    apu.add_rom_path_arg(subparser)
+    apu.add_addr_arg(subparser)
+    subparser.add_argument("count", type=str)
 
     args = parser.parse_args()
     if args.command == "funcs":
@@ -246,5 +258,10 @@ if __name__ == "__main__":
                 raise ValueError(label)
             asm = data_asm(rom, info, entry, entry.addr)
             print(asm)
+    elif args.command == "sjis":
+        rom = apu.get_rom(args)
+        addr = apu.get_addr(args)
+        count = int(args.count, 16)
+        print(sjis_asm(rom, addr, count))
     else:
         parser.print_help()

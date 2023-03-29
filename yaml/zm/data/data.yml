@@ -667,6 +667,7 @@
     E: 0x34662C
     J: 0x3459FC
     C: 0x35F18C
+    B: 0x34C0F4
   notes: Last entry is total in all areas
 - desc: Starting health/ammo
   label: StartingHealthAndAmmo
@@ -676,6 +677,7 @@
     E: 0x34664C
     J: 0x345A1C
     C: 0x35F1AC
+    B: 0x34C114
 - desc: Tank increase amounts
   label: TankIncreaseAmounts
   type: TankIncreaseAmounts
@@ -685,6 +687,7 @@
     E: 0x346650
     J: 0x345A20
     C: 0x35F1B0
+    B: 0x34C118
 - desc: Clipdata affecting action damage type
   label: ClipdataAffectingActionDamageType
   type: u16
@@ -1423,6 +1426,101 @@
     E: 0x36CA38
     J: 0x36BE08
     C: 0x385598
+- desc: Pause overlay tilemap
+  label: PauseOverlayTilemap
+  type: u8
+  count: 0x1F3
+  addr:
+    U: 0x407D90
+    E: 0x408A28
+    J: 0x407DEC
+    C: 0x429778
+    B: 0x40E4F0
+- desc: Pause world map tilemap
+  label: PauseWorldMapTilemap
+  type: u8
+  count: 0x335
+  addr:
+    U: 0x407F84
+    E: 0x408C1C
+    J: 0x407FE0
+    C: 0x429978
+    B: 0x40E6E4
+- desc: Blank menu OAM data
+  label: BlankMenuOamData
+  type: MenuOamData
+  addr:
+    U: 0x40D028
+    E: 0x40DE54
+    J: 0x40D084
+    C: 0x42EBBC
+    B: 0x41391C
+- desc: Status screen beam equipment flags
+  label: StatusScreenBeamEquipmentFlags
+  type: u8
+  count: 0x5
+  addr:
+    U: 0x40D0F0
+    E: 0x40DF1C
+    J: 0x40D14C
+    C: 0x42EC84
+    B: 0x4139E4
+  enum: BeamBombStatus
+- desc: Status screen bomb equipment flags
+  label: StatusScreenBombEquipmentFlags
+  type: u8
+  count: 0x1
+  addr:
+    U: 0x40D0F5
+    E: 0x40DF21
+    J: 0x40D151
+    C: 0x42EC89
+    B: 0x4139E9
+  enum: BeamBombStatus
+- desc: Status screen suit equipment flags
+  label: StatusScreenSuitEquipmentFlags
+  type: u8
+  count: 0x2
+  addr:
+    U: 0x40D0F6
+    E: 0x40DF22
+    J: 0x40D152
+    C: 0x42EC8A
+    B: 0x4139EA
+  enum: SuitMiscStatus
+- desc: Status screen misc equipment flags
+  label: StatusScreenMiscEquipmentFlags
+  type: u8
+  count: 0x6
+  addr:
+    U: 0x40D0F8
+    E: 0x40DF24
+    J: 0x40D154
+    C: 0x42EC8C
+    B: 0x4139EC
+  enum: SuitMiscStatus
+- desc: Status screen ability counts
+  label: StatusScreenAbilityCounts
+  type: u8
+  count: 0x4
+  addr:
+    U: 0x40D0FE
+    E: 0x40DF2A
+    J: 0x40D15A
+    C: 0x42EC92
+    B: 0x4139F2
+  notes: Order is Beam, Bomb, Suit, Misc
+- desc: Powers of 10
+  label: PowersOf10
+  type: u16
+  count: 0x5
+  addr:
+    U: 0x40D102
+    E: 0x40DF2E
+    J: 0x40D15E
+    C: 0x42EC96
+    B: 0x4139F6
+  notes: Ranges from 1 to 10,000
 - desc: Boss map icons
   label: BossMapIcons
   type: BossMapIcon
@@ -1441,13 +1539,6 @@
     E: 0x40E5E4
     J: 0x40D80C
     C: 0x42F34C
-- desc: unk_40DE54
-  label: unk_40DE54
-  type: u8
-  count: 0x10
-  addr:
-    E: 0x40DE54
-    B: 0x41391C
 - desc: Chozo statue hints
   label: ChozoStatueHints
   type: ChozoHint
@@ -1592,8 +1683,8 @@
     E: 0x55A3CC
     J: 0x54C148
     C: 0x56EAF4
-- desc: IO transfer related?
-  label: unk_5EC1A0
+- desc: Blank IO transfer info
+  label: BlankIOTransferInfo
   type: u8
   count: 0x18
   addr:
@@ -1660,6 +1751,7 @@
     E: 0x767900
     J: 0x754CC4
     C: 0x7924F0
+    B: 0x770204
 - desc: PALRAM BG pointer (5000000)
   label: PALRAM_BG_Ptr
   type: u32 *
@@ -1668,6 +1760,7 @@
     E: 0x767904
     J: 0x754CC8
     C: 0x7924F4
+    B: 0x770208
 - desc: PALRAM OBJ pointer (5000200)
   label: PALRAM_OBJ_Ptr
   type: u32 *
@@ -1676,6 +1769,7 @@
     E: 0x767908
     J: 0x754CCC
     C: 0x7924F8
+    B: 0x77020C
 - desc: Visited minimap tiles pointer (2037400)
   label: VisitedMinimapTilesPtr
   type: u32 *
@@ -1684,7 +1778,8 @@
     E: 0x76790C
     J: 0x754CD0
     C: 0x7924FC
-- desc: Non-gameplay RAM pointer
+    B: 0x770210
+- desc: Non-gameplay RAM pointer (30016C4)
   label: NonGameplayRamPtr
   type: u8 **
   addr:
@@ -1701,6 +1796,7 @@
     E: 0x767914
     J: 0x754CD8
     C: 0x7925A8
+    B: 0x770218
 - desc: SRAM flash pointer (E000000)
   label: SRAM_Flash_Ptr
   type: u32 *
@@ -1709,6 +1805,7 @@
     E: 0x767918
     J: 0x754CDC
     C: 0x7925AC
+    B: 0x77021C
 - desc: Link cable payload 1?
   label: LinkCablePayload1
   type: u8
@@ -1918,6 +2015,16 @@
     E: 0x773D80
     J: 0x75FFF0
     C: 0x79F0D8
+- desc: Status screen equipment flags pointers
+  label: StatusScreenEquipmentFlagsPtrs
+  type: u8 *
+  count: 0x4
+  addr:
+    U: 0x7601DC
+    E: 0x77407C
+    J: 0x7602EC
+    C: 0x79F3DC
+    B: 0x77C9A0
 - desc: Minimap data pointers
   label: MinimapDataPtrs
   type: u16 *

@@ -437,6 +437,38 @@
   mode: thumb
   params: null
   return: null
+- desc: Erase SRAM
+  label: EraseSram
+  addr:
+    U: 0xC04
+    E: 0xC58
+    J: 0xC04
+    C: 0x1404
+    B: 0xE14
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+  notes: Fills SRAM with 0xFFFF
+- desc: Do SRAM operation 
+  label: DoSramOperation
+  addr:
+    U: 0xC48
+    E: 0xC9C
+    J: 0xC48
+    C: 0x1448
+    B: 0xE58
+  size: 0x374
+  mode: thumb
+  params:
+  - desc: Operation
+    label: Operation
+    type: u8
+  return:
+    desc: Difference pointer
+    label: DifferencePtr
+    type: u8 *
+  notes: Read from SRAM?
 - desc: Empty function (music related)
   label: EmptyFunction_Music
   addr:
@@ -462,6 +494,19 @@
   params: null
   return: null
   notes: Initializes registers and RAM values that are related to sound/music (sets the pointers to the sound codes)
+- desc: Sound related
+  label: sub_284C
+  addr:
+    U: 0x27F8
+    E: 0x284C
+    J: 0x27F8
+    C: 0x51AC
+    B: 0x2A08
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+  notes: Updates the SOUNDCNT_H register?
 - desc: Transfer sound
   label: TransferSound
   addr:
@@ -690,6 +735,30 @@
   mode: thumb
   params: null
   return: null
+- desc: Music related
+  label: sub_3430
+  addr:
+    U: 0x33DC
+    E: 0x3430
+    J: 0x33DC
+    C: 0x5D90
+    B: 0x35EC
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Music related
+  label: sub_34AC
+  addr:
+    U: 0x3458
+    E: 0x34AC
+    J: 0x3458
+    C: 0x5E0C
+    B: 0x3668
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
 - desc: Check set new music track
   label: CheckSetNewMusicTrack
   addr:
@@ -843,6 +912,22 @@
     type: bool
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
+- desc: Update music priority
+  label: UpdateMusicPriority
+  addr:
+    U: 0x3E60
+    E: 0x3EB4
+    J: 0x3E60
+    C: 0x6814
+    B: 0x4070
+  size: 0x58
+  mode: thumb
+  params:
+  - desc: Priority
+    label: Priority
+    type: u8
+  return: null
+  notes: Updates the current music priority?
 - desc: Dampen volume of music tracks 0 and 1
   label: DampenVolumeOfMusicTracks0And1
   addr:
@@ -11265,6 +11350,7 @@
     E: 0x61730
     J: 0x61618
     C: 0x64474
+    B: 0x61D64
   size: 0x2C0
   mode: thumb
   params:
@@ -11285,6 +11371,7 @@
     E: 0x619F0
     J: 0x618D8
     C: 0x64734
+    B: 0x62024
   size: 0x6C
   mode: thumb
   params:
@@ -11299,6 +11386,7 @@
     E: 0x61A5C
     J: 0x61944
     C: 0x647A0
+    B: 0x62090
   size:
     U: 0x80
     E: 0x80
@@ -11321,6 +11409,7 @@
     E: 0x61ADC
     J: 0x619C4
     C: 0x64824
+    B: 0x62110
   size: 0xC4
   mode: thumb
   params:
@@ -11335,6 +11424,7 @@
     E: 0x61BA0
     J: 0x61A88
     C: 0x648E8
+    B: 0x621D4
   size: 0x110
   mode: thumb
   params:
@@ -11352,6 +11442,7 @@
     E: 0x61CB0
     J: 0x61B98
     C: 0x649F8
+    B: 0x622E4
   size: 0x4C
   mode: thumb
   params:
@@ -11369,6 +11460,7 @@
     E: 0x61CFC
     J: 0x61BE4
     C: 0x64A44
+    B: 0x62330
   size: 0x184
   mode: thumb
   params: null
@@ -11380,6 +11472,7 @@
     E: 0x61E80
     J: 0x61D68
     C: 0x64BC8
+    B: 0x624B4
   size: 0x60
   mode: thumb
   params:
@@ -11403,6 +11496,7 @@
     E: 0x61EE0
     J: 0x61DC8
     C: 0x64C28
+    B: 0x62514
   size: 0x70
   mode: thumb
   params:
@@ -11429,6 +11523,7 @@
     E: 0x61F50
     J: 0x61E38
     C: 0x64C98
+    B: 0x62584
   size: 0xD4
   mode: thumb
   params: null
@@ -12251,6 +12346,36 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Update menu OAM data ID
+  label: UpdateMenuOamDataID
+  addr:
+    U: 0x68128
+    E: 0x68244
+    J: 0x68128
+    C: 0x6AF90
+    B: 0x689A0
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: OAM ID
+    label: OamID
+    type: u8
+  return: null
+- desc: Map screen check display boss icon OAM
+  label: MapScreenCheckDisplayBossIconOam
+  addr:
+    U: 0x6889C
+    E: 0x689B8
+    J: 0x6889C
+    C: 0x6B704
+    B: 0x69114
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
 - desc: Check draw time and tanks
   label: CheckDrawTimeAndTanks
   addr:
@@ -12272,8 +12397,35 @@
     type: bool
   return: null
   notes: Draws the pause screen info (in-game time and tanks)
-- desc: Map screen OAM related
-  label: MapScreenOamRelated
+- desc: Map screen update world OAM
+  label: MapScreenUpdateWorldMapOam
+  addr:
+    U: 0x69024
+    E: 0x69140
+    J: 0x69024
+    C: 0x6BE8C
+    B: 0x698A8
+  size: 0x1E8
+  mode: thumb
+  params:
+  - desc: On world map
+    label: OnWorldMap
+    type: bool
+  return: null
+- desc: Map screen load area name and icons
+  label: MapScreenLoadAreaNameAndIcons
+  addr:
+    U: 0x6920C
+    E: 0x69328
+    J: 0x6920C
+    C: 0x6C074
+    B: 0x69A90
+  size: 0x3B0
+  mode: thumb
+  params: null
+  return: null
+- desc: Map screen process OAM
+  label: MapScreenProcessOam
   addr:
     U: 0x695BC
     E: 0x696D8
@@ -12288,6 +12440,32 @@
     B: 0x118
   mode: thumb
   params: null
+  return: null
+- desc: Process menu OAM
+  label: ProcessMenuOam
+  addr:
+    U: 0x696AC
+    E: 0x697C8
+    J: 0x696AC
+    C: 0x6C514
+    B: 0x69FB0
+  size:
+    U: 0x364
+    E: 0x364
+    J: 0x364
+    C: 0x360
+    B: 0x364
+  mode: thumb
+  params:
+  - desc: Length
+    label: Length
+    type: u8
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: OAM array pointer
+    label: OamArrayPtr
+    type: OamArray *
   return: null
 - desc: Cutscene process OAM
   label: CutsceneProcessOAM
@@ -12386,6 +12564,23 @@
   - desc: Destination address
     label: DestinationAddress
     type: u16 *
+  return: null
+- desc: Status screen initialize
+  label: StatusScreenInit
+  addr:
+    U: 0x6B838
+    E: 0x6B958
+    J: 0x6B854
+    C: 0x6E788
+    B: 0x6C1D0
+  size:
+    U: 0x1FC
+    E: 0x1FC
+    J: 0x1FC
+    C: 0x260
+    B: 0x260
+  mode: thumb
+  params: null
   return: null
 - desc: Check sustained input for scrolling
   label: CheckSustainedInputForScrolling
@@ -12724,6 +12919,21 @@
     type: u8
   return: null
   notes: Draw the in-game time and tanks on the map screen
+- desc: Fix me
+  label: sub_6DC48
+  addr:
+    U: 0x6DB58
+    E: 0x6DC48
+    J: 0x6DB74
+    C: 0x70D98
+    B: 0x6E5DC
+  size: 0x268
+  mode: thumb
+  params:
+  - desc: Param 0
+    label: param_0
+    type: u32
+  return: null
 - desc: Get all minimap data
   label: GetAllMinimapData
   addr:
@@ -12980,6 +13190,18 @@
   mode: thumb
   params: null
   return: null
+- desc: Fix me (load pause screen BG pal?)
+  label: sub_6FF64
+  addr:
+    U: 0x6FE18
+    E: 0x6FF64
+    J: 0x6FE34
+    C: 0x730B4
+    B: 0x708F8
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
 - desc: Update suit type
   label: UpdateSuitType
   addr:
@@ -13196,6 +13418,21 @@
     label: ChozoStatueTargetPathPtr
     type: u8 *
   return: null
+- desc: Fix me (Chozo statue determine hint path?)
+  label: sub_72D04
+  addr:
+    U: 0x72BB8
+    E: 0x72D04
+    J: 0x72BD4
+    C: 0x75E60
+    B: 0x75360
+  size: 0x498
+  mode: thumb
+  params:
+  - desc: '?'
+    label: '?'
+    type: '?'
+  return: null
 - desc: Chozo statue hint check events
   label: ChozoStatueHintCheckEvents
   addr:
@@ -13275,6 +13512,31 @@
   mode: thumb
   params: null
   return: null
+- desc: SRAM write file screen options unlocked
+  label: SramWrite_FileScreenOptionsUnlocked
+  addr:
+    U: 0x73300
+    E: 0x73438
+    J: 0x7331C
+    C: 0x765B4
+    B: 0x75A94
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Save file
+  label: SaveFile
+  addr:
+    U: 0x73BA4
+    E: 0x73CDC
+    J: 0x73BC0
+    C: 0x76E58
+    B: 0x76348
+  size: 0x140
+  mode: thumb
+  params: null
+  return: null
+  notes: Saves the most recent file to SRAM flash
 - desc: Write SRAM data
   label: WriteSramData
   addr:
@@ -13324,6 +13586,18 @@
     label: Length
     type: u8
   return: null
+- desc: SRAM load file
+  label: SramLoadFile
+  addr:
+    U: 0x7478C
+    E: 0x748C4
+    J: 0x747A8
+    C: 0x77A40
+    B: 0x76F30
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
 - desc: Write SRAM arrays
   label: WriteSramArrays
   addr:
@@ -13348,6 +13622,56 @@
   mode: thumb
   params: null
   return: null
+- desc: SRAM write sound mode
+  label: SramWrite_SoundMode
+  addr:
+    U: 0x74B6C
+    E: 0x74CA4
+    J: 0x74B88
+    C: 0x77E20
+    B: 0x77310
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+  notes: Saves the sound mode (mono/stereo) to SRAM flash
+- desc: SRAM read sound mode
+  label: SramRead_SoundMode
+  addr:
+    U: 0x74C08
+    E: 0x74D40
+    J: 0x74C24
+    C: 0x77EBC
+    B: 0x773AC
+  size: 0xF0
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM write language
+  label: SramWrite_Language
+  addr:
+    U: 0x74CF8
+    E: 0x74E30
+    J: 0x74D14
+    C: 0x77FAC
+    B: 0x7749C
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+  notes: Saves the language to SRAM flash
+- desc: SRAM read language
+  label: SramRead_Language
+  addr:
+    U: 0x74DA4
+    E: 0x74EDC
+    J: 0x74DC0
+    C: 0x78058
+    B: 0x77548
+  size: 0x1B4
+  mode: thumb
+  params: null
+  return: null
 - desc: Backup time attack for SRAM
   label: BackupTimeAttackForSram
   addr:
@@ -13357,6 +13681,18 @@
     C: 0x7820C
     B: 0x776FC
   size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM write demo RAM to EWRAM
+  label: SramWrite_ToEwram_DemoRam
+  addr:
+    U: 0x751D8
+    E: 0x75310
+    J: 0x751F4
+    C: 0x7848C
+    B: 0x7797C
+  size: 0x18C
   mode: thumb
   params: null
   return: null
@@ -13417,6 +13753,36 @@
     desc: Done
     label: Done
     type: bool
+- desc: Write file info
+  label: WriteFileInfo
+  addr:
+    U: 0x756C0
+    E: 0x757F8
+    J: 0x756DC
+    C: 0x78974
+    B: 0x77E64
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+  notes: Writes SRAM data to the file info
+- desc: Load save related?
+  label: sub_75984
+  addr:
+    U: 0x7584C
+    E: 0x75984
+    J: 0x75868
+    C: 0x78AFC
+    B: 0x77FF0
+  size:
+    U: 0x120
+    E: 0x12C
+    J: 0x128
+    C: 0x128
+    B: 0x194
+  mode: thumb
+  params: null
+  return: null
 - desc: Check load save file
   label: CheckLoadSaveFile
   addr:
@@ -13723,6 +14089,18 @@
     C: 0x7B49C
     B: 0x7DAEC
   size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Apply stereo
+  label: ApplyStero
+  addr:
+    U: 0x78228
+    E: 0x78528
+    J: 0x78244
+    C: 0x7B4C8
+    B: 0x7DB18
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -14201,6 +14579,18 @@
     label: Invalid
     type: bool
   notes: Compares in-game time at bosses with anti-cheat times
+- desc: Time attack related?
+  label: sub_7FD08
+  addr:
+    U: 0x7F60C
+    E: 0x7FD08
+    J: 0x7F668
+    C: 0x82B38
+    B: 0x85508
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
 - desc: Time attack password seed function 1
   label: TimeAttackPasswordSeedFunction1
   addr:
@@ -15478,6 +15868,127 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Process link cable connection?
+  label: ProcessLinkCableConnection
+  addr:
+    U: 0x88EA0
+    E: 0x89B2C
+    J: 0x88EFC
+    C: 0x8CA0C
+    B: 0x8F350
+  size:
+    U: 0x270
+    E: 0x270
+    J: 0x270
+    C: 0x270
+    B: 0x514
+  mode: thumb
+  params: null
+  return: null
+  notes: Main loop for the SIO connection code?
+- desc: Display error?
+  label: DisplayError
+  addr:
+    U: 0x89110
+    E: 0x89D9C
+    J: 0x8916C
+    C: 0x8CC7C
+    B: 0x8F864
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+  notes: Displays an error string?
+- desc: Reset data transfer?
+  label: ResetDataTransfer
+  addr:
+    U: 0x89164
+    E: 0x89DF0
+    J: 0x891C0
+    C: 0x8CCD0
+    B: 0x8F8B8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+  notes: Resets the data transfer related info?
+- desc: Fix me
+  label: sub_89E2C
+  addr:
+    U: 0x891A0
+    E: 0x89E2C
+    J: 0x891FC
+    C: 0x8CD0C
+    B: 0x8F8F4
+  size: 0x3F0
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: sub_8A28C
+  addr:
+    U: 0x89600
+    E: 0x8A28C
+    J: 0x8965C
+    C: 0x8D16C
+    B: 0x8FD54
+  size:
+    U: 0xB8
+    E: 0xB8
+    J: 0xB8
+    C: 0xC4
+    B: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: sub_8A344
+  addr:
+    U: 0x896B8
+    E: 0x8A344
+    J: 0x89714
+    C: 0x8D230
+    B: 0x8FE0C
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Fix me
+  label: sub_8A498
+  addr:
+    U: 0x8980C
+    E: 0x8A498
+    J: 0x89868
+    C: 0x8D384
+    B: 0x8FF60
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: Timer 3 overflow code when connecting?
+  label: Timer3OverflowCodeConnecting
+  addr:
+    U: 0x89BD4
+    E: 0x8A860
+    J: 0x89C30
+    C: 0x8D74C
+    B: 0x90328
+  size: 0x10
+  mode: thumb
+  params: null
+  return: null
+- desc: Serial communication code when connecting?
+  label: SerialCommunicationCodeConnecting
+  addr:
+    U: 0x89BE4
+    E: 0x8A870
+    J: 0x89C40
+    C: 0x8D75C
+    B: 0x90338
+  size: 0x180
+  mode: thumb
+  params: null
+  return: null
 - desc: Set SIOCNT start bit
   label: SetSIOCNTStartBit
   addr:
@@ -15487,6 +15998,18 @@
     C: 0x8D8DC
     B: 0x904B8
   size: 0x10
+  mode: thumb
+  params: null
+  return: null
+- desc: Link cable related?
+  label: sub_8AABC
+  addr:
+    U: 0x89E30
+    E: 0x8AABC
+    J: 0x89E8C
+    C: 0x8D9A8
+    B: 0x90584
+  size: 0x164
   mode: thumb
   params: null
   return: null
@@ -15529,6 +16052,18 @@
     desc: Error flag
     label: ErrorFlag
     type: bool
+- desc: Fix me
+  label: sub_8B3BC
+  addr:
+    U: 0x8A730
+    E: 0x8B3BC
+    J: 0x8A78C
+    C: 0x8E2A8
+    B: 0x90E84
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
 - desc: Set SIOCNT start bit duplicate
   label: SetSIOCNTStartBit_Duplicate
   addr:

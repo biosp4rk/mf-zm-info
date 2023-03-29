@@ -1,3 +1,111 @@
+- desc: Pause debug BG palette
+  label: PauseDebugBGPalette
+  type: u16
+  count: 0x20
+  tags:
+  - palette
+  addr:
+    B: 0x403764
+- desc: Pause debug event list BG palette
+  label: PauseDebugEventListBGPalette
+  type: u16
+  count: 0x20
+  tags:
+  - palette
+  addr:
+    B: 0x41460C
+- desc: Pause debug event list text graphics
+  label: PauseDebugEventListTextGfx
+  type: u8
+  count: 0x53C
+  tags:
+  - lz
+  - gfx
+  addr:
+    B: 0x41464C
+- desc: Pause debug language text
+  label: PauseDebugText_Language
+  type: s8
+  count: 0x18
+  tags:
+  - ascii
+  addr:
+    B: 0x415569
+- desc: Pause debug region text
+  label: PauseDebugText_Region
+  type: s8
+  count: 0x6
+  tags:
+  - ascii
+  addr:
+    B: 0x415581
+- desc: Pause debug area text
+  label: PauseDebugText_Area
+  type: s8
+  count: 0x21
+  tags:
+  - ascii
+  addr:
+    B: 0x415587
+- desc: Pause debug difficulty text
+  label: PauseDebugText_Difficulty
+  type: s8
+  count: 0x18
+  tags:
+  - ascii
+  addr:
+    B: 0x4155A8
+- desc: Pause debug "SHUT/OPEN" text
+  label: PauseDebugText_SHUT_OPEN
+  type: s8
+  count: 0x8
+  tags:
+  - ascii
+  addr:
+    B: 0x4155C0
+- desc: Pause debug area room door graphics offsets
+  label: PauseDebugAreaRoomDoorGfxOffsets
+  type: u16
+  count: 0x3
+  addr:
+    B: 0x4155C8
+- desc: Pause debug difficulty position
+  label: PauseDebugDifficultyPosition
+  type: u8
+  count: 0x2
+  addr:
+    B: 0x4155CE
+- desc: Pause debug language position
+  label: PauseDebugLanguagePosition
+  type: u8
+  count: 0x2
+  addr:
+    B: 0x4155D0
+- desc: Pause debug save highlight position
+  label: PauseDebugSaveHightlightPosition
+  type: u8
+  count: 0x2
+  addr:
+    B: 0x4155D2
+- desc: Pause debug beam list start/end Y
+  label: PauseDebugBeamListStartEndY
+  type: u8
+  count: 0x2
+  addr:
+    B: 0x4155D4
+- desc: Pause debug beam list start/end X
+  label: PauseDebugBeamListStartEndX
+  type: u8
+  count: 0x2
+  addr:
+    B: 0x4155D6
+- desc: Pause debug region positions
+  label: PauseDebugRegionPositions
+  type: u8
+  count: 0x6A
+  addr:
+    B: 0x4155D8
+  notes: Each region is 5 bytes (ID, X start, X end, Y start, Y end)
 - desc: Difficulty event actions
   label: DifficultyEventActions
   type: u8
@@ -5,18 +113,24 @@
   addr:
     B: 0x415642
   notes: Each difficulty is 2 bytes, 1st is action for easy event and 2nd is action for hard event
+- desc: Pause debug health/ammo draw info
+  label: PauseDebugHealthAmmoDrawInfo
+  type: PauseDebugHealthAmmoDrawInfo
+  count: 0x8
+  addr:
+    B: 0x415648
 - desc: Debug default area info
   label: DebugDefaultAreaInfo
   type: DebugAreaInfo
   addr:
     B: 0x418E7C
-- desc: Debug BG palette 2?
+- desc: Debug BG palette 2
   label: DebugBGPalette2
   type: u16
   count: 0x80
   addr:
     B: 0x418F80
-- desc: Debug OBJ palette?
+- desc: Debug OBJ palette
   label: DebugObjPalette
   type: u16
   count: 0x30
@@ -24,7 +138,7 @@
   - palette
   addr:
     B: 0x419080
-- desc: Debug OBJ graphics?
+- desc: Debug OBJ graphics
   label: DebugObjGfx
   type: u8
   count: 0x377
@@ -42,116 +156,536 @@
   - gfx
   addr:
     B: 0x419680
+- desc: Debug config text
+  label: DebugText_Config
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A32C
+- desc: Debug section text
+  label: DebugText_Section
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A338
+- desc: Debug mode text
+  label: DebugText_Mode
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A340
+- desc: Debug save text
+  label: DebugText_Save
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A344
+- desc: Debug Samus text
+  label: DebugText_Samus
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A348
+- desc: Debug sound text
+  label: DebugText_Sound
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A350
+- desc: Debug demo text
+  label: DebugText_Demo
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A358
+- desc: Debug etc text
+  label: DebugText_Etc
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A35C
+- desc: Debug boot text
+  label: DebugText_Boot
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A360
+- desc: Debug erase text
+  label: DebugText_Erase
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A364
+- desc: Debug language text
+  label: DebugText_Language
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A36C
+- desc: Debug level text
+  label: DebugText_Level
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A378
+- desc: Debug Japanese text
+  label: DebugText_Japanese
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A384
+- desc: Debug Hiragana text
+  label: DebugText_Hiragana
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A38C
+- desc: Debug English text
+  label: DebugText_English
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A394
+- desc: Debug German text
+  label: DebugText_German
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A39C
+- desc: Debug French text
+  label: DebugText_French
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3A4
+- desc: Debug Italian text
+  label: DebugText_Italian
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3AC
+- desc: Debug Spanish text
+  label: DebugText_Spanish
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3B4
+- desc: Debug easy text
+  label: DebugText_Easy
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3BC
+- desc: Debug normal text
+  label: DebugText_Normal
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3C4
+- desc: Debug hard text
+  label: DebugText_Hard
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3CC
+- desc: Debug Brinstar text
+  label: DebugText_Brinstar
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3D4
+- desc: Debug Kraid text
+  label: DebugText_Kraid
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3DC
+- desc: Debug Norfair text
+  label: DebugText_Norfair
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3E4
+- desc: Debug Ridley text
+  label: DebugText_Ridley
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3EC
+- desc: Debug Tourian text
+  label: DebugText_Tourian
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3F4
+- desc: Debug Crateria text
+  label: DebugText_Crateria
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A3FC
+- desc: Debug Chozodia text
+  label: DebugText_Chozodia
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A404
+- desc: Debug section blank row text
+  label: DebugText_SectionBlankRow
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A40C
+- desc: Debug test 1 text
+  label: DebugText_Test 1
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A414
+- desc: Debug test 2 text
+  label: DebugText_Test 2
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A41C
+- desc: Debug test 3 text
+  label: DebugText_Test 3
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A424
+- desc: Debug title text
+  label: DebugText_Title
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A42C
+- desc: Debug save A text
+  label: DebugText_Save A
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A434
+- desc: Debug save B text
+  label: DebugText_Save B
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A43C
+- desc: Debug save C text
+  label: DebugText_Save C
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A444
+- desc: Debug select text
+  label: DebugText_Select
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A44C
+- desc: Debug get map text
+  label: DebugText_GetMap
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A454
+- desc: Debug h-shot text
+  label: DebugText_HShot
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A45C
+- desc: Debug diagonal shot text
+  label: DebugText_DiagonalShot
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A464
+- desc: Debug pause text
+  label: DebugText_Pause
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A46C
+- desc: Debug missile text
+  label: DebugText_Missile
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A474
+- desc: Debug L-button text
+  label: DebugText_LButton
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A478
+- desc: Debug R-button text
+  label: DebugText_RButton
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A480
+- desc: Debug start text
+  label: DebugText_Start
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A488
+- desc: Debug select text
+  label: DebugText_Select
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A490
+- desc: Debug poster text
+  label: DebugText_Poster
+  type: u8
+  count: 0x14
+  addr:
+    B: 0x41A498
+- desc: Debug clear level text
+  label: DebugText_ClearLevel
+  type: u8
+  count: 0x14
+  addr:
+    B: 0x41A4AC
+- desc: Debug fusion text
+  label: DebugText_Fusion
+  type: u8
+  count: 0x10
+  addr:
+    B: 0x41A4C0
+- desc: Debug ID text
+  label: DebugText_ID
+  type: u8
+  count: 0x14
+  addr:
+    B: 0x41A4D0
+- desc: Debug save text
+  label: DebugText_Save
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A4E4
+- desc: Debug BGM text
+  label: DebugText_Bgm
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A4E8
+- desc: Debug test text
+  label: DebugText_Test
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A4EC
+- desc: Debug mono text
+  label: DebugText_Mono
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A4F0
+- desc: Debug stereo text
+  label: DebugText_Stereo
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A4F4
+- desc: Debug demo sw text
+  label: DebugText_DemoSw
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A4F8
+- desc: Debug demo A text
+  label: DebugText_DemoA
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A500
+- desc: Debug demo B text
+  label: DebugText_DemoB
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A508
+- desc: Debug auto demo mode text
+  label: DebugText_AutoDemoMode
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A510
+- desc: Debug auto demo num text
+  label: DebugText_AutoDemoNum
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A51C
+- desc: Debug ending text
+  label: DebugText_Ending
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A528
+- desc: Debug staff roll text
+  label: DebugText_StaffRoll
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A530
+- desc: Debug main-end OBJ text
+  label: DebugText_MainEndObj
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A53C
+- desc: Debug door transition text
+  label: DebugText_DoorTransition
+  type: u8
+  count: 0x8
+  addr:
+    B: 0x41A548
+- desc: Debug erase sram text
+  label: DebugText_EraseSram
+  type: u8
+  count: 0xC
+  addr:
+    B: 0x41A550
+- desc: Debug on text
+  label: DebugText_On
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A55C
+- desc: Debug off text
+  label: DebugText_Off
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A560
+- desc: Debug yes text
+  label: DebugText_Yes
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A564
+- desc: Debug no text
+  label: DebugText_No
+  type: u8
+  count: 0x4
+  addr:
+    B: 0x41A568
 - desc: Debug main menu text info
-  label: DebugMainMenuTextInfo
+  label: DebugTextInfo_MainMenu
   type: DebugTextInfo
   count: 0xA
   addr:
     B: 0x41A56C
 - desc: Debug "SECTION" text info
-  label: Debug_SECTION_TextInfo
+  label: DebugTextInfo_SECTION
   type: DebugTextInfo
   count: 0x10
   addr:
     B: 0x41A5E4
 - desc: Debug "MODE" text info
-  label: Debug_MODE_TextInfo
+  label: DebugTextInfo_MODE
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A6A4
 - desc: Debug "MODE" language text info
-  label: Debug_MODE_LanguageTextInfo
+  label: DebugTextInfo_MODE_Language
   type: DebugTextInfo
   count: 0x7
   addr:
     B: 0x41A6BC
 - desc: Debug "MODE" dfficulty text info
-  label: Debug_MODE_DifficultyTextInfo
+  label: DebugTextInfo_MODE_Difficulty
   type: DebugTextInfo
   count: 0x3
   addr:
     B: 0x41A710
 - desc: Debug "SAVE" text info
-  label: Debug_SAVE_TextInfo
+  label: DebugTextInfo_SAVE
   type: DebugTextInfo
   count: 0x5
   addr:
     B: 0x41A734
 - desc: Debug "SAMUS" text info
-  label: Debug_SAMUS_TextInfo
+  label: DebugTextInfo_SAMUS
   type: DebugTextInfo
   count: 0x5
   addr:
     B: 0x41A770
 - desc: Debug "SAMUS" L/R button 1 text info
-  label: Debug_SAMUS_LRButton1TextInfo
+  label: DebugTextInfo_SAMUS_LRButton1
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A7AC
 - desc: Debug "SAMUS" L/R button 2 text info
-  label: Debug_SAMUS_LRButton2TextInfo
+  label: DebugTextInfo_SAMUS_LRButton2
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A7C4
 - desc: Debug "SAMUS" start/select 1 text info
-  label: Debug_SAMUS_StartSelect1TextInfo
+  label: DebugTextInfo_SAMUS_StartSelect1
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A7DC
 - desc: Debug "SAMUS" start/select 2 text info
-  label: Debug_SAMUS_StartSelect2TextInfo
+  label: DebugTextInfo_SAMUS_StartSelect2
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A7F4
 - desc: Debug "Sound" text info
-  label: Debug_Sound_TextInfo
+  label: DebugTextInfo_Sound
   type: DebugTextInfo
   count: 0x4
   addr:
     B: 0x41A80C
 - desc: Debug "Sound" BGM on/off text info
-  label: Debug_Sound_BgmOnOffTextInfo
+  label: DebugTextInfo_Sound_BgmOnOff
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A83C
 - desc: Debug "DEMO" text info
-  label: Debug_DEMO_TextInfo
+  label: DebugTextInfo_DEMO
   type: DebugTextInfo
   count: 0x5
   addr:
     B: 0x41A854
 - desc: Debug "DEMO" on/off text info
-  label: Debug_DEMO_OnOffTextInfo
+  label: DebugTextInfo_DEMO_OnOff
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A890
 - desc: Debug "etc" text info
-  label: Debug_etc_TextInfo
+  label: DebugTextInfo_etc
   type: DebugTextInfo
   count: 0x4
   addr:
     B: 0x41A8A8
 - desc: Debug "etc" main-end OBJ on/off text info
-  label: Debug_etc_MainEndObjOnOffTextInfo
+  label: DebugTextInfo_etc_MainEndObjOnOff
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A8D8
 - desc: Debug "etc" door transition on/off text info
-  label: Debug_etc_DoorTransitionOnOffTextInfo
+  label: DebugTextInfo_etc_DoorTransitionOnOff
   type: DebugTextInfo
   count: 0x2
   addr:
     B: 0x41A8F0
 - desc: Debug "ERASE" text info
-  label: Debug_ERASE_TextInfo
+  label: DebugTextInfo_ERASE
   type: DebugTextInfo
   count: 0x3
   addr:
@@ -162,14 +696,14 @@
   count: 0xF
   addr:
     B: 0x41A953
-- desc: Map OAM related?
-  label: debug_MapOamRelated
-  type: u8
-  count: 0x30
+- desc: Debug OAM arrays?
+  label: DebugOamArrays
+  type: OamArray
+  count: 0x6
   addr:
     B: 0x41A990
 - desc: Debug ZEROSAVE text
-  label: Debug_ZEROSAVE_Text
+  label: DebugText_ZEROSAVE
   type: s8
   count: 0x8
   tags:
@@ -177,7 +711,7 @@
   addr:
     B: 0x41A9C0
 - desc: Debug spaces text
-  label: DebugSpacesText
+  label: DebugText_Spaces
   type: s8
   count: 0x14
   tags:
@@ -185,7 +719,7 @@
   addr:
     B: 0x5F4834
 - desc: Debug NOT CONNECTED 1 text
-  label: Debug_NOT_CONNECTED_1_Text
+  label: DebugText_NOT_CONNECTED_1
   type: s8
   count: 0x14
   tags:
@@ -193,7 +727,7 @@
   addr:
     B: 0x5F4848
 - desc: Debug NOT CONNECTED 2 text
-  label: Debug_NOT_CONNECTED_2_Text
+  label: DebugText_NOT_CONNECTED_2
   type: s8
   count: 0x14
   tags:
@@ -201,7 +735,7 @@
   addr:
     B: 0x5F485C
 - desc: Debug CHECKING 1 text
-  label: Debug_CHECKING_1_Text
+  label: DebugText_CHECKING_1
   type: s8
   count: 0x10
   tags:
@@ -209,7 +743,7 @@
   addr:
     B: 0x5F4870
 - desc: Debug CHECKING 2 text
-  label: Debug_CHECKING_2_Text
+  label: DebugText_CHECKING_2
   type: s8
   count: 0x10
   tags:
@@ -217,7 +751,7 @@
   addr:
     B: 0x5F4880
 - desc: Debug READY 1 text
-  label: Debug_READY_1_Text
+  label: DebugText_READY_1
   type: s8
   count: 0x10
   tags:
@@ -225,7 +759,7 @@
   addr:
     B: 0x5F4890
 - desc: Debug READY 2 text
-  label: Debug_READY_2_Text
+  label: DebugText_READY_2
   type: s8
   count: 0x10
   tags:
@@ -233,7 +767,7 @@
   addr:
     B: 0x5F48A0
 - desc: Debug PRESS A BUTTON 1 text
-  label: Debug_PRESS_A_BUTTON_1_Text
+  label: DebugText_PRESS_A_BUTTON_1
   type: s8
   count: 0x14
   tags:
@@ -241,7 +775,7 @@
   addr:
     B: 0x5F48B0
 - desc: Debug PRESS A BUTTON 2 text
-  label: Debug_PRESS_A_BUTTON_2_Text
+  label: DebugText_PRESS_A_BUTTON_2
   type: s8
   count: 0x14
   tags:
@@ -249,7 +783,7 @@
   addr:
     B: 0x5F48C4
 - desc: Debug NOW SENDING 1 1 text
-  label: Debug_NOW_SENDING_1_1_Text
+  label: DebugText_NOW_SENDING_1_1
   type: s8
   count: 0x14
   tags:
@@ -257,7 +791,7 @@
   addr:
     B: 0x5F48D8
 - desc: Debug NOW SENDING 1 2 text
-  label: Debug_NOW_SENDING_1_2_Text
+  label: DebugText_NOW_SENDING_1_2
   type: s8
   count: 0x14
   tags:
@@ -265,7 +799,7 @@
   addr:
     B: 0x5F48EC
 - desc: Debug boot 1 blank text
-  label: DebugBoot1BlankText
+  label: DebugText_Boot1Blank
   type: s8
   count: 0x14
   tags:
@@ -273,7 +807,7 @@
   addr:
     B: 0x5F4900
 - desc: Debug boot 2 blank text
-  label: DebugBoot2BlankText
+  label: DebugText_Boot2Blank
   type: s8
   count: 0x14
   tags:
@@ -281,7 +815,7 @@
   addr:
     B: 0x5F4914
 - desc: Debug BOOT CHECKING 2 text
-  label: Debug_BOOT_CHECKING_2_Text
+  label: DebugText_BOOT_CHECKING_2
   type: s8
   count: 0x14
   tags:
@@ -289,7 +823,7 @@
   addr:
     B: 0x5F493C
 - desc: Debug NO CLIENT BIT 1 text
-  label: Debug_NO_CLIENT_BIT_1_Text
+  label: DebugText_NO_CLIENT_BIT_1
   type: s8
   count: 0x14
   tags:
@@ -297,7 +831,7 @@
   addr:
     B: 0x5F4950
 - desc: Debug NO CLIENT BIT 2 text
-  label: Debug_NO_CLIENT_BIT_2_Text
+  label: DebugText_NO_CLIENT_BIT_2
   type: s8
   count: 0x14
   tags:
@@ -305,7 +839,7 @@
   addr:
     B: 0x5F4964
 - desc: Debug PRESS A 1 text
-  label: Debug_PRESS_A_1_Text
+  label: DebugText_PRESS_A_1
   type: s8
   count: 0xC
   tags:
@@ -313,7 +847,7 @@
   addr:
     B: 0x5F4978
 - desc: Debug PRESS A 2 text
-  label: Debug_PRESS_A_2_Text
+  label: DebugText_PRESS_A_2
   type: s8
   count: 0xC
   tags:
@@ -321,7 +855,7 @@
   addr:
     B: 0x5F4984
 - desc: Debug SENDING 1 text
-  label: Debug_SENDING_1_Text
+  label: DebugText_SENDING_1
   type: u8
   count: 0xC
   tags:
@@ -329,7 +863,7 @@
   addr:
     B: 0x5F4990
 - desc: Debug SUCCESS! text
-  label: Debug_SUCCESS_Text
+  label: DebugText_SUCCESS
   type: u8
   count: 0xC
   tags:
@@ -337,7 +871,7 @@
   addr:
     B: 0x5F499C
 - desc: Debug RETRY! text
-  label: Debug_RETRY_Text
+  label: DebugText_RETRY
   type: u8
   count: 0xC
   tags:
@@ -345,7 +879,7 @@
   addr:
     B: 0x5F49A8
 - desc: Debug ERROR! text
-  label: Debug_ERROR_Text
+  label: DebugText_ERROR
   type: u8
   count: 0xC
   tags:
@@ -353,7 +887,7 @@
   addr:
     B: 0x5F49B4
 - desc: Debug TIME OUT text
-  label: Debug_TIME_OUT_Text
+  label: DebugText_TIME_OUT
   type: u8
   count: 0xC
   tags:
@@ -361,7 +895,7 @@
   addr:
     B: 0x5F49C0
 - desc: Debug ID OVER ERROR text
-  label: Debug_ID_OVER_ERROR_Text
+  label: DebugText_ID_OVER_ERROR
   type: u8
   count: 0x10
   tags:
@@ -369,7 +903,7 @@
   addr:
     B: 0x5F49CC
 - desc: Debug CHECKSUM ERROR text
-  label: Debug_CHECKSUM_ERROR_Text
+  label: DebugText_CHECKSUM_ERROR
   type: u8
   count: 0x14
   tags:
@@ -377,7 +911,7 @@
   addr:
     B: 0x5F49DC
 - desc: Debug HARD ERROR text
-  label: Debug_HARD_ERROR_Text
+  label: DebugText_HARD_ERROR
   type: u8
   count: 0x14
   tags:
@@ -385,7 +919,7 @@
   addr:
     B: 0x5F49F0
 - desc: Debug SEND OVER FLOW text
-  label: Debug_SEND_OVER_FLOW_Text
+  label: DebugText_SEND_OVER_FLOW
   type: u8
   count: 0x14
   tags:
@@ -393,7 +927,7 @@
   addr:
     B: 0x5F4A04
 - desc: Debug RECV OVER FLOW text
-  label: Debug_RECV_OVER_FLOW_Text
+  label: DebugText_RECV_OVER_FLOW
   type: u8
   count: 0x14
   tags:
@@ -401,7 +935,7 @@
   addr:
     B: 0x5F4A18
 - desc: Debug SIO INTERVAL ERROR text
-  label: Debug_SIO_INTERVAL_ERROR_Text
+  label: DebugText_SIO_INTERVAL_ERROR
   type: u8
   count: 0x14
   tags:
@@ -409,13 +943,19 @@
   addr:
     B: 0x5F4A2C
 - desc: Debug SIO STOP ERROR text
-  label: Debug_SIO_STOP_ERROR_Text
+  label: DebugText_SIO_STOP_ERROR
   type: u8
   count: 0x14
   tags:
   - ascii
   addr:
     B: 0x5F4A40
+- desc: Debug event name pointers
+  label: DebugEventNamePtrs
+  type: s8 *
+  count: 0x4F
+  addr:
+    B: 0x77CBA4
 - desc: Debug demo B dashes text pointer
   label: DebugDemoBDashesTextPtr
   type: u8
