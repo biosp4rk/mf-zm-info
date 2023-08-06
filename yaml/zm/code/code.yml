@@ -1259,6 +1259,18 @@
     label: TrackDataPtr
     type: u8 *
   return: null
+- desc: Update audio
+  label: UpdateAudio
+  addr:
+    U: 0x4D48
+    E: 0x4D9C
+    J: 0x4D48
+    C: 0x76FC
+    B: 0x4F58
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
 - desc: CpuFastSet
   label: CpuFastSet
   addr:
@@ -4053,6 +4065,16 @@
     C: 0xF15C
     B: 0xCAEC
   size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Call WriteIORegisters
+  label: CallWriteIORegisters
+  addr:
+    E: 0xC79C
+    C: 0xF198
+    B: 0xCB28
+  size: 0x4C
   mode: thumb
   params: null
   return: null
@@ -12410,7 +12432,7 @@
   params:
   - desc: On world map
     label: OnWorldMap
-    type: bool
+    type: u8
   return: null
 - desc: Map screen load area name and icons
   label: MapScreenLoadAreaNameAndIcons
@@ -14093,7 +14115,7 @@
   params: null
   return: null
 - desc: Apply stereo
-  label: ApplyStero
+  label: ApplyStereo
   addr:
     U: 0x78228
     E: 0x78528

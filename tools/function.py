@@ -30,7 +30,8 @@ class Function(object):
         self.step_through()
 
     def get_instructions(self) -> List[ThumbInstruct]:
-        return list(self.instructs.values())
+        keys = sorted(self.instructs.keys())
+        return [self.instructs[a] for a in keys]
 
     def step_through(self) -> None:
         # step through each instruction
@@ -268,6 +269,26 @@ class Function(object):
                 err = f"Unsure what to output at {self.addr:X}"
                 raise ValueError(err)
         return lines
+
+    def compare(self, other: "Function") -> List[bool]:
+        #
+        self_instructs = self.get_instructions()
+        other_instructs = other.get_instructions()
+        num_instructs = len(self_instructs)
+        if num_instructs != len(other_instructs):
+            return [False]
+        #
+        has_bl = False
+        for i in range(num_instructs):
+            self_inst = self_instructs[i]
+            other_inst = other_instructs[i]
+            if self_inst.format != other_inst.format:
+                return [False]
+            if self_inst.format == ThumbForm.Link:
+                has_bl = True
+            elif str(self_inst) != str(other_inst):
+                return [False]
+        return [True, has_bl]
 
 
 if __name__ == "__main__":
