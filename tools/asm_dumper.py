@@ -28,9 +28,9 @@ def u8_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 16) -> st
         row = min(per_line, count - i)
         vals = [rom.read8(entry_addr + i + j) for j in range(row)]
         strs = ",".join(f"0x{v:02X}" for v in vals)
-        line = f".db {strs} ; {entry.label}"
+        line = f".db {strs}"
         if count > 1:
-            line += f" {i:02X}"
+            line += f" ; {i:02X}"
         lines.append(line)
     return "\n".join(lines)
 
@@ -42,9 +42,9 @@ def u16_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 8) -> st
         row = min(per_line, count - i)
         vals = [rom.read16(entry_addr + (i + j) * 2) for j in range(row)]
         strs = ",".join(f"0x{v:04X}" for v in vals)
-        line = f".dh {strs} ; {entry.label}"
+        line = f".dh {strs}"
         if count > 1:
-            line += f" {i:02X}"
+            line += f" ; {i:02X}"
         lines.append(line)
     return "\n".join(lines)
 
@@ -56,9 +56,9 @@ def u32_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 4) -> st
         row = min(per_line, count - i)
         vals = [rom.read32(entry_addr + (i + j) * 4) for j in range(row)]
         strs = ",".join(f"0x{v:08X}" for v in vals)
-        line = f".dw {strs} ; {entry.label}"
+        line = f".dw {strs}"
         if count > 1:
-            line += f" {i:02X}"
+            line += f" ; {i:02X}"
         lines.append(line)
     return "\n".join(lines)
 
@@ -87,9 +87,9 @@ def ptr_asm(
             else:
                 strs.append(ptr_entry.label)
         vals = ",".join(strs)
-        line = f".dw {vals} ; {entry.label}"
+        line = f".dw {vals}"
         if count > 1:
-            line += f" {i:02X}"
+            line += f" ; {i:02X}"
         lines.append(line)
     return "\n".join(lines)
 
@@ -145,21 +145,24 @@ def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
     raise ValueError(prim)
 
 
-def dump_data(path: str, rom: Rom, info: GameInfo, entry: DataEntry):
-    # write file
-    if entry.has_ptr(info.structs):
-        # asm file
-        asm = data_asm(rom, info, entry, entry.addr)
-        fp = os.path.join(path, f"{entry.label}.asm")
-        with open(fp, "w") as f:
-            f.write(asm)
-    else:
-        # bin file
-        size = entry.get_size(info.structs)
-        data = rom.read_bytes(entry.addr, size)
-        fp = os.path.join(path, f"{entry.label}.bin")
-        with open(fp, "wb") as f:
-            f.write(data)
+def dump_data(path: str, rom: Rom, info: GameInfo, entries: List[DataEntry]):
+    if not os.path.exists(path):
+        os.makedirs(path)
+    
+    for entry in entries:
+        if entry.has_ptr(info.structs):
+            # asm file
+            asm = data_asm(rom, info, entry, entry.addr)
+            fp = os.path.join(path, f"{entry.label}.asm")
+            with open(fp, "w") as f:
+                f.write(asm)
+        else:
+            # bin file
+            size = entry.get_size(info.structs)
+            data = rom.read_bytes(entry.addr, size)
+            fp = os.path.join(path, f"{entry.label}.bin")
+            with open(fp, "wb") as f:
+                f.write(data)
 
 
 def dump_funcs(path: str, rom: Rom, addrs: List[int]):
@@ -171,9 +174,6 @@ def dump_funcs(path: str, rom: Rom, addrs: List[int]):
     used = {}
     for func in funcs:
         used.update(func.get_symbols())
-    
-    if not os.path.exists(path):
-        os.makedirs(path)
 
     # get lines for labels and includes
     ram_defs = []
@@ -199,6 +199,9 @@ def dump_funcs(path: str, rom: Rom, addrs: List[int]):
             missing.append(lab)
 
     # output symbols
+    if not os.path.exists(path):
+        os.makedirs(path)
+
     sym_lines = []
     for defs in (ram_defs, code_defs, data_defs):
         if len(defs) > 0:
@@ -247,17 +250,18 @@ if __name__ == "__main__":
     if args.command == "funcs":
         rom = apu.get_rom(args)
         addrs = apu.get_addrs(args)
-        dump_funcs("_asm", rom, addrs)
+        dump_funcs("_code", rom, addrs)
     elif args.command == "data":
         rom = apu.get_rom(args)
         labels = args.labels.split(",")
         info = GameInfo(rom.game, rom.region)
+        entries = []
         for label in labels:
             entry = info.get_data(label)
             if entry is None:
                 raise ValueError(label)
-            asm = data_asm(rom, info, entry, entry.addr)
-            print(asm)
+            entries.append(entry)
+        dump_data("_data", rom, info, entries)
     elif args.command == "sjis":
         rom = apu.get_rom(args)
         addr = apu.get_addr(args)
