@@ -783,8 +783,8 @@
     type: bool
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
-- desc: Dampen volume of music tracks 0 and 1
-  label: DampenVolumeOfMusicTracks0And1
+- desc: Decrease music volume
+  label: DecreaseMusicVolume
   addr:
     U: 0x3F20
     E: 0x3F74
@@ -8835,11 +8835,11 @@
   size: 0x164
   mode: thumb
   params:
-  - desc: Y position
-    label: YPosition
+  - desc: Y position (blocks)
+    label: YPosition_Blocks
     type: u16
-  - desc: X position
-    label: XPosition
+  - desc: X position (blocks)
+    label: XPosition_Blocks
     type: u16
   - desc: Clipdata block value
     label: ClipdataBlockValue
@@ -9249,11 +9249,11 @@
   size: 0x180
   mode: thumb
   params:
-  - desc: X position blocks
-    label: XPositionBlocks
+  - desc: X position (blocks)
+    label: XPosition_Blocks
     type: u16
-  - desc: Y position blocks
-    label: YPositionBlocks
+  - desc: Y position (blocks)
+    label: YPosition_Blocks
     type: u16
   return:
     desc: Door behavior
@@ -10002,11 +10002,11 @@
   size: 0x1B0
   mode: thumb
   params:
-  - desc: Y position blocks
-    label: YPositionBlocks
+  - desc: Y position (blocks)
+    label: YPosition_Blocks
     type: u16
-  - desc: X position blocks
-    label: XPositionBlocks
+  - desc: X position (blocks)
+    label: XPosition_Blocks
     type: u16
   return:
     desc: Door found
@@ -10270,6 +10270,24 @@
   size: 0x7C
   mode: thumb
   params: null
+  return: null
+- desc: In-game cutscene check flag
+  label: InGameCutsceneCheckFlag
+  addr:
+    U: 0x6087C
+    E: 0x60960
+    J: 0x6087C
+    C: 0x636A4
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Set flag
+    label: SetFlag
+    type: bool
+  - desc: Cutscene number
+    label: CutsceneNum
+    type: u8
+    enum: InGameCutscene
   return: null
 - desc: Event functions
   label: EventFunctions
@@ -12764,6 +12782,20 @@
   return:
     desc: Leaving
     label: Leaving
+    type: bool
+- desc: File screen file corrupted subroutine
+  label: FileScreenFileCorruptedSubroutine
+  addr:
+    U: 0x79B50
+    E: 0x79E40
+    J: 0x79B6C
+    C: 0x7CDE0
+  size: 0x37C
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
     type: bool
 - desc: Copy time attack time
   label: CopyTimeAttackTime

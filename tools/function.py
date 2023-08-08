@@ -197,7 +197,6 @@ class Function(object):
                     syms[val] = label
         return syms
 
-
     def get_lines(self, include_syms: bool) -> List[str]:
         self.symbols.locals = self.locals
         self.symbols.local_indexes = self.local_indexes

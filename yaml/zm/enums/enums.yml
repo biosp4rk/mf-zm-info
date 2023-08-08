@@ -208,6 +208,24 @@
   - desc: Horizontal 4
     label: Horizontal4
     val: 0x7
+- desc: Bomb visibility
+  label: BombVisibility
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Unknown 01
+    label: unk_01
+    val: 0x1
+  - desc: Bombs activated
+    label: BombsActivated
+    val: 0x2
+  - desc: Has power bombs
+    label: HasPowerBombs
+    val: 0x4
+  - desc: Morph ball activated
+    label: MorphBallActivated
+    val: 0x8
 - desc: Breakable block type
   label: BreakableBlockType
   vals:
@@ -1361,6 +1379,117 @@
   - desc: Acid
     label: Acid
     val: 0x4
+- desc: Map screen fading stage
+  label: MapScreenFadingStage
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Fading in initialize
+    label: FadingInInit
+    val: 0x2
+  - desc: Fading in
+    label: FadingIn
+    val: 0x3
+  - desc: Fading out initialize
+    label: FadingOutInit
+    val: 0x4
+  - desc: Fading out
+    label: FadingOut
+    val: 0x5
+- desc: Map screen subroutine type
+  label: MapScreenSubroutineType
+  vals:
+  - desc: Map screen
+    label: MapScreen
+    val: 0x0
+  - desc: Status/debug screen
+    label: StatusOrDebugScreen
+    val: 0x1
+  - desc: Suitless items
+    label: SuitlessItems
+    val: 0x4
+  - desc: Fully powered items
+    label: FullyPoweredItems
+    val: 0x6
+  - desc: Chozo Statue hint
+    label: ChozoStatueHint
+    val: 0x8
+  - desc: Map download
+    label: MapDownload
+    val: 0x9
+  - desc: Easy sleep screen
+    label: EasySleepScreen
+    val: 0xA
+  - desc: Status screen initialize
+    label: StatusScreenInit
+    val: 0xB
+  - desc: Leaving status screen
+    label: LeavingStatusScreen
+    val: 0xC
+  - desc: Easy sleep initialize
+    label: EasySleepInit
+    val: 0x10
+  - desc: Leaving easy sleep
+    label: LeavingEasySleep
+    val: 0x11
+  - desc: Suitless items initialize
+    label: SuitlessItemsInit
+    val: 0x13
+  - desc: Fully powered items initialize
+    label: FullyPoweredItemsInit
+    val: 0x14
+- desc: Map screen type
+  label: MapScreenType
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Debug
+    label: Debug
+    val: 0x1
+  - desc: On map screen
+    label: OnMapScreen
+    val: 0x2
+  - desc: Unknown 08
+    label: unk_08
+    val: 0x8
+  - desc: Chozo Statue hint
+    label: ChozoStatueHint
+    val: 0x10
+  - desc: Downloading map
+    label: DownloadingMap
+    val: 0x20
+  - desc: On status screen
+    label: OnStatusScreen
+    val: 0x80
+  - desc: Getting new item
+    label: GettingNewItem
+    val: 0x100
+  - desc: Getting suitless
+    label: GettingSuitless
+    val: 0x200
+  - desc: Getting fully powered
+    label: GettingFullyPowered
+    val: 0x400
+- desc: Map tank status
+  label: MapTankStatus
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Max energy tanks
+    label: MaxEnergyTanks
+    val: 0x1
+  - desc: Max missile tanks
+    label: MaxMissileTanks
+    val: 0x2
+  - desc: Max super missile tanks
+    label: MaxSuperMissileTanks
+    val: 0x4
+  - desc: Max power bomb tanks
+    label: MaxPowerBombTanks
+    val: 0x8
 - desc: Menu sound ID
   label: MenuSoundID
   vals:
@@ -1484,6 +1613,27 @@
   - desc: Decrement ID at beginning
     label: DecrementIDAtBeginning
     val: 0x9
+- desc: OAM status
+  label: OamStatus
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Unknown 02
+    label: unk_02
+    val: 0x2
+  - desc: Looping on last frame
+    label: LoopingOnLastFrame
+    val: 0x10
+  - desc: Not drawn
+    label: NotDrawn
+    val: 0x20
+  - desc: Exists
+    label: Exists
+    val: 0x40
+  - desc: OAM ID changed
+    label: OamIDChanged
+    val: 0x80
 - desc: Palette animation type
   label: PaletteAnimType
   vals:
