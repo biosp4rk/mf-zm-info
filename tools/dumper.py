@@ -21,7 +21,6 @@ def dump_bytes(rom: Rom, addr: int, length: int, size: int = 1):
 def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
     addr = rom.code_start()
     code_end = rom.code_end()
-    print(f"{code_end:X}")
     arm_funcs = rom.arm_functions()
     all_funcs: List[Tuple[int, int]] = []
     while addr < code_end:
@@ -52,7 +51,7 @@ def coverage(rom: Rom):
     # compute percent of rom covered
     code_size = rom.code_end() - 0xC0
     data_size = rom.data_end() - rom.data_start()
-    rom_size = rom.data_end() - 0xC0
+    rom_size = code_size + data_size
     print(f"Code:\t{code_cov / code_size:.2%}")
     print(f"Data:\t{data_cov / data_size:.2%}")
     print(f"Total:\t{(code_cov + data_cov) / rom_size:.2%}")

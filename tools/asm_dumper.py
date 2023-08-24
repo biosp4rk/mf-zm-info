@@ -21,42 +21,31 @@ def unk_asm(rom: Rom, addr: int, count: int, per_line: int = 16) -> str:
     return "\n".join(lines)
 
 
-def u8_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 16) -> str:
+def uint_asm(rom: Rom, entry: VarEntry, entry_addr: int, size: int) -> str:
+    # get values based on byte size
+    read_int = None
+    dot_dir = None
+    if size == 1:
+        read_int = rom.read8
+        dot_dir = "db"
+    elif size == 2:
+        read_int = rom.read16
+        dot_dir = "dh"
+    elif size == 4:
+        read_int = rom.read32
+        dot_dir = "dw"
+    else:
+        raise ValueError(size)
+    per_line = 16 // size
+    digits = size * 2
+    # go through each item
     count = entry.get_total_count()
     lines = []
     for i in range(0, count, per_line):
         row = min(per_line, count - i)
-        vals = [rom.read8(entry_addr + i + j) for j in range(row)]
-        strs = ",".join(f"0x{v:02X}" for v in vals)
-        line = f".db {strs}"
-        if count > 1:
-            line += f" ; {i:02X}"
-        lines.append(line)
-    return "\n".join(lines)
-
-
-def u16_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 8) -> str:
-    count = entry.get_total_count()
-    lines = []
-    for i in range(0, count, per_line):
-        row = min(per_line, count - i)
-        vals = [rom.read16(entry_addr + (i + j) * 2) for j in range(row)]
-        strs = ",".join(f"0x{v:04X}" for v in vals)
-        line = f".dh {strs}"
-        if count > 1:
-            line += f" ; {i:02X}"
-        lines.append(line)
-    return "\n".join(lines)
-
-
-def u32_asm(rom: Rom, entry: VarEntry, entry_addr: int, per_line: int = 4) -> str:
-    count = entry.get_total_count()
-    lines = []
-    for i in range(0, count, per_line):
-        row = min(per_line, count - i)
-        vals = [rom.read32(entry_addr + (i + j) * 4) for j in range(row)]
-        strs = ",".join(f"0x{v:08X}" for v in vals)
-        line = f".dw {strs}"
+        vals = [read_int(entry_addr + (i + j) * size) for j in range(row)]
+        strs = ",".join(f"0x{v:0{digits}X}" for v in vals)
+        line = f".{dot_dir} {strs}"
         if count > 1:
             line += f" ; {i:02X}"
         lines.append(line)
@@ -78,10 +67,9 @@ def ptr_asm(
         for j in range(row):
             addr = entry_addr + (i + j) * 4
             val = rom.read32(addr)
-            check = val
-            if check >= ROM_OFFSET:
-                check -= ROM_OFFSET
-            ptr_entry = info.get_entry_by_addr(check)
+            ptr_entry = None
+            if val >= ROM_OFFSET:
+                ptr_entry = info.get_entry_by_addr(val - ROM_OFFSET)
             if ptr_entry is None:
                 strs.append(f"0x{val:X}")
             else:
@@ -136,13 +124,10 @@ def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
                 result.append(unk_asm(rom, addr, diff))
         return "\n".join(result)
     # assume integer type
-    if prim == PrimType.U8 or prim == PrimType.S8 or prim == PrimType.Bool:
-        return u8_asm(rom, entry, entry_addr)
-    if prim == PrimType.U16 or prim == PrimType.S16:
-        return u16_asm(rom, entry, entry_addr)
-    if prim == PrimType.U32 or prim == PrimType.S32:
-        return u32_asm(rom, entry, entry_addr)
-    raise ValueError(prim)
+    if prim == PrimType.Void:
+        raise ValueError(prim)
+    size = entry.get_spec_size(None)
+    return uint_asm(rom, entry, entry_addr, size)
 
 
 def dump_data(path: str, rom: Rom, info: GameInfo, entries: List[DataEntry]):
