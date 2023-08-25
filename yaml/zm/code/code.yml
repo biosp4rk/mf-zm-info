@@ -783,6 +783,20 @@
     type: bool
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
+- desc: Update music priority
+  label: UpdateMusicPriority
+  addr:
+    U: 0x3E60
+    E: 0x3EB4
+    J: 0x3E60
+    C: 0x6814
+  size: 0x58
+  mode: thumb
+  params:
+  - desc: Priority
+    label: Priority
+    type: u8
+  return: null
 - desc: Decrease music volume
   label: DecreaseMusicVolume
   addr:
