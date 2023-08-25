@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 from constants import *
 from game_info import GameInfo
 from info_entry import *
-from yaml_utils import load_yaml, load_yamls, info_file_yaml, write_yaml
+from yaml_utils import load_info_file, load_info_files, info_file_to_yaml, write_info_file
 
 
 LABEL_PAT = re.compile(r"^[A-Za-z]\w*$", flags=re.A)
@@ -403,8 +403,8 @@ def output_yamls() -> None:
                     yaml_files.append((path, name))
     # parse files and output
     for path, map_type in yaml_files:
-        data = load_yaml(path, map_type)
-        write_yaml(path, map_type, data)
+        data = load_info_file(path, map_type)
+        write_info_file(path, map_type, data)
     print("Output YAML files")
 
 
@@ -413,8 +413,8 @@ def output_jsons() -> None:
         json_dir = os.path.join(JSON_PATH, game)
         # convert each to json
         for map_type in MAP_TYPES:
-            data = load_yamls(game, map_type)
-            yml = info_file_yaml(map_type, data)
+            data = load_info_files(game, map_type)
+            yml = info_file_to_yaml(map_type, data)
             p = os.path.join(json_dir, map_type + JSON_EXT)
             with open(p, "w") as f:
                 json.dump(yml, f)

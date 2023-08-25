@@ -16,9 +16,10 @@ def hex_int_presenter(dumper, data: int):
 yaml.representer.SafeRepresenter.add_representer(int, hex_int_presenter)
 
 
-def load_yaml(path: str, map_type: str) -> InfoFile:
+def load_info_file(path: str, map_type: str) -> InfoFile:
     with open(path) as f:
         data = yaml.safe_load(f)
+        assert isinstance(data, list)
         if map_type == MAP_RAM:
             return [DataEntry.from_yaml(d) for d in data]
         elif map_type == MAP_CODE:
@@ -32,7 +33,7 @@ def load_yaml(path: str, map_type: str) -> InfoFile:
     raise ValueError()
 
 
-def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
+def info_file_to_yaml(map_type: str, data: InfoFile) -> List:
     if map_type == MAP_RAM:
         return [DataEntry.to_yaml(d) for d in data]
     elif map_type == MAP_CODE:
@@ -47,16 +48,16 @@ def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
         raise ValueError()
 
 
-def write_yaml(path: str, map_type: str, data: InfoFile) -> None:
-    yml = info_file_yaml(map_type, data)
+def write_info_file(path: str, map_type: str, data: InfoFile) -> None:
+    yml = info_file_to_yaml(map_type, data)
     with open(path, "w") as f:
         yaml.safe_dump(yml, f, width=math.inf, sort_keys=False)
 
 
-def load_yamls(game: str, map_type: str, region: str = None) -> InfoFile:
+def load_info_files(game: str, map_type: str, region: str = None) -> InfoFile:
     # load files and combine
     data = find_and_load_files(game, map_type)
-    data = combine_yamls(data)
+    data = combine_info_files(data)
     # filter by region
     if region is not None and isinstance(data, list):
         data = [d for d in data if d.to_region(region)]
@@ -75,10 +76,10 @@ def find_and_load_files(game: str, map_type: str) -> List[InfoFile]:
         paths = [os.path.join(dir_path, p) for p in paths]
     else:
         raise ValueError("No file or directory found")
-    return [load_yaml(p, map_type) for p in paths]
+    return [load_info_file(p, map_type) for p in paths]
 
 
-def combine_yamls(data_list: List[InfoFile]) -> InfoFile:
+def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
     combined = data_list[0]
     if isinstance(combined, list):
         for data in data_list[1:]:

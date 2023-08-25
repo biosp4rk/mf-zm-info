@@ -2,19 +2,19 @@ from typing import Dict, List
 
 from constants import *
 from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, DataTag
-from yaml_utils import load_yamls
+from yaml_utils import load_info_files
 
 
 class GameInfo(object):
     def __init__(self, game: str, region: str = None):
         self.game = game
         self.region = region 
-        self.ram: List[DataEntry] = load_yamls(game, MAP_RAM, region)
-        self.code: List[CodeEntry] = load_yamls(game, MAP_CODE, region)
-        self.data: List[DataEntry] = load_yamls(game, MAP_DATA, region)
-        struct_list = load_yamls(game, MAP_STRUCTS, region)
+        self.ram: List[DataEntry] = load_info_files(game, MAP_RAM, region)
+        self.code: List[CodeEntry] = load_info_files(game, MAP_CODE, region)
+        self.data: List[DataEntry] = load_info_files(game, MAP_DATA, region)
+        struct_list = load_info_files(game, MAP_STRUCTS, region)
         self.structs: Dict[str, StructEntry] = {e.label: e for e in struct_list}
-        enum_list = load_yamls(game, MAP_ENUMS, region)
+        enum_list = load_info_files(game, MAP_ENUMS, region)
         self.enums: Dict[str, EnumEntry] = {e.label: e for e in enum_list}
 
     def get_enum(self, key: str) -> EnumEntry:
