@@ -31,6 +31,7 @@ def load_yaml(path: str, map_type: str) -> InfoFile:
             return [EnumEntry.from_yaml(d) for d in data]
     raise ValueError()
 
+
 def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
     if map_type == MAP_RAM:
         return [DataEntry.to_yaml(d) for d in data]
@@ -44,6 +45,7 @@ def info_file_yaml(map_type: str, data: InfoFile) -> Union[Dict, List]:
         return [EnumEntry.to_yaml(d) for d in data]
     else:
         raise ValueError()
+
 
 def write_yaml(path: str, map_type: str, data: InfoFile) -> None:
     yml = info_file_yaml(map_type, data)

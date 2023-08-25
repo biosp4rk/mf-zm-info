@@ -418,6 +418,26 @@
     type: u8
     offset: 0x3
     notes: Bits 0-2 = type, 0x40 = going left or up, 0x80 = ?
+- desc: Boss flame data
+  label: BossFlameData
+  size: 0xC
+  vars:
+  - desc: OAM offset
+    label: OamOffset
+    type: u8
+    offset: 0x3
+  - desc: Exists
+    label: Exists
+    type: bool
+    offset: 0x5
+  - desc: X position
+    label: XPosition
+    type: u16
+    offset: 0x8
+  - desc: Y position
+    label: YPosition
+    type: u16
+    offset: 0xA
 - desc: Boss map icon
   label: BossMapIcon
   size: 0x5
@@ -1783,18 +1803,21 @@
   label: HatchData
   size: 0x8
   vars:
-  - desc: Direction
-    label: Direction
-    type: u8
-    offset: 0x0
   - desc: Status
     label: Status
     type: u8
+    offset: 0x0
+    notes: Uses bitfields - Exists:1, CurrAnim:3, FacingRight:1
+  - desc: Open status
+    label: OpenStatus
+    type: u8
     offset: 0x1
+    notes: Uses bitfields - Opening:2, Locked:2, FlashingTimer:4
   - desc: Hits
     label: Hits
     type: u8
     offset: 0x2
+    notes: Uses bitfields - HitTimer:4, Hits:4
   - desc: Type
     label: Type
     type: u8
@@ -2044,63 +2067,41 @@
     label: WhenMechaRidleyKilled
     type: InGameTime
     offset: 0xC
-- desc: IO transfer info
-  label: IOTransferInfo
-  size: 0x18
+- desc: Language save
+  label: LanguageSave
+  size: 0x40
   vars:
-  - desc: Function pointer
-    label: FunctionPtr
-    type: void *
+  - desc: Unknown 00
+    label: unk_00
+    type: u8
     offset: 0x0
-  - desc: unk_04
-    label: unk_04
+  - desc: Counter
+    label: Counter
     type: u8
+    offset: 0x1
+  - desc: Checksum
+    label: Checksum
+    type: u16
+    offset: 0x2
+  - desc: NOT of Checksum
+    label: NotOfChecksum
+    type: u16
     offset: 0x4
-  - desc: Timer
-    label: Timer
-    type: u16
-    offset: 0x6
-  - desc: Active
-    label: Active
-    type: u8
-    offset: 0x8
-  - desc: unk_09
-    label: unk_09
-    type: u8
-    offset: 0x9
-  - desc: unk_0A
-    label: unk_0A
-    type: u8
-    offset: 0xA
-  - desc: Result
-    label: Result
-    type: u8
-    offset: 0xB
-  - desc: Error flag
-    label: ErrorFlag
-    type: u8
-    offset: 0xC
-  - desc: unk_0E
-    label: unk_0E
-    type: u16
-    offset: 0xE
-  - desc: Fusion gallery images
-    label: FusionGalleryImages
+  - desc: _SELECT_LANGUAGE text
+    label: SELECT_LANGUAGE_Text
     type: s8
-    offset: 0x10
+    count: 0x10
+    offset: 0x6
   - desc: Language
     label: Language
     type: u8
-    offset: 0x11
+    offset: 0x16
     enum: Language
-  - desc: Music track
-    label: MusicTrack
-    type: u8
-    offset: 0x12
-  - desc: Music priority
-    label: MusicPriority
-    type: u8
-    offset: 0x14
+  - desc: ENDKEY_LANGUAGE_ text
+    label: ENDKEY_LANGUAGE_Text
+    type: s8
+    count: 0x10
+    offset: 0x17
 - desc: Last area connection visited
   label: LastAreaConnectionVisited
   size: 0x4
@@ -2195,14 +2196,97 @@
     label: Timer
     type: u8
     offset: 0x1
-- desc: Menu OAM data
-  label: MenuOamData
+- desc: Map OAM data
+  label: MapOamData
   size: 0x10
   vars:
-  - desc: TODO
-    label: TODO
+  - desc: Y position
+    label: YPosition
+    type: u16
+    offset: 0x0
+  - desc: X position
+    label: XPosition
+    type: u16
+    offset: 0x2
+  - desc: Unknown 04
+    label: unk_04
+    type: u8
+    offset: 0x4
+  - desc: Unknown 05
+    label: unk_05
+    type: u8
+    offset: 0x5
+  - desc: Unknown 06
+    label: unk_06
+    type: u8
+    offset: 0x6
+  - desc: Animation counter
+    label: AnimCounter
+    type: u8
+    offset: 0x8
+  - desc: Current animation
+    label: CurrAnim
+    type: u8
+    offset: 0x9
+  - desc: OAM ID
+    label: OamID
+    type: u8
+    offset: 0xA
+  - desc: Status
+    label: Status
+    type: u8
+    offset: 0xB
+    enum: OamStatus
+  - desc: Unknown 0C
+    label: unk_0C
+    type: u8
+    offset: 0xC
+  - desc: Unknown 0E
+    label: unk_0E
+    type: u16
+    offset: 0xE
+- desc: Map screen fading
+  label: MapScreenFading
+  size: 0x4
+  vars:
+  - desc: Stage
+    label: Stage
     type: u8
     offset: 0x0
+    enum: MapScreenFadingStage
+  - desc: Color to apply
+    label: ColorToApply
+    type: u8
+    offset: 0x1
+  - desc: Unknown 02
+    label: unk_02
+    type: u8
+    offset: 0x2
+- desc: Map screen subroutine data
+  label: MapScreenSubroutineData
+  size: 0xC
+  vars:
+  - desc: Type
+    label: Type
+    type: u8
+    offset: 0x0
+    enum: MapScreenSubroutineType
+  - desc: Stage
+    label: Stage
+    type: u8
+    offset: 0x4
+  - desc: Timer?
+    label: Timer
+    type: u16
+    offset: 0x6
+  - desc: Unknown 08
+    label: unk_08
+    type: u8
+    offset: 0x8
+  - desc: Unknown 0A
+    label: unk_0A
+    type: u16
+    offset: 0xA
 - desc: Metroid Fusion gallery data
   label: MetroidFusionGalleryData
   size: 0x14
@@ -2283,6 +2367,41 @@
     label: LabelYOffset_BR
     type: s8
     offset: 0x9
+- desc: Most recent file save
+  label: MostRecentFileSave
+  size: 0x40
+  vars:
+  - desc: Unknown 00
+    label: unk_00
+    type: u8
+    offset: 0x0
+  - desc: Counter
+    label: Counter
+    type: u8
+    offset: 0x1
+  - desc: Checksum
+    label: Checksum
+    type: u16
+    offset: 0x2
+  - desc: NOT of Checksum
+    label: NotOfChecksum
+    type: u16
+    offset: 0x4
+  - desc: SELECTSAVENUM_00 text
+    label: SELECTSAVENUM_00_Text
+    type: s8
+    count: 0x10
+    offset: 0x6
+  - desc: Language
+    label: Language
+    type: u8
+    offset: 0x16
+    enum: Language
+  - desc: ENDDATA_SEL_SAVE text
+    label: ENDDATA_SEL_SAVE_Text
+    type: s8
+    count: 0x10
+    offset: 0x17
 - desc: Music info
   label: MusicInfo
   size: 0x1764
@@ -2488,16 +2607,25 @@
     label: TimeAttackCodeInputCooldown
     type: u16
     offset: 0x6E
-- desc: Pause data (non-gameplay RAM)
-  label: NonGameplayRam_Pause
+- desc: Map screen data (non-gameplay RAM)
+  label: NonGameplayRam_MapScreen
   size: 0x628
   vars:
-  - desc: Pause screen type
-    label: PauseScreenType
+  - desc: Map screen type
+    label: MapScreenType
     type: u16
     tags:
     - flags
     offset: 0x0
+    enum: MapScreenType
+  - desc: Current subroutine
+    label: CurrSubroutine
+    type: MapScreenSubroutineData
+    offset: 0x4
+  - desc: On world map
+    label: OnWorldMap
+    type: bool
+    offset: 0x11
   - desc: Current area
     label: CurrArea
     type: u8
@@ -2519,6 +2647,103 @@
     label: ChozoHintYPosition
     type: u8
     offset: 0x16
+  - desc: Unknown item dynamic palette data
+    label: UnknownItemDynamicPaletteData
+    type: UnknownItemDynamicPaletteData
+    offset: 0x20
+  - desc: Map view X position
+    label: MapViewXPosition
+    type: u8
+    offset: 0x24
+  - desc: Map view Y position
+    label: MapViewYPosition
+    type: u8
+    offset: 0x25
+  - desc: Map right border
+    label: MapRightBorder
+    type: u8
+    offset: 0x26
+  - desc: Map left border
+    label: MapLeftBorder
+    type: u8
+    offset: 0x27
+  - desc: Map top border
+    label: MapTopBorder
+    type: u8
+    offset: 0x28
+  - desc: Map bottom border
+    label: MapBottomBorder
+    type: u8
+    offset: 0x29
+  - desc: Absolute map right border
+    label: AbsoluteMapRightBorder
+    type: u8
+    offset: 0x2A
+  - desc: Absolute map left border
+    label: AbsoluteMapLeftBorder
+    type: u8
+    offset: 0x2B
+  - desc: Absolute map top border
+    label: AbsoluteMapTopBorder
+    type: u8
+    offset: 0x2C
+  - desc: Absolute map bottom border
+    label: AbsoluteMapBottomBorder
+    type: u8
+    offset: 0x2D
+  - desc: Can scroll right
+    label: CanScrollRight
+    type: bool
+    offset: 0x2E
+  - desc: Can scroll left
+    label: CanScrollLeft
+    type: bool
+    offset: 0x2F
+  - desc: Can scroll up
+    label: CanScrollUp
+    type: bool
+    offset: 0x30
+  - desc: Can scroll down
+    label: CanScrollDown
+    type: bool
+    offset: 0x31
+  - desc: Number of energy tanks (total)
+    label: NumOfEnergyTanks_Total
+    type: u8
+    offset: 0x35
+  - desc: Number of energy tanks (current)
+    label: NumOfEnergyTanks_Curr
+    type: u8
+    offset: 0x36
+  - desc: Number of missile tanks (total)
+    label: NumOfMissileTanks_Total
+    type: u8
+    offset: 0x37
+  - desc: Number of missile tanks (current)
+    label: NumOfMissileTanks_Curr
+    type: u8
+    offset: 0x38
+  - desc: Number of super missile tanks (total)
+    label: NumOfSuperMissileTanks_Total
+    type: u8
+    offset: 0x39
+  - desc: Number of super missile tanks (current)
+    label: NumOfSuperMissileTanks_Curr
+    type: u8
+    offset: 0x3A
+  - desc: Number of power bomb tanks (total)
+    label: NumOfPowerBombTanks_Total
+    type: u8
+    offset: 0x3B
+  - desc: Number of power bomb tanks (current)
+    label: NumOfPowerBombTanks_Curr
+    type: u8
+    offset: 0x3C
+  - desc: Tank status
+    label: TankStatus
+    type: u8
+    offset: 0x3D
+    enum: MapTankStatus
   - desc: Activated Chozo hints
     label: ActivatedChozoHints
     type: u16
@@ -2526,6 +2751,64 @@
     - flags
     offset: 0x44
     enum: ChozoHintLocation
+  - desc: Map download type
+    label: MapDownloadType
+    type: u8
+    offset: 0x4C
+  - desc: Map download line offset
+    label: MapDownloadLineOffset
+    type: u8
+    offset: 0x4D
+  - desc: Map download stage
+    label: MapDownloadStage
+    type: u8
+    offset: 0x4E
+  - desc: Current row being downloaded
+    label: CurrRowBeingDownloaded
+    type: u8
+    offset: 0x50
+  - desc: Current status slot
+    label: CurrStatusSlot
+    type: u8
+    offset: 0x57
+  - desc: Current equipment
+    label: CurrEquipment
+    type: u8
+    offset: 0x58
+  - desc: DISPCNT
+    label: DISPCNT
+    type: u16
+    offset: 0x5C
+  - desc: BG0CNT
+    label: BG0CNT
+    type: u16
+    offset: 0x5E
+  - desc: BG1CNT
+    label: BG1CNT
+    type: u16
+    offset: 0x60
+  - desc: BG2CNT
+    label: BG2CNT
+    type: u16
+    offset: 0x62
+  - desc: BG3CNT
+    label: BG3CNT
+    type: u16
+    offset: 0x64
+  - desc: BLDCNT
+    label: BLDCNT
+    type: u16
+    offset: 0x66
+  - desc: Unknown 8C
+    label: unk_8C
+    type: u8
+    count: 0x14
+    offset: 0x8C
+  - desc: Unknown A0
+    label: unk_A0
+    type: u8
+    count: 0x14
+    offset: 0xA0
   - desc: Changing minimap stage
     label: ChangingMinimapStage
     type: u8
@@ -2551,6 +2834,69 @@
     - flags
     offset: 0xBA
     enum: AreaBitFlags
+  - desc: Number of viewable areas
+    label: NumOfViewableAreas
+    type: u8
+    offset: 0xBB
+  - desc: Map screen fading data
+    label: MapScreenFadingData
+    type: MapScreenFading
+    offset: 0xBC
+  - desc: Status screen data
+    label: StatusScreenData
+    type: StatusScreenData
+    offset: 0xC0
+  - desc: Disable debug menu
+    label: DisableDebugMenu
+    type: bool
+    offset: 0xD8
+  - desc: Boss flames data
+    label: BossFlamesData
+    type: BossFlameData
+    count: 0x2
+    offset: 0xEC
+  - desc: Maps data pointer
+    label: MapsDataPtr
+    type: void *
+    offset: 0x104
+  - desc: Miscellaneous OAM
+    label: MiscOam
+    type: MapOamData
+    count: 0x17
+    offset: 0x108
+  - desc: Targets OAM
+    label: TargetsOam
+    type: MapOamData
+    count: 0x12
+    offset: 0x2E8
+  - desc: Chozo hints OAM
+    label: ChozoHintsOam
+    type: MapOamData
+    count: 0x5
+    offset: 0x3A8
+  - desc: Samus head icon OAM
+    label: SamusHeadIconOam
+    type: MapOamData
+    offset: 0x3F8
+  - desc: Boss icon OAM
+    label: BossIconOam
+    type: MapOamData
+    offset: 0x408
+  - desc: Area name OAM
+    label: AreaNameOam
+    type: MapOamData
+    count: 0x4
+    offset: 0x428
+  - desc: Map border arrows OAM
+    label: MapBorderArrowsOam
+    type: MapOamData
+    count: 0x4
+    offset: 0x468
+  - desc: World map OAM
+    label: WorldMapOam
+    type: MapOamData
+    count: 0x18
+    offset: 0x4A8
 - desc: Number of items collected
   label: NumItemsCollected
   size: 0x8
@@ -3517,8 +3863,8 @@
     label: TimeAttack
     type: bool
     offset: 0x15
-- desc: Save file RAM
-  label: SaveFileRam
+- desc: File SRAM
+  label: FileSram
   size: 0x1220
   vars:
   - desc: ZERO_MISSION_010 text
@@ -3699,10 +4045,13 @@
     label: unk_248
     type: u32
     offset: 0x248
-  - desc: Unknown 24 C
-    label: unk_24C
+  - desc: In-game cutscenes triggered
+    label: InGameCutscenesTriggered
     type: u32
+    tags:
+    - flags
     offset: 0x24C
+    enum: InGameCutscene
   - desc: Visited minimap tiles
     label: VisitedMinimapTiles
     type: u8
@@ -3777,9 +4126,9 @@
     label: CurrAnim
     type: u8
     offset: 0x2
-- desc: Shared SRAM
-  label: SharedSram
-  size: 0x80
+- desc: Save file screen options
+  label: SaveFileScreenOptions
+  size: 0x40
   vars:
   - desc: Checksum
     label: Checksum
@@ -3837,14 +4186,15 @@
     tags:
     - flags
     offset: 0x14
-  - desc: File screen options unlocked time attack?
-    label: FileScreenOptionsUnlockedTimeAttack
+  - desc: Time attack?
+    label: TimeAttack
     type: u32
-    offset: 0x16
-  - desc: Unknown 40
-    label: unk_40
-    type: u8
-    offset: 0x40
+    offset: 0x18
+  - desc: ZeroMissionUSA text
+    label: ZeroMissionUSA_Text
+    type: s8
+    count: 0x20
+    offset: 0x1C
 - desc: Sound data entry
   label: SoundDataEntry
   size: 0x8
@@ -3861,6 +4211,40 @@
     label: TrackGroupNum
     type: u16
     offset: 0x6
+- desc: Sound mode save
+  label: SoundModeSave
+  size: 0x40
+  vars:
+  - desc: Unknown 00
+    label: unk_00
+    type: u8
+    offset: 0x0
+  - desc: Counter
+    label: Counter
+    type: u8
+    offset: 0x1
+  - desc: Checksum
+    label: Checksum
+    type: u16
+    offset: 0x2
+  - desc: NOT of Checksum
+    label: NotOfChecksum
+    type: u16
+    offset: 0x4
+  - desc: _SOUNDMODE_SAVE_ text
+    label: SOUNDMODE_SAVE_Text
+    type: s8
+    count: 0x10
+    offset: 0x6
+  - desc: Sound mode (stereo)
+    label: SoundMode_Stereo
+    type: u8
+    offset: 0x16
+  - desc: SoundModeSAVEEND text
+    label: SoundModeSAVEEND_Text
+    type: s8
+    count: 0x10
+    offset: 0x17
 - desc: Special BG effect
   label: SpecialBGEffect
   size: 0x8
@@ -4076,10 +4460,11 @@
     label: OamRotation
     type: u8
     offset: 0x2A
-  - desc: Invincibility/stun/flash timer
-    label: InvincibilityStunFlashTimer
+  - desc: Stun/flash timer
+    label: StunFlashTimer
     type: u8
     offset: 0x2B
+    notes: Sometimes used to determine if it was hit by a certain type of projectile
   - desc: Timer 1?
     label: Timer1
     type: u8
@@ -4221,6 +4606,70 @@
     label: GfxRow
     type: u8
     offset: 0x1
+- desc: SRAM
+  label: Sram
+  size: 0x8000
+  vars:
+  - desc: File screen options for file A
+    label: FileScreenOptions_FileA
+    type: SaveFileScreenOptions
+    offset: 0x0
+  - desc: File screen options for file B
+    label: FileScreenOptions_FileB
+    type: SaveFileScreenOptions
+    offset: 0x40
+  - desc: Files SRAM
+    label: FilesSram
+    type: FileSram
+    count: 0x3
+    offset: 0x80
+  - desc: Files SRAM copy
+    label: FilesSramCopy
+    type: FileSram
+    count: 0x3
+    offset: 0x36E0
+  - desc: File screen options for file C
+    label: FileScreenOptions_FileC
+    type: SaveFileScreenOptions
+    offset: 0x6D40
+  - desc: Most recent file save
+    label: MostRecentFileSave
+    type: MostRecentFileSave
+    offset: 0x6D80
+  - desc: Language save
+    label: LanguageSave
+    type: LanguageSave
+    count: 0x2
+    offset: 0x6DC0
+  - desc: Sound mode save
+    label: SoundModeSave
+    type: SoundModeSave
+    offset: 0x6E40
+  - desc: Time attack save
+    label: TimeAttackSave
+    type: TimeAttackSave
+    count: 0x2
+    offset: 0x6E80
+  - desc: Demu input buttons to save (debug)
+    label: DemuInputButtonsToSave_Debug
+    type: u16
+    count: 0x100
+    offset: 0x7080
+    enum: ButtonInput
+  - desc: Demu input durations to save (debug)
+    label: DemuInputDurationsToSave_Debug
+    type: u16
+    count: 0x100
+    offset: 0x7280
+  - desc: Demo RAM
+    label: DemoRam
+    type: DemoRam
+    offset: 0x7800
+  - desc: Unknown 7F70
+    label: unk_7F70
+    type: u8
+    count: 0x10
+    offset: 0x7F70
 - desc: Starting health ammo
   label: StartingHealthAmmo
   size: 0x4
@@ -4241,6 +4690,62 @@
     label: PowerBombs
     type: u8
     offset: 0x3
+- desc: Status screen data
+  label: StatusScreenData
+  size: 0x18
+  vars:
+  - desc: Unknown 00
+    label: unk_00
+    type: u8
+    offset: 0x0
+  - desc: Current status slot
+    label: CurrStatusSlot
+    type: u8
+    offset: 0x1
+  - desc: Previous status slot to the left
+    label: PrevStatusSlot_Left
+    type: u8
+    offset: 0x2
+  - desc: Previous status slot to the right
+    label: PrevStatusSlot_Right
+    type: u8
+    offset: 0x3
+  - desc: Beam/bomb activation flags
+    label: BeamBombActivationFlags
+    type: u8
+    count: 0x5
+    tags:
+    - flags
+    offset: 0x4
+  - desc: Suit activation flags
+    label: SuitActivationFlags
+    type: u8
+    count: 0x2
+    tags:
+    - flags
+    offset: 0x9
+  - desc: Misc activation flags
+    label: MiscActivationFlags
+    type: u8
+    count: 0x6
+    tags:
+    - flags
+    offset: 0xB
+  - desc: Bombs visibility/activation
+    label: BombsVisibilityActivation
+    type: u8
+    count: 0x2
+    tags:
+    - flags
+    offset: 0x11
+    enum: BombVisibility
+  - desc: Missiles visibility/activation
+    label: MissilesVisibilityActivation
+    type: u8
+    count: 0x2
+    tags:
+    - flags
+    offset: 0x13
 - desc: Sub-sprite data
   label: SubSpriteData
   size: 0x14
@@ -4499,3 +5004,68 @@
     type: u8
     count: 0x3E
     offset: 0x25
+- desc: Time attack save
+  label: TimeAttackSave
+  size: 0x100
+  vars:
+  - desc: Unknown 00
+    label: unk_00
+    type: u8
+    offset: 0x0
+  - desc: Checksum
+    label: Checksum
+    type: u16
+    offset: 0x12
+  - desc: NOT of Checksum
+    label: NotOfChecksum
+    type: u16
+    offset: 0x14
+  - desc: Counter
+    label: Counter
+    type: u8
+    offset: 0x16
+  - desc: SUKPIFZAILU25976 text
+    label: SUKPIFZAILU25976_Text
+    type: s8
+    count: 0x10
+    offset: 0x17
+  - desc: Best time password
+    label: BestTimePassword
+    type: u8
+    count: 0x14
+    offset: 0x28
+  - desc: Best time in-game time
+    label: BestTimeInGameTime
+    type: InGameTime
+    offset: 0x3C
+  - desc: Best time 100% password
+    label: BestTime100Password
+    type: u8
+    count: 0x14
+    offset: 0x40
+  - desc: Best time 100% in-game time
+    label: BestTime100InGameTime
+    type: InGameTime
+    offset: 0x54
+  - desc: _StartKey_198129 text
+    label: StartKey_198129_Text
+    type: s8
+    count: 0x10
+    offset: 0x58
+- desc: UnknownItemDynamicPaletteData
+  label: UnknownItemDynamicPaletteData
+  size: 0x4
+  vars:
+  - desc: Timer
+    label: Timer
+    type: u8
+    offset: 0x0
+  - desc: Current palette row
+    label: CurrPaletteRow
+    type: u8
+    offset: 0x2
+  - desc: Flashing number
+    label: FlashingNum
+    type: u8
+    offset: 0x3
+    notes: Counts how many times the row flashes before displaying the item

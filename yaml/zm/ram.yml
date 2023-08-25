@@ -137,8 +137,7 @@
   addr: 0x203FF70
 - desc: SRAM
   label: Sram
-  type: SaveFileRam
-  count: 0x6
+  type: Sram
   addr: 0x2038000
 - desc: Debug flag
   label: DebugFlag
@@ -314,6 +313,13 @@
   label: DisableAnimatedPaletteFlag
   type: u8
   addr: 0x300004D
+- desc: In-game cutscenes triggered
+  label: InGameCutscenesTriggered
+  type: u8
+  tags:
+  - flags
+  addr: 0x3000050
+  enum: InGameCutscene
 - desc: Area ID
   label: AreaID
   type: u8

@@ -197,7 +197,6 @@ class Function(object):
                     syms[val] = label
         return syms
 
-
     def get_lines(self, include_syms: bool) -> List[str]:
         self.symbols.locals = self.locals
         self.symbols.local_indexes = self.local_indexes
@@ -271,13 +270,13 @@ class Function(object):
         return lines
 
     def compare(self, other: "Function") -> List[bool]:
-        #
+        # get instructions of both functions
         self_instructs = self.get_instructions()
         other_instructs = other.get_instructions()
         num_instructs = len(self_instructs)
         if num_instructs != len(other_instructs):
             return [False]
-        #
+        # compare each instruction in order
         has_bl = False
         for i in range(num_instructs):
             self_inst = self_instructs[i]
