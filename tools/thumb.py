@@ -402,6 +402,8 @@ class ThumbInstruct(object):
             self.rs = val >> 3 & 7
         elif self.format == ThumbForm.HiReg:
             self.rs = val >> 3 & 15
+        elif self.format == ThumbForm.RelAddr:
+            self.rs = Reg.PC if self.opcode == 0 else Reg.SP
 
     def set_rn(self, val: int) -> None:
         self.rn: int = None

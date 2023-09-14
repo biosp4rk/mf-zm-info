@@ -80,18 +80,8 @@ def find_and_load_files(game: str, map_type: str) -> List[InfoFile]:
 
 
 def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
-    combined = data_list[0]
-    if isinstance(combined, list):
-        for data in data_list[1:]:
-            if isinstance(data, list):
-                combined += data
-            else:
-                raise ValueError("Type mismatch")
-        combined.sort()
-    elif isinstance(combined, dict):
-        for data in data_list[1:]:
-            if isinstance(data, dict):
-                combined.update(data)
-            else:
-                raise ValueError("Type mismatch")
+    combined = []
+    for data in data_list:
+        combined += data
+    combined.sort()
     return combined

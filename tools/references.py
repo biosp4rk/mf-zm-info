@@ -1,8 +1,8 @@
 import argparse
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from game_info import GameInfo
-from info_entry import CodeEntry, DataEntry
+from info_entry import InfoEntry, CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
 
@@ -39,7 +39,7 @@ class References(object):
         self.info = GameInfo(rom.game, rom.region)
         self.refs: Dict[int, List[Ref]] = {}
 
-    def find(self, addr: int):
+    def find(self, addr: int) -> Tuple[List[Ref], List[Ref], List[Ref]]:
         rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
@@ -93,7 +93,7 @@ class References(object):
         
         return bl_addrs, ldr_addrs, data_addrs
 
-    def find_all(self):
+    def find_all(self) -> List[Tuple[str, int, List[Ref]]]:
         # load all ram, code, data, and structs
         rom = self.rom
         ram_entries = self.info.ram
@@ -135,7 +135,9 @@ class References(object):
             results.append((entry.label, addr, refs))
         return results
 
-    def check_addr(self, addr, kind, refs):
+    def check_addr(
+        self, addr: int, kind: str, refs: Dict[int, InfoEntry]
+    ) -> None:
         val = self.rom.read32(addr)
         if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
             val -= ROM_OFFSET
@@ -144,7 +146,12 @@ class References(object):
                 val -= 1
             self.check_ref(val, addr, kind, refs)
 
-    def check_ref(self, val, addr, kind, refs):
+    def check_ref(self,
+        val: int,
+        addr: int,
+        kind: str,
+        refs: Dict[int, InfoEntry]
+    ) -> None:
         entry = None
         if val in refs:
             entry = refs[val]
@@ -158,7 +165,7 @@ class References(object):
         ref = self.get_ref(addr, kind)
         self.refs[entry.addr].append(ref)
 
-    def find_prev_entry(self, addr: int):
+    def find_prev_entry(self, addr: int) -> int:
         left = 0
         right = len(self.entries) - 1
         mid: int = -1
@@ -202,7 +209,7 @@ class References(object):
         return Ref(addr, kind)
 
 
-def output_section(title, refs) -> List[str]:
+def output_section(title: str, refs) -> List[str]:
     lines = []
     num_refs = len(refs)
     if num_refs > 0:

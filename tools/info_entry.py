@@ -154,7 +154,7 @@ class VarEntry(InfoEntry):
         i = decl.rfind("(")
         if i != -1:
             i += 1
-            j = decl.find(")")
+            j = decl.find(")", i)
             decl = decl[i:j]
         return decl
 

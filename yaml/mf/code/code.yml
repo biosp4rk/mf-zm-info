@@ -4115,6 +4115,31 @@
     label: param_0
     type: u8
   return: null
+- desc: Navigation conversation process text
+  label: NavConvoProcessText
+  addr:
+    U: 0x79AFC
+    E: 0x79AFC
+    J: 0x7A2D0
+    C: 0x7A2D0
+  size: 0x600
+  mode: thumb
+  params: null
+  return: null
+- desc: Navigation conversation subroutine
+  label: NavConvoSubroutine
+  addr:
+    U: 0x7A3A4
+    E: 0x7A3A4
+    J: 0x7AB78
+    C: 0x7AB78
+  size: 0xAB0
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
 - desc: Copy graphics when navigation pop-up displays
   label: CopyGfxWhenNavPopUpDisplays
   addr:
@@ -5890,6 +5915,20 @@
     desc: Unknown
     label: unk
     type: bool
+- desc: Ending process Adam panel
+  label: EndingProcessAdamPanel
+  addr:
+    U: 0x96B98
+    E: 0x96C58
+    J: 0x97B14
+    C: 0x97B14
+  size: 0x1A8
+  mode: thumb
+  params:
+  - desc: Special cutscene OAM pointer
+    label: SpecialCutsceneOamPtr
+    type: void *
+  return: null
 - desc: Generate random number for title intro
   label: GenerateRandomNumForTitleIntro
   addr:

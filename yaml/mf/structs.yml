@@ -476,6 +476,32 @@
     label: Unused
     type: u16
     offset: 0x2
+- desc: Computer conversation pop-up graphics
+  label: ComputerConvoPopUpGfx
+  size: 0x18
+  vars:
+  - desc: Unknown pointer
+    label: UnkPtr
+    type: u8 *
+    offset: 0x0
+  - desc: Palette row 0 pointer
+    label: PaletteRow0Ptr
+    type: u16 *
+    tags:
+    - palette
+    offset: 0x8
+  - desc: Palette row 1 pointer
+    label: PaletteRow1Ptr
+    type: u16 *
+    tags:
+    - palette
+    offset: 0xC
+  - desc: Graphics pointer
+    label: GfxPtr
+    type: u8 *
+    tags:
+    - gfx
+    offset: 0x14
 - desc: Current power bomb
   label: CurrPowerBomb
   size: 0x14

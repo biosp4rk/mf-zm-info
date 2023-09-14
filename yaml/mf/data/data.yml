@@ -95,6 +95,50 @@
     E: 0x28D908
     J: 0x28F5B4
     C: 0x28F5F8
+- desc: Normal suit loading save palette pointers
+  label: NormalSuitLoadingSavePalettePtrs
+  type: u16 *
+  count: 0x1C
+  tags:
+  - palette
+  addr:
+    U: 0x28E93C
+    E: 0x28EF98
+    J: 0x290C44
+    C: 0x290C88
+- desc: Varia suit loading save palette pointers
+  label: VariaSuitLoadingSavePalettePtrs
+  type: u16 *
+  count: 0x1C
+  tags:
+  - palette
+  addr:
+    U: 0x28E9AC
+    E: 0x28F008
+    J: 0x290CB4
+    C: 0x290CF8
+- desc: Gravity suit loading save palette pointers
+  label: GravitySuitLoadingSavePalettePtrs
+  type: u16 *
+  count: 0x1C
+  tags:
+  - palette
+  addr:
+    U: 0x28EA1C
+    E: 0x28F078
+    J: 0x290D24
+    C: 0x290D68
+- desc: SA-X suit loading save palette pointers
+  label: SaxSuitLoadingSavePalettePtrs
+  type: u16 *
+  count: 0x1C
+  tags:
+  - palette
+  addr:
+    U: 0x28EA8C
+    E: 0x28F0E8
+    J: 0x290D94
+    C: 0x290DD8
 - desc: Samus hitbox offsets
   label: SamusHitboxOffsets
   type: SamusHitboxOffsets
@@ -949,6 +993,15 @@
     E: 0x576D40
     J: 0x578DE4
     C: 0x57D6CC
+- desc: Computer conversation pop-up graphics
+  label: ComputerConvoPopUpGfx
+  type: ComputerConvoPopUpGfx
+  count: 0x5
+  addr:
+    U: 0x57BC50
+    E: 0x57C2AC
+    J: 0x57E350
+    C: 0x582C38
 - desc: Debug event text
   label: DebugEventText
   type: s8
@@ -1063,6 +1116,28 @@
     E: 0x74B8C0
     J: 0x74CB18
     C: 0x6DAF18
+- desc: Pre-results Samus BG graphics pointers 1
+  label: PreResultsSamusBGGfxPtrs1
+  type: u8 *
+  count: 0x4
+  tags:
+  - gfx
+  addr:
+    U: 0x74E620
+    E: 0x74EE54
+    J: 0x74FFC4
+    C: 0x6DEF60
+- desc: Pre-results Samus BG graphics pointers 2
+  label: PreResultsSamusBGGfxPtrs2
+  type: u8 *
+  count: 0x4
+  tags:
+  - gfx
+  addr:
+    U: 0x74E630
+    E: 0x74EE64
+    J: 0x74FFD4
+    C: 0x6DEF70
 - desc: Primary sprite AI pointers
   label: PrimarySpriteAIPtrs
   type: void *
@@ -1085,6 +1160,17 @@
     E: 0x79AE0C
     J: 0x7ECC88
     C: 0x77C2DC
+- desc: Sprite palette pointers
+  label: SpritePalettePtrs
+  type: u16 *
+  count: 0xBF
+  tags:
+  - palette
+  addr:
+    U: 0x79A8D4
+    E: 0x79B108
+    J: 0x7ECF84
+    C: 0x77C5D8
 - desc: Secondary sprite AI pointers
   label: SecondarySpriteAIPtrs
   type: void *
@@ -1204,6 +1290,21 @@
     E: 0x79C940
     J: 0x7EE7BC
     C: 0x77DE10
+- desc: SRAM reset text graphics pointers
+  label: SramResetTextGfxPtrs
+  type: u8 *
+  count:
+    U: 0xE
+    E: 0xE
+    J: 0xE
+    C: 0x4
+  tags:
+  - gfx
+  addr:
+    U: 0x79C228
+    E: 0x79CA5C
+    J: 0x7EE8EC
+    C: 0x77DF40
 - desc: Process projectile pointers
   label: ProcessProjectilePtrs
   type: void *
@@ -1215,6 +1316,204 @@
     E: 0x79CAB0
     J: 0x7EE918
     C: 0x77DF6C
+- desc: Intro Samus reborn fade out BG palette pointers
+  label: IntroSamusRebornFadeOutBGPalettePtrs
+  type: u16 *
+  count: 0x10
+  tags:
+  - palette
+  addr:
+    U: 0x79C314
+    E: 0x79CB48
+    J: 0x7EE9B0
+    C: 0x77E004
+- desc: Intro Samus monologue fade in BG palette pointers
+  label: IntroSamusMonologueFadeInBGPalettePtrs
+  type: u16 *
+  count: 0x10
+  tags:
+  - palette
+  addr:
+    U: 0x79C354
+    E: 0x79CB88
+    J: 0x7EE9F0
+    C: 0x77E044
+- desc: Navigation text pointers copy
+  label: NavTextPtrs_Copy
+  type: u16 **
+  count: 0x7
+  tags:
+  - text
+  addr:
+    U: 0x79C3AC
+    E: 0x79CBE0
+    J: 0x7EEA48
+    C: 0x77E09C
+- desc: Intro SR388 surface BG graphics pointers
+  label: IntroSR388SurfaceBGGfxPtrs
+  type: u8 *
+  count: 0x8
+  tags:
+  - gfx
+  addr:
+    U: 0x79C3C8
+    E: 0x79CBFC
+    J: 0x7EEA64
+    C: 0x77E0B8
+- desc: Intro SR388 planet BG graphics pointers
+  label: IntroSR388PlanetBGGfxPtrs
+  type: u8 *
+  count: 0x5
+  tags:
+  - gfx
+  addr:
+    U: 0x79C3E8
+    E: 0x79CC1C
+    J: 0x7EEA84
+    C: 0x77E0D8
+- desc: Intro BSL OBJ graphics pointers
+  label: IntroBslObjGfxPtrs
+  type: u8 *
+  count: 0x8
+  tags:
+  - gfx
+  addr:
+    U: 0x79C3FC
+    E: 0x79CC30
+    J: 0x7EEA98
+    C: 0x77E0EC
+- desc: Intro Samus sitting BG graphics pointers
+  label: IntroSamusSittingBGGfxPtrs
+  type: u8 *
+  count: 0x5
+  tags:
+  - gfx
+  addr:
+    U: 0x79C41C
+    E: 0x79CC50
+    J: 0x7EEAB8
+    C: 0x77E10C
+- desc: Intro Samus helmet close up BG graphics pointers
+  label: IntroSamusHelmetCloseUpBGGfxPtrs
+  type: u8 *
+  count: 0x6
+  tags:
+  - gfx
+  addr:
+    U: 0x79C430
+    E: 0x79CC64
+    J: 0x7EEACC
+    C: 0x77E120
+- desc: Title intro collision warning BG graphics pointers
+  label: TitleIntroCollisionWarningBGGfxPtrs
+  type: u8 *
+  count: 0x5
+  tags:
+  - gfx
+  addr:
+    U: 0x79C448
+    E: 0x79CC7C
+    J: 0x7EEAE4
+    C: 0x77E138
+- desc: Title intro collision warning OBJ graphics pointers
+  label: TitleIntroCollisionWarningObjGfxPtrs
+  type: u8 *
+  count: 0x6
+  tags:
+  - gfx
+  addr:
+    U: 0x79C45C
+    E: 0x79CC90
+    J: 0x7EEAF8
+    C: 0x77E14C
+- desc: Unused title intro space BG graphics pointers
+  label: UnusedTitleIntroSpaceBGGfxPtrs
+  type: u8 *
+  count: 0x5
+  tags:
+  - gfx
+  addr:
+    U: 0x79C474
+    E: 0x79CCA8
+    J: 0x7EEB10
+    C: 0x77E164
+- desc: Unused title intro asteroids OBJ graphics pointers
+  label: UnusedTitleIntroAsteroidsObjGfxPtrs
+  type: u8 *
+  count: 0x5
+  tags:
+  - gfx
+  addr:
+    U: 0x79C488
+    E: 0x79CCBC
+    J: 0x7EEA24
+    C: 0x77E178
+- desc: Unused title intro explosion graphics pointers
+  label: UnusedTitleIntroExplosionGfxPtrs
+  type: u8 *
+  count: 0x3
+  tags:
+  - gfx
+  addr:
+    U: 0x79C49C
+    E: 0x79CCD0
+    J: 0x7EEA38
+    C: 0x77E18C
+- desc: Elevator monologue BG palette pointers
+  label: ElevatorMonologueBGPalettePtrs
+  type: u16 *
+  count: 0x9
+  tags:
+  - palette
+  addr:
+    U: 0x79C4A8
+    E: 0x79CCDC
+    J: 0x7EEA44
+    C: 0x77E198
+- desc: Elevator monologue OBJ palette pointers
+  label: ElevatorMonologueObjPalettePtrs
+  type: u16 *
+  count: 0x9
+  tags:
+  - palette
+  addr:
+    U: 0x79C4CC
+    E: 0x79CD00
+    J: 0x7EEA68
+    C: 0x77E1BC
+- desc: Elevator monologue BG graphics pointers
+  label: ElevatorMonologueBGGfxPtrs
+  type: u8 *
+  count: 0x9
+  tags:
+  - gfx
+  addr:
+    U: 0x79C4F0
+    E: 0x79CD24
+    J: 0x7EEA8C
+    C: 0x77E1E0
+- desc: Elevator monologue OBJ graphics pointers
+  label: ElevatorMonologueObjGfxPtrs
+  type: u8 *
+  count: 0x9
+  tags:
+  - gfx
+  addr:
+    U: 0x79C514
+    E: 0x79CD48
+    J: 0x7EEAB0
+    C: 0x77E204
+- desc: Elevator monologue BG tilemap pointers?
+  label: ElevatorMonologueBGTilemapPtrs
+  type: u8 *
+  count: 0x9
+  tags:
+  - gfx
+  addr:
+    U: 0x79C538
+    E: 0x79CD6C
+    J: 0x7EEAD4
+    C: 0x77E228
 - desc: Monologue text pointers
   label: MonologueTextPtrs
   type: u16 **
@@ -1604,6 +1903,17 @@
     U: 0x79E81C
     E: 0x79F050
     J: 0x7F0F10
+- desc: Game over text graphics pointers
+  label: GameOverTextGfxPtrs
+  type: u8 *
+  count: 0x7
+  tags:
+  - gfx
+  addr:
+    U: 0x79E874
+    E: 0x79F0A8
+    J: 0x7F0F68
+    C: 0x77E7D4
 - desc: Save file OAM pointers?
   label: SaveFileOamPtrs
   type: Oam *

@@ -2,6 +2,7 @@ import argparse
 from typing import List, Tuple
 
 from function import Function
+from game_info import GameInfo
 from rom import Rom, ROM_OFFSET
 
 
@@ -38,7 +39,6 @@ def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
 
 
 def coverage(rom: Rom):
-    from game_info import GameInfo
     info = GameInfo(rom.game, rom.region)
     # get total size of code entries
     code_cov = 0
