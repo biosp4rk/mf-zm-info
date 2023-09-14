@@ -6,15 +6,15 @@ from yaml_utils import load_info_files
 
 
 class GameInfo(object):
-    def __init__(self, game: str, region: str = None):
+    def __init__(self, game: str, region: str = None, include_unk: bool = False):
         self.game = game
         self.region = region 
-        self.ram: List[DataEntry] = load_info_files(game, MAP_RAM, region)
-        self.code: List[CodeEntry] = load_info_files(game, MAP_CODE, region)
-        self.data: List[DataEntry] = load_info_files(game, MAP_DATA, region)
-        struct_list = load_info_files(game, MAP_STRUCTS, region)
+        self.ram: List[DataEntry] = load_info_files(game, MAP_RAM, region, include_unk)
+        self.code: List[CodeEntry] = load_info_files(game, MAP_CODE, region, include_unk)
+        self.data: List[DataEntry] = load_info_files(game, MAP_DATA, region, include_unk)
+        struct_list = load_info_files(game, MAP_STRUCTS, region, include_unk)
         self.structs: Dict[str, StructEntry] = {e.label: e for e in struct_list}
-        enum_list = load_info_files(game, MAP_ENUMS, region)
+        enum_list = load_info_files(game, MAP_ENUMS, region, include_unk)
         self.enums: Dict[str, EnumEntry] = {e.label: e for e in enum_list}
 
     def get_enum(self, key: str) -> EnumEntry:

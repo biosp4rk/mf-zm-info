@@ -54,28 +54,36 @@ def write_info_file(path: str, map_type: str, data: InfoFile) -> None:
         yaml.safe_dump(yml, f, width=math.inf, sort_keys=False)
 
 
-def load_info_files(game: str, map_type: str, region: str = None) -> InfoFile:
+def load_info_files(
+    game: str,
+    map_type: str,
+    region: str = None,
+    include_unk: bool = False
+) -> InfoFile:
     # load files and combine
-    data = find_and_load_files(game, map_type)
-    data = combine_info_files(data)
+    files = find_and_load_files(game, map_type)
+    data = combine_info_files(files)
     # filter by region
-    if region is not None and isinstance(data, list):
+    if region is not None:
         data = [d for d in data if d.to_region(region)]
+    data.sort()
     return data
 
 
-def find_and_load_files(game: str, map_type: str) -> List[InfoFile]:
+def find_and_load_files(
+    game: str,
+    map_type: str,
+    include_unk: bool = False
+) -> List[InfoFile]:
     # find all yaml files and load data
     dir_path = os.path.join(YAML_PATH, game, map_type)
-    file_path = dir_path + YAML_EXT
     paths = None
-    if os.path.isfile(file_path):
-        paths = [file_path]
-    elif os.path.isdir(dir_path):
-        paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
-        paths = [os.path.join(dir_path, p) for p in paths]
-    else:
+    if not os.path.isdir(dir_path):
         raise ValueError("No file or directory found")
+    paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
+    if not include_unk:
+        paths = [p for p in paths if not p.startswith("unk")]
+    paths = [os.path.join(dir_path, p) for p in paths]
     return [load_info_file(p, map_type) for p in paths]
 
 
@@ -83,5 +91,4 @@ def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
     combined = []
     for data in data_list:
         combined += data
-    combined.sort()
     return combined
