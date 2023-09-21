@@ -61,7 +61,7 @@ def load_info_files(
     include_unk: bool = False
 ) -> InfoFile:
     # load files and combine
-    files = find_and_load_files(game, map_type)
+    files = find_and_load_files(game, map_type, include_unk)
     data = combine_info_files(files)
     # filter by region
     if region is not None:

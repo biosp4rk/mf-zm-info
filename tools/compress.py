@@ -1,7 +1,7 @@
 import argparse
 from typing import Tuple
 
-from rom import Rom
+import argparse_utils as apu
 
 MIN_MATCH_SIZE = 3
 MAX_MATCH_SIZE = 18
@@ -158,15 +158,14 @@ def is_lz77(input: bytes, idx: int) -> int:
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     parser.add_argument("action", type=str, choices=["rle", "lz", "is-lz"])
-    apu.add_rom_path_arg(parser)
-    apu.add_addr_arg(parser)
+    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_arg(parser, apu.ArgType.ADDR)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args)
-    addr = apu.get_addr(args)
+    rom = apu.get_rom(args.rom_path)
+    addr = apu.get_hex(args.addr)
 
     if args.action == "rle":
         raw, size = decomp_rle(rom.data, addr)

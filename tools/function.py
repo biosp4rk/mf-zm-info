@@ -1,7 +1,7 @@
 import argparse
-import sys
 from typing import Dict, List, Set, Tuple
 
+import argparse_utils as apu
 from constants import *
 from game_info import GameInfo
 from rom import Rom, ROM_OFFSET
@@ -291,15 +291,14 @@ class Function(object):
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    apu.add_rom_path_arg(parser)
-    apu.add_addr_arg(parser)
+    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_arg(parser, apu.ArgType.ADDR)
     parser.add_argument("-s", "--symbols", action="store_true")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args)
-    addr = apu.get_addr(args)
+    rom = apu.get_rom(args.rom_path)
+    addr = apu.get_hex(args.addr)
     
     # load symbols
     info = GameInfo(rom.game, rom.region)

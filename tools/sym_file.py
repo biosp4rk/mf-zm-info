@@ -1,7 +1,7 @@
 import argparse
-import sys
 from typing import List
 
+import argparse_utils as apu
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import Function
 from info_entry import DataEntry, CodeEntry
@@ -118,13 +118,12 @@ def gen_sym_file(rom: Rom):
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    apu.add_rom_path_arg(parser)
+    apu.add_arg(parser, apu.ArgType.ROM_PATH)
     parser.add_argument("out_path", type=str)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args)
+    rom = apu.get_rom(args.rom_path)
     
     lines = gen_sym_file(rom)
     with open(args.out_path, 'w') as f:

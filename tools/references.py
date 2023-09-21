@@ -1,6 +1,7 @@
 import argparse
 from typing import Dict, List, Tuple
 
+import argparse_utils as apu
 from game_info import GameInfo
 from info_entry import InfoEntry, CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
@@ -221,15 +222,14 @@ def output_section(title: str, refs) -> List[str]:
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    apu.add_rom_path_arg(parser)
+    apu.add_arg(parser, apu.ArgType.ROM_PATH)
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("-s", "--specific", metavar="addr", type=str)
-    group.add_argument("-a", "--all", action="store_true")
+    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("--all", action="store_true")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args)
+    rom = apu.get_rom(args.rom_path)
     refs = References(rom)
 
     if args.all:
@@ -240,9 +240,9 @@ if __name__ == "__main__":
         # get address
         addr = None
         try:
-            addr = int(args.specific, 16)
+            addr = int(args.addr, 16)
         except:
-            print(f"Invalid hex address {args.specific}")
+            print(f"Invalid hex address {args.addr}")
             quit()
         # find references and print
         bls, ldrs, dats = refs.find(addr)

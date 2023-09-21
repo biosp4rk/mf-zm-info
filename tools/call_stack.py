@@ -1,6 +1,7 @@
 import argparse
 from typing import Dict, List, Set
 
+import argparse_utils as apu
 from constants import *
 from function import Function
 from game_info import GameInfo
@@ -55,14 +56,13 @@ class CallStack(object):
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
-    apu.add_rom_path_arg(parser)
-    apu.add_addr_arg(parser)
+    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_arg(parser, apu.ArgType.ADDR)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args)
-    addr = apu.get_addr(args)
+    rom = apu.get_rom(args.rom_path)
+    addr = apu.get_hex(args.addr)
 
     call_stack = CallStack(rom, addr)
     for line in call_stack.get_lines(2):

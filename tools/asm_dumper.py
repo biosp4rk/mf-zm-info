@@ -3,6 +3,7 @@ import codecs
 import os
 from typing import List
 
+import argparse_utils as apu
 from constants import *
 from function import Function
 from game_info import GameInfo
@@ -214,30 +215,29 @@ def dump_funcs(path: str, rom: Rom, addrs: List[int]):
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command")
     # funcs command
     subparser = subparsers.add_parser("funcs")
-    apu.add_rom_path_arg(subparser)
-    apu.add_addrs_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
+    apu.add_arg(subparser, apu.ArgType.ADDR_LIST)
     # data command
     subparser = subparsers.add_parser("data")
-    apu.add_rom_path_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
     subparser.add_argument("labels", type=str)
     # sjis command
     subparser = subparsers.add_parser("sjis")
-    apu.add_rom_path_arg(subparser)
-    apu.add_addr_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
+    apu.add_arg(subparser, apu.ArgType.ADDR)
     subparser.add_argument("count", type=str)
 
     args = parser.parse_args()
     if args.command == "funcs":
-        rom = apu.get_rom(args)
-        addrs = apu.get_addrs(args)
+        rom = apu.get_rom(args.rom_path)
+        addrs = apu.get_hex_list(args.addr_list)
         dump_funcs("_code", rom, addrs)
     elif args.command == "data":
-        rom = apu.get_rom(args)
+        rom = apu.get_rom(args.rom_path)
         labels = args.labels.split(",")
         info = GameInfo(rom.game, rom.region)
         entries = []
@@ -248,8 +248,8 @@ if __name__ == "__main__":
             entries.append(entry)
         dump_data("_data", rom, info, entries)
     elif args.command == "sjis":
-        rom = apu.get_rom(args)
-        addr = apu.get_addr(args)
+        rom = apu.get_rom(args.rom_path)
+        addr = apu.get_hex(args.addr)
         count = int(args.count, 16)
         print(sjis_asm(rom, addr, count))
     else:

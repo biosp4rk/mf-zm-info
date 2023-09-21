@@ -1,9 +1,10 @@
 import argparse
 from typing import List, Tuple
 
+import argparse_utils as apu
 from function import Function
 from game_info import GameInfo
-from rom import Rom, ROM_OFFSET
+from rom import Rom
 
 
 def dump_bytes(rom: Rom, addr: int, length: int, size: int = 1):
@@ -58,36 +59,35 @@ def coverage(rom: Rom):
 
 
 if __name__ == "__main__":
-    import argparse_utils as apu
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command")
     # bytes command
     subparser = subparsers.add_parser("bytes")
-    apu.add_rom_path_arg(subparser)
-    apu.add_addr_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
+    apu.add_arg(subparser, apu.ArgType.ADDR)
     subparser.add_argument("count", type=str)
     subparser.add_argument("-s", "--size", type=int,
         choices=[1, 2, 4], default=1)
     # all_funcs command
     subparser = subparsers.add_parser("all_funcs")
-    apu.add_rom_path_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
     # coverage command
     subparser = subparsers.add_parser("coverage")
-    apu.add_rom_path_arg(subparser)
+    apu.add_arg(subparser, apu.ArgType.ROM_PATH)
 
     args = parser.parse_args()
     if args.command == "bytes":
-        rom = apu.get_rom(args)
-        addr = apu.get_addr(args)
+        rom = apu.get_rom(args.rom_path)
+        addr = apu.get_hex(args.addr)
         count = int(args.count, 16)
         dump_bytes(rom, addr, count, args.size)
     elif args.command == "all_funcs":
-        rom = apu.get_rom(args)
+        rom = apu.get_rom(args.rom_path)
         funcs = all_funcs(rom)
         for addr, size in funcs:
             print(f"{addr:X}\t{size:X}")
     elif args.command == "coverage":
-        rom = apu.get_rom(args)
+        rom = apu.get_rom(args.rom_path)
         coverage(rom)
     else:
         parser.print_help()
