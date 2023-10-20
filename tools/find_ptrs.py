@@ -3,6 +3,7 @@ from enum import Enum
 from typing import Any, Dict, List, Tuple, Union
 
 import argparse_utils as apu
+from constants import *
 from function import Function
 from game_info import GameInfo
 from info_entry import PrimType, InfoEntry, DataEntry, StructEntry, StructVarEntry
@@ -179,8 +180,6 @@ def find_prim_at_offset(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    #parser.add_argument("addr", type=str)
-    #apu.add_arg(parser, apu.ArgType.ROM_PATH, "rom_path_2")
 
     args = parser.parse_args()
     rom = Rom(args.rom_path)

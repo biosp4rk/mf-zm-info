@@ -5,7 +5,7 @@ import yaml
 
 from constants import *
 from info_entry import *
-from typing import Dict, List, Union
+from typing import Any, List
 
 InfoFile = List[InfoEntry]
 
@@ -46,6 +46,10 @@ def info_file_to_yaml(map_type: str, data: InfoFile) -> List:
         return [EnumEntry.to_yaml(d) for d in data]
     else:
         raise ValueError()
+
+
+def to_string(obj: Any) -> str:
+    return yaml.safe_dump(obj, width=math.inf, sort_keys=False)
 
 
 def write_info_file(path: str, map_type: str, data: InfoFile) -> None:

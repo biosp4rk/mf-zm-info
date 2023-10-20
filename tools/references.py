@@ -37,7 +37,7 @@ class References(object):
 
     def __init__(self, rom: Rom):
         self.rom = rom
-        self.info = GameInfo(rom.game, rom.region)
+        self.info = GameInfo(rom.game, rom.region, True)
         self.refs: Dict[int, List[Ref]] = {}
 
     def find(self, addr: int) -> Tuple[List[Ref], List[Ref], List[Ref]]:
@@ -226,6 +226,7 @@ if __name__ == "__main__":
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-a", "--addr", type=str)
+    group.add_argument("-l", "--label", type=str)
     group.add_argument("--all", action="store_true")
 
     args = parser.parse_args()
@@ -239,11 +240,18 @@ if __name__ == "__main__":
     else:
         # get address
         addr = None
-        try:
-            addr = int(args.addr, 16)
-        except:
-            print(f"Invalid hex address {args.addr}")
-            quit()
+        if args.addr:
+            try:
+                addr = int(args.addr, 16)
+            except:
+                print(f"Invalid hex address {args.addr}")
+                quit()
+        elif args.label:
+            entry = refs.info.get_entry(args.label)
+            if entry is None:
+                print("Label not found")
+                quit()
+            addr = entry.addr
         # find references and print
         bls, ldrs, dats = refs.find(addr)
         lines = []

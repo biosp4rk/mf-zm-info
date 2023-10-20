@@ -4,7 +4,7 @@ import argparse_utils as apu
 from rom import Rom, ROM_OFFSET
 
 
-def convert_rom(rom: Rom):
+def replace_ptrs(rom: Rom):
     start = rom.code_start()
     end = rom.data_end()
     rom_start = start + ROM_OFFSET
@@ -24,8 +24,8 @@ def convert_rom(rom: Rom):
 class Finder(object):
 
     def __init__(self, src_rom: Rom, target_rom: Rom):
-        convert_rom(src_rom)
-        convert_rom(target_rom)
+        replace_ptrs(src_rom)
+        replace_ptrs(target_rom)
         self.src_rom = src_rom
         self.target_rom = target_rom
 
@@ -55,36 +55,6 @@ class Finder(object):
                 if best_size > 0x10000:
                     break
         return best_addr, best_size
-
-
-from difflib import SequenceMatcher
-
-class SeqAlign(object):
-    def __init__(self, rom1: Rom, rom2: Rom):
-        convert_rom(rom1)
-        convert_rom(rom2)
-        self.rom1 = rom1
-        self.rom2 = rom2
-
-    def align(self,
-        rom1_start: int,
-        rom1_end: int,
-        rom2_start: int,
-        rom2_end: int
-    ):
-        # check sizes
-        m = rom1_end - rom1_start
-        n = rom2_end - rom2_start
-        if m * n > 100_000_000:
-            print(f"{m} x {n} ({m * n}) is too big")
-            return
-        
-        a = self.rom1.data[rom1_start:rom1_end]
-        b = self.rom2.data[rom2_start:rom2_end]
-        seq_matcher = SequenceMatcher(None, a, b)
-        ops = seq_matcher.get_opcodes()
-        for tag, i1, i2, j1, j2 in ops:
-            print(f"{tag:8}a[{i1:X}:{i2:X}] -> b[{j1:X}:{j2:X}]")
 
 
 if __name__ == "__main__":

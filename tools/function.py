@@ -197,7 +197,7 @@ class Function(object):
                     syms[val] = label
         return syms
 
-    def get_lines(self, include_syms: bool) -> List[str]:
+    def get_lines(self, include_syms: bool, include_addrs: bool = False) -> List[str]:
         self.symbols.locals = self.locals
         self.symbols.local_indexes = self.local_indexes
 
@@ -256,7 +256,10 @@ class Function(object):
                 in_pool = False
             elif self.addr in self.instructs:
                 inst = self.instructs[self.addr]
-                lines.append(inst.asm_str(self.rom, self.symbols, self.branches))
+                asm_str = inst.asm_str(self.rom, self.symbols, self.branches)
+                if include_addrs:
+                    asm_str = f"{asm_str:35} ; {self.addr:X}"
+                lines.append(asm_str)
                 if inst.format == ThumbForm.Link:
                     self.addr += 4
                 else:
@@ -293,18 +296,35 @@ class Function(object):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("-l", "--label", type=str)
     parser.add_argument("-s", "--symbols", action="store_true")
+    parser.add_argument("-c", "--addr_comments", action="store_true")
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    addr = apu.get_hex(args.addr)
     
     # load symbols
     info = GameInfo(rom.game, rom.region)
     syms = Symbols(info)
 
+    # get address
+    addr = None
+    if args.addr:
+        try:
+            addr = int(args.addr, 16)
+        except:
+            print(f"Invalid hex address {args.addr}")
+            quit()
+    elif args.label:
+        entry = info.get_code(args.label)
+        if entry is None:
+            print("Label not found")
+            quit()
+        addr = entry.addr
+
     # print function
     func = Function(rom, addr, syms)
-    lines = func.get_lines(True)
+    lines = func.get_lines(args.symbols, args.addr_comments)
     print("\n".join(lines))

@@ -184,6 +184,7 @@ class VarEntry(InfoEntry):
         return False
 
     def get_count(self) -> int:
+        """Gets the count of the outermost array"""
         if self.arr_count is None:
             return 1
         if isinstance(self.arr_count, dict):
@@ -194,6 +195,7 @@ class VarEntry(InfoEntry):
             return self.arr_count
 
     def get_total_count(self) -> int:
+        """Gets the total count, including nested arrays"""
         count = self.get_count()
         if self.declaration is not None:
             decl = self.inner_decl()
@@ -204,10 +206,12 @@ class VarEntry(InfoEntry):
         return count
 
     def get_size(self, structs: StructDict) -> int:
+        """Gets the total size of the entry"""
         size = 4 if self.is_ptr() else self.get_spec_size(structs)
         return size * self.get_total_count()
 
     def get_spec_size(self, structs: StructDict) -> int:
+        """Gets the size of a single item of this type"""
         if self.primitive in {
             PrimType.Void,
             PrimType.U8,
@@ -426,6 +430,12 @@ class StructEntry(InfoEntry):
 
     def __str__(self) -> str:
         return f"Size: {self.size:X}"
+
+    def get_var(self, label: str) -> StructVarEntry:
+        for var in self.vars:
+            if var.label == label:
+                return var
+        return None
 
     @staticmethod
     def from_yaml(node: Any) -> "StructEntry":
