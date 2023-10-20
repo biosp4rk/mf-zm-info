@@ -1,6 +1,7 @@
+from abc import ABC, abstractmethod
 from enum import Enum
 import re
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Tuple, Union
 
 from constants import *
 
@@ -61,7 +62,7 @@ class CodeMode(Enum):
     Arm = 2
 
 
-class InfoEntry(object):
+class InfoEntry(ABC):
 
     def __init__(self, desc: str, label: str, notes: str = None):
         self.desc = desc
@@ -72,15 +73,17 @@ class InfoEntry(object):
         return self.label < other.label
 
     def to_region(self, region: str) -> bool:
-        return True
+        pass
 
     @staticmethod
+    @abstractmethod
     def from_yaml(node: Any) -> "InfoEntry":
-        raise NotImplementedError()
+        pass
 
     @staticmethod
+    @abstractmethod
     def to_yaml(entry: "InfoEntry") -> Any:
-        raise NotImplementedError()
+        pass
 
     @staticmethod
     def less_than(ri1: RegionInt, ri2: RegionInt) -> bool:
@@ -242,7 +245,6 @@ class VarEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "VarEntry":
-        assert isinstance(node, dict)
         return VarEntry(
             node[K_DESC],
             node[K_LABEL],
@@ -318,17 +320,19 @@ class DataEntry(VarEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "DataEntry":
-        assert isinstance(node, dict)
-        return DataEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_TYPE],
-            node.get(K_COUNT),
-            node[K_ADDR],
-            VarEntry.tags_from_yaml(node.get(K_TAGS)),
-            node.get(K_ENUM),
-            node.get(K_NOTES)
-        )
+        try:
+            return DataEntry(
+                node[K_DESC],
+                node[K_LABEL],
+                node[K_TYPE],
+                node.get(K_COUNT),
+                node[K_ADDR],
+                VarEntry.tags_from_yaml(node.get(K_TAGS)),
+                node.get(K_ENUM),
+                node.get(K_NOTES)
+            )
+        except:
+            raise Exception(f"Error parsing data entry: {node}")
 
     @staticmethod
     def to_yaml(entry: "DataEntry") -> Any:
@@ -384,7 +388,6 @@ class StructVarEntry(VarEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "StructVarEntry":
-        assert isinstance(node, dict)
         return StructVarEntry(
             node[K_DESC],
             node[K_LABEL],
@@ -439,15 +442,17 @@ class StructEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "StructEntry":
-        assert isinstance(node, dict)
-        vars = [StructVarEntry.from_yaml(e) for e in node[K_VARS]]
-        return StructEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_SIZE],
-            vars,
-            node.get(K_NOTES)
-        )
+        try:
+            vars = [StructVarEntry.from_yaml(e) for e in node[K_VARS]]
+            return StructEntry(
+                node[K_DESC],
+                node[K_LABEL],
+                node[K_SIZE],
+                vars,
+                node.get(K_NOTES)
+            )
+        except:
+            raise Exception(f"Error parsing struct entry: {node}")
 
     @staticmethod
     def to_yaml(entry: "StructEntry") -> Any:
@@ -505,26 +510,28 @@ class CodeEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "CodeEntry":
-        assert isinstance(node, dict)
-        mode = CodeMode.Arm if node[K_MODE] == "arm" else CodeMode.Thumb
-        params = node[K_PARAMS]
-        # TODO: don't allow str for params
-        if not isinstance(params, str):
-            params = [VarEntry.from_yaml(p) for p in params] if params else None
-        ret = node[K_RETURN]
-        # TODO: don't allow str for return
-        if not isinstance(ret, str):
-            ret = VarEntry.from_yaml(ret) if ret else None
-        return CodeEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_ADDR],
-            node[K_SIZE],
-            mode,
-            params,
-            ret,
-            node.get(K_NOTES)
-        )
+        try:
+            mode = CodeMode.Arm if node[K_MODE] == "arm" else CodeMode.Thumb
+            params = node[K_PARAMS]
+            # TODO: don't allow str for params
+            if not isinstance(params, str):
+                params = [VarEntry.from_yaml(p) for p in params] if params else None
+            ret = node[K_RETURN]
+            # TODO: don't allow str for return
+            if not isinstance(ret, str):
+                ret = VarEntry.from_yaml(ret) if ret else None
+            return CodeEntry(
+                node[K_DESC],
+                node[K_LABEL],
+                node[K_ADDR],
+                node[K_SIZE],
+                mode,
+                params,
+                ret,
+                node.get(K_NOTES)
+            )
+        except:
+            raise Exception(f"Error parsing code entry: {node}")
 
     @staticmethod
     def to_yaml(entry: "CodeEntry") -> Any:
@@ -570,7 +577,6 @@ class EnumValEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "EnumValEntry":
-        assert isinstance(node, dict)
         return EnumValEntry(
             node[K_DESC],
             node[K_LABEL],
@@ -606,14 +612,16 @@ class EnumEntry(InfoEntry):
 
     @staticmethod
     def from_yaml(node: Any) -> "EnumEntry":
-        assert isinstance(node, dict)
-        vals = [EnumValEntry.from_yaml(e) for e in node[K_VALS]]
-        return EnumEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            vals,
-            node.get(K_NOTES)
-        )
+        try:
+            vals = [EnumValEntry.from_yaml(e) for e in node[K_VALS]]
+            return EnumEntry(
+                node[K_DESC],
+                node[K_LABEL],
+                vals,
+                node.get(K_NOTES)
+            )
+        except:
+            raise Exception(f"Error parsing enum entry: {node}")
 
     @staticmethod
     def to_yaml(entry: "EnumEntry") -> Any:

@@ -83,7 +83,7 @@ def find_and_load_files(
     dir_path = os.path.join(YAML_PATH, game, map_type)
     paths = None
     if not os.path.isdir(dir_path):
-        raise ValueError("No file or directory found")
+        raise ValueError("No directory found")
     paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
     if not include_unk:
         paths = [p for p in paths if not p.startswith("unk")]

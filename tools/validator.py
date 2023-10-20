@@ -52,7 +52,7 @@ class Validator(object):
         for game in GAMES:
             self.entry_loc.game = game
             # get all info
-            info = GameInfo(game)
+            info = GameInfo(game, include_unk=True)
             self.enums = info.enums
             self.structs = info.structs
 

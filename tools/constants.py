@@ -45,63 +45,6 @@ K_VAL = "val"
 K_VARS = "vars"
 K_VALS = "vals"
 
-# entry valid fields
-# fields are in preferred output order
-DATA = (
-    K_DESC,
-    K_LABEL,
-    K_TYPE,
-    K_TAGS,
-    K_ADDR,
-    K_ENUM,
-    K_NOTES
-)
-CODE_VAR = (
-    K_DESC,
-    K_LABEL,
-    K_TYPE,
-    K_TAGS,
-    K_ENUM,
-    K_NOTES
-)
-FIELDS = {
-    MAP_ENUMS: (
-        K_DESC,
-        K_LABEL,
-        K_VAL,
-        K_NOTES
-    ),
-    MAP_STRUCTS: (
-        K_SIZE,
-        K_VARS
-    ),
-    MAP_CODE: (
-        K_DESC,
-        K_LABEL,
-        K_ADDR,
-        K_SIZE,
-        K_MODE,
-        K_PARAMS,
-        K_RETURN,
-        K_NOTES
-    ),
-    MAP_RAM: DATA,
-    MAP_DATA: DATA,
-    K_ADDR: REGIONS,
-    K_SIZE: REGIONS,
-    K_VARS:  (
-        K_DESC,
-        K_LABEL,
-        K_TYPE,
-        K_TAGS,
-        K_OFFSET,
-        K_ENUM,
-        K_NOTES
-    ),
-    K_PARAMS: CODE_VAR,
-    K_RETURN: CODE_VAR
-}
-
 # primitive type sizes
 PRIMITIVES = {
     "void": 1,
