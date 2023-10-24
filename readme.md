@@ -95,6 +95,7 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is f
 - `BG` - Background
 - `Calc` - Calculate
 - `Curr` - Current
+- `Def` - Definition
 - `Gfx` - Graphics
 - `Init` - Initialize
 - `Nav` - Navigation

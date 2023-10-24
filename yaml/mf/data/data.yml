@@ -549,6 +549,15 @@
     E: 0x3C95EC
     J: 0x3CB558
     C: 0x3CB59C
+- desc: In-game screen fade tables
+  label: InGameScreenFadeTables
+  type: InGameScreenFadeTable
+  count: 0x4
+  addr:
+    U: 0x3C94A0
+    E: 0x3C9AFC
+    J: 0x3CBA74
+    C: 0x3CBAB8
 - desc: Sine table 1
   label: SineTable_1
   type: s8
@@ -1101,6 +1110,18 @@
     E: 0x58BAA0
     J: 0x58BBD4
     C: 0x592558
+- desc: Title screen debug text
+  label: TitleScreenDebugText
+  type: s8
+  count: 0x2
+  tags:
+  - ascii
+  addr:
+    U: 0x590C98
+    E: 0x5912F4
+    J: 0x591428
+    C: 0x597DAC
+  notes: Blank in release versions
 - desc: Credits text
   label: CreditsText
   type: s8
@@ -1185,7 +1206,7 @@
 - desc: Spriteset pointers
   label: SpritesetPtrs
   type: SpritesetEntry *
-  count: 0x81
+  count: 0x82
   addr:
     U: 0x79ADD8
     E: 0x79B60C
@@ -1316,6 +1337,16 @@
     E: 0x79CAB0
     J: 0x7EE918
     C: 0x77DF6C
+- desc: Title screen debug text pointer
+  label: TitleScreenDebugTextPtr
+  type: s8 *
+  tags:
+  - ascii
+  addr:
+    U: 0x79C2C8
+    E: 0x79CAFC
+    J: 0x7EE964
+    C: 0x77DFB8
 - desc: Intro Samus reborn fade out BG palette pointers
   label: IntroSamusRebornFadeOutBGPalettePtrs
   type: u16 *
@@ -1914,12 +1945,6 @@
     E: 0x79F0A8
     J: 0x7F0F68
     C: 0x77E7D4
-- desc: Save file OAM pointers?
-  label: SaveFileOamPtrs
-  type: Oam *
-  count: 0x26
-  addr:
-    U: 0x79E890
 - desc: Japanese file screen text pointers
   label: JapaneseFileScreenTextPtrs
   type: u16 *
@@ -1988,6 +2013,17 @@
     U: 0x79EBFC
     E: 0x79F458
     J: 0x7F1390
+- desc: All languages file info text pointers
+  label: AllLanguagesFileInfoTextPtrs
+  type: u16 *
+  count: 0x2
+  tags:
+  - text
+  addr:
+    U: 0x79EC60
+    E: 0x79F4BC
+    J: 0x7F13F4
+    C: 0x77EC60
 - desc: File screen text pointers
   label: FileScreenTextPtrs
   type: u16 **
@@ -1999,8 +2035,8 @@
     E: 0x79F4C4
     J: 0x7F13FC
     C: 0x77EC68
-- desc: Unused text pointers
-  label: UnusedTextPtrs
+- desc: File info text pointers
+  label: FileInfoTextPtrs
   type: u16 **
   count: 0x7
   tags:

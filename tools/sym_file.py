@@ -93,10 +93,10 @@ def gen_sym_file(rom: Rom):
 
     # data
     data_start = rom.data_start(True)
+    data_end = rom.data_end(True)
     while words[j] < data_start:
         j += 1
     lines.append("; ROM data")
-    data_end = rom.data_end(True)
     while words[j] < data_end:
         word = words[j]
         j += 1

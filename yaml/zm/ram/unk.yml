@@ -1,66 +1,92 @@
-- addr: 0x200A000
-  size: 0x800
-  notes: Pause overlay?
-- type: u16
+- desc: Pause overlay?
+  label: PauseOverlay
+  type: u8
+  addr: 0x200A000
+  count: 0x800
+- desc: Effect offset related?
+  label: EffectOffsetRelated
+  type: u16
   addr: 0x2026300
   count: 0x500
-  notes: Effect offset related?
-- type: u16
+- desc: Effect offset related?
+  label: EffectOffsetRelated
+  type: u16
   addr: 0x2026D00
   count: 0x500
-  notes: Effect offset related?
-- type: u8
+- desc: Error flag?
+  label: ErrorFlag
+  type: u8
   addr: 0x3000001
-  notes: Error flag?
-- type: u8
+- desc: Suit type related?
+  label: SuitTypeRelated
+  type: u8
   addr: 0x3000034
-  notes: Suit type related?
-- type: u16
+- desc: Slow scrolling timer?
+  label: SlowScrollingTimer
+  type: u16
   addr: 0x300003E
-  notes: Slow scrolling timer?
-- type: u8
+- desc: Horizontal screen shake related
+  label: HorizontalScreenShakeRelated
+  type: u8
   addr: 0x3000071
-  notes: Horizontal screen shake related
-- type: u8
+- desc: Vertical screen shake related
+  label: VerticalScreenShakeRelated
+  type: u8
   addr: 0x3000072
-  notes: Vertical screen shake related
-- type: u16
+- desc: Screen shake flags?
+  label: ScreenShakeFlags
+  type: u16
   addr: 0x3000074
-  notes: Screen shake flags?
-- type: u16
+- desc: X position for waiting pirates?
+  label: XPositionForWaitingPirates
+  type: u16
   addr: 0x30000F8
-  notes: X position for waiting pirates?
-- type: u16
+- desc: Y position for waiting pirates?
+  label: YPositionForWaitingPirates
+  type: u16
   addr: 0x30000FA
-  notes: Y position for waiting pirates?
-- addr: 0x300019C
-  size: 0xC
-  notes: Cutscene related?
-- type: u8
+- desc: Cutscene related?
+  label: CutsceneRelated
+  type: u8
+  addr: 0x300019C
+  count: 0xC
+- desc: Parasite related?
+  label: ParasiteRelated
+  type: u8
   addr: 0x3000734
-  notes: Parasite related?
-- type: u8
+- desc: Collision related?
+  label: CollisionRelated
+  type: u8
   addr: 0x30007F2
-  notes: Collision related?
-- type: ptr.oam
+- desc: OAM pointer?
+  label: OamPtr
+  type: Oam*
   addr: 0x3000918
-  notes: OAM pointer?
-- type: u8
+- desc: Current file exists?
+  label: CurrFileExists
+  type: u8
   addr: 0x3000C1D
-  notes: Current file exists?
-- type: u8
+- desc: Demo playing flag?
+  label: DemoPlayingFlag
+  type: u8
   addr: 0x30013D2
-  notes: Demo playing flag?
-- type: flags8
+- desc: Viewable areas copy?
+  label: ViewableAreasCopy
+  type: u8
   addr: 0x300177F
+  tags:
+  - flags
   enum: AreaBitFlags
-  notes: Viewable areas copy?
-- type: u16
+- desc: Rain sound effect flag?
+  label: RainSoundEffectFlag
+  type: u16
   addr: 0x3005518
-  notes: Rain sound effect flag?
-- addr: 0x30056C4
-  size: 0x8
-  notes: BG0 transparency related?
-- type: u8
+- desc: BG0 transparency related?
+  label: BG0TransparencyRelated
+  type: u8
+  addr: 0x30056C4
+  count: 0x8
+- desc: Wavy background effect related?
+  label: WavyBGEffectRelated
+  type: u8
   addr: 0x3005729
-  notes: Wavy background effect related?

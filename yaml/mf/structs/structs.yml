@@ -175,13 +175,13 @@
     type: u8
     offset: 0x2
     enum: AreaID
-- desc: Arm cannon draw data
-  label: ArmCannonDrawData
+- desc: Arm cannon animation data
+  label: ArmCannonAnimData
   size: 0x8
   vars:
-  - desc: Opening X/Y offsets pointer
-    label: OpeningXYOffsetsPtr
-    type: ArmCannonOpeningXYOffsets *
+  - desc: Opening offsets pointer
+    label: OpeningOffsetsPtr
+    type: ArmCannonOpeningOffsets *
     offset: 0x0
   - desc: OAM frame pointer
     label: OamFramePtr
@@ -189,8 +189,8 @@
     tags:
     - oam_frame
     offset: 0x4
-- desc: Arm cannon opening X/Y offsets
-  label: ArmCannonOpeningXYOffsets
+- desc: Arm cannon opening offsets
+  label: ArmCannonOpeningOffsets
   size: 0x8
   vars:
   - desc: Charging Y offset
@@ -897,6 +897,57 @@
     label: RoomID2
     type: u8
     offset: 0x3
+- desc: Ending text draw info
+  label: EndingTextDrawInfo
+  size: 0xC
+  vars:
+  - desc: Type
+    label: Type
+    type: u8
+    offset: 0x0
+    notes: 1 = single character, 2 = full line
+  - desc: Draw delay
+    label: DrawDelay
+    type: u8
+    offset: 0x1
+  - desc: Unknown 02
+    label: unk_02
+    type: u8
+    offset: 0x2
+  - desc: X position
+    label: XPosition
+    type: u16
+    offset: 0x4
+  - desc: Y position
+    label: YPosition
+    type: u16
+    offset: 0x6
+  - desc: OAM frame pointer
+    label: OamFramePtr
+    type: u16 *
+    tags:
+    - oam_frame
+    offset: 0x8
+- desc: Envelope
+  label: Envelope
+  size: 0x4
+  vars:
+  - desc: Attack
+    label: Attack
+    type: u8
+    offset: 0x0
+  - desc: Decay
+    label: Decay
+    type: u8
+    offset: 0x1
+  - desc: Sustain
+    label: Sustain
+    type: u8
+    offset: 0x2
+  - desc: Release
+    label: Release
+    type: u8
+    offset: 0x3
 - desc: Equipment
   label: Equipment
   size: 0x10
@@ -1055,6 +1106,20 @@
     type: u8
     offset: 0x8
     notes: 0 = normal, 1 = data download, 2 = skippable
+- desc: Every key split instrument definition
+  label: EveryKeySplitInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+    notes: 40 for key split
+  - desc: Sub-instruments pointer
+    label: SubInstrumentsPtr
+    type: u8 *
+    offset: 0x4
 - desc: Floating point number
   label: FloatingPointNum
   size: 0x14
@@ -1136,6 +1201,18 @@
     tags:
     - flags
     offset: 0x3
+- desc: In-game screen fade table
+  label: InGameScreenFadeTable
+  size: 0x8
+  vars:
+  - desc: Table pointer
+    label: TablePtr
+    type: u8 *
+    offset: 0x0
+  - desc: Table size
+    label: TableSize
+    type: u8
+    offset: 0x4
 - desc: In-game time
   label: InGameTime
   size: 0x4
@@ -1156,6 +1233,24 @@
     label: InGameFrames
     type: u8
     offset: 0x3
+- desc: Key split instrument definition
+  label: KeySplitInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+    notes: 40 for key split
+  - desc: Sub-instruments pointer
+    label: SubInstrumentsPtr
+    type: u8 *
+    offset: 0x4
+  - desc: Key split table pointer
+    label: KeySplitTablePtr
+    type: u8 *
+    offset: 0x8
 - desc: Monologue event
   label: MonologueEvent
   size: 0x8
@@ -1327,7 +1422,7 @@
     type: u8
     offset: 0x4
     enum: NavTargetTextDirection
-- desc: Never reformblock
+- desc: Never reform block
   label: NeverReformBlock
   size: 0x3
   vars:
@@ -1343,6 +1438,32 @@
     label: YPosition
     type: u8
     offset: 0x2
+- desc: Noise instrument definition
+  label: NoiseInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+    notes: 4 for noise
+  - desc: MIDI key
+    label: MidiKey
+    type: u8
+    offset: 0x1
+  - desc: Hardware time length
+    label: HardwareTimeLength
+    type: u8
+    offset: 0x2
+  - desc: Period
+    label: Period
+    type: u8
+    offset: 0x4
+  - desc: Envelope
+    label: Envelope
+    type: Envelope
+    offset: 0x8
 - desc: Ending data (non-gameplay RAM)
   label: NonGameplayRam_Ending
   size: 0x540
@@ -1793,6 +1914,35 @@
     label: Properties
     type: u8
     offset: 0x2
+- desc: Sample instrument definition
+  label: SampleInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+  - desc: MIDI key
+    label: MidiKey
+    type: u8
+    offset: 0x1
+  - desc: Unused
+    label: Unused
+    type: u8
+    offset: 0x2
+  - desc: Panning
+    label: Panning
+    type: u8
+    offset: 0x3
+  - desc: Sample data pointer
+    label: SampleDataPtr
+    type: u8 *
+    offset: 0x4
+  - desc: Envelope
+    label: Envelope
+    type: Envelope
+    offset: 0x8
 - desc: Samus animation info
   label: SamusAnimInfo
   size: 0xC
@@ -1817,8 +1967,8 @@
     label: ShinesparkTimer
     type: u8
     offset: 0x4
-- desc: Samus body draw data
-  label: SamusBodyDrawData
+- desc: Samus animation data
+  label: SamusAnimData
   size: 0x10
   vars:
   - desc: Torso graphics pointer
@@ -1833,12 +1983,14 @@
     tags:
     - gfx
     offset: 0x4
-  - desc: Body OAM pointer
-    label: BodyOamPtr
-    type: Oam *
+  - desc: OAM frame pointer
+    label: OamFramePtr
+    type: u16 *
+    tags:
+    - oam_frame
     offset: 0x8
-  - desc: Unknown 0C
-    label: unk_0C
+  - desc: Timer
+    label: Timer
     type: u8
     offset: 0xC
 - desc: Samus data
@@ -2402,6 +2554,26 @@
     type: CollectedTank
     count: 0xA0
     offset: 0xF80
+- desc: SA-X animation data
+  label: SaxAnimData
+  size: 0xC
+  vars:
+  - desc: Graphics pointer
+    label: GfxPtr
+    type: u8 *
+    tags:
+    - gfx
+    offset: 0x0
+  - desc: OAM frame pointer
+    label: OamFramePtr
+    type: u16 *
+    tags:
+    - oam_frame
+    offset: 0x4
+  - desc: Timer
+    label: Timer
+    type: u8
+    offset: 0x8
 - desc: SA-X data
   label: SaxData
   size: 0x24
@@ -2839,6 +3011,37 @@
     label: GfxRow
     type: u8
     offset: 0x1
+- desc: Square instrument definition
+  label: SquareInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+    notes: 1 or 2 for square
+  - desc: MIDI key
+    label: MidiKey
+    type: u8
+    offset: 0x1
+  - desc: Hardware time length
+    label: HardwareTimeLength
+    type: u8
+    offset: 0x2
+  - desc: Sweep
+    label: Sweep
+    type: u8
+    offset: 0x3
+    notes: Square 1 only
+  - desc: Duty cycle
+    label: DutyCycle
+    type: u8
+    offset: 0x4
+  - desc: Envelope
+    label: Envelope
+    type: Envelope
+    offset: 0x8
 - desc: Suit damage reduction percent
   label: SuitDamageReductionPercent
   size: 0x6
@@ -2930,3 +3133,29 @@
     label: AnimatedPalette
     type: u8
     offset: 0x11
+- desc: Wave instrument definition
+  label: WaveInstrumentDef
+  size: 0xC
+  vars:
+  - desc: Instrument type
+    label: InstrumentType
+    type: u8
+    offset: 0x0
+    enum: InstrumentType
+    notes: 3 for wave
+  - desc: MIDI key
+    label: MidiKey
+    type: u8
+    offset: 0x1
+  - desc: Hardware time length
+    label: HardwareTimeLength
+    type: u8
+    offset: 0x2
+  - desc: Waveform data pointer
+    label: WaveformDataPtr
+    type: u8 *
+    offset: 0x4
+  - desc: Envelope
+    label: Envelope
+    type: Envelope
+    offset: 0x8

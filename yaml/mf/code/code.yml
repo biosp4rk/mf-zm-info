@@ -3658,6 +3658,28 @@
   params: null
   return: null
   notes: Removes the collected tanks when loading a room
+- desc: In-game screen fade
+  label: InGameScreenFade
+  addr:
+    U: 0x6DACC
+    E: 0x6DACC
+    J: 0x6E178
+    C: 0x6E178
+  size: 0x264
+  mode: thumb
+  params:
+  - desc: Fade type
+    label: FadeType
+    type: u8
+    notes: 0 = fade-in, 1 = fade-out
+  - desc: Fade speed
+    label: FadeSpeed
+    type: u8
+    notes: 0 = fastest, 1 = slowest
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
 - desc: Update animated palette
   label: UpdateAnimatedPalette
   addr:

@@ -73,7 +73,7 @@ class InfoEntry(ABC):
         return self.label < other.label
 
     def to_region(self, region: str) -> bool:
-        pass
+        return True
 
     @staticmethod
     @abstractmethod
