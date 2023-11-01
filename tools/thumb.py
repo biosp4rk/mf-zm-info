@@ -447,7 +447,7 @@ class ThumbInstruct(object):
         }:
             self.imm = val & 255
         elif self.format == ThumbForm.UncondB:
-            self.imm = val & 1023
+            self.imm = val & 2047
         elif self.format == ThumbForm.Link:
             raise ValueError("Set in constructor")
 
