@@ -7,11 +7,18 @@ from game_info import GameInfo
 from rom import Rom
 
 
-def dump_bytes(rom: Rom, addr: int, length: int, size: int = 1):
+def dump_bytes(
+    rom: Rom,
+    addr: int,
+    length: int,
+    size: int = 1,
+    per_line: int = 16
+):
     assert size in {1, 2, 4}, "Invalid byte size"
     end = addr + length
-    for i in range(addr, end, 16):
-        j = min(i + 16, end)
+    inc = per_line * size
+    for i in range(addr, end, inc):
+        j = min(i + inc, end)
         if size == 1:
             print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
         elif size == 2:
@@ -65,9 +72,10 @@ if __name__ == "__main__":
     subparser = subparsers.add_parser("bytes")
     apu.add_arg(subparser, apu.ArgType.ROM_PATH)
     apu.add_arg(subparser, apu.ArgType.ADDR)
-    subparser.add_argument("count", type=str)
+    subparser.add_argument("length", type=str)
     subparser.add_argument("-s", "--size", type=int,
         choices=[1, 2, 4], default=1)
+    subparser.add_argument("-l", "--per_line", type=str, default="10")
     # all_funcs command
     subparser = subparsers.add_parser("all_funcs")
     apu.add_arg(subparser, apu.ArgType.ROM_PATH)
@@ -79,8 +87,9 @@ if __name__ == "__main__":
     if args.command == "bytes":
         rom = apu.get_rom(args.rom_path)
         addr = apu.get_hex(args.addr)
-        count = int(args.count, 16)
-        dump_bytes(rom, addr, count, args.size)
+        length = int(args.length, 16)
+        per_line = int(args.per_line, 16)
+        dump_bytes(rom, addr, length, args.size, per_line)
     elif args.command == "all_funcs":
         rom = apu.get_rom(args.rom_path)
         funcs = all_funcs(rom)
