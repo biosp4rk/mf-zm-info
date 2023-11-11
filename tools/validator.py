@@ -88,7 +88,7 @@ class Validator(object):
                 self.check_params(entry.params)
                 self.check_return(entry.ret)
                 self.check_notes(entry.notes)
-                self.check_code_overlap(entry, prev)
+                self.check_entries_overlap(entry, prev, MAP_CODE)
                 prev = entry
 
             # check data and ram
@@ -114,7 +114,7 @@ class Validator(object):
                     self.check_notes(entry.notes)
                     if valid_type:
                         # can only check size if type is valid
-                        self.check_data_overlap(entry, prev)
+                        self.check_entries_overlap(entry, prev, map_type)
                         prev = entry
 
         # print any errors
@@ -134,8 +134,11 @@ class Validator(object):
         loc = EntryLoc.copy(self.entry_loc)
         self.errors.append((message, loc))
 
-    # TODO: combined shared code with check_code_overlap
-    def check_data_overlap(self, entry: DataEntry, prev: DataEntry) -> None:
+    def check_entries_overlap(self,
+        entry: InfoEntry,
+        prev: InfoEntry,
+        map_type: str
+    ) -> None:
         self.entry_loc.field_name = K_ADDR
         if prev is None:
             return
@@ -147,42 +150,22 @@ class Validator(object):
         prev_addr = prev.addr
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
-        prev_len = prev.get_size(self.structs)
-        for r in prev_addr:
-            prev_addr[r] += prev_len - 1
-        # compare
-        for r, a in prev_addr.items():
-            if r in curr_addr:
-                if a >= curr_addr[r]:
-                    self.add_error(f"data entries overlap\n{prev.label}")
-                # some data is in a different order in different regions,
-                # so we only check against one region
-                break
-
-    def check_code_overlap(self, entry: CodeEntry, prev: CodeEntry) -> None:
-        self.entry_loc.field_name = K_ADDR
-        if prev is None:
-            return
-        # get current address
-        curr_addr = entry.addr
-        if isinstance(curr_addr, int):
-            curr_addr = {r: curr_addr for r in REGIONS}
-        # get end of previous
-        prev_addr = prev.addr
-        if isinstance(prev_addr, int):
-            prev_addr = {r: prev_addr for r in REGIONS}
-        prev_len = prev.size
+        prev_len = None
+        if map_type == MAP_CODE:
+            prev_len = prev.size
+        else:
+            prev_len = prev.get_size(self.structs)
         if isinstance(prev_len, int):
             prev_len = {r: prev_len for r in REGIONS}
         prev_end = {
-            r: prev_addr[r] + plen - 1
-            for r, plen in prev_len.items()
+            r: paddr + prev_len[r] - 1
+            for r, paddr in prev_addr.items()
         }
         # compare
         for r, a in prev_end.items():
             if r in curr_addr:
                 if a >= curr_addr[r]:
-                    self.add_error(f"code entries overlap\n{prev}")
+                    self.add_error(f"{map_type} entries overlap\n{prev.label}")
                 # some data is in a different order in different regions,
                 # so we only check against one region
                 break
