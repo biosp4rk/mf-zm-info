@@ -37,15 +37,22 @@ def find_yaml_files(
     return [os.path.join(dir_path, p) for p in paths]
 
 
+def load_yaml_file(path: str) -> Any:
+    """
+    Loads a yaml file from the provided path
+    and returns a python object.
+    """
+    with open(path) as f:
+        return yaml.safe_load(f)
+
+
 def load_yaml_files(paths: List[str]) -> Generator[Any]:
     """
     Loads each yaml file from the provided list of paths
     and returns a generator of objects.
     """
     for path in paths:
-        with open(path) as f:
-            data = yaml.safe_load(f)
-        yield data
+        yield load_yaml_file(path)
 
 
 def parse_yaml_data(data: Any, map_type: str) -> InfoFile:
