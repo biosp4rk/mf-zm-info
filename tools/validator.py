@@ -52,6 +52,7 @@ class Validator(object):
         for game in GAMES:
             self.entry_loc.game = game
             # get all info
+            # TODO: check yaml files before parsing
             info = GameInfo(game)
             self.enums = info.enums
             self.structs = info.structs

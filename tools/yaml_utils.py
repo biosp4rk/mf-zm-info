@@ -1,3 +1,4 @@
+from collections.abc import Generator, Iterable
 import math
 import os
 
@@ -16,24 +17,91 @@ def hex_int_presenter(dumper, data: int):
 yaml.representer.SafeRepresenter.add_representer(int, hex_int_presenter)
 
 
-def load_info_file(path: str, map_type: str) -> InfoFile:
-    with open(path) as f:
-        data = yaml.safe_load(f)
-        assert isinstance(data, list)
-        if map_type == MAP_RAM:
-            return [DataEntry.from_yaml(d) for d in data]
-        elif map_type == MAP_CODE:
-            return [CodeEntry.from_yaml(d) for d in data]
-        elif map_type == MAP_DATA:
-            return [DataEntry.from_yaml(d) for d in data]
-        elif map_type == MAP_STRUCTS:
-            return [StructEntry.from_yaml(d) for d in data]
-        elif map_type == MAP_ENUMS:
-            return [EnumEntry.from_yaml(d) for d in data]
+def find_yaml_files(
+    game: str,
+    map_type: str,
+    include_unk: bool = False
+) -> List[str]:
+    """
+    Finds all yaml files of the provided type
+    and returns their paths.
+    """
+    # find all yaml files and load data
+    dir_path = os.path.join(YAML_PATH, game, map_type)
+    paths = None
+    if not os.path.isdir(dir_path):
+        raise ValueError("No directory found")
+    paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
+    if not include_unk:
+        paths = [p for p in paths if not p.startswith("unk")]
+    return [os.path.join(dir_path, p) for p in paths]
+
+
+def load_yaml_files(paths: List[str]) -> Generator[Any]:
+    """
+    Loads each yaml file from the provided list of paths
+    and returns a generator of objects.
+    """
+    for path in paths:
+        with open(path) as f:
+            data = yaml.safe_load(f)
+        yield data
+
+
+def parse_yaml_data(data: Any, map_type: str) -> InfoFile:
+    """
+    Parses the provided object based on the provided map type
+    and returns a list of InfoEntry.
+    """
+    assert isinstance(data, list)
+    if map_type == MAP_RAM:
+        return [DataEntry.from_yaml(d) for d in data]
+    elif map_type == MAP_CODE:
+        return [CodeEntry.from_yaml(d) for d in data]
+    elif map_type == MAP_DATA:
+        return [DataEntry.from_yaml(d) for d in data]
+    elif map_type == MAP_STRUCTS:
+        return [StructEntry.from_yaml(d) for d in data]
+    elif map_type == MAP_ENUMS:
+        return [EnumEntry.from_yaml(d) for d in data]
     raise ValueError()
 
 
-def info_file_to_yaml(map_type: str, data: InfoFile) -> List:
+def parse_yaml_datas(datas: Iterable[Any], map_type: str) -> Generator[InfoFile]:
+    for data in datas:
+        yield parse_yaml_data(data, map_type)
+
+
+def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
+    combined = []
+    for data in data_list:
+        combined += data
+    return combined
+
+
+def get_info_files(
+    game: str,
+    map_type: str,
+    region: str = None,
+    include_unk: bool = False
+) -> InfoFile:
+    """
+    Finds, loads, and parses all yaml files of the provided type
+    and returns them as a single sorted list of InfoEntry.
+    """
+    # load files and combine
+    paths = find_yaml_files(game, map_type, include_unk)
+    datas = load_yaml_files(paths)
+    ifiles = parse_yaml_datas(datas, map_type)
+    ifile = combine_info_files(ifiles)
+    # filter by region
+    if region is not None:
+        ifile = [e for e in ifile if e.to_region(region)]
+    ifile.sort()
+    return ifile
+
+
+def info_file_to_yaml(map_type: str, data: InfoFile) -> List[Any]:
     if map_type == MAP_RAM:
         return [DataEntry.to_yaml(d) for d in data]
     elif map_type == MAP_CODE:
@@ -48,51 +116,12 @@ def info_file_to_yaml(map_type: str, data: InfoFile) -> List:
         raise ValueError()
 
 
-def to_string(obj: Any) -> str:
+def yaml_data_to_str(obj: Any) -> str:
     return yaml.safe_dump(obj, width=math.inf, sort_keys=False)
 
 
 def write_info_file(path: str, map_type: str, data: InfoFile) -> None:
-    yml = info_file_to_yaml(map_type, data)
+    data = info_file_to_yaml(map_type, data)
     with open(path, "w") as f:
-        yaml.safe_dump(yml, f, width=math.inf, sort_keys=False)
+        yaml.safe_dump(data, f, width=math.inf, sort_keys=False)
 
-
-def load_info_files(
-    game: str,
-    map_type: str,
-    region: str = None,
-    include_unk: bool = False
-) -> InfoFile:
-    # load files and combine
-    files = find_and_load_files(game, map_type, include_unk)
-    data = combine_info_files(files)
-    # filter by region
-    if region is not None:
-        data = [d for d in data if d.to_region(region)]
-    data.sort()
-    return data
-
-
-def find_and_load_files(
-    game: str,
-    map_type: str,
-    include_unk: bool = False
-) -> List[InfoFile]:
-    # find all yaml files and load data
-    dir_path = os.path.join(YAML_PATH, game, map_type)
-    paths = None
-    if not os.path.isdir(dir_path):
-        raise ValueError("No directory found")
-    paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
-    if not include_unk:
-        paths = [p for p in paths if not p.startswith("unk")]
-    paths = [os.path.join(dir_path, p) for p in paths]
-    return [load_info_file(p, map_type) for p in paths]
-
-
-def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
-    combined = []
-    for data in data_list:
-        combined += data
-    return combined
