@@ -55,28 +55,28 @@ def load_yaml_files(paths: List[str]) -> Generator[Any]:
         yield load_yaml_file(path)
 
 
-def parse_yaml_data(data: Any, map_type: str) -> InfoFile:
+def parse_yaml_list(ylist: Any, map_type: str) -> InfoFile:
     """
-    Parses the provided object based on the provided map type
-    and returns a list of InfoEntry.
+    Parses the provided object list based on the provided
+    map type and returns a list of InfoEntry.
     """
-    assert isinstance(data, list)
+    assert isinstance(ylist, list)
     if map_type == MAP_RAM:
-        return [DataEntry.from_yaml(d) for d in data]
+        return [DataEntry.from_yaml_obj(d) for d in ylist]
     elif map_type == MAP_CODE:
-        return [CodeEntry.from_yaml(d) for d in data]
+        return [CodeEntry.from_yaml_obj(d) for d in ylist]
     elif map_type == MAP_DATA:
-        return [DataEntry.from_yaml(d) for d in data]
+        return [DataEntry.from_yaml_obj(d) for d in ylist]
     elif map_type == MAP_STRUCTS:
-        return [StructEntry.from_yaml(d) for d in data]
+        return [StructEntry.from_yaml_obj(d) for d in ylist]
     elif map_type == MAP_ENUMS:
-        return [EnumEntry.from_yaml(d) for d in data]
+        return [EnumEntry.from_yaml_obj(d) for d in ylist]
     raise ValueError()
 
 
-def parse_yaml_datas(datas: Iterable[Any], map_type: str) -> Generator[InfoFile]:
-    for data in datas:
-        yield parse_yaml_data(data, map_type)
+def parse_yaml_lists(ylists: Iterable[Any], map_type: str) -> Generator[InfoFile]:
+    for ylist in ylists:
+        yield parse_yaml_list(ylist, map_type)
 
 
 def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
@@ -98,8 +98,8 @@ def get_info_files(
     """
     # load files and combine
     paths = find_yaml_files(game, map_type, include_unk)
-    datas = load_yaml_files(paths)
-    ifiles = parse_yaml_datas(datas, map_type)
+    ylists = load_yaml_files(paths)
+    ifiles = parse_yaml_lists(ylists, map_type)
     ifile = combine_info_files(ifiles)
     # filter by region
     if region is not None:
@@ -123,7 +123,7 @@ def info_file_to_yaml(map_type: str, data: InfoFile) -> List[Any]:
         raise ValueError()
 
 
-def yaml_data_to_str(obj: Any) -> str:
+def yaml_obj_to_str(obj: Any) -> str:
     return yaml.safe_dump(obj, width=math.inf, sort_keys=False)
 
 

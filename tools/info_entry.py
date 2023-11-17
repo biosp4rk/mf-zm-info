@@ -77,12 +77,12 @@ class InfoEntry(ABC):
 
     @staticmethod
     @abstractmethod
-    def from_yaml(node: Any) -> "InfoEntry":
+    def from_yaml_obj(obj: Any) -> "InfoEntry":
         pass
 
     @staticmethod
     @abstractmethod
-    def to_yaml(entry: "InfoEntry") -> Any:
+    def to_yaml_obj(entry: "InfoEntry") -> Any:
         pass
 
     @staticmethod
@@ -244,42 +244,42 @@ class VarEntry(InfoEntry):
         return self.get_spec_size(structs)
 
     @staticmethod
-    def from_yaml(node: Any) -> "VarEntry":
+    def from_yaml_obj(obj: Any) -> "VarEntry":
         return VarEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_TYPE],
-            node.get(K_COUNT),
-            VarEntry.tags_from_yaml(node.get(K_TAGS)),
-            node.get(K_ENUM),
-            node.get(K_NOTES)
+            obj[K_DESC],
+            obj[K_LABEL],
+            obj[K_TYPE],
+            obj.get(K_COUNT),
+            VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+            obj.get(K_ENUM),
+            obj.get(K_NOTES)
         )
 
     @staticmethod
-    def to_yaml(entry: "VarEntry") -> str:
-        data = [
+    def to_yaml_obj(entry: "VarEntry") -> str:
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
         if entry.arr_count:
-            data.append((K_COUNT, entry.arr_count))
+            obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
+            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
         if entry.enum:
-            data.append((K_ENUM, entry.enum))
+            obj.append((K_ENUM, entry.enum))
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)
     
     @staticmethod
-    def tags_from_yaml(tags: List[str]) -> List[DataTag]:
+    def tags_from_yaml_obj(tags: List[str]) -> List[DataTag]:
         if tags is None:
             return None
         return [STR_TO_TAG[s] for s in tags]
 
     @staticmethod
-    def tags_to_yaml(tags: List[DataTag]) -> List[str]:
+    def tags_to_yaml_obj(tags: List[DataTag]) -> List[str]:
         if tags is None:
             return None
         return [TAG_TO_STR[t] for t in tags]
@@ -319,38 +319,38 @@ class DataEntry(VarEntry):
         return True
 
     @staticmethod
-    def from_yaml(node: Any) -> "DataEntry":
+    def from_yaml_obj(obj: Any) -> "DataEntry":
         try:
             return DataEntry(
-                node[K_DESC],
-                node[K_LABEL],
-                node[K_TYPE],
-                node.get(K_COUNT),
-                node[K_ADDR],
-                VarEntry.tags_from_yaml(node.get(K_TAGS)),
-                node.get(K_ENUM),
-                node.get(K_NOTES)
+                obj[K_DESC],
+                obj[K_LABEL],
+                obj[K_TYPE],
+                obj.get(K_COUNT),
+                obj[K_ADDR],
+                VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+                obj.get(K_ENUM),
+                obj.get(K_NOTES)
             )
         except:
-            raise Exception(f"Error parsing data entry: {node}")
+            raise Exception(f"Error parsing data entry: {obj}")
 
     @staticmethod
-    def to_yaml(entry: "DataEntry") -> Any:
-        data = [
+    def to_yaml_obj(entry: "DataEntry") -> Any:
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
         if entry.arr_count:
-            data.append((K_COUNT, entry.arr_count))
+            obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
-        data.append((K_ADDR, entry.addr))
+            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
+        obj.append((K_ADDR, entry.addr))
         if entry.enum:
-            data.append((K_ENUM, entry.enum))
+            obj.append((K_ENUM, entry.enum))
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)
 
 
 class StructVarEntry(VarEntry):
@@ -387,35 +387,35 @@ class StructVarEntry(VarEntry):
         return True
 
     @staticmethod
-    def from_yaml(node: Any) -> "StructVarEntry":
+    def from_yaml_obj(obj: Any) -> "StructVarEntry":
         return StructVarEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_TYPE],
-            node.get(K_COUNT),
-            node[K_OFFSET],
-            VarEntry.tags_from_yaml(node.get(K_TAGS)),
-            node.get(K_ENUM),
-            node.get(K_NOTES)
+            obj[K_DESC],
+            obj[K_LABEL],
+            obj[K_TYPE],
+            obj.get(K_COUNT),
+            obj[K_OFFSET],
+            VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+            obj.get(K_ENUM),
+            obj.get(K_NOTES)
         )
 
     @staticmethod
-    def to_yaml(entry: "StructVarEntry") -> Any:
-        data = [
+    def to_yaml_obj(entry: "StructVarEntry") -> Any:
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_TYPE, entry.type_str())
         ]
         if entry.arr_count:
-            data.append((K_COUNT, entry.arr_count))
+            obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            data.append((K_TAGS, VarEntry.tags_to_yaml(entry.tags)))
-        data.append((K_OFFSET, entry.offset))
+            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
+        obj.append((K_OFFSET, entry.offset))
         if entry.enum:
-            data.append((K_ENUM, entry.enum))
+            obj.append((K_ENUM, entry.enum))
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)
 
 
 class StructEntry(InfoEntry):
@@ -441,31 +441,31 @@ class StructEntry(InfoEntry):
         return None
 
     @staticmethod
-    def from_yaml(node: Any) -> "StructEntry":
+    def from_yaml_obj(obj: Any) -> "StructEntry":
         try:
-            vars = [StructVarEntry.from_yaml(e) for e in node[K_VARS]]
+            vars = [StructVarEntry.from_yaml_obj(e) for e in obj[K_VARS]]
             return StructEntry(
-                node[K_DESC],
-                node[K_LABEL],
-                node[K_SIZE],
+                obj[K_DESC],
+                obj[K_LABEL],
+                obj[K_SIZE],
                 vars,
-                node.get(K_NOTES)
+                obj.get(K_NOTES)
             )
         except:
-            raise Exception(f"Error parsing struct entry: {node}")
+            raise Exception(f"Error parsing struct entry: {obj}")
 
     @staticmethod
-    def to_yaml(entry: "StructEntry") -> Any:
-        vars = [StructVarEntry.to_yaml(e) for e in entry.vars]
-        data = [
+    def to_yaml_obj(entry: "StructEntry") -> Any:
+        vars = [StructVarEntry.to_yaml_obj(e) for e in entry.vars]
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_SIZE, entry.size),
             (K_VARS, vars)
         ]
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)
 
 
 class CodeEntry(InfoEntry):
@@ -509,42 +509,42 @@ class CodeEntry(InfoEntry):
         return self.mode == CodeMode.Thumb
 
     @staticmethod
-    def from_yaml(node: Any) -> "CodeEntry":
+    def from_yaml_obj(obj: Any) -> "CodeEntry":
         try:
-            mode = CodeMode.Arm if node[K_MODE] == "arm" else CodeMode.Thumb
-            params = node[K_PARAMS]
+            mode = CodeMode.Arm if obj[K_MODE] == "arm" else CodeMode.Thumb
+            params = obj[K_PARAMS]
             # TODO: don't allow str for params
             if not isinstance(params, str):
-                params = [VarEntry.from_yaml(p) for p in params] if params else None
-            ret = node[K_RETURN]
+                params = [VarEntry.from_yaml_obj(p) for p in params] if params else None
+            ret = obj[K_RETURN]
             # TODO: don't allow str for return
             if not isinstance(ret, str):
-                ret = VarEntry.from_yaml(ret) if ret else None
+                ret = VarEntry.from_yaml_obj(ret) if ret else None
             return CodeEntry(
-                node[K_DESC],
-                node[K_LABEL],
-                node[K_ADDR],
-                node[K_SIZE],
+                obj[K_DESC],
+                obj[K_LABEL],
+                obj[K_ADDR],
+                obj[K_SIZE],
                 mode,
                 params,
                 ret,
-                node.get(K_NOTES)
+                obj.get(K_NOTES)
             )
         except:
-            raise Exception(f"Error parsing code entry: {node}")
+            raise Exception(f"Error parsing code entry: {obj}")
 
     @staticmethod
-    def to_yaml(entry: "CodeEntry") -> Any:
+    def to_yaml_obj(entry: "CodeEntry") -> Any:
         mode = "arm" if entry.mode == CodeMode.Arm else "thumb"
         # TODO: don't allow str for params
         params = entry.params
         if not isinstance(entry.params, str):
-            params = [VarEntry.to_yaml(p) for p in entry.params] if entry.params else None
+            params = [VarEntry.to_yaml_obj(p) for p in entry.params] if entry.params else None
         # TODO: don't allow str for return
         ret = entry.ret
         if not isinstance(entry.ret, str):
-            ret = VarEntry.to_yaml(entry.ret) if entry.ret else None
-        data = [
+            ret = VarEntry.to_yaml_obj(entry.ret) if entry.ret else None
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_ADDR, entry.addr),
@@ -554,8 +554,8 @@ class CodeEntry(InfoEntry):
             (K_RETURN, ret),
         ]
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)
 
 
 class EnumValEntry(InfoEntry):
@@ -576,24 +576,24 @@ class EnumValEntry(InfoEntry):
         return self.val < other.val
 
     @staticmethod
-    def from_yaml(node: Any) -> "EnumValEntry":
+    def from_yaml_obj(obj: Any) -> "EnumValEntry":
         return EnumValEntry(
-            node[K_DESC],
-            node[K_LABEL],
-            node[K_VAL],
-            node.get(K_NOTES)
+            obj[K_DESC],
+            obj[K_LABEL],
+            obj[K_VAL],
+            obj.get(K_NOTES)
         )
 
     @staticmethod
-    def to_yaml(entry: "EnumValEntry") -> Any:
-        data = [
+    def to_yaml_obj(entry: "EnumValEntry") -> Any:
+        obj = [
             ("desc", entry.desc),
             ("label", entry.label),
             ("val", entry.val)
         ]
         if entry.notes:
-            data.append(("notes", entry.notes))
-        return dict(data)
+            obj.append(("notes", entry.notes))
+        return dict(obj)
 
 
 class EnumEntry(InfoEntry):
@@ -611,26 +611,26 @@ class EnumEntry(InfoEntry):
         return f"# vals: {len(self.vals)}"
 
     @staticmethod
-    def from_yaml(node: Any) -> "EnumEntry":
+    def from_yaml_obj(obj: Any) -> "EnumEntry":
         try:
-            vals = [EnumValEntry.from_yaml(e) for e in node[K_VALS]]
+            vals = [EnumValEntry.from_yaml_obj(e) for e in obj[K_VALS]]
             return EnumEntry(
-                node[K_DESC],
-                node[K_LABEL],
+                obj[K_DESC],
+                obj[K_LABEL],
                 vals,
-                node.get(K_NOTES)
+                obj.get(K_NOTES)
             )
         except:
-            raise Exception(f"Error parsing enum entry: {node}")
+            raise Exception(f"Error parsing enum entry: {obj}")
 
     @staticmethod
-    def to_yaml(entry: "EnumEntry") -> Any:
-        vals = [EnumValEntry.to_yaml(e) for e in entry.vals]
-        data = [
+    def to_yaml_obj(entry: "EnumEntry") -> Any:
+        vals = [EnumValEntry.to_yaml_obj(e) for e in entry.vals]
+        obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
             (K_VALS, vals)
         ]
         if entry.notes:
-            data.append((K_NOTES, entry.notes))
-        return dict(data)
+            obj.append((K_NOTES, entry.notes))
+        return dict(obj)

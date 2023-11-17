@@ -388,7 +388,7 @@ def output_yamls() -> None:
     # parse files and output
     for path, map_type in yaml_files:
         data = yu.load_yaml_file(path)
-        ifile = yu.parse_yaml_data(data, map_type)
+        ifile = yu.parse_yaml_list(data, map_type)
         ifile.sort()
         yu.write_info_file(path, map_type, ifile)
     print("Output YAML files")
