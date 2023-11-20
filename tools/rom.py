@@ -48,13 +48,13 @@ class Rom(object):
         else:
             raise ValueError("Not a valid GBA Metroid ROM")
 
-    def read8(self, addr: int) -> int:
+    def read_8(self, addr: int) -> int:
         return self.data[addr]
 
-    def read16(self, addr: int) -> int:
+    def read_16(self, addr: int) -> int:
         return self.data[addr] | (self.data[addr + 1] << 8)
 
-    def read32(self, addr: int) -> int:
+    def read_32(self, addr: int) -> int:
         return (
             self.data[addr] |
             (self.data[addr + 1] << 8) |

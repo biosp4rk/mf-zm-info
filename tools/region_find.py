@@ -13,7 +13,7 @@ def replace_ptrs(rom: Rom):
     rom_end = end + ROM_OFFSET
     data = bytearray(rom.data)
     for i in range(start, end, 4):
-        val = rom.read32(i)
+        val = rom.read_32(i)
         if val >= rom_start and val < rom_end:
             # replace pointer with "find"
             data[i] = 0x66
@@ -44,14 +44,14 @@ class Finder(object):
         # get hash for each address
         hashes = defaultdict(list)
         for addr in addrs:
-            val = self.src_rom.read32(addr)
+            val = self.src_rom.read_32(addr)
             hashes[val].append(addr)
         # search rom for matches
         src = self.src_rom.data
         target = self.target_rom.data
         best_matches = {addr: (-1, -1) for addr in addrs}
         for i in range(t_start, t_end):
-            val = self.target_rom.read32(i)
+            val = self.target_rom.read_32(i)
             if val not in hashes:
                 continue
             for addr in hashes[val]:

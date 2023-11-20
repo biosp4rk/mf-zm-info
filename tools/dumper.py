@@ -22,9 +22,9 @@ def dump_bytes(
         if size == 1:
             print(" ".join(f"{b:02X}" for b in rom.data[i:j]))
         elif size == 2:
-            print(" ".join(f"{rom.read16(a):04X}" for a in range(i, j, 2)))
+            print(" ".join(f"{rom.read_16(a):04X}" for a in range(i, j, 2)))
         elif size == 4:
-            print(" ".join(f"{rom.read32(a):08X}" for a in range(i, j, 4)))
+            print(" ".join(f"{rom.read_32(a):08X}" for a in range(i, j, 4)))
 
 
 def all_funcs(rom: Rom) -> List[Tuple[int, int]]:

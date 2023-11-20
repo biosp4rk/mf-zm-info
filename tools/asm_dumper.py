@@ -16,7 +16,7 @@ def unk_asm(rom: Rom, addr: int, count: int, per_line: int = 16) -> str:
     lines = []
     for i in range(0, count, per_line):
         row = min(per_line, count - i)
-        vals = [rom.read8(addr + i + j) for j in range(row)]
+        vals = [rom.read_8(addr + i + j) for j in range(row)]
         strs = ",".join(f"0x{v:02X}" for v in vals)
         lines.append(f".db {strs}")
     return "\n".join(lines)
@@ -27,13 +27,13 @@ def uint_asm(rom: Rom, entry: VarEntry, entry_addr: int, size: int) -> str:
     read_int = None
     dot_dir = None
     if size == 1:
-        read_int = rom.read8
+        read_int = rom.read_8
         dot_dir = "db"
     elif size == 2:
-        read_int = rom.read16
+        read_int = rom.read_16
         dot_dir = "dh"
     elif size == 4:
-        read_int = rom.read32
+        read_int = rom.read_32
         dot_dir = "dw"
     else:
         raise ValueError(size)
@@ -67,7 +67,7 @@ def ptr_asm(
         strs = []
         for j in range(row):
             addr = entry_addr + (i + j) * 4
-            val = rom.read32(addr)
+            val = rom.read_32(addr)
             ptr_entry = None
             if val >= ROM_OFFSET:
                 ptr_entry = info.get_entry_by_addr(val - ROM_OFFSET)

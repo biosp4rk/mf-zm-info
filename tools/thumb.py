@@ -111,7 +111,7 @@ class ThumbInstruct(object):
 
     def __init__(self, rom: Rom, addr: int):
         self.phys_addr = addr
-        val = rom.read16(addr)
+        val = rom.read_16(addr)
         self.set_format(val)
         self.set_opcode(val)
         self.set_rd(val)
@@ -120,7 +120,7 @@ class ThumbInstruct(object):
         self.set_ro(val)
         self.set_rlist(val)
         if self.format == ThumbForm.Link:
-            val2 = rom.read16(addr + 2)
+            val2 = rom.read_16(addr + 2)
             self.imm = ((val & 2047) << 11) | (val2 & 2047)
         else:
             self.set_imm(val)
@@ -566,7 +566,7 @@ class ThumbInstruct(object):
                 args.append(f"r{self.rs}")
         elif self.format == ThumbForm.LdPC:
             args.append(f"r{self.rd}")
-            word = rom.read32(self.pc_rel_addr())
+            word = rom.read_32(self.pc_rel_addr())
             args.append("=" + symbols.get_label(word, LabelType.Imm))
         elif (self.format == ThumbForm.LdStR or
             self.format == ThumbForm.LdStRS):

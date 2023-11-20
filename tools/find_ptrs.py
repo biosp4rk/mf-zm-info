@@ -30,7 +30,7 @@ def find_code_ptrs(rom: Rom) -> List[int]:
         func = Function(rom, addr)
         ptr_locs += func.get_jump_tables()
         for loc in func.data_pool:
-            val = rom.read32(loc)
+            val = rom.read_32(loc)
             # check if value falls within rom
             if val >= v_code_start and val < v_data_end:
                 ptr_locs.append(loc)
@@ -47,7 +47,7 @@ def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
     ptr_locs: List[int] = []
     for idx in range(count):
         addr = rom.read_ptr(se_addr + (idx * size))
-        num_tracks = rom.read8(addr)
+        num_tracks = rom.read_8(addr)
         if num_tracks == 0:
             continue
         ptr_locs.append(addr + 4)
@@ -73,11 +73,11 @@ def find_track_ptrs(rom: Rom):
     v_end = end + ROM_OFFSET
     ptr_locs: List[int] = []
     for addr in range(start, end):
-        val = rom.read8(addr)
+        val = rom.read_8(addr)
         if val != 0xB2 and val != 0xB3:
             continue
         addr += 1
-        val = rom.read32(addr)
+        val = rom.read_32(addr)
         if val < v_start or val >= v_end:
             continue
         val -= ROM_OFFSET
@@ -103,7 +103,7 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
 
     for addr in range(data_start, data_end, 4):
         # check if value at address falls within rom
-        val = rom.read32(addr)
+        val = rom.read_32(addr)
         if val < v_code_start or val >= v_data_end:
             continue
         val -= ROM_OFFSET

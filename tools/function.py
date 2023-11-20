@@ -173,7 +173,7 @@ class Function(object):
         for addr, size in pools:
             end = addr + size
             for i in range(addr, end, 4):
-                val = self.rom.read32(i)
+                val = self.rom.read_32(i)
                 # check if in ram
                 if (
                     (val >= 0x2000000 and val < 0x2040000) or
@@ -230,7 +230,7 @@ class Function(object):
                 lines.append(self.symbols.get_local(self.addr) + ":")
             if self.addr in self.data_pool or (
                 self.addr % 4 == 2 and
-                self.rom.read16(self.addr) == 0 and
+                self.rom.read_16(self.addr) == 0 and
                 self.addr + 2 in self.data_pool):
                 # if already in a data pool, do nothing
                 # if just entered a data pool, write .pool

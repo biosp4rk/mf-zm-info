@@ -74,7 +74,7 @@ class References(object):
         for i in range(code_start, code_end, 2):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.LdPC:
-                val = rom.read32(inst.pc_rel_addr())
+                val = rom.read_32(inst.pc_rel_addr())
                 if addr_val == val:
                     ref = self.get_ref(i, "pool")
                     ldr_addrs.append(ref)
@@ -87,7 +87,7 @@ class References(object):
         self.entries = self.info.data
         self.idx = 0
         for i in range(code_end, data_end, 4):
-            val = rom.read32(i)
+            val = rom.read_32(i)
             if addr_val == val:
                 ref = self.get_ref(i, "data")
                 data_addrs.append(ref)
@@ -139,7 +139,7 @@ class References(object):
     def check_addr(
         self, addr: int, kind: str, refs: Dict[int, InfoEntry]
     ) -> None:
-        val = self.rom.read32(addr)
+        val = self.rom.read_32(addr)
         if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
             val -= ROM_OFFSET
             if val < self.rom.code_end() and val % 4 == 1:

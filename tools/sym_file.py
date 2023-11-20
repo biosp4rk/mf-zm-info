@@ -35,7 +35,7 @@ def gen_sym_file(rom: Rom):
             pool_sizes += func_pools
             for offset, size in func_pools:
                 for i in range(0, size, 4):
-                    word = rom.read32(offset + i)
+                    word = rom.read_32(offset + i)
                     loaded_words.add(word)
         addr = func.end_addr
 

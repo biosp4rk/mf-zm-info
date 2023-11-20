@@ -212,9 +212,9 @@ class AiffSoundChunk(AiffChunk):
 
 def dump_pcm(rom: Rom, addr: int, format: str, path: str) -> None:
     # get data from rom
-    pitch = rom.read32(addr + 4)
+    pitch = rom.read_32(addr + 4)
     sample_rate = pitch / 1024
-    size = rom.read32(addr + 0xC)
+    size = rom.read_32(addr + 0xC)
     sound_data = rom.read_bytes(addr + 0x10, size)
     # create wav or aiff file
     file_bytes = None
