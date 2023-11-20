@@ -23,7 +23,7 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
   - `yaml_utils.py` - Functions for working with YAML data
 - `yaml` - Info files in YAML format; large files are split for easier editing
 
-Game directories are `mf` for Fusion and `zm` for Zero Mission, while `unk` is for unlabeled data.
+Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting with `unk` are for unlabeled data.
 
 ## Data Format
 
