@@ -2624,7 +2624,7 @@
     offset: 0x17
 - desc: Music info
   label: MusicInfo
-  size: 0x1764
+  size: 0x1824
   vars:
   - desc: New music track set flag?
     label: NewMusicTrackSetFlag
@@ -2642,10 +2642,15 @@
     label: MusicRelated
     type: u8
     offset: 0x21
+  - desc: Raw music data
+    label: RawSoundData
+    type: s32
+    count: 0x300
+    offset: 0x24
   - desc: Raw sound data
     label: RawSoundData
     type: s8
-    count: 0xB40
+    count: 0xC00
     offset: 0xC24
 - desc: Music track info
   label: MusicTrackInfo

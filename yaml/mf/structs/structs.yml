@@ -1336,14 +1336,24 @@
     label: MusicSlotSwitch
     type: u8
     offset: 0x20
-  - desc: Event based music flag?
-    label: EventBasedMusicFlag
+  - desc: Unknown 21
+    label: unk_21
     type: u8
     offset: 0x21
   - desc: New music track
     label: NewMusicTrack
     type: u16
     offset: 0x22
+  - desc: Raw music data
+    label: RawMusicData
+    type: s32
+    count: 0x300
+    offset: 0x24
+  - desc: Raw sound data
+    label: RawSoundData
+    type: s8
+    count: 0xC00
+    offset: 0xC24
 - desc: Navigation conversation sub-event
   label: NavConversationSubEvent
   size: 0x4
