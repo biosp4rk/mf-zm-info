@@ -152,7 +152,9 @@ class VarEntry(InfoEntry):
             self.declaration = None
 
     def inner_decl(self) -> str:
-        # get inner-most part of declaration
+        """
+        Returns inner-most part of declaration.
+        """
         decl = self.declaration
         i = decl.rfind("(")
         if i != -1:
@@ -162,6 +164,9 @@ class VarEntry(InfoEntry):
         return decl
 
     def spec(self) -> str:
+        """
+        Returns the base type name (without pointers and arrays).
+        """
         if self.primitive == PrimType.Struct:
             return self.struct_name
         # TODO: use dictionary instead

@@ -71,5 +71,5 @@ class GameInfo(object):
     def get_data_by_tags(self, tags: List[DataTag]) -> List[DataEntry]:
         return [
             de for de in self.data
-            if all(t in de.tags for t in tags)
+            if de.tags and all(t in de.tags for t in tags)
         ]

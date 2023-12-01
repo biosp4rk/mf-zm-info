@@ -15,6 +15,10 @@ def struct_list_var_addrs(
     data_label: str,
     var_label: str
 ) -> List[int]:
+    """
+    Given a data label for a list of structs and a label for a field on
+    the struct, returns the address of the field for each entry.
+    """
     # get data entry info
     data = info.get_data(data_label)
     data_addr = data.addr
