@@ -110,15 +110,15 @@ def get_info_files(
 
 def info_file_to_yaml(map_type: str, data: InfoFile) -> List[Any]:
     if map_type == MAP_RAM:
-        return [DataEntry.to_yaml(d) for d in data]
+        return [DataEntry.to_yaml_obj(d) for d in data]
     elif map_type == MAP_CODE:
-        return [CodeEntry.to_yaml(d) for d in data]
+        return [CodeEntry.to_yaml_obj(d) for d in data]
     elif map_type == MAP_DATA:
-        return [DataEntry.to_yaml(d) for d in data]
+        return [DataEntry.to_yaml_obj(d) for d in data]
     elif map_type == MAP_STRUCTS:
-        return [StructEntry.to_yaml(d) for d in data]
+        return [StructEntry.to_yaml_obj(d) for d in data]
     elif map_type == MAP_ENUMS:
-        return [EnumEntry.to_yaml(d) for d in data]
+        return [EnumEntry.to_yaml_obj(d) for d in data]
     else:
         raise ValueError()
 

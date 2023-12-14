@@ -372,19 +372,17 @@ def parse_decl(tokens, index: int) -> int:
 
 
 def output_yamls() -> None:
+    # find all yaml files
     yaml_files = []
     for game in GAMES:
         game_dir = os.path.join(YAML_PATH, game)
-        # find all yaml files
-        for root, _, files in os.walk(game_dir):
-            for f in files:
-                name, ext = os.path.splitext(f)
+        for map_type in MAP_TYPES:
+            map_dir = os.path.join(game_dir, map_type)
+            for file in os.listdir(map_dir):
+                ext = os.path.splitext(file)[1]
                 if ext == YAML_EXT:
-                    if name not in MAP_TYPES:
-                        name = os.path.basename(root)
-                    assert name in MAP_TYPES
-                    path = os.path.join(root, f)
-                    yaml_files.append((path, name))
+                    path = os.path.join(map_dir, file)
+                    yaml_files.append((path, map_type))
     # parse files and output
     for path, map_type in yaml_files:
         data = yu.load_yaml_file(path)
