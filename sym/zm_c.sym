@@ -130,7 +130,7 @@
 0300004B ShipLandingCutsceneFlag
 0300004C DisableClipdataChangingTransparencyFlag
 0300004D DisableAnimatedPaletteFlag
-;03000050
+03000050 InGameCutscenesTriggered
 03000054 AreaID
 03000055 RoomID
 03000056 PrevDoor
@@ -249,7 +249,7 @@
 03000C72 SubGameMode1
 03000C74 SubGameMode2
 03000C75 SubGameMode3
-03000C76 ClearedEveryFrame
+03000C76 VBlankActiveFlag
 03000C77 FrameCounter8Bit
 03000C78 VBlankRequestFlag
 03000C7C InterruptCode
@@ -302,7 +302,7 @@
 03001694 TimeAttackBestTimePassword
 030016AC TimeAttackBest100pTimePassword
 030016C4 NonGameplayRam
-03001944 HazeProcessCode
+;03001944
 03001CF0 HBlankCodePtr
 ;03001CF2
 03001CF4 SerialCommunicationCodePtr
@@ -440,8 +440,8 @@
 03007FFC InterruptCodePtr
 
 ; ROM code
-;0800023C
-;080002A4
+0800023C iQue_SetupInfoScreen
+080002A4 iQue_DisplayInfoScreen
 080002CC MainGameLoop
 08000768 InitGame
 ;0800088C
@@ -453,7 +453,7 @@
 08000A08 CallSoundBias
 08000A18 CallMultiBoot
 08000A24 CallVBlankIntrWait
-;08000A30
+08000A30 iQue_DisplayBootScreens
 ;08000F2C
 ;080010E4
 ;08001148
@@ -666,9 +666,9 @@
 08006654 PlayMusicAndQueueCurr
 ;08006700
 ;080067D8
-;08006814
+08006814 UpdateMusicPriority
 ;0800686C
-080068D4 DampenVolumeOfMusicTracks0And1
+080068D4 DecreaseMusicVolume
 ;08006920
 08006960 QueueSound
 080069C8 FadeOrStopSound
@@ -2629,7 +2629,7 @@
 ;08063588
 ;08063628
 ;08063650
-;080636A4
+080636A4 InGameCutsceneCheckFlag
 080636E4 EventFunctions
 08063750 CheckPlayRoomMusicTrack
 0806380C CheckPlayLoadingJingle
@@ -2651,19 +2651,19 @@
 ;0806410C
 ;08064278
 080642E0 CutsceneUpdateBGCNT
-08064330 CutsceneUpdateBackgroundPosition
+08064330 CutsceneUpdateBGPosition
 080643D4 CutsceneGetHOFSPtr
 08064424 CutsceneGetVOFSPtr
-;08064474
-;08064734
-;080647A0
-;08064824
-;080648E8
-;080649F8
-;08064A44
-;08064BC8
-;08064C28
-;08064C98
+08064474 CutsceneStartAutomaticBGScrolling
+08064734 CutsceneUpdateAutomaticBGScrolling
+080647A0 CutsceneCheckBGScrollingActive
+08064824 CutsceneUpdateBGsPosition
+080648E8 CutsceneUpdateScreenShake
+080649F8 CutsceneStartScreenShake
+08064A44 UpdateCutsceneSpecialEffect
+08064BC8 CutsceneStartOBJEffect
+08064C28 CutsceneStartBGEffect
+08064C98 CutsceneResetData
 ;08064D6C
 ;08064D88
 ;08064DA4
@@ -2995,7 +2995,7 @@
 ;0807C408
 0807C4A0 CopyFileMenuSubroutine
 0807CA30 EraseFileMenuSubroutine
-;0807CDE0
+0807CDE0 FileScreenFileCorruptedSubroutine
 ;0807D15C
 ;0807D248
 0807D434 CopyTimeAttackTime
@@ -4780,10 +4780,10 @@
 ;0842FB00
 ;0842FB08
 ;0842FB0E
-0842FB14 ChozoStatueTargets
+0842FB14 ChozoStatueHints
 ;0842FBC8
-0842FBD4 ChozoTargetChecks
-0842FBF4 ChozoTargetTriggerEvents
+0842FBD4 ChozoHintChecks
+0842FBF4 ChozoHintTriggerEvents
 ;0842FC60
 ;08431060
 ;08433D9C
@@ -4817,7 +4817,7 @@
 ;084379AE
 ;084379B6
 ;084379C8
-;08437A00
+08437A00 TextCharacterGfx
 ;08437E00
 ;08468A90
 ;08468A92
@@ -5236,7 +5236,7 @@
 ;0879F5D9
 ;0879F5DA
 ;0879F5EA
-0879F5F0 ChozoStatueTargetPathPtrs
+0879F5F0 ChozoStatueHintPathPtrs
 ;0879F608
 ;0879F620
 0879F964 LocationTextPtrs

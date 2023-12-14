@@ -121,7 +121,7 @@
 0300004B ShipLandingCutsceneFlag
 0300004C DisableClipdataChangingTransparencyFlag
 0300004D DisableAnimatedPaletteFlag
-;03000050
+03000050 InGameCutscenesTriggered
 03000054 AreaID
 03000055 RoomID
 03000056 PrevDoor
@@ -240,7 +240,7 @@
 03000C72 SubGameMode1
 03000C74 SubGameMode2
 03000C75 SubGameMode3
-03000C76 ClearedEveryFrame
+03000C76 VBlankActiveFlag
 03000C77 FrameCounter8Bit
 03000C78 VBlankRequestFlag
 03000C7C InterruptCode
@@ -293,7 +293,7 @@
 03001694 TimeAttackBestTimePassword
 030016AC TimeAttackBest100pTimePassword
 030016C4 NonGameplayRam
-03001944 HazeProcessCode
+;03001944
 03001CEC VBlankCodePtr
 03001CF0 HBlankCodePtr
 03001CF4 SerialCommunicationCodePtr
@@ -343,7 +343,7 @@
 03005516 ScreenXOffset
 03005518 RainSoundEffect
 ;0300551C
-03005520 CurrSpecialBGEffect
+03005520 ColorFading
 03005528 BreakingAndReformingBlocks
 030056A8 LastTankCollected
 030056AC BombChainData
@@ -541,9 +541,9 @@
 08003CF4 PlayMusicAndQueueCurr
 ;08003DA0
 ;08003E78
-;08003EB4
+08003EB4 UpdateMusicPriority
 ;08003F0C
-08003F74 DampenVolumeOfMusicTracks0And1
+08003F74 DecreaseMusicVolume
 ;08003FC0
 08004000 QueueSound
 08004068 FadeOrStopSound
@@ -2504,7 +2504,7 @@
 ;08060844
 ;080608E4
 ;0806090C
-;08060960
+08060960 InGameCutsceneCheckFlag
 080609A0 EventFunctions
 08060A0C CheckPlayRoomMusicTrack
 08060AC8 CheckPlayLoadingJingle
@@ -2526,19 +2526,19 @@
 ;080613C8
 ;08061534
 0806159C CutsceneUpdateBGCNT
-080615EC CutsceneUpdateBackgroundPosition
+080615EC CutsceneUpdateBGPosition
 08061690 CutsceneGetHOFSPtr
 080616E0 CutsceneGetVOFSPtr
-;08061730
-;080619F0
-;08061A5C
-;08061ADC
-;08061BA0
-;08061CB0
-;08061CFC
-;08061E80
-;08061EE0
-;08061F50
+08061730 CutsceneStartAutomaticBGScrolling
+080619F0 CutsceneUpdateAutomaticBGScrolling
+08061A5C CutsceneCheckBGScrollingActive
+08061ADC CutsceneUpdateBGsPosition
+08061BA0 CutsceneUpdateScreenShake
+08061CB0 CutsceneStartScreenShake
+08061CFC UpdateCutsceneSpecialEffect
+08061E80 CutsceneStartOBJEffect
+08061EE0 CutsceneStartBGEffect
+08061F50 CutsceneResetData
 ;08062024
 ;08062040
 ;0806205C
@@ -2871,7 +2871,7 @@
 ;08079468
 08079500 CopyFileMenuSubroutine
 08079A90 EraseFileMenuSubroutine
-;08079E40
+08079E40 FileScreenFileCorruptedSubroutine
 ;0807A1BC
 ;0807A2A8
 0807A494 CopyTimeAttackTime
@@ -4645,10 +4645,10 @@
 ;0840ED98
 ;0840EDA0
 ;0840EDA6
-0840EDAC ChozoStatueTargets
+0840EDAC ChozoStatueHints
 ;0840EE60
-0840EE6C ChozoTargetChecks
-0840EE8C ChozoTargetTriggerEvents
+0840EE6C ChozoHintChecks
+0840EE8C ChozoHintTriggerEvents
 ;0840EEF8
 ;084102F8
 ;08411EF8
@@ -4682,7 +4682,7 @@
 ;08416242
 ;0841624A
 ;0841625C
-;08416294
+08416294 TextCharacterGfx
 ;08416694
 ;08451D0C
 ;08451D0E
@@ -5106,7 +5106,7 @@
 ;08774281
 ;08774282
 ;08774292
-08774298 ChozoStatueTargetPathPtrs
+08774298 ChozoStatueHintPathPtrs
 ;087742B0
 ;087742C8
 08774A1C LocationTextPtrs

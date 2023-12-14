@@ -121,7 +121,7 @@
 0300004B ShipLandingCutsceneFlag
 0300004C DisableClipdataChangingTransparencyFlag
 0300004D DisableAnimatedPaletteFlag
-;03000050
+03000050 InGameCutscenesTriggered
 03000054 AreaID
 03000055 RoomID
 03000056 PrevDoor
@@ -240,7 +240,7 @@
 03000C72 SubGameMode1
 03000C74 SubGameMode2
 03000C75 SubGameMode3
-03000C76 ClearedEveryFrame
+03000C76 VBlankActiveFlag
 03000C77 FrameCounter8Bit
 03000C78 VBlankRequestFlag
 03000C7C InterruptCode
@@ -293,7 +293,7 @@
 03001694 TimeAttackBestTimePassword
 030016AC TimeAttackBest100pTimePassword
 030016C4 NonGameplayRam
-03001944 HazeProcessCode
+;03001944
 03001CEC VBlankCodePtr
 03001CF0 HBlankCodePtr
 03001CF4 SerialCommunicationCodePtr
@@ -343,7 +343,7 @@
 03005516 ScreenXOffset
 03005518 RainSoundEffect
 ;0300551C
-03005520 CurrSpecialBGEffect
+03005520 ColorFading
 03005528 BreakingAndReformingBlocks
 030056A8 LastTankCollected
 030056AC BombChainData
@@ -541,9 +541,9 @@
 08003CA0 PlayMusicAndQueueCurr
 ;08003D4C
 ;08003E24
-;08003E60
+08003E60 UpdateMusicPriority
 ;08003EB8
-08003F20 DampenVolumeOfMusicTracks0And1
+08003F20 DecreaseMusicVolume
 ;08003F6C
 08003FAC QueueSound
 08004014 FadeOrStopSound
@@ -2503,7 +2503,7 @@
 ;08060760
 ;08060800
 ;08060828
-;0806087C
+0806087C InGameCutsceneCheckFlag
 080608BC EventFunctions
 08060928 CheckPlayRoomMusicTrack
 080609E4 CheckPlayLoadingJingle
@@ -2525,19 +2525,19 @@
 ;080612E0
 ;0806141C
 08061484 CutsceneUpdateBGCNT
-080614D4 CutsceneUpdateBackgroundPosition
+080614D4 CutsceneUpdateBGPosition
 08061578 CutsceneGetHOFSPtr
 080615C8 CutsceneGetVOFSPtr
-;08061618
-;080618D8
-;08061944
-;080619C4
-;08061A88
-;08061B98
-;08061BE4
-;08061D68
-;08061DC8
-;08061E38
+08061618 CutsceneStartAutomaticBGScrolling
+080618D8 CutsceneUpdateAutomaticBGScrolling
+08061944 CutsceneCheckBGScrollingActive
+080619C4 CutsceneUpdateBGsPosition
+08061A88 CutsceneUpdateScreenShake
+08061B98 CutsceneStartScreenShake
+08061BE4 UpdateCutsceneSpecialEffect
+08061D68 CutsceneStartOBJEffect
+08061DC8 CutsceneStartBGEffect
+08061E38 CutsceneResetData
 ;08061F0C
 ;08061F28
 ;08061F44
@@ -2869,7 +2869,7 @@
 ;08079178
 08079210 CopyFileMenuSubroutine
 080797A0 EraseFileMenuSubroutine
-;08079B50
+08079B50 FileScreenFileCorruptedSubroutine
 ;08079ECC
 ;08079FB8
 0807A1A4 CopyTimeAttackTime
@@ -4420,24 +4420,24 @@
 ;08375D20
 ;08375D48
 ;08375D4C
-;08376084
-;08376144
-;083761E4
-;08376284
-;08376324
-;08376364
-;083763A4
-;08378E2C
-;0837B404
-;0837E2E0
-;0837F498
-;083818AC
-;08381E70
-;08382434
-;083829F4
-;08382B00
-;083868A0
-;08386E60
+08376084 MotherBrainCloseUpPalette
+08376144 MotherBrainCloseUpBGPalette
+083761E4 MotherBrainCloseUpSamusPalette
+08376284 MotherBrainCloseUpSamusVariaPalette
+08376324 MotherBrainCloseUpEyePalette
+08376364 MotherBrainCloseUpBigEyePalette
+083763A4 MotherBrainCloseUpMotherBrainGfx
+08378E2C MotherBrainCloseUpBGGfx
+0837B404 MotherBrainCloseUpSamusGfx
+0837E2E0 MotherBrainCloseUpEyeGfx
+0837F498 MotherBrainCloseUpBigEyeGfx
+083818AC MotherBrainCloseUpMotherBrainTilemap
+08381E70 MotherBrainCloseUpBGTilemap
+08382434 MotherBrainCloseUpSamusTilemap
+083829F4 MotherBrainCloseUpGlassTilemap
+08382B00 MotherBrainCloseUpTankViewGfx
+083868A0 MotherBrainCloseUpTankViewTilemap
+08386E60 MotherBrainCloseUpTankViewTilemap
 ;08386F60
 ;08386F70
 ;08386FA0
@@ -4493,56 +4493,56 @@
 ;083B5738
 ;083B5CF8
 ;083B5D48
-;083B5E14
-;083B5E74
-;083B5ED4
-;083B6074
-;083B6094
-;083B8CCC
-;083BAF68
-;083BE0D8
-;083BFAD4
-;083C0094
-;083C0654
+083B5E14 RidleySpawnSamusPalette
+083B5E74 RidleySpawnSamusVariaPalette
+083B5ED4 RidleySpawnBGPalette
+083B6074 RidleySpawnRidleyScreamingPalette
+083B6094 RidleySpawnBGGfx
+083B8CCC RidleySpawnSamusRidleyGfx
+083BAF68 RidleySpawnSamusHelmetFaceGfx
+083BE0D8 RidleySpawnRidleyScreamingGfx
+083BFAD4 RidleySpawnBGTilemap
+083C0094 RidleySpawnSamusHelmetTilemap
+083C0654 RidleySpawnSamusFaceTilemap
 ;083C0948
 ;083C0950
-;083C0DFC
-;083C3334
-;083C5CF0
-;083C5E30
+083C0DFC MechaRidleySeesSamusMetalGfx
+083C3334 MechaRidleySeesSamusCoverAndEyeGfx
+083C5CF0 MechaRidleySeesSamusPalette
+083C5E30 MechaRidleySeesSamusMetalTilemap
 ;083C63F0
 ;083C6408
 ;083C640C
 ;083C6414
 ;083C642C
 ;083C6438
-;083C66A0
-;083C6900
-;083C91C0
-;083C9BD8
-;083CA1E4
-;083CD814
-;083CE38C
+083C66A0 GettingFullyPoweredSuitPalette
+083C6900 GettingFullyPoweredSuitSamusGfx
+083C91C0 GettingFullyPoweredSuitRingAndSparklesGfx
+083C9BD8 GettingFullyPoweredSuitSamusTilemap
+083CA1E4 GettingFullyPoweredSuitBGGfx
+083CD814 GettingFullyPoweredSuitBGTilemap
+083CE38C GettingFullyPoweredSuitRingPalette
 ;083CE46C
-;083CE4B4
-;083CE5F4
-;083CE6F4
-;083CE8F4
-;083D2838
-;083D6684
-;083DCB3C
-;083DE73C
-;083E22E4
-;083E5170
-;083EA404
-;083EA9C4
-;083EAF88
-;083EB824
-;083EBB08
-;083EC218
-;083EC7D8
-;083ECBC4
-;083ECF64
+083CE4B4 BeforeRuinsTestChozoWallSidesPalette
+083CE5F4 BeforeRuinsTestChozoWallPalette
+083CE6F4 BeforeRuinsTestSamusCloseUpPalette
+083CE8F4 BeforeRuinsTestLeftSideChozoWallGfx
+083D2838 BeforeRuinsTestRightSideChozoWallGfx
+083D6684 BeforeRuinsTestChozoWallBackgroundGfx
+083DCB3C BeforeRuinsTestYoungSamusAndGreyVoiceGfx
+083DE73C BeforeRuinsTestYoungSamusAndGreyVoiceCloseUpGfx
+083E22E4 BeforeRuinsTestYoungSamusCloseUpGfx
+083E5170 BeforeRuinsTestSamusCloseUpGfx
+083EA404 BeforeRuinsTestLeftSideOfChozoWallTilemap
+083EA9C4 BeforeRuinsTestRightSideOfChozoWallTilemap
+083EAF88 BeforeRuinsTestChozoWallBackgroundTilemap
+083EB824 BeforeRuinsTestYoungSamusAndGreyVoiceTilemap
+083EBB08 BeforeRuinsTestYoungSamusAndGreyVoiceCloseUpTilemap
+083EC218 BeforeRuinsTestYoungSamusCloseUpTilemap
+083EC7D8 BeforeRuinsTestSamusCloseUpEyesClosedTilemap
+083ECBC4 BeforeRuinsTestSamusCloseUpEyesOpenedTilemap
+083ECF64 BeforeRuinsTestSamusCloseUpOutlineTilemap
 ;083ED498
 ;083ED4B4
 ;083ED4FC
@@ -4640,10 +4640,10 @@
 ;0840DF64
 ;0840DF6C
 ;0840DF72
-0840DF78 ChozoStatueTargets
+0840DF78 ChozoStatueHints
 ;0840E02C
-0840E038 ChozoTargetChecks
-0840E058 ChozoTargetTriggerEvents
+0840E038 ChozoHintChecks
+0840E058 ChozoHintTriggerEvents
 ;0840E0C4
 ;0840F4C4
 ;084110C4
@@ -4677,7 +4677,7 @@
 ;0841540E
 ;08415416
 ;08415428
-;08415460
+08415460 TextCharacterGfx
 ;08415860
 ;08446D68
 ;08446D6A
@@ -4759,24 +4759,24 @@
 ;08473768
 ;0847406C
 ;0847920C
-;08479400
-;08479520
-;084795E0
-;084796C0
-;084797A0
-;084798A0
-;08479980
-;08479A20
-;08479AC0
-;08479CC0
-;08479D80
-;08479E00
+08479400 TourianEscapeZebesExplodingPalette
+08479520 MotherShipBlowingUpExplosionsPalette
+084795E0 TourianEscapeSamusInShipWithPowerSuitPalette
+084796C0 TourianEscapeSamusInShipWithVariaSuitPalette
+084797A0 TourianEscapeSamusInShipSuitlessPalette
+084798A0 TourianEscapeSamusLookingAroundPalette
+08479980 TourianEscapeSamusChagedBackgroundPalette
+08479A20 TourianEscapeSamusGettingShotPalette
+08479AC0 TourianEscapeSamusSurroundedPalette
+08479CC0 TourianEscapeSamusChasedShipsPalette
+08479D80 TourianEscapeSamusChasedByPiratesFiringPalette
+08479E00 TourianEscapeShipGoingToCrashOnZebesPalette
 ;08479F00
-;08479F20
+08479F20 TourianEscapeSamusCrashingForegroundPalette
 ;08479F80
-;0847A060
-;0847A260
-;0847A3A0
+0847A060 TourianEscapeShipCrashingBackgroundAndShipPalette
+0847A260 TourianEscapeSamusLookingAtSkyPalette
+0847A3A0 TourianEscapeSamusLookingAtMotherShipPalette
 ;0847A4E0
 ;0847A506
 ;0847A52C
@@ -4828,47 +4828,47 @@
 ;0847CFE4
 ;0847CFF4
 ;0847CFFE
-;0847D014
-;0847F884
-;08480148
-;08481CCC
-;08484D5C
-;0848531C
-;084895FC
-;08489BBC
-;0848A17C
-;0848D744
-;0848E048
-;0848F48C
-;08494A04
-;08495308
-;0849778C
-;08498028
-;0849C010
-;0849C5D0
-;0849CB90
-;0849FB70
-;0849FD34
-;084A2460
-;084A3B34
-;084A4400
-;084A72DC
-;084A7BB4
-;084AAE80
-;084ACC68
-;084AD56C
-;084AE878
-;084B0500
-;084B0E04
-;084B1B90
-;084B4B50
-;084B518C
-;084B90FC
-;084B97B4
-;084B9A98
-;084BBC3C
-;084BC540
-;084BF5E0
+0847D014 MotherShipExplodingFlashGfx
+0847F884 MotherShipExplodingFlashTilemap
+08480148 MotherShipBlowingUpExplosionsGfx
+08481CCC TourianEscapeSamusInShipWithSuitGfx
+08484D5C TourianEscapeSamusInShipWithSuitTilemap
+0848531C TourianEscapeSamusInShipSuitlessGfx
+084895FC TourianEscapeSamusInShipSuitlessTilemap
+08489BBC TourianEscapeSamusInShipSuitless_EyesOpened_Tilemap
+0848A17C TourianEscapeZebesGfx
+0848D744 TourianEscapeZebesTilemap
+0848E048 TourianEscapeShipAndExplosionGfx
+0848F48C TourianEscapeSpaceBGWhenSamusChasedGfx
+08494A04 TourianEscapeSpaceBGWhenSamusChasedTilemap
+08495308 TourianEscapeSamusSurroundedSpaceBGGfx
+0849778C TourianEscapeSamusSurroundedSpaceBGTilemap
+08498028 TourianEscapeSamusInShipLookingAroundGfx
+0849C010 TourianEscapeSamusInShipLookingLeftTilemap
+0849C5D0 TourianEscapeSamusInShipLookingRightTilemap
+0849CB90 TourianEscape_unk_49CB90_Gfx
+0849FB70 TourianEscape_unk_49FB70_Tilemap
+0849FD34 TourianEscapeSamusChasedShipsGfx
+084A2460 TourianEscapeShipsAndProjectilesGfx
+084A3B34 TourianEscapeBeforeSamusGettingShotShipGfx
+084A4400 TourianEscapeSamusGettingShotGfx
+084A72DC TourianEscapeSamusGettingShotTilemap
+084A7BB4 TourianEscapeShipCrashingBGAndShipGfx
+084AAE80 TourianEscapeShipCrashingForegroundGfx
+084ACC68 TourianEscapeShipCrashingForegroundTilemap
+084AD56C TourianEscapeShipGoingToCrashOnZebesGfx
+084AE878 TourianEscapeShipCrashingExplosionGfx
+084B0500 TourianEscapeShipCrashingExplosionTilemap
+084B0E04 TourianEscapeSamusLookingAtSkyPirateShipsGfx
+084B1B90 TourianEscapeSamusLookingAtSkySkyGfx
+084B4B50 TourianEscapeSamusLookingAtSkySkyTilemap
+084B518C TourianEscapeSamusLookingAtSkyGfx
+084B90FC TourianEscapeSamusLookingAtSkyTopTilemap
+084B97B4 TourianEscapeSamusLookingAtSkyBottomTilemap
+084B9A98 TourianEscapeSamusLookingAtMotherShipGfx
+084BBC3C TourianEscapeSamusLookingAtMotherShipTilemap
+084BC540 TourianEscapeSamusLookingAtMotherShipMotherShipGfx
+084BF5E0 TourianEscapeSamusLookingAtMotherShipMotherShipTilemap
 084C18E4 MetroidFusionGalleryData
 ;08549B44
 ;08549EEC
@@ -5070,7 +5070,7 @@
 ;087603D9
 ;087603DA
 ;087603EA
-087603F0 ChozoStatueTargetPathPtrs
+087603F0 ChozoStatueHintPathPtrs
 ;08760408
 ;08760420
 08760764 LocationTextPtrs
