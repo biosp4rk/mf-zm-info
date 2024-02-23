@@ -8,6 +8,7 @@ from constants import *
 from info_entry import *
 from typing import Any, List
 
+
 InfoFile = List[InfoEntry]
 
 

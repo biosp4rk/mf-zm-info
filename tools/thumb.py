@@ -610,7 +610,12 @@ class ThumbInstruct(object):
             args.append(self.rlist_str())
         elif (self.format == ThumbForm.CondB or
             self.format == ThumbForm.UncondB):
-            args.append(symbols.get_local(self.branch_addr()))
+            pa = self.branch_addr()
+            if pa in branches:
+                args.append(symbols.get_local(pa))
+            else:
+                va = pa + ROM_OFFSET
+                args.append(symbols.get_label(va, LabelType.Imm))
         elif self.format == ThumbForm.Swi:
             args.append(self.imm_str())
         elif self.format == ThumbForm.Link:
@@ -626,8 +631,8 @@ class ThumbInstruct(object):
         lhs = self.opname.name.lower()
         rhs = ",".join(args)
         if rhs == "":
-            return f"    {lhs}"
-        return f"    {lhs:8}{rhs}"
+            return f"{lhs}"
+        return f"{lhs:8}{rhs}"
 
 
 def hex_str(number: int, prefix: bool = False) -> str:

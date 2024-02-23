@@ -77,6 +77,7 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting w
 ### Tags
 - `flags` - Integer used for bit flags
 - `ascii` - 8 bit ASCII character
+- `sjis` - 8 bit Shift JIS character
 - `text` - 16 bit in-game text character
 - `rle` - RLE compressed
 - `lz` - LZ77 compressed

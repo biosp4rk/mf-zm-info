@@ -25,7 +25,9 @@ REGION_J = "J"
 REGION_C = "C"
 REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C)
 
-ASM_MODES = ("thumb", "arm")
+MODE_THUMB = "thumb"
+MODE_ARM = "arm"
+ASM_MODES = (MODE_THUMB, MODE_ARM)
 
 # entry field keys
 K_ADDR = "addr"

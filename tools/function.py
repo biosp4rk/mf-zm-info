@@ -259,7 +259,7 @@ class Function(object):
                 asm_str = inst.asm_str(self.rom, self.symbols, self.branches)
                 if include_addrs:
                     asm_str = f"{asm_str:35} ; {self.addr:X}"
-                lines.append(asm_str)
+                lines.append("    " + asm_str)
                 if inst.format == ThumbForm.Link:
                     self.addr += 4
                 else:
@@ -296,7 +296,7 @@ class Function(object):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    group = parser.add_mutually_exclusive_group()
+    group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-l", "--label", type=str)
     parser.add_argument("-s", "--symbols", action="store_true")

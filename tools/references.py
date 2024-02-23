@@ -224,7 +224,7 @@ def output_section(title: str, refs) -> List[str]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    group = parser.add_mutually_exclusive_group()
+    group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-l", "--label", type=str)
     group.add_argument("--all", action="store_true")
