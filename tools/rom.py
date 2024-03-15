@@ -1,7 +1,9 @@
-from typing import Dict
+from typing import Dict, Union
 
 from constants import *
 
+
+BytesLike = Union[bytes, bytearray]
 
 SIZE_8MB = 0x800000
 SIZE_16MB = SIZE_8MB * 2
@@ -15,7 +17,7 @@ class Rom(object):
     def __init__(self, path: str):
         # read file
         with open(path, "rb") as f:
-            self.data = f.read()
+            self.data = bytearray(f.read())
         # check length
         if len(self.data) != SIZE_8MB:
             raise ValueError("ROM should be 8MB")
@@ -70,12 +72,20 @@ class Rom(object):
             ((self.data[addr + 3] - 8) << 24)
         )
 
-    def read_bytes(self, addr: int, size: int) -> bytes:
+    def read_bytes(self, addr: int, size: int) -> bytearray:
         end = addr + size
         return self.data[addr:end]
 
     def read_ascii(self, addr: int, size: int) -> str:
         return self.read_bytes(addr, size).decode("ascii")
+
+    def write_8(self, addr: int, val: int) -> None:
+        self.data[addr] = val
+
+    def write_bytes(self, dst_addr: int, vals: BytesLike, src_addr: int, size: int) -> None:
+        dst_end = dst_addr + size
+        src_end = src_addr + size
+        self.data[dst_addr:dst_end] = vals[src_addr:src_end]
 
     def code_start(self, virt: bool = False) -> int:
         addr = None
@@ -209,5 +219,5 @@ class Rom(object):
                     0x7490: 0x7504
                 }
 
-    def find_bytes(self, pat: bytes, start: int = 0) -> int:
+    def find_bytes(self, pat: BytesLike, start: int = 0) -> int:
         return self.data.find(pat, start)

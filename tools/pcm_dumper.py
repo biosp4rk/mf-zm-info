@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
 import argparse
 import math
+import os
 from typing import List
 
 import argparse_utils as apu
+from game_info import GameInfo
 from rom import Rom
 
 
@@ -237,11 +239,23 @@ def dump_pcm(rom: Rom, addr: int, format: str, path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("--all", action="store_true")
     parser.add_argument("format", type=str, choices=("wav", "aiff"))
     parser.add_argument("path", type=str)
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    addr = apu.get_hex(args.addr)
-    dump_pcm(rom, addr, args.format, args.path)
+    if args.addr:
+        addr = apu.get_hex(args.addr)
+        dump_pcm(rom, addr, args.format, args.path)
+    elif args.all:
+        info = GameInfo(rom.game, rom.region, True)
+        # TODO: add tag for pcm?
+        addrs = [e.addr for e in info.data if e.label.startswith("pcm_")]
+        if not os.path.exists(args.path):
+            os.mkdir(args.path)
+        for i, addr in enumerate(addrs):
+            path = os.path.join(args.path, f"{i:03d}_{addr:X}.{args.format}")
+            dump_pcm(rom, addr, args.format, path)
