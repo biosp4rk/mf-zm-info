@@ -7,7 +7,7 @@ from constants import *
 from info_entry import DataEntry
 from game_info import GameInfo
 from rom import Rom
-from yaml_utils import yaml_obj_to_str
+from info_file_utils import obj_to_yaml_str
 
 
 def struct_list_var_addrs(
@@ -64,7 +64,7 @@ def dump_instrument_defs(roms: Dict[str, Rom]):
     # sort by address and print
     data_entries.sort(key=lambda de: de.addr[REGION_U])
     for de in data_entries:
-        s = yaml_obj_to_str(DataEntry.to_yaml_obj(de))
+        s = obj_to_yaml_str(DataEntry.to_obj(de))
         print(s, end="")
 
 

@@ -5,7 +5,7 @@ from typing import Dict
 import argparse_utils as apu
 from constants import *
 from rom import Rom
-from yaml_utils import load_yaml_file
+from info_file_utils import load_yaml_file
 
 
 def get_char_map(game: str, region: str) -> Dict[int, str]:

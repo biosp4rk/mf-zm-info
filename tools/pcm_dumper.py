@@ -251,7 +251,7 @@ if __name__ == "__main__":
         addr = apu.get_hex(args.addr)
         dump_pcm(rom, addr, args.format, args.path)
     elif args.all:
-        info = GameInfo(rom.game, rom.region, True)
+        info = GameInfo(rom.game, rom.region, False, True)
         # TODO: add tag for pcm?
         addrs = [e.addr for e in info.data if e.label.startswith("pcm_")]
         if not os.path.exists(args.path):

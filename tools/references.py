@@ -35,9 +35,10 @@ class Ref(object):
 
 class References(object):
 
-    def __init__(self, rom: Rom):
+    def __init__(self, rom: Rom, include_unk = False):
         self.rom = rom
-        self.info = GameInfo(rom.game, rom.region, True)
+        from_json = not include_unk
+        self.info = GameInfo(rom.game, rom.region, from_json, include_unk)
         self.refs: Dict[int, List[Ref]] = {}
 
     def find(self, addr: int) -> Tuple[List[Ref], List[Ref], List[Ref]]:
@@ -239,10 +240,11 @@ if __name__ == "__main__":
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-l", "--label", type=str)
     group.add_argument("--all", action="store_true")
+    parser.add_argument("-u", "--unk", action="store_true")
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    refs = References(rom)
+    refs = References(rom, args.unk)
 
     if args.all:
         results = refs.find_all()

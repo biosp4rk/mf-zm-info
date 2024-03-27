@@ -209,7 +209,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    info = GameInfo(rom.game, rom.region, True)
+    info = GameInfo(rom.game, rom.region, False, True)
 
     c_ptrs = find_code_ptrs(rom)
     sh_ptrs = find_sound_header_ptrs(rom, info)

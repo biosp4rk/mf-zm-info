@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 import re
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Union
 
 from constants import *
 
@@ -77,12 +77,12 @@ class InfoEntry(ABC):
 
     @staticmethod
     @abstractmethod
-    def from_yaml_obj(obj: Any) -> "InfoEntry":
+    def from_obj(obj: Any) -> "InfoEntry":
         pass
 
     @staticmethod
     @abstractmethod
-    def to_yaml_obj(entry: "InfoEntry") -> Any:
+    def to_obj(entry: "InfoEntry") -> Any:
         pass
 
     @staticmethod
@@ -249,19 +249,19 @@ class VarEntry(InfoEntry):
         return self.get_spec_size(structs)
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "VarEntry":
+    def from_obj(obj: Any) -> "VarEntry":
         return VarEntry(
             obj[K_DESC],
             obj[K_LABEL],
             obj[K_TYPE],
             obj.get(K_COUNT),
-            VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+            VarEntry.tags_from_obj(obj.get(K_TAGS)),
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
 
     @staticmethod
-    def to_yaml_obj(entry: "VarEntry") -> str:
+    def to_obj(entry: "VarEntry") -> str:
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
@@ -270,7 +270,7 @@ class VarEntry(InfoEntry):
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
+            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
         if entry.notes:
@@ -278,13 +278,13 @@ class VarEntry(InfoEntry):
         return dict(obj)
     
     @staticmethod
-    def tags_from_yaml_obj(tags: List[str]) -> List[DataTag]:
+    def tags_from_obj(tags: List[str]) -> List[DataTag]:
         if tags is None:
             return None
         return [STR_TO_TAG[s] for s in tags]
 
     @staticmethod
-    def tags_to_yaml_obj(tags: List[DataTag]) -> List[str]:
+    def tags_to_obj(tags: List[DataTag]) -> List[str]:
         if tags is None:
             return None
         return [TAG_TO_STR[t] for t in tags]
@@ -324,7 +324,7 @@ class DataEntry(VarEntry):
         return True
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "DataEntry":
+    def from_obj(obj: Any) -> "DataEntry":
         try:
             return DataEntry(
                 obj[K_DESC],
@@ -332,7 +332,7 @@ class DataEntry(VarEntry):
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
-                VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+                VarEntry.tags_from_obj(obj.get(K_TAGS)),
                 obj.get(K_ENUM),
                 obj.get(K_NOTES)
             )
@@ -340,7 +340,7 @@ class DataEntry(VarEntry):
             raise Exception(f"Error parsing data entry: {obj}")
 
     @staticmethod
-    def to_yaml_obj(entry: "DataEntry") -> Any:
+    def to_obj(entry: "DataEntry") -> Any:
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
@@ -349,7 +349,7 @@ class DataEntry(VarEntry):
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
+            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
         obj.append((K_ADDR, entry.addr))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
@@ -392,20 +392,20 @@ class StructVarEntry(VarEntry):
         return True
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "StructVarEntry":
+    def from_obj(obj: Any) -> "StructVarEntry":
         return StructVarEntry(
             obj[K_DESC],
             obj[K_LABEL],
             obj[K_TYPE],
             obj.get(K_COUNT),
             obj[K_OFFSET],
-            VarEntry.tags_from_yaml_obj(obj.get(K_TAGS)),
+            VarEntry.tags_from_obj(obj.get(K_TAGS)),
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
 
     @staticmethod
-    def to_yaml_obj(entry: "StructVarEntry") -> Any:
+    def to_obj(entry: "StructVarEntry") -> Any:
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
@@ -414,7 +414,7 @@ class StructVarEntry(VarEntry):
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_yaml_obj(entry.tags)))
+            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
         obj.append((K_OFFSET, entry.offset))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
@@ -446,9 +446,9 @@ class StructEntry(InfoEntry):
         return None
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "StructEntry":
+    def from_obj(obj: Any) -> "StructEntry":
         try:
-            vars = [StructVarEntry.from_yaml_obj(e) for e in obj[K_VARS]]
+            vars = [StructVarEntry.from_obj(e) for e in obj[K_VARS]]
             return StructEntry(
                 obj[K_DESC],
                 obj[K_LABEL],
@@ -460,8 +460,8 @@ class StructEntry(InfoEntry):
             raise Exception(f"Error parsing struct entry: {obj}")
 
     @staticmethod
-    def to_yaml_obj(entry: "StructEntry") -> Any:
-        vars = [StructVarEntry.to_yaml_obj(e) for e in entry.vars]
+    def to_obj(entry: "StructEntry") -> Any:
+        vars = [StructVarEntry.to_obj(e) for e in entry.vars]
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
@@ -514,17 +514,17 @@ class CodeEntry(InfoEntry):
         return self.mode == CodeMode.Thumb
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "CodeEntry":
+    def from_obj(obj: Any) -> "CodeEntry":
         try:
             mode = CodeMode.Arm if obj[K_MODE] == "arm" else CodeMode.Thumb
             params = obj[K_PARAMS]
             # TODO: don't allow str for params
             if not isinstance(params, str):
-                params = [VarEntry.from_yaml_obj(p) for p in params] if params else None
+                params = [VarEntry.from_obj(p) for p in params] if params else None
             ret = obj[K_RETURN]
             # TODO: don't allow str for return
             if not isinstance(ret, str):
-                ret = VarEntry.from_yaml_obj(ret) if ret else None
+                ret = VarEntry.from_obj(ret) if ret else None
             return CodeEntry(
                 obj[K_DESC],
                 obj[K_LABEL],
@@ -539,16 +539,16 @@ class CodeEntry(InfoEntry):
             raise Exception(f"Error parsing code entry: {obj}")
 
     @staticmethod
-    def to_yaml_obj(entry: "CodeEntry") -> Any:
+    def to_obj(entry: "CodeEntry") -> Any:
         mode = "arm" if entry.mode == CodeMode.Arm else "thumb"
         # TODO: don't allow str for params
         params = entry.params
         if not isinstance(entry.params, str):
-            params = [VarEntry.to_yaml_obj(p) for p in entry.params] if entry.params else None
+            params = [VarEntry.to_obj(p) for p in entry.params] if entry.params else None
         # TODO: don't allow str for return
         ret = entry.ret
         if not isinstance(entry.ret, str):
-            ret = VarEntry.to_yaml_obj(entry.ret) if entry.ret else None
+            ret = VarEntry.to_obj(entry.ret) if entry.ret else None
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
@@ -581,7 +581,7 @@ class EnumValEntry(InfoEntry):
         return self.val < other.val
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "EnumValEntry":
+    def from_obj(obj: Any) -> "EnumValEntry":
         return EnumValEntry(
             obj[K_DESC],
             obj[K_LABEL],
@@ -590,7 +590,7 @@ class EnumValEntry(InfoEntry):
         )
 
     @staticmethod
-    def to_yaml_obj(entry: "EnumValEntry") -> Any:
+    def to_obj(entry: "EnumValEntry") -> Any:
         obj = [
             ("desc", entry.desc),
             ("label", entry.label),
@@ -616,9 +616,9 @@ class EnumEntry(InfoEntry):
         return f"# vals: {len(self.vals)}"
 
     @staticmethod
-    def from_yaml_obj(obj: Any) -> "EnumEntry":
+    def from_obj(obj: Any) -> "EnumEntry":
         try:
-            vals = [EnumValEntry.from_yaml_obj(e) for e in obj[K_VALS]]
+            vals = [EnumValEntry.from_obj(e) for e in obj[K_VALS]]
             return EnumEntry(
                 obj[K_DESC],
                 obj[K_LABEL],
@@ -629,8 +629,8 @@ class EnumEntry(InfoEntry):
             raise Exception(f"Error parsing enum entry: {obj}")
 
     @staticmethod
-    def to_yaml_obj(entry: "EnumEntry") -> Any:
-        vals = [EnumValEntry.to_yaml_obj(e) for e in entry.vals]
+    def to_obj(entry: "EnumEntry") -> Any:
+        vals = [EnumValEntry.to_obj(e) for e in entry.vals]
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),

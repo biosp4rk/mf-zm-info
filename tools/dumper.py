@@ -1,7 +1,7 @@
 import argparse
 from collections import defaultdict
 import re
-from typing import List, Set, Tuple
+from typing import List, Tuple
 
 import argparse_utils as apu
 from function import Function
@@ -79,7 +79,7 @@ class FindPtrData(object):
         self.rom = rom
         self.data_start = rom.data_start()
         self.data_end = rom.data_end()
-        self.info = GameInfo(rom.game, rom.region, True)
+        self.info = GameInfo(rom.game, rom.region, False, True)
         self.data_set = {d.addr for d in self.info.data}
         self.results = defaultdict(list)
 

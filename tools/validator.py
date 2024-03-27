@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 from constants import *
 from game_info import GameInfo
 from info_entry import *
-import yaml_utils as yu
+import info_file_utils as ifu
 
 
 LABEL_PAT = re.compile(r"^[A-Za-z]\w*$", flags=re.A)
@@ -53,7 +53,7 @@ class Validator(object):
             self.entry_loc.game = game
             # get all info
             # TODO: check yaml files before parsing
-            info = GameInfo(game)
+            info = GameInfo(game, from_json=False)
             self.enums = info.enums
             self.structs = info.structs
 
@@ -385,10 +385,10 @@ def output_yamls() -> None:
                     yaml_files.append((path, map_type))
     # parse files and output
     for path, map_type in yaml_files:
-        data = yu.load_yaml_file(path)
-        ifile = yu.parse_yaml_list(data, map_type)
+        data = ifu.load_yaml_file(path)
+        ifile = ifu.parse_obj_list(data, map_type)
         ifile.sort()
-        yu.write_info_file(path, map_type, ifile)
+        ifu.write_info_file(path, map_type, ifile)
     print("Output YAML files")
 
 
@@ -397,11 +397,11 @@ def output_jsons() -> None:
         json_dir = os.path.join(JSON_PATH, game)
         # convert each to json
         for map_type in MAP_TYPES:
-            data = yu.get_info_files(game, map_type)
-            yml = yu.info_file_to_yaml(map_type, data)
+            data = ifu.get_info_file_from_yaml(game, map_type)
+            obj = ifu.info_file_to_obj(map_type, data)
             p = os.path.join(json_dir, map_type + JSON_EXT)
             with open(p, "w") as f:
-                json.dump(yml, f)
+                json.dump(obj, f)
     print("Output JSON files")
 
 

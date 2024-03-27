@@ -6,7 +6,7 @@ from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import Function
 from info_entry import DataEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
-from yaml_utils import get_info_files
+from info_file_utils import get_info_file_from_json
 
 
 def gen_sym_file(rom: Rom):
@@ -40,11 +40,11 @@ def gen_sym_file(rom: Rom):
         addr = func.end_addr
 
     # get dictionaries with <addr, label>
-    ram: List[DataEntry] = get_info_files(rom.game, MAP_RAM, region)
+    ram: List[DataEntry] = get_info_file_from_json(rom.game, MAP_RAM, region)
     ram_dict = {r.addr: r.label for r in ram}
-    code: List[CodeEntry] = get_info_files(rom.game, MAP_CODE, region)
+    code: List[CodeEntry] = get_info_file_from_json(rom.game, MAP_CODE, region)
     code_dict = {r.addr: r.label for r in code}
-    data: List[DataEntry] = get_info_files(rom.game, MAP_DATA, region)
+    data: List[DataEntry] = get_info_file_from_json(rom.game, MAP_DATA, region)
     data_dict = {r.addr: r.label for r in data}
 
     # write to file
