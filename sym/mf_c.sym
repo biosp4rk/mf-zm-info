@@ -158,14 +158,14 @@
 03000066 SubEventCounter
 03000068 PrevSubEvent
 ;0300006A
-;0300006C
+0300006C HazeInfo
 03000074 BackupOfIORegisters
 03000088 BGPtrsAndDimensions
 030000A8 CurrRoomEntry
-;030000C4
+030000C4 CurrentAffectingClipdata
 030000CC BGPositions
-;030000E0
-;030000EC
+030000E0 SaxSpawnPosition
+030000EC Window1Border
 030000F4 ScreenShakeY
 030000F8 ScreenShakeX
 030000FC CurrScrolls
@@ -198,11 +198,11 @@
 ;03000721
 03000728 SpriteDebris
 030007A8 CurrSpriteDebris
-030007B8 BossPartOamTablePtr
-;030007C8
+030007B8 SubSpriteData1
+030007C8 SubSpriteData2
 030007D8 PrevCenterCollisionCheck
 030007D9 PrevLeftRightEdgeCollisionCheck
-;030007DA
+030007DA IgnoreSamusAndSpriteCollision
 030007DB SpriteDrawOrder
 ;030007F4
 03000824 SpriteRandomNum
@@ -221,11 +221,11 @@
 030008FF MaxEnergyDigits
 03000903 MissileDigits
 03000907 PowerBombDigits
-;0300090B
-;0300090C
+0300090B EscapeStatus
+0300090C EscapeTimerCounter
 0300090D EscapeTimerDigits
-;03000914
-;03000946
+03000914 EscapeDigitsOam
+03000946 AmmoDigitsGfx
 ;03000988
 03000994 ProjectileData
 03000B94 CurrProjectileData
@@ -233,12 +233,12 @@
 03000BB6 ArmCannonXPosition
 03000BB8 NonGameplayFlag
 ;03000BB9
-;03000BBA
+03000BBA PreviousArea
 03000BBB EventCounter
 03000BBC PrevNavConversation
 03000BBD PrevCutscene
-;03000BBE
-;03000BBF
+03000BBE RoomEventTrigger
+03000BBF IsLoadingFile
 03000BC1 MostRecentSaveFile
 03000BC2 SramCorruptFlag
 ;03000BC3
@@ -259,12 +259,12 @@
 0300121E ButtonInputCopy
 03001220 ChangedInput
 03001222 NextOamSlot
-;0300122A
+0300122A SaxElevatorBgCnt
 03001240 WrittenToMOSAIC_H
 03001242 WrittenToMOSAIC_L
 03001252 WrittenToBLDY
-;03001254
-;03001256
+03001254 WrittenToBldalpha_L
+03001256 WrittenToBldalpha_H
 03001258 BG0XPosition
 0300125A BG0YPosition
 0300125C BG1XPosition
@@ -276,7 +276,7 @@
 ;03001268
 ;0300126A
 ;0300126C
-;03001276
+03001276 DemoState
 03001277 PoseLockFlag
 03001278 SamusData
 030012A4 SamusDataCopy
@@ -304,7 +304,7 @@
 ;03001483
 03001484 ButtonAssignments
 0300148C SaxData
-;030014B0
+030014B0 SaxElevatorData
 030014B8 NonGameplayRam
 ;030014C4
 ;030014D0
@@ -335,21 +335,21 @@
 03003D8C SoundCodeCPtr
 ;03003D91
 ;03004840
-;03004842
-;03004A42
+03004842 DemoInputs
+03004A42 DemoInputDurations
 03004C42 DemoInputNumber
 03004C44 DemoInputTimer
 03004C46 DemoButtonInput
-;03004C48
-;03004D4C
+03004C48 SaXElevatorSprites
+03004D4C NotPressingUp
 03004D58 SamusPalette
 03004DB8 SamusPaletteLength
 ;03004DBC
 03004DC0 SaxPalette
-;03004E04
-;03004E06
-;03004E08
-;03004E0A
+03004E04 WrittenToWin1H
+03004E06 WrittenToWin1V
+03004E08 WrittenToBldcnt_Special
+03004E0A ElevatorDirection
 03004E0C TilemapAndClipdataPtrs
 03004E18 CurrMusicTrack
 03004E1C HatchData
@@ -360,7 +360,7 @@
 ;03004E50
 03004E58 TilesetTransparentColor
 ;03004E60
-;03004E68
+03004E68 SamusDoorPositionOffset
 ;03004E6A
 ;03004E6B
 03004E6C DestinationRoom
@@ -370,7 +370,7 @@
 ;03004E74
 ;03004E78
 ;03004E7C
-;03004E88
+03004E88 ColorFading
 03004E90 BrokenReformBlocks
 ;03004F10
 ;03004F90
@@ -427,81 +427,81 @@
 08000C14 CallVCountCode
 08000C38 SetVCountCodePtr
 08000C54 EmptyFunctionForBlankingCode
-;08000C58
-;08000C90
-;08000CC8
-;08000D08
-;08000D20
-;08000D38
-;08000D64
-;08000D90
-;08000DAC
-;08000DD8
-;08000E04
+08000C58 EraseSram_Unused
+08000C90 EraseSram
+08000CC8 SramRelated
+08000D08 SramRelated
+08000D20 SramRelated
+08000D38 WriteMostRecentFileToGamePak
+08000D64 SramRelated
+08000D90 ReadAllGamePakSram
+08000DAC ReadMostRecentFileFromGamePak
+08000DD8 SramRelated
+08000E04 SramRelated
 ;08000E1C
 ;08000E44
-;08000E5C
-;08000E74
-;08000E90
-;08001224
-;0800161C
-;080019A8
-;080019D0
-;080019F4
+08000E5C SramRelated
+08000E74 SramRelated
+08000E90 MusicRelated
+08001224 UpdatePsgSounds
+0800161C UpdateTrack
+080019A8 MusicRelated
+080019D0 MusicRelated
+080019F4 MusicRelated
 ;08001A84
-;08001B14
-;08001B30
-;08001B94
-;08001BA0
+08001B14 MusicRelated
+08001B30 MusicRelated
+08001B94 MusicRelated
+08001BA0 MusicRelated
 ;08001BE4
-;08001CF4
+08001CF4 MusicRelated
 ;08001D48
 ;08001D98
 ;08001DE8
-;08001E5C
+08001E5C MusicRelated
 ;08001E90
-;08001EFC
-;08001F4C
-;08001FA8
-;08001FE0
-;08002020
-;08002030
-;08002048
-;08002108
-;0800211C
-;08002130
-;08002148
-;0800215C
-;0800216C
-;0800217C
-;08002188
-;08002194
-;080021AC
-;080021DC
+08001EFC MusicRelated
+08001F4C MusicRelated
+08001FA8 MusicRelated
+08001FE0 MusicRelated
+08002020 MusicRelated
+08002030 MusicRelated
+08002048 MusicRelated
+08002108 MusicRelated
+0800211C MusicRelated
+08002130 MusicRelated
+08002148 MusicRelated
+0800215C MusicRelated
+0800216C MusicRelated
+0800217C MusicRelated
+08002188 MusicRelated
+08002194 MusicRelated
+080021AC MusicRelated
+080021DC MusicRelated
 08002238 EmptyFunction_SoundRelated
-;0800223C
-;08002298
-;080022E0
+0800223C ClearRegistersForPsg
+08002298 ClearRegistersForPsg_Unused
+080022E0 InitAudio
 ;08002534
-;08002630
+08002630 SetupSoundTransfer
 08002754 PlaySound
 08002780 StopSound
-;080027BC
-;080027F0
-;08002830
+080027BC StopAllMusicsAndSounds
+080027F0 MusicRelated
+08002830 MusicRelated
 0800289C PlaySoundIfNotPlaying
 080028DC PlaySound4
 ;08002944
-;08002980
-;080029BC
-;080029F0
-;08002A44
-;08002A88
+08002980 SoundRelated
+080029BC SoundRelated
+080029F0 ApplyMusicSoundFading
+08002A44 ApplyRawMusicSoundFading
+08002A88 SoundRelated
 ;08002B1C
 ;08002B50
-;08002BB4
-;08002BEC
-;08002C80
+08002BB4 SoundRelated
+08002BEC SoundRelated
+08002C80 SoundRelated
 ;08002DA8
 ;08002DD8
 ;08002E34
@@ -509,31 +509,31 @@
 ;08002EDC
 ;08002F20
 08002F64 DmaTransfer
-;08003034
-;08003100
-;0800315C
-;080031D8
-;08003390
+08003034 BitFill
+08003100 Dma2InterruptCode
+0800315C MusicRelated
+080031D8 MusicRelated
+08003390 MusicRelated
 080034F8 EmptyFunction_MusicRelated
 080034FC CheckSetNewMusicTrack
 08003558 CheckPlayNewMusicTrack
 0800359C PlayMusic
-;08003728
+08003728 MusicRelated
 08003754 FadeOutMusic
 ;08003790
 ;080037DC
 ;0800390C
-;08003A30
-;08003AEC
-;08003B28
-;08003B80
-;08003BDC
+08003A30 MusicRelated
+08003AEC MusicRelated
+08003B28 MusicRelated
+08003B80 MusicRelated
+08003BDC MusicRelated
 ;08003C38
 ;08003C78
-;08003C98
-;08003CE8
-;08003D38
-;08003D60
+08003C98 DecreaseMusicVolume
+08003CE8 ResetMusicVolume
+08003D38 MusicRelated
+08003D60 MusicRelated
 08003D8C PlayCharacterAppearingSound
 08003DCC CallSoundCodeB
 08003DDC SoundCodeB
@@ -543,22 +543,22 @@
 08003F30 SoundCodeA
 08004578 CallGetNoteFrenquency
 0800457C GetNoteFrequency
-;08004594
-;08004598
-;0800460C
-;080046C8
-;0800474C
+08004594 CallBelow
+08004598 MusicRelated
+0800460C InitTrack
+080046C8 StopMusic
+0800474C ResetTrack
 ;080047C0
-;080047E0
+080047E0 MusicRelated
 0800480C UpdateAudio
-;08004880
-;08004924
-;08004980
+08004880 MusicRelated
+08004924 MusicRelated
+08004980 MusicRelated
 ;080049FC
-;08004AA0
-;08004AE0
-;08004B40
-;08004B74
+08004AA0 MusicRelated
+08004AE0 MusicRelated
+08004B40 UploadSampleToWaveRam
+08004B74 MusicRelated
 08004C00 CpuFastSet
 08004C04 CpuSet
 08004C08 DivArm_Divide
@@ -568,200 +568,200 @@
 08004C1C MidiKey2Freq
 08004C20 SoundBias_0
 08004C28 SoundBias_200
-;08004C30
-;08004C54
-;08004CB8
-;08004CF8
-;08004D28
-;08004D8C
+08004C30 SramWriteUncheckedInternal
+08004C54 SramWriteUnchecked
+08004CB8 SramWrite
+08004CF8 SramCheckInternal
+08004D28 SramCheck
+08004D8C SramWriteChecked
 08004DC4 CopySamusData
-;08004E2C
+08004E2C SamusChangeVelocityOnSlope
 08004E88 SetSuitPalette
 08004ECC SetSamusGravityBasedVelocityAndSaxSuitColors
 ;08005050
-;08005108
-;0800514C
+08005108 CallSamusUpdateGfx
+0800514C CallCheckPlayLowHealthSound
 0800516C CallUpdateArmCannonOam
-;0800519C
-;08005218
-;08005638
-;08005AD8
-;08005B44
-;08005BF8
-;08005C8C
-;08005CE8
+0800519C SamusBombBounce
+08005218 SamusCheckSetNewEnvironmentEffect
+08005638 SamusUpdateEnvironmentEffects
+08005AD8 SamusAimCannonStanding
+08005B44 SamusAimCannonMidAir
+08005BF8 SamusAimCannonRunning
+08005C8C SamusAimCannonHorizontalLadder
+08005CE8 SamusCheckShooting
 08005DA8 SamusPoseHandler_BeamCharging_Bombs_PBs
 08005F50 CheckSamusStandingOnCrumbleBlock
 08005FC4 SetForcedMovementFlagForJumpingDroppingThroughClipdata
 08006010 SamusPoseHandler_DiffusionCharging_Missiles_WeaponIcons
-;080061D4
-;080062A4
-;080062F4
-;0800645C
-;080065F0
-;080065F4
-;08006754
-;08006798
-;08006854
-;0800689C
-;080068E4
-;080069EC
-;08006AB4
-;08006BD8
-;08006C48
-;08006CD8
-;08006D28
-;08006D90
-;08006FD0
-;08007140
-;08007188
-;080071D0
-;0800721C
-;080073DC
-;08007460
-;08007484
-;080074CC
-;080075BC
-;08007600
-;080076BC
-;08007708
-;08007750
-;08007820
-;0800786C
-;080078B8
-;08007900
-;080079EC
-;08007AA4
-;08007B30
-;08007C8C
-;08007CE0
-;08007CF0
-;08007D80
-;08007DB0
-;08007E0C
-;08007E30
-;08007E74
-;08007EA4
-;08007EEC
-;08007F90
-;08008044
-;080080C4
-;0800810C
-;08008154
-;080081C0
-;08008210
-;08008258
-;080082A0
-;08008478
-;080084F0
-;08008528
-;0800857C
-;08008604
-;08008658
-;08008690
-;080086F4
-;08008790
-;0800882C
-;080088A8
-;080088DC
-;0800894C
-;080089C4
-;08008A18
-;08008A38
-;08008A58
-;08008AD8
-;08008B20
-;08008B68
-;08008BAC
-;08008BF0
-;08008C40
-;08008C94
-;08008CF0
-;08008D08
-;08008DB8
-;08008E64
-;08008F28
-;08008F90
-;08008FD4
-;08009018
-;080090F8
-;080094C0
-;080097B4
-;08009830
-;08009980
-;08009A40
-;08009A78
-;08009ADC
-;08009E18
-;0800A000
-;0800A0F4
+080061D4 SamusSetSpinningPose
+080062A4 SamusApplyXAcceleration
+080062F4 SamusHazardDamage
+0800645C SamusUpdate
+080065F0 SamusInactivity
+080065F4 SamusStanding
+08006754 SamusStandingGfx
+08006798 SamusTurningAround
+08006854 SamusTurningAroundGfx
+0800689C SamusShootingGfx
+080068E4 SamusRunning
+080069EC SamusRunningGfx
+08006AB4 SamusMidAir
+08006BD8 SamusMidAirGfx
+08006C48 SamusTurningAroundMidAir
+08006CD8 SamusTurningAroundMidAirGfx
+08006D28 SamusLandingGfx
+08006D90 SamusCrouching
+08006FD0 SamusTurningAroundAndCrouching
+08007140 SamusTurningAroundAndCrouchingGfx
+08007188 SamusShootingAndCrouchingGfx
+080071D0 SamusStartingASpinJumpGfx
+0800721C SamusSpinning
+080073DC SamusSpinningGfx
+08007460 SamusMorphing
+08007484 SamusMorphingGfx
+080074CC SamusMorphBall
+080075BC SamusMorphBallGfx
+08007600 SamusRolling
+080076BC SamusUnmorphing
+08007708 SamusUnmorphingGfx
+08007750 SamusMorphBallMidAir
+08007820 SamusGettingHurtGfx
+0800786C SamusGettingKnockedBackGfx
+080078B8 SamusStartingWallJumpGfx
+08007900 SamusWallJumping
+080079EC SamusUsingAnElevator
+08007AA4 SamusUsingAnElevatorGfx
+08007B30 SamusHangingOnLedge
+08007C8C SamusHangingOnLedgeGfx
+08007CE0 SamusPullingYourselfUpFromHanging
+08007CF0 SamusPullingYourselfUpFromHangingGfx
+08007D80 SamusPullingYourselfForwardFromHanging
+08007DB0 SamusPullingYourselfForwardFromHangingGfx
+08007E0C SamusPullingYourselfIntoMorphballTunnel
+08007E30 SamusPullingYourselfIntoMorphballTunnelGfx
+08007E74 SamusPullingYourselfDownToStartHanging_Unused
+08007EA4 SamusPullingYourselfDownToStartHanging_UnusedGfx
+08007EEC SamusSpaceJumpingGfx
+08007F90 SamusScrewAttackingGfx
+08008044 SamusSkidding
+080080C4 SamusOnSavePadGfx
+0800810C SamusTurningAroundToRechargeOrUnlockSecurityGfx
+08008154 SamusDelayBeforeShinesparkingGfx
+080081C0 SamusShinesparking
+08008210 SamusShinesparkingGfx
+08008258 SamusDelayAfterShinesparkingGfx
+080082A0 SamusHangingFromVerticalLadder
+08008478 SamusHangingFromVerticalLadderGfx
+080084F0 SamusStartingToHoldYourArmCannonOutOnAVerticalLadder
+08008528 SamusStartingToHoldYourArmCannonOutOnAVerticalLadderGfx
+0800857C SamusHoldingYourArmCannonOutOnAVerticalLadder
+08008604 SamusShootingOnVerticalLadderGfx
+08008658 SamusStartingToPutAwayYourArmCannonOnVerticalLadder
+08008690 SamusStartingToPutAwayYourArmCannonOnVerticalLadderGfx
+080086F4 SamusHangingOnHorizontalLadder
+08008790 SamusMovingOnHorizontalLadder
+0800882C SamusMovingOnHorizontalLadderGfx
+080088A8 SamusTurningAroundOnHorizontalLadder
+080088DC SamusTurningAroundOnHorizontalLadderGfx
+0800894C SamusDelayAfterShootingOnHorizontalLadder
+080089C4 SamusShootingOnHorizontalLadderGfx
+08008A18 SamusFrozenGfx
+08008A38 SamusFrozenInMorphBallGfx
+08008A58 SamusUnlockingSecurityGfx
+08008AD8 SamusSavingGfx
+08008B20 SavingOnNavPadGfx
+08008B68 SamusDownloadingAbilityGfx
+08008BAC SamusBeingRechargedGfx
+08008BF0 SamusFacingForeground
+08008C40 SamusFacingForegroundGfx
+08008C94 SamusUnlockingHabitationsDeckGfx
+08008CF0 SamusLoadingSave
+08008D08 SamusLoadingSaveGfx
+08008DB8 SamusDying
+08008E64 SamusDyingGfx
+08008F28 SamusHitByOmagaMetroid
+08008F90 SamusHitByOmegaMetroidGfx
+08008FD4 SamusGrabbedByYakuza
+08009018 SetSamusPose
+080090F8 SamusUpdateJumpVelocity
+080094C0 SamusSetLandingPose
+080097B4 SamusSetFreezedPose
+08009830 SamusSetHurtPose
+08009980 SamusSetKnockBackPose
+08009A40 SamusRelated
+08009A78 SamusRelated
+08009ADC SamusCheckCarryFromCopy
+08009E18 SamusUpdateVelocityPosition
+0800A000 SamusCheckScrewSpeedboosterAffectingEnvironment
+0800A0F4 SamusCheckCollisions
 ;0800A580
 ;0800A710
 ;0800A858
 ;0800A99C
-;0800AA9C
-;0800AE6C
-;0800B048
-;0800B2C4
-;0800B468
-;0800B518
+0800AA9C SamusCheckWalkingSidesCollision
+0800AE6C SamusCheckStandingOnGroundCollision
+0800B048 SamusCheckLandingCollision
+0800B2C4 SamusCheckJumpingCollisions
+0800B468 SamusCollisionRelated
+0800B518 SamusUpdateGfx
 0800C1D4 CheckPlayLowHealthSound
-;0800C214
+0800C214 SamusUpdateDrawDistanceAndStandingStatus
 0800C28C UpdateArmCannonOam
 0800C4F0 InitSamusData
-;0800C634
-;0800CA80
-;0800CAA0
-;0800CB28
+0800C634 DrawSamus
+0800CA80 DemoMainLoop
+0800CAA0 RecordDemo
+0800CB28 UpdateDemoInput
 0800CBB8 CopyDemoButtonInput
-;0800CBEC
-;0800CC58
-;0800CCBC
-;0800CD1C
-;0800CD60
-;0800CDA8
-;0800CDF0
-;0800CE3C
-;0800CE84
-;0800CEC8
-;0800CF0C
-;0800CF5C
-;0800CFA0
-;0800CFF0
-;0800D038
-;0800D07C
-;0800D0C0
-;0800D11C
+0800CBEC ResetDemoInputAndDuration
+0800CC58 SaxRunningGfx
+0800CCBC SaxWalkingGfx
+0800CD1C SaxStandingGfx
+0800CD60 SaxShootingGfx
+0800CDA8 SaxTurningGfx
+0800CDF0 SaxMidAirGfx
+0800CE3C SaxLandingGfx
+0800CE84 SaxShootingRestrictedLaboratoryGfx
+0800CEC8 SaxCoveredByMetroidsGfx
+0800CF0C SaxKneelingGfx
+0800CF5C SaxTransformingIntoMonsterGfx
+0800CFA0 SaxMorphingGfx
+0800CFF0 SaxUnmorphingGfx
+0800D038 SaxMorphBallGfx
+0800D07C SaxSwagWalkGfx
+0800D0C0 SaxTurningTowardsCameraGfx
+0800D11C SaxTurningAwayFromCameraGfx
 0800D164 SetSaxPose
-;0800D210
-;0800D260
-;0800D494
-;0800D604
-;0800D6D8
+0800D210 SaxUpdatePosition
+0800D260 SaxUpdateGfxAndDraw
+0800D494 SaxUpdateElevatorSprite
+0800D604 SaxDrawElevatorSprites
+0800D6D8 SaxRelated
 ;0800D734
-;0800D890
-;0800D95C
-;0800DB98
-;0800DBF4
-;0800DC34
-;0800DD34
+0800D890 SaxElevatorBeforeBlowingUpWall
+0800D95C SaxElevatorBlowingUpWall
+0800DB98 SaxElevatorWalkingBeforeTurningToCamera
+0800DBF4 SaxElevatorBeforeJumping
+0800DC34 SaxElevatorBeforeShootingDoor
+0800DD34 SaxElevatorWalkingOut
 0800DDD8 InGameSubroutine
 0800E00C SetVBlankCodeForInGame
 0800E048 UpdateSamusAndSaxGfx
 0800E1D0 VBlankCodeDuringInGameLoads
-;0800E320
+0800E320 VBlank
 0800E39C VBlankCodeDuringInGame
-;0800E4C8
+0800E4C8 VBlank
 0800E4D4 InitAndLoadRoomData
-;0800E738
+0800E738 UpdateFreeMovement_Debug
 0800E85C UpdateSpriteRandomNumber
-;0800E89C
-;0800EB70
-;0800EBB8
-;0800EC54
-;0800ECEC
-;0800ED7C
-;0800F61C
+0800E89C UpdateSprites
+0800EB70 UpdateCurrSpriteAnim
+0800EBB8 SpriteDrawingRelated
+0800EC54 CallDrawSprite
+0800ECEC SpriteDrawingRelated
+0800ED7C DrawSprite
+0800F61C SpriteCheckIsOnScreen
 0800F768 LoadSpriteDataForRoom
 0800F820 LoadSpriteset
 0800F960 LoadNewSpriteGfx
@@ -772,15 +772,15 @@
 0800FB94 SpawnNewSecondarySprite
 0800FC7C SpawnNewPrimarySprite
 0800FD58 SpawnNewXParasite
-;0800FE44
+0800FE44 InitLocationText
 0800FECC ModifyDamageTaken
 0800FEF8 TakeDamageFromSprite
-;0801001C
-;080100BC
-;08010148
-;080101F8
-;0801024C
-;080102EC
+0801001C TakeDamageFromSaxIceBeamWithPowerSuit
+080100BC TakeConstantDamage
+08010148 TakeDamageFromOmegaMetroidSwiping
+080101F8 TakeDamageFromYakuzaSlamming
+0801024C TakeConstantDamageFromYakuza
+080102EC TakeKnockback
 0801030C CheckObjectsTouching
 0801035C SamusAndSpriteCollision
 08011194 CheckCenterCollisionAtPosition
@@ -789,30 +789,30 @@
 ;0801144C
 080114CC CheckLeftRightEdgeCollisionAtPosition
 08011564 SpriteFalling
-;080115D4
-;0801160C
-;08011648
+080115D4 SpriteChooseRandomXFlip
+0801160C SpriteChooseRandomXDirection
+08011648 SpriteChooseRandomXDirectionWithRoomSlot
 08011678 MakeSpriteFaceSamus_XFlip
 080116A8 MakeSpriteFaceSamus_Direction
 080116DC MakeSpriteFaceAwayFromSamus_XFlip
 0801170C MakeSpriteFaceAwayFromSamus_Direction
-;08011740
-;080117D8
-;08011870
+08011740 SpriteMovementRelated
+080117D8 SpriteMovementRelated
+08011870 RotateSpriteTowardsSamus
 08011A70 CheckEndOfSpriteAnim_Curr
 08011AA8 CheckNearEndOfSpriteAnim_Curr
 08011AE4 CheckEndOfSpriteAnim_Slot
 08011B2C CheckNearEndOfSpriteAnim_Slot
-;08011B78
+08011B78 CheckEndOfSubSpriteData1Anim
 08011BB0 CheckEndBossRound
-;08011BEC
-;08011C24
+08011BEC CheckEndOfSubSpriteData2Anim
+08011C24 CheckNearEndOfSubSpriteData2Anim
 08011C60 CheckSamusNearSprite_LeftRight
 08011CC0 CheckSamusNearSprite_AboveBelow
 08011D20 CheckSamusNearSprite_FrontBehindX
 08011DC8 CheckSamusNearSprite_FrontBehindY
 08011E74 CheckSamusNearSprite_AboveBelowSeparate
-;08011ED8
+08011ED8 SamusStandingOnSprite
 08011F80 UpdateSpriteFreezeTimer
 08011FE0 UpdateSecondarySpritesFreezeTimer
 0801207C UpdatePrimarySpriteFreezeTimer
@@ -828,8 +828,8 @@
 0801247C RefillTenEnergy
 080124A8 RefillTenMissiles
 080124D4 RefillTenPowerBombs
-;08012500
-;08012598
+08012500 RefillSamus
+08012598 HealSamusOfOneTank
 0801260C CheckEnergyFullAndMissilesNotFull
 0801263C CheckMissilesFullAndEnergyNotFull
 0801266C CheckSamusPassesThroughFrozenSprite
@@ -848,19 +848,19 @@
 08012AB0 FindSecondarySprite
 08012AFC CountSecondarySpritesWithPrimarySlot
 08012B58 MoveEyeCoreXBeam
-;08012BF4
+08012BF4 MoveEyeCoreXBeamParts
 ;08012CC0
-;08012DC4
-;080130F8
-;08013354
+08012DC4 MoveBeamCoreX
+080130F8 MoveBeamCoreX_Unused
+08013354 MoveSpriteTowardsTarget
 ;080135A8
 ;08013818
-;08013A7C
-;08013C90
+08013A7C MoveRidleyFireBall
+08013C90 UpdateSpriteStunTimer
 08013D04 ProcessSpriteDebris
-;080141E4
-;08014268
-;0801436C
+080141E4 CallUpdateSpriteDebris
+08014268 DrawSpriteDebris
+0801436C CallDrawSpriteDebris
 080143BC InitSpriteDebris
 0801447C CheckMainDeckRoomDisplaysLocation
 0801460C CheckSector1RoomDisplaysLocation
@@ -889,7 +889,7 @@
 08015278 XParasite_BossFormation_Floating
 080152CC XParasite_BossFormation_Transforming
 0801553C XParasite_CoreXOrStabilizer_Forming
-;08015590
+08015590 XParasiteAquaZebesianMoveToTarget
 08015614 XParasite_AquaZebesian_WaitingToMove
 0801572C XParasite_AquaZebesian_Floating
 08015788 XParasite_AI
@@ -898,12 +898,12 @@
 08015878 XParasite_CoreXOrStabilizer_AI
 080158EC XParasite_AquaZebesian_AI
 08015938 SetDirectionInSaxData
-;08015968
-;08015F40
-;08015FF4
-;080160C0
+08015968 SaxSeeAndLocateSamus
+08015F40 SaxRelated
+08015FF4 SaxRelated
+080160C0 SaxRelated
 ;080161C8
-;08016388
+08016388 SaxInit
 08016414 Sax_Elevator_Init
 0801642C Sax_FallingStart
 08016460 Sax_Falling
@@ -954,23 +954,23 @@
 08017708 SaxPowerBomb_Exploding
 08017734 LabExplosion_Init
 080177A0 LabExplosion_Exploding
-;08017C34
-;08017CC8
+08017C34 SaxUpdateGfx
+08017CC8 SaxUpdateFreezeTimer
 08017D44 Sax_Elevator_AI
 08018000 SaxBeam_AI
 08018020 SaxSuperMissile_AI
 0801804C SaxPowerBomb_AI
 0801808C LabExplosion_AI
-;080180BC
-;08018124
+080180BC SaXTro1CheckBlockInFront
+08018124 SaXTro1CheckBlockInFrontChase
 08018174 Sax_Tro1_Init
 080181A4 Sax_Tro1_Walking
 08018298 Sax_Tro1_Running
 0801837C Sax_Tro1_TurningDuringChase
 080183D0 Sax_Tro1_AI
-;0801864C
-;080187B0
-;080189B0
+0801864C SaxNocWalkingCheckCollisions
+080187B0 SaxNocRunningCheckCollisions
+080189B0 SaxNocWalkingToLayPowerBombCheckCollisions
 080189FC Sax_Noc_Init
 08018A94 Sax_Noc_WaitingInDoorDuringChase
 08018B18 Sax_Noc_OpeningDoorDuringChase
@@ -986,8 +986,8 @@
 08018D9C Sax_Noc_Running
 08018DE8 Sax_Noc_TurningDuringChase
 08018E18 Sax_Noc_AI
-;080190BC
-;08019204
+080190BC SaxArcWalkingCheckCollisions
+08019204 SaxArcRunningCheckCollisions
 08019530 Sax_Arc_Init
 080195C8 Sax_Arc_WaitingInDoorDuringChase
 0801964C Sax_Arc_OpeningDoorDuringChase
@@ -1014,8 +1014,8 @@
 08019E38 Sax_Lab_CoveredByMetroids1
 08019E94 Sax_Lab_CoveredByMetroids2
 08019EC8 Sax_Lab_AI
-;08019FA0
-;0801A400
+08019FA0 SaxBossRunniingCheckCollisions
+0801A400 SaxBossTrackSamus
 0801A6D0 Sax_Boss_RunningStart
 0801A704 Sax_Boss_Running
 0801A750 Sax_Boss_SpinJumpingStart
@@ -1031,7 +1031,7 @@
 0801AC9C Sax_Boss_FallingFromKnockback
 0801AD7C Sax_Boss_VariableHeightJumpingStart
 0801AE10 Sax_Boss_VariableHeightJumping
-;0801B06C
+0801B06C SaxBossUpdateMosaic
 0801B0DC Sax_Boss_KnockbackStart
 0801B1CC Sax_Boss_Knockback
 0801B264 Sax_Boss_KneelingStart
@@ -1058,8 +1058,8 @@
 0801BAB0 Sax_Omega_RevertingToXStart
 0801BADC Sax_Omega_RevertingToX
 0801BB20 Sax_Omega_AI
-;0801BD18
-;0801BF34
+0801BD18 SaxTro2WalkingCheckCollisions
+0801BF34 SaxTro2RunningCheckCollisions
 0801C268 Sax_Tro2_Init
 0801C33C Sax_Tro2_WaitingInDoorDuringChase
 0801C37C Sax_Tro2_WaitingInDoorAtEnd
@@ -1077,18 +1077,18 @@
 0801C6CC Sax_Tro2_ShootingMissileStart
 0801C774 Sax_Tro2_ShootingMissile
 0801C7E0 Sax_Tro2_AI
-;0801CA54
-;0801CAA8
-;0801CB6C
+0801CA54 HornoadCheckSamusInRange
+0801CAA8 HornoadCheckSamusStillInRange
+0801CB6C HornoadSetSidesHitboxes
 0801CB9C Hornoad_Init
 0801CCB4 Hornoad_IdleBeforeJumpingStart
-;0801CCF4
-;0801CD68
-;0801CDA0
+0801CCF4 HornoadJumpingInit
+0801CD68 HornoadLandingInit
+0801CDA0 HornhoadIdleAnimInit
 0801CE28 UpdateHornoadToFall
 0801CE6C Hornoad_UnusedPose37
-;0801CEEC
-;0801CF2C
+0801CEEC HornoadTurningAroundInit
+0801CF2C HornoadSpittingInit
 0801CF70 Hornoad_IdleBeforeJumping
 0801CFC0 Hornoad_Jumping
 0801D1F8 Hornoad_Landing
@@ -1121,8 +1121,8 @@
 0801E120 Halzyn_Landing
 0801E144 Halzyn_FlyingUpStart
 0801E164 Halzyn_FlyingUp
-;0801E1C4
-;0801E20C
+0801E1C4 HalzynWingIdleInit
+0801E20C HalzynWingFlappingInit
 0801E254 HalzynWing_Init
 0801E2F0 HalzynWing_Idle
 0801E4A0 HalzynWing_Falling
@@ -1324,8 +1324,8 @@
 08026A48 CoreXAbility_BeforeMegaX_AI
 08026A90 CoreXShell_BeforeMegaX_AI
 08026D30 CoreXStatic_BeforeMegaX_AI
-;08026E3C
-;08026E68
+08026E3C WaverCheckSamusInRange
+08026E68 WaverSetFlyingGfx
 08026E98 Waver_Init
 08026F58 Waver_FlyingStart
 08026F70 Waver_Flying
@@ -1340,11 +1340,11 @@
 08027420 WaverDebris_Exploding
 0802743C Waver_AI
 08027648 WaverDebris_AI
-;08027678
-;08027734
-;080277B0
-;0802780C
-;08027868
+08027678 SciserCheckCollisions
+08027734 SciserUpdateHitbox
+080277B0 SciserSetCrawlingGfx
+0802780C SciserSetIdleGfx
+08027868 SciserCheckSamusInRange
 080278E0 Sciser_Shooting
 08027A98 Sciser_TurningIntoX
 08027AE0 Sciser_Init
@@ -1363,10 +1363,10 @@
 080285E0 CheckSamusNearSidehopper
 08028600 Sidehopper_Init
 08028710 Sidehopper_PreparingToJumpStart
-;08028730
-;08028784
-;080287B0
-;08028814
+08028730 SidehopperJumpingInit
+08028784 SidehopperLandingInit
+080287B0 SidehopperIdle
+08028814 SidehopperFallingInit
 08028838 Sidehopper_PreparingToJump_Floor
 08028894 Sidehopper_PreparingToJump_Ceiling
 080288B8 Sidehopper_Jumping_Floor
@@ -1380,10 +1380,10 @@
 08029154 CheckSamusNearDessgeega
 08029174 Dessgeega_Init
 08029284 Dessgeega_PreparingToJumpStart
-;080292A4
-;080292F8
-;08029324
-;08029388
+080292A4 DesgeegaJumpingGroundInit
+080292F8 DesgeegaLandingInit
+08029324 DessgeegaIdleInit
+08029388 DessgeegaFallingInit
 080293AC Dessgeega_PreparingToJump_Floor
 08029408 Dessgeega_PreparingToJump_Ceiling
 0802942C Dessgeega_Jumping_Floor
@@ -1406,8 +1406,8 @@
 0802A05C XBarrierCore_Normal_DyingStart
 0802A08C XBarrierCore_Normal_AI
 0802A13C XBarrierStem_Normal_AI
-;0802A278
-;0802A2B0
+0802A278 NavPadDetectSamus
+0802A2B0 NavPadDetectSamus_Unused
 0802A2DC NavigationPad_Init
 0802A37C NavigationPad_IdleStart_Active
 0802A3C0 NavigationPad_Idle_Active
@@ -1447,10 +1447,10 @@
 0802B21C DataPad_ReleasingSwitch
 0802B230 DataPad_LockingSamus
 0802B280 DataPad_DownloadingData
-;0802B2A4
-;0802B344
-;0802B398
-;0802B3E0
+0802B2A4 DataPadCenterInit
+0802B344 DataPadCenterIdle
+0802B398 DataPadCenterEngaging
+0802B3E0 DataPadCenterDownloadingData
 0802B414 DataPadSides_Init
 0802B488 DataPadSides_Idle
 0802B4D0 DataPadSides_Engaging
@@ -1460,40 +1460,40 @@
 0802B5CC DataPad_AI
 0802B710 DataPadCenter_AI
 0802B758 DataPadSides_AI
-;0802B820
+0802B820 ZebesianWallSetSideHitboxs
 ;0802B850
-;0802B8F8
-;0802B9EC
-;0802BA40
-;0802BA90
-;0802BAB4
-;0802BB3C
-;0802BB58
-;0802BBB8
-;0802BC24
-;0802BC40
-;0802BC54
-;0802BC70
-;0802BCF0
-;0802BD8C
-;0802BDD4
+0802B8F8 ZebesianWallInit
+0802B9EC ZebesianWallFormingFromX
+0802BA40 ZebesianWallDeath
+0802BA90 ZebesianWallMovingVerticallyInit
+0802BAB4 ZebesianWallMoveVertically
+0802BB3C ZebesianWallTurningAroundInit
+0802BB58 ZebesianWallTurningAround
+0802BBB8 ZebesianWallJumping
+0802BC24 ZebesianWallIdleInit
+0802BC40 ZebesianWallIdle
+0802BC54 ZebesianWallShootingInit
+0802BC70 ZebesianWallShooting
+0802BCF0 ZebesianBeamInit
+0802BD8C ZebesianBeamSpawning
+0802BDD4 ZebesianBeamExtending
 0802BE1C Zebesian_Wall_AI
 0802C030 ZebesianBeam_Wall_AI
-;0802C084
-;0802C1C4
-;0802C208
-;0802C258
-;0802C284
-;0802C350
-;0802C364
-;0802C394
-;0802C400
-;0802C488
-;0802C4FC
-;0802C540
-;0802C58C
-;0802C5D0
-;0802C5F8
+0802C084 RechargePadInit
+0802C1C4 RechargePadIdleInit
+0802C208 RechargePadIdle
+0802C258 RechargePadOpening
+0802C284 RechargePadOpened
+0802C350 RechargePadClosing
+0802C364 RechargePadExtending
+0802C394 RechargePadRefilling
+0802C400 RechargePadRetracting
+0802C488 RechargePadMonitorInit
+0802C4FC RechargePadMonitorIdle
+0802C540 RechargePadMonitorExtended
+0802C58C RechargePadMonitorRetractingInit
+0802C5D0 RechargePadMonitorRetracting
+0802C5F8 RechargePadScreenInit
 0802C6C8 RechargePad_AI
 0802C81C RechargePadMonitor_AI
 0802C8D8 RechargePadScreen_AI
@@ -1540,7 +1540,7 @@
 0802E27C BeamCoreXShell_Moving
 0802E2F8 BeamCoreXEye_Init
 0802E3C4 BeamCoreXEye_Transformation
-;0802E40C
+0802E40C BeamCoreXEyeHandleRotation
 0802E744 BeamCoreXEye_Closed
 0802E788 BeamCoreXEye_Opening
 0802E7DC BeamCoreXEye_Opened
@@ -1560,12 +1560,12 @@
 0802F3C4 CoreXPlasmaBeam_AI
 0802F448 CoreXWaveOrIceBeam_Hit
 0802F574 CoreXWaveOrIceBeam_AI
-;0802F5D4
-;0802F668
+0802F5D4 ToxicGasInit
+0802F668 ToxicGasIdle
 0802F6F8 ToxicGas_AI
 0802F71C ToxicGasExplosion_AI
-;0802F7F4
-;0802F854
+0802F7F4 KagoSetCollision
+0802F854 KagoPlaySound
 0802F8F0 Kago_TurningIntoX
 0802F934 Kago_Init
 0802FA3C Kago_SpawningFromX
@@ -1575,19 +1575,19 @@
 0802FB24 KagoInsect_ExplodingStart
 0802FB54 KagoInsect_Exploding
 0802FB78 KagoInsect_Init
-;0802FC34
-;0802FC54
-;0802FCEC
+0802FC34 KagoInsectJumpWarningInit
+0802FC54 KagoInsectJumpingInit
+0802FCEC KagoInsectFallingInit
 0802FD10 KagoInsect_Standing
 0802FD70 KagoInsect_Jumping
 0802FF94 KagoInsect_Falling
 0803004C Kago_AI
 080301C0 KagoInsect_AI
-;08030314
-;08030410
+08030314 ShakeTriggerStartScreenShake
+08030410 PreBoxCeilingDebrisCheckSamusInRange
 08030454 ShakeTrigger_AI
 08030728 PreBoxCeilingDebris_AI
-;080309D8
+080309D8 GateSetCollision
 08030A28 Gate_Init
 08030B60 Gate_Closed
 08030B98 Gate_OpeningStart
@@ -1598,45 +1598,45 @@
 08030DE8 GateSwitch_Pressed
 08030DF8 Gate_AI
 08030E40 GateSwitch_AI
-;08030E80
-;08030EE0
-;08030F0C
-;08030F80
-;08030FD4
-;0803108C
-;080310C0
-;0803113C
+08030E80 ElectricWaterDamageInit
+08030EE0 ElectricWaterDamageIdle
+08030F0C ElectricWaterDamageDamagingSamus
+08030F80 ElectricWaterDamageStopping
+08030FD4 ElectricWireInit
+0803108C ElectricWireIdle
+080310C0 ElectricWaterInit
+0803113C ElectricWaterIdle
 08031150 ElectricWaterDamage_AI
 080311A8 ElectricWire_AI
 080311D0 ElectricWater_AI
-;08031214
-;080312D0
-;08031358
-;08031388
-;080313B8
-;080313FC
-;08031444
-;080315C0
-;080315E8
-;080316F4
-;08031894
-;08031ACC
-;08031AE4
-;08031B04
-;08031B20
-;08031B40
+08031214 ZoroCheckCollidingWithAir
+080312D0 ZoroSetHitboxAndDrawDistance
+08031358 ZoroSetCrawlingOam
+08031388 ZoroSetTurningOam
+080313B8 ZoroSetTurningAroundSecondPartOam
+080313FC ZoroSetDeathPosition
+08031444 ZoroInit
+080315C0 ZoroCrawlingInit
+080315E8 ZoroRedGetSpeed
+080316F4 ZoroBlueGetSpeed
+08031894 ZoroCrawl
+08031ACC ZoroTurningInit
+08031AE4 ZoroTurningAround
+08031B04 ZoroTurningAroundSecondPart
+08031B20 ZoroFallingInit
+08031B40 ZoroFalling
 08031C40 Zoro_AI
-;08031E70
-;08031EC4
+08031E70 KihunterGroundCheckInSpittingrange
+08031EC4 KihunterGroundDetectSamus
 08031F7C Kihunter_TurningIntoX
 08031FFC Kihunter_Ground_Init
 080320A4 Kihunter_Ground_PreparingToJumpStart
-;080320FC
-;0803214C
-;0803216C
-;0803218C
-;080321B0
-;080321D4
+080320FC KihhunterGroundJumpInit
+0803214C KihunterGroundLandingInit
+0803216C KihunterIdleInit
+0803218C KihunterFallingInit
+080321B0 KihunterGroundTurningAroundInit
+080321D4 KihunterGroundSpittingInit
 08032218 Kihunter_Ground_PreparingToJump
 08032268 Kihunter_Ground_Jumping
 080323F4 Kihunter_Ground_Landing
@@ -1645,14 +1645,14 @@
 08032568 Kihunter_Ground_TurningStart
 080325AC Kihunter_Ground_TurningEnd
 08032628 Kihunter_Ground_Spitting
-;080326C4
+080326C4 KihunterFlyingXMovement
 08032728 Kihunter_Flying_Init
 08032814 Kihunter_Flying_IdleStart
 08032840 Kihunter_Flying_TurningStart
 08032860 Kihunter_Flying_Idle
 08032974 Kihunter_Flying_Turning
 080329AC Kihunter_Flying_TurningEnd
-;080329C0
+080329C0 KihunterFlyingUpdateSwipeAnim
 08032A50 Kihunter_Flying_SwoopingDownStart
 08032AD0 Kihunter_Flying_SwoopingDown
 08032BB4 Kihunter_Flying_SwoopingAcrossStart
@@ -1680,34 +1680,34 @@
 08033B40 KihunterSpit_AI
 08033B7C KihunterHive_AI
 08033BC0 KihunterBug_AI
-;08033C04
-;08033C24
-;08033C58
-;08033CBC
-;08033DC4
-;08033E04
-;08033EB4
-;08033F04
-;08033F30
-;0803401C
-;0803403C
-;080340FC
-;0803411C
-;080341DC
-;080341F8
-;080342E4
-;08034374
+08033C04 ReoPlaySound
+08033C24 ReoCheckFall
+08033C58 ReoXMovement
+08033CBC ReoInit
+08033DC4 ReoFallInit
+08033E04 ReoFalling
+08033EB4 ReoLanding
+08033F04 ReoIdleInit
+08033F30 ReoIdleInit
+0803401C ReoGoingDownInit
+0803403C ReoGoingDown
+080340FC ReoSlidingInit
+0803411C ReoSliding
+080341DC ReoGoingUpInit
+080341F8 ReoGoingUp
+080342E4 ReoWingsInit
+08034374 ReoWingsIdle
 0803442C Reo_AI
 0803466C ReoWing_AI
-;080346AC
-;0803474C
-;0803479C
-;0803481C
-;0803482C
-;0803486C
-;080348BC
-;080348F0
-;08034958
+080346AC LavaPlumeInit
+0803474C LavaPlumeGoUpInit
+0803479C LavaPlumeGoUp
+0803481C LavaPlumeStopFromSamusContact
+0803482C LavaPlumeStopInit
+0803486C LavaPlumeStop
+080348BC LavaPlumeIdle
+080348F0 LavaPlumeWarningInit
+08034958 LavaPlumeWarningIdle
 080349C4 LavaPlume_AI
 08034AEC LavaPlumeLaunch_AI
 08034B18 Fune_Init
@@ -1744,10 +1744,10 @@
 08035A08 FuneSpit_AI
 08035A44 Namihe_AI
 08035C50 NamiheSpit_AI
-;08035C8C
-;08035CC8
-;08035D0C
-;08035D74
+08035C8C UpdateSubSpriteData1Anim
+08035CC8 SyncCurrSpritePositionWithSubSprite1Position
+08035D0C BoxSyncSubSprites
+08035D74 BoxXMovement
 08035E18 Box_Init
 08035FEC Box_WaitingToEmergeStart
 08036044 Box_WaitingToEmerge
@@ -1793,9 +1793,9 @@
 08036E74 Box_FinalJump
 08036EEC Box_CrawlingStart
 08036F30 Box_Crawling
-;08036F40
-;08036F68
-;08037048
+08036F40 BoxPartSetBoxWorkVar2
+08036F68 BoxPartCenterSetImmunity
+08037048 BoxPartRemoveIgnoreProjectiles
 0803705C BoxPart_Init
 080371DC BoxFrontLeftLeg
 08037294 BoxFrontRightLeg
@@ -1829,51 +1829,51 @@
 08038B0C BoxFire_AI
 08038B40 BoxDebris_AI
 08038BF4 BoxFallingDebris_AI
-;08038C1C
-;08038C80
-;08038D08
-;08038D3C
-;08038D70
-;08038DF4
-;08038E90
-;08038EBC
-;080390AC
-;080390CC
-;080390F0
-;08039114
-;08039144
+08038C1C GerudaYMovement
+08038C80 GerudaXMovement
+08038D08 GerudaSetIdleSideHitboxes
+08038D3C GerudaSetAttackingSideHitboxes
+08038D70 GerudaUpdateLungingAnim
+08038DF4 GerudaInit
+08038E90 GerudaIdleInit
+08038EBC GerudaIdle
+080390AC GerudaTurningAroundInit
+080390CC GerudaTurningAround
+080390F0 GerudaAttackWarningInit
+08039114 GerudaAttackWarning
+08039144 GerudaAttacking
 08039248 Geruda_AI
-;0803944C
-;08039598
-;080395FC
-;0803965C
-;08039698
-;08039724
-;08039738
-;080397A8
-;08039848
-;08039880
-;08039884
-;080398D8
-;080399AC
+0803944C MiscPadInit
+08039598 MiscPadIdleInit
+080395FC MiscPadIdle
+0803965C MiscPadPressingSwitch
+08039698 MiscPadSwitchPressed
+08039724 MiscPadReleasingSwitch
+08039738 MiscPadSamusInteracting
+080397A8 MiscPadSpawnMessageBanner
+08039848 MiscPadAfterInteraction
+08039880 MiscPadInactive
+08039884 MiscPadWaitForWideBeamCoreX
+080398D8 MiscPadConsoleInit
+080399AC MiscPadConsoleIdle
 080399FC MiscellaneousPad_AI
 08039B84 MiscellaneousPadConsole_AI
-;08039BB4
-;08039C80
-;08039CC4
-;08039D14
-;08039D40
-;08039DBC
-;08039DD0
-;08039E20
-;08039E64
-;08039EC8
-;08039ECC
-;08039F6C
-;08039FAC
-;0803A020
-;0803A048
-;0803A08C
+08039BB4 OperationsRoomPadInit
+08039C80 OperationsRoomPadIdleInit
+08039CC4 OperationsRoomPadIdle
+08039D14 OperationsRoomPadPressingSwitch
+08039D40 OperationsRoomPadSwitchPressed
+08039DBC OperationsRoomPadReleasing
+08039DD0 OperationsRoomPadSamusInteracting
+08039E20 OperationsRoomPadStartEscape
+08039E64 OperationsRoomPadConsoleInit
+08039EC8 OperationsRoomPadConsoleIdle
+08039ECC OperationsRoomPadConsoleScreenInit
+08039F6C OperationsRoomPadConsoleScreenIdle
+08039FAC OperationsRoomPadScreenInit
+0803A020 OperationsRoomPadScreenTurningOn
+0803A048 OperationsRoomPadScreenIdle
+0803A08C OperationsRoomPadScreenTurningOff
 0803A0A4 OperationsRoomPad_AI
 0803A1E8 OperationsRoomConsole_AI
 0803A214 OperationsRoomConsoleScreen_AI
@@ -1884,71 +1884,71 @@
 0803A374 Scientist_TransformationStart
 0803A3A0 Scientist_Transformation
 0803A408 Scientist_AI
-;0803A454
-;0803A4B0
-;0803A53C
-;0803A584
-;0803A6B0
-;0803A6FC
-;0803A7DC
-;0803A810
-;0803A93C
-;0803A9C8
+0803A454 SkulteraSetSidesHitboxes
+0803A4B0 SkulteraXMovement
+0803A53C SkulteraTurningIntoX
+0803A584 SkulteraInit
+0803A6B0 SkulteraIdleInit
+0803A6FC SkulteraIdle
+0803A7DC SkulteraChasingSamusInit
+0803A810 SkulteraChasingSamus
+0803A93C SkulteraTurningAroundInit
+0803A9C8 SkulteraTurningAround
 0803A9EC Skultera_AI
-;0803AC18
-;0803ACD4
-;0803AD54
-;0803AD84
-;0803ADB4
-;0803AF78
-;0803AFC0
-;0803B10C
-;0803B124
-;0803B360
-;0803B378
-;0803B3A8
-;0803B3C8
-;0803B4C8
-;0803B53C
-;0803B604
-;0803B64C
+0803AC18 ZeelaCheckCollidingWithAir
+0803ACD4 ZeelaUpdateHitbox
+0803AD54 ZeelaSetCrawlingOam
+0803AD84 ZeelaSetFallingOam
+0803ADB4 ZeelaShootProjectiles
+0803AF78 ZeelaTurningIntoX
+0803AFC0 ZeelaInit
+0803B10C ZeelaIdleInit
+0803B124 ZeelaIdle
+0803B360 ZeelaTurningAroundInit
+0803B378 ZeelaTurningAround
+0803B3A8 ZeelaFallingInit
+0803B3C8 ZeelaFalling
+0803B4C8 ZeelaProjectileInit
+0803B53C ZeelaProjectileMoving
+0803B604 ZeelaProjectileExplodingInit
+0803B64C ZeelaProjectileExploding
 0803B670 Zeela_AI
 0803B874 ZeelaProjectile_AI
-;0803B8B0
-;0803B968
-;0803B9E8
-;0803BA2C
-;0803BA74
-;0803BBF8
-;0803BC10
-;0803C0AC
-;0803C0C4
-;0803C100
-;0803C118
-;0803C214
-;0803C2B4
-;0803C2FC
-;0803C344
-;0803C37C
-;0803C3B4
+0803B8B0 SovaCheckCollidingWithAir
+0803B968 SovaUpdateHitbox
+0803B9E8 SovaSetCrawlingOam
+0803BA2C SovaTurningIntoX
+0803BA74 SovaInit
+0803BBF8 SovaIdleInit
+0803BC10 SovaIdle
+0803C0AC SovaTurningAroundInit
+0803C0C4 SovaTurningAround
+0803C100 SovaFallingInit
+0803C118 SovaFalling
+0803C214 SovaFireInit
+0803C2B4 SovaFireBig
+0803C2FC SovaFireSmall
+0803C344 SovaFireDisappearing
+0803C37C SovaFireExplodingInit
+0803C3B4 SovaFireExploding
 0803C3D8 Sova_AI
 0803C5DC SovaFire_AI
-;0803C694
-;0803C6E4
-;0803C7A0
-;0803C8AC
-;0803C908
-;0803C938
-;0803C968
-;0803C998
-;0803C9C8
-;0803C9F8
+0803C694 YardCheckShouldStartle
+0803C6E4 YardCheckCollidingWithAir
+0803C7A0 YardUpdateHitbox
+0803C8AC YardSetCrawlingOam
+0803C908 YardSetTurningAroundOam
+0803C938 YardSetTurningAroundSecondPartOam
+0803C968 YardSetChargingOam
+0803C998 YardSetShootingOam
+0803C9C8 YardSetRecoilOam
+0803C9F8 YardCheckShoot
 0803CA78 Yard_ShootingStart
 0803CAA0 Yard_Shooting
 0803CC3C Yard_ShootingEnd
 0803CC60 Yard_TurningIntoX
 0803CCA8 Yard_Init
-;0803CE88
+0803CE88 YardCheckRoll
 0803CEFC Yard_Rolling
 0803D0E0 Yard_UnusedPose18
 0803D11C Yard_WalkingStart
@@ -1964,7 +1964,7 @@
 0803D784 YardProjectile_Exploding
 0803D7A8 Yard_AI
 0803D9D0 YardProjectile_AI
-;0803DA0C
+0803DA0C EvirCheckInShootingRange
 0803DA60 Evir_SpawningFromX
 0803DAB4 Evir_TurningIntoX
 0803DB24 Evir_Init
@@ -1985,54 +1985,54 @@
 0803E2CC Evir_AI
 0803E4F0 EvirCollision_AI
 0803E574 EvirProjectile_AI
-;0803E5B8
-;0803E680
-;0803E6A4
+0803E5B8 BullInit
+0803E680 BullIdleInit
+0803E6A4 BullIdle
 0803E7D0 Bull_AI
 0803E89C BullSmoke_AI
-;0803E960
-;0803EA20
-;0803EA44
-;0803EACC
-;0803EB4C
+0803E960 MemuInit
+0803EA20 MemuIdleInit
+0803EA44 MemuIdle
+0803EACC MemuChasingSamusInit
+0803EB4C MemuChasingSamus
 0803EE48 Memu_AI
-;0803F040
-;0803F0CC
-;0803F158
-;0803F19C
-;0803F264
-;0803F288
-;0803F364
-;0803F388
-;0803F3B4
-;0803F3F8
-;0803F480
-;0803F4C4
-;0803F54C
+0803F040 GerubossYMovement
+0803F0CC GerubossXMovement
+0803F158 GerubossTurningIntoX
+0803F19C GerubossInit
+0803F264 GerubossIdleInit
+0803F288 GerubossIdle
+0803F364 GerubossStalling
+0803F388 GerubossLaunchingInit
+0803F3B4 GerubossCharging
+0803F3F8 GerubossGoingDown
+0803F480 GerubossChagningDirection
+0803F4C4 GerubossGoingUp
+0803F54C GerubossGrabbingCeiling
 0803F568 Geruboss_AI
-;0803F780
-;0803F7A0
-;0803F7C0
-;0803F85C
-;0803F87C
-;0803F8E8
-;0803F904
-;0803F920
-;0803F964
-;0803F9D0
-;0803F9F4
-;0803FA10
-;0803FA34
-;0803FAD0
-;0803FB48
-;0803FB88
-;0803FBD4
+0803F780 ChootSetOpenHitbox
+0803F7A0 ChootSetClosedHitbox
+0803F7C0 ChootInit
+0803F85C ChootIdleInit
+0803F87C ChootIdle
+0803F8E8 ChootLaunchingInit
+0803F904 ChootLaunching
+0803F920 ChootGoingUpInit
+0803F964 ShootGoingUp
+0803F9D0 ChootOpeningInit
+0803F9F4 ChootOpening
+0803FA10 ChootGoingDownInit
+0803FA34 ChootGoingDown
+0803FAD0 ChootSpitInit
+0803FB48 ChootSpitSpawning
+0803FB88 ChootSpitExplodingInit
+0803FBD4 ChootSpitExploding
 0803FBF8 Choot_AI
 0803FE0C ChootSpit_AI
-;0803FF2C
-;0803FFDC
-;08040018
-;08040054
+0803FF2C ZebesianGroundCheckInShootingRange
+0803FFDC ZebesianGroundCheckCollidingWithAir
+08040018 ZebesianGroundSetIdleHitbox
+08040054 ZebesianGroundSetShootingHitbox
 080400A4 Zebesian_Ground_Init
 08040184 Zebesian_Ground_SpawningFromX
 0804020C Zebesian_PreAqua_TurningIntoX
@@ -2062,10 +2062,10 @@
 08040DB8 CheckZebesianShouldSkipMovement
 08040DE8 Zebesian_Ground_AI
 08041104 ZebesianBeam_Ground_AI
-;08041158
-;08041180
-;080411C0
-;0804126C
+08041158 BlueXSetTrail
+08041180 BlueXCheckStun
+080411C0 BlueXGetAbsorbed
+0804126C BlueXAbsorbedInit
 080412B4 BlueX_Init
 08041394 BlueX_Hiding
 080413E8 BlueX_SwayingStart
@@ -2080,7 +2080,7 @@
 0804195C BlueXAbsorption_FadingAway
 08041974 BlueX_AI
 08041A58 BlueXAbsorption_AI
-;08041AC8
+08041AC8 MissileHatchSetCollision
 08041B18 MissileHatch_Init
 08041BB4 MissileHatch_Idle
 08041BEC MissileHatch_Exploding
@@ -2100,19 +2100,19 @@
 08042590 XBarrierCore_Power_DyingStart
 080425C0 XBarrierCore_Power_AI
 08042670 XBarrierStem_Power_AI
-;080427AC
-;0804286C
-;0804288C
-;080428EC
-;0804290C
-;0804293C
+080427AC RipperInit
+0804286C RipperIdleInit
+0804288C RipperIdle
+080428EC RipperTurningAroundInit
+0804290C RipperTurningAround
+0804293C RipperTurningAroundSecondPart
 08042958 Ripper_AI
-;08042B60
-;08042BE8
-;08042C54
+08042B60 ZoroCocoonSetHitboxesAndDrawDistance
+08042BE8 ZoroCocoonSetOam
+08042C54 ZoroCocoonInit
 08042D84 ZoroCocoon_AI
-;08042E2C
-;08042E5C
+08042E2C ZoroHuskSetOam
+08042E5C ZoroHuskInit
 08042F84 ZoroHusk_AI
 08042FA4 SetGadoraClipdata
 08042FF4 SetGadoraDirectionPositionClipdata
@@ -2131,11 +2131,11 @@
 080438D4 GadoraBeam_AI
 080439C8 UnusedGadoraSprite_AI
 080439CC DestroyedDataPad_AI
-;08043CC8
+08043CC8 NettoriRemoveCollision
 08043D54 RemoveSamusEaterBudsAndSpores
-;08043DAC
-;08043E04
-;08043E9C
+08043DAC SamusEaterCheckNettoriHealthThreshold
+08043E04 NettoriUpdateGlowingPalette
+08043E9C NettoriUpdatePalette
 08043F5C Nettori_Init
 080440B0 Nettori_Idle
 08044164 Nettori_DyingStart
@@ -2175,11 +2175,11 @@
 08045318 SamusEater_AI
 080453A8 SamusEaterBud_AI
 08045540 SamusEaterSpore_AI
-;08045588
+08045588 ZazabiSyncSubSprites
 08045624 CheckProjectileHitZazabi
-;08045778
-;080457F8
-;080457FC
+08045778 ZazabiEnableProjectilesToPassThrough
+080457F8 Zazabi_Empty
+080457FC ZazabiXMovement
 08045878 Zazabi_CorexTransformation
 080458C4 Zazabi_Init
 08045AA0 Zazabi_IdleStart
@@ -2213,19 +2213,19 @@
 08046934 Zazabi_DyingStart
 0804697C Zazabi_Dying
 08046C38 ZazabiPart_Init
-;08046E50
+08046E50 ZazabiPartDefault
 080471C8 ZazabiMouth
 08047254 ZazabiEye
 0804730C Zazabi_AI
 08047558 ZazabiPart_AI
 08047628 ElevatorPad_AI
-;080476D0
-;08047758
-;080477FC
-;080478B8
-;08047954
-;080479A8
-;080479FC
+080476D0 SerrisUpdatePalette
+08047758 SerrisGetCurrSamusPlatform
+080477FC SerrisRotateAroundPoint
+080478B8 SerrisHandleRotationMovement
+08047954 SerrisStartRotationXAligned
+080479A8 SerrisStartRotationYAligned
+080479FC SerrisSetFacingOam
 08047A84 Serris_Init
 08047C14 Serris_WaitingToAppearStart
 08047D54 Serris_WaitingToAppear
@@ -2264,26 +2264,26 @@
 080491BC Serris_AI
 080496C4 SerrisSegment_AI
 08049AD8 SerrisBlock_AI
-;08049B20
-;08049BDC
-;08049C58
-;08049C88
-;08049CB8
-;08049D00
-;08049E4C
-;08049E64
-;0804A1A0
-;0804A334
-;0804A4B4
-;0804A4CC
-;0804A4FC
-;0804A530
+08049B20 OwtchCheckCollidingWithAir
+08049BDC OwtchUpdateHitbox
+08049C58 OwtchSetCrawlingOam
+08049C88 OwtchSetFallingOam
+08049CB8 OwtchTurningIntoX
+08049D00 OwtchInit
+08049E4C OwtchIdleInit
+08049E64 OwtchIdle
+0804A1A0 OwtchTurningAroundInit
+0804A334 OwtchTurningAround
+0804A4B4 OwtchLandingInit
+0804A4CC OwtchLanding
+0804A4FC OwtchFallingInit
+0804A530 OwtchFalling
 0804A64C Owtch_AI
-;0804A858
-;0804A8B0
-;0804A96C
-;0804A9C8
-;0804AAC4
+0804A858 GeegaSpawningFromX
+0804A8B0 GeegaInit
+0804A96C GeegaIdle
+0804A9C8 GeegaGoingUp
+0804AAC4 GeegaGoingForward
 0804AB28 Geega_AI
 0804ABAC CheckProjectileHitPillar
 0804ACE0 Pillar_Init
@@ -2308,45 +2308,45 @@
 0804B648 GenesisSpit_Splashing
 0804B66C Genesis_AI
 0804B88C GenesisSpit_AI
-;0804B9AC
-;0804BA58
-;0804BA7C
-;0804BA9C
-;0804BBE8
-;0804BC18
-;0804BC70
-;0804BC90
-;0804BCD4
-;0804BDE8
-;0804BEF4
+0804B9AC PuyoInit
+0804BA58 PuyoFallingInit
+0804BA7C PuyoIdleInit
+0804BA9C PuyoIdle
+0804BBE8 PuyoWaitingInit
+0804BC18 PuyoWaiting
+0804BC70 PuyoJumpWarningInit
+0804BC90 PuyoJumpWarning
+0804BCD4 PuyoJumpingUp
+0804BDE8 PuyoJumpingDown
+0804BEF4 PuyoLanding
 0804BF10 Puyo_AI
 ;0804C138
-;0804C158
-;0804C208
-;0804C220
-;0804C250
-;0804C28C
-;0804C2A8
-;0804C2D0
-;0804C344
-;0804C378
-;0804C410
+0804C158 FakeTankInit
+0804C208 FakeTankIdleInit
+0804C220 FakeTankIdle
+0804C250 FakeTankWakingUpInit
+0804C28C FakeTankWakingUp
+0804C2A8 FakeTankFlyingInit
+0804C2D0 FakeTankFlying
+0804C344 FakeTankFlyingAwayInit
+0804C378 FakeTankFlyingAway
+0804C410 FakeTankLeaving
 0804C490 FakeEnergyTank_AI
 0804C6F0 FakeMissileTank_AI
 0804C94C BigFlashingNumber_AI
 0804CA34 FlashingNumber_AI
-;0804CB18
-;0804CBA4
-;0804CBE4
-;0804CC88
-;0804CCB4
-;0804CE38
-;0804CE50
-;0804CEF0
-;0804CF10
-;0804D048
-;0804D068
-;0804D124
+0804CB18 ZebesianAquaXMovement
+0804CBA4 ZebesianAquaTurningIntoX
+0804CBE4 ZebesianAquaInit
+0804CC88 ZebesianAquaIdleInit
+0804CCB4 ZebesianAquaIdle
+0804CE38 ZebesianAquaLungeInit
+0804CE50 ZebesianAquaLunge
+0804CEF0 ZebesianAquaShootingInit
+0804CF10 ZebesianAquaShooting
+0804D048 ZebesianAquaTurningAroundInit
+0804D068 ZebesianAquaTurningAround
+0804D124 ZebesianAquaProjectileInit
 0804D1C8 Zebesian_Aqua_AI
 0804D3D8 ZebesianBeam_Aqua_AI
 0804D40C CheckHaveDachoraDoHeadMovement
@@ -2418,26 +2418,26 @@
 0804F430 Metroid_FloatingNearSax
 0804F4F0 Metroid_FloatingTowardSax
 0804F838 Metroid_AI
-;0804F8EC
-;0804F94C
-;0804F9E8
-;0804FA44
-;0804FC18
+0804F8EC LabDebrisSetCollision
+0804F94C LabDebrisInit
+0804F9E8 LabDebrisIdle
+0804FA44 LabDebrisFalling
+0804FC18 LabDebrisCrumbling
 0804FC64 LabDebris_AI
-;0804FCAC
-;0804FD68
-;0804FD88
-;0804FDBC
-;0804FDF0
-;0804FE20
-;0804FE40
-;0804FE64
-;0804FE9C
+0804FCAC PowampInit
+0804FD68 PowampIdleInit
+0804FD88 PowampIdle
+0804FDBC PowampExtendingInit
+0804FDF0 PowampExtending
+0804FE20 PowampExtendedInit
+0804FE40 PowampExtended
+0804FE64 PowampRetractingInit
+0804FE9C PowampRetracting
 0804FF04 Powamp_AI
-;08050118
-;080501B8
-;08050248
-;08050278
+08050118 ZozoroCheckCollidingWithAir
+080501B8 ZozoroUpdateHitbox
+08050248 ZozoroSetCrawlingOam
+08050278 ZozoroSetTurningAroundOam
 080502A8 Zozoro_TurningIntoX
 080502F0 Zozoro_Init
 0805046C Zozoro_CrawlingStart
@@ -2447,12 +2447,12 @@
 080508A4 Zozoro_FallingStart
 080508C4 Zozoro_Falling
 080509C4 Zozoro_AI
-;08050BC8
-;08050C30
-;08050D0C
-;08050D4C
-;08050DCC
-;08050DFC
+08050BC8 SA_XMonsterSyncSubSprites
+08050C30 SA_XMonsterProjectilesCollision
+08050D0C SA_XMonsterCheckScreaming
+08050D4C SA_XMonsterXMovement
+08050DCC SA_XMonsterSetSideHitboxes
+08050DFC SA_XMonsterFall
 08050E90 SaxMonster_Spawning
 08050F44 SaxMonster_Init
 08051114 SaxMonster_DroppingStart
@@ -2481,8 +2481,8 @@
 08051B50 SaxMonsterPart_AI
 08051B74 ContinualXSpawner_Active
 08051CAC ContinualXSpawner_AI
-;08051D38
-;08051DA0
+08051D38 Box2SyncSubSprites
+08051DA0 Box2XMovement
 08051E44 Box2_Initialize
 08052038 Box2_WaitingToRunStart
 08052070 Box2_WaitingToRun
@@ -2521,15 +2521,15 @@
 08052E60 Box2_BrainFloating
 08052E80 Box2_CrawlingStart
 08052EC4 Box2_Crawling
-;08052ED4
-;08052EFC
-;08052FDC
+08052ED4 Box2PartSetBoxWorkVar2
+08052EFC Box2PartCenterSetImmunity
+08052FDC Box2PartRemoveIgnoreProjectiles
 08052FF0 Box2Part_Init
-;080531B8
-;08053354
-;080534F4
-;08053650
-;08053714
+080531B8 Box2PartFrontLeftLeg
+08053354 Box2PartFrontRightLeg
+080534F4 Box2PartTopShell
+08053650 Box2PartBottomShell
+08053714 Box2PartDefault
 080537C0 Box2Missile_Init
 0805386C Box2Missile_Launching
 080538F4 Box2Missile_MovingTowardSamus
@@ -2546,25 +2546,25 @@
 08054054 Box2Missile_AI
 08054094 Box2BrainTop_AI
 080540DC Box2BrainBottom_AI
-;08054100
-;08054168
-;080541C4
+08054100 OmagaMetroidSyncSubSPrites
+08054168 OmegaMetroidPartSetDrawOrder
+080541C4 OmegaMetroidPartSetDrawOrder_2
 080541F0 UpdateOmegaMetroidPaletteBasedOnHealth
 08054294 OmegaMetroidAndSaxBeamCollision
-;08054370
-;080543BC
-;08054488
-;080544B0
-;080544F8
-;08054540
-;08054574
-;080545A0
-;080545CC
-;080545F8
-;0805464C
-;080546E0
-;08054798
-;080547DC
+08054370 OmegaMetroidUpdateHeartPalette
+080543BC OmegaMetroidUpdateHealthThreshold
+08054488 OmegaMetroidCheckSamusOnLowHealth
+080544B0 OmegaMetroidBodyBlinking
+080544F8 OmegaMetroidFullBodyBlinking
+08054540 OmegaMetroidCheckSamusInFrontRange
+08054574 OmegaMEtroidCheckBehindRightTrigger
+080545A0 OmegaMetroidCheckInFrontOfMiddleTrigger
+080545CC OmegaMetroidCheckInFrontOfLeftTrigger
+080545F8 OmegaMetroidXMovement
+0805464C OmegaMetroidBackwardsMovement
+080546E0 OmegaMetroidForwardMovement
+08054798 OmegaMetroidSlowMovement
+080547DC OmegaMetroidStandingMovement
 08054810 OmegaMetroid_Init
 080549E8 OmegaMetroid_WaitingToAppear
 08054A28 OmegaMetroid_FirstJump
@@ -2611,7 +2611,7 @@
 080560CC OmegaMetroidPart_Moving
 080562B0 OmegaMetroid_AI
 080564F4 OmegaMetroidPart_AI
-;08056518
+08056518 GunshipEndSpawnBeams
 08056650 Gunship_End_Init
 080566DC Gunship_End_WaitingAtStart
 08056710 Gunship_End_MovingUp
@@ -2631,88 +2631,88 @@
 08056E20 Gunship_End_AI
 08056F88 GunshipBottom_End_AI
 08056FA8 GunshipBeam_End_AI
-;08056FFC
-;0805705C
-;08057088
-;080570FC
+08056FFC ElectricWaterDamageBox2Init
+0805705C ElectricWaterDamageBox2Idle
+08057088 ElectricWaterDamageBox2DamagingSamus
+080570FC ElectricWaterDamageBox2Stopping
 08057150 UnusedElectricWaterDamage_AI
-;080571AC
-;080571CC
-;08057290
-;080572D0
-;08057324
-;08057354
-;08057398
-;080573E8
-;08057478
-;080574EC
+080571AC FrozenRidleySetCollision
+080571CC FrozenRidleyInit
+08057290 FrozenRidleyWaitForSamus
+080572D0 FrozenRidleySpawningX
+08057324 FrozenRidleyClosingEye
+08057354 FrozenRidleyXSpawning
+08057398 FrozenRidleyCrumbling
+080573E8 FrozenRidleyXInit
+08057478 FrozenRidleyXRidleySpawning
+080574EC FrozenRidleyXFlyingAway
 08057578 FrozenRidley_AI
 08057634 FrozenRidleyX_AI
-;0805766C
+0805766C GoldSciserDoorLockIdle
 08057694 GoldSciserDoorLock_AI
-;08057728
+08057728 GoldZebesianDoorLockIdle
 08057750 GoldZebesianDoorLock_AI
-;080577E4
-;08057868
-;080578B4
-;08057938
-;08057A90
-;08057ACC
-;08057C5C
-;08057C84
-;08057CD4
-;08057D10
-;08057D14
-;08057D58
-;08057D80
-;08057DAC
-;08057DD4
-;08057E00
-;08057E9C
+080577E4 MegaXUpdatePalette
+08057868 MegaXDestroyShields
+080578B4 MegaXTurningIntoX_Unused
+08057938 VariaSuitAbilityInit
+08057A90 VariaSuitAbilityWaitingToSpawn
+08057ACC VariaSuitAbilitySpawning
+08057C5C VariaSuitAbilityMovingInit
+08057C84 VariaSuitAbilityMoving
+08057CD4 VariaSuitAbilityShrinking
+08057D10 VariaSuitAbilityShrinked
+08057D14 VariaSuitAbilityTurningIntoCoreX
+08057D58 VariaSuitAbilityCoreXMovingInit
+08057D80 VariaSuitAbilityCoreXMoving
+08057DAC VariaSuitAbilityCoreXMovingInit_Unused
+08057DD4 VariaSuitAbilityCoreXMoving_Unused
+08057E00 MegaXShieldInit
+08057E9C MegaXShieldIdle
 08058064 VariaSuitAbility_AI
 0805825C MegaX_AI
 080585D0 CoreXShell_Varia_AI
 0805899C MegaXShield_AI
-;080589C4
-;08058A88
-;08058AF0
-;08058B20
-;08058C44
-;08058C70
-;08058CA0
-;08058CC8
+080589C4 OmegaHuskSetCollision
+08058A88 OmegaMetroidHuskInit
+08058AF0 OmegaMetroidHuskWaitingForSamus
+08058B20 OmegaMetroidHuskWaitForOmegaMetroidToSpawn
+08058C44 OmegaMetroidHuskGettingCrushedInit
+08058C70 OmegaMetroidHuskGettingCrushed
+08058CA0 OmegaMetroidHuskWaiting
+08058CC8 OmegaMetroidHuskDisappearing
 08058CFC OmegaMetroidHusk_AI
-;08058DC4
-;08058E38
-;08058EBC
-;08058EF0
-;08058F7C
-;08059010
-;08059084
-;080590CC
-;08059184
-;080592C0
+08058DC4 IceBeamAbilitySpawningFromX
+08058E38 IceBeamAbilityInit
+08058EBC IceBeamAbilitySpawning
+08058EF0 IceBeamAbilityEntering
+08058F7C IceBeamAbilityFloatingBeforeSA_X
+08059010 IceBeamAbilityTurningIntoSA_X
+08059084 IceBeamAbilitySpawningFromSA_XInit
+080590CC IceBeamAbilityGoingToTarget
+08059184 IceBeamAbilityWaiting
+080592C0 IceBeamAbilityGettingAbsorbed
 08059300 IceBeamAbility_AI
 080594E4 MetroidHusk_AI
-;08059544
-;08059830
-;0805986C
-;080598CC
-;08059968
+08059544 RidleyMove
+08059830 UpdateSubSpriteData2Anim
+0805986C RidleySyncSubSpritesPosition
+080598CC RidleySyncSubSprites
+08059968 RidleyTailSyncSubSprites
 080599F0 UpdateRidleyPaletteBasedOnHealth
-;08059A88
-;08059AD0
-;08059B24
-;08059B5C
-;08059BA0
-;08059C14
-;08059CD4
-;08059DB0
-;08059E28
-;08059EA0
-;08059F2C
-;08059F5C
-;08059FDC
+08059A88 RidleySetBgPriority
+08059AD0 RidleyUpdateClawOam
+08059B24 RidleyTailStrikingCheckPlayEffects
+08059B5C RidleyTailStrikeYMovement
+08059BA0 RidleyFloatingMovement
+08059C14 RidleyUpdateHealthThreshold
+08059CD4 RidleyWaveBeamCollsiion
+08059DB0 RidleyCheckGrabSamusLeft
+08059E28 RidleyCheckGrabSamusRight
+08059EA0 RidleySamusGrabbed
+08059F2C RidleySetSideHitboxes
+08059F5C RidleyXMovement_Unused
+08059FDC RidleyTailXMovement
 0805A08C Ridley_ScreamingStart
 0805A10C Ridley_Screaming
 0805A2D8 Ridley_CoreXTransformation
@@ -2732,9 +2732,9 @@
 0805A918 Ridley_ShootingFireStart
 0805A93C Ridley_ShootingFire
 0805AA48 RidleyWingOrTail_Init
-;0805AB18
+0805AB18 RidleyPartidle
 0805AB68 RidleyTailPart_Init
-;0805AC1C
+0805AC1C RidleyTailPartHandleRotation
 0805AC68 RidleyTailPart_Idle
 0805ACE8 RidleyTailPart_WaitingToWindUp
 0805AD18 RidleyTailPart_WindingUp1
@@ -2759,15 +2759,15 @@
 0805BB64 Ridley_PreSpawn_ClosedEye
 0805BB9C Ridley_PreSpawn_Transformation
 0805BC08 Ridley_PreSpawn_AI
-;0805BCC4
-;0805BD2C
-;0805BDAC
-;0805BDDC
-;0805BE08
-;0805BE34
-;0805BE54
-;0805BE94
-;0805BEE8
+0805BCC4 YakuzaSyncSubSprites
+0805BD2C YakuzaUpdatePalette
+0805BDAC YakuzaUpdateGrabbedSamus
+0805BDDC YakuzaCheckCollidingWithRightWall
+0805BE08 YakuzaCheckCollidingWithLeftWall
+0805BE34 YakuzaCheckCollidingWithFloor
+0805BE54 YakuzaCheckCollidingWithCeiling
+0805BE94 YakuzaXMovement
+0805BEE8 YakuzaYMovement
 0805BF4C Yakuza_GrabbedSamusStart
 0805BF98 Yakuza_GrabbedSamus
 0805C014 Yakuza_PullingSamusUp
@@ -2804,10 +2804,10 @@
 0805D184 Yakuza_CoreXTransformationStart
 0805D1A0 Yakuza_CoreXTransformation
 0805D204 YakuzaEyeOrLeg_Init
-;0805D2D0
-;0805D34C
-;0805D3B0
-;0805D4E0
+0805D2D0 YakuzaPartLegsIdle
+0805D34C YakuzaPartLegsDead
+0805D3B0 YakuzaPartEyeIdle
+0805D4E0 YakuzaPartEyesPhase2
 0805D518 YakuzaFireOrSpit_Init
 0805D5DC YakuzaSpit_HittingSamus
 0805D604 YakuzaSpit_Falling
@@ -2822,7 +2822,7 @@
 0805DD24 YakuzaEyeOrLeg_AI
 0805DD78 YakuzaFireOrSpit_AI
 0805DEAC YakuzaFallingLeg_AI
-;0805DEDC
+0805DEDC NightmareMoveToPosition
 0805E180 UpdateNightmareOamAndPosition
 0805E1E8 PlayRepeatingNightmareSound
 0805E220 MakeMissilesFallDuringNightmare
@@ -2846,8 +2846,8 @@
 0805EA34 Nightmare_MovingToDeathPosition
 0805EB38 Nightmare_CoreXTransformation
 0805EBC8 NightmarePart_Init
-;0805EFF8
-;0805F034
+0805EFF8 NightmarePartDying
+0805F034 NightmarePartSpawnBeam
 0805F070 NightmareRightArmTop
 0805F154 NightmareRightArmBottom
 0805F238 NightmareRightTurret1
@@ -2860,8 +2860,8 @@
 080600C4 NightmareMouth
 0806018C NightmareEyeSludge
 08060390 NightmareChinSludge
-;080604CC
-;08060514
+080604CC NightmarePartGeneratorUpdateGlowingPalette
+08060514 NightmarePartGeneratorUpdateDyingPalette
 08060558 NightmareGenerator
 08060984 NightmareBeam_Init
 08060A2C NightmareBeam_Moving
@@ -2911,62 +2911,62 @@
 08061528 CheckOnEvent_TimerDisplayed
 08061620 CheckOnEvent_TimerStopped
 ;08061640
-;080616A8
-;08061714
-;08061998
-;08061BF4
-;08061CB0
+080616A8 CountPrimarySpritesThatCannotAbsorbX
+08061714 XParasiteMove
+08061998 XParasiteMoveWithSound
+08061BF4 SamusAbsorbX
+08061CB0 XParasiteGettingAbsorbedInit
 08061CFC EnemyDyingStart
 08061D28 EnemyDying
-;08061DB8
+08061DB8 XParasiteSpawningInit
 08061E00 DetermineXParasiteType
 08061F74 InitXParasite
-;08062174
-;080621B8
-;080622E0
-;080623C0
+08062174 XParasiteFlyingInit
+080621B8 XParasiteIdleFloating
+080622E0 XParasiteFlying
+080623C0 XParasiteGettingAbsorbed
 ;080623EC
-;08062680
-;08062728
-;08062768
-;08062888
-;080628C4
+08062680 XParasiteFlyingAway
+08062728 Xparasiterelated
+08062768 Xparasiterelated
+08062888 Xparasiterelated
+080628C4 Xparasiterelated
 08062910 EnemySpawningFromX
 ;08062964
-;08062AF8
+08062AF8 XParasiteStickToSamus
 08062BC8 StartVerticalScreenShake
 08062BFC StartHorizontalScreenShake
-;08062C30
-;08062C60
-;08062CC8
-;08062D30
-;0806328C
+08062C30 ScreenShakeStartHorizontal_Unused
+08062C60 ScreenShakeUpdateVertical
+08062CC8 ScreenShakeUpdateHorizontal
+08062D30 TransparencySetRoomEffectsTransparency
+0806328C TransparencyGetBgSizeFlag
 ;080632B8
 080632FC CheckMakeRoomDim
 0806336C CheckMainElevatorActive
 080633B4 CheckSetMeltdownEffect
 080633DC CheckRoomShouldBeDark
-;080633F4
+080633F4 RoomEffectFade
 ;0806360C
 08063674 LockHatches
-;08063704
-;08063794
+08063704 LockHatchesWithTimer
+08063794 RecoveringSuitInit
 080637D4 SetCurrNavRoom
 08063834 DetermineNavRoomHatchesToLock
-;08063A00
-;08063A30
+08063A00 CheckSetCurrEventBasedEffect
+08063A30 SetCurrEventBasedEffect
 08063A48 CheckLockHatchesAndProcessEventBasedEffect
 08063C90 SetEventBasedEffectBit7
-;08063CB8
+08063CB8 UpdateEventBasedEffect
 08063CE0 CheckSetEventBasedEffectBit7
-;08063E24
-;08064290
+08063E24 ProcessEventBasedEffect
+08064290 CheckUnlockHatches
 08064344 DetermineHatchesToLock
-;080643EC
-;08064404
-;080644EC
-;08064A74
-;08064AC4
+080643EC CheckLockHatchesWithTimer
+08064404 CheckUnlockProximityHatches
+080644EC RecoveringSuitCutscene
+08064A74 CalcSuitFlashOffset
+08064AC4 ProcessOperationsRoomEffect
 08064B4C UpdateAnimatedPaletteForOmegaRoom
 08064BC8 LoadRoom
 08064CEC LoadTileset
@@ -2975,115 +2975,115 @@
 080650E0 RemoveNeverReformBlocksAndTanks
 080650F0 ResetRoomRamValues
 08065538 LoadScrollsAndEventBasedEffects
-;080658C4
+080658C4 LoadDoors
 ;08065C1C
-;08065C58
+08065C58 SetupInitialTilemap
 08065EA8 RleDecompress
 ;08065FA4
-;08065FE4
+08065FE4 EmptyFunction
 ;08065FE8
 ;08066020
-;08066110
-;08066168
-;0806624C
-;08066354
-;0806647C
-;08067268
-;080678AC
-;080683A8
-;080686C4
-;080686E4
-;0806871C
-;080689D8
-;08068A20
+08066110 UpdateAnimatedGfxAndPalette
+08066168 UpdateHatchFlashingAnim
+0806624C UpdateRoom
+08066354 UpdateBackgroundsPosition
+0806647C UpdateVerticalTilemap
+08067268 SendVerticalTilemap
+080678AC UpdateHorizontalTilemap
+080683A8 SendHorizontalTilemap
+080686C4 WaitForDma3
+080686E4 PowerBombExplosionProcess
+0806871C PowerBombExplosion
+080689D8 PowerBombExplosionStart
+08068A20 PowerBombExplosionSet0x12To0
 08068A2C InitPowerBombExplosion
-;08068A8C
+08068A8C PowerBombExplosionEnd
 08068BD8 UpdateGadoraHatch
-;08068C84
-;08068D04
-;08068DB4
-;08068E94
+08068C84 UpdateInGameTimer
+08068D04 IoWriteRegisters
+08068DB4 IoWriteRegistersDuringTransition
+08068E94 ProcessPauseButtonPress
 ;08068F98
 ;08069014
 08069114 CopyClipdataHandlingCode
-;08069140
+08069140 ClipdataProcessForSamus
 080691E4 UpdateClipdataAtPosition
-;080692EC
-;08069494
-;080695E8
+080692EC ConvertClipdataToCollision
+08069494 ClipdataUpdateCurrAffecting
+080695E8 CheckCannotUseElevator
 08069724 CheckGroundTypeUnderSamus
 080697A8 CheckEnterDoor
-;080699A0
-;08069AEC
+080699A0 CheckEnterAreaConnection
+08069AEC ProcessDoorType
 08069B2C FindEventBasedDoor
 ;08069B90
-;08069BD8
-;08069E48
-;08069FB0
-;0806A0A0
-;0806A0BC
-;0806A128
-;0806A18C
-;0806A280
-;0806A2C0
+08069BD8 TransferAnimatedGfx
+08069E48 UpdateAnimatedGfx
+08069FB0 LoadAnimatedGfx
+0806A0A0 ResetTankAnimations
+0806A0BC UpdateTankAnimations
+0806A128 ProcessScrolls
+0806A18C ScrollScreen
+0806A280 ProcessScrollX
+0806A2C0 ProcessScrollY
 0806A314 GetRoomScrollsPtr
-;0806A374
-;0806A4F4
-;0806A5E0
-;0806A67C
-;0806A700
-;0806A778
-;0806A8A0
-;0806A918
-;0806AC08
-;0806AC68
-;0806ACE8
+0806A374 UpdateCurrScrolls
+0806A4F4 ProcessGeneralScrolling
+0806A5E0 ScrollWithNoScrolls
+0806A67C ScrollWithNoScrollsX
+0806A700 FrontWideCameraScrollX
+0806A778 FrontWideCameraComputeAcceleration
+0806A8A0 FrontWideCameraComputeVelocity
+0806A918 UpdateEffectAndHazePosition
+0806AC08 AutoScrollBg0
+0806AC68 GetBg3ScrollingValues
+0806ACE8 ScrollBg3
 ;0806ADD8
-;0806AE44
+0806AE44 AutoScrollBg3
 ;0806AEF4
-;0806AF9C
-;0806B238
-;0806B2E0
-;0806B504
-;0806B570
-;0806B5DC
-;0806B614
+0806AF9C UpdateNightmareShadow
+0806B238 OmegaMetroidRoomUpdatePlanetBg0
+0806B2E0 CheckClipdataAffectingActionOnBlock
+0806B504 DestroyNonReformBlocks
+0806B570 DestroyBombChainBlock
+0806B5DC DestroySingleBreakableBlock
+0806B614 DestroySquareBlock
 0806B6D0 SetNeverReformBlockAsBroken
 0806B754 RemoveNeverReformBlocks
-;0806B830
-;0806B9C0
-;0806BA48
-;0806BBAC
-;0806BC68
-;0806BD20
-;0806BE38
+0806B830 StoreBrokenNonReformBlock
+0806B9C0 CheckRevealOrDestroyNonBombBlock
+0806BA48 ApplyClipdataAffectingAction
+0806BBAC UpdateMakeSolidBlocks
+0806BC68 SamusApplyScrewSpeedboosterDamageToEnvironment
+0806BD20 UpdateBrokenBlocks
+0806BE38 UpdateNonReformBlocksAnim
 ;0806BEB4
-;0806BEE4
+0806BEE4 UpdateBlockAnim
 0806C064 BreakReformBlock
-;0806C124
-;0806C1B4
-;0806C210
-;0806C298
-;0806C538
-;0806C5E8
-;0806C62C
-;0806C68C
+0806C124 StoreRevealedBlock
+0806C1B4 CheckSamusInReformingBlock
+0806C210 StartBombChain
+0806C298 UpdateBombChains
+0806C538 CheckStartNewSubBombChain
+0806C5E8 CheckTouchingSpecialClipdata
+0806C62C CheckWalkingOnCrumbleBlock
+0806C68C CheckTouchingTransitionOnElevator
 0806C75C CheckTouchingTransitionOrTank
 0806CB34 FinishCollectingTank
-;0806CB94
-;0806CC0C
+0806CB94 CheckOnCrumbleBlock
+0806CC0C ClearBg1BlockValue
 0806CCB0 SetBG1BlockValue
 0806CD80 SetBG1BlockValue_8000
-;0806CE50
+0806CE50 SetVramBg1BlockTilemapValue
 0806CEC8 SetClipdataBlockValue
 0806CEF0 UpdateHatchData
 0806CFCC UpdateOpeningClosingHatch
-;0806D128
+0806D128 CheckGrabbingCrumbleBlock
 0806D1F0 CheckProjectileHitHatch
-;0806D2A0
+0806D2A0 RevealHiddenTank
 0806D2F8 UpdateBG1AndSubEvent_SaxElevatorScene
 0806D3A4 SetTankAsCollected
-;0806D428
+0806D428 CountTanksOnScreen
 0806D4EC RemoveCollectedTanks
 ;0806D5B8
 ;0806D5CC
@@ -3091,15 +3091,15 @@
 ;0806D64C
 ;0806D68C
 ;0806D6CC
-;0806D70C
-;0806D7A0
-;0806D808
+0806D70C ApplyMonochromeToPalette
+0806D7A0 CheckTransferFadedPalette_Unused
+0806D808 CheckTransferFadedPalette
 ;0806D8E4
 ;0806DA94
 ;0806DC0C
 ;0806DD64
-;0806DED4
-;0806DF5C
+0806DED4 ApplyMonochromeToObjPalram
+0806DF5C PowerBombYellowTint
 ;0806E008
 ;0806E074
 ;0806E0BC
@@ -3115,7 +3115,7 @@
 ;0806E5B0
 ;0806E5CC
 ;0806E65C
-;0806E7B4
+0806E7B4 StartColorFading
 ;0806E7C8
 ;0806E858
 ;0806E910
@@ -3129,227 +3129,227 @@
 ;0806F0EC
 ;0806F150
 ;0806F1B0
-;0806F3A8
-;0806F430
-;0806F4A0
-;0806F4D0
+0806F3A8 ColorFadingApplyMonochrome
+0806F430 HazeSetBgEffect
+0806F4A0 GetAtmosphericStabilizerHazeValue
+0806F4D0 HazeTransferAndDeactivate
 ;0806F538
-;0806F5B4
-;0806F8C8
-;0806F904
-;0806FAAC
-;0806FC74
-;0806FD34
-;0806FE4C
-;0806FEBC
-;0806FF4C
-;0806FFF8
-;080700E4
-;0807021C
+0806F5B4 HazeSetupCode
+0806F8C8 HazeResetLoops
+0806F904 HazeCalcGradient
+0806FAAC HazeProcess
+0806FC74 Haze_Bg3
+0806FD34 Haze_Bg3StrongWeak
+0806FE4C Haze_Bg3NoneWeak
+0806FEBC Haze_Bg3Bg2StrongWeakMedium
+0806FF4C Haze_Bg0
+0806FFF8 Haze_Bg3Bg2Bg1
+080700E4 Haze_PowerBombExpanding
+0807021C Haze_PowerBombRetracting
 ;08070354
-;080703EC
+080703EC Haze_Bg3Y
 ;0807047C
 08070574 UpdateAnimatedPalette
-;080706B8
+080706B8 CheckDisableAnimatedPalette
 08070724 CheckSetAnimatedPaletteTo0
 08070768 UpdateSubEventForSaxEncounter
 080707A0 UpdateSubEventAfterObtainingAbility
 080707CC UpdateSubEventAfterNavConversation
 08070810 SetSubEventAndUpdateMusic
 0807082C CheckUpdateSubEventAndMusic
-;08071C58
-;08071C9C
-;08071D7C
-;08071D90
-;08071DA4
-;08071DB0
-;08071DBC
+08071C58 PlayRoomMusicTrack
+08071C9C CheckUpdateMusicDuringRoomLoad
+08071D7C LowerMusicVolume
+08071D90 IncreaseMusicVolume
+08071DA4 DemoLoading_EmptyVBlank
+08071DB0 DemoLoadingVBLank
+08071DBC DemoLoadInputs
 08071E68 InitDemoRam
-;08071F78
-;08071FD4
+08071F78 DemoInit
+08071FD4 EndDemo
 080720A4 DrawHudOam
 080722F8 DrawHudEnergy
 080728E8 DrawHudMissiles
 08072AE0 DrawHudPowerBombs
-;08072CD8
+08072CD8 UpdateHudGfx
 08072E14 DrawHud
-;08072E34
-;08073178
-;080731B0
-;080731F8
-;0807325C
-;080732F4
-;080733FC
-;08073420
-;080734FC
-;0807359C
+08072E34 EscapePlaySound
+08073178 UpdateEscapeOam
+080731B0 EscapeCheckReloadGfx
+080731F8 StartEscape
+0807325C SetEscapeTimerDigits
+080732F4 UpdateEscapeDigits
+080733FC LoadCommonSpriteGfx
+08073420 CheckResetHudAndParticles
+080734FC CheckParticleIsOnScreen
+0807359C DrawParticle
 080736AC ProcessParticleEffects
 08073790 SetParticleEffect
-;08073828
+08073828 ParticleUpdateAnim
 ;08073874
-;0807388C
-;080738EC
-;08073934
-;08073974
-;080739B4
-;080739F4
-;08073A34
-;08073A74
-;08073AB4
-;08073AF8
-;08073B4C
-;08073BA0
-;08073BF4
-;08073C48
-;08073C80
-;08073CB8
-;08073CF0
-;08073D28
-;08073D60
-;08073D98
-;08073DD0
-;08073E08
-;08073E48
-;08073E88
-;08073EC8
-;08073F08
-;08073F48
-;08073FE4
-;08074080
-;0807411C
-;080741B8
-;0807420C
-;0807424C
-;08074284
-;080742C4
-;080742FC
-;08074334
-;0807436C
-;080743A4
-;080743DC
-;0807441C
-;08074454
-;08074494
-;080744D4
-;08074514
+0807388C ParticleNone
+080738EC ParticleBomb
+08073934 ParticleFlareHit
+08073974 ParticleNormalBeamHit
+080739B4 ParticleChargeBeamHit
+080739F4 ParticleWideBeamHit
+08073A34 ParticlePlasmaBeamHit
+08073A74 ParticleInvincibleHit
+08073AB4 ParticleNormalMissileExplosion
+08073AF8 ParticleSuperMissileExplosion
+08073B4C ParticleIceMissileExplosion
+08073BA0 ParticleDiffusionMissileExplosion
+08073BF4 ParticleChargedDiffusionMissileExplosion
+08073C48 ParticleSuperMissileExplosionNoScreenShake
+08073C80 ParticleIceBeamTrail
+08073CB8 ParticleChargedNormalBeamTrail
+08073CF0 ParticleChargedChargeBeamTrail
+08073D28 ParticleChargedWideBeamTrail
+08073D60 ParticleChargedPlasmaBeamTrail
+08073D98 ParticleChargedWaveBeamTrail
+08073DD0 ParticleChargedIceBeamTrail
+08073E08 ParticleNormalMissileTrail
+08073E48 ParticleSuperMissileTrail
+08073E88 ParticleIceMissileTrail
+08073EC8 ParticleDiffusionMissileTrail
+08073F08 ParticleChargedDiffusionMissileTrail
+08073F48 ParticleAbsordHealthX
+08073FE4 ParticleAbsorbMissileX
+08074080 ParticleAbsorbRedX
+0807411C ParticleAbsorbCoreX
+080741B8 ParticleAbsorbIceXPreVaria
+0807420C ParticleIceXTrail
+0807424C ParticleDiffusion
+08074284 ParticleFireBeam
+080742C4 ParticleExplosion1
+080742FC ParticleExplosion2
+08074334 ParticleExplosion3
+0807436C ParticleExplosion4
+080743A4 ParticleExplosion5
+080743DC ParticleExplosion6
+0807441C ParticleHeavyDust1
+08074454 ParticleHeavyDust2
+08074494 ParticleEnterOrExitWater
+080744D4 ParticleEnterOrExitWaterBig
+08074514 ParticleSpriteEnterOrExitWater
 ;08074554
-;08074598
-;080745D0
-;08074608
-;08074640
-;08074678
-;080746B0
-;080746E8
-;08074720
-;08074758
-;08074790
-;080747C8
-;08074800
-;08074838
-;08074878
-;080748BC
-;080748FC
+08074598 ParticleExplosionSmoke
+080745D0 ParticleTailExplosionSmoke
+08074608 ParticleExplosion7
+08074640 ParticleExplosion10
+08074678 ParticleExplosion8
+080746B0 ParticleSmoke
+080746E8 ParticleExplosion9
+08074720 ParticleTailSmoke1
+08074758 ParticleTailExplosion
+08074790 ParticleTailSmoke2
+080747C8 ParticleOutwardIceExplosion
+08074800 ParticleOutwardSmoke
+08074838 ParticleScrewAttackKilled
+08074878 ParticleSpeedboosterKilled
+080748BC ParticleShinesparkKilled
+080748FC ParticleSudoScrewKilled
 08074940 PlayBeamChargingSound
 08074998 StopBeamChargingSound
 080749F0 PlayBeamChargedSound
-;08074A48
-;08074B58
-;08074C38
+08074A48 ParticleChargingBeam
+08074B58 ParticleChargingMissiles
+08074C38 ParticleAbsorbingSuit
 ;08074C84
-;08074DA4
-;08074DDC
-;08074E14
-;08074EB8
-;08074F58
-;08074FB4
+08074DA4 ParticleDust1
+08074DDC ParticleDust2
+08074E14 ParticleEscape
+08074EB8 ParticleGettingSuit
+08074F58 ParticleGettingSuitBeams
+08074FB4 UpdateMenuOamDataId
 ;08074FD8
 0807501C SetEvent
 08075334 CheckPlayCutsceneDuringTransition
-;08075480
-;080754E0
-;080755B4
-;08075638
+08075480 CheckUpdateEventAfterCutscene
+080754E0 CheckRoomHasEventTrigger
+080755B4 CheckRoomEventTrigger
+08075638 CheckSetNavRoomEvent
 080756BC CheckOrDownloadDataItem
 080756FC CheckOrUnlockSecurityLevel
-;08075788
-;08075810
+08075788 LoadInitialMinimap
+08075810 MinimapUpdate
 08075834 SetMinimapSquareExplored
-;08075878
-;08075950
-;08075A00
-;08075AF4
-;08075B58
-;08075BD4
-;08075C50
-;08075CB8
-;08075ECC
-;08075EF8
-;08075F18
-;08076010
-;080760B4
+08075878 MinimapCheckForUnexploredTile
+08075950 MinimapCheckOnTransition
+08075A00 MinimapDraw
+08075AF4 MinimapCopyTileGfx
+08075B58 MinimapCopyTileXFlippedGfx
+08075BD4 MinimapCopyTileYFlippedGfx
+08075C50 MinimapCopyTileXYFlippedGfx
+08075CB8 MapScreenSubroutine
+08075ECC SetMapScreenSamusHeadPosition
+08075EF8 MinimapSetVisitedTilesAndCollectedItems
+08075F18 MinimapSetVisitedTiles
+08076010 MinimapSetCollectedItems
+080760B4 MinimapUpdateForExploredTiles
 ;08076114
 080763F0 UpdateMinimapSquareForCollectedTank
-;08076454
-;080764B4
+08076454 MinimapCheckIsTileExplored
+080764B4 MapScreenCountTanks
 ;08076620
 08076994 DownloadingMapSubroutine
-;08076DB4
-;08077060
-;080770E4
-;08077140
-;0807714C
+08076DB4 PauseScreenSubroutine
+08077060 PauseScreenVBLank
+080770E4 PauseScreenVBLank_Unused
+08077140 PauseScreenInitVBlank
+0807714C PauseScreenInit
 08077840 GetMinimapData
-;08077870
-;08077A2C
-;08077AD4
-;08077B40
-;08077BB4
-;08077BDC
-;08077C54
-;08077CC4
-;08077EE0
+08077870 PauseScreenCallCurrSubroutine
+08077A2C PauseScreenMoveDebugCursor
+08077AD4 PauseScreenMoveBgToXPosition
+08077B40 PauseScreenMoveBgToYPosition
+08077BB4 PauseScreenSetDebugMenuWindow
+08077BDC DebugMenuWindowAppearing
+08077C54 DebugMenuWindowDisappearing
+08077CC4 EasySleepMenuInit
+08077EE0 EasySleepMenuQuit
 ;08078014
-;08078450
-;08078614
-;080788E0
-;08078BC4
-;08079248
+08078450 MapScreenUpdateArrowsAndBlinkingSquare
+08078614 MapScreenDrawSpecialOam
+080788E0 PauseScreenSetupOam
+08078BC4 PauseScreenProcessOam
+08079248 CheckForMaintainedInput
 ;080792C4
 ;08079378
-;08079418
-;08079678
+08079418 NavConversationRelated
+08079678 NavConversationUpdatePanel
 080798EC GetCharacterWidth
 08079910 DrawCharacter
 08079ADC DrawCharacter_DebugMenu
-;08079C0C
+08079C0C DrawCharacterForMessage
 ;08079E28
-;08079F14
-;08079FA4
+08079F14 DrawLocationText
+08079FA4 TextDrawMessageBanner
 0807A0B4 DisplayMessage
 0807A20C ClearTextVram
 0807A2D0 NavConvoProcessText
 ;0807A8D0
-;0807AAB0
+0807AAB0 NavConversationGetCurrConversation
 0807AB78 NavConvoSubroutine
-;0807B628
-;0807B760
-;0807B7D0
-;0807B92C
-;0807BC98
+0807B628 NavConversationSetupOam
+0807B760 NavConversationUpdateTarget
+0807B7D0 NavConverstionFindTarget
+0807B92C NavConversionScrollToTarget
+0807BC98 NavConversationScrollMapToDestination
 ;0807BD40
 ;0807BE48
-;0807C0A8
-;0807C1C4
-;0807C3C4
-;0807C46C
-;0807C564
+0807C0A8 ProcessPauseScreenText
+0807C1C4 ProcessEasySleepText
+0807C3C4 GetFlashingSectorNum
+0807C46C NavConversationLoadPopUpGfx
+0807C564 NavConversationUpdatePopUp
 0807C5B4 CopyGfxWhenNavPopUpDisplays
 0807C7A8 FadeInNavPopUpPalette
 0807C8A4 UpdateAndAnimateNavPopUp
 0807CAEC CloseNavPopUp
 ;0807CB88
 ;0807CC14
-;0807CD88
+0807CD88 NavConversationLoadSpecialGfx
 ;0807CE04
 ;0807D640
 ;0807D784
@@ -3359,76 +3359,76 @@
 0807E2FC DebugMenuShowEventText
 0807E340 DrawDebugMenu_Abilities_Security_Maps
 0807E6CC SetAbilityCount
-;0807E72C
+0807E72C DebugMenuModifyAbilityCount
 0807E824 DrawDebugMenu_AbilityCount
 0807E878 DrawDebugMenu_Room_Door
 0807E920 DrawDebugMenu_Timer
 0807E9EC DrawDebugMenu_Difficulty
 0807EA44 DrawDebugMenu_Language
-;0807EAB8
+0807EAB8 DebugMenuModifyHealthAndAmmo
 0807ED3C DrawDebugMenu_Ammo_Events
-;0807EDE4
-;0807EE54
+0807EDE4 DebugMenuDrawNum
+0807EE54 DebugMenuCheckSetMaxHealthOrAmmo
 0807EF0C DrawDebugMenuValues
-;0807EF34
-;0807EF60
-;0807EF94
-;0807F058
-;0807F138
-;0807F280
-;0807F3DC
-;0807F590
-;0807F624
-;0807F7A8
-;0807F7C4
-;0807F83C
-;0807F988
+0807EF34 DebugMenuSetupCursor
+0807EF60 StatusScreenSubroutine
+0807EF94 StatusScreenDrawEverything
+0807F058 StatusScreenDrawNum
+0807F138 StatusScreenDrawBeamOrSuit
+0807F280 StatusScreenDrawMissileOrBomb
+0807F3DC StatusScreenDrawMisc
+0807F590 StatusScreenRemoveAmmoHeader
+0807F624 EasySleepMenuSubroutine
+0807F7A8 Sram_ReadAll
+0807F7C4 Sram_WriteHeader
+0807F83C Sram_ReadHeader
+0807F988 Sram_VerifyHeader
 ;0807FA08
-;0807FA1C
-;0807FAE4
-;0807FB9C
+0807FA1C Sram_ProcessIntroSave
+0807FAE4 Sram_WriteHeaderAndGameInfo
+0807FB9C Sram_ProcessEndingSave
 ;0807FC54
-;0807FD34
-;0807FDB4
+0807FD34 Sram_CopyGameCompletion
+0807FDB4 Sram_QuickSave
 0807FE58 WriteRamToSave
 080801F0 InitRamFromSave
 08080500 Write_MetroidEpisode4A_ToSave
 0808051C Write_SAVE_END_ToSave
-;08080538
-;080805A0
+08080538 SramTestFlash
+080805A0 Sram_BackupCurrFile_Unused
 ;080805DC
 ;0808076C
 0808080C VerifySaveDataChecksum
 080808BC LoadSavedData
-;080808F0
+080808F0 SramLoad_CurrSave_Unused
 08080900 WriteToSave_Minimap_Blocks_Tanks
 080809D8 LoadFromSave_Minimap_Blocks_Tanks
-;08080AC4
-;08080B50
+08080AC4 SramWrite_MostRecentSaveFile
+08080B50 SramRead_MostRecentSaveFile
 ;08080C30
 ;08080CBC
-;08080D9C
-;08080E2C
-;08080FAC
-;08081110
-;08081254
-;08081368
-;08081408
-;080814D0
-;08081588
-;08081594
-;080815A0
-;080815CC
-;08081628
-;08081758
-;080817A8
-;08081838
-;08081944
-;08081B48
-;08081BA4
-;08081BF0
-;08081C78
-;08081C84
+08080D9C SramWrite_Language
+08080E2C SramRead_Language
+08080FAC Sram_InitSaveFile
+08081110 Sram_ResetForDemo
+08081254 Sram_CheckLoadSaveFile
+08081368 Sram_EraseFile
+08081408 Sram_CopyFile
+080814D0 Sram_WriteFileInfo
+08081588 Sram_LoadingfileVblank
+08081594 Sram_AfterLoadingFileVblank
+080815A0 Sram_CheckLoadSaveFileWithBlank
+080815CC Sram_SetCurrFile
+08081628 EraseSramMenuSubroutine
+08081758 EraseSramProcessInput
+080817A8 EraseSramApplyInput
+08081838 EraseSramCheckForInput
+08081944 EraseSramMenuInit
+08081B48 EraseSramResetOam
+08081BA4 EraseSramUpdateCursorPosition
+08081BF0 EraseSramVBlank
+08081C78 EraseSramLoadingVBlank
+08081C84 EraseSramProcessOam
 08081DCC CheckAmountOfProjectiles
 08081E1C InitProjectile
 08081EBC InitSecondaryProjectile
@@ -3443,8 +3443,8 @@
 08082C70 LoadMissileGfx
 08082D4C LoadProjectileGfxAndClearProjectiles
 08082D80 MoveProjectile
-;08082E4C
-;08082E8C
+08082E4C ProjectileCheckHittingSolid
+08082E8C ProjectileCheckVerticalCollisionAtPosition
 080830C4 MoveWideBeamParts
 0808318C MoveWaveBeamParts
 08083288 MoveWaveBeamParts_Unused
@@ -3455,16 +3455,16 @@
 08083CA4 GetSpriteWeakness
 08083CF0 CreateSpriteDebris
 08083E24 CreateSpriteDebris_PiercingBeam
-;08083F1C
-;08083F4C
-;08083FD0
-;080840D8
+08083F1C ProjectileSetIsftForPowerBomb
+08083F4C ProjectileBringSpriteToPowerBombCenter
+08083FD0 ProjectilePowerBombHitSprite
+080840D8 ProjectileContactDamageHitSprite
 0808425C LowerSpriteHealth
 08084324 PseudoScrewAttackHitSprite
 080843E8 LowerSpriteHealth_IceMissile
 0808454C LowerSpriteHealth_DiffusionFlake
 080846A0 LowerSpriteHealth_IceBeam
-;080847D4
+080847D4 ProjectileSetIsftForSolid
 08084808 NormalBeamHitSprite
 080848CC ChargedNormalBeamHitSprite
 08084990 ChargeBeamHitSprite
@@ -3498,7 +3498,7 @@
 08085EC0 ProcessIceMissile
 08085F78 ProcessDiffusionMissile
 0808610C ProcessDiffusionFlake
-;0808622C
+0808622C ProjectileCheckSamusBombBounce
 08086368 InitBomb
 080863B8 ProcessBomb
 0808653C InitPowerBomb
@@ -3524,316 +3524,316 @@
 080873FC ProcessFlare
 ;080874B0
 ;08087570
-;080877A4
-;080877F0
+080877A4 TitleScreenVblank
+080877F0 TitleScreenVblank_Empty
 ;080877FC
 080878A8 SetupTitleScreenOam
 ;080879EC
-;08087AD4
+08087AD4 TitleScreenProcessPressStart
 ;08087B4C
-;08087C80
-;08087CC4
+08087C80 TitleScreenProcessLanguage
+08087CC4 TitleScreenProcess_OamSection4
 ;08087CE8
-;08087D18
-;08087D58
-;08087E30
-;08087E6C
-;08087E70
-;08088058
-;08088454
-;080884D8
-;08088534
+08087D18 TitleScreenDrawAllOam
+08087D58 TitleScreenDrawOam
+08087E30 TitleScreenCallOamSubroutine
+08087E6C TitleScreenProcessCopyright
+08087E70 TItleScreenInit
+08088058 TitleScreenSpawningIn
+08088454 TitleScreenSubroutine
+080884D8 TitleScreenLoadDebugText
+08088534 IntroSubroutine
 0808862C NewFileIntroSubroutine
 ;08088898
-;080888E8
-;0808897C
-;08088BE0
-;08088D68
-;08088E08
-;08088FE0
-;0808911C
-;080891B8
-;08089424
-;080894EC
-;080896CC
-;08089928
-;08089C40
-;08089CDC
-;08089E2C
-;08089F54
+080888E8 NewFileIntroSamusShipFlyingVblank
+0808897C NewFileIntroSamusShipFlyingInit
+08088BE0 NewFileIntroSamusShipFlyingProcess
+08088D68 NewFileIntroSamusShipFlying
+08088E08 NewFileIntroSamusFaintingInit
+08088FE0 NewFileIntroSamusFaintingProcess
+0808911C NewFileIntroSamusFainting
+080891B8 NewFileIntroSamusDriftingInit
+08089424 NewFileIntroSamusLosingConsciousnessVblank
+080894EC NewFileIntroSamusLosingConsciousnessInit
+080896CC NewFileIntroSamusDriftingIntoAsteroidsInit
+08089928 NewFileIntroSamusDriftingProcess
+08089C40 NewFileIntroSamusDrifting
+08089CDC NewFileIntroProcessBslShip
+08089E2C NewFileIntroProcessFlyingSamusShip
+08089F54 NewFileIntroProcessHorizontalParticle
 ;0808A008
-;0808A030
-;0808A134
-;0808A1A8
+0808A030 NewFileIntroProcessSamusFainting
+0808A134 NewFileIntroProcessSamusDrifting
+0808A1A8 NewFileIntroProcessSamusDriftingIntoAsteroids
 ;0808A400
-;0808A464
-;0808A528
-;0808A5EC
+0808A464 NewFileIntroProcessSidewaysBslShip
+0808A528 NewFileIntroProcessDepthParticle
+0808A5EC NewFileIntroSetupOam
 ;0808A9EC
 ;0808AA28
-;0808AA2C
-;0808AC74
-;0808AFBC
+0808AA2C NewFileIntroSr388PreviewInit
+0808AC74 NewFileIntroSr388PreviewProcess
+0808AFBC NewFileIntroSr388Preview
 ;0808B068
 ;0808B0A8
-;0808B0E8
+0808B0E8 NewFileIntroProcessSr388PreviewAsteroid
 ;0808B154
 ;0808B17C
-;0808B1E0
-;0808B218
-;0808B248
-;0808B4E4
-;0808B51C
-;0808B5B0
-;0808B804
-;0808BB48
-;0808BBE0
-;0808C1B8
-;0808C3C4
+0808B1E0 NewFileIntroProcessSunReflection
+0808B218 NewFileIntroProcessSr388Rocks
+0808B248 NewFileIntroSr388SetupOam
+0808B4E4 NewFileIntroSetupSr388PreviewAsteroid
+0808B51C NewFileIntroSr388PreviewVblank
+0808B5B0 NewFileIntroInSr388Init
+0808B804 NewFileIntroInSr388Process
+0808BB48 NewFileIntroInSr388
+0808BBE0 NewFileIntroProcessSamusInSr388
+0808C1B8 NewfileIntroProcessLeftBiologicalResearcher
+0808C3C4 NewfileIntroProcessRightBiologicalResearcher
 ;0808C5D8
-;0808C74C
-;0808CC14
-;0808CCC8
+0808C74C NewFileIntroProcessHornhoad
+0808CC14 NewFileIntroProcessHorizontalMissile
+0808CCC8 NewFileIntroProcessFirstDiagonalMissile
 ;0808CD90
 ;0808CDBC
 ;0808CE94
 ;0808CEE0
-;0808CF28
+0808CF28 NewFileIntroProcessSecondDiagonalMissile
 ;0808CFFC
-;0808D004
+0808D004 NewFileIntroInSr388SetupOam
 ;0808D47C
-;0808D4B4
-;0808D4B8
-;0808D50C
-;0808D5E8
-;0808D7EC
-;0808D944
-;0808D964
-;0808DC84
-;0808DEF8
-;0808DFD4
+0808D4B4 NewFileIntro_Empty
+0808D4B8 NewFileIntroGetPositionOfOamByType
+0808D50C NewFileIntroInSr388Vblank
+0808D5E8 NewFileIntroSamusGettingCuredInit
+0808D7EC NewFileIntroSamusGettingCuredOperationProcess
+0808D944 NewFileIntroSamusGettingCuredNervousSystemHblank
+0808D964 NewFileIntroSamusGettingCuredNervousSystemInit
+0808DC84 NewFileIntroSamusGettingCuredNervousSystemProcess
+0808DEF8 NewFileIntroSamusGettingCured
+0808DFD4 NewFileIntroProcessVaccineBgText
 ;0808DFE4
-;0808DFF4
-;0808E0D4
+0808DFF4 NewFileIntroProcessXInNervousSystem
+0808E0D4 NewFileIntroProcessXLockOn
 ;0808E140
 ;0808E224
 ;0808E314
 ;0808E3F8
 ;0808E4E8
 ;0808E5D8
-;0808E66C
+0808E66C NewFileIntroSamusGettingCuredSetupOam
 ;0808ED3C
-;0808ED74
-;0808EDB0
-;0808EDFC
-;0808EEA4
-;0808EEA8
+0808ED74 NewFileIntroFindOamByType
+0808EDB0 NewFileIntroSamusGettingCuredVblank
+0808EDFC NewFileIntroSamusGettingCuredNervousSystemVblank
+0808EEA4 NewFileIntroProcessDna
+0808EEA8 NewFileIntroSamusFoundInit
 0808F0B8 NewFileIntroSamusFoundSubroutine
-;0808F64C
-;0808F6F4
-;0808F760
-;0808F7A8
-;0808F814
+0808F64C NewFileIntroSamusFound
+0808F6F4 NewFileIntroProcessSamusFoundFadeIn
+0808F760 NewFileIntroProcessSamusLayingLoading
+0808F7A8 NewFileIntroProcessSamusFoundFadeInSamusLaying
+0808F814 NewFileIntroProcessSamusFoundFadeInVaccineCloseUp
 ;0808F880
-;0808F8BC
-;0808FA78
+0808F8BC NewFileIntroSamusFoundSetupOam
+0808FA78 NewFileIntroSamusFoundVblank
 ;0808FAF4
-;0808FAF8
+0808FAF8 NewFileIntroSamusCuredInit
 0808FD48 NewFileIntroSamusCuredSubroutine
-;08090170
-;080901F8
-;080902FC
-;0809043C
+08090170 NewFileIntroSamusCured
+080901F8 NewFileIntroProcessSamusCuredScrolling
+080902FC NewFileIntroSamusCuredSetupOam
+0809043C NewFileIntroSamusCuredVblank
 ;08090538
-;0809053C
+0809053C NewFileIntroArrivingAtBslInit
 0809076C NewFileIntroApproachingBslSubroutine
-;08090EBC
-;08090F4C
-;080911BC
-;080911DC
-;08091388
+08090EBC NewFileIntroArrivingAtBsl
+08090F4C NewFileIntroProcessSamusShipArrivingAtBsl
+080911BC NewFileIntroProcessBslPreview
+080911DC NewFileIntroProcessSamusShipArrivingAtBslThrusters
+08091388 NewFileIntroProcessSamusShipArrivingAtBslThrusterExplosion
 ;080913B4
-;080913BC
+080913BC NewFileIntroProcessSamusArrivingAtBslScrolling
 ;080913F0
-;08091424
+08091424 NewFileIntroProcessAdamPanel
 ;080915C0
-;08091648
-;080916D4
-;08091770
-;080917A0
-;08091BD8
-;08091C74
+08091648 NewFileIntroProcessAdamTextCursor
+080916D4 NewFileIntroProcessBslPopUp
+08091770 NewFileIntroProcessMonologueCursor
+080917A0 NewFileIntroArrivingAtBslSetupOam
+08091BD8 NewFileIntroArrivingAtBslVblank
+08091C74 NewFileIntroGetPositionAndSlotOfOamByType
 ;08091CD4
-;08091CD8
-;08091ECC
-;08091FF4
-;0809207C
-;080920F0
-;08092194
-;08092210
-;080922F8
+08091CD8 NewFileIntroLandingOnBslInit
+08091ECC NewFileIntroLandingOnBslProcess
+08091FF4 NewFileIntroLandingOnBsl
+0809207C NewFileIntroProcessLandingOnBslScroll
+080920F0 NewFileIntroProcessBslDoor
+08092194 NewFileIntroProcessBslDoorLight
+08092210 NewFileIntroProcessBslDoorTop
+080922F8 NewFileIntroProcessBslDoorBottom
 ;080923BC
 ;08092420
-;08092754
+08092754 NewFileIntroProcessShipLandingSmoke
 ;08092820
-;08092864
-;080928C8
-;080928E4
-;08092AEC
-;08092E74
-;08092FB0
+08092864 NewFileIntroProcessExtendingShipArms
+080928C8 NewFileIntroProcessLandingLights
+080928E4 NewFileIntroProcessShipLanding
+08092AEC NewFileIntroLandingOnBslSetupOam
+08092E74 NewFileIntroLandingOnBslVblank
+08092FB0 NewFileIntroGetPositionAndSlotOfOamByType_2
 ;08093010
 ;08093014
-;080931B4
-;08093448
-;080936B8
-;080937A8
-;08093978
-;08093B6C
+080931B4 IntroSamusInShipProcess
+08093448 IntroShipAlertInit
+080936B8 IntroShipAlertProcess
+080937A8 IntroSamusDriftingOutInit
+08093978 IntroSamusDriftingOutProcess
+08093B6C IntroSamusShipCrashing
 ;08093C84
-;08093DCC
-;08094038
-;0809409C
-;08094170
-;08094234
-;08094254
+08093DCC IntroProcessDriftingShip
+08094038 IntroProcessBslShipSpawning
+0809409C IntroProcessBslShipBack
+08094170 IntroProcessDepthParticle
+08094234 IntroProcessTimeAndDistanceOam
+08094254 IntroProcessAsteroidsPopUp
 ;08094278
 ;080942AC
-;080942F4
-;08094320
-;080947C0
+080942F4 IntroOamProcessBigChangingNum
+08094320 IntroSetupOam
+080947C0 IntroSetupBigNumOam
 ;080947FC
-;08094878
+08094878 IntroShipAlertAndDraftingVblank
 ;080948F4
-;080948F8
-;08094B38
-;08094EC4
-;0809508C
-;0809517C
-;080952A0
-;080952C8
-;08095504
-;08095650
-;0809567C
-;08095730
-;08095770
-;080957D4
-;080958AC
-;08095970
-;08095D64
+080948F8 IntroSpaceViewInit
+08094B38 IntroSpaceViewPartProcess
+08094EC4 IntroFlyingViewInit
+0809508C IntroFlyingViewProcess
+0809517C IntroSpaceView
+080952A0 IntroProcessSpaceViewScrolling
+080952C8 IntroProcessBslShipSideways
+08095504 IntroProcessSamusSHipEntering
+08095650 IntroProcessSplashText
+0809567C IntroProcessSpaceViewParticle
+08095730 IntroProcessIdleShipBackview
+08095770 IntroProcessBslShipSpawning_2
+080957D4 IntroProcessBslShipBackview
+080958AC IntroProcessIdleDepthParticle
+08095970 IntroSpaceViewSetupOam
+08095D64 IntroSpaceViewVblank
 ;08095DF8
-;08095DFC
-;08095EEC
-;080960F4
-;080962F4
-;080965B8
-;08096640
+08095DFC EndingSubroutine
+08095EEC EndingBslCrashingInit
+080960F4 EndingShipFrontViewInit
+080962F4 EndingBslCrashingProcess
+080965B8 EndingBslCrashing
+08096640 EndingProcessFallingBsl
 ;08096718
-;08096748
-;080967AC
-;08096810
-;08096844
-;080968D4
-;08096BD0
-;08096CA8
-;08096D3C
+08096748 EndingProcessLeavingSmallShip
+080967AC EndingProcessLeavingBigShip
+08096810 EndingProcessFrontFacingShipThrusters
+08096844 EndingProcessFrontFacingShip
+080968D4 EndingBslCrashingSetupOam
+08096BD0 EndingBslCrashingVblank
+08096CA8 EndingShipFrontViewVblank
+08096D3C EndingGetPositionAndSlotOfOamByType
 ;08096D9C
-;08096DA0
-;08096FA0
-;080971A4
-;080973C4
-;080978A4
-;0809792C
+08096DA0 EndingMonologueInit
+08096FA0 EndingAdamConversationInit
+080971A4 EndingAnimalsInit
+080973C4 EndingInShipProcess
+080978A4 EndingInShip
+0809792C EndingProcessMonologueCursor
 ;0809795C
-;08097984
-;080979B8
+08097984 EndingProcessSr388RadarView
+080979B8 EndingProcessSamusViewRadarView
 ;080979EC
-;08097A88
+08097A88 EndingProcessAdamTextCursor
 08097B14 EndingProcessAdamPanel
-;08097CBC
-;08097D44
+08097CBC EndingProcessAdamIcon
+08097D44 EndingProcessAnimalsScrolling
 ;08097E7C
-;08097E84
-;08098204
-;080982A0
-;08098334
+08097E84 EndingDialogueSetupOam
+08098204 EndingMonologueVblank
+080982A0 EndingConversationAndAnimalsVblank
+08098334 EndingGetPositionAndSlotOfOamByType_2
 ;08098394
-;08098398
-;08098440
-;08098638
-;080987F0
-;08098878
+08098398 DiedFromSr388CollisionSubroutine
+08098440 DiedOnSr388CollisionInit
+08098638 DiedOnSr388CollisionProcess
+080987F0 DiedOnSr388Collision
+08098878 DiedOnSr388CollisionProcessFallingBsl
 ;08098950
-;08098980
-;08098B80
-;08098C58
-;08098CEC
+08098980 DiedOnSr388CollisionSetupOam
+08098B80 DiedOnSr388CollisionVblank
+08098C58 DiedOnSr388CollisionVblank_Unused
+08098CEC DiedOnSr388CollisionGetPositionAndSlotOfOamByType
 ;08098D4C
-;08098D50
-;08098E28
-;08098F00
+08098D50 NewFileIntroCheckMonologueEnded
+08098E28 EndingCheckMonologueEnded
+08098F00 SpecialCutsceneProcessMonologue
 ;080990D8
-;0809920C
-;0809942C
-;08099670
-;080998C0
-;08099900
-;0809993C
+0809920C EndingProcessAdamText
+0809942C IntroProcessText
+08099670 NewFileIntroProcessAdamText
+080998C0 Dma3Transfer_Unused1
+08099900 Dma3Transfer_Unused2
+0809993C Dma3Clear_Unused
 ;08099984
-;08099A20
-;08099B4C
-;08099B6C
-;08099B8C
-;08099BB8
-;08099BEC
-;08099C28
-;08099C74
-;08099CCC
-;08099D20
-;0809A724
+08099A20 NewFileIntroSamusGettingCuredSetupWindow
+08099B4C SpecialCutsceneFadeIn
+08099B6C SpecialCutsceneFadOut
+08099B8C NewFileIntroProcessTextCursor
+08099BB8 SpecialCutsceneClearOam
+08099BEC SpecialCutsceneEnableOam
+08099C28 SpecialCutsceneDestroyOamOfType
+08099C74 SpecialCutsceneProcessOam
+08099CCC SpecialCutsceneDrawAllOam
+08099D20 SpecialCutsceneDrawOam
+0809A724 NewFileIntroInit
 0809A82C GenerateRandomNumForTitleIntro
-;0809A874
+0809A874 NewFileIntroVblank
 ;0809A8C0
-;0809A8CC
-;0809A944
-;0809AA64
+0809A8CC CutsceneSubroutine
+0809A944 CutsceneInit
+0809AA64 CutsceneVblank
 ;0809AA78
-;0809AA84
-;0809AB2C
-;0809ABB8
-;0809ADE4
-;0809AE20
-;0809B008
+0809AA84 CutsceneProcess
+0809AB2C CutsceneElevatorMonologue
+0809ABB8 CutsceneElevatorMonologueInit
+0809ADE4 CutsceneElevatorMonologueProcess
+0809AE20 CutsceneElevatorMonologueSetupOam
+0809B008 CutsceneProcessElevatorScrolling
 ;0809B128
-;0809B248
+0809B248 CutsceneElevatorMonologueVblank
 ;0809B29C
-;0809B2A8
-;0809B32C
-;0809B468
-;0809B4A4
-;0809B584
+0809B2A8 CutsceneInternalMonologue
+0809B32C CutsceneInternalMonologueInit
+0809B468 CutsceneInternalMonologueProcess
+0809B4A4 CutsceneInternalMonologueSetupOam
+0809B584 CutsceneInternalMonologueVblank
 ;0809B5BC
 ;0809B5C8
-;0809B64C
-;0809B7C8
-;0809B804
-;0809B8E4
+0809B64C CutsceneFederationMonologueInit
+0809B7C8 CutsceneFederationMonologueProcess
+0809B804 CutsceneFederationMonologueSetupOam
+0809B8E4 CutsceneFederationMonologueVblank
 ;0809B91C
-;0809B928
-;0809B9AC
-;0809BAE4
-;0809BB48
-;0809BC54
-;0809BC74
-;0809BCE4
+0809B928 CutsceneSecretConversation
+0809B9AC CutsceneSecretConversationInit
+0809BAE4 CutsceneSecretConversationProcess
+0809BB48 CutsceneSecretConversationSetupOam
+0809BC54 CutsceneSecretConversationProcessNavPanel
+0809BC74 CutsceneSecretConversationProcessIncomingDispatch
+0809BCE4 CutsceneSecretConversationVblank
 ;0809BD8C
-;0809BD98
-;0809BE24
-;0809BF80
-;0809C2F0
-;0809C3BC
-;0809C82C
-;0809C9A4
+0809BD98 CutsceneRestrictedLabDetaching
+0809BE24 CutsceneRestrictedLabDetachingInit
+0809BF80 CutsceneRestrictedLabDetachingProcess
+0809C2F0 CutsceneRestrictedLabDetachingProcessFallingLab
+0809C3BC CutsceneRestrictedLabDetachingSetupOam
+0809C82C CutsceneRestrictedLabDetachingProcessBslPart
+0809C9A4 CutsceneRestrictedLabDetachingProcessScrolling
 ;0809C9D0
 ;0809CA40
 ;0809CAB0
@@ -3847,78 +3847,78 @@
 ;0809CFCC
 ;0809D000
 ;0809D034
-;0809D070
-;0809D0B8
+0809D070 CutsceneRestrictedLabDetachingGetPositionOfOamByType
+0809D0B8 CutsceneRestrictedLabDetachingVblank
 ;0809D13C
-;0809D148
-;0809D1D4
-;0809D364
-;0809D578
-;0809D5A4
-;0809D600
-;0809D62C
-;0809D7D0
-;0809D828
+0809D148 CutsceneBslExploding
+0809D1D4 CutsceneBslExplodingInit
+0809D364 CutsceneBslExplodingProcess
+0809D578 CutsceneBslExplodingProcessScrolling
+0809D5A4 CutsceneBslExplodingProcessBslFar
+0809D600 CutsceneBslExplodingProcessExplosions
+0809D62C CutsceneBslExplodingSetupOam
+0809D7D0 CutsceneBslExplodingGetOamInfoByType
+0809D828 CutsceneBslExplodingVblank
 ;0809D8AC
-;0809D8B8
-;0809D978
-;0809DA1C
+0809D8B8 CutsceneMonologueProcessCursor
+0809D978 CutsceneMonologueProcessSpecialTextCharacters
+0809DA1C CutsceneMonologueProcessText
 ;0809DBCC
-;0809DD00
-;0809DD58
-;0809DDB0
-;0809DDF4
-;0809DE40
-;0809DFC8
+0809DD00 CutsceneMonologueFadeIn
+0809DD58 CutsceneMonologueFadeOut
+0809DDB0 CutsceneMonologueProcessOam
+0809DDF4 CutsceneMonologueDrawAllOam
+0809DE40 CutsceneMnologueDrawOam
+0809DFC8 CutsceneMonologueResetOam
 ;0809E01C
 ;0809E020
 ;0809E144
-;0809E164
-;0809E1A8
-;0809E1C8
-;0809E1E8
-;0809E22C
-;0809E274
-;0809E2C0
+0809E164 CutsceneMonologueDestroyOamOfType
+0809E1A8 CutsceneFadeIn
+0809E1C8 CutsceneFadeOut
+0809E1E8 CutsceneDestroyOamOfType
+0809E22C CutsceneProcessOam
+0809E274 CutsceneDrawAllOam
+0809E2C0 CutsceneDrawOam
 ;0809EAF0
-;0809EAF4
-;0809EB68
-;0809ECE8
+0809EAF4 SA_XCloseUpSubroutine
+0809EB68 SA_XCloseUpInit
+0809ECE8 SA_XCloseUpVblank
 ;0809ED30
-;0809ED3C
-;0809ED64
-;0809EE34
-;0809EED8
-;0809F09C
-;0809F0D0
-;0809F17C
+0809ED3C SA_XCloseUp
+0809ED64 SA_XCloseUpProcess
+0809EE34 GameOverSubroutine
+0809EED8 GameOverInit
+0809F09C GameOverAfterOptionDelay
+0809F0D0 GameOverSetupOam
+0809F17C GameOverProcessCursor
 ;0809F244
-;0809F26C
-;0809F294
-;0809F2CC
-;0809F30C
-;0809F494
-;0809F4D8
+0809F26C GameOverResetOam
+0809F294 GameOverProcessOam
+0809F2CC GameOverDrawAllOam
+0809F30C GameOverDrawOam
+0809F494 GameOverGetPositionAndSlotOfOamByType
+0809F4D8 GameOverVblank
 ;0809F504
 0809F510 FileSelectSubroutine
-;0809F6CC
-;0809F9AC
+0809F6CC FileSelectInit
+0809F9AC FileSelectVblank
 ;0809FA70
 0809FA7C FileSelectInput
-;080A0CAC
-;080A12EC
-;080A1490
-;080A1654
+080A0CAC FileSelectSetupOam
+080A12EC FileSelectProcessSamusHead
+080A1490 FileSelectProcessCursor
+080A1654 FileSelectProcessDeleteArrow
 ;080A17A0
 ;080A18C4
-;080A19E8
-;080A1AB4
-;080A1AF4
+080A19E8 FileSelectProcessAudioLogos
+080A1AB4 FileSelectProcessAudioSelect
+080A1AF4 FileSelectProcessFileOverlay
 ;080A1B1C
 ;080A1B7C
-;080A1B80
-;080A1C1C
-;080A1CB4
+080A1B80 FileSelectProcessFileActionPanel
+080A1C1C FileSelectProcessCopyFilePanel
+080A1CB4 FileSelectProcessEraseFilePanel
 ;080A1D4C
 ;080A1DD8
 ;080A1ED4
@@ -3929,45 +3929,45 @@
 ;080A22F4
 ;080A2388
 ;080A2480
-;080A2484
-;080A2A24
+080A2484 FileSelectDrawFileInfo
+080A2A24 FileSelectDrawText
 ;080A2B74
-;080A2D84
-;080A3004
+080A2D84 FileSelectProcessCorruptedFile
+080A3004 FileSelectDrawFileCorruptedText
 ;080A3118
-;080A3208
-;080A323C
+080A3208 FileSelectDestroyOamOfType
+080A323C FileSelectSetUpAreaNameOam
 ;080A33CC
-;080A3488
-;080A34C4
-;080A3504
+080A3488 FileSelectProcessOam
+080A34C4 FileSelectDrawAllOam
+080A3504 FileSelectDrawOam
 080A368C SetLanguage
 080A3690 SetupBGControlForLanguageSelectMenu
 ;080A3728
 ;080A372C
 080A3730 DrawEndingTimeAndPercentInVram
-;080A38D8
-;080A3914
-;080A3A50
+080A38D8 EndingImageUpdateLettersSpawnDelay
+080A3914 EndingImageLoadTextOam
+080A3A50 EndingImageDisplayLinePermanently
 ;080A3AEC
 ;080A3BB8
 ;080A3DC8
-;080A3F1C
+080A3F1C CreditsSubroutine
 ;080A3F94
 ;080A40B8
-;080A40C4
-;080A412C
-;080A4184
-;080A4220
-;080A4248
-;080A4504
+080A40C4 CreditsVblank
+080A412C SamusPosingVblank
+080A4184 EndingImageVblank
+080A4220 SamusPosingHblankCode
+080A4248 CreditsInit
+080A4504 CreditsProcess
 ;080A46F4
-;080A4918
-;080A4A88
-;080A4AE0
-;080A4CB8
-;080A5100
-;080A53B8
+080A4918 SamusPosingInit
+080A4A88 CreditsFadeIn
+080A4AE0 SamusPosing
+080A4CB8 SamusPosingTransforming
+080A5100 EndingImageInit
+080A53B8 EndingImage
 080A575C bx_r0
 080A5760 bx_r1
 080A5764 bx_r2
