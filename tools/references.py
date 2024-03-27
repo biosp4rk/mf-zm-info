@@ -221,6 +221,17 @@ def output_section(title: str, refs) -> List[str]:
     return lines
 
 
+def print_refs(bls: List[Ref], ldrs: List[Ref], dats: List[Ref]) -> None:
+    lines = []
+    if bls:
+        lines += output_section("Calls", bls)
+    if ldrs:
+        lines += output_section("Pools", ldrs)
+    if dats:
+        lines += output_section("Data", dats)
+    print("\n".join(lines))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
@@ -254,11 +265,4 @@ if __name__ == "__main__":
             addr = entry.addr
         # find references and print
         bls, ldrs, dats = refs.find(addr)
-        lines = []
-        if bls:
-            lines += output_section("Calls", bls)
-        if ldrs:
-            lines += output_section("Pools", ldrs)
-        if dats:
-            lines += output_section("Data", dats)
-        print("\n".join(lines))
+        print_refs(bls, ldrs, dats)

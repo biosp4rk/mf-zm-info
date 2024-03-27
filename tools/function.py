@@ -270,6 +270,7 @@ class Function(object):
             else:
                 err = f"Unsure what to output at {self.addr:X}"
                 raise ValueError(err)
+        self.symbols.reset_locals()
         return lines
 
     def compare(self, other: "Function") -> List[bool]:

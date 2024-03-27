@@ -49,6 +49,17 @@
   params: null
   return: null
   notes: Called when the game boots to setup RAM
+- desc: V-Blank code during soft reset
+  label: VBlankCodeDuringSoftReset
+  addr:
+    U: 0x7C4
+    E: 0x7F8
+    J: 0x7C4
+    C: 0x88C
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Soft reset check
   label: SoftResetCheck
   addr:
@@ -112,6 +123,17 @@
     type: u8 *
   return: null
   notes: Calls LZ77UnCompReadNormalWrite8bit
+- desc: Test DivArm and Sqrt
+  label: TestDivArmSqrt
+  addr:
+    U: 0x924
+    E: 0x978
+    J: 0x924
+    C: 0x9EC
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
 - desc: Call SoundBias
   label: CallSoundBias
   addr:
@@ -401,6 +423,304 @@
   mode: thumb
   params: null
   return: null
+- desc: Erase SRAM
+  label: EraseSram
+  addr:
+    U: 0xC04
+    E: 0xC58
+    J: 0xC04
+    C: 0x1404
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+  notes: Fills SRAM with 0xFFFF
+- desc: Do SRAM operation
+  label: DoSramOperation
+  addr:
+    U: 0xC48
+    E: 0xC9C
+    J: 0xC48
+    C: 0x1448
+  size: 0x374
+  mode: thumb
+  params:
+  - desc: Operation
+    label: Operation
+    type: u8
+  return:
+    desc: Pointer to difference
+    label: PtrToDifference
+    type: u8 *
+- desc: Update PSG sounds
+  label: UpdatePsgSounds
+  addr:
+    U: 0x1458
+    E: 0x14AC
+    J: 0x1458
+    C: 0x3E0C
+  size: 0x3F8
+  mode: thumb
+  params: null
+  return: null
+- desc: Update track
+  label: UpdateTrack
+  addr:
+    U: 0x1850
+    E: 0x18A4
+    J: 0x1850
+    C: 0x4204
+  size: 0x3A0
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: TrackData *
+  return: null
+- desc: Audio command fine
+  label: AudioCommand_Fine
+  addr:
+    U: 0x2140
+    E: 0x2194
+    J: 0x2140
+    C: 0x4AF4
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: TrackData *
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command pattern end
+  label: AudioCommand_PatternEnd
+  addr:
+    U: 0x222C
+    E: 0x2280
+    J: 0x222C
+    C: 0x4BE0
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command repeat
+  label: AudioCommand_Repeat
+  addr:
+    U: 0x2264
+    E: 0x22B8
+    J: 0x2264
+    C: 0x4C18
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command priority
+  label: AudioCommand_Priority
+  addr:
+    U: 0x22A4
+    E: 0x22F8
+    J: 0x22A4
+    C: 0x4C58
+  size: 0x10
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command key shift
+  label: AudioCommand_KeyShift
+  addr:
+    U: 0x22B4
+    E: 0x2308
+    J: 0x22B4
+    C: 0x4C68
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command voice
+  label: AudioCommand_Voice
+  addr:
+    U: 0x22CC
+    E: 0x2320
+    J: 0x22CC
+    C: 0x4C80
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: TrackData *
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command volume
+  label: AudioCommand_Volume
+  addr:
+    U: 0x238C
+    E: 0x23E0
+    J: 0x238C
+    C: 0x4D40
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command pan pot
+  label: AudioCommand_PanPot
+  addr:
+    U: 0x23A0
+    E: 0x23F4
+    J: 0x23A0
+    C: 0x4D54
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command pitch bend
+  label: AudioCommand_PitchBend
+  addr:
+    U: 0x23B4
+    E: 0x2408
+    J: 0x23B4
+    C: 0x4D68
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command bend range
+  label: AudioCommand_BendRange
+  addr:
+    U: 0x23CC
+    E: 0x2420
+    J: 0x23CC
+    C: 0x4D80
+  size: 0x14
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command lfo speed
+  label: AudioCommand_LfoSpeed
+  addr:
+    U: 0x23E0
+    E: 0x2434
+    J: 0x23E0
+    C: 0x4D94
+  size: 0x10
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command lfo delay
+  label: AudioCommand_LfoDelay
+  addr:
+    U: 0x23F0
+    E: 0x2444
+    J: 0x23F0
+    C: 0x4DA4
+  size: 0x10
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command modulation depth
+  label: AudioCommand_ModulationDepth
+  addr:
+    U: 0x2400
+    E: 0x2454
+    J: 0x2400
+    C: 0x4DB4
+  size: 0xC
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command modulation type
+  label: AudioCommand_ModulationType
+  addr:
+    U: 0x240C
+    E: 0x2460
+    J: 0x240C
+    C: 0x4DC0
+  size: 0xC
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command tune
+  label: AudioCommand_Tune
+  addr:
+    U: 0x2418
+    E: 0x246C
+    J: 0x2418
+    C: 0x4DCC
+  size: 0x18
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command extend command
+  label: AudioCommand_ExtendCommand
+  addr:
+    U: 0x2430
+    E: 0x2484
+    J: 0x2430
+    C: 0x4DE4
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command end of tie
+  label: AudioCommand_EndOfTie
+  addr:
+    U: 0x2460
+    E: 0x24B4
+    J: 0x2460
+    C: 0x4E14
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
 - desc: Empty function (music related)
   label: EmptyFunction_Music
   addr:
@@ -411,6 +731,40 @@
   size: 0x4
   mode: thumb
   params: null
+  return: null
+- desc: Clear registers for PSG
+  label: ClearRegistersForPsg
+  addr:
+    U: 0x24C0
+    E: 0x2514
+    J: 0x24C0
+    C: 0x4E74
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: PSG sound pointer
+    label: PsgSoundPtr
+    type: PsgSoundData *
+  - desc: Sound channel
+    label: SoundChannel
+    type: u8
+  return: null
+- desc: Clear registers for PSG unused
+  label: ClearRegistersForPsg_Unused
+  addr:
+    U: 0x251C
+    E: 0x2570
+    J: 0x251C
+    C: 0x4ED0
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: PSG sound pointer
+    label: PsgSoundPtr
+    type: PsgSoundData *
+  - desc: Sound channel
+    label: SoundChannel
+    type: u8
   return: null
 - desc: Initialize sound
   label: InitSound
@@ -538,6 +892,23 @@
     label: Timer
     type: u16
   return: null
+- desc: Apply raw music sound fading
+  label: ApplyRawMusicSoundFading
+  addr:
+    U: 0x2CE8
+    E: 0x2D3C
+    J: 0x2CE8
+    C: 0x569C
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: TrackData *
+  - desc: Timer
+    label: Timer
+    type: u16
+  return: null
 - desc: Play sound after cutscene
   label: PlaySoundAfterCutscene
   addr:
@@ -639,6 +1010,28 @@
   mode: thumb
   params: null
   return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x33DC
+    E: 0x3430
+    J: 0x33DC
+    C: 0x5D90
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x3458
+    E: 0x34AC
+    J: 0x3458
+    C: 0x5E0C
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
 - desc: Check set new music track
   label: CheckSetNewMusicTrack
   addr:
@@ -654,6 +1047,20 @@
     type: u16
   return: null
   notes: Checks if the provided music track is different from the current one
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x378C
+    E: 0x37E0
+    J: 0x378C
+    C: 0x6140
+  size: 0xEC
+  mode: thumb
+  params:
+  - desc: Music track
+    label: MusicTrack
+    type: u16
+  return: null
 - desc: Check play new music track
   label: CheckPlayNewMusicTrack
   addr:
@@ -677,6 +1084,17 @@
   params: null
   return: null
   notes: Updates the current played music after the alarm stops in Chozodia
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x39C8
+    E: 0x3A1C
+    J: 0x39C8
+    C: 0x637C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
 - desc: Play music
   label: PlayMusic
   addr:
@@ -693,6 +1111,17 @@
   - desc: Priority
     label: Priority
     type: u8
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x3A6C
+    E: 0x3AC0
+    J: 0x3A6C
+    C: 0x6420
+  size: 0x2C
+  mode: thumb
+  params: null
   return: null
 - desc: Fade out music
   label: FadeOutMusic
@@ -745,8 +1174,45 @@
     type: u8
   return: null
   notes: Fades the current music track and queues the provided track to play next
-- desc: Check fade in music
-  label: CheckFadeInMusic
+- desc: Fade current insert music queue current
+  label: FadeCurrInsertMusicQueueCurr
+  addr:
+    U: 0x3B7C
+    E: 0x3BD0
+    J: 0x3B7C
+    C: 0x6530
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Timer
+    label: Timer
+    type: u16
+  - desc: Music track
+    label: MusicTrack
+    type: u16
+  - desc: Priority
+    label: Priority
+    type: u8
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x3BD0
+    E: 0x3C24
+    J: 0x3BD0
+    C: 0x6584
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Music track
+    label: MusicTrack
+    type: u16
+  - desc: Timer
+    label: Timer
+    type: u16
+  return: null
+- desc: Check play fading music
+  label: CheckPlayFadingMusic
   addr:
     U: 0x3C20
     E: 0x3C74
@@ -783,6 +1249,36 @@
     type: bool
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
+- desc: Replay queued music track
+  label: ReplayQueuedMusicTrack
+  addr:
+    U: 0x3D4C
+    E: 0x3DA0
+    J: 0x3D4C
+    C: 0x6700
+  size: 0xD8
+  mode: thumb
+  params:
+  - desc: Queue flags
+    label: QueueFlags
+    type: u8
+    tags:
+    - flags
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x3E24
+    E: 0x3E78
+    J: 0x3E24
+    C: 0x67D8
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Timer
+    label: Timer
+    type: u16
+  return: null
 - desc: Update music priority
   label: UpdateMusicPriority
   addr:
@@ -797,6 +1293,17 @@
     label: Priority
     type: u8
   return: null
+- desc: Play current music track
+  label: PlayCurrMusicTrack
+  addr:
+    U: 0x3EB8
+    E: 0x3F0C
+    J: 0x3EB8
+    C: 0x686C
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
 - desc: Decrease music volume
   label: DecreaseMusicVolume
   addr:
@@ -805,6 +1312,17 @@
     J: 0x3F20
     C: 0x68D4
   size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Reset music volume
+  label: ResetMusicVolume
+  addr:
+    U: 0x3F6C
+    E: 0x3FC0
+    J: 0x3F6C
+    C: 0x6920
+  size: 0x40
   mode: thumb
   params: null
   return: null
@@ -844,6 +1362,50 @@
     type: u16
   return: null
   notes: Fades or stops a sound depending on the provided timer
+- desc: Music empty
+  label: Music_Empty
+  addr:
+    U: 0x4084
+    E: 0x40D8
+    J: 0x4084
+    C: 0x6A38
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Music empty
+  label: Music_Empty
+  addr:
+    U: 0x4088
+    E: 0x40DC
+    J: 0x4088
+    C: 0x6A3C
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Backup track data 2 sound channels
+  label: BackupTrackData2SoundChannels
+  addr:
+    U: 0x408C
+    E: 0x40E0
+    J: 0x408C
+    C: 0x6A40
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
+- desc: Retrieve track data 2 sound channels
+  label: RetrieveTrackData2SoundChannels
+  addr:
+    U: 0x4150
+    E: 0x41A4
+    J: 0x4150
+    C: 0x6B04
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
 - desc: Play music/sound with delay
   label: PlayMusicOrSoundWithDelay
   addr:
@@ -888,6 +1450,34 @@
   params:
   - desc: Sound ID
     label: SoundID
+    type: u16
+  return: null
+- desc: Check replay file select music
+  label: CheckReplayFileSelectMusic
+  addr:
+    U: 0x427C
+    E: 0x42D0
+    J: 0x427C
+    C: 0x6C30
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Timer
+    label: Timer
+    type: u16
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x42BC
+    E: 0x4310
+    J: 0x42BC
+    C: 0x6C70
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Music track
+    label: MusicTrack
     type: u16
   return: null
 - desc: Call sound code B
@@ -1078,6 +1668,28 @@
     desc: Frequency
     label: Frequency
     type: u32
+- desc: Call music related (4ADC)
+  label: CallMusicRelated_4ADC
+  addr:
+    U: 0x4AD8
+    E: 0x4B2C
+    J: 0x4AD8
+    C: 0x748C
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Music related
+  label: MusicRelated
+  addr:
+    U: 0x4ADC
+    E: 0x4B30
+    J: 0x4ADC
+    C: 0x7490
+  size: 0x74
+  mode: arm
+  params: null
+  return: null
 - desc: Init sound track
   label: InitSoundTrack
   addr:
@@ -1111,6 +1723,73 @@
   - desc: Track data pointer
     label: TrackDataPtr
     type: u8 *
+  return: null
+- desc: Reset track
+  label: ResetTrack
+  addr:
+    U: 0x4C94
+    E: 0x4CE8
+    J: 0x4C94
+    C: 0x7648
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Track data pointer
+    label: TrackDataPtr
+    type: TrackData *
+  return: null
+- desc: Update audio
+  label: UpdateAudio
+  addr:
+    U: 0x4D48
+    E: 0x4D9C
+    J: 0x4D48
+    C: 0x76FC
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+- desc: Audio command goto
+  label: AudioCommand_Goto
+  addr:
+    U: 0x5030
+    E: 0x5084
+    J: 0x5030
+    C: 0x79E4
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Audio command pattern play
+  label: AudioCommand_PatternPlay
+  addr:
+    U: 0x5070
+    E: 0x50C4
+    J: 0x5070
+    C: 0x7A24
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Track variables pointer
+    label: TrackVariablesPtr
+    type: TrackVariables *
+  return: null
+- desc: Upload sample to wave RAM
+  label: UploadSampleToWaveRam
+  addr:
+    U: 0x50D0
+    E: 0x5124
+    J: 0x50D0
+    C: 0x7A84
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Sample pointer
+    label: SamplePtr
+    type: u32 *
   return: null
 - desc: CpuFastSet
   label: CpuFastSet
@@ -1360,6 +2039,26 @@
     label: Length
     type: u32
   return: null
+- desc: SRAM write unckecked
+  label: SramWriteUnckecked
+  addr:
+    U: 0x51F8
+    E: 0x524C
+    J: 0x51F8
+    C: 0x7BAC
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: Source address
+    label: SourceAddress
+    type: u8 *
+  - desc: Destination address
+    label: DestinationAddress
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: u32
+  return: null
 - desc: SRAM write
   label: SramWrite
   addr:
@@ -1467,6 +2166,101 @@
     type: SamusPhysics *
   return: null
   notes: Checks for screw attack/speedbooster damage to the environment
+- desc: Samus check collision at position
+  label: SamusCheckCollisionAtPosition
+  addr:
+    U: 0x5474
+    E: 0x54C8
+    J: 0x5474
+    C: 0x7E28
+  size: 0x190
+  mode: thumb
+  params:
+  - desc: X position
+    label: XPosition
+    type: u16
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: Next X position pointer
+    label: NextXPositionPtr
+    type: u16 *
+  - desc: Next Y position pointer
+    label: NextYPositionPtr
+    type: u16 *
+  - desc: Next slope type pointer
+    label: NextSlopeTypePtr
+    type: u16 *
+  return:
+    desc: Collision check
+    label: CollisionCheck
+    type: u8
+- desc: Samus check top side collision midair
+  label: SamusCheckTopSideCollisionMidair
+  addr:
+    U: 0x56B8
+    E: 0x570C
+    J: 0x56B8
+    C: 0x806C
+  size: 0xDC
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    label: SamusDataPtr
+    type: SamusData *
+  - desc: Samus physics pointer
+    label: SamusPhysicsPtr
+    type: SamusPhysics *
+  - desc: X position
+    label: XPosition
+    type: u16
+  - desc: Next X position pointer
+    label: NextXPositionPtr
+    type: u16 *
+  return:
+    desc: Collision detection result
+    label: CollisionDetectionResult
+    type: u8
+- desc: Samus check walking on slope
+  label: SamusCheckWalkingOnSlope
+  addr:
+    U: 0x5794
+    E: 0x57E8
+    J: 0x5794
+    C: 0x8148
+  size: 0x58
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    label: SamusDataPtr
+    type: SamusData *
+  - desc: Hitbox offset
+    label: HitboxOffset
+    type: u16
+  return:
+    desc: Collision detection result
+    label: CollisionDetectionResult
+    type: u8
+- desc: Samus check collision above
+  label: SamusCheckCollisionAbove
+  addr:
+    U: 0x57EC
+    E: 0x5840
+    J: 0x57EC
+    C: 0x81A0
+  size: 0xB4
+  mode: thumb
+  params:
+  - desc: Samus data pointer
+    label: SamusDataPtr
+    type: SamusData *
+  - desc: Hitbox offset
+    label: HitboxOffset
+    type: s32
+  return:
+    desc: Collision detection result
+    label: CollisionDetectionResult
+    type: u8
 - desc: Samus walking check sides collision
   label: SamusWalkingCheckSidesCollision
   addr:
@@ -3703,6 +4497,18 @@
   mode: thumb
   params: null
   return: null
+- desc: Record demo
+  label: RecordDemo
+  addr:
+    U: 0xC2FC
+    E: 0xC374
+    J: 0xC2FC
+    C: 0xED70
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+  notes: Handles the recording of a demo via input (debug feature)
 - desc: Update demo input
   label: UpdateDemoInput
   addr:
@@ -3722,6 +4528,17 @@
     J: 0xC414
     C: 0xEE88
   size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Reset demo input and duration
+  label: ResetDemoInputAndDuration
+  addr:
+    U: 0xC448
+    E: 0xC4C0
+    J: 0xC448
+    C: 0xEEBC
+  size: 0x6C
   mode: thumb
   params: null
   return: null
@@ -3794,6 +4611,17 @@
   mode: thumb
   params: null
   return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0xCBA0
+    E: 0xCC54
+    J: 0xCBA0
+    C: 0xF650
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Initialize and load room data
   label: InitAndLoadRoomData
   addr:
@@ -3806,6 +4634,21 @@
   params: null
   return: null
   notes: Loads room specific data and copies common graphics/palette; if entering a room, initializes Samus and sprite data
+- desc: Update free movement debug
+  label: UpdateFreeMovement_Debug
+  addr:
+    U: 0xCDE8
+    E: 0xCE9C
+    J: 0xCDE8
+    C: 0xF898
+  size:
+    U: 0x118
+    E: 0x118
+    J: 0x118
+    C: 0x124
+  mode: thumb
+  params: null
+  return: null
 - desc: Update sprites
   label: UpdateSprites
   addr:
@@ -3845,6 +4688,18 @@
   params: null
   return: null
   notes: Loop that calls the DrawSprite function, actually draws sprites, updates sprite debris, and is affected by the DisableDrawingSprites flag
+- desc: Sprite draw all upper
+  label: SpriteDrawAll_Upper
+  addr:
+    U: 0xD4BC
+    E: 0xD570
+    J: 0xD4BC
+    C: 0xFF78
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+  notes: Same as CallDrawSprite2
 - desc: Draw sprite
   label: DrawSprite
   addr:
@@ -4117,6 +4972,40 @@
   mode: thumb
   params: null
   return: null
+- desc: Check stop Samus against solid sprite left
+  label: CheckStopSamusAgainstSolidSpriteLeft
+  addr:
+    U: 0xE514
+    E: 0xE5C8
+    J: 0xE514
+    C: 0x10FF4
+  size: 0x90
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return: null
+- desc: Check stop Samus against solid sprite right
+  label: CheckStopSamusAgainstSolidSpriteRight
+  addr:
+    U: 0xE5A4
+    E: 0xE658
+    J: 0xE5A4
+    C: 0x11084
+  size: 0x90
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return: null
 - desc: Take damage from sprite
   label: TakeDamageFromSprite
   addr:
@@ -4233,6 +5122,28 @@
     label: BlockTopEdgeYPosition
     type: u16
   notes: Accounts for slopes
+- desc: Sprite collision related
+  label: SpriteCollisionRelated
+  addr:
+    U: 0xF594
+    E: 0xF648
+    J: 0xF594
+    C: 0x12074
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Sprite collision related
+  label: SpriteCollisionRelated
+  addr:
+    U: 0xF608
+    E: 0xF6BC
+    J: 0xF608
+    C: 0x120E8
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
 - desc: Check left/right edge collision at position
   label: CheckLeftRightEdgeCollisionAtPosition
   addr:
@@ -5156,6 +6067,18 @@
     label: SpriteOnScreenAndScreenShakeIsActive
     type: bool
   notes: Checks if a sprite is on screen and a screen shake is active (used in sova, zoomer and zeela AI)
+- desc: Update sub-sprite data 1 timer
+  label: UpdateSubSpriteData1Timer
+  addr:
+    U: 0x11300
+    E: 0x113B4
+    J: 0x11300
+    C: 0x13EA0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+  notes: Updates the sub-sprite data 1 + 0xE field, used by chozo statues for the echo when sitting
 - desc: Update sub-sprite 1 animation
   label: UpdateSubSprite1Anim
   addr:
@@ -5236,6 +6159,20 @@
   mode: thumb
   params:
   - desc: Sub sprite data pointer
+    label: SubSpriteDataPtr
+    type: SubSpriteData *
+  return: null
+- desc: Sync current sprite position with sub-sprite data position and OAM
+  label: SyncCurrSpritePositionWithSubSpriteDataPositionAndOam
+  addr:
+    U: 0x11520
+    E: 0x115D4
+    J: 0x11520
+    C: 0x140C0
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: Sub-sprite data pointer
     label: SubSpriteDataPtr
     type: SubSpriteData *
   return: null
@@ -5826,6 +6763,37 @@
   - desc: Projectile data pointer
     label: ProjectileDataPtr
     type: ProjectileData *
+  return: null
+- desc: Projectile check hit block
+  label: ProjectileCheckHitBlock
+  addr:
+    U: 0x4FD48
+    E: 0x4FE14
+    J: 0x4FD48
+    C: 0x52A90
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Projectile data pointer
+    label: ProjectileDataPtr
+    type: ProjectileData *
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+  - desc: Particle effect
+    label: ParticleEffect
+    type: u8
+  return: null
+- desc: Projectile check hitting sprite
+  label: ProjectileCheckHittingSprite
+  addr:
+    U: 0x4FD9C
+    E: 0x4FE68
+    J: 0x4FD9C
+    C: 0x52AE4
+  size: 0x5D4
+  mode: thumb
+  params: null
   return: null
 - desc: Get sprite weakness
   label: GetSpriteWeakness
@@ -6704,6 +7672,17 @@
     J: 0x539E0
     C: 0x56728
   size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Check reload escape digits graphics
+  label: CheckReloadEscapeDigitsGfx
+  addr:
+    U: 0x53A18
+    E: 0x53AE4
+    J: 0x53A18
+    C: 0x56760
+  size: 0x30
   mode: thumb
   params: null
   return: null
@@ -7905,6 +8884,69 @@
     label: BldcntValue
     type: u16
   return: null
+- desc: Sprite update BLDY
+  label: SpriteUpdateBldy
+  addr:
+    U: 0x55ADC
+    E: 0x55BA8
+    J: 0x55ADC
+    C: 0x58824
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Value
+    label: Value
+    type: u8
+  - desc: Delay
+    label: Delay
+    type: u32
+  - desc: Intensity
+    label: Intensity
+    type: u32
+  return: null
+- desc: Sprite update BLDALPHA
+  label: SpriteUpdateBldalpha
+  addr:
+    U: 0x55B24
+    E: 0x55BF0
+    J: 0x55B24
+    C: 0x5886C
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: EVA coefficient
+    label: EvaCoefficient
+    type: u8
+  - desc: EVB coefficient
+    label: EvbCoefficient
+    type: u8
+  - desc: Delay
+    label: Delay
+    type: s32
+  - desc: Intensity
+    label: Intensity
+    type: u32
+  return: null
+- desc: Update BLDY
+  label: UpdateBldy
+  addr:
+    U: 0x55B9C
+    E: 0x55C68
+    J: 0x55B9C
+    C: 0x588E4
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Value
+    label: Value
+    type: u8
+  - desc: Delay
+    label: Delay
+    type: s32
+  - desc: Intensity
+    label: Intensity
+    type: u32
+  return: null
 - desc: Update BLDALPHA
   label: UpdateBLDALPHA
   addr:
@@ -7952,6 +8994,20 @@
   - desc: Bldalpha related struct pointer
     label: BldalphaRelatedStructPtr
     type: u8 *
+  return: null
+- desc: Apply new BLDY
+  label: ApplyNewBldy
+  addr:
+    U: 0x55DB4
+    E: 0x55E80
+    J: 0x55DB4
+    C: 0x58AFC
+  size: 0xAC
+  mode: thumb
+  params:
+  - desc: BLDY data pointer
+    label: BldyDataPtr
+    type: BldyData *
   return: null
 - desc: Load room
   label: LoadRoom
@@ -8031,6 +9087,20 @@
   params: null
   return: null
   notes: Sets the BG0 and BG3 scrolling depending on the room effect/background 3 scrolling method
+- desc: Setup initial tilemap
+  label: SetupInitialTilemap
+  addr:
+    U: 0x56B28
+    E: 0x56BF4
+    J: 0x56B28
+    C: 0x59870
+  size: 0x1F0
+  mode: thumb
+  params:
+  - desc: Background number
+    label: BackgroundNumber
+    type: u8
+  return: null
 - desc: RLE decompress
   label: RleDecompress
   addr:
@@ -8055,6 +9125,17 @@
     desc: Size
     label: Size
     type: u32
+- desc: Update graphics room info
+  label: UpdateGfxRoomInfo
+  addr:
+    U: 0x56E28
+    E: 0x56EF4
+    J: 0x56E28
+    C: 0x59B70
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Update animated graphics and palette
   label: UpdateAnimatedGraphicsAndPalette
   addr:
@@ -8103,6 +9184,42 @@
   size: 0x128
   mode: thumb
   params: null
+  return: null
+- desc: Update vertical tilemap
+  label: UpdateVerticalTilemap
+  addr:
+    U: 0x571D4
+    E: 0x5729C
+    J: 0x571D4
+    C: 0x59F18
+  size:
+    U: 0x124
+    E: 0x124
+    J: 0x124
+    C: 0x128
+  mode: thumb
+  params:
+  - desc: Offset
+    label: Offset
+    type: s32
+  return: null
+- desc: Update horizontal tilemap
+  label: UpdateHorizontalTilemap
+  addr:
+    U: 0x572F8
+    E: 0x573C0
+    J: 0x572F8
+    C: 0x5A040
+  size:
+    U: 0x144
+    E: 0x144
+    J: 0x144
+    C: 0x14C
+  mode: thumb
+  params:
+  - desc: Offset
+    label: Offset
+    type: s32
   return: null
 - desc: Check DMA3 ended
   label: CheckDMA3Ended
@@ -8237,6 +9354,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Write IO registers during transition
+  label: WriteIoRegistersDuringTransition
+  addr:
+    U: 0x57AF8
+    E: 0x57BC0
+    J: 0x57AF8
+    C: 0x5A8BC
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
 - desc: Update DISPCNT
   label: UpdateDISPCNT
   addr:
@@ -8255,6 +9383,20 @@
     label: Value
     type: u16
   return: null
+- desc: Process pause button press
+  label: ProcessPauseButtonPress
+  addr:
+    U: 0x57C4C
+    E: 0x57D14
+    J: 0x57C4C
+    C: 0x5AA10
+  size: 0xB8
+  mode: thumb
+  params: null
+  return:
+    desc: Doing something
+    label: DoingSomething
+    type: u8
 - desc: Load exploding room during Zebes escape
   label: LoadExplodingRoomDuringZebesEscape
   addr:
@@ -8663,6 +9805,21 @@
   mode: thumb
   params: null
   return: null
+- desc: Free movement debug camera lock
+  label: FreeMovementDebugCameraLock
+  addr:
+    U: 0x59008
+    E: 0x590D0
+    J: 0x59008
+    C: 0x5BDCC
+  size: 0xA8
+  mode: thumb
+  params:
+  - desc: Coordinates pointer
+    label: CoordinatesPtr
+    type: RawCoordsXY *
+  return: null
+  notes: Slow scrolling, BG1 related
 - desc: Check clipdata affecting action on block
   label: CheckClipdataActionOnBlock
   addr:
@@ -8982,6 +10139,29 @@
     type: u8
   return: null
   notes: Stores a broken non-reform block in RAM
+- desc: Reveal bomb chain block
+  label: RevealBombChainBlock
+  addr:
+    U: 0x59EF8
+    E: 0x59FC0
+    J: 0x59EF8
+    C: 0x5CCBC
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Block type
+    label: BlockType
+    type: u8
+  - desc: X position
+    label: XPosition
+    type: u16
+  - desc: Y position
+    label: YPosition
+    type: u16
+  return:
+    desc: Could store
+    label: CouldStore
+    type: bool
 - desc: Check Samus in reforming block
   label: CheckSamusInReformingBlock
   addr:
@@ -9057,6 +10237,23 @@
   - desc: Y position
     label: YPosition
     type: u8
+  return: null
+- desc: Broken block reform remove collision
+  label: BrokenBlockReformRemoveCollision
+  addr:
+    U: 0x5A3E0
+    E: 0x5A4A8
+    J: 0x5A3E0
+    C: 0x5D1A4
+  size: 0xA4
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
   return: null
 - desc: Mother Brain update glass
   label: MotherBrainUpdateGlass
@@ -9321,6 +10518,42 @@
     type: u8
   return: null
   notes: Calls MotherBrainUpdateGlass with good parameters
+- desc: Check transfer faded palette unused
+  label: CheckTransferFadedPalette_Unused
+  addr:
+    U: 0x5B390
+    E: 0x5B458
+    J: 0x5B390
+    C: 0x5E154
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Check transfer faded palette
+  label: CheckTransferFadedPalette
+  addr:
+    U: 0x5B3FC
+    E: 0x5B4C4
+    J: 0x5B3FC
+    C: 0x5E1C0
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+- desc: Call apply special background fading color
+  label: CallApplySpecialBgFadingColor
+  addr:
+    U: 0x5B4D8
+    E: 0x5B5A0
+    J: 0x5B4D8
+    C: 0x5E29C
+  size: 0xAC
+  mode: thumb
+  params:
+  - desc: Color
+    label: Color
+    type: u8
+  return: null
 - desc: Set yellow tint for power bomb explosion
   label: SetYellowTintForPBExplosion
   addr:
@@ -9473,6 +10706,51 @@
     label: ColorMask
     type: u16
   return: null
+- desc: Process fading effect
+  label: ProcessFadingEffect
+  addr:
+    U: 0x5BCB0
+    E: 0x5BD78
+    J: 0x5BCB0
+    C: 0x5EA74
+  size: 0xA8
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Color fading subroutine empty
+  label: ColorFadingSubroutine_Empty
+  addr:
+    U: 0x5BEC8
+    E: 0x5BF90
+    J: 0x5BEC8
+    C: 0x5EC8C
+  size: 0x4
+  mode: thumb
+  params:
+  - desc: Stage
+    label: Stage
+    type: u8
+  - desc: Color
+    label: Color
+    type: u8
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
+- desc: Transfer faded palette on transition
+  label: TransferFadedPaletteOnTransition
+  addr:
+    U: 0x5BECC
+    E: 0x5BF94
+    J: 0x5BECC
+    C: 0x5EC90
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
 - desc: Start special fade/effect for cutscene
   label: StartSpecialFadeOrEffectForCutscene
   addr:
@@ -9503,6 +10781,18 @@
     type: u8
     enum: SpecialBGFadeType
   return: null
+- desc: Hide screen during load
+  label: HideScreenDuringLoad
+  addr:
+    U: 0x5C08C
+    E: 0x5C154
+    J: 0x5C08C
+    C: 0x5EE50
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+  notes: If removed, briely shows garbage tiles when loading the game
 - desc: BG3OFS related
   label: BG3OFSRelated
   addr:
@@ -9515,6 +10805,28 @@
   params: null
   return: null
   notes: Changes BGPositionWrittenToBG3OFS
+- desc: Start door transition fade
+  label: StartDoorTransitionFade
+  addr:
+    U: 0x5C220
+    E: 0x5C2E8
+    J: 0x5C220
+    C: 0x5EFE4
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Background fading related
+  label: BgFadingRelated
+  addr:
+    U: 0x5C3AC
+    E: 0x5C474
+    J: 0x5C3AC
+    C: 0x5F170
+  size: 0xB4
+  mode: thumb
+  params: null
+  return: null
 - desc: Process special fading effect
   label: ProcessSpecialFadingEffect
   addr:
@@ -9529,6 +10841,34 @@
     desc: Unknown
     label: unk
     type: bool
+- desc: Door transition fade
+  label: DoorTransitionFade
+  addr:
+    U: 0x5C4C0
+    E: 0x5C588
+    J: 0x5C4C0
+    C: 0x5F284
+  size: 0x268
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Color fading default
+  label: ColorFading_Default
+  addr:
+    U: 0x5C728
+    E: 0x5C7F0
+    J: 0x5C728
+    C: 0x5F4EC
+  size: 0x54
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
 - desc: Escape failed fade
   label: EscapeFailedFade
   addr:
@@ -9557,6 +10897,20 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Color fading before demo ending
+  label: ColorFading_BeforeDemoEnding
+  addr:
+    U: 0x5C8AC
+    E: 0x5C974
+    J: 0x5C8AC
+    C: 0x5F670
+  size: 0x78
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
 - desc: Before Tourian escape fade
   label: BeforeTourianEscapeFade
   addr:
@@ -9627,6 +10981,73 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Color fading before blue ship
+  label: ColorFading_BeforeBlueShip
+  addr:
+    U: 0x5CC1C
+    E: 0x5CCE4
+    J: 0x5CC1C
+    C: 0x5F9E0
+  size: 0x78
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
+- desc: Color fading before landing ship
+  label: ColorFading_BeforeLandingShip
+  addr:
+    U: 0x5CC94
+    E: 0x5CD5C
+    J: 0x5CC94
+    C: 0x5FA58
+  size: 0x5C
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
+- desc: Color fading update default
+  label: ColorFading_UpdateDefault
+  addr:
+    U: 0x5CCF0
+    E: 0x5CDB8
+    J: 0x5CCF0
+    C: 0x5FAB4
+  size: 0x34
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
+- desc: Process door transition
+  label: ProcessDoorTransition
+  addr:
+    U: 0x5CD24
+    E: 0x5CDEC
+    J: 0x5CD24
+    C: 0x5FAE8
+  size: 0x228
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Color fading update door transition
+  label: ColorFading_UpdateDoorTransition
+  addr:
+    U: 0x5CF4C
+    E: 0x5D014
+    J: 0x5CF4C
+    C: 0x5FD10
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
 - desc: Set background haze effect
   label: SetBGHazeEffect
   addr:
@@ -9635,6 +11056,17 @@
     J: 0x5CFE0
     C: 0x5FDA4
   size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Transfer and deactivate haze effect
+  label: TransferAndDeactivateHazeEffect
+  addr:
+    U: 0x5D034
+    E: 0x5D0FC
+    J: 0x5D034
+    C: 0x5FDF8
+  size: 0x68
   mode: thumb
   params: null
   return: null
@@ -10233,6 +11665,29 @@
     label: Ended
     type: bool
   notes: Handles both varia and full suit
+- desc: Suit flash calculate movement offset
+  label: SuitFlashCalcMovementOffset
+  addr:
+    U: 0x60374
+    E: 0x60458
+    J: 0x60374
+    C: 0x6319C
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Intensity
+    label: Intensity
+    type: u8
+  - desc: Start
+    label: Start
+    type: u8
+  - desc: End
+    label: End
+    type: u8
+  return:
+    desc: New start / new end
+    label: NewStartAndEnd
+    type: u16
 - desc: Make background flash
   label: MakeBackgroundFlash
   addr:
@@ -10282,6 +11737,56 @@
     J: 0x604E0
     C: 0x63308
   size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: In-game cutscene check play on transition
+  label: InGameCutsceneCheckPlayOnTransition
+  addr:
+    U: 0x6055C
+    E: 0x60640
+    J: 0x6055C
+    C: 0x63384
+  size: 0x204
+  mode: thumb
+  params: null
+  return: null
+- desc: In-game cutscene try queue
+  label: InGameCutsceneTryQueue
+  addr:
+    U: 0x60760
+    E: 0x60844
+    J: 0x60760
+    C: 0x63588
+  size: 0xA0
+  mode: thumb
+  params:
+  - desc: Cutscene
+    label: Cutscene
+    type: u8
+  return:
+    desc: Queued
+    label: Queued
+    type: u32
+- desc: In-game cutscene check start queued
+  label: InGameCutsceneCheckStartQueued
+  addr:
+    U: 0x60800
+    E: 0x608E4
+    J: 0x60800
+    C: 0x63628
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Update animated palette after transition or reload
+  label: UpdateAnimatedPaletteAfterTransitionOrReload
+  addr:
+    U: 0x60828
+    E: 0x6090C
+    J: 0x60828
+    C: 0x63650
+  size: 0x54
   mode: thumb
   params: null
   return: null
@@ -10352,6 +11857,39 @@
     J: 0x609E4
     C: 0x6380C
   size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Update music when pausing
+  label: UpdateMusicWhenPausing
+  addr:
+    U: 0x60A48
+    E: 0x60B2C
+    J: 0x60A48
+    C: 0x63870
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+- desc: Update music after unpause
+  label: UpdateMusicAfterUnpause
+  addr:
+    U: 0x60AB8
+    E: 0x60B9C
+    J: 0x60AB8
+    C: 0x638E0
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x60B14
+    E: 0x60BF8
+    J: 0x60B14
+    C: 0x6393C
+  size: 0xC
   mode: thumb
   params: null
   return: null
@@ -10484,6 +12022,46 @@
   size: 0xA8
   mode: thumb
   params: null
+  return: null
+- desc: V-Blank empty
+  label: Vblank_Empty
+  addr:
+    U: 0x612D4
+    E: 0x613BC
+    J: 0x612D4
+    C: 0x64100
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene init
+  label: CutsceneInit
+  addr:
+    U: 0x612E0
+    E: 0x613C8
+    J: 0x612E0
+    C: 0x6410C
+  size:
+    U: 0x13C
+    E: 0x16C
+    J: 0x13C
+    C: 0x16C
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene set BGCNT page data
+  label: CutsceneSetBgcntPageData
+  addr:
+    U: 0x6141C
+    E: 0x61534
+    J: 0x6141C
+    C: 0x64278
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Page data structure
+    label: PageDataStructure
+    type: CutscenePageData
   return: null
 - desc: Cutscene update BGCNT
   label: CutsceneUpdateBGCNT
@@ -10736,6 +12314,53 @@
   mode: thumb
   params: null
   return: null
+- desc: Cutscene related
+  label: CutsceneRelated
+  addr:
+    U: 0x61F0C
+    E: 0x62024
+    J: 0x61F0C
+    C: 0x64D6C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene related
+  label: CutsceneRelated
+  addr:
+    U: 0x61F28
+    E: 0x62040
+    J: 0x61F28
+    C: 0x64D88
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene related
+  label: CutsceneRelated
+  addr:
+    U: 0x61F60
+    E: 0x62078
+    J: 0x61F60
+    C: 0x64DC0
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Cutscene update fading
+  label: CutsceneUpdateFading
+  addr:
+    U: 0x621D0
+    E: 0x622EC
+    J: 0x621D0
+    C: 0x65034
+  size: 0x23C
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
 - desc: Kraid rising rising
   label: KraidRisingRising
   addr:
@@ -10750,6 +12375,46 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Kraid rising update puff
+  label: KraidRisingUpdatePuff
+  addr:
+    U: 0x626F8
+    E: 0x62814
+    J: 0x626F8
+    C: 0x6555C
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: Puff ID
+    label: PuffId
+    type: u8
+  return:
+    desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+- desc: Kraid rising update debris
+  label: KraidRisingUpdateDebris
+  addr:
+    U: 0x6274C
+    E: 0x62868
+    J: 0x6274C
+    C: 0x655B0
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: Debris ID
+    label: DebrisId
+    type: u8
+  return:
+    desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
 - desc: Kraid rising opening eyes
   label: KraidRisingOpeningEyes
   addr:
@@ -10792,6 +12457,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Kraid rising process OAM
+  label: KraidRisingProcessOam
+  addr:
+    U: 0x62B58
+    E: 0x62C74
+    J: 0x62B58
+    C: 0x659BC
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Story text cutscene initialize
   label: StoryTextCutsceneInit
   addr:
@@ -10806,6 +12482,90 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Story text cutscene process text
+  label: StoryTextCutsceneProcessText
+  addr:
+    U: 0x62C8C
+    E: 0x62DA8
+    J: 0x62C8C
+    C: 0x65AF0
+  size: 0x120
+  mode: thumb
+  params: null
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
+- desc: Story text cutscene set vertical offset
+  label: StoryTextCutsceneSetVerticalOffset
+  addr:
+    U: 0x62DAC
+    E: 0x62EC8
+    J: 0x62DAC
+    C: 0x65C10
+  size: 0x58
+  mode: thumb
+  params: null
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
+- desc: Story text cutscene text fade in
+  label: StoryTextCutsceneTextFadeIn
+  addr:
+    U: 0x62E04
+    E: 0x62F20
+    J: 0x62E04
+    C: 0x65C68
+  size: 0x84
+  mode: thumb
+  params: null
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
+- desc: Story text cutscene text fade out
+  label: StoryTextCutsceneTextFadeOut
+  addr:
+    U: 0x62E88
+    E: 0x62FA4
+    J: 0x62E88
+    C: 0x65CEC
+  size: 0x80
+  mode: thumb
+  params: null
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
+- desc: Story text cutscene check input
+  label: StoryTextCutsceneCheckInput
+  addr:
+    U: 0x62F08
+    E: 0x63024
+    J: 0x62F08
+    C: 0x65D6C
+  size: 0x64
+  mode: thumb
+  params: null
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
+- desc: Story text cutscene end
+  label: StoryTextCutsceneEnd
+  addr:
+    U: 0x62F6C
+    E: 0x63088
+    J: 0x62F6C
+    C: 0x65DD0
+  size: 0x6C
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u8
 - desc: Story text cutscene subroutine
   label: StoryTextCutsceneSubroutine
   addr:
@@ -10834,6 +12594,20 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Mother brain close up update elevator reflection
+  label: MotherBrainCloseUpUpdateElevatorReflection
+  addr:
+    U: 0x6323C
+    E: 0x63358
+    J: 0x6323C
+    C: 0x660A0
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Mother Brain close-up eye opening
   label: MotherBrainCloseUpEyeOpening
   addr:
@@ -10890,6 +12664,62 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Mother Brain close up process OAM
+  label: MotherBrainCloseUpProcessOam
+  addr:
+    U: 0x63670
+    E: 0x6378C
+    J: 0x63670
+    C: 0x664D4
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Mother Brain close up update eye position
+  label: MotherBrainCloseUpUpdateEyePosition
+  addr:
+    U: 0x636A8
+    E: 0x637C4
+    J: 0x636A8
+    C: 0x6650C
+  size: 0x108
+  mode: thumb
+  params:
+  - desc: Looking at Samus flag
+    label: LookingAtSamusFlag
+    type: bool
+  return: null
+- desc: Mother Brain close up update bubble
+  label: MotherBrainCloseUpUpdateBubble
+  addr:
+    U: 0x637B0
+    E: 0x638CC
+    J: 0x637B0
+    C: 0x66614
+  size: 0x5C
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
+- desc: Mother brain close up init bubbles
+  label: MotherBrainCloseUpInitBubbles
+  addr:
+    U: 0x6380C
+    E: 0x63928
+    J: 0x6380C
+    C: 0x66670
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Bubble pack ID
+    label: BubblePackId
+    type: u8
+  return:
+    desc: 0 if could init, 1 otherwise
+    label: 0IfCouldInit,1Otherwise
+    type: u8
 - desc: Ridley in space ship leaving
   label: RidleyInSpaceShipLeaving
   addr:
@@ -10904,6 +12734,20 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley in space update ship leaving
+  label: RidleyInSpaceUpdateShipLeaving
+  addr:
+    U: 0x63B1C
+    E: 0x63C38
+    J: 0x63B1C
+    C: 0x66980
+  size: 0xC4
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Ridley in space Ridley suspicious
   label: RidleyInSpaceRidleySuspicious
   addr:
@@ -10932,6 +12776,20 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley in space update alert palette
+  label: RidleyInSpaceUpdateAlertPalette
+  addr:
+    U: 0x63F54
+    E: 0x64070
+    J: 0x63F54
+    C: 0x66DB8
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Cutscene palette data pointer
+    label: CutscenePaletteDataPtr
+    type: CutscenePaletteData *
+  return: null
 - desc: Ridley in space view of ship
   label: RidleyInSpaceViewOfShip
   addr:
@@ -10946,6 +12804,48 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley in space update view of ship
+  label: RidleyInSpaceUpdateViewOfShip
+  addr:
+    U: 0x64168
+    E: 0x64284
+    J: 0x64168
+    C: 0x66FCC
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
+- desc: Ridley in space update right blue ship
+  label: RidleyInSpaceUpdateRightBlueShip
+  addr:
+    U: 0x641CC
+    E: 0x642E8
+    J: 0x641CC
+    C: 0x67030
+  size: 0x80
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
+- desc: Ridley in space update left blue ship
+  label: RidleyInSpaceUpdateLeftBlueShip
+  addr:
+    U: 0x6424C
+    E: 0x64368
+    J: 0x6424C
+    C: 0x670B0
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Ridley in space cutscene initialize
   label: RidleyInSpaceCutsceneInit
   addr:
@@ -10974,6 +12874,73 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Ridley in space process OAM
+  label: RidleyInSpaceProcessOam
+  addr:
+    U: 0x6444C
+    E: 0x64568
+    J: 0x6444C
+    C: 0x672B0
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley in space view of ship particles
+  label: RidleyInSpaceViewOfShipParticles
+  addr:
+    U: 0x64498
+    E: 0x645B4
+    J: 0x64498
+    C: 0x672FC
+  size: 0x144
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley in space view of ship update particle
+  label: RidleyInSpaceViewOfShipUpdateParticle
+  addr:
+    U: 0x645DC
+    E: 0x646F8
+    J: 0x645DC
+    C: 0x67440
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return:
+    desc: OAM ID
+    label: OamId
+    type: u32
+- desc: Ridley in space ship leaving particles
+  label: RidleyInSpaceShipLeavingParticles
+  addr:
+    U: 0x6469C
+    E: 0x647B8
+    J: 0x6469C
+    C: 0x67500
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley in space ship leaving update particle
+  label: RidleyInSpaceShipLeavingUpdateParticle
+  addr:
+    U: 0x64798
+    E: 0x648B4
+    J: 0x64798
+    C: 0x675FC
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return:
+    desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
 - desc: Ridley landing Ridley flying
   label: RidleyLandingRidleyFlying
   addr:
@@ -10988,6 +12955,24 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley landing update Ridley
+  label: RidleyLandingUpdateRidley
+  addr:
+    U: 0x64948
+    E: 0x64A64
+    J: 0x64948
+    C: 0x677AC
+  size:
+    U: 0x6C
+    E: 0x6C
+    J: 0x6C
+    C: 0x70
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Ridley landing ship landing
   label: RidleyLandingShipLanding
   addr:
@@ -11002,6 +12987,23 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley landing update ship landing
+  label: RidleyLandingUpdateShipLanding
+  addr:
+    U: 0x64F5C
+    E: 0x65078
+    J: 0x64F5C
+    C: 0x67DC4
+  size: 0x84
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return:
+    desc: New cutscene OAM data pointer
+    label: NewCutsceneOamDataPtr
+    type: CutsceneOamData *
 - desc: Ridley landing ship in space
   label: RidleyLandingShipInSpace
   addr:
@@ -11044,6 +13046,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Ridley landing process OAM
+  label: RidleyLandingProcessOam
+  addr:
+    U: 0x652B8
+    E: 0x653D4
+    J: 0x652B8
+    C: 0x68120
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley spawn Ridley flying in
   label: RidleySpawnRidleyFlyingIn
   addr:
@@ -11058,6 +13071,20 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Ridley spawn update Ridley
+  label: RidleySpawnUpdateRidley
+  addr:
+    U: 0x654A0
+    E: 0x655BC
+    J: 0x654A0
+    C: 0x68308
+  size: 0xA0
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Ridley spawn helmet reflection
   label: RidleySpawnHelmetReflection
   addr:
@@ -11114,6 +13141,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Ridley spawn process OAM
+  label: RidleySpawnProcessOam
+  addr:
+    U: 0x658D8
+    E: 0x659F4
+    J: 0x658D8
+    C: 0x68740
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Mecha Ridley sees Samus eye open
   label: MechaRidleySeesSamusEyeOpen
   addr:
@@ -11156,6 +13194,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Mecha Ridley sees Samus process OAM
+  label: MechaRidleySeesSamusProcessOam
+  addr:
+    U: 0x65BA0
+    E: 0x65CBC
+    J: 0x65BA0
+    C: 0x68A08
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Getting fully powered suit animation
   label: GettingFullyPoweredSuitAnim
   addr:
@@ -11170,6 +13219,68 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Getting fully powered suit update ring palette
+  label: GettingFullyPoweredSuitUpdateRingPalette
+  addr:
+    U: 0x65DDC
+    E: 0x65EF8
+    J: 0x65DDC
+    C: 0x68C44
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Cutscene dalette data pointer
+    label: CutscenePaletteDataPtr
+    type: CutscenePaletteData *
+  return: null
+- desc: Getting fully powered update ring
+  label: GettingFullyPoweredUpdateRing
+  addr:
+    U: 0x65E3C
+    E: 0x65F58
+    J: 0x65E3C
+    C: 0x68CA4
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
+- desc: Getting fully powered suit sparkles around ring
+  label: GettingFullyPoweredSuitSparklesAroundRing
+  addr:
+    U: 0x65EAC
+    E: 0x65FC8
+    J: 0x65EAC
+    C: 0x68D14
+  size: 0xC4
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: Sparkle ID
+    label: SparkleId
+    type: u8
+  return: null
+- desc: Getting fully powered suit sparkles going up
+  label: GettingFullyPoweredSuitSparklesGoingUp
+  addr:
+    U: 0x65F70
+    E: 0x6608C
+    J: 0x65F70
+    C: 0x68DD8
+  size: 0xB0
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: Sparkle ID
+    label: SparkleId
+    type: u8
+  return: null
 - desc: Getting fully powered suit initialize
   label: GettingFullyPoweredSuitInit
   addr:
@@ -11198,6 +13309,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Getting fully powered suit process OAM
+  label: GettingFullyPoweredSuitProcessOam
+  addr:
+    U: 0x66390
+    E: 0x664AC
+    J: 0x66390
+    C: 0x691F8
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Before Ruins Test Samus close-up
   label: BeforeRuinsTestSamusCloseUp
   addr:
@@ -11227,6 +13349,48 @@
     label: Always0
     type: bool
   notes: Handles the wall view and the grey voice part of the before Ruins Test cutscene
+- desc: Before charlie wall and grey voice scroll and load young Samus graphics
+  label: BeforeCharlieWallAndGreyVoiceScrollAndLoadYoungSamusGfx
+  addr:
+    U: 0x66910
+    E: 0x66A2C
+    J: 0x66910
+    C: 0x69778
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Cutscene graphics data pointer
+    label: CutsceneGraphicsDataPtr
+    type: CutsceneGfxData *
+  return: null
+- desc: Before charlie wall and grey voice apply monochrome
+  label: BeforeCharlieWallAndGreyVoiceApplyMonochrome
+  addr:
+    U: 0x66988
+    E: 0x66AA4
+    J: 0x66988
+    C: 0x697F0
+  size: 0x6C
+  mode: thumb
+  params:
+  - desc: Cutscene graphics data pointer
+    label: CutsceneGraphicsDataPtr
+    type: CutsceneGfxData *
+  return: null
+- desc: Before charlie wall and grey voice scroll close up
+  label: BeforeCharlieWallAndGreyVoiceScrollCloseUp
+  addr:
+    U: 0x669F4
+    E: 0x66B10
+    J: 0x669F4
+    C: 0x6985C
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Cutscene graphics data pointer
+    label: CutsceneGraphicsDataPtr
+    type: CutsceneGfxData *
+  return: null
 - desc: Before Ruins Test Chozo wall sides
   label: BeforeRuinsTestChozoWallSides
   addr:
@@ -11308,6 +13472,17 @@
     desc: Unknown
     label: unk
     type: u8
+- desc: Statue opening process OAM
+  label: StatueOpeningProcessOam
+  addr:
+    U: 0x67048
+    E: 0x67164
+    J: 0x67048
+    C: 0x69EB0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Enter Tourian animation
   label: EnterTourianAnim
   addr:
@@ -11322,6 +13497,65 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Enter tourian move background and check stop
+  label: EnterTourianMoveBgAndCheckStop
+  addr:
+    U: 0x67390
+    E: 0x674AC
+    J: 0x67390
+    C: 0x6A1F8
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Enter Tourian update Metroids
+  label: EnterTourianUpdateMetroids
+  addr:
+    U: 0x673E0
+    E: 0x674FC
+    J: 0x673E0
+    C: 0x6A248
+  size: 0x378
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: Metroid ID
+    label: MetroidId
+    type: u8
+  return: null
+- desc: Enter tourian switch Metroid palette
+  label: EnterTourianSwitchMetroidPalette
+  addr:
+    U: 0x67758
+    E: 0x67874
+    J: 0x67758
+    C: 0x6A5C0
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: Cutscene palette data pointer
+    label: CutscenePaletteDataPtr
+    type: CutscenePaletteData *
+  - desc: Use grabbed palette
+    label: UseGrabbedPalette
+    type: u8
+  return: null
+- desc: Enter tourian update pirate
+  label: EnterTourianUpdatePirate
+  addr:
+    U: 0x677E4
+    E: 0x67900
+    J: 0x677E4
+    C: 0x6A64C
+  size: 0x168
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Enter Tourian initialize
   label: EnterTourianInit
   addr:
@@ -11350,6 +13584,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Enter tourian process OAM
+  label: EnterTourianProcessOam
+  addr:
+    U: 0x67D40
+    E: 0x67E5C
+    J: 0x67D40
+    C: 0x6ABA8
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Samus in blue ship powering up
   label: SamusInBlueShipPoweringUp
   addr:
@@ -11364,6 +13609,34 @@
     desc: Always 0
     label: Always0
     type: bool
+- desc: Samus in blue ship shake screen
+  label: SamusInBlueShipShakeScreen
+  addr:
+    U: 0x67E84
+    E: 0x67FA0
+    J: 0x67E84
+    C: 0x6ACEC
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: Cutscene graphics data pointer
+    label: CutsceneGraphicsDataPtr
+    type: CutsceneGfxData *
+  return: null
+- desc: Samus in blue ship update control panel
+  label: SamusInBlueShipUpdateControlPanel
+  addr:
+    U: 0x67ED0
+    E: 0x67FEC
+    J: 0x67ED0
+    C: 0x6AD38
+  size: 0xC0
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  return: null
 - desc: Samus in blue ship initialize
   label: SamusInBlueShipInit
   addr:
@@ -11392,6 +13665,115 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Samus in blue ship process OAM
+  label: SamusInBlueShipProcessOam
+  addr:
+    U: 0x680F0
+    E: 0x6820C
+    J: 0x680F0
+    C: 0x6AF58
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Update menu OAM data ID
+  label: UpdateMenuOamDataId
+  addr:
+    U: 0x68128
+    E: 0x68244
+    J: 0x68128
+    C: 0x6AF90
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: OAM ID
+    label: OamId
+    type: u8
+  return: null
+- desc: Update cutscene OAM data ID
+  label: UpdateCutsceneOamDataId
+  addr:
+    U: 0x68148
+    E: 0x68264
+    J: 0x68148
+    C: 0x6AFB0
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Cutscene OAM data pointer
+    label: CutsceneOamDataPtr
+    type: CutsceneOamData *
+  - desc: OAM ID
+    label: OamId
+    type: u8
+  return: null
+- desc: Map screen update or start fading
+  label: MapScreenUpdateOrStartFading
+  addr:
+    U: 0x682EC
+    E: 0x68408
+    J: 0x682EC
+    C: 0x6B154
+  size: 0x2CC
+  mode: thumb
+  params:
+  - desc: Stage
+    label: Stage
+    type: u8
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Map screen copy PALRAM to EWRAM unused
+  label: MapScreenCopyPalramToEwram_Unused
+  addr:
+    U: 0x685B8
+    E: 0x686D4
+    J: 0x685B8
+    C: 0x6B420
+  size: 0x98
+  mode: thumb
+  params:
+  - desc: Don't clear PALRAM flag
+    label: DontClearPalramFlag
+    type: bool
+  return: null
+- desc: Check transfer pause screen BG palette unused
+  label: CheckTransferPauseScreenBgPalette_Unused
+  addr:
+    U: 0x68650
+    E: 0x6876C
+    J: 0x68650
+    C: 0x6B4B8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Map screen check can scroll and remove arrows
+  label: MapScreenCheckCanScrollAndRemoveArrows
+  addr:
+    U: 0x68694
+    E: 0x687B0
+    J: 0x68694
+    C: 0x6B4FC
+  size: 0x208
+  mode: thumb
+  params: null
+  return: null
+- desc: Map screen check display boss icon OAM
+  label: MapScreenCheckDisplayBossIconOam
+  addr:
+    U: 0x6889C
+    E: 0x689B8
+    J: 0x6889C
+    C: 0x6B704
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
 - desc: Check draw time and tanks
   label: CheckDrawTimeAndTanks
   addr:
@@ -11407,6 +13789,46 @@
     type: bool
   return: null
   notes: Draws the pause screen info (in-game time and tanks)
+- desc: Update world map highlight
+  label: UpdateWorldMapHighlight
+  addr:
+    U: 0x68FD0
+    E: 0x690EC
+    J: 0x68FD0
+    C: 0x6BE38
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Area
+    label: Area
+    type: u8
+    enum: AreaID
+  return: null
+- desc: Map screen update world map OAM
+  label: MapScreenUpdateWorldMapOam
+  addr:
+    U: 0x69024
+    E: 0x69140
+    J: 0x69024
+    C: 0x6BE8C
+  size: 0x1E8
+  mode: thumb
+  params:
+  - desc: On world map
+    label: OnWorldMap
+    type: u8
+  return: null
+- desc: Load area name and icons
+  label: LoadAreaNameAndIcons
+  addr:
+    U: 0x6920C
+    E: 0x69328
+    J: 0x6920C
+    C: 0x6C074
+  size: 0x3B0
+  mode: thumb
+  params: null
+  return: null
 - desc: Map screen OAM related
   label: MapScreenOamRelated
   addr:
@@ -11417,6 +13839,54 @@
   size: 0xF0
   mode: thumb
   params: null
+  return: null
+- desc: Process menu OAM
+  label: ProcessMenuOam
+  addr:
+    U: 0x696AC
+    E: 0x697C8
+    J: 0x696AC
+    C: 0x6C514
+  size:
+    U: 0x364
+    E: 0x364
+    J: 0x364
+    C: 0x360
+  mode: thumb
+  params:
+  - desc: Length
+    label: Length
+    type: u8
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: OAM array pointer
+    label: OamArrayPointer
+    type: OamArray *
+  return: null
+- desc: Process complex menu OAM
+  label: ProcessComplexMenuOam
+  addr:
+    U: 0x69A10
+    E: 0x69B2C
+    J: 0x69A10
+    C: 0x6C874
+  size:
+    U: 0x3B8
+    E: 0x3B8
+    J: 0x3B8
+    C: 0x3C8
+  mode: thumb
+  params:
+  - desc: Length
+    label: Length
+    type: u8
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: OAM array pointer
+    label: OamArrayPointer
+    type: OamArray *
   return: null
 - desc: Cutscene process OAM
   label: CutsceneProcessOAM
@@ -11456,6 +13926,28 @@
     desc: Leaving map screen
     label: LeavingMapScreen
     type: bool
+- desc: V-Blank code during map screen
+  label: VBlankCodeDuringMapScreen
+  addr:
+    U: 0x6A2F8
+    E: 0x6A414
+    J: 0x6A2F8
+    C: 0x6D17C
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x6A428
+    E: 0x6A544
+    J: 0x6A428
+    C: 0x6D2AC
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Map screen initialize
   label: MapScreenInit
   addr:
@@ -11503,6 +13995,141 @@
     label: DestinationAddress
     type: u16 *
   return: null
+- desc: Map screen call current subroutine
+  label: MapScreenCallCurrSubroutine
+  addr:
+    U: 0x6B240
+    E: 0x6B35C
+    J: 0x6B25C
+    C: 0x6E118
+  size:
+    U: 0x2C4
+    E: 0x2C8
+    J: 0x2C4
+    C: 0x2C8
+  mode: thumb
+  params: null
+  return:
+    desc: Leaving map screen
+    label: LeavingMapScreen
+    type: bool
+- desc: Debug menu move cursor
+  label: DebugMenuMoveCursor
+  addr:
+    U: 0x6B504
+    E: 0x6B624
+    J: 0x6B520
+    C: 0x6E3E0
+  size: 0x168
+  mode: thumb
+  params:
+  - desc: Allow screen overflow flag
+    label: AllowScreenOverflowFlag
+    type: bool
+  return: null
+- desc: Map screen update top visor overlay
+  label: MapScreenUpdateTopVisorOverlay
+  addr:
+    U: 0x6B718
+    E: 0x6B838
+    J: 0x6B734
+    C: 0x6E5F4
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: OAM ID
+    label: OamId
+    type: u8
+  return: null
+- desc: Map screen suit changing start
+  label: MapScreenSuitChangingStart
+  addr:
+    U: 0x6B778
+    E: 0x6B898
+    J: 0x6B794
+    C: 0x6E654
+  size:
+    U: 0xC0
+    E: 0xC0
+    J: 0xC0
+    C: 0x134
+  mode: thumb
+  params: null
+  return:
+    desc: Done
+    label: Done
+    type: s32
+    notes: -1 when done
+- desc: Status screen init
+  label: StatusScreenInit
+  addr:
+    U: 0x6B838
+    E: 0x6B958
+    J: 0x6B854
+    C: 0x6E788
+  size:
+    U: 0x1FC
+    E: 0x1FC
+    J: 0x1FC
+    C: 0x260
+  mode: thumb
+  params: null
+  return:
+    desc: Done
+    label: Done
+    type: s32
+    notes: -1 when done
+- desc: Quit status screen
+  label: QuitStatusScreen
+  addr:
+    U: 0x6BA34
+    E: 0x6BB54
+    J: 0x6BA50
+    C: 0x6E9E8
+  size:
+    U: 0x200
+    E: 0x200
+    J: 0x200
+    C: 0x210
+  mode: thumb
+  params: null
+  return:
+    desc: Done
+    label: Done
+    type: s32
+    notes: -1 when done
+- desc: Easy sleep menu init
+  label: EasySleepMenuInit
+  addr:
+    U: 0x6BC34
+    E: 0x6BD54
+    J: 0x6BC50
+    C: 0x6EBF8
+  size:
+    U: 0x2D4
+    E: 0x2D8
+    J: 0x2D4
+    C: 0x2D8
+  mode: thumb
+  params: null
+  return:
+    desc: Done
+    label: Done
+    type: bool
+- desc: Quit easy sleep menu
+  label: QuitEasySleepMenu
+  addr:
+    U: 0x6BF08
+    E: 0x6C02C
+    J: 0x6BF24
+    C: 0x6EED0
+  size: 0x1D8
+  mode: thumb
+  params: null
+  return:
+    desc: Done
+    label: Done
+    type: bool
 - desc: Check sustained input for scrolling
   label: CheckSustainedInputForScrolling
   addr:
@@ -11757,6 +14384,26 @@
     label: ItemYPosition
     type: u8
   return: null
+- desc: Check tile is explored
+  label: CheckTileIsExplored
+  addr:
+    U: 0x6CC68
+    E: 0x6CD74
+    J: 0x6CC84
+    C: 0x6FEC4
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: X position
+    label: XPosition
+    type: u8
+  - desc: Y position
+    label: YPosition
+    type: u8
+  return:
+    desc: Explored minimap bit flag
+    label: ExploredMinimapBitFlag
+    type: u32
 - desc: Load minimap squares with obtained items
   label: LoadMinimapSquaresWithObtainedItems
   addr:
@@ -11814,6 +14461,103 @@
     type: u8
   return: null
   notes: Draw the in-game time and tanks on the map screen
+- desc: Map download init
+  label: MapDownloadInit
+  addr:
+    U: 0x6D334
+    E: 0x6D440
+    J: 0x6D350
+    C: 0x70590
+  size:
+    U: 0x114
+    E: 0x110
+    J: 0x114
+    C: 0x110
+  mode: thumb
+  params: null
+  return: null
+- desc: Map download subroutine
+  label: MapDownloadSubroutine
+  addr:
+    U: 0x6D448
+    E: 0x6D550
+    J: 0x6D464
+    C: 0x706A0
+  size: 0x38
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Map download instant unused
+  label: MapDownloadInstant_Unused
+  addr:
+    U: 0x6D480
+    E: 0x6D588
+    J: 0x6D49C
+    C: 0x706D8
+  size: 0xA8
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Map download instant with line unused
+  label: MapDownloadInstantWithLine_Unused
+  addr:
+    U: 0x6D528
+    E: 0x6D630
+    J: 0x6D544
+    C: 0x70780
+  size: 0x158
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Map download update
+  label: MapDownloadUpdate
+  addr:
+    U: 0x6D680
+    E: 0x6D788
+    J: 0x6D69C
+    C: 0x708D8
+  size:
+    U: 0x4D8
+    E: 0x4C0
+    J: 0x4D8
+    C: 0x4C0
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Get absolute map borders positions
+  label: GetAbsoluteMapBordersPositions
+  addr:
+    U: 0x6DDC0
+    E: 0x6DEB0
+    J: 0x6DDDC
+    C: 0x71000
+  size: 0x110
+  mode: thumb
+  params: null
+  return: null
+- desc: Pause screen map update map borders for targets
+  label: PauseScreenMapUpdateMapBordersForTargets
+  addr:
+    U: 0x6DED0
+    E: 0x6DFC0
+    J: 0x6DEEC
+    C: 0x71110
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
 - desc: Get all minimap data
   label: GetAllMinimapData
   addr:
@@ -11852,6 +14596,20 @@
   size: 0x1A8
   mode: thumb
   params: null
+  return: null
+- desc: Map screen toggleh world map
+  label: MapScreenTogglehWorldMap
+  addr:
+    U: 0x6E1F4
+    E: 0x6E2E4
+    J: 0x6E210
+    C: 0x71434
+  size: 0xDC
+  mode: thumb
+  params:
+  - desc: Force closing
+    label: ForceClosing
+    type: u8
   return: null
 - desc: Map screen change area
   label: MapScreenChangeArea
@@ -11975,6 +14733,37 @@
     label: GfxSlot
     type: u8
   return: null
+- desc: Start message
+  label: StartMessage
+  addr:
+    U: 0x6F258
+    E: 0x6F3A4
+    J: 0x6F274
+    C: 0x724F4
+  size: 0x34
+  mode: thumb
+  params:
+  - desc: Text ID
+    label: TextId
+    type: u8
+  - desc: Graphics slot
+    label: GfxSlot
+    type: u8
+  return: null
+- desc: Process item banner text
+  label: ProcessItemBannerText
+  addr:
+    U: 0x6F28C
+    E: 0x6F3D8
+    J: 0x6F2A8
+    C: 0x72528
+  size: 0x178
+  mode: thumb
+  params: null
+  return:
+    desc: Current line
+    label: CurrLine
+    type: u8
 - desc: Start story text
   label: StartStoryText
   addr:
@@ -11989,6 +14778,20 @@
     label: StoryTextID
     type: u8
   return: null
+- desc: Process intro story text
+  label: ProcessIntroStoryText
+  addr:
+    U: 0x6F424
+    E: 0x6F570
+    J: 0x6F440
+    C: 0x726C0
+  size: 0x180
+  mode: thumb
+  params: null
+  return:
+    desc: Current line
+    label: CurrLine
+    type: u8
 - desc: Start file screen text
   label: StartFileScreenText
   addr:
@@ -12002,6 +14805,31 @@
   - desc: Message number
     label: MessageNum
     type: u8
+  return: null
+- desc: Process file screen text for pop up
+  label: ProcessFileScreenTextForPopUp
+  addr:
+    U: 0x6F5C4
+    E: 0x6F710
+    J: 0x6F5E0
+    C: 0x72860
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Current line
+    label: CurrLine
+    type: u8
+- desc: Process description text
+  label: ProcessDescriptionText
+  addr:
+    U: 0x6F680
+    E: 0x6F7CC
+    J: 0x6F69C
+    C: 0x7291C
+  size: 0x30C
+  mode: thumb
+  params: null
   return: null
 - desc: Process current message
   label: ProcessCurrMessage
@@ -12039,6 +14867,17 @@
     J: 0x6FAE8
     C: 0x72D68
   size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Draw easy sleep menu text
+  label: DrawEasySleepMenuText
+  addr:
+    U: 0x6FBB8
+    E: 0x6FD04
+    J: 0x6FBD4
+    C: 0x72E54
+  size: 0x148
   mode: thumb
   params: null
   return: null
@@ -12096,6 +14935,20 @@
   mode: thumb
   params: null
   return: null
+- desc: Set status screen pistol visibility
+  label: SetStatusScreenPistolVisibility
+  addr:
+    U: 0x70324
+    E: 0x70470
+    J: 0x70340
+    C: 0x735C0
+  size: 0xF0
+  mode: thumb
+  params:
+  - desc: Tilemap pointer
+    label: TilemapPtr
+    type: u16 *
+  return: null
 - desc: Draw status screen single tank amount
   label: DrawStatusScreenSingleTankAmount
   addr:
@@ -12120,6 +14973,48 @@
     label: IsAtMaxFlag
     type: bool
   return: null
+- desc: Set status screen beams visibility
+  label: SetStatusScreenBeamsVisibility
+  addr:
+    U: 0x70534
+    E: 0x70680
+    J: 0x70550
+    C: 0x737D0
+  size: 0x170
+  mode: thumb
+  params:
+  - desc: Tilemap pointer
+    label: TilemapPtr
+    type: u16 *
+  return: null
+- desc: Set status screen suits visibility
+  label: SetStatusScreenSuitsVisibility
+  addr:
+    U: 0x706A4
+    E: 0x707F0
+    J: 0x706C0
+    C: 0x73940
+  size: 0x16C
+  mode: thumb
+  params:
+  - desc: Tilemap pointer
+    label: TilemapPtr
+    type: u16 *
+  return: null
+- desc: Set status screen misc visibility
+  label: SetStatusScreenMiscVisibility
+  addr:
+    U: 0x70810
+    E: 0x7095C
+    J: 0x7082C
+    C: 0x73AAC
+  size: 0x1B0
+  mode: thumb
+  params:
+  - desc: Tilemap pointer
+    label: TilemapPtr
+    type: u16 *
+  return: null
 - desc: Set status screen bomb visibility
   label: SetStatusScreenBombVisibility
   addr:
@@ -12133,6 +15028,37 @@
   - desc: Tilemap offset
     label: TilemapOffset
     type: u32
+  return: null
+- desc: Set status screen missiles visibility
+  label: SetStatusScreenMissilesVisibility
+  addr:
+    U: 0x70C2C
+    E: 0x70D78
+    J: 0x70C48
+    C: 0x73EC8
+  size: 0x1F0
+  mode: thumb
+  params:
+  - desc: Tilemap pointer
+    label: TilemapPtr
+    type: u16 *
+  return: null
+- desc: Status screen enable unknown item
+  label: StatusScreenEnableUnkItem
+  addr:
+    U: 0x70EC0
+    E: 0x7100C
+    J: 0x70EDC
+    C: 0x7415C
+  size: 0x98
+  mode: thumb
+  params:
+  - desc: Group
+    label: Group
+    type: u8
+  - desc: Row
+    label: Row
+    type: u8
   return: null
 - desc: Check select pressed on status screen
   label: CheckSelectPressedOnStatusScreen
@@ -12152,6 +15078,45 @@
   return:
     desc: Select pressed
     label: SelectPressed
+    type: bool
+- desc: Status screen init cursor and item
+  label: StatusScreenInitCursorAndItem
+  addr:
+    U: 0x70F6C
+    E: 0x710B8
+    J: 0x70F88
+    C: 0x74208
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Map screen suitless items
+  label: MapScreenSuitlessItems
+  addr:
+    U: 0x70FB0
+    E: 0x710FC
+    J: 0x70FCC
+    C: 0x7424C
+  size: 0x220
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Map screen fully powered items
+  label: MapScreenFullyPoweredItems
+  addr:
+    U: 0x7142C
+    E: 0x71578
+    J: 0x71448
+    C: 0x746C8
+  size: 0x3D4
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
     type: bool
 - desc: Status screen subroutine
   label: StatusScreenSubroutine
@@ -12182,6 +15147,98 @@
     label: EquipmentID
     type: u8
     notes: Long beam = 0, ..., space jump = 10, unknown item = 11, pistol = 12, none = 80)
+- desc: Status screen update cursor OAM position
+  label: StatusScreenUpdateCursorOamPosition
+  addr:
+    U: 0x71A3C
+    E: 0x71B88
+    J: 0x71A58
+    C: 0x74CD8
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Status slot
+    label: StatusSlot
+    type: u8
+  return:
+    desc: New position
+    label: NewPosition
+    type: u32
+- desc: Is status slot enabled
+  label: IsStatusSlotEnabled
+  addr:
+    U: 0x71A8C
+    E: 0x71BD8
+    J: 0x71AA8
+    C: 0x74D28
+  size: 0xA0
+  mode: thumb
+  params:
+  - desc: Status slot
+    label: StatusSlot
+    type: u8
+  return:
+    desc: Enabled
+    label: Enabled
+    type: bool
+- desc: Status screen toggle item
+  label: StatusScreenToggleItem
+  addr:
+    U: 0x71B2C
+    E: 0x71C78
+    J: 0x71B48
+    C: 0x74DC8
+  size: 0x294
+  mode: thumb
+  params:
+  - desc: Status slot
+    label: StatusSlot
+    type: u8
+  - desc: Action
+    label: Action
+    type: u8
+    notes: 0 = checking, 1 = toggling, 2 = checking
+  return:
+    desc: Result
+    label: Result
+    type: u32
+    notes: 0 = off, 1 = on, 0xFF = can't be toggled
+- desc: Status screen move cursor
+  label: StatusScreenMoveCursor
+  addr:
+    U: 0x71DC0
+    E: 0x71F0C
+    J: 0x71DDC
+    C: 0x7505C
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+- desc: Status screen get destination slot
+  label: StatusScreenGetDestinationSlot
+  addr:
+    U: 0x71E7C
+    E: 0x71FC8
+    J: 0x71E98
+    C: 0x75118
+  size:
+    U: 0xF4
+    E: 0xF4
+    J: 0xF4
+    C: 0x100
+  mode: thumb
+  params:
+  - desc: Direction
+    label: Direction
+    type: s32
+    notes: -1 = Up, 1 = Down, 2 = left/right
+  - desc: Previous status slot
+    label: PreviousStatusSlot
+    type: u32
+  return:
+    desc: New status slot
+    label: NewStatusSlot
+    type: u32
 - desc: Easy sleep menu subroutine
   label: EasySleepMenuSubroutine
   addr:
@@ -12313,6 +15370,20 @@
   mode: thumb
   params: null
   return: null
+- desc: Pause screen update boss flame animation
+  label: PauseScreenUpdateBossFlameAnim
+  addr:
+    U: 0x73248
+    E: 0x73394
+    J: 0x73264
+    C: 0x764FC
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Boss flame data pointer
+    label: BossFlameDataPtr
+    type: BossFlameData *
+  return: null
 - desc: Read SRAM
   label: ReadSram
   addr:
@@ -12328,6 +15399,145 @@
   mode: thumb
   params: null
   return: null
+- desc: SRAM write file screen options unlocked
+  label: SramWrite_FileScreenOptionsUnlocked
+  addr:
+    U: 0x73300
+    E: 0x73438
+    J: 0x7331C
+    C: 0x765B4
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM read file screen options unlocked
+  label: SramRead_FileScreenOptionsUnlocked
+  addr:
+    U: 0x73394
+    E: 0x734CC
+    J: 0x733B0
+    C: 0x76648
+  size: 0x154
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM check file screen options unlocked
+  label: SramCheck_FileScreenOptionsUnlocked
+  addr:
+    U: 0x734E8
+    E: 0x73620
+    J: 0x73504
+    C: 0x7679C
+  size: 0x9C
+  mode: thumb
+  params:
+  - desc: File number
+    label: FileNumber
+    type: u8
+  return:
+    desc: Sanity check flags
+    label: SanityCheckFlags
+    type: u32
+- desc: SRAM copy file screen options unlocked
+  label: SramCopy_FileScreenOptionsUnlocked
+  addr:
+    U: 0x73584
+    E: 0x736BC
+    J: 0x735A0
+    C: 0x76838
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Prcoess intro save
+  label: PrcoessIntroSave
+  addr:
+    U: 0x735B0
+    E: 0x736E8
+    J: 0x735CC
+    C: 0x76864
+  size: 0x128
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: SRAM write header and game info
+  label: SramWrite_HeaderAndGameInfo
+  addr:
+    U: 0x736D8
+    E: 0x73810
+    J: 0x736F4
+    C: 0x7698C
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
+- desc: Process ending save
+  label: ProcessEndingSave
+  addr:
+    U: 0x737CC
+    E: 0x73904
+    J: 0x737E8
+    C: 0x76A80
+  size: 0x124
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Check set new best completion time
+  label: CheckSetNewBestCompletionTime
+  addr:
+    U: 0x738F0
+    E: 0x73A28
+    J: 0x7390C
+    C: 0x76BA4
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM copy game completion
+  label: SramCopy_GameCompletion
+  addr:
+    U: 0x739E8
+    E: 0x73B20
+    J: 0x73A04
+    C: 0x76C9C
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Process ending save unused
+  label: ProcessEndingSave_Unused
+  addr:
+    U: 0x73A84
+    E: 0x73BBC
+    J: 0x73AA0
+    C: 0x76D38
+  size: 0x120
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
+- desc: Save file
+  label: SaveFile
+  addr:
+    U: 0x73BA4
+    E: 0x73CDC
+    J: 0x73BC0
+    C: 0x76E58
+  size: 0x140
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
 - desc: Write SRAM data
   label: WriteSramData
   addr:
@@ -12374,6 +15584,39 @@
     label: Length
     type: u8
   return: null
+- desc: SRAM test flash
+  label: SramTestFlash
+  addr:
+    U: 0x74304
+    E: 0x7443C
+    J: 0x74320
+    C: 0x775B8
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM load file
+  label: SramLoadFile
+  addr:
+    U: 0x7478C
+    E: 0x748C4
+    J: 0x747A8
+    C: 0x77A40
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Load save unused
+  label: LoadSave_Unused
+  addr:
+    U: 0x747AC
+    E: 0x748E4
+    J: 0x747C8
+    C: 0x77A60
+  size: 0x10
+  mode: thumb
+  params: null
+  return: null
 - desc: Write SRAM arrays
   label: WriteSramArrays
   addr:
@@ -12396,6 +15639,75 @@
   mode: thumb
   params: null
   return: null
+- desc: SRAM write most recent save file
+  label: SramWrite_MostRecentSaveFile
+  addr:
+    U: 0x749E4
+    E: 0x74B1C
+    J: 0x74A00
+    C: 0x77C98
+  size: 0x98
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM read most recent save file
+  label: SramRead_MostRecentSaveFile
+  addr:
+    U: 0x74A7C
+    E: 0x74BB4
+    J: 0x74A98
+    C: 0x77D30
+  size: 0xF0
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM write sound mode
+  label: SramWrite_SoundMode
+  addr:
+    U: 0x74B6C
+    E: 0x74CA4
+    J: 0x74B88
+    C: 0x77E20
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Load sound mode from SRAM
+  label: LoadSoundModeFromSram
+  addr:
+    U: 0x74C08
+    E: 0x74D40
+    J: 0x74C24
+    C: 0x77EBC
+  size: 0xF0
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM write language
+  label: SramWrite_Language
+  addr:
+    U: 0x74CF8
+    E: 0x74E30
+    J: 0x74D14
+    C: 0x77FAC
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM read language
+  label: SramRead_Language
+  addr:
+    U: 0x74DA4
+    E: 0x74EDC
+    J: 0x74DC0
+    C: 0x78058
+  size: 0x1B4
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if checksum invalid, 0 otherwise
+    label: 1IfChecksumInvalid,0Otherwise
+    type: u32
 - desc: Backup time attack for SRAM
   label: BackupTimeAttackForSram
   addr:
@@ -12404,6 +15716,28 @@
     J: 0x74F74
     C: 0x7820C
   size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM read time attack
+  label: SramRead_TimeAttack
+  addr:
+    U: 0x75010
+    E: 0x75148
+    J: 0x7502C
+    C: 0x782C4
+  size: 0x1C8
+  mode: thumb
+  params: null
+  return: null
+- desc: SRAM write to ewram demo RAM
+  label: SramWrite_ToEwram_DemoRam
+  addr:
+    U: 0x751D8
+    E: 0x75310
+    J: 0x751F4
+    C: 0x7848C
+  size: 0x18C
   mode: thumb
   params: null
   return: null
@@ -12461,6 +15795,17 @@
     desc: Done
     label: Done
     type: bool
+- desc: Write file info
+  label: WriteFileInfo
+  addr:
+    U: 0x756C0
+    E: 0x757F8
+    J: 0x756DC
+    C: 0x78974
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
 - desc: Check load save file
   label: CheckLoadSaveFile
   addr:
@@ -12480,6 +15825,17 @@
     J: 0x75AB8
     C: 0x78D4C
   size: 0x164
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x75BF8
+    E: 0x75D3C
+    J: 0x75C1C
+    C: 0x78EB0
+  size: 0xC
   mode: thumb
   params: null
   return: null
@@ -12511,6 +15867,17 @@
     desc: Unknown
     label: Unknown
     type: u8
+- desc: Erase SRAM apply input
+  label: EraseSramApplyInput
+  addr:
+    U: 0x75DD0
+    E: 0x75F14
+    J: 0x75DF4
+    C: 0x79088
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
 - desc: Erase SRAM menu check for input
   label: EraseSramMenuCheckForInput
   addr:
@@ -12541,6 +15908,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Erase SRAM menu OAM init
+  label: EraseSramMenuOamInit
+  addr:
+    U: 0x761D4
+    E: 0x76310
+    J: 0x761F0
+    C: 0x79480
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
+- desc: Erase SRAM menu move cursor
+  label: EraseSramMenuMoveCursor
+  addr:
+    U: 0x76298
+    E: 0x763D4
+    J: 0x762B4
+    C: 0x79544
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank during erase SRAM menu
+  label: VBlankDuringEraseSramMenu
+  addr:
+    U: 0x762E0
+    E: 0x7641C
+    J: 0x762FC
+    C: 0x7958C
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x76358
+    E: 0x76494
+    J: 0x76374
+    C: 0x79604
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Erase SRAM menu process OAM
   label: EraseSramMenuProcessOAM
   addr:
@@ -12551,6 +15962,20 @@
   size: 0x2C
   mode: thumb
   params: null
+  return: null
+- desc: Title screen set BGCNT page data
+  label: TitleScreenSetBgcntPageData
+  addr:
+    U: 0x76390
+    E: 0x764CC
+    J: 0x763AC
+    C: 0x7963C
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Title screen page data pointer
+    label: TitleScreenPageDataPtr
+    type: TitleScreenPageData *
   return: null
 - desc: Load special graphics data
   label: LoadSpecialGraphicsData
@@ -12586,6 +16011,23 @@
     - lz
     - gfx
   return: null
+- desc: Update title screen OAM ID
+  label: UpdateTitleScreenOamId
+  addr:
+    U: 0x76420
+    E: 0x7655C
+    J: 0x7643C
+    C: 0x796CC
+  size: 0x2C
+  mode: thumb
+  params:
+  - desc: OAM offset
+    label: OamOffset
+    type: u8
+  - desc: OAM ID
+    label: OamId
+    type: u8
+  return: null
 - desc: Title screen process OAM
   label: TitleScreenProcessOAM
   addr:
@@ -12594,6 +16036,17 @@
     J: 0x76468
     C: 0x796F8
   size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Title screen reset OAM
+  label: TitleScreenResetOam
+  addr:
+    U: 0x76478
+    E: 0x765B4
+    J: 0x76494
+    C: 0x79724
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -12611,6 +16064,149 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Title screen fading out
+  label: TitleScreenFadingOut
+  addr:
+    U: 0x765E0
+    E: 0x7671C
+    J: 0x765FC
+    C: 0x7988C
+  size: 0x130
+  mode: thumb
+  params:
+  - desc: Intensity
+    label: Intensity
+    type: u8
+  - desc: Delay
+    label: Delay
+    type: u8
+  return:
+    desc: Ended
+    label: Ended
+    type: u32
+- desc: Title screen update animated palette
+  label: TitleScreenUpdateAnimatedPalette
+  addr:
+    U: 0x767E4
+    E: 0x76920
+    J: 0x76800
+    C: 0x79A90
+  size: 0x194
+  mode: thumb
+  params: null
+  return: null
+- desc: Title screen comets view
+  label: TitleScreenCometsView
+  addr:
+    U: 0x76B60
+    E: 0x76C9C
+    J: 0x76B7C
+    C: 0x79E0C
+  size: 0x194
+  mode: thumb
+  params: null
+  return:
+    desc: Ended
+    label: Ended
+    type: u32
+- desc: Title screen transfer ground graphics
+  label: TitleScreenTransferGroundGfx
+  addr:
+    U: 0x76CF4
+    E: 0x76E30
+    J: 0x76D10
+    C: 0x79FA0
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Title screen process OAM
+  label: TitleScreenProcessOam
+  addr:
+    U: 0x76D90
+    E: 0x76ECC
+    J: 0x76DAC
+    C: 0x7A03C
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Title screen process comets
+  label: TitleScreenProcessComets
+  addr:
+    U: 0x76E18
+    E: 0x76F54
+    J: 0x76E34
+    C: 0x7A0C4
+  size: 0x174
+  mode: thumb
+  params:
+  - desc: OAM timing pointer
+    label: OamTimingPtr
+    type: TitleScreenOamTiming *
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  - desc: Comet number
+    label: CometNumber
+    type: u8
+  return: null
+- desc: Title screen process top sparkle
+  label: TitleScreenProcessTopSparkle
+  addr:
+    U: 0x76F8C
+    E: 0x770C8
+    J: 0x76FA8
+    C: 0x7A238
+  size: 0x88
+  mode: thumb
+  params:
+  - desc: OAM timing pointer
+    label: OamTimingPtr
+    type: TitleScreenOamTiming *
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  return: null
+- desc: Title screen process bottom sparkle
+  label: TitleScreenProcessBottomSparkle
+  addr:
+    U: 0x77014
+    E: 0x77150
+    J: 0x77030
+    C: 0x7A2C0
+  size: 0xE4
+  mode: thumb
+  params:
+  - desc: OAM timing pointer
+    label: OamTimingPtr
+    type: TitleScreenOamTiming *
+  - desc: Menu OAM data pointer
+    label: MenuOamDataPtr
+    type: MenuOamData *
+  return:
+    desc: OAM ID update needed
+    label: OamIdUpdateNeeded
+    type: u32
+- desc: Title screen check play demo
+  label: TitleScreenCheckPlayDemo
+  addr:
+    U: 0x770F8
+    E: 0x77234
+    J: 0x77114
+    C: 0x7A3A4
+  size:
+    U: 0xA8
+    E: 0x120
+    J: 0xA8
+    C: 0xA8
+  mode: thumb
+  params: null
+  return:
+    desc: Action
+    label: Action
+    type: s8
+    notes: 0 = None, 1 = input detected, 2 = starting demo
 - desc: Title screen subroutine
   label: TitleScreenSubroutine
   addr:
@@ -12649,6 +16245,20 @@
     type: u8
     notes: 0 = none, 1 = input detected 2 = starting demo
   notes: Handles the sparkles and the logo glow animations
+- desc: Title screen set idle stage
+  label: TitleScreenSetIdleStage
+  addr:
+    U: 0x773C8
+    E: 0x7758C
+    J: 0x773E4
+    C: 0x7A678
+  size: 0x94
+  mode: thumb
+  params:
+  - desc: Stage
+    label: Stage
+    type: u8
+  return: null
 - desc: Title screen initialize
   label: TitleScreenInit
   addr:
@@ -12661,6 +16271,28 @@
     E: 0x300
     J: 0x2A0
     C: 0x29C
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank code during title screen
+  label: VBlankCodeDuringTitleScreen
+  addr:
+    U: 0x776FC
+    E: 0x77920
+    J: 0x77718
+    C: 0x7A9A8
+  size: 0xD0
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x777CC
+    E: 0x779F0
+    J: 0x777E8
+    C: 0x7AA78
+  size: 0xC
   mode: thumb
   params: null
   return: null
@@ -12718,6 +16350,43 @@
   mode: thumb
   params: null
   return: null
+- desc: Game over menu init unused
+  label: GameOverMenuInit_Unused
+  addr:
+    U: 0x77DD8
+    E: 0x780DC
+    J: 0x77DF4
+    C: 0x7B07C
+  size:
+    U: 0x134
+    E: 0x130
+    J: 0x134
+    C: 0x130
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank during game over
+  label: VBlankDuringGameOver
+  addr:
+    U: 0x77F0C
+    E: 0x7820C
+    J: 0x77F28
+    C: 0x7B1AC
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x77FE8
+    E: 0x782E8
+    J: 0x78004
+    C: 0x7B288
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Game over menu letters animation
   label: GameOverMenuLettersAnim
   addr:
@@ -12728,6 +16397,21 @@
   size: 0x180
   mode: thumb
   params: null
+  return: null
+- desc: Game over menu update Samus head
+  label: GameOverMenuUpdateSamusHead
+  addr:
+    U: 0x78174
+    E: 0x78474
+    J: 0x78190
+    C: 0x7B414
+  size: 0x88
+  mode: thumb
+  params:
+  - desc: Action
+    label: Action
+    type: u8
+    notes: 0 = loading, 1 = moving, 2 = selecting
   return: null
 - desc: Game over menu process OAM
   label: GameOverMenuProcessOAM
@@ -12740,6 +16424,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Apply stereo
+  label: ApplyStereo
+  addr:
+    U: 0x78228
+    E: 0x78528
+    J: 0x78244
+    C: 0x7B4C8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: File select menu process OAM
   label: FileSelectMenuProcessOAM
   addr:
@@ -12748,6 +16443,17 @@
     J: 0x78268
     C: 0x7B4EC
   size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: File select OAM init
+  label: FileSelectOamInit
+  addr:
+    U: 0x782AC
+    E: 0x785AC
+    J: 0x782C8
+    C: 0x7B54C
+  size: 0x258
   mode: thumb
   params: null
   return: null
@@ -12768,6 +16474,115 @@
   - desc: Sub-menu ID
     label: SubMenuID
     type: u8
+  return: null
+- desc: File select update copy cursor
+  label: FileSelectUpdateCopyCursor
+  addr:
+    U: 0x78750
+    E: 0x78A50
+    J: 0x7876C
+    C: 0x7B9F0
+  size: 0x184
+  mode: thumb
+  params:
+  - desc: Pose
+    label: Pose
+    type: u8
+  - desc: File number
+    label: FileNumber
+    type: u8
+  return: null
+- desc: File select update copy arrow
+  label: FileSelectUpdateCopyArrow
+  addr:
+    U: 0x788D4
+    E: 0x78BD4
+    J: 0x788F0
+    C: 0x7BB74
+  size: 0x140
+  mode: thumb
+  params:
+  - desc: Pose
+    label: Pose
+    type: u8
+  - desc: Destination file number
+    label: DestinationFileNumber
+    type: u8
+  return: null
+- desc: File select update erase cursor
+  label: FileSelectUpdateEraseCursor
+  addr:
+    U: 0x78A14
+    E: 0x78D14
+    J: 0x78A30
+    C: 0x7BCB4
+  size: 0x184
+  mode: thumb
+  params:
+  - desc: Pose
+    label: Pose
+    type: u8
+  - desc: File number
+    label: FileNumber
+    type: u8
+  return: null
+- desc: Options update cursor
+  label: OptionsUpdateCursor
+  addr:
+    U: 0x78B98
+    E: 0x78E98
+    J: 0x78BB4
+    C: 0x7BE38
+  size: 0x108
+  mode: thumb
+  params:
+  - desc: Action
+    label: Action
+    type: u8
+  return: null
+- desc: Options update stereo OAM
+  label: OptionsUpdateStereoOam
+  addr:
+    U: 0x78CA0
+    E: 0x78FA0
+    J: 0x78CBC
+    C: 0x7BF40
+  size:
+    U: 0x100
+    E: 0x110
+    J: 0x100
+    C: 0x110
+  mode: thumb
+  params:
+  - desc: Update flags
+    label: UpdateFlags
+    type: u16
+  return: null
+- desc: Process file screen text
+  label: ProcessFileScreenText
+  addr:
+    U: 0x78DA0
+    E: 0x790B0
+    J: 0x78DBC
+    C: 0x7C050
+  size:
+    U: 0x32C
+    E: 0x30C
+    J: 0x32C
+    C: 0x30C
+  mode: thumb
+  params: null
+  return: null
+- desc: Copy file choose base destination file
+  label: CopyFileChooseBaseDestinationFile
+  addr:
+    U: 0x79178
+    E: 0x79468
+    J: 0x79194
+    C: 0x7C408
+  size: 0x98
+  mode: thumb
+  params: null
   return: null
 - desc: Copy file menu subroutine
   label: CopyFileMenuSubroutine
@@ -12811,6 +16626,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Setup options tile table
+  label: SetupOptionsTileTable
+  addr:
+    U: 0x79FB8
+    E: 0x7A2A8
+    J: 0x79FD4
+    C: 0x7D248
+  size: 0x1EC
+  mode: thumb
+  params: null
+  return: null
 - desc: Copy time attack time
   label: CopyTimeAttackTime
   addr:
@@ -12822,6 +16648,23 @@
   mode: thumb
   params: null
   return: null
+- desc: File select menu options transition
+  label: FileSelectMenuOptionsTransition
+  addr:
+    U: 0x7A2BC
+    E: 0x7A5AC
+    J: 0x7A2D8
+    C: 0x7D54C
+  size: 0x528
+  mode: thumb
+  params:
+  - desc: Leaving
+    label: Leaving
+    type: bool
+  return:
+    desc: Done
+    label: Done
+    type: bool
 - desc: File select options subroutine
   label: FileSelectOptionsSubroutine
   addr:
@@ -12861,6 +16704,20 @@
     desc: Pressed B to cancel
     label: PressedBToCancel
     type: bool
+- desc: Settings sub menu empty
+  label: SettingsSubMenu_Empty
+  addr:
+    U: 0x7ABC4
+    E: 0x7AEB4
+    J: 0x7ABE0
+    C: 0x7DE54
+  size: 0x34
+  mode: thumb
+  params: null
+  return:
+    desc: Leaving
+    label: Leaving
+    type: bool
 - desc: Stereo selection subroutine
   label: StereoSelectionSubroutine
   addr:
@@ -12893,6 +16750,31 @@
     desc: Leaving
     label: Leaving
     type: bool
+- desc: Options sound test check not already playing
+  label: OptionsSoundTestCheckNotAlreadyPlaying
+  addr:
+    U: 0x7B008
+    E: 0x7B300
+    J: 0x7B024
+    C: 0x7E2A0
+  size: 0x8C
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if not currently playing, 0 otherwise
+    label: 1IfNotCurrentlyPlaying,0Otherwise
+    type: u32
+- desc: Update sound test ID graphics
+  label: UpdateSoundTestIdGfx
+  addr:
+    U: 0x7B094
+    E: 0x7B38C
+    J: 0x7B0B0
+    C: 0x7E32C
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
 - desc: Time attack records subroutine
   label: TimeAttackRecordsSubroutine
   addr:
@@ -12997,6 +16879,28 @@
   mode: thumb
   params: null
   return: null
+- desc: V-Blank code during file screen
+  label: VBlankCodeDuringFileScreen
+  addr:
+    U: 0x7CA28
+    E: 0x7CD5C
+    J: 0x7CA28
+    C: 0x7FC98
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x7CB20
+    E: 0x7CE54
+    J: 0x7CB20
+    C: 0x7FD90
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
 - desc: Display save file info
   label: DisplaySaveFileInfo
   addr:
@@ -13022,6 +16926,24 @@
     label: FileNum
     type: u8
   return: null
+- desc: Display save file timer
+  label: DisplaySaveFileTimer
+  addr:
+    U: 0x7CDC4
+    E: 0x7D0F8
+    J: 0x7CDC4
+    C: 0x80034
+  size:
+    U: 0x1D4
+    E: 0x1D4
+    J: 0x1D4
+    C: 0x1D0
+  mode: thumb
+  params:
+  - desc: File number
+    label: FileNumber
+    type: u8
+  return: null
 - desc: Display save file info misc
   label: DisplaySaveFileInfoMisc
   addr:
@@ -13044,6 +16966,51 @@
     type: u8
   return: null
   notes: Displays the difficulty, area name, and other misc data on a save file
+- desc: File screen set enabled menu flags
+  label: FileScreenSetEnabledMenuFlags
+  addr:
+    U: 0x7D0B0
+    E: 0x7D3E4
+    J: 0x7D0E8
+    C: 0x8045C
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: File select apply menu select input
+  label: FileSelectApplyMenuSelectInput
+  addr:
+    U: 0x7D19C
+    E: 0x7D4D0
+    J: 0x7D1D4
+    C: 0x80548
+  size: 0x94
+  mode: thumb
+  params:
+  - desc: Set
+    label: Set
+    type: u8
+  - desc: File number pointer
+    label: FileNumberPtr
+    type: u8 *
+  return:
+    desc: Direction
+    label: Direction
+    type: u8
+- desc: Select first non empty file
+  label: SelectFirstNonEmptyFile
+  addr:
+    U: 0x7D230
+    E: 0x7D564
+    J: 0x7D268
+    C: 0x805DC
+  size: 0x4C
+  mode: thumb
+  params:
+  - desc: File number pointer
+    label: FileNumberPtr
+    type: u8 *
+  return: null
 - desc: File select menu selecting sub-menu
   label: FileSelectMenuSelectingSubMenu
   addr:
@@ -13096,6 +17063,27 @@
     desc: Return to file select menu
     label: ReturnToFileSelectMenu
     type: bool
+- desc: File select update tilemap
+  label: FileSelectUpdateTilemap
+  addr:
+    U: 0x7E6D8
+    E: 0x7EA10
+    J: 0x7E734
+    C: 0x81BFC
+  size:
+    U: 0x804
+    E: 0x804
+    J: 0x804
+    C: 0x810
+  mode: thumb
+  params:
+  - desc: Request
+    label: Request
+    type: u8
+  return:
+    desc: Ended
+    label: Ended
+    type: bool
 - desc: Play menu sound
   label: PlayMenuSound
   addr:
@@ -13129,6 +17117,67 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Soft reset init
+  label: SoftResetInit
+  addr:
+    U: 0x7EFF0
+    E: 0x7F5F4
+    J: 0x7F04C
+    C: 0x82520
+  size:
+    U: 0x110
+    E: 0x1F8
+    J: 0x110
+    C: 0x10C
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank during soft reset
+  label: VBlankDuringSoftReset
+  addr:
+    U: 0x7F100
+    E: 0x7F7EC
+    J: 0x7F15C
+    C: 0x8262C
+  size:
+    U: 0x14
+    E: 0x20
+    J: 0x14
+    C: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank empty
+  label: VBlank_Empty
+  addr:
+    U: 0x7F114
+    E: 0x7F80C
+    J: 0x7F170
+    C: 0x82640
+  size: 0xC
+  mode: thumb
+  params: null
+  return: null
+- desc: EOR time attack password seed
+  label: EorTimeAttackPasswordSeed
+  addr:
+    U: 0x7F120
+    E: 0x7F818
+    J: 0x7F17C
+    C: 0x8264C
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  - desc: Value
+    label: Value
+    type: u8
+  return: null
 - desc: Get value from time attack seed
   label: GetValueFromTimeAttackSeed
   addr:
@@ -13149,6 +17198,131 @@
     desc: Seed value
     label: SeedValue
     type: u32
+- desc: Garble seed value
+  label: GarbleSeedValue
+  addr:
+    U: 0x7F16C
+    E: 0x7F864
+    J: 0x7F1C8
+    C: 0x82698
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: First value
+    label: FirstValue
+    type: s32
+  - desc: Second value
+    label: SecondValue
+    type: s32
+  return: null
+- desc: Garble random seed values
+  label: GarbleRandomSeedValues
+  addr:
+    U: 0x7F1A4
+    E: 0x7F89C
+    J: 0x7F200
+    C: 0x826D0
+  size: 0x38
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: First value
+    label: FirstValue
+    type: s32
+  - desc: Second value
+    label: SecondValue
+    type: s32
+  return: null
+- desc: Time attack password seed random func 1
+  label: TimeAttackPasswordSeedRandomFunc1
+  addr:
+    U: 0x7F1DC
+    E: 0x7F8D4
+    J: 0x7F238
+    C: 0x82708
+  size: 0x24
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  return: null
+- desc: Time attack password seed random func 2
+  label: TimeAttackPasswordSeedRandomFunc2
+  addr:
+    U: 0x7F200
+    E: 0x7F8F8
+    J: 0x7F25C
+    C: 0x8272C
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  return: null
+- desc: Time attack password seed random func 3
+  label: TimeAttackPasswordSeedRandomFunc3
+  addr:
+    U: 0x7F228
+    E: 0x7F920
+    J: 0x7F284
+    C: 0x82754
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  return: null
+- desc: Time attack password seed random func 4
+  label: TimeAttackPasswordSeedRandomFunc4
+  addr:
+    U: 0x7F258
+    E: 0x7F950
+    J: 0x7F2B4
+    C: 0x82784
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  return: null
+- desc: Time attack password seed random func 5
+  label: TimeAttackPasswordSeedRandomFunc5
+  addr:
+    U: 0x7F280
+    E: 0x7F978
+    J: 0x7F2DC
+    C: 0x827AC
+  size: 0x30
+  mode: thumb
+  params:
+  - desc: Seed pointer
+    label: SeedPtr
+    type: u8 *
+  - desc: Length
+    label: Length
+    type: s32
+  return: null
 - desc: Generate time attack password
   label: GenerateTimeAttackPassword
   addr:
@@ -13184,6 +17358,21 @@
     label: Invalid
     type: bool
   notes: Compares in-game time at bosses with anti-cheat times
+- desc: Check unlock time attack
+  label: CheckUnlockTimeAttack
+  addr:
+    U: 0x7F3FC
+    E: 0x7FAF4
+    J: 0x7F458
+    C: 0x82928
+  size:
+    U: 0x210
+    E: 0x214
+    J: 0x210
+    C: 0x210
+  mode: thumb
+  params: null
+  return: null
 - desc: Time attack password seed function 1
   label: TimeAttackPasswordSeedFunction1
   addr:
@@ -13368,6 +17557,45 @@
     desc: New record set
     label: NewRecordSet
     type: bool
+- desc: Process complex OAM
+  label: ProcessComplexOam
+  addr:
+    U: 0x7FD64
+    E: 0x80460
+    J: 0x7FDC0
+    C: 0x83290
+  size:
+    U: 0x1F4
+    E: 0x1F4
+    J: 0x1F4
+    C: 0x224
+  mode: thumb
+  params:
+  - desc: OAM slot
+    label: OamSlot
+    type: u32
+  - desc: X position
+    label: XPosition
+    type: s16
+  - desc: Y position
+    label: YPosition
+    type: s16
+  - desc: Rotation
+    label: Rotation
+    type: u16
+  - desc: Scaling
+    label: Scaling
+    type: s16
+  - desc: Double size
+    label: DoubleSize
+    type: s16
+  - desc: Matrix number
+    label: MatrixNumber
+    type: u16
+  return:
+    desc: Always false
+    label: AlwaysFalse
+    type: bool
 - desc: Calculate OAM part 4
   label: CalculateOamPart4
   addr:
@@ -13389,6 +17617,21 @@
     type: u32
   return: null
   notes: Used for special cases such as cutscenes and menus
+- desc: V-Blank code during intro
+  label: VBlankCodeDuringIntro
+  addr:
+    U: 0x800F4
+    E: 0x807F0
+    J: 0x80150
+    C: 0x83650
+  size:
+    U: 0x90
+    E: 0x94
+    J: 0x90
+    C: 0x94
+  mode: thumb
+  params: null
+  return: null
 - desc: V-Blank code during intro fuzz
   label: VBlankCodeDuringIntroFuzz
   addr:
@@ -13426,6 +17669,31 @@
   mode: thumb
   params: null
   return: null
+- desc: Process intro text
+  label: ProcessIntroText
+  addr:
+    U: 0x80550
+    E: 0x80C5C
+    J: 0x805AC
+    C: 0x83ABC
+  size:
+    U: 0x180
+    E: 0x180
+    J: 0x180
+    C: 0x178
+  mode: thumb
+  params:
+  - desc: Action
+    label: Action
+    type: u8
+  - desc: indent
+    label: Indent
+    type: u16
+  return:
+    desc: Status
+    label: Status
+    type: u8
+    notes: 0 = none, 1 = drawing new letter, 2 = done
 - desc: Intro emergency order
   label: IntroEmergencyOrder
   addr:
@@ -13601,6 +17869,39 @@
     J: 0x812A4
     C: 0x847AC
   size: 0xD8
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank code during zebes exploding
+  label: VBlankCodeDuringZebesExploding
+  addr:
+    U: 0x81320
+    E: 0x81A2C
+    J: 0x8137C
+    C: 0x84884
+  size: 0xF8
+  mode: thumb
+  params: null
+  return: null
+- desc: V-Blank code during Samus surrounded
+  label: VBlankCodeDuringSamusSurrounded
+  addr:
+    U: 0x81418
+    E: 0x81B24
+    J: 0x81474
+    C: 0x8497C
+  size: 0x100
+  mode: thumb
+  params: null
+  return: null
+- desc: Tourian escape process OAM
+  label: TourianEscapeProcessOam
+  addr:
+    U: 0x81518
+    E: 0x81C24
+    J: 0x81574
+    C: 0x84A7C
+  size: 0x16C
   mode: thumb
   params: null
   return: null
@@ -13857,6 +18158,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: V-Blank during fusion gallery
+  label: VBlankDuringFusionGallery
+  addr:
+    U: 0x847F8
+    E: 0x84E80
+    J: 0x84854
+    C: 0x87CFC
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
 - desc: Fusion gallery initialize
   label: FusionGalleryInit
   addr:
@@ -13900,6 +18212,57 @@
     desc: Leaving
     label: Leaving
     type: bool
+- desc: Ending image check display letter
+  label: EndingImageCheckDisplayLetter
+  addr:
+    U: 0x84C34
+    E: 0x852C0
+    J: 0x84C90
+    C: 0x8813C
+  size: 0x48
+  mode: thumb
+  params:
+  - desc: OAM offset
+    label: OamOffset
+    type: u32
+  return: null
+- desc: Load ending image text OAM
+  label: LoadEndingImageTextOam
+  addr:
+    U: 0x84C7C
+    E: 0x85308
+    J: 0x84CD8
+    C: 0x88184
+  size:
+    U: 0x26C
+    E: 0x6F4
+    J: 0x26C
+    C: 0x6F4
+  mode: thumb
+  params:
+  - desc: Set to load
+    label: SetToLoad
+    type: u32
+    notes: 0 = clear time, 1 = your rate, 2 = collecting
+  return: null
+- desc: Ending image display line permanently
+  label: EndingImageDisplayLinePermanently
+  addr:
+    U: 0x84EE8
+    E: 0x859FC
+    J: 0x84F44
+    C: 0x88878
+  size:
+    U: 0xC8
+    E: 0x148
+    J: 0xC8
+    C: 0x148
+  mode: thumb
+  params:
+  - desc: Line
+    label: Line
+    type: u32
+  return: null
 - desc: Load in-game timer ending graphics
   label: LoadInGameTimerEndingGraphics
   addr:
@@ -14202,6 +18565,54 @@
   mode: thumb
   params: null
   return: null
+- desc: H-Blank code during mother ship heating up
+  label: HBlankCodeDuringMotherShipHeatingUp
+  addr:
+    U: 0x87938
+    E: 0x885D8
+    J: 0x87994
+    C: 0x8B490
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Set H-Blank code during mother ship heating up
+  label: SetHBlankCodeDuringMotherShipHeatingUp
+  addr:
+    U: 0x87974
+    E: 0x88614
+    J: 0x879D0
+    C: 0x8B4CC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Chozodia escape setup H-Blank registers
+  label: ChozodiaEscapeSetupHBlankRegisters
+  addr:
+    U: 0x879A8
+    E: 0x88648
+    J: 0x87A04
+    C: 0x8B500
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Chozodia escape update explosion haze
+  label: ChozodiaEscapeUpdateExplosionHaze
+  addr:
+    U: 0x87A0C
+    E: 0x886AC
+    J: 0x87A68
+    C: 0x8B564
+  size:
+    U: 0xE0
+    E: 0xE0
+    J: 0xE0
+    C: 0x108
+  mode: thumb
+  params: null
+  return: null
 - desc: Get percent and ending number
   label: GetPercentAndEndingNum
   addr:
@@ -14350,6 +18761,17 @@
     desc: Ended
     label: Ended
     type: bool
+- desc: Serial communication code connecting
+  label: SerialCommunicationCodeConnecting
+  addr:
+    U: 0x89BE4
+    E: 0x8A870
+    J: 0x89C40
+    C: 0x8D75C
+  size: 0x180
+  mode: thumb
+  params: null
+  return: null
 - desc: Set SIOCNT start bit
   label: SetSIOCNTStartBit
   addr:
@@ -14358,6 +18780,28 @@
     J: 0x89DC0
     C: 0x8D8DC
   size: 0x10
+  mode: thumb
+  params: null
+  return: null
+- desc: Backup SIO registers
+  label: BackupSioRegisters
+  addr:
+    U: 0x89D98
+    E: 0x8AA24
+    J: 0x89DF4
+    C: 0x8D910
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Retrieve SIO registers
+  label: RetrieveSioRegisters
+  addr:
+    U: 0x89DEC
+    E: 0x8AA78
+    J: 0x89E48
+    C: 0x8D964
+  size: 0x44
   mode: thumb
   params: null
   return: null

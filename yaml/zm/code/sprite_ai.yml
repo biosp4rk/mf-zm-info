@@ -377,6 +377,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Chozo statue empty
+  label: ChozoStatue_Empty
+  addr:
+    U: 0x14294
+    E: 0x14348
+    J: 0x14294
+    C: 0x16E24
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
 - desc: Chozo statue register item
   label: ChozoStatueRegisterItem
   addr:
@@ -666,6 +677,18 @@
   mode: thumb
   params: null
   return: null
+- desc: Chozo statue part leg idle
+  label: ChozoStatuePartLegIdle
+  addr:
+    U: 0x14C28
+    E: 0x14CDC
+    J: 0x14C28
+    C: 0x177B8
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+  notes: Changes the current sprite pose depending on the main chozo statue pose (sitting related)
 - desc: Chozo statue AI
   label: ChozoStatue_AI
   addr:
@@ -718,6 +741,17 @@
     J: 0x15130
     C: 0x17CC0
   size: 0x1F8
+  mode: thumb
+  params: null
+  return: null
+- desc: Unknown item chozo statue empty
+  label: UnkItemChozoStatue_Empty
+  addr:
+    U: 0x15328
+    E: 0x153DC
+    J: 0x15328
+    C: 0x17EB8
+  size: 0x4
   mode: thumb
   params: null
   return: null
@@ -1722,6 +1756,35 @@
   mode: thumb
   params: null
   return: null
+- desc: Kraid move BG2 to right
+  label: KraidMoveBg2ToRight
+  addr:
+    U: 0x19330
+    E: 0x193E4
+    J: 0x19330
+    C: 0x1BEC0
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: BG2 X movement
+    label: Bg2XMovement
+    type: u8
+  return: null
+- desc: Kraid move BG2 to left
+  label: KraidMoveBg2ToLeft
+  addr:
+    U: 0x19350
+    E: 0x19404
+    J: 0x19350
+    C: 0x1BEE0
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: BG2 X movement
+    label: Bg2XMovement
+    type: u8
+  return: null
+  notes: Adds r0 to the BG2 horizontal movement global variable and reduces MultiSpritesXPosition with r0
 - desc: Kraid initialize
   label: KraidInit
   addr:
@@ -3857,6 +3920,23 @@
     enum: ClipdataAffectingAction
   return: null
   notes: Used to place solid clipdata on the right side of Deorem and remove the solid clipdata when he dies
+- desc: Deorem move diagonaly
+  label: DeoremMoveDiagonaly
+  addr:
+    U: 0x20D90
+    E: 0x20E5C
+    J: 0x20D90
+    C: 0x2393C
+  size: 0xD4
+  mode: thumb
+  params:
+  - desc: Velocity
+    label: Velocity
+    type: u8
+  - desc: Destination position
+    label: DestinationPosition
+    type: u16
+  return: null
 - desc: Deorem random sprite debris
   label: DeoremRandomSpriteDebris
   addr:
@@ -4373,6 +4453,17 @@
     E: 0x19C
     J: 0x19C
     C: 0x268
+  mode: thumb
+  params: null
+  return: null
+- desc: Deorem eye main loop
+  label: DeoremEyeMainLoop
+  addr:
+    U: 0x230D4
+    E: 0x231A0
+    J: 0x230D4
+    C: 0x25D4C
+  size: 0x9C
   mode: thumb
   params: null
   return: null
@@ -4979,6 +5070,20 @@
   size: 0x1E8
   mode: thumb
   params: null
+  return: null
+- desc: Imago larva sync sub-sprites
+  label: ImagoLarvaSyncSubSprites
+  addr:
+    U: 0x259A0
+    E: 0x25A6C
+    J: 0x259A0
+    C: 0x28608
+  size: 0x84
+  mode: thumb
+  params:
+  - desc: Sub-sprite data pointer
+    label: SubSpriteDataPtr
+    type: SubSpriteData *
   return: null
 - desc: Imago larva belly flashing
   label: ImagoLarvaBellyFlashing
@@ -5952,6 +6057,45 @@
   mode: thumb
   params: null
   return: null
+- desc: Space pirate check colliding with pirate when walking
+  label: SpacePirateCheckCollidingWithPirateWhenWalking
+  addr:
+    U: 0x29708
+    E: 0x297D4
+    J: 0x29708
+    C: 0x2C384
+  size:
+    U: 0x238
+    E: 0x238
+    J: 0x238
+    C: 0x240
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if colliding, 0 otherwise
+    label: 1IfColliding,0Otherwise
+    type: u8
+- desc: Space pirate check colliding with pirate when climbing
+  label: SpacePirateCheckCollidingWithPirateWhenClimbing
+  addr:
+    U: 0x29940
+    E: 0x29A0C
+    J: 0x29940
+    C: 0x2C5C4
+  size:
+    U: 0xD8
+    E: 0xD8
+    J: 0xD8
+    C: 0xE0
+  mode: thumb
+  params:
+  - desc: Direction
+    label: Direction
+    type: u8
+  return:
+    desc: 1 if colliding, 0 otherwise
+    label: 1IfColliding,0Otherwise
+    type: u8
 - desc: Space pirate check Samus in shooting range
   label: SpacePirateCheckSamusInShootingRange
   addr:
@@ -5966,6 +6110,34 @@
     desc: In range
     label: InRange
     type: bool
+- desc: Space pirate detect Samus while crawling
+  label: SpacePirateDetectSamusWhileCrawling
+  addr:
+    U: 0x29C94
+    E: 0x29D60
+    J: 0x29C94
+    C: 0x2C920
+  size: 0xDC
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if stopped crawling, 0 otherwise
+    label: 1IfStoppedCrawling,0Otherwise
+    type: u8
+- desc: Space pirate climbing check wall jump or fire
+  label: SpacePirateClimbingCheckWallJumpOrFire
+  addr:
+    U: 0x29D70
+    E: 0x29E3C
+    J: 0x29D70
+    C: 0x2C9FC
+  size: 0x180
+  mode: thumb
+  params: null
+  return:
+    desc: New pose
+    label: NewPose
+    type: u8
 - desc: Space pirate initialize
   label: SpacePirateInit
   addr:
@@ -5974,6 +6146,32 @@
     J: 0x2A374
     C: 0x2D000
   size: 0x2C8
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate falling init
+  label: SpacePirateFallingInit
+  addr:
+    U: 0x2A63C
+    E: 0x2A708
+    J: 0x2A63C
+    C: 0x2D2C8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate falling
+  label: SpacePirateFalling
+  addr:
+    U: 0x2A678
+    E: 0x2A744
+    J: 0x2A678
+    C: 0x2D304
+  size:
+    U: 0xF0
+    E: 0xF0
+    J: 0xF0
+    C: 0xF4
   mode: thumb
   params: null
   return: null
@@ -5999,6 +6197,219 @@
   mode: thumb
   params: null
   return: null
+- desc: Space pirate idle
+  label: SpacePirateIdle
+  addr:
+    U: 0x2A910
+    E: 0x2A9DC
+    J: 0x2A910
+    C: 0x2D5A0
+  size: 0x120
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate idle at door
+  label: SpacePirateIdleAtDoor
+  addr:
+    U: 0x2AA30
+    E: 0x2AAFC
+    J: 0x2AA30
+    C: 0x2D6C0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around init
+  label: SpacePirateTurningAroundInit
+  addr:
+    U: 0x2ABA4
+    E: 0x2AC70
+    J: 0x2ABA4
+    C: 0x2D834
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around first part
+  label: SpacePirateTurningAroundFirstPart
+  addr:
+    U: 0x2ABD4
+    E: 0x2ACA0
+    J: 0x2ABD4
+    C: 0x2D864
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around second part
+  label: SpacePirateTurningAroundSecondPart
+  addr:
+    U: 0x2AC10
+    E: 0x2ACDC
+    J: 0x2AC10
+    C: 0x2D8A0
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around alerted init
+  label: SpacePirateTurningAroundAlertedInit
+  addr:
+    U: 0x2AC60
+    E: 0x2AD2C
+    J: 0x2AC60
+    C: 0x2D8F0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around first part alerted
+  label: SpacePirateTurningAroundFirstPartAlerted
+  addr:
+    U: 0x2AC8C
+    E: 0x2AD58
+    J: 0x2AC8C
+    C: 0x2D91C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around second part alerted
+  label: SpacePirateTurningAroundSecondPartAlerted
+  addr:
+    U: 0x2ACD0
+    E: 0x2AD9C
+    J: 0x2ACD0
+    C: 0x2D960
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate walking alerted init
+  label: SpacePirateWalkingAlertedInit
+  addr:
+    U: 0x2AD34
+    E: 0x2AE00
+    J: 0x2AD34
+    C: 0x2D9C4
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate walking alerted
+  label: SpacePirateWalkingAlerted
+  addr:
+    U: 0x2AD6C
+    E: 0x2AE38
+    J: 0x2AD6C
+    C: 0x2D9FC
+  size: 0x124
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate jumping init
+  label: SpacePirateJumpingInit
+  addr:
+    U: 0x2AE90
+    E: 0x2AF5C
+    J: 0x2AE90
+    C: 0x2DB20
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate jumping
+  label: SpacePirateJumping
+  addr:
+    U: 0x2AEFC
+    E: 0x2AFC8
+    J: 0x2AEFC
+    C: 0x2DB8C
+  size:
+    U: 0x400
+    E: 0x400
+    J: 0x400
+    C: 0x404
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate charging laser init
+  label: SpacePirateChargingLaserInit
+  addr:
+    U: 0x2B2FC
+    E: 0x2B3C8
+    J: 0x2B2FC
+    C: 0x2DF90
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate charging laser
+  label: SpacePirateChargingLaser
+  addr:
+    U: 0x2B34C
+    E: 0x2B418
+    J: 0x2B34C
+    C: 0x2DFE0
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate shooting laser init
+  label: SpacePirateShootingLaserInit
+  addr:
+    U: 0x2B390
+    E: 0x2B45C
+    J: 0x2B390
+    C: 0x2E024
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate shooting laser
+  label: SpacePirateShootingLaser
+  addr:
+    U: 0x2B3D4
+    E: 0x2B4A0
+    J: 0x2B3D4
+    C: 0x2E068
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate waiting at door
+  label: SpacePirateWaitingAtDoor
+  addr:
+    U: 0x2B4C0
+    E: 0x2B58C
+    J: 0x2B4C0
+    C: 0x2E154
+  size: 0x168
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate shooting after waiting at door
+  label: SpacePirateShootingAfterWaitingAtDoor
+  addr:
+    U: 0x2B628
+    E: 0x2B6F4
+    J: 0x2B628
+    C: 0x2E2BC
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing up init
+  label: SpacePirateClimbingUpInit
+  addr:
+    U: 0x2B6C8
+    E: 0x2B794
+    J: 0x2B6C8
+    C: 0x2E35C
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
 - desc: Space pirate climbing
   label: SpacePirateClimbing
   addr:
@@ -6007,6 +6418,259 @@
     J: 0x2B708
     C: 0x2E39C
   size: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing down init
+  label: SpacePirateClimbingDownInit
+  addr:
+    U: 0x2B8FC
+    E: 0x2B9C8
+    J: 0x2B8FC
+    C: 0x2E590
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing down
+  label: SpacePirateClimbingDown
+  addr:
+    U: 0x2B930
+    E: 0x2B9FC
+    J: 0x2B930
+    C: 0x2E5C4
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing charging laser init
+  label: SpacePirateClimbingChargingLaserInit
+  addr:
+    U: 0x2BC58
+    E: 0x2BD24
+    J: 0x2BC58
+    C: 0x2E8EC
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing charging laser
+  label: SpacePirateClimbingChargingLaser
+  addr:
+    U: 0x2BC78
+    E: 0x2BD44
+    J: 0x2BC78
+    C: 0x2E90C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing shooting laser init
+  label: SpacePirateClimbingShootingLaserInit
+  addr:
+    U: 0x2BC94
+    E: 0x2BD60
+    J: 0x2BC94
+    C: 0x2E928
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate climbing shooting laser
+  label: SpacePirateClimbingShootingLaser
+  addr:
+    U: 0x2BCBC
+    E: 0x2BD88
+    J: 0x2BCBC
+    C: 0x2E950
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around to wall jump init
+  label: SpacePirateTurningAroundToWallJumpInit
+  addr:
+    U: 0x2BD7C
+    E: 0x2BE48
+    J: 0x2BD7C
+    C: 0x2EA10
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around to wall jump
+  label: SpacePirateTurningAroundToWallJump
+  addr:
+    U: 0x2BD9C
+    E: 0x2BE68
+    J: 0x2BD9C
+    C: 0x2EA30
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate delay before launching from wall
+  label: SpacePirateDelayBeforeLaunchingFromWall
+  addr:
+    U: 0x2BDE4
+    E: 0x2BEB0
+    J: 0x2BDE4
+    C: 0x2EA78
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate launching from wall init
+  label: SpacePirateLaunchingFromWallInit
+  addr:
+    U: 0x2BE64
+    E: 0x2BF30
+    J: 0x2BE64
+    C: 0x2EAF8
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate launching from wall
+  label: SpacePirateLaunchingFromWall
+  addr:
+    U: 0x2BE84
+    E: 0x2BF50
+    J: 0x2BE84
+    C: 0x2EB18
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate starting to crawl init
+  label: SpacePirateStartingToCrawlInit
+  addr:
+    U: 0x2BED4
+    E: 0x2BFA0
+    J: 0x2BED4
+    C: 0x2EB68
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate starting to crawl
+  label: SpacePirateStartingToCrawl
+  addr:
+    U: 0x2BEF4
+    E: 0x2BFC0
+    J: 0x2BEF4
+    C: 0x2EB88
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate crawling
+  label: SpacePirateCrawling
+  addr:
+    U: 0x2BF70
+    E: 0x2C03C
+    J: 0x2BF70
+    C: 0x2EC04
+  size: 0x134
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning around while crawling init
+  label: SpacePirateTurningAroundWhileCrawlingInit
+  addr:
+    U: 0x2C0A4
+    E: 0x2C170
+    J: 0x2C0A4
+    C: 0x2ED38
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning while crawling first part
+  label: SpacePirateTurningWhileCrawlingFirstPart
+  addr:
+    U: 0x2C0C4
+    E: 0x2C190
+    J: 0x2C0C4
+    C: 0x2ED58
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate turning while crawling second part
+  label: SpacePirateTurningWhileCrawlingSecondPart
+  addr:
+    U: 0x2C100
+    E: 0x2C1CC
+    J: 0x2C100
+    C: 0x2ED94
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate standing up init
+  label: SpacePirateStandingUpInit
+  addr:
+    U: 0x2C12C
+    E: 0x2C1F8
+    J: 0x2C12C
+    C: 0x2EDC0
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate standing up
+  label: SpacePirateStandingUp
+  addr:
+    U: 0x2C14C
+    E: 0x2C218
+    J: 0x2C14C
+    C: 0x2EDE0
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate falling while crawling init
+  label: SpacePirateFallingWhileCrawlingInit
+  addr:
+    U: 0x2C204
+    E: 0x2C2D0
+    J: 0x2C204
+    C: 0x2EE98
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate falling while crawling
+  label: SpacePirateFallingWhileCrawling
+  addr:
+    U: 0x2C224
+    E: 0x2C2F0
+    J: 0x2C224
+    C: 0x2EEB8
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate crawling stopped init
+  label: SpacePirateCrawlingStoppedInit
+  addr:
+    U: 0x2C2D0
+    E: 0x2C39C
+    J: 0x2C2D0
+    C: 0x2EF64
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate crawling stopped
+  label: SpacePirateCrawlingStopped
+  addr:
+    U: 0x2C2F0
+    E: 0x2C3BC
+    J: 0x2C2F0
+    C: 0x2EF84
+  size: 0x1C
   mode: thumb
   params: null
   return: null
@@ -6025,6 +6689,28 @@
     type: bool
   return: null
   notes: Disables the alarm if no other space pirates are alive
+- desc: Space pirate hit by laser init
+  label: SpacePirateHitByLaserInit
+  addr:
+    U: 0x2C3A0
+    E: 0x2C46C
+    J: 0x2C3A0
+    C: 0x2F034
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Space pirate hit by laser
+  label: SpacePirateHitByLaser
+  addr:
+    U: 0x2C3E8
+    E: 0x2C4B4
+    J: 0x2C3E8
+    C: 0x2F07C
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
 - desc: Space pirate laser initialize
   label: SpacePirateLaserInit
   addr:
@@ -6169,6 +6855,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Black space pirate shooting
+  label: BlackSpacePirateShooting
+  addr:
+    U: 0x2D08C
+    E: 0x2D158
+    J: 0x2D08C
+    C: 0x2FD20
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
 - desc: Black space pirate jumping
   label: BlackSpacePirateJumping
   addr:
@@ -6177,6 +6874,17 @@
     J: 0x2D180
     C: 0x2FE14
   size: 0x45C
+  mode: thumb
+  params: null
+  return: null
+- desc: Black space pirate walking alerted
+  label: BlackSpacePirateWalkingAlerted
+  addr:
+    U: 0x2D5DC
+    E: 0x2D6A8
+    J: 0x2D5DC
+    C: 0x30270
+  size: 0x17C
   mode: thumb
   params: null
   return: null
@@ -6193,6 +6901,28 @@
   - desc: Play sound flag
     label: PlaySoundFlag
     type: bool
+  return: null
+- desc: Black space pirate hit by laser init
+  label: BlackSpacePirateHitByLaserInit
+  addr:
+    U: 0x2D794
+    E: 0x2D860
+    J: 0x2D794
+    C: 0x30428
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Black space pirate hit by laser
+  label: BlackSpacePirateHitByLaser
+  addr:
+    U: 0x2D7DC
+    E: 0x2D8A8
+    J: 0x2D7DC
+    C: 0x30470
+  size: 0x64
+  mode: thumb
+  params: null
   return: null
 - desc: Black space pirate AI
   label: BlackSpacePirate_AI
@@ -6996,6 +7726,20 @@
     label: CurrSpritePtr
     type: SpriteData *
   return: null
+- desc: Parasite jumping up
+  label: ParasiteJumpingUp
+  addr:
+    U: 0x305CC
+    E: 0x30698
+    J: 0x305CC
+    C: 0x33264
+  size: 0xB8
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
+    type: SpriteData *
+  return: null
 - desc: Parasite jumping
   label: ParasiteJumping
   addr:
@@ -7012,6 +7756,20 @@
   params:
   - desc: Current sprite pointer
     label: CurrSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite jumping down
+  label: ParasiteJumpingDown
+  addr:
+    U: 0x30740
+    E: 0x3080C
+    J: 0x30740
+    C: 0x333DC
+  size: 0xCC
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
     type: SpriteData *
   return: null
 - desc: Parasite jumping second part
@@ -7040,6 +7798,20 @@
   params:
   - desc: Current sprite pointer
     label: CurrSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite idle
+  label: ParasiteIdle
+  addr:
+    U: 0x3091C
+    E: 0x309E8
+    J: 0x3091C
+    C: 0x335B8
+  size: 0x198
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
     type: SpriteData *
   return: null
 - desc: Parasite walking
@@ -7098,6 +7870,20 @@
     label: CurrSpritePtr
     type: SpriteData *
   return: null
+- desc: Parasite landing init
+  label: ParasiteLandingInit
+  addr:
+    U: 0x30CB4
+    E: 0x30D80
+    J: 0x30CB4
+    C: 0x33950
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
+    type: SpriteData *
+  return: null
 - desc: Parasite landing
   label: ParasiteLanding
   addr:
@@ -7110,6 +7896,20 @@
   params:
   - desc: Current sprite pointer
     label: CurrSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite falling init
+  label: ParasiteFallingInit
+  addr:
+    U: 0x30D74
+    E: 0x30E40
+    J: 0x30D74
+    C: 0x33A10
+  size: 0x10
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
     type: SpriteData *
   return: null
 - desc: Parasite falling
@@ -7128,6 +7928,34 @@
   params:
   - desc: Current sprite pointer
     label: CurrSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite dying init
+  label: ParasiteDyingInit
+  addr:
+    U: 0x30DF8
+    E: 0x30EC4
+    J: 0x30DF8
+    C: 0x33A98
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite dying
+  label: ParasiteDying
+  addr:
+    U: 0x30E34
+    E: 0x30F00
+    J: 0x30E34
+    C: 0x33AD4
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
     type: SpriteData *
   return: null
 - desc: Parasite check event
@@ -7157,6 +7985,20 @@
   params:
   - desc: Current sprite pointer
     label: CurrSpritePtr
+    type: SpriteData *
+  return: null
+- desc: Parasite geron grabbed
+  label: ParasiteGeronGrabbed
+  addr:
+    U: 0x30F4C
+    E: 0x31018
+    J: 0x30F4C
+    C: 0x33BEC
+  size: 0x19C
+  mode: thumb
+  params:
+  - desc: Current sprite pointer
+    label: CurrentSpritePtr
     type: SpriteData *
   return: null
 - desc: Parasite bomb collision
@@ -7243,6 +8085,20 @@
     enum: ClipdataAffectingAction
   return: null
   notes: Enables the hitbox of the top block of the piston
+- desc: Piston Samus collision
+  label: PistonSamusCollision
+  addr:
+    U: 0x317A4
+    E: 0x31870
+    J: 0x317A4
+    C: 0x34444
+  size: 0x40
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if colliding, 0 otherwise
+    label: 1IfColliding,0Otherwise
+    type: u8
 - desc: Piston check Samus in
   label: PistonCheckSamusIn
   addr:
@@ -7324,6 +8180,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley sync sub-sprites
+  label: RidleySyncSubSprites
+  addr:
+    U: 0x31AA4
+    E: 0x31B70
+    J: 0x31AA4
+    C: 0x34744
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail sync sub-sprites
+  label: RidleyTailSyncSubSprites
+  addr:
+    U: 0x31B40
+    E: 0x31C0C
+    J: 0x31B40
+    C: 0x347E0
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley idle Y floating movement
+  label: RidleyIdleYFloatingMovement
+  addr:
+    U: 0x31BC8
+    E: 0x31C94
+    J: 0x31BC8
+    C: 0x34868
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley spawn spitting fireballs Y floating movement
+  label: RidleySpawnSpittingFireballsYFloatingMovement
+  addr:
+    U: 0x31C0C
+    E: 0x31CD8
+    J: 0x31C0C
+    C: 0x348AC
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley check dead
   label: RidleyCheckDead
   addr:
@@ -7335,6 +8235,26 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley check grabbing
+  label: RidleyCheckGrabbing
+  addr:
+    U: 0x31DD8
+    E: 0x31EA4
+    J: 0x31DD8
+    C: 0x34A78
+  size: 0x68
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return:
+    desc: 1 if grabbing, 0 otherwise
+    label: 1IfGrabbing,0Otherwise
+    type: u32
 - desc: Ridley Samus grabbed
   label: RidleySamusGrabbed
   addr:
@@ -7348,6 +8268,17 @@
   - desc: RAM slot
     label: RamSlot
     type: u8
+  return: null
+- desc: Ridley tail check start screen shake vertical tail attack
+  label: RidleyTailCheckStartScreenShakeVerticalTailAttack
+  addr:
+    U: 0x320A8
+    E: 0x32174
+    J: 0x320A8
+    C: 0x34D48
+  size: 0x30
+  mode: thumb
+  params: null
   return: null
 - desc: Ridley tail attacks X move
   label: RidleyTailAttacksXMove
@@ -7439,6 +8370,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley idle
+  label: RidleyIdle
+  addr:
+    U: 0x32CF8
+    E: 0x32DC4
+    J: 0x32CF8
+    C: 0x35998
+  size: 0x5FC
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley turning around graphics initialize
   label: RidleyTurningAroundGfxInit
   addr:
@@ -7472,6 +8414,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley small fireballs attack init
+  label: RidleySmallFireballsAttackInit
+  addr:
+    U: 0x334A4
+    E: 0x33570
+    J: 0x334A4
+    C: 0x36144
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley small fireballs attack
+  label: RidleySmallFireballsAttack
+  addr:
+    U: 0x3350C
+    E: 0x335D8
+    J: 0x3350C
+    C: 0x361AC
+  size: 0x330
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail attacks init
+  label: RidleyTailAttacksInit
+  addr:
+    U: 0x3383C
+    E: 0x33908
+    J: 0x3383C
+    C: 0x364DC
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley (empty)
   label: Ridley_Empty
   addr:
@@ -7484,6 +8459,17 @@
   params: null
   return: null
   notes: Empty function
+- desc: Ridley big fireballs attack init
+  label: RidleyBigFireballsAttackInit
+  addr:
+    U: 0x338B8
+    E: 0x33984
+    J: 0x338B8
+    C: 0x36558
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley big fireballs attack
   label: RidleyBigFireballsAttack
   addr:
@@ -7518,6 +8504,56 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley part wing play sound
+  label: RidleyPartWingPlaySound
+  addr:
+    U: 0x33E5C
+    E: 0x33F28
+    J: 0x33E5C
+    C: 0x36AFC
+  size: 0x70
+  mode: thumb
+  params:
+  - desc: RAM slot
+    label: RamSlot
+    type: u8
+  return: null
+- desc: Ridley part wing set palette offset
+  label: RidleyPartWingSetPaletteOffset
+  addr:
+    U: 0x33ECC
+    E: 0x33F98
+    J: 0x33ECC
+    C: 0x36B6C
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley part sync palette
+  label: RidleyPartSyncPalette
+  addr:
+    U: 0x33F04
+    E: 0x33FD0
+    J: 0x33F04
+    C: 0x36BA4
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: RAM slot
+    label: RamSlot
+    type: u8
+  return: null
+- desc: Ridley part claw update sides hitbox
+  label: RidleyPartClawUpdateSidesHitbox
+  addr:
+    U: 0x33F48
+    E: 0x34014
+    J: 0x33F48
+    C: 0x36BE8
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley tail dead
   label: RidleyTailDead
   addr:
@@ -7537,6 +8573,116 @@
     J: 0x340B8
     C: 0x36D58
   size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail idle
+  label: RidleyTailIdle
+  addr:
+    U: 0x34154
+    E: 0x34220
+    J: 0x34154
+    C: 0x36DF4
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail check moving to attack anim ended
+  label: RidleyTailCheckMovingToAttackAnimEnded
+  addr:
+    U: 0x341C8
+    E: 0x34294
+    J: 0x341C8
+    C: 0x36E68
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail setting up attack
+  label: RidleyTailSettingUpAttack
+  addr:
+    U: 0x341F8
+    E: 0x342C4
+    J: 0x341F8
+    C: 0x36E98
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail charging attack
+  label: RidleyTailChargingAttack
+  addr:
+    U: 0x34278
+    E: 0x34344
+    J: 0x34278
+    C: 0x36F18
+  size: 0x128
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail first vertical attack
+  label: RidleyTailFirstVerticalAttack
+  addr:
+    U: 0x343A0
+    E: 0x3446C
+    J: 0x343A0
+    C: 0x37040
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail vertical attack
+  label: RidleyTailVerticalAttack
+  addr:
+    U: 0x34420
+    E: 0x344EC
+    J: 0x34420
+    C: 0x370C0
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail last vertical attack
+  label: RidleyTailLastVerticalAttack
+  addr:
+    U: 0x3450C
+    E: 0x345D8
+    J: 0x3450C
+    C: 0x371AC
+  size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail diagonal attack
+  label: RidleyTailDiagonalAttack
+  addr:
+    U: 0x345B4
+    E: 0x34680
+    J: 0x345B4
+    C: 0x37254
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail check back to idle anim ended
+  label: RidleyTailCheckBackToIdleAnimEnded
+  addr:
+    U: 0x3463C
+    E: 0x34708
+    J: 0x3463C
+    C: 0x372DC
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley fireball check slide on wall
+  label: RidleyFireballCheckSlideOnWall
+  addr:
+    U: 0x346C0
+    E: 0x3478C
+    J: 0x346C0
+    C: 0x37360
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -7587,6 +8733,39 @@
   params: null
   return: null
   notes: Used at the beginning of the fight
+- desc: Ridley fireball move ascending pattern
+  label: RidleyFireballMoveAscendingPattern
+  addr:
+    U: 0x34994
+    E: 0x34A60
+    J: 0x34994
+    C: 0x37634
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley fireball slide on wall init
+  label: RidleyFireballSlideOnWallInit
+  addr:
+    U: 0x349E4
+    E: 0x34AB0
+    J: 0x349E4
+    C: 0x37684
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley fireball slide on wall
+  label: RidleyFireballSlideOnWall
+  addr:
+    U: 0x349FC
+    E: 0x34AC8
+    J: 0x349FC
+    C: 0x3769C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley AI
   label: Ridley_AI
   addr:
@@ -8509,6 +9688,34 @@
     desc: Colliding
     label: Colliding
     type: bool
+- desc: Ruins test check hit by charged pistol
+  label: RuinsTestCheckHitByChargedPistol
+  addr:
+    U: 0x38D28
+    E: 0x38DF4
+    J: 0x38D28
+    C: 0x3B9C8
+  size: 0x48
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if hit, 0 otherwise
+    label: 1IfHit,0Otherwise
+    type: u8
+- desc: Ruins test check symbol shooted
+  label: RuinsTestCheckSymbolShooted
+  addr:
+    U: 0x38D70
+    E: 0x38E3C
+    J: 0x38D70
+    C: 0x3BA10
+  size: 0x84
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if last symbol shot, 0 otherwise
+    label: 1IfLastSymbolShot,0Otherwise
+    type: u8
 - desc: Ruins Test check Samus hurting
   label: RuinsTestCheckSamusHurting
   addr:
@@ -8523,6 +9730,20 @@
     desc: Samus getting hurt
     label: SamusGettingHurt
     type: bool
+- desc: Ruins test update symbol
+  label: RuinsTestUpdateSymbol
+  addr:
+    U: 0x38E28
+    E: 0x38EF4
+    J: 0x38E28
+    C: 0x3BAC8
+  size: 0x11C
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if new movement pattern, 0 otherwise
+    label: 1IfNewMovementPattern,0Otherwise
+    type: u8
 - desc: Ruins Test ghost move
   label: RuinsTestGhostMove
   addr:
@@ -8553,6 +9774,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Ruins test spawning
+  label: RuinsTestSpawning
+  addr:
+    U: 0x390CC
+    E: 0x39198
+    J: 0x390CC
+    C: 0x3BD84
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
 - desc: Ruins Test spawn reflection start
   label: RuinsTestSpawnReflectionStart
   addr:
@@ -8564,6 +9796,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Ruins test free Samus
+  label: RuinsTestFreeSamus
+  addr:
+    U: 0x39194
+    E: 0x39260
+    J: 0x39194
+    C: 0x3BE4C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
 - desc: Ruins Test check Samus not facing background
   label: RuinsTestCheckSamusNotFacingBackground
   addr:
@@ -8572,6 +9815,17 @@
     J: 0x391C4
     C: 0x3BE7C
   size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ruins test motionless
+  label: RuinsTestMotionless
+  addr:
+    U: 0x391F0
+    E: 0x392BC
+    J: 0x391F0
+    C: 0x3BEA8
+  size: 0x44
   mode: thumb
   params: null
   return: null
@@ -8597,6 +9851,28 @@
   mode: thumb
   params: null
   return: null
+- desc: Ruins test move circle pattern
+  label: RuinsTestMoveCirclePattern
+  addr:
+    U: 0x392F0
+    E: 0x393BC
+    J: 0x392F0
+    C: 0x3BFA8
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+- desc: Ruins test move atom pattern
+  label: RuinsTestMoveAtomPattern
+  addr:
+    U: 0x393EC
+    E: 0x394B8
+    J: 0x393EC
+    C: 0x3C0A4
+  size: 0x224
+  mode: thumb
+  params: null
+  return: null
 - desc: Ruins Test move ghost to center
   label: RuinsTestMoveGhostToCenter
   addr:
@@ -8605,6 +9881,17 @@
     J: 0x39610
     C: 0x3C2C8
   size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Ruins test check is ghost disappearing
+  label: RuinsTestCheckIsGhostDisappearing
+  addr:
+    U: 0x396A4
+    E: 0x39770
+    J: 0x396A4
+    C: 0x3C35C
+  size: 0x2C
   mode: thumb
   params: null
   return: null
@@ -8664,6 +9951,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Ruins test ghost move symbol to place
+  label: RuinsTestGhostMoveSymbolToPlace
+  addr:
+    U: 0x39A40
+    E: 0x39B0C
+    J: 0x39A40
+    C: 0x3C6F8
+  size: 0x234
+  mode: thumb
+  params: null
+  return: null
 - desc: Ruins Test ghost after first symbol
   label: RuinsTestGhostAfterFirstSymbol
   addr:
@@ -8683,6 +9981,28 @@
     J: 0x39DF0
     C: 0x3CAA8
   size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Ruins test ghost symbol wait for end of fight
+  label: RuinsTestGhostSymbolWaitForEndOfFight
+  addr:
+    U: 0x39E14
+    E: 0x39EE0
+    J: 0x39E14
+    C: 0x3CACC
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Ruins test ghost symbol delay before placing at end of fight
+  label: RuinsTestGhostSymbolDelayBeforePlacingAtEndOfFight
+  addr:
+    U: 0x39E3C
+    E: 0x39F08
+    J: 0x39E3C
+    C: 0x3CAF4
+  size: 0x3C
   mode: thumb
   params: null
   return: null
@@ -8918,6 +10238,28 @@
   mode: thumb
   params: null
   return: null
+- desc: Atomic smooth movement
+  label: AtomicSmoothMovement
+  addr:
+    U: 0x3B944
+    E: 0x3BA10
+    J: 0x3B944
+    C: 0x3E5FC
+  size: 0x254
+  mode: thumb
+  params: null
+  return: null
+- desc: Atomic update direction to flee Samus
+  label: AtomicUpdateDirectionToFleeSamus
+  addr:
+    U: 0x3BB98
+    E: 0x3BC64
+    J: 0x3BB98
+    C: 0x3E850
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
 - desc: Atomic shoot electricity
   label: AtomicShootElectricity
   addr:
@@ -8970,6 +10312,39 @@
     J: 0x3BE38
     C: 0x3EAF0
   size: 0x144
+  mode: thumb
+  params: null
+  return: null
+- desc: Atomic move back to idle
+  label: AtomicMoveBackToIdle
+  addr:
+    U: 0x3BF7C
+    E: 0x3C048
+    J: 0x3BF7C
+    C: 0x3EC34
+  size: 0x16C
+  mode: thumb
+  params: null
+  return: null
+- desc: Atomic chasing Samus init
+  label: AtomicChasingSamusInit
+  addr:
+    U: 0x3C0E8
+    E: 0x3C1B4
+    J: 0x3C0E8
+    C: 0x3EDA0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Atomic chase Samus
+  label: AtomicChaseSamus
+  addr:
+    U: 0x3C118
+    E: 0x3C1E4
+    J: 0x3C118
+    C: 0x3EDD0
+  size: 0x38
   mode: thumb
   params: null
   return: null
@@ -9167,6 +10542,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Mother brain check glass broken
+  label: MotherBrainCheckGlassBroken
+  addr:
+    U: 0x3CB90
+    E: 0x3CC5C
+    J: 0x3CB90
+    C: 0x3F848
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
 - desc: Mother Brain main loop
   label: MotherBrainMainLoop
   addr:
@@ -9245,6 +10631,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Mother brain part glass stage 1
+  label: MotherBrainPartGlassStage1
+  addr:
+    U: 0x3D3A4
+    E: 0x3D470
+    J: 0x3D3A4
+    C: 0x4005C
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Mother brain part glass stage 2
+  label: MotherBrainPartGlassStage2
+  addr:
+    U: 0x3D3E4
+    E: 0x3D4B0
+    J: 0x3D3E4
+    C: 0x4009C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Mother brain part glass stage 3
+  label: MotherBrainPartGlassStage3
+  addr:
+    U: 0x3D420
+    E: 0x3D4EC
+    J: 0x3D420
+    C: 0x400D8
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
 - desc: Mother Brain eye hit timer
   label: MotherBrainEyeHitTimer
   addr:
@@ -9319,6 +10738,21 @@
     J: 0x3D7CC
     C: 0x40484
   size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Acid worm handle rotation
+  label: AcidWormHandleRotation
+  addr:
+    U: 0x3D860
+    E: 0x3D92C
+    J: 0x3D860
+    C: 0x40518
+  size:
+    U: 0x118
+    E: 0x118
+    J: 0x118
+    C: 0x144
   mode: thumb
   params: null
   return: null
@@ -9637,6 +11071,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Acid worm body main loop
+  label: AcidWormBodyMainLoop
+  addr:
+    U: 0x3EE1C
+    E: 0x3EEE8
+    J: 0x3EE1C
+    C: 0x41B00
+  size: 0x1FC
+  mode: thumb
+  params: null
+  return: null
 - desc: Acid worm body death
   label: AcidWormBodyDeath
   addr:
@@ -9809,6 +11254,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Sidehopper falling init
+  label: SidehopperFallingInit
+  addr:
+    U: 0x3F8D8
+    E: 0x3F9A4
+    J: 0x3F8D8
+    C: 0x425C8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: Sidehopper check before jumping animation ended
   label: SidehopperCheckBeforeJumpingAnimEnded
   addr:
@@ -9817,6 +11273,17 @@
     J: 0x3F8FC
     C: 0x425EC
   size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sidehopper jump warning ceiling
+  label: SidehopperJumpWarningCeiling
+  addr:
+    U: 0x3F958
+    E: 0x3FA24
+    J: 0x3F958
+    C: 0x42648
+  size: 0x14
   mode: thumb
   params: null
   return: null
@@ -11010,6 +12477,28 @@
   mode: thumb
   params: null
   return: null
+- desc: Gunship part check set horizontal flames
+  label: GunshipPartCheckSetHorizontalFlames
+  addr:
+    U: 0x45974
+    E: 0x45A40
+    J: 0x45974
+    C: 0x48660
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Gunship part check set vertical flames before landing
+  label: GunshipPartCheckSetVerticalFlamesBeforeLanding
+  addr:
+    U: 0x459AC
+    E: 0x45A78
+    J: 0x459AC
+    C: 0x48698
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Gunship part check landing ended
   label: GunshipPartCheckLandingEnded
   addr:
@@ -11018,6 +12507,17 @@
     J: 0x459E4
     C: 0x486D0
   size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Gunship part flick flames unused
+  label: GunshipPartFlickFlames_Unused
+  addr:
+    U: 0x45A40
+    E: 0x45B0C
+    J: 0x45A40
+    C: 0x4872C
+  size: 0x28
   mode: thumb
   params: null
   return: null
@@ -11095,6 +12595,17 @@
     J: 0x45D64
     C: 0x48A50
   size: 0x98
+  mode: thumb
+  params: null
+  return: null
+- desc: Gunship part platform go down
+  label: GunshipPartPlatformGoDown
+  addr:
+    U: 0x45DFC
+    E: 0x45EC8
+    J: 0x45DFC
+    C: 0x48AE8
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -12566,6 +14077,20 @@
   mode: thumb
   params: null
   return: null
+- desc: Escape ship part update palette
+  label: EscapeShipPartUpdatePalette
+  addr:
+    U: 0x4AC00
+    E: 0x4ACCC
+    J: 0x4AC00
+    C: 0x4D8EC
+  size: 0x94
+  mode: thumb
+  params:
+  - desc: Delay
+    label: Delay
+    type: u8
+  return: null
 - desc: Escape ship set ignore Samus
   label: EscapeShipSetIgnoreSamus
   addr:
@@ -12586,6 +14111,17 @@
     J: 0x4ACC8
     C: 0x4D9B4
   size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Escape ship pirate collision
+  label: EscapeShipPirateCollision
+  addr:
+    U: 0x4AD08
+    E: 0x4ADD4
+    J: 0x4AD08
+    C: 0x4D9F4
+  size: 0xC4
   mode: thumb
   params: null
   return: null
@@ -12688,6 +14224,70 @@
   mode: thumb
   params: null
   return: null
+- desc: Mecha Ridley load fireballs graphics
+  label: MechaRidleyLoadFireballsGfx
+  addr:
+    U: 0x4BB88
+    E: 0x4BC54
+    J: 0x4BB88
+    C: 0x4E874
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley load missiles graphics
+  label: MechaRidleyLoadMissilesGfx
+  addr:
+    U: 0x4BC2C
+    E: 0x4BCF8
+    J: 0x4BC2C
+    C: 0x4E918
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley update height
+  label: MechaRidleyUpdateHeight
+  addr:
+    U: 0x4BCD0
+    E: 0x4BD9C
+    J: 0x4BCD0
+    C: 0x4E9BC
+  size: 0x128
+  mode: thumb
+  params: null
+  return:
+    desc: 1 if changing height, 0 otherwise
+    label: 1IfChangingHeight,0Otherwise
+    type: u8
+- desc: Mecha Ridley crawling backwards initialize
+  label: MechaRidleyCrawlingBackwardsInit
+  addr:
+    U: 0x4BDF8
+    E: 0x4BEC4
+    J: 0x4BDF8
+    C: 0x4EAE4
+  size: 0xBC
+  mode: thumb
+  params:
+  - desc: RAM slot
+    label: RamSlot
+    type: u8
+  return: null
+- desc: Mecha Ridley swing attack init
+  label: MechaRidleySwingAttackInit
+  addr:
+    U: 0x4BEB4
+    E: 0x4BF80
+    J: 0x4BEB4
+    C: 0x4EBA0
+  size: 0xB4
+  mode: thumb
+  params:
+  - desc: RAM slot
+    label: RamSlot
+    type: u8
+  return: null
 - desc: Mecha Ridley initialize
   label: MechaRidleyInit
   addr:
@@ -12761,6 +14361,17 @@
     label: SamusHasNoMoreAmmo
     type: bool
   notes: Checks if Samus is out out missiles and super missiles, used to force a missile attack
+- desc: Mecha Ridley idle
+  label: MechaRidleyIdle
+  addr:
+    U: 0x4C3C8
+    E: 0x4C494
+    J: 0x4C3C8
+    C: 0x4F0B4
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Mecha Ridley claw attack
   label: MechaRidleyClawAttack
   addr:
@@ -12970,6 +14581,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Mecha Ridley part cover idle
+  label: MechaRidleyPartCoverIdle
+  addr:
+    U: 0x4D2F0
+    E: 0x4D3BC
+    J: 0x4D2F0
+    C: 0x4FFDC
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
 - desc: Mecha Ridley part core cover explosion
   label: MechaRidleyPartCoreCoverExplosion
   addr:
@@ -12978,6 +14600,43 @@
     J: 0x4D338
     C: 0x50024
   size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley part missile launcher idle
+  label: MechaRidleyPartMissileLauncherIdle
+  addr:
+    U: 0x4D3A4
+    E: 0x4D470
+    J: 0x4D3A4
+    C: 0x50090
+  size: 0x190
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley part eye idle
+  label: MechaRidleyPartEyeIdle
+  addr:
+    U: 0x4D534
+    E: 0x4D600
+    J: 0x4D534
+    C: 0x50220
+  size: 0x1F4
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley part right arm idle
+  label: MechaRidleyPartRightArmIdle
+  addr:
+    U: 0x4D728
+    E: 0x4D7F4
+    J: 0x4D728
+    C: 0x50414
+  size:
+    U: 0x200
+    E: 0x200
+    J: 0x200
+    C: 0x204
   mode: thumb
   params: null
   return: null
@@ -12993,6 +14652,21 @@
     E: 0x238
     J: 0x238
     C: 0x254
+  mode: thumb
+  params: null
+  return: null
+- desc: Mecha Ridley part neck idle
+  label: MechaRidleyPartNeckIdle
+  addr:
+    U: 0x4DB60
+    E: 0x4DC2C
+    J: 0x4DB60
+    C: 0x5086C
+  size:
+    U: 0x1F8
+    E: 0x1F8
+    J: 0x1F8
+    C: 0x230
   mode: thumb
   params: null
   return: null

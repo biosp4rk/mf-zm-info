@@ -139,6 +139,10 @@
   label: DebugFlag
   type: u8
   addr: 0x3000000
+- desc: SRAM error flag
+  label: SramErrorFlag
+  type: bool
+  addr: 0x3000001
 - desc: 16-bit frame counter
   label: FrameCounter16Bit
   type: u16
@@ -147,6 +151,10 @@
   label: StereoFlag
   type: u8
   addr: 0x3000004
+- desc: Sub-game mode stage
+  label: SubGameModeStage
+  type: u8
+  addr: 0x3000005
 - desc: Written to BLDALPHA
   label: WrittenToBLDALPHA
   type: u16
@@ -245,6 +253,10 @@
   label: DisableScrollingFlag
   type: u8
   addr: 0x300003D
+- desc: Slow scrolling timer
+  label: SlowScrollingTimer
+  type: u16
+  addr: 0x300003E
 - desc: Skip door transition flag
   label: SkipDoorTransitionFlag
   type: u8
@@ -349,6 +361,14 @@
   label: RoomEffectYPositionOffset
   type: u16
   addr: 0x300006E
+- desc: Screen shake X offset
+  label: ScreenShakeXOffset
+  type: u8
+  addr: 0x3000071
+- desc: Screen shake Y offset
+  label: ScreenShakeYOffset
+  type: u8
+  addr: 0x3000072
 - desc: DISPCNT backup
   label: DISPCNTBackup
   type: u16
@@ -378,6 +398,14 @@
   label: CurrCutscene
   type: u8
   addr: 0x300007D
+- desc: Tourian escape cutscene stage
+  label: TourianEscapeCutsceneStage
+  type: s8
+  addr: 0x300007E
+- desc: Free movement lock camera
+  label: FreeMovementLockCamera
+  type: bool
+  addr: 0x300007F
 - desc: Haze VRAM info
   label: HazeVramInfo
   type: HazeVramInfo
@@ -402,6 +430,10 @@
   label: BGPositions
   type: BGPositions
   addr: 0x30000E4
+- desc: Waiting space pirates position
+  label: WaitingSpacePiratesPosition
+  type: RawCoordsXY
+  addr: 0x30000F8
 - desc: BG2 movement
   label: BG2Movement
   type: BG2Movement
@@ -456,6 +488,10 @@
   label: LastElevatorUsed
   type: LastElevatorUsed
   addr: 0x3000198
+- desc: In-game cutscene
+  label: InGameCutscene
+  type: InGameCutsceneData
+  addr: 0x300019C
 - desc: Alarm timer
   label: AlarmTimer
   type: u16
@@ -504,6 +540,10 @@
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
+- desc: Ignore Samus and sprite collision
+  label: IgnoreSamusAndSpriteCollision
+  type: bool
+  addr: 0x30007F2
 - desc: Sprite draw order
   label: SpriteDrawOrder
   type: u8
@@ -638,6 +678,10 @@
   type: u8
   addr: 0x3000BF1
   enum: AreaID
+- desc: Current item being acquired
+  label: CurrItemBeingAcquired
+  type: s8
+  addr: 0x3000BF2
 - desc: File select options cursor index
   label: FileSelectOptionsCursorIndex
   type: u8
@@ -690,6 +734,10 @@
   label: CurrMessage
   type: CurrMessage
   addr: 0x3000C0C
+- desc: SRAM corrupt flag
+  label: SramCorruptFlag
+  type: bool
+  addr: 0x3000C1C
 - desc: Loading file flag
   label: LoadingFileFlag
   type: bool
@@ -711,6 +759,10 @@
   type: SaveFileInfo
   count: 0x3
   addr: 0x3000C24
+- desc: Starting info
+  label: StartingInfo
+  type: StartingInfo
+  addr: 0x3000C6C
 - desc: Game mode
   label: GameMode
   type: u16
@@ -789,6 +841,14 @@
   type: u16
   addr: 0x300139E
   notes: Mosaic size
+- desc: BG2 scaling
+  label: Bg2Scaling
+  type: u16
+  addr: 0x30013A0
+- desc: BG2 rotation
+  label: Bg2Rotation
+  type: u16
+  addr: 0x30013A4
 - desc: Written to BG2PA
   label: WrittenToBG2PA
   type: u16
@@ -856,6 +916,11 @@
   label: BG3YPosition
   type: u16
   addr: 0x30013C2
+- desc: Demo state
+  label: DemoState
+  type: u8
+  addr: 0x30013D2
+  enum: DemoState
 - desc: Samus data
   label: SamusData
   type: SamusData
@@ -915,6 +980,10 @@
   label: DisableDrawingSamusAndScrollingFlag
   type: u8
   addr: 0x3001608
+- desc: Time attack data
+  label: TimeAttackData
+  type: TimeAttackData
+  addr: 0x300160C
 - desc: Button assignments
   label: ButtonAssignments
   type: ButtonAssignments
@@ -977,6 +1046,19 @@
   label: MusicInfo
   type: MusicInfo
   addr: 0x3001D00
+- desc: PSG sounds
+  label: PsgSounds
+  type: PsgSoundData
+  addr: 0x3003794
+- desc: Sound channel backup
+  label: SoundChannelBackup
+  type: SoundChannelBackup
+  count: 0x7
+  addr: 0x3003834
+- desc: Sound channel track 2 backup
+  label: SoundChannelTrack2Backup
+  type: SoundChannelBackup
+  addr: 0x30039BC
 - desc: Sound queue
   label: SoundQueue
   type: QueuedSound
@@ -1015,6 +1097,57 @@
   type: void
   count: 0xAC
   addr: 0x3004294
+- desc: Track 0 variables
+  label: Track0Variables
+  type: TrackVariables
+  count: 0xC
+  addr: 0x3004348
+- desc: Track 1 variables
+  label: Track1Variables
+  type: TrackVariables
+  count: 0xA
+  addr: 0x3004708
+- desc: Track 2 variables
+  label: Track2Variables
+  type: TrackVariables
+  count: 0x2
+  addr: 0x3004A28
+- desc: Track 3 variables
+  label: Track3Variables
+  type: TrackVariables
+  count: 0x2
+  addr: 0x3004AC8
+- desc: Track 4 variables
+  label: Track4Variables
+  type: TrackVariables
+  count: 0x2
+  addr: 0x3004B68
+- desc: Track 5 variables
+  label: Track5Variables
+  type: TrackVariables
+  count: 0x2
+  addr: 0x3004C08
+- desc: Track 6 variables
+  label: Track6Variables
+  type: TrackVariables
+  count: 0x3
+  addr: 0x3004CA8
+- desc: Track 7 variables
+  label: Track7Variables
+  type: TrackVariables
+  count: 0x1
+  addr: 0x3004D98
+- desc: Track 8 variables
+  label: Track8Variables
+  type: TrackVariables
+  count: 0x6
+  addr: 0x3004DE8
+- desc: Demo input data
+  label: DemoInputData
+  type: u16
+  count: 0x100
+  addr: 0x3004FCA
+  enum: ButtonInput
 - desc: Demo input durations
   label: DemoInputDurations
   type: u16
@@ -1033,6 +1166,10 @@
   type: u16
   addr: 0x30053CE
   enum: ButtonInput
+- desc: Not pressing up
+  label: NotPressingUp
+  type: bool
+  addr: 0x30053D0
 - desc: Samus palette
   label: SamusPalette
   type: u16
@@ -1089,6 +1226,10 @@
   label: TilesetTransparentColor
   type: u16
   addr: 0x30054FC
+- desc: Unused struct 3005504
+  label: UnusedStruct_3005504
+  type: Unused_3005504
+  addr: 0x3005504
 - desc: Door transition Y position offset
   label: DoorTransitionYPositionOffset
   type: u16
@@ -1097,6 +1238,14 @@
   label: DestinationRoom
   type: u8
   addr: 0x300550E
+- desc: BG3CNT during door transition
+  label: Bg3CntDuringDoorTransition
+  type: u16
+  addr: 0x3005510
+- desc: BG1CNT during door transition
+  label: Bg1CntDuringDoorTransition
+  type: u16
+  addr: 0x3005512
 - desc: Screen Y offset
   label: ScreenYOffset
   type: u8
@@ -1109,6 +1258,10 @@
   label: RainSoundEffect
   type: u16
   addr: 0x3005518
+- desc: Water movement
+  label: WaterMovement
+  type: WaterMovement
+  addr: 0x300551C
 - desc: Color fading
   label: ColorFading
   type: ColorFading
@@ -1133,14 +1286,26 @@
   tags:
   - flags
   addr: 0x30056BC
+- desc: Default transparency
+  label: DefaultTransparency
+  type: DefaultTransparency
+  addr: 0x30056C4
 - desc: BLDALPHA related data 1
-  label: BLDALPHARelatedData1
-  type: BLDALPHAData
+  label: BldalphaRelatedData1
+  type: BldalphaData
   addr: 0x30056CC
 - desc: BLDALPHA related data 2
-  label: BLDALPHARelatedData2
-  type: BLDALPHAData
+  label: BldalphaRelatedData2
+  type: BldalphaData
   addr: 0x30056D4
+- desc: BLDY data 1
+  label: BldyData1
+  type: BldyData
+  addr: 0x30056DC
+- desc: BLDY data 2
+  label: BldyData2
+  type: BldyData
+  addr: 0x30056E4
 - desc: Animated palette timing
   label: AnimatedPaletteTiming
   type: AnimatedPaletteTiming
@@ -1157,10 +1322,22 @@
   label: CurrSpecialBGEffect
   type: SpecialBGEffect
   addr: 0x30056F8
+- desc: Scroll counter
+  label: ScrollCounter
+  type: u8
+  addr: 0x3005700
+- desc: Clipdata code pointer
+  label: ClipdataCodePtr
+  type: void *
+  addr: 0x3005704
 - desc: Current room scrolls data pointer
   label: CurrRoomScrollsDataPtr
   type: u8 *
   addr: 0x3005708
+- desc: Scrolling velocity caps
+  label: ScrollingVelocityCaps
+  type: CameraScrollVelocityCaps
+  addr: 0x3005714
 - desc: Haze loops 1
   label: HazeLoops1
   type: HazeLoops
@@ -1189,6 +1366,30 @@
   label: MaintainedInputData
   type: MaintainedInputData
   addr: 0x3005800
+- desc: OAM X offset (non-gameplay)
+  label: OamXOffset_NonGameplay
+  type: s8
+  addr: 0x3005806
+- desc: OAM Y offset (non-gameplay)
+  label: OamYOffset_NonGameplay
+  type: s8
+  addr: 0x3005807
+- desc: IO transfer info
+  label: IoTransferInfo
+  type: IoTransferInfo
+  addr: 0x3005808
+- desc: Multi boot param data
+  label: MultiBootParamData
+  type: MultiBootData
+  addr: 0x3005820
+- desc: Data sent pointer
+  label: DataSentPtr
+  type: u8 *
+  addr: 0x300586C
+- desc: Data sent size
+  label: DataSentSize
+  type: u32
+  addr: 0x3005870
 - desc: IME backup
   label: IME_Backup
   type: u16
@@ -1259,6 +1460,10 @@
   type: u8
   count: 0x40
   addr: 0x3005B10
+- desc: Cable link info
+  label: CableLinkInfo
+  type: CableLinkInfo
+  addr: 0x3005B60
 - desc: Interrupt code pointer
   label: InterruptCodePtr
   type: void *

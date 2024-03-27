@@ -665,6 +665,14 @@
     E: 0x3000062
     J: 0x3000068
     C: 0x3000068
+- desc: HazeInfo
+  label: HazeInfo
+  type: Haze
+  addr:
+    U: 0x3000068
+    E: 0x3000068
+    J: 0x300006C
+    C: 0x300006C
 - desc: Backup of I/O registers
   label: BackupOfIORegisters
   type: BackupOfIORegisters
@@ -689,15 +697,14 @@
     E: 0x30000A4
     J: 0x30000A8
     C: 0x30000A8
-- desc: Current environment affecting Samus
-  label: CurrEnvironmentAffectingSamus
-  type: u16
+- desc: CurrentAffectingClipdata
+  label: CurrentAffectingClipdata
+  type: CurrentAffectingClipdata
   addr:
-    U: 0x30000C2
-    E: 0x30000C2
-    J: 0x30000C6
-    C: 0x30000C6
-  enum: EnvironmentAffectingSamus
+    U: 0x30000C0
+    E: 0x30000C0
+    J: 0x30000C4
+    C: 0x30000C4
 - desc: Background positions
   label: BGPositions
   type: BGPositions
@@ -706,6 +713,22 @@
     E: 0x30000C8
     J: 0x30000CC
     C: 0x30000CC
+- desc: SA-X spawn position
+  label: SaxSpawnPosition
+  type: RawCoordsXY
+  addr:
+    U: 0x30000DC
+    E: 0x30000DC
+    J: 0x30000E0
+    C: 0x30000E0
+- desc: Window 1 border
+  label: Window1Border
+  type: WindowBorder
+  addr:
+    U: 0x30000E8
+    E: 0x30000E8
+    J: 0x30000EC
+    C: 0x30000EC
 - desc: Screen shake Y
   label: ScreenShakeY
   type: ScreenShake
@@ -957,14 +980,22 @@
     J: 0x30007A8
     C: 0x30007A8
   notes: Current sprite debris being processed
-- desc: Boss part OAM table pointer
-  label: BossPartOamTablePtr
-  type: Oam *
+- desc: Sub-sprite data 1
+  label: SubSpriteData1
+  type: SubSpriteData
   addr:
     U: 0x3000784
     E: 0x3000784
     J: 0x30007B8
     C: 0x30007B8
+- desc: Sub-sprite data 2
+  label: SubSpriteData2
+  type: SubSpriteData
+  addr:
+    U: 0x3000794
+    E: 0x3000794
+    J: 0x30007C8
+    C: 0x30007C8
 - desc: Previous center collision check
   label: PrevCenterCollisionCheck
   type: u8
@@ -983,6 +1014,14 @@
     J: 0x30007D9
     C: 0x30007D9
   enum: CollisionCheck
+- desc: Ignore Samus and sprite collision
+  label: IgnoreSamusAndSpriteCollision
+  type: bool
+  addr:
+    U: 0x30007A6
+    E: 0x30007A6
+    J: 0x30007DA
+    C: 0x30007DA
 - desc: Sprite draw order
   label: SpriteDrawOrder
   type: u8
@@ -1123,6 +1162,23 @@
     E: 0x30008D3
     J: 0x3000907
     C: 0x3000907
+- desc: Escape status
+  label: EscapeStatus
+  type: u8
+  addr:
+    U: 0x30008D7
+    E: 0x30008D7
+    J: 0x300090B
+    C: 0x300090B
+  enum: EscapeStatus
+- desc: Escape timer counter
+  label: EscapeTimerCounter
+  type: u8
+  addr:
+    U: 0x30008D8
+    E: 0x30008D8
+    J: 0x300090C
+    C: 0x300090C
 - desc: Escape timer digits
   label: EscapeTimerDigits
   type: EscapeTimerDigits
@@ -1131,6 +1187,26 @@
     E: 0x30008D9
     J: 0x300090D
     C: 0x300090D
+- desc: Escape digits OAM
+  label: EscapeDigitsOam
+  type: u16
+  count: 0x19
+  tags:
+  - oam_frame
+  addr:
+    U: 0x30008E0
+    E: 0x30008E0
+    J: 0x3000914
+    C: 0x3000914
+- desc: Ammo digits graphics
+  label: AmmoDigitsGfx
+  type: u8
+  count: 0x40
+  addr:
+    U: 0x3000912
+    E: 0x3000912
+    J: 0x3000946
+    C: 0x3000946
 - desc: Projectile data
   label: ProjectileData
   type: ProjectileData
@@ -1174,6 +1250,15 @@
     J: 0x3000BB8
     C: 0x3000BB8
   enum: NonGameplayFlag
+- desc: Previous area
+  label: PreviousArea
+  type: u8
+  addr:
+    U: 0x3000B86
+    E: 0x3000B86
+    J: 0x3000BBA
+    C: 0x3000BBA
+  enum: AreaID
 - desc: Event counter
   label: EventCounter
   type: u8
@@ -1199,6 +1284,23 @@
     E: 0x3000B89
     J: 0x3000BBD
     C: 0x3000BBD
+- desc: Room event trigger
+  label: RoomEventTrigger
+  type: s8
+  addr:
+    U: 0x3000B8A
+    E: 0x3000B8A
+    J: 0x3000BBE
+    C: 0x3000BBE
+  enum: Event
+- desc: Is loading file
+  label: IsLoadingFile
+  type: bool
+  addr:
+    U: 0x3000B8B
+    E: 0x3000B8B
+    J: 0x3000BBF
+    C: 0x3000BBF
 - desc: Most recent save file
   label: MostRecentSaveFile
   type: u8
@@ -1259,7 +1361,7 @@
     C: 0x3000C14
 - desc: Sub-game mode 2
   label: SubGameMode2
-  type: u16
+  type: s8
   addr:
     U: 0x3000BE2
     E: 0x3000BE2
@@ -1350,6 +1452,15 @@
     E: 0x30011EE
     J: 0x3001222
     C: 0x3001222
+- desc: SA-X elevator BG CNT
+  label: SaxElevatorBgCnt
+  type: u16
+  count: 0x4
+  addr:
+    U: 0x30011F6
+    E: 0x30011F6
+    J: 0x300122A
+    C: 0x300122A
 - desc: Written to MOSAIC_H
   label: WrittenToMOSAIC_H
   type: u16
@@ -1377,6 +1488,22 @@
     J: 0x3001252
     C: 0x3001252
   notes: Brightness coefficient
+- desc: Written to BLDALPHA_L
+  label: WrittenToBldalpha_L
+  type: u16
+  addr:
+    U: 0x3001220
+    E: 0x3001220
+    J: 0x3001254
+    C: 0x3001254
+- desc: Written to BLDALPHA_H
+  label: WrittenToBldalpha_H
+  type: u16
+  addr:
+    U: 0x3001222
+    E: 0x3001222
+    J: 0x3001256
+    C: 0x3001256
 - desc: BG0 X position
   label: BG0XPosition
   type: u16
@@ -1441,6 +1568,15 @@
     E: 0x3001232
     J: 0x3001266
     C: 0x3001266
+- desc: Demo state
+  label: DemoState
+  type: u8
+  addr:
+    U: 0x3001242
+    E: 0x3001242
+    J: 0x3001276
+    C: 0x3001276
+  enum: DemoState
 - desc: Pose lock flag
   label: PoseLockFlag
   type: u8
@@ -1627,6 +1763,14 @@
     E: 0x3001458
     J: 0x300148C
     C: 0x300148C
+- desc: SA-X elevator data
+  label: SaxElevatorData
+  type: SaxElevatorData
+  addr:
+    U: 0x300147C
+    E: 0x300147C
+    J: 0x30014B0
+    C: 0x30014B0
 - desc: Non-gameplay RAM
   label: NonGameplayRam
   type: u8
@@ -1734,6 +1878,25 @@
     E: 0x3003D5C
     J: 0x3003D90
     C: 0x3003D90
+- desc: Demo inputs
+  label: DemoInputs
+  type: u16
+  count: 0x100
+  addr:
+    U: 0x3004812
+    E: 0x3004812
+    J: 0x3004842
+    C: 0x3004842
+  enum: ButtonInput
+- desc: Demo input durations
+  label: DemoInputDurations
+  type: u16
+  count: 0x100
+  addr:
+    U: 0x3004A12
+    E: 0x3004A12
+    J: 0x3004A42
+    C: 0x3004A42
 - desc: Demo input number
   label: DemoInputNumber
   type: u16
@@ -1759,6 +1922,23 @@
     J: 0x3004C46
     C: 0x3004C46
   enum: ButtonInput
+- desc: SA-X elevator sprites
+  label: SaXElevatorSprites
+  type: SaxElevatorSprite
+  count: 0xB
+  addr:
+    U: 0x3004C18
+    E: 0x3004C18
+    J: 0x3004C48
+    C: 0x3004C48
+- desc: Not pressing up
+  label: NotPressingUp
+  type: bool
+  addr:
+    U: 0x3004D1C
+    E: 0x3004D1C
+    J: 0x3004D4C
+    C: 0x3004D4C
 - desc: Samus palette
   label: SamusPalette
   type: u16
@@ -1789,6 +1969,39 @@
     E: 0x3004D90
     J: 0x3004DC0
     C: 0x3004DC0
+- desc: Written to WIN1H
+  label: WrittenToWin1H
+  type: u16
+  addr:
+    U: 0x3004DD4
+    E: 0x3004DD4
+    J: 0x3004E04
+    C: 0x3004E04
+- desc: Written to WIN1V
+  label: WrittenToWin1V
+  type: u16
+  addr:
+    U: 0x3004DD6
+    E: 0x3004DD6
+    J: 0x3004E06
+    C: 0x3004E06
+- desc: Written to BLDCNT (special)
+  label: WrittenToBldcnt_Special
+  type: u16
+  addr:
+    U: 0x3004DD8
+    E: 0x3004DD8
+    J: 0x3004E08
+    C: 0x3004E08
+- desc: Elevator direction
+  label: ElevatorDirection
+  type: u8
+  addr:
+    U: 0x3004DDA
+    E: 0x3004DDA
+    J: 0x3004E0A
+    C: 0x3004E0A
+  notes: 1 = up, 2 = down
 - desc: Tilemap and clipdata pointers
   label: TilemapAndClipdataPtrs
   type: TilemapAndClipdataPtrs
@@ -1838,6 +2051,14 @@
     E: 0x3004E28
     J: 0x3004E58
     C: 0x3004E58
+- desc: Samus door position offset
+  label: SamusDoorPositionOffset
+  type: s16
+  addr:
+    U: 0x3004E38
+    E: 0x3004E38
+    J: 0x3004E68
+    C: 0x3004E68
 - desc: Destination room
   label: DestinationRoom
   type: u8
@@ -1846,6 +2067,14 @@
     E: 0x3004E3C
     J: 0x3004E6C
     C: 0x3004E6C
+- desc: Color fading
+  label: ColorFading
+  type: u8
+  addr:
+    U: 0x3004E58
+    E: 0x3004E58
+    J: 0x3004E88
+    C: 0x3004E88
 - desc: Broken reform blocks
   label: BrokenReformBlocks
   type: BrokenReformBlock

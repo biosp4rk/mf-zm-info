@@ -201,6 +201,17 @@
   mode: thumb
   params: null
   return: null
+- desc: X parasite aqua zebesian move to target
+  label: XParasiteAquaZebesianMoveToTarget
+  addr:
+    U: 0x15424
+    E: 0x15424
+    J: 0x15590
+    C: 0x15590
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
 - desc: X parasite (Aqua Zebesian) waiting to move
   label: XParasite_AquaZebesian_WaitingToMove
   addr:
@@ -286,6 +297,70 @@
     J: 0x15938
     C: 0x15938
   size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X see and locate Samus
+  label: SaxSeeAndLocateSamus
+  addr:
+    U: 0x157FC
+    E: 0x157FC
+    J: 0x15968
+    C: 0x15968
+  size: 0x5D8
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X related
+  label: SaxRelated
+  addr:
+    U: 0x15DD4
+    E: 0x15DD4
+    J: 0x15F40
+    C: 0x15F40
+  size: 0xB4
+  mode: thumb
+  params: null
+  return:
+    desc: Pose changed
+    label: PoseChanged
+    type: bool
+- desc: SA-X related
+  label: SaxRelated
+  addr:
+    U: 0x15E88
+    E: 0x15E88
+    J: 0x15FF4
+    C: 0x15FF4
+  size: 0xCC
+  mode: thumb
+  params: null
+  return:
+    desc: Pose changed
+    label: PoseChanged
+    type: bool
+- desc: SA-X related
+  label: SaxRelated
+  addr:
+    U: 0x15F54
+    E: 0x15F54
+    J: 0x160C0
+    C: 0x160C0
+  size: 0x108
+  mode: thumb
+  params: null
+  return:
+    desc: Pose changed
+    label: PoseChanged
+    type: bool
+- desc: SA-X init
+  label: SaxInit
+  addr:
+    U: 0x1621C
+    E: 0x1621C
+    J: 0x16388
+    C: 0x16388
+  size: 0x8C
   mode: thumb
   params: null
   return: null
@@ -843,6 +918,31 @@
   mode: thumb
   params: null
   return: null
+- desc: SA-X update graphics
+  label: SaxUpdateGfx
+  addr:
+    U: 0x17AC8
+    E: 0x17AC8
+    J: 0x17C34
+    C: 0x17C34
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X update freeze timer
+  label: SaxUpdateFreezeTimer
+  addr:
+    U: 0x17B5C
+    E: 0x17B5C
+    J: 0x17CC8
+    C: 0x17CC8
+  size: 0x7C
+  mode: thumb
+  params: null
+  return:
+    desc: Frozen
+    label: Frozen
+    type: bool
 - desc: SA-X (elevator) AI
   label: Sax_Elevator_AI
   addr:
@@ -898,6 +998,28 @@
   mode: thumb
   params: null
   return: null
+- desc: SA-X TRO 1 check block in front
+  label: SaXTro1CheckBlockInFront
+  addr:
+    U: 0x17F50
+    E: 0x17F50
+    J: 0x180BC
+    C: 0x180BC
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X TRO 1 check block in front chase
+  label: SaXTro1CheckBlockInFrontChase
+  addr:
+    U: 0x17FB8
+    E: 0x17FB8
+    J: 0x18124
+    C: 0x18124
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
 - desc: SA-X (TRO 1) initialize
   label: Sax_Tro1_Init
   addr:
@@ -950,6 +1072,39 @@
     J: 0x183D0
     C: 0x183D0
   size: 0x27C
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X NOC walking check collisions
+  label: SaxNocWalkingCheckCollisions
+  addr:
+    U: 0x184E0
+    E: 0x184E0
+    J: 0x1864C
+    C: 0x1864C
+  size: 0x164
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X NOC running check collisions
+  label: SaxNocRunningCheckCollisions
+  addr:
+    U: 0x18644
+    E: 0x18644
+    J: 0x187B0
+    C: 0x187B0
+  size: 0x200
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X NOC walking to lay power bomb check collisions
+  label: SaxNocWalkingToLayPowerBombCheckCollisions
+  addr:
+    U: 0x18844
+    E: 0x18844
+    J: 0x189B0
+    C: 0x189B0
+  size: 0x4C
   mode: thumb
   params: null
   return: null
@@ -1115,6 +1270,28 @@
     J: 0x18E18
     C: 0x18E18
   size: 0x2A4
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X arc walking check collisions
+  label: SaxArcWalkingCheckCollisions
+  addr:
+    U: 0x18F50
+    E: 0x18F50
+    J: 0x190BC
+    C: 0x190BC
+  size: 0x148
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X arc running check collisions
+  label: SaxArcRunningCheckCollisions
+  addr:
+    U: 0x19098
+    E: 0x19098
+    J: 0x19204
+    C: 0x19204
+  size: 0x32C
   mode: thumb
   params: null
   return: null
@@ -1406,6 +1583,28 @@
   mode: thumb
   params: null
   return: null
+- desc: SA-X boss runniing check collisions
+  label: SaxBossRunniingCheckCollisions
+  addr:
+    U: 0x19E34
+    E: 0x19E34
+    J: 0x19FA0
+    C: 0x19FA0
+  size: 0x460
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X boss track Samus
+  label: SaxBossTrackSamus
+  addr:
+    U: 0x1A294
+    E: 0x1A294
+    J: 0x1A400
+    C: 0x1A400
+  size: 0x2D0
+  mode: thumb
+  params: null
+  return: null
 - desc: SA-X (boss) running start
   label: Sax_Boss_RunningStart
   addr:
@@ -1572,6 +1771,17 @@
     J: 0x1AE10
     C: 0x1AE10
   size: 0x25C
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X boss update mosaic
+  label: SaxBossUpdateMosaic
+  addr:
+    U: 0x1AEEC
+    E: 0x1AEEC
+    J: 0x1B06C
+    C: 0x1B06C
+  size: 0x70
   mode: thumb
   params: null
   return: null
@@ -1869,6 +2079,28 @@
   mode: thumb
   params: null
   return: null
+- desc: SA-X tro 2 walking check collisions
+  label: SaxTro2WalkingCheckCollisions
+  addr:
+    U: 0x1BB98
+    E: 0x1BB98
+    J: 0x1BD18
+    C: 0x1BD18
+  size: 0x21C
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X tro 2 running check collisions
+  label: SaxTro2RunningCheckCollisions
+  addr:
+    U: 0x1BDB4
+    E: 0x1BDB4
+    J: 0x1BF34
+    C: 0x1BF34
+  size: 0x334
+  mode: thumb
+  params: null
+  return: null
 - desc: SA-X (TRO 2) initialize
   label: Sax_Tro2_Init
   addr:
@@ -2056,6 +2288,45 @@
   mode: thumb
   params: null
   return: null
+- desc: Hornoad check Samus in range
+  label: HornoadCheckSamusInRange
+  addr:
+    U: 0x1C8D4
+    E: 0x1C8D4
+    J: 0x1CA54
+    C: 0x1CA54
+  size: 0x54
+  mode: thumb
+  params: null
+  return:
+    desc: In range
+    label: InRange
+    type: bool
+- desc: Hornoad check Samus still in range
+  label: HornoadCheckSamusStillInRange
+  addr:
+    U: 0x1C928
+    E: 0x1C928
+    J: 0x1CAA8
+    C: 0x1CAA8
+  size: 0xC4
+  mode: thumb
+  params: null
+  return:
+    desc: Previous collision check isn't solid
+    label: PrevCollisionCheckNotSolid
+    type: bool
+- desc: Hornoad set sides hitboxes
+  label: HornoadSetSidesHitboxes
+  addr:
+    U: 0x1C9EC
+    E: 0x1C9EC
+    J: 0x1CB6C
+    C: 0x1CB6C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
 - desc: Hornoad initialize
   label: Hornoad_Init
   addr:
@@ -2078,6 +2349,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Hornoad jumping init
+  label: HornoadJumpingInit
+  addr:
+    U: 0x1CB74
+    E: 0x1CB74
+    J: 0x1CCF4
+    C: 0x1CCF4
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Hornoad landing init
+  label: HornoadLandingInit
+  addr:
+    U: 0x1CBE8
+    E: 0x1CBE8
+    J: 0x1CD68
+    C: 0x1CD68
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Hornhoad idle animation init
+  label: HornhoadIdleAnimInit
+  addr:
+    U: 0x1CC20
+    E: 0x1CC20
+    J: 0x1CDA0
+    C: 0x1CDA0
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
 - desc: Update hornoad to fall
   label: UpdateHornoadToFall
   addr:
@@ -2097,6 +2401,28 @@
     J: 0x1CE6C
     C: 0x1CE6C
   size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Hornoad turning around init
+  label: HornoadTurningAroundInit
+  addr:
+    U: 0x1CD6C
+    E: 0x1CD6C
+    J: 0x1CEEC
+    C: 0x1CEEC
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Hornoad spitting init
+  label: HornoadSpittingInit
+  addr:
+    U: 0x1CDAC
+    E: 0x1CDAC
+    J: 0x1CF2C
+    C: 0x1CF2C
+  size: 0x44
   mode: thumb
   params: null
   return: null
@@ -2449,6 +2775,28 @@
     J: 0x1E164
     C: 0x1E164
   size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Halzyn wing idle init
+  label: HalzynWingIdleInit
+  addr:
+    U: 0x1E044
+    E: 0x1E044
+    J: 0x1E1C4
+    C: 0x1E1C4
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Halzyn wing flapping init
+  label: HalzynWingFlappingInit
+  addr:
+    U: 0x1E08C
+    E: 0x1E08C
+    J: 0x1E20C
+    C: 0x1E20C
+  size: 0x48
   mode: thumb
   params: null
   return: null
@@ -4702,6 +5050,31 @@
   mode: thumb
   params: null
   return: null
+- desc: Waver check Samus in range
+  label: WaverCheckSamusInRange
+  addr:
+    U: 0x26C7C
+    E: 0x26C7C
+    J: 0x26E3C
+    C: 0x26E3C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: In range
+    label: InRange
+    type: bool
+- desc: Waver set flying graphics
+  label: WaverSetFlyingGfx
+  addr:
+    U: 0x26CA8
+    E: 0x26CA8
+    J: 0x26E68
+    C: 0x26E68
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
 - desc: Waver initialize
   label: Waver_Init
   addr:
@@ -4855,6 +5228,64 @@
     J: 0x27648
     C: 0x27648
   size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Sciser check collisions
+  label: SciserCheckCollisions
+  addr:
+    U: 0x274B8
+    E: 0x274B8
+    J: 0x27678
+    C: 0x27678
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Previous collision is air
+    label: PreviousCollisionIsAir
+    type: bool
+- desc: Sciser update hitbox
+  label: SciserUpdateHitbox
+  addr:
+    U: 0x27574
+    E: 0x27574
+    J: 0x27734
+    C: 0x27734
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sciser set crawling graphics
+  label: SciserSetCrawlingGfx
+  addr:
+    U: 0x275F0
+    E: 0x275F0
+    J: 0x277B0
+    C: 0x277B0
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sciser set idle graphics
+  label: SciserSetIdleGfx
+  addr:
+    U: 0x2764C
+    E: 0x2764C
+    J: 0x2780C
+    C: 0x2780C
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sciser check Samus in range
+  label: SciserCheckSamusInRange
+  addr:
+    U: 0x276A8
+    E: 0x276A8
+    J: 0x27868
+    C: 0x27868
+  size: 0x78
   mode: thumb
   params: null
   return: null
@@ -5059,6 +5490,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Sidehopper jumping init
+  label: SidehopperJumpingInit
+  addr:
+    U: 0x28570
+    E: 0x28570
+    J: 0x28730
+    C: 0x28730
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Sidehopper landing init
+  label: SidehopperLandingInit
+  addr:
+    U: 0x285C4
+    E: 0x285C4
+    J: 0x28784
+    C: 0x28784
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sidehopper idle
+  label: SidehopperIdle
+  addr:
+    U: 0x285F0
+    E: 0x285F0
+    J: 0x287B0
+    C: 0x287B0
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Sidehopper falling init
+  label: SidehopperFallingInit
+  addr:
+    U: 0x28654
+    E: 0x28654
+    J: 0x28814
+    C: 0x28814
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: Sidehopper preparing to jump (floor)
   label: Sidehopper_PreparingToJump_Floor
   addr:
@@ -5202,6 +5677,50 @@
     J: 0x29284
     C: 0x29284
   size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Desgeega jumping ground init
+  label: DesgeegaJumpingGroundInit
+  addr:
+    U: 0x290E4
+    E: 0x290E4
+    J: 0x292A4
+    C: 0x292A4
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Desgeega landing init
+  label: DesgeegaLandingInit
+  addr:
+    U: 0x29138
+    E: 0x29138
+    J: 0x292F8
+    C: 0x292F8
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Dessgeega idle init
+  label: DessgeegaIdleInit
+  addr:
+    U: 0x29164
+    E: 0x29164
+    J: 0x29324
+    C: 0x29324
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Dessgeega falling init
+  label: DessgeegaFallingInit
+  addr:
+    U: 0x291C8
+    E: 0x291C8
+    J: 0x29388
+    C: 0x29388
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -5451,6 +5970,34 @@
   mode: thumb
   params: null
   return: null
+- desc: Navigation pad detect Samus
+  label: NavPadDetectSamus
+  addr:
+    U: 0x2A0B8
+    E: 0x2A0B8
+    J: 0x2A278
+    C: 0x2A278
+  size: 0x38
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
+- desc: Navigation pad detect Samus (unused)
+  label: NavPadDetectSamus_Unused
+  addr:
+    U: 0x2A0F0
+    E: 0x2A0F0
+    J: 0x2A2B0
+    C: 0x2A2B0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
 - desc: Navigation pad initialize
   label: NavigationPad_Init
   addr:
@@ -5887,6 +6434,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Data pad center init
+  label: DataPadCenterInit
+  addr:
+    U: 0x2B0E4
+    E: 0x2B0E4
+    J: 0x2B2A4
+    C: 0x2B2A4
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Data pad center idle
+  label: DataPadCenterIdle
+  addr:
+    U: 0x2B184
+    E: 0x2B184
+    J: 0x2B344
+    C: 0x2B344
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Data pad center engaging
+  label: DataPadCenterEngaging
+  addr:
+    U: 0x2B1D8
+    E: 0x2B1D8
+    J: 0x2B398
+    C: 0x2B398
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Data pad center downloading data
+  label: DataPadCenterDownloadingData
+  addr:
+    U: 0x2B220
+    E: 0x2B220
+    J: 0x2B3E0
+    C: 0x2B3E0
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
 - desc: Data pad sides initialize
   label: DataPadSides_Init
   addr:
@@ -5986,6 +6577,182 @@
   mode: thumb
   params: null
   return: null
+- desc: Zebesian wall set side hitboxs
+  label: ZebesianWallSetSideHitboxs
+  addr:
+    U: 0x2B660
+    E: 0x2B660
+    J: 0x2B820
+    C: 0x2B820
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall init
+  label: ZebesianWallInit
+  addr:
+    U: 0x2B738
+    E: 0x2B738
+    J: 0x2B8F8
+    C: 0x2B8F8
+  size: 0xF4
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall forming from X
+  label: ZebesianWallFormingFromX
+  addr:
+    U: 0x2B82C
+    E: 0x2B82C
+    J: 0x2B9EC
+    C: 0x2B9EC
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall death
+  label: ZebesianWallDeath
+  addr:
+    U: 0x2B880
+    E: 0x2B880
+    J: 0x2BA40
+    C: 0x2BA40
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall moving vertically init
+  label: ZebesianWallMovingVerticallyInit
+  addr:
+    U: 0x2B8D0
+    E: 0x2B8D0
+    J: 0x2BA90
+    C: 0x2BA90
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall move vertically
+  label: ZebesianWallMoveVertically
+  addr:
+    U: 0x2B8F4
+    E: 0x2B8F4
+    J: 0x2BAB4
+    C: 0x2BAB4
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall turning around init
+  label: ZebesianWallTurningAroundInit
+  addr:
+    U: 0x2B97C
+    E: 0x2B97C
+    J: 0x2BB3C
+    C: 0x2BB3C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall turning around
+  label: ZebesianWallTurningAround
+  addr:
+    U: 0x2B998
+    E: 0x2B998
+    J: 0x2BB58
+    C: 0x2BB58
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall jumping
+  label: ZebesianWallJumping
+  addr:
+    U: 0x2B9F8
+    E: 0x2B9F8
+    J: 0x2BBB8
+    C: 0x2BBB8
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall idle init
+  label: ZebesianWallIdleInit
+  addr:
+    U: 0x2BA64
+    E: 0x2BA64
+    J: 0x2BC24
+    C: 0x2BC24
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall idle
+  label: ZebesianWallIdle
+  addr:
+    U: 0x2BA80
+    E: 0x2BA80
+    J: 0x2BC40
+    C: 0x2BC40
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall shooting init
+  label: ZebesianWallShootingInit
+  addr:
+    U: 0x2BA94
+    E: 0x2BA94
+    J: 0x2BC54
+    C: 0x2BC54
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian wall shooting
+  label: ZebesianWallShooting
+  addr:
+    U: 0x2BAB0
+    E: 0x2BAB0
+    J: 0x2BC70
+    C: 0x2BC70
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian beam init
+  label: ZebesianBeamInit
+  addr:
+    U: 0x2BB30
+    E: 0x2BB30
+    J: 0x2BCF0
+    C: 0x2BCF0
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian beam spawning
+  label: ZebesianBeamSpawning
+  addr:
+    U: 0x2BBCC
+    E: 0x2BBCC
+    J: 0x2BD8C
+    C: 0x2BD8C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian beam extending
+  label: ZebesianBeamExtending
+  addr:
+    U: 0x2BC14
+    E: 0x2BC14
+    J: 0x2BDD4
+    C: 0x2BDD4
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
 - desc: Zebesian (wall) AI
   label: Zebesian_Wall_AI
   addr:
@@ -6005,6 +6772,171 @@
     J: 0x2C030
     C: 0x2C030
   size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad init
+  label: RechargePadInit
+  addr:
+    U: 0x2BEC4
+    E: 0x2BEC4
+    J: 0x2C084
+    C: 0x2C084
+  size: 0x140
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad idle init
+  label: RechargePadIdleInit
+  addr:
+    U: 0x2C004
+    E: 0x2C004
+    J: 0x2C1C4
+    C: 0x2C1C4
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad idle
+  label: RechargePadIdle
+  addr:
+    U: 0x2C048
+    E: 0x2C048
+    J: 0x2C208
+    C: 0x2C208
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad opening
+  label: RechargePadOpening
+  addr:
+    U: 0x2C098
+    E: 0x2C098
+    J: 0x2C258
+    C: 0x2C258
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad opened
+  label: RechargePadOpened
+  addr:
+    U: 0x2C0C4
+    E: 0x2C0C4
+    J: 0x2C284
+    C: 0x2C284
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad closing
+  label: RechargePadClosing
+  addr:
+    U: 0x2C190
+    E: 0x2C190
+    J: 0x2C350
+    C: 0x2C350
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad extending
+  label: RechargePadExtending
+  addr:
+    U: 0x2C1A4
+    E: 0x2C1A4
+    J: 0x2C364
+    C: 0x2C364
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad refilling
+  label: RechargePadRefilling
+  addr:
+    U: 0x2C1D4
+    E: 0x2C1D4
+    J: 0x2C394
+    C: 0x2C394
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad retracting
+  label: RechargePadRetracting
+  addr:
+    U: 0x2C240
+    E: 0x2C240
+    J: 0x2C400
+    C: 0x2C400
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad monitor init
+  label: RechargePadMonitorInit
+  addr:
+    U: 0x2C2C8
+    E: 0x2C2C8
+    J: 0x2C488
+    C: 0x2C488
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad monitor idle
+  label: RechargePadMonitorIdle
+  addr:
+    U: 0x2C33C
+    E: 0x2C33C
+    J: 0x2C4FC
+    C: 0x2C4FC
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad monitor extended
+  label: RechargePadMonitorExtended
+  addr:
+    U: 0x2C380
+    E: 0x2C380
+    J: 0x2C540
+    C: 0x2C540
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad monitor retracting init
+  label: RechargePadMonitorRetractingInit
+  addr:
+    U: 0x2C3CC
+    E: 0x2C3CC
+    J: 0x2C58C
+    C: 0x2C58C
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad monitor retracting
+  label: RechargePadMonitorRetracting
+  addr:
+    U: 0x2C410
+    E: 0x2C410
+    J: 0x2C5D0
+    C: 0x2C5D0
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Recharge pad screen init
+  label: RechargePadScreenInit
+  addr:
+    U: 0x2C438
+    E: 0x2C438
+    J: 0x2C5F8
+    C: 0x2C5F8
+  size: 0xD0
   mode: thumb
   params: null
   return: null
@@ -6522,6 +7454,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Beam core X eye handle rotation
+  label: BeamCoreXEyeHandleRotation
+  addr:
+    U: 0x2E24C
+    E: 0x2E24C
+    J: 0x2E40C
+    C: 0x2E40C
+  size: 0x338
+  mode: thumb
+  params: null
+  return: null
 - desc: Beam Core-X eye closed
   label: BeamCoreXEye_Closed
   addr:
@@ -6735,6 +7678,28 @@
   mode: thumb
   params: null
   return: null
+- desc: Toxic gas init
+  label: ToxicGasInit
+  addr:
+    U: 0x2F404
+    E: 0x2F404
+    J: 0x2F5D4
+    C: 0x2F5D4
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Toxic gas idle
+  label: ToxicGasIdle
+  addr:
+    U: 0x2F498
+    E: 0x2F498
+    J: 0x2F668
+    C: 0x2F668
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
 - desc: Toxic gas AI
   label: ToxicGas_AI
   addr:
@@ -6754,6 +7719,32 @@
     J: 0x2F71C
     C: 0x2F71C
   size: 0xD8
+  mode: thumb
+  params: null
+  return: null
+- desc: Kago set collision
+  label: KagoSetCollision
+  addr:
+    U: 0x2F624
+    E: 0x2F624
+    J: 0x2F7F4
+    C: 0x2F7F4
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
+  return: null
+- desc: Kago play sound
+  label: KagoPlaySound
+  addr:
+    U: 0x2F684
+    E: 0x2F684
+    J: 0x2F854
+    C: 0x2F854
+  size: 0x9C
   mode: thumb
   params: null
   return: null
@@ -6856,6 +7847,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Kago insect jump warning init
+  label: KagoInsectJumpWarningInit
+  addr:
+    U: 0x2FA64
+    E: 0x2FA64
+    J: 0x2FC34
+    C: 0x2FC34
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Kago insect jumping init
+  label: KagoInsectJumpingInit
+  addr:
+    U: 0x2FA84
+    E: 0x2FA84
+    J: 0x2FC54
+    C: 0x2FC54
+  size: 0x98
+  mode: thumb
+  params: null
+  return: null
+- desc: Kago insect falling init
+  label: KagoInsectFallingInit
+  addr:
+    U: 0x2FB1C
+    E: 0x2FB1C
+    J: 0x2FCEC
+    C: 0x2FCEC
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: Kago insect standing
   label: KagoInsect_Standing
   addr:
@@ -6911,6 +7935,37 @@
   mode: thumb
   params: null
   return: null
+- desc: Shake trigger start screen shake
+  label: ShakeTriggerStartScreenShake
+  addr:
+    U: 0x30144
+    E: 0x30144
+    J: 0x30314
+    C: 0x30314
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+- desc: Pre-BOX ceiling debris check Samus in range
+  label: PreBoxCeilingDebrisCheckSamusInRange
+  addr:
+    U: 0x30240
+    E: 0x30240
+    J: 0x30410
+    C: 0x30410
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: X block range
+    label: XBlockRange
+    type: u8
+  - desc: Y block range
+    label: YBlockRange
+    type: u8
+  return:
+    desc: In range
+    label: InRange
+    type: bool
 - desc: Shake trigger AI
   label: ShakeTrigger_AI
   addr:
@@ -6936,6 +7991,21 @@
   size: 0x2B0
   mode: thumb
   params: null
+  return: null
+- desc: Gate set collision
+  label: GateSetCollision
+  addr:
+    U: 0x30818
+    E: 0x30818
+    J: 0x309D8
+    C: 0x309D8
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 - desc: Gate initialize
   label: Gate_Init
@@ -7047,6 +8117,94 @@
   mode: thumb
   params: null
   return: null
+- desc: Electric water damage init
+  label: ElectricWaterDamageInit
+  addr:
+    U: 0x30CC0
+    E: 0x30CC0
+    J: 0x30E80
+    C: 0x30E80
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage idle
+  label: ElectricWaterDamageIdle
+  addr:
+    U: 0x30D20
+    E: 0x30D20
+    J: 0x30EE0
+    C: 0x30EE0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage damaging Samus
+  label: ElectricWaterDamageDamagingSamus
+  addr:
+    U: 0x30D4C
+    E: 0x30D4C
+    J: 0x30F0C
+    C: 0x30F0C
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage stopping
+  label: ElectricWaterDamageStopping
+  addr:
+    U: 0x30DC0
+    E: 0x30DC0
+    J: 0x30F80
+    C: 0x30F80
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric wire init
+  label: ElectricWireInit
+  addr:
+    U: 0x30E14
+    E: 0x30E14
+    J: 0x30FD4
+    C: 0x30FD4
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric wire idle
+  label: ElectricWireIdle
+  addr:
+    U: 0x30ECC
+    E: 0x30ECC
+    J: 0x3108C
+    C: 0x3108C
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water init
+  label: ElectricWaterInit
+  addr:
+    U: 0x30F00
+    E: 0x30F00
+    J: 0x310C0
+    C: 0x310C0
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water idle
+  label: ElectricWaterIdle
+  addr:
+    U: 0x30F7C
+    E: 0x30F7C
+    J: 0x3113C
+    C: 0x3113C
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
 - desc: Electric water damage AI
   label: ElectricWaterDamage_AI
   addr:
@@ -7080,6 +8238,191 @@
   mode: thumb
   params: null
   return: null
+- desc: Zoro check colliding with air
+  label: ZoroCheckCollidingWithAir
+  addr:
+    U: 0x31054
+    E: 0x31054
+    J: 0x31214
+    C: 0x31214
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Zoro set hitbox and draw distance
+  label: ZoroSetHitboxAndDrawDistance
+  addr:
+    U: 0x31110
+    E: 0x31110
+    J: 0x312D0
+    C: 0x312D0
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro set crawling OAM
+  label: ZoroSetCrawlingOam
+  addr:
+    U: 0x31198
+    E: 0x31198
+    J: 0x31358
+    C: 0x31358
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro set turning OAM
+  label: ZoroSetTurningOam
+  addr:
+    U: 0x311C8
+    E: 0x311C8
+    J: 0x31388
+    C: 0x31388
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro set turning around second part OAM
+  label: ZoroSetTurningAroundSecondPartOam
+  addr:
+    U: 0x311F8
+    E: 0x311F8
+    J: 0x313B8
+    C: 0x313B8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro set death position
+  label: ZoroSetDeathPosition
+  addr:
+    U: 0x3123C
+    E: 0x3123C
+    J: 0x313FC
+    C: 0x313FC
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro init
+  label: ZoroInit
+  addr:
+    U: 0x31284
+    E: 0x31284
+    J: 0x31444
+    C: 0x31444
+  size: 0x17C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro crawling init
+  label: ZoroCrawlingInit
+  addr:
+    U: 0x31400
+    E: 0x31400
+    J: 0x315C0
+    C: 0x315C0
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro red get speed
+  label: ZoroRedGetSpeed
+  addr:
+    U: 0x31428
+    E: 0x31428
+    J: 0x315E8
+    C: 0x315E8
+  size: 0x10C
+  mode: thumb
+  params: null
+  return:
+    desc: Speed
+    label: Speed
+    type: u16
+- desc: Zoro blue get speed
+  label: ZoroBlueGetSpeed
+  addr:
+    U: 0x31534
+    E: 0x31534
+    J: 0x316F4
+    C: 0x316F4
+  size: 0x1A0
+  mode: thumb
+  params: null
+  return:
+    desc: Speed
+    label: Speed
+    type: u16
+- desc: Zoro crawl
+  label: ZoroCrawl
+  addr:
+    U: 0x316D4
+    E: 0x316D4
+    J: 0x31894
+    C: 0x31894
+  size: 0x238
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro turning init
+  label: ZoroTurningInit
+  addr:
+    U: 0x3190C
+    E: 0x3190C
+    J: 0x31ACC
+    C: 0x31ACC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro turning around
+  label: ZoroTurningAround
+  addr:
+    U: 0x31924
+    E: 0x31924
+    J: 0x31AE4
+    C: 0x31AE4
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro turning around second part
+  label: ZoroTurningAroundSecondPart
+  addr:
+    U: 0x31944
+    E: 0x31944
+    J: 0x31B04
+    C: 0x31B04
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro falling init
+  label: ZoroFallingInit
+  addr:
+    U: 0x31960
+    E: 0x31960
+    J: 0x31B20
+    C: 0x31B20
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro falling
+  label: ZoroFalling
+  addr:
+    U: 0x31980
+    E: 0x31980
+    J: 0x31B40
+    C: 0x31B40
+  size: 0x100
+  mode: thumb
+  params: null
+  return: null
 - desc: Zoro AI
   label: Zoro_AI
   addr:
@@ -7091,6 +8434,35 @@
   mode: thumb
   params: null
   return: null
+- desc: Kihunter ground check in spittingrange
+  label: KihunterGroundCheckInSpittingrange
+  addr:
+    U: 0x31CB0
+    E: 0x31CB0
+    J: 0x31E70
+    C: 0x31E70
+  size: 0x54
+  mode: thumb
+  params: null
+  return:
+    desc: In range
+    label: InRange
+    type: bool
+- desc: Kihunter ground detect Samus
+  label: KihunterGroundDetectSamus
+  addr:
+    U: 0x31D04
+    E: 0x31D04
+    J: 0x31EC4
+    C: 0x31EC4
+  size: 0xB8
+  mode: thumb
+  params: null
+  return:
+    desc: Result
+    label: Result
+    type: u8
+    notes: 0 = too far, 1 = in front, 2 = behind
 - desc: Kihunter turning into X
   label: Kihunter_TurningIntoX
   addr:
@@ -7121,6 +8493,72 @@
     J: 0x320A4
     C: 0x320A4
   size: 0x58
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihhunter ground jump init
+  label: KihhunterGroundJumpInit
+  addr:
+    U: 0x31F3C
+    E: 0x31F3C
+    J: 0x320FC
+    C: 0x320FC
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter ground landing init
+  label: KihunterGroundLandingInit
+  addr:
+    U: 0x31F8C
+    E: 0x31F8C
+    J: 0x3214C
+    C: 0x3214C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter idle init
+  label: KihunterIdleInit
+  addr:
+    U: 0x31FAC
+    E: 0x31FAC
+    J: 0x3216C
+    C: 0x3216C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter falling init
+  label: KihunterFallingInit
+  addr:
+    U: 0x31FCC
+    E: 0x31FCC
+    J: 0x3218C
+    C: 0x3218C
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter ground turning around init
+  label: KihunterGroundTurningAroundInit
+  addr:
+    U: 0x31FF0
+    E: 0x31FF0
+    J: 0x321B0
+    C: 0x321B0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter ground spitting init
+  label: KihunterGroundSpittingInit
+  addr:
+    U: 0x32014
+    E: 0x32014
+    J: 0x321D4
+    C: 0x321D4
+  size: 0x44
   mode: thumb
   params: null
   return: null
@@ -7212,6 +8650,23 @@
   mode: thumb
   params: null
   return: null
+- desc: Kihunter flying X movement
+  label: KihunterFlyingXMovement
+  addr:
+    U: 0x32504
+    E: 0x32504
+    J: 0x326C4
+    C: 0x326C4
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Touching solid
+    label: TouchingSolid
+    type: bool
 - desc: Kihunter (flying) initialize
   label: Kihunter_Flying_Init
   addr:
@@ -7275,6 +8730,17 @@
     J: 0x329AC
     C: 0x329AC
   size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Kihunter flying update swipe animation
+  label: KihunterFlyingUpdateSwipeAnim
+  addr:
+    U: 0x32800
+    E: 0x32800
+    J: 0x329C0
+    C: 0x329C0
+  size: 0x90
   mode: thumb
   params: null
   return: null
@@ -7575,6 +9041,202 @@
   mode: thumb
   params: null
   return: null
+- desc: Reo play sound
+  label: ReoPlaySound
+  addr:
+    U: 0x33A44
+    E: 0x33A44
+    J: 0x33C04
+    C: 0x33C04
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo check fall
+  label: ReoCheckFall
+  addr:
+    U: 0x33A64
+    E: 0x33A64
+    J: 0x33C24
+    C: 0x33C24
+  size: 0x34
+  mode: thumb
+  params: null
+  return:
+    desc: Falling
+    label: Falling
+    type: bool
+- desc: Reo X movement
+  label: ReoXMovement
+  addr:
+    U: 0x33A98
+    E: 0x33A98
+    J: 0x33C58
+    C: 0x33C58
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Reo init
+  label: ReoInit
+  addr:
+    U: 0x33AFC
+    E: 0x33AFC
+    J: 0x33CBC
+    C: 0x33CBC
+  size: 0x108
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo fall init
+  label: ReoFallInit
+  addr:
+    U: 0x33C04
+    E: 0x33C04
+    J: 0x33DC4
+    C: 0x33DC4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo falling
+  label: ReoFalling
+  addr:
+    U: 0x33C44
+    E: 0x33C44
+    J: 0x33E04
+    C: 0x33E04
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo landing
+  label: ReoLanding
+  addr:
+    U: 0x33CF4
+    E: 0x33CF4
+    J: 0x33EB4
+    C: 0x33EB4
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo idle init
+  label: ReoIdleInit
+  addr:
+    U: 0x33D44
+    E: 0x33D44
+    J: 0x33F04
+    C: 0x33F04
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo idle init
+  label: ReoIdleInit
+  addr:
+    U: 0x33D70
+    E: 0x33D70
+    J: 0x33F30
+    C: 0x33F30
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo going down init
+  label: ReoGoingDownInit
+  addr:
+    U: 0x33E5C
+    E: 0x33E5C
+    J: 0x3401C
+    C: 0x3401C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo going down
+  label: ReoGoingDown
+  addr:
+    U: 0x33E7C
+    E: 0x33E7C
+    J: 0x3403C
+    C: 0x3403C
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo sliding init
+  label: ReoSlidingInit
+  addr:
+    U: 0x33F3C
+    E: 0x33F3C
+    J: 0x340FC
+    C: 0x340FC
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo sliding
+  label: ReoSliding
+  addr:
+    U: 0x33F5C
+    E: 0x33F5C
+    J: 0x3411C
+    C: 0x3411C
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo going up init
+  label: ReoGoingUpInit
+  addr:
+    U: 0x3401C
+    E: 0x3401C
+    J: 0x341DC
+    C: 0x341DC
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo going up
+  label: ReoGoingUp
+  addr:
+    U: 0x34038
+    E: 0x34038
+    J: 0x341F8
+    C: 0x341F8
+  size: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo wings init
+  label: ReoWingsInit
+  addr:
+    U: 0x34124
+    E: 0x34124
+    J: 0x342E4
+    C: 0x342E4
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+- desc: Reo wings idle
+  label: ReoWingsIdle
+  addr:
+    U: 0x341B4
+    E: 0x341B4
+    J: 0x34374
+    C: 0x34374
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
 - desc: Reo AI
   label: Reo_AI
   addr:
@@ -7594,6 +9256,105 @@
     J: 0x3466C
     C: 0x3466C
   size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume init
+  label: LavaPlumeInit
+  addr:
+    U: 0x344EC
+    E: 0x344EC
+    J: 0x346AC
+    C: 0x346AC
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume go up init
+  label: LavaPlumeGoUpInit
+  addr:
+    U: 0x3458C
+    E: 0x3458C
+    J: 0x3474C
+    C: 0x3474C
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume go up
+  label: LavaPlumeGoUp
+  addr:
+    U: 0x345DC
+    E: 0x345DC
+    J: 0x3479C
+    C: 0x3479C
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume stop from Samus contact
+  label: LavaPlumeStopFromSamusContact
+  addr:
+    U: 0x3465C
+    E: 0x3465C
+    J: 0x3481C
+    C: 0x3481C
+  size: 0x10
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume stop init
+  label: LavaPlumeStopInit
+  addr:
+    U: 0x3466C
+    E: 0x3466C
+    J: 0x3482C
+    C: 0x3482C
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume stop
+  label: LavaPlumeStop
+  addr:
+    U: 0x346AC
+    E: 0x346AC
+    J: 0x3486C
+    C: 0x3486C
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume idle
+  label: LavaPlumeIdle
+  addr:
+    U: 0x346FC
+    E: 0x346FC
+    J: 0x348BC
+    C: 0x348BC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume warning init
+  label: LavaPlumeWarningInit
+  addr:
+    U: 0x34730
+    E: 0x34730
+    J: 0x348F0
+    C: 0x348F0
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: Lava plume warning idle
+  label: LavaPlumeWarningIdle
+  addr:
+    U: 0x34798
+    E: 0x34798
+    J: 0x34958
+    C: 0x34958
+  size: 0x6C
   mode: thumb
   params: null
   return: null
@@ -7999,6 +9760,59 @@
   mode: thumb
   params: null
   return: null
+- desc: Update sub-sprite data 1 animation
+  label: UpdateSubSpriteData1Anim
+  addr:
+    U: 0x35ACC
+    E: 0x35ACC
+    J: 0x35C8C
+    C: 0x35C8C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sync current sprite position with sub-sprite 1 position
+  label: SyncCurrSpritePositionWithSubSprite1Position
+  addr:
+    U: 0x35B08
+    E: 0x35B08
+    J: 0x35CC8
+    C: 0x35CC8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX sync sub-sprites
+  label: BoxSyncSubSprites
+  addr:
+    U: 0x35B4C
+    E: 0x35B4C
+    J: 0x35D0C
+    C: 0x35D0C
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX X movement
+  label: BoxXMovement
+  addr:
+    U: 0x35BB4
+    E: 0x35BB4
+    J: 0x35D74
+    C: 0x35D74
+  size: 0xA4
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  - desc: Pose when collision
+    label: PoseWhenCollision
+    type: u8
+  return:
+    desc: Hit solid
+    label: HitSolid
+    type: bool
 - desc: BOX initialize
   label: Box_Init
   addr:
@@ -8498,6 +10312,48 @@
   mode: thumb
   params: null
   return: null
+- desc: BOX part set BOX work var 2
+  label: BoxPartSetBoxWorkVar2
+  addr:
+    U: 0x36D70
+    E: 0x36D70
+    J: 0x36F40
+    C: 0x36F40
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: BOX ram slot
+    label: BoxRamSlot
+    type: u8
+  - desc: Value
+    label: Value
+    type: u8
+  return: null
+- desc: BOX part center set immunity
+  label: BoxPartCenterSetImmunity
+  addr:
+    U: 0x36D98
+    E: 0x36D98
+    J: 0x36F68
+    C: 0x36F68
+  size: 0xE0
+  mode: thumb
+  params:
+  - desc: BOX ram slot
+    label: BoxRamSlot
+    type: u8
+  return: null
+- desc: BOX part remove ignore projectiles
+  label: BoxPartRemoveIgnoreProjectiles
+  addr:
+    U: 0x36E78
+    E: 0x36E78
+    J: 0x37048
+    C: 0x37048
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
 - desc: BOX part initialize
   label: BoxPart_Init
   addr:
@@ -8873,6 +10729,161 @@
   mode: thumb
   params: null
   return: null
+- desc: Geruda Y movement
+  label: GerudaYMovement
+  addr:
+    U: 0x38A18
+    E: 0x38A18
+    J: 0x38C1C
+    C: 0x38C1C
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: Y movement
+    label: YMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Geruda X movement
+  label: GerudaXMovement
+  addr:
+    U: 0x38A7C
+    E: 0x38A7C
+    J: 0x38C80
+    C: 0x38C80
+  size: 0x88
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Geruda set idle side hitboxes
+  label: GerudaSetIdleSideHitboxes
+  addr:
+    U: 0x38B04
+    E: 0x38B04
+    J: 0x38D08
+    C: 0x38D08
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda set attacking side hitboxes
+  label: GerudaSetAttackingSideHitboxes
+  addr:
+    U: 0x38B38
+    E: 0x38B38
+    J: 0x38D3C
+    C: 0x38D3C
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda update lunging animation
+  label: GerudaUpdateLungingAnim
+  addr:
+    U: 0x38B6C
+    E: 0x38B6C
+    J: 0x38D70
+    C: 0x38D70
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda init
+  label: GerudaInit
+  addr:
+    U: 0x38BF0
+    E: 0x38BF0
+    J: 0x38DF4
+    C: 0x38DF4
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda idle init
+  label: GerudaIdleInit
+  addr:
+    U: 0x38C8C
+    E: 0x38C8C
+    J: 0x38E90
+    C: 0x38E90
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda idle
+  label: GerudaIdle
+  addr:
+    U: 0x38CB8
+    E: 0x38CB8
+    J: 0x38EBC
+    C: 0x38EBC
+  size: 0x1F0
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda turning around init
+  label: GerudaTurningAroundInit
+  addr:
+    U: 0x38EA8
+    E: 0x38EA8
+    J: 0x390AC
+    C: 0x390AC
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda turning around
+  label: GerudaTurningAround
+  addr:
+    U: 0x38EC8
+    E: 0x38EC8
+    J: 0x390CC
+    C: 0x390CC
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda attack warning init
+  label: GerudaAttackWarningInit
+  addr:
+    U: 0x38EEC
+    E: 0x38EEC
+    J: 0x390F0
+    C: 0x390F0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda attack warning
+  label: GerudaAttackWarning
+  addr:
+    U: 0x38F10
+    E: 0x38F10
+    J: 0x39114
+    C: 0x39114
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruda attacking
+  label: GerudaAttacking
+  addr:
+    U: 0x38F40
+    E: 0x38F40
+    J: 0x39144
+    C: 0x39144
+  size: 0x104
+  mode: thumb
+  params: null
+  return: null
 - desc: Geruda AI
   label: Geruda_AI
   addr:
@@ -8881,6 +10892,149 @@
     J: 0x39248
     C: 0x39248
   size: 0x204
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad init
+  label: MiscPadInit
+  addr:
+    U: 0x39248
+    E: 0x39248
+    J: 0x3944C
+    C: 0x3944C
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad idle init
+  label: MiscPadIdleInit
+  addr:
+    U: 0x39394
+    E: 0x39394
+    J: 0x39598
+    C: 0x39598
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad idle
+  label: MiscPadIdle
+  addr:
+    U: 0x393F8
+    E: 0x393F8
+    J: 0x395FC
+    C: 0x395FC
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad pressing switch
+  label: MiscPadPressingSwitch
+  addr:
+    U: 0x39458
+    E: 0x39458
+    J: 0x3965C
+    C: 0x3965C
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad switch pressed
+  label: MiscPadSwitchPressed
+  addr:
+    U: 0x39494
+    E: 0x39494
+    J: 0x39698
+    C: 0x39698
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad releasing switch
+  label: MiscPadReleasingSwitch
+  addr:
+    U: 0x39520
+    E: 0x39520
+    J: 0x39724
+    C: 0x39724
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad Samus interacting
+  label: MiscPadSamusInteracting
+  addr:
+    U: 0x39534
+    E: 0x39534
+    J: 0x39738
+    C: 0x39738
+  size: 0x70
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad spawn message banner
+  label: MiscPadSpawnMessageBanner
+  addr:
+    U: 0x395A4
+    E: 0x395A4
+    J: 0x397A8
+    C: 0x397A8
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad after interaction
+  label: MiscPadAfterInteraction
+  addr:
+    U: 0x39644
+    E: 0x39644
+    J: 0x39848
+    C: 0x39848
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad inactive
+  label: MiscPadInactive
+  addr:
+    U: 0x3967C
+    E: 0x3967C
+    J: 0x39880
+    C: 0x39880
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad wait for wide beam core X
+  label: MiscPadWaitForWideBeamCoreX
+  addr:
+    U: 0x39680
+    E: 0x39680
+    J: 0x39884
+    C: 0x39884
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad console init
+  label: MiscPadConsoleInit
+  addr:
+    U: 0x396D4
+    E: 0x396D4
+    J: 0x398D8
+    C: 0x398D8
+  size: 0xD4
+  mode: thumb
+  params: null
+  return: null
+- desc: Misc pad console idle
+  label: MiscPadConsoleIdle
+  addr:
+    U: 0x397A8
+    E: 0x397A8
+    J: 0x399AC
+    C: 0x399AC
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -8903,6 +11057,182 @@
     J: 0x39B84
     C: 0x39B84
   size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad init
+  label: OperationsRoomPadInit
+  addr:
+    U: 0x399B0
+    E: 0x399B0
+    J: 0x39BB4
+    C: 0x39BB4
+  size: 0xCC
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad idle init
+  label: OperationsRoomPadIdleInit
+  addr:
+    U: 0x39A7C
+    E: 0x39A7C
+    J: 0x39C80
+    C: 0x39C80
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad idle
+  label: OperationsRoomPadIdle
+  addr:
+    U: 0x39AC0
+    E: 0x39AC0
+    J: 0x39CC4
+    C: 0x39CC4
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad pressing switch
+  label: OperationsRoomPadPressingSwitch
+  addr:
+    U: 0x39B10
+    E: 0x39B10
+    J: 0x39D14
+    C: 0x39D14
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad switch pressed
+  label: OperationsRoomPadSwitchPressed
+  addr:
+    U: 0x39B3C
+    E: 0x39B3C
+    J: 0x39D40
+    C: 0x39D40
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad releasing
+  label: OperationsRoomPadReleasing
+  addr:
+    U: 0x39BB8
+    E: 0x39BB8
+    J: 0x39DBC
+    C: 0x39DBC
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad Samus interacting
+  label: OperationsRoomPadSamusInteracting
+  addr:
+    U: 0x39BCC
+    E: 0x39BCC
+    J: 0x39DD0
+    C: 0x39DD0
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad start escape
+  label: OperationsRoomPadStartEscape
+  addr:
+    U: 0x39C1C
+    E: 0x39C1C
+    J: 0x39E20
+    C: 0x39E20
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad console init
+  label: OperationsRoomPadConsoleInit
+  addr:
+    U: 0x39C60
+    E: 0x39C60
+    J: 0x39E64
+    C: 0x39E64
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad console idle
+  label: OperationsRoomPadConsoleIdle
+  addr:
+    U: 0x39CC4
+    E: 0x39CC4
+    J: 0x39EC8
+    C: 0x39EC8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad console screen init
+  label: OperationsRoomPadConsoleScreenInit
+  addr:
+    U: 0x39CC8
+    E: 0x39CC8
+    J: 0x39ECC
+    C: 0x39ECC
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad console screen idle
+  label: OperationsRoomPadConsoleScreenIdle
+  addr:
+    U: 0x39D68
+    E: 0x39D68
+    J: 0x39F6C
+    C: 0x39F6C
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad screen init
+  label: OperationsRoomPadScreenInit
+  addr:
+    U: 0x39DA8
+    E: 0x39DA8
+    J: 0x39FAC
+    C: 0x39FAC
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad screen turning on
+  label: OperationsRoomPadScreenTurningOn
+  addr:
+    U: 0x39E1C
+    E: 0x39E1C
+    J: 0x3A020
+    C: 0x3A020
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad screen idle
+  label: OperationsRoomPadScreenIdle
+  addr:
+    U: 0x39E44
+    E: 0x39E44
+    J: 0x3A048
+    C: 0x3A048
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Operations room pad screen turning off
+  label: OperationsRoomPadScreenTurningOff
+  addr:
+    U: 0x39E88
+    E: 0x39E88
+    J: 0x3A08C
+    C: 0x3A08C
+  size: 0x18
   mode: thumb
   params: null
   return: null
@@ -9016,6 +11346,122 @@
   mode: thumb
   params: null
   return: null
+- desc: Skultera set sides hitboxes
+  label: SkulteraSetSidesHitboxes
+  addr:
+    U: 0x3A250
+    E: 0x3A250
+    J: 0x3A454
+    C: 0x3A454
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera X movement
+  label: SkulteraXMovement
+  addr:
+    U: 0x3A2AC
+    E: 0x3A2AC
+    J: 0x3A4B0
+    C: 0x3A4B0
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Skultera turning into X
+  label: SkulteraTurningIntoX
+  addr:
+    U: 0x3A338
+    E: 0x3A338
+    J: 0x3A53C
+    C: 0x3A53C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera init
+  label: SkulteraInit
+  addr:
+    U: 0x3A380
+    E: 0x3A380
+    J: 0x3A584
+    C: 0x3A584
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera idle init
+  label: SkulteraIdleInit
+  addr:
+    U: 0x3A4AC
+    E: 0x3A4AC
+    J: 0x3A6B0
+    C: 0x3A6B0
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera idle
+  label: SkulteraIdle
+  addr:
+    U: 0x3A4F8
+    E: 0x3A4F8
+    J: 0x3A6FC
+    C: 0x3A6FC
+  size: 0xE0
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera chasing Samus init
+  label: SkulteraChasingSamusInit
+  addr:
+    U: 0x3A5D8
+    E: 0x3A5D8
+    J: 0x3A7DC
+    C: 0x3A7DC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera chasing Samus
+  label: SkulteraChasingSamus
+  addr:
+    U: 0x3A60C
+    E: 0x3A60C
+    J: 0x3A810
+    C: 0x3A810
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera turning around init
+  label: SkulteraTurningAroundInit
+  addr:
+    U: 0x3A738
+    E: 0x3A738
+    J: 0x3A93C
+    C: 0x3A93C
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+- desc: Skultera turning around
+  label: SkulteraTurningAround
+  addr:
+    U: 0x3A7C4
+    E: 0x3A7C4
+    J: 0x3A9C8
+    C: 0x3A9C8
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: Skultera AI
   label: Skultera_AI
   addr:
@@ -9024,6 +11470,196 @@
     J: 0x3A9EC
     C: 0x3A9EC
   size: 0x22C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela check colliding with air
+  label: ZeelaCheckCollidingWithAir
+  addr:
+    U: 0x3AA14
+    E: 0x3AA14
+    J: 0x3AC18
+    C: 0x3AC18
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Zeela update hitbox
+  label: ZeelaUpdateHitbox
+  addr:
+    U: 0x3AAD0
+    E: 0x3AAD0
+    J: 0x3ACD4
+    C: 0x3ACD4
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela set crawling OAM
+  label: ZeelaSetCrawlingOam
+  addr:
+    U: 0x3AB50
+    E: 0x3AB50
+    J: 0x3AD54
+    C: 0x3AD54
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela set falling OAM
+  label: ZeelaSetFallingOam
+  addr:
+    U: 0x3AB80
+    E: 0x3AB80
+    J: 0x3AD84
+    C: 0x3AD84
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela shoot projectiles
+  label: ZeelaShootProjectiles
+  addr:
+    U: 0x3ABB0
+    E: 0x3ABB0
+    J: 0x3ADB4
+    C: 0x3ADB4
+  size: 0x1C4
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela turning into X
+  label: ZeelaTurningIntoX
+  addr:
+    U: 0x3AD74
+    E: 0x3AD74
+    J: 0x3AF78
+    C: 0x3AF78
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela init
+  label: ZeelaInit
+  addr:
+    U: 0x3ADBC
+    E: 0x3ADBC
+    J: 0x3AFC0
+    C: 0x3AFC0
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela idle init
+  label: ZeelaIdleInit
+  addr:
+    U: 0x3AF08
+    E: 0x3AF08
+    J: 0x3B10C
+    C: 0x3B10C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela idle
+  label: ZeelaIdle
+  addr:
+    U: 0x3AF20
+    E: 0x3AF20
+    J: 0x3B124
+    C: 0x3B124
+  size: 0x23C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela turning around init
+  label: ZeelaTurningAroundInit
+  addr:
+    U: 0x3B15C
+    E: 0x3B15C
+    J: 0x3B360
+    C: 0x3B360
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela turning around
+  label: ZeelaTurningAround
+  addr:
+    U: 0x3B174
+    E: 0x3B174
+    J: 0x3B378
+    C: 0x3B378
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela falling init
+  label: ZeelaFallingInit
+  addr:
+    U: 0x3B1A4
+    E: 0x3B1A4
+    J: 0x3B3A8
+    C: 0x3B3A8
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela falling
+  label: ZeelaFalling
+  addr:
+    U: 0x3B1C4
+    E: 0x3B1C4
+    J: 0x3B3C8
+    C: 0x3B3C8
+  size: 0x100
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela projectile init
+  label: ZeelaProjectileInit
+  addr:
+    U: 0x3B2C4
+    E: 0x3B2C4
+    J: 0x3B4C8
+    C: 0x3B4C8
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela projectile moving
+  label: ZeelaProjectileMoving
+  addr:
+    U: 0x3B338
+    E: 0x3B338
+    J: 0x3B53C
+    C: 0x3B53C
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela projectile exploding init
+  label: ZeelaProjectileExplodingInit
+  addr:
+    U: 0x3B400
+    E: 0x3B400
+    J: 0x3B604
+    C: 0x3B604
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Zeela projectile exploding
+  label: ZeelaProjectileExploding
+  addr:
+    U: 0x3B448
+    E: 0x3B448
+    J: 0x3B64C
+    C: 0x3B64C
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -9049,6 +11685,196 @@
   mode: thumb
   params: null
   return: null
+- desc: Sova check colliding with air
+  label: SovaCheckCollidingWithAir
+  addr:
+    U: 0x3B6AC
+    E: 0x3B6AC
+    J: 0x3B8B0
+    C: 0x3B8B0
+  size: 0xB8
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Sova update hitbox
+  label: SovaUpdateHitbox
+  addr:
+    U: 0x3B764
+    E: 0x3B764
+    J: 0x3B968
+    C: 0x3B968
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova set crawling OAM
+  label: SovaSetCrawlingOam
+  addr:
+    U: 0x3B7E4
+    E: 0x3B7E4
+    J: 0x3B9E8
+    C: 0x3B9E8
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova turning into X
+  label: SovaTurningIntoX
+  addr:
+    U: 0x3B828
+    E: 0x3B828
+    J: 0x3BA2C
+    C: 0x3BA2C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova init
+  label: SovaInit
+  addr:
+    U: 0x3B870
+    E: 0x3B870
+    J: 0x3BA74
+    C: 0x3BA74
+  size: 0x184
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova idle init
+  label: SovaIdleInit
+  addr:
+    U: 0x3B9F4
+    E: 0x3B9F4
+    J: 0x3BBF8
+    C: 0x3BBF8
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova idle
+  label: SovaIdle
+  addr:
+    U: 0x3BA0C
+    E: 0x3BA0C
+    J: 0x3BC10
+    C: 0x3BC10
+  size: 0x49C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova turning around init
+  label: SovaTurningAroundInit
+  addr:
+    U: 0x3BEA8
+    E: 0x3BEA8
+    J: 0x3C0AC
+    C: 0x3C0AC
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova turning around
+  label: SovaTurningAround
+  addr:
+    U: 0x3BEC0
+    E: 0x3BEC0
+    J: 0x3C0C4
+    C: 0x3C0C4
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova falling init
+  label: SovaFallingInit
+  addr:
+    U: 0x3BEFC
+    E: 0x3BEFC
+    J: 0x3C100
+    C: 0x3C100
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova falling
+  label: SovaFalling
+  addr:
+    U: 0x3BF14
+    E: 0x3BF14
+    J: 0x3C118
+    C: 0x3C118
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire init
+  label: SovaFireInit
+  addr:
+    U: 0x3C010
+    E: 0x3C010
+    J: 0x3C214
+    C: 0x3C214
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire big
+  label: SovaFireBig
+  addr:
+    U: 0x3C0B0
+    E: 0x3C0B0
+    J: 0x3C2B4
+    C: 0x3C2B4
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire small
+  label: SovaFireSmall
+  addr:
+    U: 0x3C0F8
+    E: 0x3C0F8
+    J: 0x3C2FC
+    C: 0x3C2FC
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire disappearing
+  label: SovaFireDisappearing
+  addr:
+    U: 0x3C140
+    E: 0x3C140
+    J: 0x3C344
+    C: 0x3C344
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire exploding init
+  label: SovaFireExplodingInit
+  addr:
+    U: 0x3C178
+    E: 0x3C178
+    J: 0x3C37C
+    C: 0x3C37C
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Sova fire exploding
+  label: SovaFireExploding
+  addr:
+    U: 0x3C1B0
+    E: 0x3C1B0
+    J: 0x3C3B4
+    C: 0x3C3B4
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
 - desc: Sova AI
   label: Sova_AI
   addr:
@@ -9068,6 +11894,122 @@
     J: 0x3C5DC
     C: 0x3C5DC
   size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard check should startle
+  label: YardCheckShouldStartle
+  addr:
+    U: 0x3C490
+    E: 0x3C490
+    J: 0x3C694
+    C: 0x3C694
+  size: 0x50
+  mode: thumb
+  params: null
+  return:
+    desc: Startled
+    label: Startled
+    type: bool
+- desc: Yard check colliding with air
+  label: YardCheckCollidingWithAir
+  addr:
+    U: 0x3C4E0
+    E: 0x3C4E0
+    J: 0x3C6E4
+    C: 0x3C6E4
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Yard update hitbox
+  label: YardUpdateHitbox
+  addr:
+    U: 0x3C59C
+    E: 0x3C59C
+    J: 0x3C7A0
+    C: 0x3C7A0
+  size: 0x10C
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set crawling OAM
+  label: YardSetCrawlingOam
+  addr:
+    U: 0x3C6A8
+    E: 0x3C6A8
+    J: 0x3C8AC
+    C: 0x3C8AC
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set turning around OAM
+  label: YardSetTurningAroundOam
+  addr:
+    U: 0x3C704
+    E: 0x3C704
+    J: 0x3C908
+    C: 0x3C908
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set turning around second part OAM
+  label: YardSetTurningAroundSecondPartOam
+  addr:
+    U: 0x3C734
+    E: 0x3C734
+    J: 0x3C938
+    C: 0x3C938
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set charging OAM
+  label: YardSetChargingOam
+  addr:
+    U: 0x3C764
+    E: 0x3C764
+    J: 0x3C968
+    C: 0x3C968
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set shooting OAM
+  label: YardSetShootingOam
+  addr:
+    U: 0x3C794
+    E: 0x3C794
+    J: 0x3C998
+    C: 0x3C998
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard set recoil OAM
+  label: YardSetRecoilOam
+  addr:
+    U: 0x3C7C4
+    E: 0x3C7C4
+    J: 0x3C9C8
+    C: 0x3C9C8
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard check shoot
+  label: YardCheckShoot
+  addr:
+    U: 0x3C7F4
+    E: 0x3C7F4
+    J: 0x3C9F8
+    C: 0x3C9F8
+  size: 0x80
   mode: thumb
   params: null
   return: null
@@ -9123,6 +12065,17 @@
     J: 0x3CCA8
     C: 0x3CCA8
   size: 0x1E0
+  mode: thumb
+  params: null
+  return: null
+- desc: Yard check roll
+  label: YardCheckRoll
+  addr:
+    U: 0x3CC84
+    E: 0x3CC84
+    J: 0x3CE88
+    C: 0x3CE88
+  size: 0x74
   mode: thumb
   params: null
   return: null
@@ -9291,6 +12244,20 @@
   mode: thumb
   params: null
   return: null
+- desc: Evir check in shooting range
+  label: EvirCheckInShootingRange
+  addr:
+    U: 0x3D808
+    E: 0x3D808
+    J: 0x3DA0C
+    C: 0x3DA0C
+  size: 0x54
+  mode: thumb
+  params: null
+  return:
+    desc: In range
+    label: InRange
+    type: bool
 - desc: Evir spawning from X
   label: Evir_SpawningFromX
   addr:
@@ -9511,6 +12478,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Bull init
+  label: BullInit
+  addr:
+    U: 0x3E3B4
+    E: 0x3E3B4
+    J: 0x3E5B8
+    C: 0x3E5B8
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+- desc: Bull idle init
+  label: BullIdleInit
+  addr:
+    U: 0x3E47C
+    E: 0x3E47C
+    J: 0x3E680
+    C: 0x3E680
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Bull idle
+  label: BullIdle
+  addr:
+    U: 0x3E4A0
+    E: 0x3E4A0
+    J: 0x3E6A4
+    C: 0x3E6A4
+  size: 0x12C
+  mode: thumb
+  params: null
+  return: null
 - desc: Bull AI
   label: Bull_AI
   addr:
@@ -9533,6 +12533,61 @@
   mode: thumb
   params: null
   return: null
+- desc: Memu init
+  label: MemuInit
+  addr:
+    U: 0x3E75C
+    E: 0x3E75C
+    J: 0x3E960
+    C: 0x3E960
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Memu idle init
+  label: MemuIdleInit
+  addr:
+    U: 0x3E81C
+    E: 0x3E81C
+    J: 0x3EA20
+    C: 0x3EA20
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Memu idle
+  label: MemuIdle
+  addr:
+    U: 0x3E840
+    E: 0x3E840
+    J: 0x3EA44
+    C: 0x3EA44
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Memu chasing Samus init
+  label: MemuChasingSamusInit
+  addr:
+    U: 0x3E8C8
+    E: 0x3E8C8
+    J: 0x3EACC
+    C: 0x3EACC
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Memu chasing Samus
+  label: MemuChasingSamus
+  addr:
+    U: 0x3E948
+    E: 0x3E948
+    J: 0x3EB4C
+    C: 0x3EB4C
+  size: 0x2FC
+  mode: thumb
+  params: null
+  return: null
 - desc: Memu AI
   label: Memu_AI
   addr:
@@ -9544,6 +12599,161 @@
   mode: thumb
   params: null
   return: null
+- desc: Geruboss Y movement
+  label: GerubossYMovement
+  addr:
+    U: 0x3EE3C
+    E: 0x3EE3C
+    J: 0x3F040
+    C: 0x3F040
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: Y movement
+    label: YMovement
+    type: u16
+  return:
+    desc: Touching solid
+    label: TouchingSolid
+    type: bool
+- desc: Geruboss X movement
+  label: GerubossXMovement
+  addr:
+    U: 0x3EEC8
+    E: 0x3EEC8
+    J: 0x3F0CC
+    C: 0x3F0CC
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Touching solid
+    label: TouchingSolid
+    type: bool
+- desc: Geruboss turning into X
+  label: GerubossTurningIntoX
+  addr:
+    U: 0x3EF54
+    E: 0x3EF54
+    J: 0x3F158
+    C: 0x3F158
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss init
+  label: GerubossInit
+  addr:
+    U: 0x3EF98
+    E: 0x3EF98
+    J: 0x3F19C
+    C: 0x3F19C
+  size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss idle init
+  label: GerubossIdleInit
+  addr:
+    U: 0x3F060
+    E: 0x3F060
+    J: 0x3F264
+    C: 0x3F264
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss idle
+  label: GerubossIdle
+  addr:
+    U: 0x3F084
+    E: 0x3F084
+    J: 0x3F288
+    C: 0x3F288
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss stalling
+  label: GerubossStalling
+  addr:
+    U: 0x3F160
+    E: 0x3F160
+    J: 0x3F364
+    C: 0x3F364
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss launching init
+  label: GerubossLaunchingInit
+  addr:
+    U: 0x3F184
+    E: 0x3F184
+    J: 0x3F388
+    C: 0x3F388
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss charging
+  label: GerubossCharging
+  addr:
+    U: 0x3F1B0
+    E: 0x3F1B0
+    J: 0x3F3B4
+    C: 0x3F3B4
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss going down
+  label: GerubossGoingDown
+  addr:
+    U: 0x3F1F4
+    E: 0x3F1F4
+    J: 0x3F3F8
+    C: 0x3F3F8
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss chagning direction
+  label: GerubossChagningDirection
+  addr:
+    U: 0x3F27C
+    E: 0x3F27C
+    J: 0x3F480
+    C: 0x3F480
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss going up
+  label: GerubossGoingUp
+  addr:
+    U: 0x3F2C0
+    E: 0x3F2C0
+    J: 0x3F4C4
+    C: 0x3F4C4
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Geruboss grabbing ceiling
+  label: GerubossGrabbingCeiling
+  addr:
+    U: 0x3F348
+    E: 0x3F348
+    J: 0x3F54C
+    C: 0x3F54C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
 - desc: Geruboss AI
   label: Geruboss_AI
   addr:
@@ -9552,6 +12762,193 @@
     J: 0x3F568
     C: 0x3F568
   size: 0x218
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot set open hitbox
+  label: ChootSetOpenHitbox
+  addr:
+    U: 0x3F57C
+    E: 0x3F57C
+    J: 0x3F780
+    C: 0x3F780
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot set closed hitbox
+  label: ChootSetClosedHitbox
+  addr:
+    U: 0x3F59C
+    E: 0x3F59C
+    J: 0x3F7A0
+    C: 0x3F7A0
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot init
+  label: ChootInit
+  addr:
+    U: 0x3F5BC
+    E: 0x3F5BC
+    J: 0x3F7C0
+    C: 0x3F7C0
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot idle init
+  label: ChootIdleInit
+  addr:
+    U: 0x3F658
+    E: 0x3F658
+    J: 0x3F85C
+    C: 0x3F85C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot idle
+  label: ChootIdle
+  addr:
+    U: 0x3F678
+    E: 0x3F678
+    J: 0x3F87C
+    C: 0x3F87C
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot launching init
+  label: ChootLaunchingInit
+  addr:
+    U: 0x3F6E4
+    E: 0x3F6E4
+    J: 0x3F8E8
+    C: 0x3F8E8
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot launching
+  label: ChootLaunching
+  addr:
+    U: 0x3F700
+    E: 0x3F700
+    J: 0x3F904
+    C: 0x3F904
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot going up init
+  label: ChootGoingUpInit
+  addr:
+    U: 0x3F71C
+    E: 0x3F71C
+    J: 0x3F920
+    C: 0x3F920
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Shoot going up
+  label: ShootGoingUp
+  addr:
+    U: 0x3F760
+    E: 0x3F760
+    J: 0x3F964
+    C: 0x3F964
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot opening init
+  label: ChootOpeningInit
+  addr:
+    U: 0x3F7CC
+    E: 0x3F7CC
+    J: 0x3F9D0
+    C: 0x3F9D0
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot opening
+  label: ChootOpening
+  addr:
+    U: 0x3F7F0
+    E: 0x3F7F0
+    J: 0x3F9F4
+    C: 0x3F9F4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot going down init
+  label: ChootGoingDownInit
+  addr:
+    U: 0x3F80C
+    E: 0x3F80C
+    J: 0x3FA10
+    C: 0x3FA10
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot going down
+  label: ChootGoingDown
+  addr:
+    U: 0x3F830
+    E: 0x3F830
+    J: 0x3FA34
+    C: 0x3FA34
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot spit init
+  label: ChootSpitInit
+  addr:
+    U: 0x3F8CC
+    E: 0x3F8CC
+    J: 0x3FAD0
+    C: 0x3FAD0
+  size: 0x78
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot spit spawning
+  label: ChootSpitSpawning
+  addr:
+    U: 0x3F944
+    E: 0x3F944
+    J: 0x3FB48
+    C: 0x3FB48
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot spit exploding init
+  label: ChootSpitExplodingInit
+  addr:
+    U: 0x3F984
+    E: 0x3F984
+    J: 0x3FB88
+    C: 0x3FB88
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Choot spit exploding
+  label: ChootSpitExploding
+  addr:
+    U: 0x3F9D0
+    E: 0x3F9D0
+    J: 0x3FBD4
+    C: 0x3FBD4
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -9574,6 +12971,57 @@
     J: 0x3FE0C
     C: 0x3FE0C
   size: 0x120
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian ground check in shooting range
+  label: ZebesianGroundCheckInShootingRange
+  addr:
+    U: 0x3FD28
+    E: 0x3FD28
+    J: 0x3FF2C
+    C: 0x3FF2C
+  size: 0xB0
+  mode: thumb
+  params: null
+  return:
+    desc: Side
+    label: Side
+    type: u8
+    notes: 3 if in front, 0xC if behind, 0 if out of range
+- desc: Zebesian ground check colliding with air
+  label: ZebesianGroundCheckCollidingWithAir
+  addr:
+    U: 0x3FDD8
+    E: 0x3FDD8
+    J: 0x3FFDC
+    C: 0x3FFDC
+  size: 0x3C
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Zebesian ground set idle hitbox
+  label: ZebesianGroundSetIdleHitbox
+  addr:
+    U: 0x3FE14
+    E: 0x3FE14
+    J: 0x40018
+    C: 0x40018
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian ground set shooting hitbox
+  label: ZebesianGroundSetShootingHitbox
+  addr:
+    U: 0x3FE50
+    E: 0x3FE50
+    J: 0x40054
+    C: 0x40054
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -9899,6 +13347,57 @@
   mode: thumb
   params: null
   return: null
+- desc: Blue X set trail
+  label: BlueXSetTrail
+  addr:
+    U: 0x40F54
+    E: 0x40F54
+    J: 0x41158
+    C: 0x41158
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Blue X check stun
+  label: BlueXCheckStun
+  addr:
+    U: 0x40F7C
+    E: 0x40F7C
+    J: 0x41180
+    C: 0x41180
+  size: 0x40
+  mode: thumb
+  params: null
+  return:
+    desc: Stunned
+    label: Stunned
+    type: bool
+- desc: Blue X get absorbed
+  label: BlueXGetAbsorbed
+  addr:
+    U: 0x40FBC
+    E: 0x40FBC
+    J: 0x411C0
+    C: 0x411C0
+  size:
+    U: 0x9C
+    E: 0x9C
+    J: 0xAC
+    C: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: Blue X absorbed init
+  label: BlueXAbsorbedInit
+  addr:
+    U: 0x41058
+    E: 0x41058
+    J: 0x4126C
+    C: 0x4126C
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
 - desc: Blue X initialize
   label: BlueX_Init
   addr:
@@ -10056,6 +13555,21 @@
   size: 0x70
   mode: thumb
   params: null
+  return: null
+- desc: Missile hatch set collision
+  label: MissileHatchSetCollision
+  addr:
+    U: 0x41898
+    E: 0x41898
+    J: 0x41AC8
+    C: 0x41AC8
+  size: 0x50
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
   return: null
 - desc: Missile hatch initialize
   label: MissileHatch_Init
@@ -10266,6 +13780,72 @@
   mode: thumb
   params: null
   return: null
+- desc: Ripper init
+  label: RipperInit
+  addr:
+    U: 0x4257C
+    E: 0x4257C
+    J: 0x427AC
+    C: 0x427AC
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Ripper idle init
+  label: RipperIdleInit
+  addr:
+    U: 0x4263C
+    E: 0x4263C
+    J: 0x4286C
+    C: 0x4286C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Ripper idle
+  label: RipperIdle
+  addr:
+    U: 0x4265C
+    E: 0x4265C
+    J: 0x4288C
+    C: 0x4288C
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Ripper turning around init
+  label: RipperTurningAroundInit
+  addr:
+    U: 0x426BC
+    E: 0x426BC
+    J: 0x428EC
+    C: 0x428EC
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Ripper turning around
+  label: RipperTurningAround
+  addr:
+    U: 0x426DC
+    E: 0x426DC
+    J: 0x4290C
+    C: 0x4290C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Ripper turning around second part
+  label: RipperTurningAroundSecondPart
+  addr:
+    U: 0x4270C
+    E: 0x4270C
+    J: 0x4293C
+    C: 0x4293C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
 - desc: Ripper AI
   label: Ripper_AI
   addr:
@@ -10277,6 +13857,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Zoro cocoon set hitboxes and draw distance
+  label: ZoroCocoonSetHitboxesAndDrawDistance
+  addr:
+    U: 0x42930
+    E: 0x42930
+    J: 0x42B60
+    C: 0x42B60
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro cocoon set OAM
+  label: ZoroCocoonSetOam
+  addr:
+    U: 0x429B8
+    E: 0x429B8
+    J: 0x42BE8
+    C: 0x42BE8
+  size: 0x6C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro cocoon init
+  label: ZoroCocoonInit
+  addr:
+    U: 0x42A24
+    E: 0x42A24
+    J: 0x42C54
+    C: 0x42C54
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
 - desc: Zoro cocoon AI
   label: ZoroCocoon_AI
   addr:
@@ -10285,6 +13898,28 @@
     J: 0x42D84
     C: 0x42D84
   size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro husk set OAM
+  label: ZoroHuskSetOam
+  addr:
+    U: 0x42BFC
+    E: 0x42BFC
+    J: 0x42E2C
+    C: 0x42E2C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zoro husk init
+  label: ZoroHuskInit
+  addr:
+    U: 0x42C2C
+    E: 0x42C2C
+    J: 0x42E5C
+    C: 0x42E5C
+  size: 0x128
   mode: thumb
   params: null
   return: null
@@ -10499,6 +14134,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Nettori remove collision
+  label: NettoriRemoveCollision
+  addr:
+    U: 0x43A88
+    E: 0x43A88
+    J: 0x43CC8
+    C: 0x43CC8
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
 - desc: Remove Samus eater buds and spores
   label: RemoveSamusEaterBudsAndSpores
   addr:
@@ -10507,6 +14153,42 @@
     J: 0x43D54
     C: 0x43D54
   size: 0x58
+  mode: thumb
+  params: null
+  return: null
+- desc: Samus eater check nettori health threshold
+  label: SamusEaterCheckNettoriHealthThreshold
+  addr:
+    U: 0x43B6C
+    E: 0x43B6C
+    J: 0x43DAC
+    C: 0x43DAC
+  size: 0x58
+  mode: thumb
+  params: null
+  return:
+    desc: Threshold reached
+    label: ThresholdReached
+    type: bool
+- desc: Nettori update glowing palette
+  label: NettoriUpdateGlowingPalette
+  addr:
+    U: 0x43BC4
+    E: 0x43BC4
+    J: 0x43E04
+    C: 0x43E04
+  size: 0x98
+  mode: thumb
+  params: null
+  return: null
+- desc: Nettori update palette
+  label: NettoriUpdatePalette
+  addr:
+    U: 0x43C5C
+    E: 0x43C5C
+    J: 0x43E9C
+    C: 0x43E9C
+  size: 0xC0
   mode: thumb
   params: null
   return: null
@@ -10947,6 +14629,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Zazabi sync sub-sprites
+  label: ZazabiSyncSubSprites
+  addr:
+    U: 0x45330
+    E: 0x45330
+    J: 0x45588
+    C: 0x45588
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
 - desc: Check projectile hit Zazabi
   label: CheckProjectileHitZazabi
   addr:
@@ -10958,6 +14651,45 @@
   mode: thumb
   params: null
   return: null
+- desc: Zazabi enable projectiles to pass through
+  label: ZazabiEnableProjectilesToPassThrough
+  addr:
+    U: 0x45520
+    E: 0x45520
+    J: 0x45778
+    C: 0x45778
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Zazabi empty
+  label: Zazabi_Empty
+  addr:
+    U: 0x455A0
+    E: 0x455A0
+    J: 0x457F8
+    C: 0x457F8
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Zazabi X movement
+  label: ZazabiXMovement
+  addr:
+    U: 0x455A4
+    E: 0x455A4
+    J: 0x457FC
+    C: 0x457FC
+  size: 0x7C
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
 - desc: Zazabi corex transformation
   label: Zazabi_CorexTransformation
   addr:
@@ -11325,6 +15057,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Zazabi part default
+  label: ZazabiPartDefault
+  addr:
+    U: 0x46BE4
+    E: 0x46BE4
+    J: 0x46E50
+    C: 0x46E50
+  size: 0x378
+  mode: thumb
+  params: null
+  return: null
 - desc: Zazabi mouth
   label: ZazabiMouth
   addr:
@@ -11377,6 +15120,116 @@
     J: 0x47628
     C: 0x47628
   size: 0xA8
+  mode: thumb
+  params: null
+  return: null
+- desc: Serris update palette
+  label: SerrisUpdatePalette
+  addr:
+    U: 0x47464
+    E: 0x47464
+    J: 0x476D0
+    C: 0x476D0
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
+- desc: Serris get current Samus platform
+  label: SerrisGetCurrSamusPlatform
+  addr:
+    U: 0x474EC
+    E: 0x474EC
+    J: 0x47758
+    C: 0x47758
+  size: 0xA4
+  mode: thumb
+  params: null
+  return:
+    desc: Platform ID
+    label: PlatformId
+    type: u8
+- desc: Serris rotate around point
+  label: SerrisRotateAroundPoint
+  addr:
+    U: 0x47590
+    E: 0x47590
+    J: 0x477FC
+    C: 0x477FC
+  size: 0xBC
+  mode: thumb
+  params:
+  - desc: Center Y
+    label: CenterY
+    type: s16
+  - desc: Center X
+    label: CenterX
+    type: s16
+  - desc: Radius
+    label: Radius
+    type: s16
+  - desc: Rotation
+    label: Rotation
+    type: s16
+  return: null
+- desc: Serris handle rotation movement
+  label: SerrisHandleRotationMovement
+  addr:
+    U: 0x4764C
+    E: 0x4764C
+    J: 0x478B8
+    C: 0x478B8
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Serris start rotation X aligned
+  label: SerrisStartRotationXAligned
+  addr:
+    U: 0x476E8
+    E: 0x476E8
+    J: 0x47954
+    C: 0x47954
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Center Y
+    label: CenterY
+    type: u16
+  - desc: Center X
+    label: CenterX
+    type: u16
+  - desc: Radius
+    label: Radius
+    type: u16
+  return: null
+- desc: Serris start rotation Y aligned
+  label: SerrisStartRotationYAligned
+  addr:
+    U: 0x4773C
+    E: 0x4773C
+    J: 0x479A8
+    C: 0x479A8
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: Center Y
+    label: CenterY
+    type: u16
+  - desc: Center X
+    label: CenterX
+    type: u16
+  - desc: Radius
+    label: Radius
+    type: u16
+  return: null
+- desc: Serris set facing OAM
+  label: SerrisSetFacingOam
+  addr:
+    U: 0x47790
+    E: 0x47790
+    J: 0x479FC
+    C: 0x479FC
+  size: 0x88
   mode: thumb
   params: null
   return: null
@@ -11814,6 +15667,163 @@
   mode: thumb
   params: null
   return: null
+- desc: Owtch check colliding with air
+  label: OwtchCheckCollidingWithAir
+  addr:
+    U: 0x49888
+    E: 0x49888
+    J: 0x49B20
+    C: 0x49B20
+  size: 0xBC
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Owtch update hitbox
+  label: OwtchUpdateHitbox
+  addr:
+    U: 0x49944
+    E: 0x49944
+    J: 0x49BDC
+    C: 0x49BDC
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch set crawling OAM
+  label: OwtchSetCrawlingOam
+  addr:
+    U: 0x499C0
+    E: 0x499C0
+    J: 0x49C58
+    C: 0x49C58
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch set falling OAM
+  label: OwtchSetFallingOam
+  addr:
+    U: 0x499F0
+    E: 0x499F0
+    J: 0x49C88
+    C: 0x49C88
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch turning into X
+  label: OwtchTurningIntoX
+  addr:
+    U: 0x49A20
+    E: 0x49A20
+    J: 0x49CB8
+    C: 0x49CB8
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch init
+  label: OwtchInit
+  addr:
+    U: 0x49A68
+    E: 0x49A68
+    J: 0x49D00
+    C: 0x49D00
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch idle init
+  label: OwtchIdleInit
+  addr:
+    U: 0x49BB4
+    E: 0x49BB4
+    J: 0x49E4C
+    C: 0x49E4C
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch idle
+  label: OwtchIdle
+  addr:
+    U: 0x49BCC
+    E: 0x49BCC
+    J: 0x49E64
+    C: 0x49E64
+  size: 0x33C
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch turning around init
+  label: OwtchTurningAroundInit
+  addr:
+    U: 0x49F08
+    E: 0x49F08
+    J: 0x4A1A0
+    C: 0x4A1A0
+  size: 0x194
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch turning around
+  label: OwtchTurningAround
+  addr:
+    U: 0x4A09C
+    E: 0x4A09C
+    J: 0x4A334
+    C: 0x4A334
+  size: 0x180
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch landing init
+  label: OwtchLandingInit
+  addr:
+    U: 0x4A21C
+    E: 0x4A21C
+    J: 0x4A4B4
+    C: 0x4A4B4
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch landing
+  label: OwtchLanding
+  addr:
+    U: 0x4A234
+    E: 0x4A234
+    J: 0x4A4CC
+    C: 0x4A4CC
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch falling init
+  label: OwtchFallingInit
+  addr:
+    U: 0x4A264
+    E: 0x4A264
+    J: 0x4A4FC
+    C: 0x4A4FC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Owtch falling
+  label: OwtchFalling
+  addr:
+    U: 0x4A298
+    E: 0x4A298
+    J: 0x4A530
+    C: 0x4A530
+  size: 0x11C
+  mode: thumb
+  params: null
+  return: null
 - desc: Owtch AI
   label: Owtch_AI
   addr:
@@ -11822,6 +15832,61 @@
     J: 0x4A64C
     C: 0x4A64C
   size: 0x20C
+  mode: thumb
+  params: null
+  return: null
+- desc: Geega spawning from X
+  label: GeegaSpawningFromX
+  addr:
+    U: 0x4A5C0
+    E: 0x4A5C0
+    J: 0x4A858
+    C: 0x4A858
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+- desc: Geega init
+  label: GeegaInit
+  addr:
+    U: 0x4A618
+    E: 0x4A618
+    J: 0x4A8B0
+    C: 0x4A8B0
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+- desc: Geega idle
+  label: GeegaIdle
+  addr:
+    U: 0x4A6D4
+    E: 0x4A6D4
+    J: 0x4A96C
+    C: 0x4A96C
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Geega going up
+  label: GeegaGoingUp
+  addr:
+    U: 0x4A730
+    E: 0x4A730
+    J: 0x4A9C8
+    C: 0x4A9C8
+  size: 0xFC
+  mode: thumb
+  params: null
+  return: null
+- desc: Geega going forward
+  label: GeegaGoingForward
+  addr:
+    U: 0x4A82C
+    E: 0x4A82C
+    J: 0x4AAC4
+    C: 0x4AAC4
+  size: 0x64
   mode: thumb
   params: null
   return: null
@@ -12104,6 +16169,127 @@
   mode: thumb
   params: null
   return: null
+- desc: Puyo init
+  label: PuyoInit
+  addr:
+    U: 0x4B664
+    E: 0x4B664
+    J: 0x4B9AC
+    C: 0x4B9AC
+  size: 0xAC
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo falling init
+  label: PuyoFallingInit
+  addr:
+    U: 0x4B710
+    E: 0x4B710
+    J: 0x4BA58
+    C: 0x4BA58
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo idle init
+  label: PuyoIdleInit
+  addr:
+    U: 0x4B734
+    E: 0x4B734
+    J: 0x4BA7C
+    C: 0x4BA7C
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo idle
+  label: PuyoIdle
+  addr:
+    U: 0x4B754
+    E: 0x4B754
+    J: 0x4BA9C
+    C: 0x4BA9C
+  size: 0x14C
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo waiting init
+  label: PuyoWaitingInit
+  addr:
+    U: 0x4B8A0
+    E: 0x4B8A0
+    J: 0x4BBE8
+    C: 0x4BBE8
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo waiting
+  label: PuyoWaiting
+  addr:
+    U: 0x4B8D0
+    E: 0x4B8D0
+    J: 0x4BC18
+    C: 0x4BC18
+  size: 0x58
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo jump warning init
+  label: PuyoJumpWarningInit
+  addr:
+    U: 0x4B928
+    E: 0x4B928
+    J: 0x4BC70
+    C: 0x4BC70
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo jump warning
+  label: PuyoJumpWarning
+  addr:
+    U: 0x4B948
+    E: 0x4B948
+    J: 0x4BC90
+    C: 0x4BC90
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo jumping up
+  label: PuyoJumpingUp
+  addr:
+    U: 0x4B98C
+    E: 0x4B98C
+    J: 0x4BCD4
+    C: 0x4BCD4
+  size: 0x114
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo jumping down
+  label: PuyoJumpingDown
+  addr:
+    U: 0x4BAA0
+    E: 0x4BAA0
+    J: 0x4BDE8
+    C: 0x4BDE8
+  size: 0x10C
+  mode: thumb
+  params: null
+  return: null
+- desc: Puyo landing
+  label: PuyoLanding
+  addr:
+    U: 0x4BBAC
+    E: 0x4BBAC
+    J: 0x4BEF4
+    C: 0x4BEF4
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
 - desc: Puyo AI
   label: Puyo_AI
   addr:
@@ -12112,6 +16298,128 @@
     J: 0x4BF10
     C: 0x4BF10
   size: 0x228
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank init
+  label: FakeTankInit
+  addr:
+    U: 0x4BDF0
+    E: 0x4BDF0
+    J: 0x4C158
+    C: 0x4C158
+  size: 0xB0
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank idle init
+  label: FakeTankIdleInit
+  addr:
+    U: 0x4BEA0
+    E: 0x4BEA0
+    J: 0x4C208
+    C: 0x4C208
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank idle
+  label: FakeTankIdle
+  addr:
+    U: 0x4BEB8
+    E: 0x4BEB8
+    J: 0x4C220
+    C: 0x4C220
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank waking up init
+  label: FakeTankWakingUpInit
+  addr:
+    U: 0x4BEE8
+    E: 0x4BEE8
+    J: 0x4C250
+    C: 0x4C250
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank waking up
+  label: FakeTankWakingUp
+  addr:
+    U: 0x4BF24
+    E: 0x4BF24
+    J: 0x4C28C
+    C: 0x4C28C
+  size: 0x1C
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank flying init
+  label: FakeTankFlyingInit
+  addr:
+    U: 0x4BF40
+    E: 0x4BF40
+    J: 0x4C2A8
+    C: 0x4C2A8
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank flying
+  label: FakeTankFlying
+  addr:
+    U: 0x4BF68
+    E: 0x4BF68
+    J: 0x4C2D0
+    C: 0x4C2D0
+  size:
+    U: 0x70
+    E: 0x70
+    J: 0x74
+    C: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank flying away init
+  label: FakeTankFlyingAwayInit
+  addr:
+    U: 0x4BFD8
+    E: 0x4BFD8
+    J: 0x4C344
+    C: 0x4C344
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank flying away
+  label: FakeTankFlyingAway
+  addr:
+    U: 0x4C00C
+    E: 0x4C00C
+    J: 0x4C378
+    C: 0x4C378
+  size:
+    U: 0x94
+    E: 0x94
+    J: 0x98
+    C: 0x98
+  mode: thumb
+  params: null
+  return: null
+- desc: Fake tank leaving
+  label: FakeTankLeaving
+  addr:
+    U: 0x4C0A0
+    E: 0x4C0A0
+    J: 0x4C410
+    C: 0x4C410
+  size:
+    U: 0x78
+    E: 0x78
+    J: 0x80
+    C: 0x80
   mode: thumb
   params: null
   return: null
@@ -12164,6 +16472,144 @@
     J: 0x4CA34
     C: 0x4CA34
   size: 0xE4
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua X movement
+  label: ZebesianAquaXMovement
+  addr:
+    U: 0x4C744
+    E: 0x4C744
+    J: 0x4CB18
+    C: 0x4CB18
+  size: 0x8C
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Zebesian aqua turning into X
+  label: ZebesianAquaTurningIntoX
+  addr:
+    U: 0x4C7D0
+    E: 0x4C7D0
+    J: 0x4CBA4
+    C: 0x4CBA4
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua init
+  label: ZebesianAquaInit
+  addr:
+    U: 0x4C810
+    E: 0x4C810
+    J: 0x4CBE4
+    C: 0x4CBE4
+  size: 0xA4
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua idle init
+  label: ZebesianAquaIdleInit
+  addr:
+    U: 0x4C8B4
+    E: 0x4C8B4
+    J: 0x4CC88
+    C: 0x4CC88
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua idle
+  label: ZebesianAquaIdle
+  addr:
+    U: 0x4C8E0
+    E: 0x4C8E0
+    J: 0x4CCB4
+    C: 0x4CCB4
+  size: 0x184
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua lunge init
+  label: ZebesianAquaLungeInit
+  addr:
+    U: 0x4CA64
+    E: 0x4CA64
+    J: 0x4CE38
+    C: 0x4CE38
+  size: 0x18
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua lunge
+  label: ZebesianAquaLunge
+  addr:
+    U: 0x4CA7C
+    E: 0x4CA7C
+    J: 0x4CE50
+    C: 0x4CE50
+  size: 0xA0
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua shooting init
+  label: ZebesianAquaShootingInit
+  addr:
+    U: 0x4CB1C
+    E: 0x4CB1C
+    J: 0x4CEF0
+    C: 0x4CEF0
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua shooting
+  label: ZebesianAquaShooting
+  addr:
+    U: 0x4CB3C
+    E: 0x4CB3C
+    J: 0x4CF10
+    C: 0x4CF10
+  size: 0x138
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua turning around init
+  label: ZebesianAquaTurningAroundInit
+  addr:
+    U: 0x4CC74
+    E: 0x4CC74
+    J: 0x4D048
+    C: 0x4D048
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua turning around
+  label: ZebesianAquaTurningAround
+  addr:
+    U: 0x4CC94
+    E: 0x4CC94
+    J: 0x4D068
+    C: 0x4D068
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+- desc: Zebesian aqua projectile init
+  label: ZebesianAquaProjectileInit
+  addr:
+    U: 0x4CD50
+    E: 0x4CD50
+    J: 0x4D124
+    C: 0x4D124
+  size: 0xA4
   mode: thumb
   params: null
   return: null
@@ -12957,6 +17403,65 @@
   mode: thumb
   params: null
   return: null
+- desc: Lab debris set collision
+  label: LabDebrisSetCollision
+  addr:
+    U: 0x4F518
+    E: 0x4F518
+    J: 0x4F8EC
+    C: 0x4F8EC
+  size: 0x60
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
+  return: null
+- desc: Lab debris init
+  label: LabDebrisInit
+  addr:
+    U: 0x4F578
+    E: 0x4F578
+    J: 0x4F94C
+    C: 0x4F94C
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Lab debris idle
+  label: LabDebrisIdle
+  addr:
+    U: 0x4F614
+    E: 0x4F614
+    J: 0x4F9E8
+    C: 0x4F9E8
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Lab debris falling
+  label: LabDebrisFalling
+  addr:
+    U: 0x4F670
+    E: 0x4F670
+    J: 0x4FA44
+    C: 0x4FA44
+  size: 0x1D4
+  mode: thumb
+  params: null
+  return: null
+- desc: Lab debris crumbling
+  label: LabDebrisCrumbling
+  addr:
+    U: 0x4F844
+    E: 0x4F844
+    J: 0x4FC18
+    C: 0x4FC18
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
 - desc: Lab debris AI
   label: LabDebris_AI
   addr:
@@ -12968,6 +17473,105 @@
   mode: thumb
   params: null
   return: null
+- desc: Powamp init
+  label: PowampInit
+  addr:
+    U: 0x4F8D8
+    E: 0x4F8D8
+    J: 0x4FCAC
+    C: 0x4FCAC
+  size: 0xBC
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp idle init
+  label: PowampIdleInit
+  addr:
+    U: 0x4F994
+    E: 0x4F994
+    J: 0x4FD68
+    C: 0x4FD68
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp idle
+  label: PowampIdle
+  addr:
+    U: 0x4F9B4
+    E: 0x4F9B4
+    J: 0x4FD88
+    C: 0x4FD88
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp extending init
+  label: PowampExtendingInit
+  addr:
+    U: 0x4F9E8
+    E: 0x4F9E8
+    J: 0x4FDBC
+    C: 0x4FDBC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp extending
+  label: PowampExtending
+  addr:
+    U: 0x4FA1C
+    E: 0x4FA1C
+    J: 0x4FDF0
+    C: 0x4FDF0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp extended init
+  label: PowampExtendedInit
+  addr:
+    U: 0x4FA4C
+    E: 0x4FA4C
+    J: 0x4FE20
+    C: 0x4FE20
+  size: 0x20
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp extended
+  label: PowampExtended
+  addr:
+    U: 0x4FA6C
+    E: 0x4FA6C
+    J: 0x4FE40
+    C: 0x4FE40
+  size: 0x24
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp retracting init
+  label: PowampRetractingInit
+  addr:
+    U: 0x4FA90
+    E: 0x4FA90
+    J: 0x4FE64
+    C: 0x4FE64
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Powamp retracting
+  label: PowampRetracting
+  addr:
+    U: 0x4FAC8
+    E: 0x4FAC8
+    J: 0x4FE9C
+    C: 0x4FE9C
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
 - desc: Powamp AI
   label: Powamp_AI
   addr:
@@ -12976,6 +17580,53 @@
     J: 0x4FF04
     C: 0x4FF04
   size: 0x214
+  mode: thumb
+  params: null
+  return: null
+- desc: Zozoro check colliding with air
+  label: ZozoroCheckCollidingWithAir
+  addr:
+    U: 0x4FD44
+    E: 0x4FD44
+    J: 0x50118
+    C: 0x50118
+  size: 0xA0
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding with air
+    label: CollidingWithAir
+    type: bool
+- desc: Zozoro update hitbox
+  label: ZozoroUpdateHitbox
+  addr:
+    U: 0x4FDE4
+    E: 0x4FDE4
+    J: 0x501B8
+    C: 0x501B8
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+- desc: Zozoro set crawling OAM
+  label: ZozoroSetCrawlingOam
+  addr:
+    U: 0x4FE74
+    E: 0x4FE74
+    J: 0x50248
+    C: 0x50248
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Zozoro set turning around OAM
+  label: ZozoroSetTurningAroundOam
+  addr:
+    U: 0x4FEA4
+    E: 0x4FEA4
+    J: 0x50278
+    C: 0x50278
+  size: 0x30
   mode: thumb
   params: null
   return: null
@@ -13075,6 +17726,85 @@
     J: 0x509C4
     C: 0x509C4
   size: 0x204
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X monster sync sub-sprites
+  label: SA_XMonsterSyncSubSprites
+  addr:
+    U: 0x507F4
+    E: 0x507F4
+    J: 0x50BC8
+    C: 0x50BC8
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X monster projectiles collision
+  label: SA_XMonsterProjectilesCollision
+  addr:
+    U: 0x5085C
+    E: 0x5085C
+    J: 0x50C30
+    C: 0x50C30
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X monster check screaming
+  label: SA_XMonsterCheckScreaming
+  addr:
+    U: 0x50938
+    E: 0x50938
+    J: 0x50D0C
+    C: 0x50D0C
+  size: 0x40
+  mode: thumb
+  params:
+  - desc: Airborne
+    label: Airborne
+    type: bool
+  return:
+    desc: Screaming
+    label: Screaming
+    type: bool
+- desc: SA-X monster X movement
+  label: SA_XMonsterXMovement
+  addr:
+    U: 0x50978
+    E: 0x50978
+    J: 0x50D4C
+    C: 0x50D4C
+  size:
+    U: 0xD0
+    E: 0xD0
+    J: 0x80
+    C: 0x80
+  mode: thumb
+  params:
+  - desc: Account for samus
+    label: AccountForSamus
+    type: bool
+  return: null
+- desc: SA-X monster set side hitboxes
+  label: SA_XMonsterSetSideHitboxes
+  addr:
+    U: 0x50A48
+    E: 0x50A48
+    J: 0x50DCC
+    C: 0x50DCC
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: SA-X monster fall
+  label: SA_XMonsterFall
+  addr:
+    U: 0x50A78
+    E: 0x50A78
+    J: 0x50DFC
+    C: 0x50DFC
+  size: 0x94
   mode: thumb
   params: null
   return: null
@@ -13390,6 +18120,37 @@
   mode: thumb
   params: null
   return: null
+- desc: BOX 2 sync sub-sprites
+  label: Box2SyncSubSprites
+  addr:
+    U: 0x519AC
+    E: 0x519AC
+    J: 0x51D38
+    C: 0x51D38
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 X movement
+  label: Box2XMovement
+  addr:
+    U: 0x51A14
+    E: 0x51A14
+    J: 0x51DA0
+    C: 0x51DA0
+  size: 0xA4
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  - desc: Pose when collision
+    label: PoseWhenCollision
+    type: u8
+  return:
+    desc: Hit solid
+    label: HitSolid
+    type: bool
 - desc: BOX 2 initialize
   label: Box2_Initialize
   addr:
@@ -13812,6 +18573,48 @@
   mode: thumb
   params: null
   return: null
+- desc: BOX 2 part set BOX work var 2
+  label: Box2PartSetBoxWorkVar2
+  addr:
+    U: 0x52B38
+    E: 0x52B38
+    J: 0x52ED4
+    C: 0x52ED4
+  size: 0x28
+  mode: thumb
+  params:
+  - desc: BOX RAM slot
+    label: BoxRamSlot
+    type: u8
+  - desc: Value
+    label: Value
+    type: u8
+  return: null
+- desc: BOX 2 part center set immunity
+  label: Box2PartCenterSetImmunity
+  addr:
+    U: 0x52B60
+    E: 0x52B60
+    J: 0x52EFC
+    C: 0x52EFC
+  size: 0xE0
+  mode: thumb
+  params:
+  - desc: BOX RAM slot
+    label: BoxRamSlot
+    type: u8
+  return: null
+- desc: BOX 2 part remove ignore projectiles
+  label: Box2PartRemoveIgnoreProjectiles
+  addr:
+    U: 0x52C40
+    E: 0x52C40
+    J: 0x52FDC
+    C: 0x52FDC
+  size: 0x14
+  mode: thumb
+  params: null
+  return: null
 - desc: BOX 2 part initialize
   label: Box2Part_Init
   addr:
@@ -13824,6 +18627,65 @@
     E: 0x1B8
     J: 0x1C8
     C: 0x1C8
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 part front left leg
+  label: Box2PartFrontLeftLeg
+  addr:
+    U: 0x52E0C
+    E: 0x52E0C
+    J: 0x531B8
+    C: 0x531B8
+  size: 0x19C
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 part front right leg
+  label: Box2PartFrontRightLeg
+  addr:
+    U: 0x52FA8
+    E: 0x52FA8
+    J: 0x53354
+    C: 0x53354
+  size: 0x1A0
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 part top shell
+  label: Box2PartTopShell
+  addr:
+    U: 0x53148
+    E: 0x53148
+    J: 0x534F4
+    C: 0x534F4
+  size:
+    U: 0x140
+    E: 0x140
+    J: 0x15C
+    C: 0x15C
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 part bottom shell
+  label: Box2PartBottomShell
+  addr:
+    U: 0x53288
+    E: 0x53288
+    J: 0x53650
+    C: 0x53650
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
+- desc: BOX 2 part default
+  label: Box2PartDefault
+  addr:
+    U: 0x5334C
+    E: 0x5334C
+    J: 0x53714
+    C: 0x53714
+  size: 0xAC
   mode: thumb
   params: null
   return: null
@@ -14003,6 +18865,39 @@
   mode: thumb
   params: null
   return: null
+- desc: Omaga Metroid sync sub-sprites
+  label: OmagaMetroidSyncSubSPrites
+  addr:
+    U: 0x53D38
+    E: 0x53D38
+    J: 0x54100
+    C: 0x54100
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid part set draw order
+  label: OmegaMetroidPartSetDrawOrder
+  addr:
+    U: 0x53DA0
+    E: 0x53DA0
+    J: 0x54168
+    C: 0x54168
+  size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid part set draw order 2
+  label: OmegaMetroidPartSetDrawOrder_2
+  addr:
+    U: 0x53DFC
+    E: 0x53DFC
+    J: 0x541C4
+    C: 0x541C4
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
 - desc: Update Omega Metroid palette based on health
   label: UpdateOmegaMetroidPaletteBasedOnHealth
   addr:
@@ -14025,6 +18920,195 @@
   mode: thumb
   params: null
   return: null
+- desc: Omega Metroid update heart palette
+  label: OmegaMetroidUpdateHeartPalette
+  addr:
+    U: 0x53FA8
+    E: 0x53FA8
+    J: 0x54370
+    C: 0x54370
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid update health threshold
+  label: OmegaMetroidUpdateHealthThreshold
+  addr:
+    U: 0x53FF4
+    E: 0x53FF4
+    J: 0x543BC
+    C: 0x543BC
+  size:
+    U: 0xBC
+    E: 0xBC
+    J: 0xCC
+    C: 0xCC
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid check Samus on low health
+  label: OmegaMetroidCheckSamusOnLowHealth
+  addr:
+    U: 0x540B0
+    E: 0x540B0
+    J: 0x54488
+    C: 0x54488
+  size: 0x28
+  mode: thumb
+  params: null
+  return:
+    desc: Low health (< 99)
+    label: LowHealth
+    type: bool
+- desc: Omega Metroid body blinking
+  label: OmegaMetroidBodyBlinking
+  addr:
+    U: 0x540D8
+    E: 0x540D8
+    J: 0x544B0
+    C: 0x544B0
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid full body blinking
+  label: OmegaMetroidFullBodyBlinking
+  addr:
+    U: 0x54120
+    E: 0x54120
+    J: 0x544F8
+    C: 0x544F8
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid check Samus in front range
+  label: OmegaMetroidCheckSamusInFrontRange
+  addr:
+    U: 0x54168
+    E: 0x54168
+    J: 0x54540
+    C: 0x54540
+  size: 0x34
+  mode: thumb
+  params: null
+  return:
+    desc: In front range
+    label: InFrontRange
+    type: bool
+- desc: Omega m etroid check behind right trigger
+  label: OmegaMEtroidCheckBehindRightTrigger
+  addr:
+    U: 0x5419C
+    E: 0x5419C
+    J: 0x54574
+    C: 0x54574
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: Behind
+    label: Behind
+    type: bool
+- desc: Omega Metroid check in front of middle trigger
+  label: OmegaMetroidCheckInFrontOfMiddleTrigger
+  addr:
+    U: 0x541C8
+    E: 0x541C8
+    J: 0x545A0
+    C: 0x545A0
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: In front
+    label: InFront
+    type: bool
+- desc: Omega Metroid check in front of left trigger
+  label: OmegaMetroidCheckInFrontOfLeftTrigger
+  addr:
+    U: 0x541F4
+    E: 0x541F4
+    J: 0x545CC
+    C: 0x545CC
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: In front
+    label: InFront
+    type: bool
+- desc: Omega Metroid X movement
+  label: OmegaMetroidXMovement
+  addr:
+    U: 0x54220
+    E: 0x54220
+    J: 0x545F8
+    C: 0x545F8
+  size: 0x54
+  mode: thumb
+  params: null
+  return:
+    desc: Stopped
+    label: Stopped
+    type: bool
+- desc: Omega Metroid backwards movement
+  label: OmegaMetroidBackwardsMovement
+  addr:
+    U: 0x54274
+    E: 0x54274
+    J: 0x5464C
+    C: 0x5464C
+  size: 0x94
+  mode: thumb
+  params: null
+  return:
+    desc: Stopped
+    label: Stopped
+    type: bool
+- desc: Omega Metroid forward movement
+  label: OmegaMetroidForwardMovement
+  addr:
+    U: 0x54308
+    E: 0x54308
+    J: 0x546E0
+    C: 0x546E0
+  size: 0xB8
+  mode: thumb
+  params: null
+  return:
+    desc: Stopped
+    label: Stopped
+    type: bool
+- desc: Omega Metroid slow movement
+  label: OmegaMetroidSlowMovement
+  addr:
+    U: 0x543C0
+    E: 0x543C0
+    J: 0x54798
+    C: 0x54798
+  size: 0x44
+  mode: thumb
+  params: null
+  return:
+    desc: Stopped
+    label: Stopped
+    type: bool
+- desc: Omega Metroid standing movement
+  label: OmegaMetroidStandingMovement
+  addr:
+    U: 0x54404
+    E: 0x54404
+    J: 0x547DC
+    C: 0x547DC
+  size: 0x34
+  mode: thumb
+  params: null
+  return:
+    desc: Result
+    label: Result
+    type: u8
+    notes: 0 = nothing, 1 = stopped, 2 = Samus near
 - desc: Omega Metroid initialize
   label: OmegaMetroid_Init
   addr:
@@ -14531,6 +19615,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Gunship end spawn beams
+  label: GunshipEndSpawnBeams
+  addr:
+    U: 0x56140
+    E: 0x56140
+    J: 0x56518
+    C: 0x56518
+  size: 0x138
+  mode: thumb
+  params: null
+  return: null
 - desc: Gunship (end) initialize
   label: Gunship_End_Init
   addr:
@@ -14740,6 +19835,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Electric water damage BOX 2 init
+  label: ElectricWaterDamageBox2Init
+  addr:
+    U: 0x56C24
+    E: 0x56C24
+    J: 0x56FFC
+    C: 0x56FFC
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage BOX 2 idle
+  label: ElectricWaterDamageBox2Idle
+  addr:
+    U: 0x56C84
+    E: 0x56C84
+    J: 0x5705C
+    C: 0x5705C
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage BOX 2 damaging Samus
+  label: ElectricWaterDamageBox2DamagingSamus
+  addr:
+    U: 0x56CB0
+    E: 0x56CB0
+    J: 0x57088
+    C: 0x57088
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Electric water damage BOX 2 stopping
+  label: ElectricWaterDamageBox2Stopping
+  addr:
+    U: 0x56D24
+    E: 0x56D24
+    J: 0x570FC
+    C: 0x570FC
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
 - desc: Unused electric water damage AI
   label: UnusedElectricWaterDamage_AI
   addr:
@@ -14748,6 +19887,120 @@
     J: 0x57150
     C: 0x57150
   size: 0x5C
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley set collision
+  label: FrozenRidleySetCollision
+  addr:
+    U: 0x56DD4
+    E: 0x56DD4
+    J: 0x571AC
+    C: 0x571AC
+  size: 0x20
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
+  return: null
+- desc: Frozen Ridley init
+  label: FrozenRidleyInit
+  addr:
+    U: 0x56DF4
+    E: 0x56DF4
+    J: 0x571CC
+    C: 0x571CC
+  size: 0xC4
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley wait for Samus
+  label: FrozenRidleyWaitForSamus
+  addr:
+    U: 0x56EB8
+    E: 0x56EB8
+    J: 0x57290
+    C: 0x57290
+  size: 0x40
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley spawning X
+  label: FrozenRidleySpawningX
+  addr:
+    U: 0x56EF8
+    E: 0x56EF8
+    J: 0x572D0
+    C: 0x572D0
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley closing eye
+  label: FrozenRidleyClosingEye
+  addr:
+    U: 0x56F4C
+    E: 0x56F4C
+    J: 0x57324
+    C: 0x57324
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley X spawning
+  label: FrozenRidleyXSpawning
+  addr:
+    U: 0x56F7C
+    E: 0x56F7C
+    J: 0x57354
+    C: 0x57354
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley crumbling
+  label: FrozenRidleyCrumbling
+  addr:
+    U: 0x56FC0
+    E: 0x56FC0
+    J: 0x57398
+    C: 0x57398
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley X init
+  label: FrozenRidleyXInit
+  addr:
+    U: 0x57010
+    E: 0x57010
+    J: 0x573E8
+    C: 0x573E8
+  size: 0x90
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley X Ridley spawning
+  label: FrozenRidleyXRidleySpawning
+  addr:
+    U: 0x570A0
+    E: 0x570A0
+    J: 0x57478
+    C: 0x57478
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Frozen Ridley X flying away
+  label: FrozenRidleyXFlyingAway
+  addr:
+    U: 0x57114
+    E: 0x57114
+    J: 0x574EC
+    C: 0x574EC
+  size: 0x8C
   mode: thumb
   params: null
   return: null
@@ -14773,6 +20026,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Gold sciser door lock idle
+  label: GoldSciserDoorLockIdle
+  addr:
+    U: 0x57294
+    E: 0x57294
+    J: 0x5766C
+    C: 0x5766C
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
 - desc: Gold sciser door lock AI
   label: GoldSciserDoorLock_AI
   addr:
@@ -14784,6 +20048,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Gold zebesian door lock idle
+  label: GoldZebesianDoorLockIdle
+  addr:
+    U: 0x57350
+    E: 0x57350
+    J: 0x57728
+    C: 0x57728
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
 - desc: Gold zebesian door lock AI
   label: GoldZebesianDoorLock_AI
   addr:
@@ -14792,6 +20067,201 @@
     J: 0x57750
     C: 0x57750
   size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Mega-X update palette
+  label: MegaXUpdatePalette
+  addr:
+    U: 0x5740C
+    E: 0x5740C
+    J: 0x577E4
+    C: 0x577E4
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+- desc: Mega-X destroy shields
+  label: MegaXDestroyShields
+  addr:
+    U: 0x57490
+    E: 0x57490
+    J: 0x57868
+    C: 0x57868
+  size: 0x4C
+  mode: thumb
+  params: null
+  return: null
+- desc: Mega-X turning into X unused
+  label: MegaXTurningIntoX_Unused
+  addr:
+    U: 0x574DC
+    E: 0x574DC
+    J: 0x578B4
+    C: 0x578B4
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability init
+  label: VariaSuitAbilityInit
+  addr:
+    U: 0x57560
+    E: 0x57560
+    J: 0x57938
+    C: 0x57938
+  size: 0x158
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability waiting to spawn
+  label: VariaSuitAbilityWaitingToSpawn
+  addr:
+    U: 0x576B8
+    E: 0x576B8
+    J: 0x57A90
+    C: 0x57A90
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability spawning
+  label: VariaSuitAbilitySpawning
+  addr:
+    U: 0x576F4
+    E: 0x576F4
+    J: 0x57ACC
+    C: 0x57ACC
+  size:
+    U: 0x184
+    E: 0x184
+    J: 0x190
+    C: 0x190
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability moving init
+  label: VariaSuitAbilityMovingInit
+  addr:
+    U: 0x57878
+    E: 0x57878
+    J: 0x57C5C
+    C: 0x57C5C
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability moving
+  label: VariaSuitAbilityMoving
+  addr:
+    U: 0x578A0
+    E: 0x578A0
+    J: 0x57C84
+    C: 0x57C84
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability shrinking
+  label: VariaSuitAbilityShrinking
+  addr:
+    U: 0x578F0
+    E: 0x578F0
+    J: 0x57CD4
+    C: 0x57CD4
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability shrinked
+  label: VariaSuitAbilityShrinked
+  addr:
+    U: 0x5792C
+    E: 0x5792C
+    J: 0x57D10
+    C: 0x57D10
+  size: 0x4
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability turning into core X
+  label: VariaSuitAbilityTurningIntoCoreX
+  addr:
+    U: 0x57930
+    E: 0x57930
+    J: 0x57D14
+    C: 0x57D14
+  size: 0x44
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability core X moving init
+  label: VariaSuitAbilityCoreXMovingInit
+  addr:
+    U: 0x57974
+    E: 0x57974
+    J: 0x57D58
+    C: 0x57D58
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability core X moving
+  label: VariaSuitAbilityCoreXMoving
+  addr:
+    U: 0x5799C
+    E: 0x5799C
+    J: 0x57D80
+    C: 0x57D80
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability core X moving init unused
+  label: VariaSuitAbilityCoreXMovingInit_Unused
+  addr:
+    U: 0x579C8
+    E: 0x579C8
+    J: 0x57DAC
+    C: 0x57DAC
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Varia suit ability core X moving unused
+  label: VariaSuitAbilityCoreXMoving_Unused
+  addr:
+    U: 0x579F0
+    E: 0x579F0
+    J: 0x57DD4
+    C: 0x57DD4
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Mega-X shield init
+  label: MegaXShieldInit
+  addr:
+    U: 0x57A1C
+    E: 0x57A1C
+    J: 0x57E00
+    C: 0x57E00
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Mega-X shield idle
+  label: MegaXShieldIdle
+  addr:
+    U: 0x57AB8
+    E: 0x57AB8
+    J: 0x57E9C
+    C: 0x57E9C
+  size:
+    U: 0x128
+    E: 0x128
+    J: 0x1C8
+    C: 0x1C8
   mode: thumb
   params: null
   return: null
@@ -14843,6 +20313,98 @@
   mode: thumb
   params: null
   return: null
+- desc: Omega husk set collision
+  label: OmegaHuskSetCollision
+  addr:
+    U: 0x58534
+    E: 0x58534
+    J: 0x589C4
+    C: 0x589C4
+  size: 0xC4
+  mode: thumb
+  params:
+  - desc: Clipdata affecting action
+    label: ClipdataAffectingAction
+    type: u8
+    enum: ClipdataAffectingAction
+  return: null
+- desc: Omega Metroid husk init
+  label: OmegaMetroidHuskInit
+  addr:
+    U: 0x585F8
+    E: 0x585F8
+    J: 0x58A88
+    C: 0x58A88
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk waiting for Samus
+  label: OmegaMetroidHuskWaitingForSamus
+  addr:
+    U: 0x58660
+    E: 0x58660
+    J: 0x58AF0
+    C: 0x58AF0
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk wait for omega Metroid to spawn
+  label: OmegaMetroidHuskWaitForOmegaMetroidToSpawn
+  addr:
+    U: 0x58690
+    E: 0x58690
+    J: 0x58B20
+    C: 0x58B20
+  size: 0x124
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk getting crushed init
+  label: OmegaMetroidHuskGettingCrushedInit
+  addr:
+    U: 0x587B4
+    E: 0x587B4
+    J: 0x58C44
+    C: 0x58C44
+  size: 0x2C
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk getting crushed
+  label: OmegaMetroidHuskGettingCrushed
+  addr:
+    U: 0x587E0
+    E: 0x587E0
+    J: 0x58C70
+    C: 0x58C70
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk waiting
+  label: OmegaMetroidHuskWaiting
+  addr:
+    U: 0x58810
+    E: 0x58810
+    J: 0x58CA0
+    C: 0x58CA0
+  size: 0x28
+  mode: thumb
+  params: null
+  return: null
+- desc: Omega Metroid husk disappearing
+  label: OmegaMetroidHuskDisappearing
+  addr:
+    U: 0x58838
+    E: 0x58838
+    J: 0x58CC8
+    C: 0x58CC8
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
 - desc: Omega Metroid husk AI
   label: OmegaMetroidHusk_AI
   addr:
@@ -14851,6 +20413,116 @@
     J: 0x58CFC
     C: 0x58CFC
   size: 0xC8
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability spawning from X
+  label: IceBeamAbilitySpawningFromX
+  addr:
+    U: 0x58934
+    E: 0x58934
+    J: 0x58DC4
+    C: 0x58DC4
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability init
+  label: IceBeamAbilityInit
+  addr:
+    U: 0x589A8
+    E: 0x589A8
+    J: 0x58E38
+    C: 0x58E38
+  size: 0x84
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability spawning
+  label: IceBeamAbilitySpawning
+  addr:
+    U: 0x58A2C
+    E: 0x58A2C
+    J: 0x58EBC
+    C: 0x58EBC
+  size: 0x34
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability entering
+  label: IceBeamAbilityEntering
+  addr:
+    U: 0x58A60
+    E: 0x58A60
+    J: 0x58EF0
+    C: 0x58EF0
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability floating before SA-X
+  label: IceBeamAbilityFloatingBeforeSA_X
+  addr:
+    U: 0x58AEC
+    E: 0x58AEC
+    J: 0x58F7C
+    C: 0x58F7C
+  size: 0x94
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability turning into SA-X
+  label: IceBeamAbilityTurningIntoSA_X
+  addr:
+    U: 0x58B80
+    E: 0x58B80
+    J: 0x59010
+    C: 0x59010
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability spawning from SA-X init
+  label: IceBeamAbilitySpawningFromSA_XInit
+  addr:
+    U: 0x58BF4
+    E: 0x58BF4
+    J: 0x59084
+    C: 0x59084
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability going to target
+  label: IceBeamAbilityGoingToTarget
+  addr:
+    U: 0x58C3C
+    E: 0x58C3C
+    J: 0x590CC
+    C: 0x590CC
+  size: 0xB8
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability waiting
+  label: IceBeamAbilityWaiting
+  addr:
+    U: 0x58CF4
+    E: 0x58CF4
+    J: 0x59184
+    C: 0x59184
+  size: 0x13C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ice beam ability getting absorbed
+  label: IceBeamAbilityGettingAbsorbed
+  addr:
+    U: 0x58E30
+    E: 0x58E30
+    J: 0x592C0
+    C: 0x592C0
+  size: 0x40
   mode: thumb
   params: null
   return: null
@@ -14876,6 +20548,76 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley move
+  label: RidleyMove
+  addr:
+    U: 0x590B4
+    E: 0x590B4
+    J: 0x59544
+    C: 0x59544
+  size: 0x2EC
+  mode: thumb
+  params:
+  - desc: Destination Y
+    label: DestinationY
+    type: u16
+  - desc: Destination X
+    label: DestinationX
+    type: u16
+  - desc: Y speed
+    label: YSpeed
+    type: u8
+  - desc: X speed
+    label: XSpeed
+    type: u8
+  - desc: Speed divisor
+    label: SpeedDivisor
+    type: u8
+  return: null
+- desc: Update sub-sprite data 2 animation
+  label: UpdateSubSpriteData2Anim
+  addr:
+    U: 0x593A0
+    E: 0x593A0
+    J: 0x59830
+    C: 0x59830
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley sync sub-sprites position
+  label: RidleySyncSubSpritesPosition
+  addr:
+    U: 0x593DC
+    E: 0x593DC
+    J: 0x5986C
+    C: 0x5986C
+  size: 0x60
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley sync sub-sprites
+  label: RidleySyncSubSprites
+  addr:
+    U: 0x5943C
+    E: 0x5943C
+    J: 0x598CC
+    C: 0x598CC
+  size: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail sync sub-sprites
+  label: RidleyTailSyncSubSprites
+  addr:
+    U: 0x594D8
+    E: 0x594D8
+    J: 0x59968
+    C: 0x59968
+  size: 0x88
+  mode: thumb
+  params: null
+  return: null
 - desc: Update Ridley palette based on health
   label: UpdateRidleyPaletteBasedOnHealth
   addr:
@@ -14891,6 +20633,182 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley set background priority
+  label: RidleySetBgPriority
+  addr:
+    U: 0x595E8
+    E: 0x595E8
+    J: 0x59A88
+    C: 0x59A88
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley update claw OAM
+  label: RidleyUpdateClawOam
+  addr:
+    U: 0x59630
+    E: 0x59630
+    J: 0x59AD0
+    C: 0x59AD0
+  size: 0x54
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail striking check play effects
+  label: RidleyTailStrikingCheckPlayEffects
+  addr:
+    U: 0x59684
+    E: 0x59684
+    J: 0x59B24
+    C: 0x59B24
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail strike Y movement
+  label: RidleyTailStrikeYMovement
+  addr:
+    U: 0x596BC
+    E: 0x596BC
+    J: 0x59B5C
+    C: 0x59B5C
+  size: 0x44
+  mode: thumb
+  params:
+  - desc: Y movement
+    label: YMovement
+    type: u16
+  return: null
+- desc: Ridley floating movement
+  label: RidleyFloatingMovement
+  addr:
+    U: 0x59700
+    E: 0x59700
+    J: 0x59BA0
+    C: 0x59BA0
+  size: 0x74
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley update health threshold
+  label: RidleyUpdateHealthThreshold
+  addr:
+    U: 0x59774
+    E: 0x59774
+    J: 0x59C14
+    C: 0x59C14
+  size: 0xC0
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley wave beam collsiion
+  label: RidleyWaveBeamCollsiion
+  addr:
+    U: 0x59834
+    E: 0x59834
+    J: 0x59CD4
+    C: 0x59CD4
+  size: 0xDC
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley check grab Samus left
+  label: RidleyCheckGrabSamusLeft
+  addr:
+    U: 0x59910
+    E: 0x59910
+    J: 0x59DB0
+    C: 0x59DB0
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return:
+    desc: Grabbed
+    label: Grabbed
+    type: bool
+- desc: Ridley check grab Samus right
+  label: RidleyCheckGrabSamusRight
+  addr:
+    U: 0x59988
+    E: 0x59988
+    J: 0x59E28
+    C: 0x59E28
+  size: 0x78
+  mode: thumb
+  params:
+  - desc: Y position
+    label: YPosition
+    type: u16
+  - desc: X position
+    label: XPosition
+    type: u16
+  return:
+    desc: Grabbed
+    label: Grabbed
+    type: bool
+- desc: Ridley Samus grabbed
+  label: RidleySamusGrabbed
+  addr:
+    U: 0x59A00
+    E: 0x59A00
+    J: 0x59EA0
+    C: 0x59EA0
+  size: 0x8C
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley set side hitboxes
+  label: RidleySetSideHitboxes
+  addr:
+    U: 0x59A8C
+    E: 0x59A8C
+    J: 0x59F2C
+    C: 0x59F2C
+  size: 0x30
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley X movement unused
+  label: RidleyXMovement_Unused
+  addr:
+    U: 0x59ABC
+    E: 0x59ABC
+    J: 0x59F5C
+    C: 0x59F5C
+  size: 0x80
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
+- desc: Ridley tail X movement
+  label: RidleyTailXMovement
+  addr:
+    U: 0x59B3C
+    E: 0x59B3C
+    J: 0x59FDC
+    C: 0x59FDC
+  size: 0xB0
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Hitting solid
+    label: HittingSolid
+    type: bool
 - desc: Ridley screaming start
   label: Ridley_ScreamingStart
   addr:
@@ -15104,6 +21022,17 @@
   mode: thumb
   params: null
   return: null
+- desc: Ridley partidle
+  label: RidleyPartidle
+  addr:
+    U: 0x5A668
+    E: 0x5A668
+    J: 0x5AB18
+    C: 0x5AB18
+  size: 0x50
+  mode: thumb
+  params: null
+  return: null
 - desc: Ridley tail part initialize
   label: RidleyTailPart_Init
   addr:
@@ -15112,6 +21041,17 @@
     J: 0x5AB68
     C: 0x5AB68
   size: 0xB4
+  mode: thumb
+  params: null
+  return: null
+- desc: Ridley tail part handle rotation
+  label: RidleyTailPartHandleRotation
+  addr:
+    U: 0x5A76C
+    E: 0x5A76C
+    J: 0x5AC1C
+    C: 0x5AC1C
+  size: 0x4C
   mode: thumb
   params: null
   return: null
@@ -15379,6 +21319,132 @@
   mode: thumb
   params: null
   return: null
+- desc: Yakuza sync sub-sprites
+  label: YakuzaSyncSubSprites
+  addr:
+    U: 0x5B814
+    E: 0x5B814
+    J: 0x5BCC4
+    C: 0x5BCC4
+  size: 0x68
+  mode: thumb
+  params: null
+  return: null
+- desc: Yakuza update palette
+  label: YakuzaUpdatePalette
+  addr:
+    U: 0x5B87C
+    E: 0x5B87C
+    J: 0x5BD2C
+    C: 0x5BD2C
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+- desc: Yakuza update grabbed Samus
+  label: YakuzaUpdateGrabbedSamus
+  addr:
+    U: 0x5B8FC
+    E: 0x5B8FC
+    J: 0x5BDAC
+    C: 0x5BDAC
+  size: 0x30
+  mode: thumb
+  params: null
+  return:
+    desc: Grabbed
+    label: Grabbed
+    type: bool
+- desc: Yakuza check colliding with right wall
+  label: YakuzaCheckCollidingWithRightWall
+  addr:
+    U: 0x5B92C
+    E: 0x5B92C
+    J: 0x5BDDC
+    C: 0x5BDDC
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
+- desc: Yakuza check colliding with left wall
+  label: YakuzaCheckCollidingWithLeftWall
+  addr:
+    U: 0x5B958
+    E: 0x5B958
+    J: 0x5BE08
+    C: 0x5BE08
+  size: 0x2C
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
+- desc: Yakuza check colliding with floor
+  label: YakuzaCheckCollidingWithFloor
+  addr:
+    U: 0x5B984
+    E: 0x5B984
+    J: 0x5BE34
+    C: 0x5BE34
+  size: 0x20
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
+- desc: Yakuza check colliding with ceiling
+  label: YakuzaCheckCollidingWithCeiling
+  addr:
+    U: 0x5B9A4
+    E: 0x5B9A4
+    J: 0x5BE54
+    C: 0x5BE54
+  size: 0x40
+  mode: thumb
+  params: null
+  return:
+    desc: Colliding
+    label: Colliding
+    type: bool
+- desc: Yakuza X movement
+  label: YakuzaXMovement
+  addr:
+    U: 0x5B9E4
+    E: 0x5B9E4
+    J: 0x5BE94
+    C: 0x5BE94
+  size: 0x54
+  mode: thumb
+  params:
+  - desc: X movement
+    label: XMovement
+    type: u16
+  return:
+    desc: Bouncing
+    label: Bouncing
+    type: bool
+- desc: Yakuza Y movement
+  label: YakuzaYMovement
+  addr:
+    U: 0x5BA38
+    E: 0x5BA38
+    J: 0x5BEE8
+    C: 0x5BEE8
+  size: 0x64
+  mode: thumb
+  params:
+  - desc: Y movement
+    label: YMovement
+    type: u16
+  return:
+    desc: Bouncing
+    label: Bouncing
+    type: bool
 - desc: Yakuza grabbed Samus start
   label: Yakuza_GrabbedSamusStart
   addr:
@@ -15783,6 +21849,50 @@
   mode: thumb
   params: null
   return: null
+- desc: Yakuza part legs idle
+  label: YakuzaPartLegsIdle
+  addr:
+    U: 0x5CDF0
+    E: 0x5CDF0
+    J: 0x5D2D0
+    C: 0x5D2D0
+  size: 0x7C
+  mode: thumb
+  params: null
+  return: null
+- desc: Yakuza part legs dead
+  label: YakuzaPartLegsDead
+  addr:
+    U: 0x5CE6C
+    E: 0x5CE6C
+    J: 0x5D34C
+    C: 0x5D34C
+  size: 0x64
+  mode: thumb
+  params: null
+  return: null
+- desc: Yakuza part eye idle
+  label: YakuzaPartEyeIdle
+  addr:
+    U: 0x5CED0
+    E: 0x5CED0
+    J: 0x5D3B0
+    C: 0x5D3B0
+  size: 0x130
+  mode: thumb
+  params: null
+  return: null
+- desc: Yakuza part eyes phase 2
+  label: YakuzaPartEyesPhase2
+  addr:
+    U: 0x5D000
+    E: 0x5D000
+    J: 0x5D4E0
+    C: 0x5D4E0
+  size: 0x38
+  mode: thumb
+  params: null
+  return: null
 - desc: Yakuza fire/spit initialize
   label: YakuzaFireOrSpit_Init
   addr:
@@ -15936,6 +22046,32 @@
   size: 0x30
   mode: thumb
   params: null
+  return: null
+- desc: Nightmare move to position
+  label: NightmareMoveToPosition
+  addr:
+    U: 0x5D9FC
+    E: 0x5D9FC
+    J: 0x5DEDC
+    C: 0x5DEDC
+  size: 0x2A4
+  mode: thumb
+  params:
+  - desc: Destination Y
+    label: DestinationY
+    type: u16
+  - desc: Destination X
+    label: DestinationX
+    type: u16
+  - desc: Y speed
+    label: YSpeed
+    type: u8
+  - desc: X speed
+    label: XSpeed
+    type: u8
+  - desc: Speed divisor
+    label: SpeedDivisor
+    type: u8
   return: null
 - desc: Update Nightmare OAM and position
   label: UpdateNightmareOamAndPosition
@@ -16202,6 +22338,31 @@
   mode: thumb
   params: null
   return: null
+- desc: Nightmare part dying
+  label: NightmarePartDying
+  addr:
+    U: 0x5EAD8
+    E: 0x5EAD8
+    J: 0x5EFF8
+    C: 0x5EFF8
+  size: 0x3C
+  mode: thumb
+  params:
+  - desc: Nightmare sprite slot
+    label: NightmareSpriteSlot
+    type: u8
+  return: null
+- desc: Nightmare part spawn beam
+  label: NightmarePartSpawnBeam
+  addr:
+    U: 0x5EB14
+    E: 0x5EB14
+    J: 0x5F034
+    C: 0x5F034
+  size: 0x3C
+  mode: thumb
+  params: null
+  return: null
 - desc: Nightmare right arm top
   label: NightmareRightArmTop
   addr:
@@ -16363,6 +22524,28 @@
     J: 0x60390
     C: 0x60390
   size: 0x13C
+  mode: thumb
+  params: null
+  return: null
+- desc: Nightmare part generator update glowing palette
+  label: NightmarePartGeneratorUpdateGlowingPalette
+  addr:
+    U: 0x5FEE4
+    E: 0x5FEE4
+    J: 0x604CC
+    C: 0x604CC
+  size: 0x48
+  mode: thumb
+  params: null
+  return: null
+- desc: Nightmare part generator update dying palette
+  label: NightmarePartGeneratorUpdateDyingPalette
+  addr:
+    U: 0x5FF2C
+    E: 0x5FF2C
+    J: 0x60514
+    C: 0x60514
+  size: 0x44
   mode: thumb
   params: null
   return: null

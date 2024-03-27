@@ -688,6 +688,21 @@
   - desc: Sector 1, demonstrating screw attack
     label: Sector1_ScrewAttack
     val: 0xB
+- desc: Demo state
+  label: DemoState
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Recording
+    label: Recording
+    val: 0x1
+  - desc: Playing
+    label: Playing
+    val: 0x2
+  - desc: Loading
+    label: Loading
+    val: 0x3
 - desc: Diagonal aim
   label: DiagonalAim
   vals:
@@ -736,7 +751,7 @@
 - desc: Elevator
   label: Elevator
   vals:
-  - desc: Main Deck to operations Deck
+  - desc: Main Deck to Operations Deck
     label: MainDeckToOperationsDeck
     val: 0x0
   - desc: Main Deck long elevator
@@ -769,30 +784,18 @@
   - desc: Restricted Zone to Sector 1
     label: RestrictedZoneToSector1
     val: 0xA
-- desc: Environment affecting Samus
-  label: EnvironmentAffectingSamus
+- desc: Escape status
+  label: EscapeStatus
   vals:
   - desc: None
     label: None
     val: 0x0
-  - desc: Water
-    label: Water
+  - desc: Happening
+    label: Happening
     val: 0x1
-  - desc: Lava
-    label: Lava
+  - desc: Failed
+    label: Failed
     val: 0x2
-  - desc: Acid
-    label: Acid
-    val: 0x3
-  - desc: Heat damage
-    label: HeatDamage
-    val: 0x4
-  - desc: Cold damage + knockback
-    label: ColdDamage_Knockback
-    val: 0x5
-  - desc: Cold damage
-    label: ColdDamage
-    val: 0x6
 - desc: Event based effect
   label: EventBasedEffect
   vals:
@@ -1007,6 +1010,30 @@
   - desc: Bubbly ground
     label: BubblyGround
     val: 0x5
+- desc: Hazard affecting Samus
+  label: HazardAffectingSamus
+  vals:
+  - desc: None
+    label: None
+    val: 0x0
+  - desc: Water
+    label: Water
+    val: 0x1
+  - desc: Lava
+    label: Lava
+    val: 0x2
+  - desc: Acid
+    label: Acid
+    val: 0x3
+  - desc: Heat damage
+    label: HeatDamage
+    val: 0x4
+  - desc: Cold damage + knockback
+    label: ColdDamage_Knockback
+    val: 0x5
+  - desc: Cold damage
+    label: ColdDamage
+    val: 0x6
 - desc: Horizontal Direction
   label: HorizontalDirection
   vals:
