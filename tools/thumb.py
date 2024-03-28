@@ -236,7 +236,7 @@ class ThumbInstruct(object):
             elif self.opcode == 2:
                 self.opname = ThumbOp.MOV if self.imm == 0 else ThumbOp.ADD
             elif self.opcode == 3:
-                self.opname = ThumbOp.ASR
+                self.opname = ThumbOp.SUB
         elif self.format == ThumbForm.Immed:
             if self.opcode == 0:
                 self.opname = ThumbOp.MOV
