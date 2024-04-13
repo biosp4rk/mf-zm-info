@@ -46,8 +46,7 @@
   label: CurrCharacterGfx
   type: u8
   count: 0x80
-  tags:
-  - gfx
+  cat: gfx
   addr: 0x2027700
 - desc: Make solid blocks
   label: MakeSolidBlocks
@@ -94,8 +93,7 @@
   label: PaletteRamCopy
   type: u16
   count: 0x200
-  tags:
-  - palette
+  cat: palette
   addr: 0x2035000
 - desc: Never reform blocks
   label: NeverReformBlocks
@@ -127,8 +125,7 @@
   label: MinimapTileGfx
   type: u8
   count: 0x1E0
-  tags:
-  - gfx
+  cat: gfx
   addr: 0x2037E20
   notes: Transferred to 6011F80 in VRAM
 - desc: SRAM
@@ -276,8 +273,7 @@
 - desc: Animated graphics to update
   label: AnimatedGfxToUpdate
   type: u16
-  tags:
-  - flags
+  cat: flags
   addr: 0x3000046
 - desc: Disable doors and tanks flag
   label: DisableDoorsAndTanksFlag
@@ -306,8 +302,7 @@
 - desc: In-game cutscenes triggered
   label: InGameCutscenesTriggered
   type: u8
-  tags:
-  - flags
+  cat: flags
   addr: 0x3000050
   enum: InGameCutscene
 - desc: Area ID
@@ -602,15 +597,13 @@
 - desc: Current particle effect OAM frame pointer
   label: CurrParticleEffectOamFramePtr
   type: u16 *
-  tags:
-  - oam_frame
+  cat: oam_frame
   addr: 0x3000918
 - desc: Ammo digit graphics
   label: AmmoDigitGfx
   type: u8
   count: 0x40
-  tags:
-  - gfx
+  cat: gfx
   addr: 0x300091C
 - desc: Escape timer status
   label: EscapeTimerStatus
@@ -629,8 +622,7 @@
   label: ParticleEscapeOamFrames
   type: u16
   count: 0x19
-  tags:
-  - oam_frame
+  cat: oam_frame
   addr: 0x3000964
 - desc: Energy refill animation
   label: EnergyRefillAnim
@@ -652,8 +644,7 @@
   label: ParticleSamusReflectionOamFrames
   type: u16
   count: 0x49
-  tags:
-  - oam_frame
+  cat: oam_frame
   addr: 0x300099A
 - desc: Projectile data
   label: ProjectileData
@@ -1015,32 +1006,27 @@
 - desc: V-Blank code pointer
   label: VBlankCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x3001CEC
 - desc: H-Blank code pointer
   label: HBlankCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x3001CF0
 - desc: Serial communication code pointer
   label: SerialCommunicationCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x3001CF4
 - desc: V-Count code pointer
   label: VCountCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x3001CF8
 - desc: Timer 3 overflow code pointer
   label: Timer3OverflowCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x3001CFC
 - desc: Music info
   label: MusicInfo
@@ -1067,8 +1053,7 @@
 - desc: Sound code A pointer
   label: SoundCodeAPtr
   type: void *
-  tags:
-  - arm
+  cat: arm
   addr: 0x3003B8C
 - desc: Sound code A
   label: SoundCodeARam
@@ -1078,8 +1063,7 @@
 - desc: Sound code B pointer
   label: SoundCodeBPtr
   type: void *
-  tags:
-  - arm
+  cat: arm
   addr: 0x30041E8
 - desc: Sound code B
   label: SoundCodeBRam
@@ -1089,8 +1073,7 @@
 - desc: Sound code C pointer
   label: SoundCodeCPtr
   type: void *
-  tags:
-  - arm
+  cat: arm
   addr: 0x3004290
 - desc: Sound code C
   label: SoundCodeCRam
@@ -1174,8 +1157,7 @@
   label: SamusPalette
   type: u16
   count: 0x20
-  tags:
-  - palette
+  cat: palette
   addr: 0x30053E0
 - desc: Samus palette size
   label: SamusPaletteSize
@@ -1283,8 +1265,7 @@
 - desc: Active bomb chain types
   label: ActiveBombChainTypes
   type: u8
-  tags:
-  - flags
+  cat: flags
   addr: 0x30056BC
 - desc: Default transparency
   label: DefaultTransparency
@@ -1349,8 +1330,7 @@
 - desc: Haze process code pointer
   label: HazeProcessCodePtr
   type: void *
-  tags:
-  - thumb
+  cat: thumb
   addr: 0x300572C
 - desc: Animated tileset data
   label: AnimatedTilesetData
@@ -1467,6 +1447,5 @@
 - desc: Interrupt code pointer
   label: InterruptCodePtr
   type: void *
-  tags:
-  - arm
+  cat: arm
   addr: 0x3007FFC
