@@ -20,8 +20,7 @@
   label: InterruptHandlerPtrs
   type: void *
   count: 0xD
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x8CA9C
     E: 0x8D728
@@ -1268,8 +1267,7 @@
   label: DoorTransitionTilemap_RLE
   type: u8
   count: 0xB8
-  tags:
-  - rle
+  cat: rle
   addr:
     U: 0x364F80
     E: 0x365C0C
@@ -1403,8 +1401,7 @@
   label: TimeAttackPasswordChars
   type: s8
   count: 0x20
-  tags:
-  - ascii
+  cat: ascii
   addr:
     U: 0x45FCF4
     E: 0x46D808
@@ -1423,9 +1420,8 @@
   label: EndingImagesTopHalfGfxPtrs
   type: u8 *
   count: 0x8
-  tags:
-  - lz
-  - gfx
+  cat: gfx
+  comp: lz
   addr:
     U: 0x54C06C
     E: 0x55A34C
@@ -1435,9 +1431,8 @@
   label: EndingImagesBottomHalfGfxPtrs
   type: u8 *
   count: 0x8
-  tags:
-  - lz
-  - gfx
+  cat: gfx
+  comp: lz
   addr:
     U: 0x54C08C
     E: 0x55A36C
@@ -1447,9 +1442,8 @@
   label: EndingImagesTopHalfTilemapPtrs
   type: u16 *
   count: 0x8
-  tags:
-  - lz
-  - tilemap
+  cat: tilemap
+  comp: lz
   addr:
     U: 0x54C0AC
     E: 0x55A38C
@@ -1459,9 +1453,8 @@
   label: EndingImagesBottomHalfTilemapPtrs
   type: u16 *
   count: 0x8
-  tags:
-  - lz
-  - tilemap
+  cat: tilemap
+  comp: lz
   addr:
     U: 0x54C0CC
     E: 0x55A3AC
@@ -1471,8 +1464,7 @@
   label: EndingImagesPalettePtrs
   type: u16 *
   count: 0x8
-  tags:
-  - palette
+  cat: palette
   addr:
     U: 0x54C0EC
     E: 0x55A3CC
@@ -1558,8 +1550,7 @@
   label: SamusPoseFunctionPtrs
   type: void *
   count: 0x43
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75E6A8
     E: 0x772548
@@ -1569,8 +1560,7 @@
   label: SamusPoseGfxFunctionPtrs
   type: void *
   count: 0x43
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75E7B4
     E: 0x772654
@@ -1580,8 +1570,7 @@
   label: PrimarySpriteAIPtrs
   type: void *
   count: 0xCE
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75E8C0
     E: 0x772760
@@ -1591,9 +1580,8 @@
   label: SpriteGraphicsPtrs
   type: u8 *
   count: 0xBE
-  tags:
-  - lz
-  - gfx
+  cat: gfx
+  comp: lz
   addr:
     U: 0x75EBF8
     E: 0x772A98
@@ -1603,8 +1591,7 @@
   label: SpritePalettePtrs
   type: u16 *
   count: 0xBE
-  tags:
-  - palette
+  cat: palette
   addr:
     U: 0x75EEF0
     E: 0x772D90
@@ -1614,8 +1601,7 @@
   label: SecondarySpriteAIPtrs
   type: void *
   count: 0x4D
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75F1E8
     E: 0x773088
@@ -1634,8 +1620,7 @@
   label: ProcessProjectilePtrs
   type: void *
   count: 0x10
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75F974
     E: 0x773814
@@ -1645,8 +1630,7 @@
   label: ProcessParticleEffectPtrs
   type: void *
   count: 0x3D
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75F9B4
     E: 0x773854
@@ -1692,8 +1676,7 @@
   label: NonReformDestroyFunctionPtrs
   type: void *
   count: 0x5
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x75FD64
     E: 0x773C04
@@ -1739,8 +1722,7 @@
   label: StoryTextPtrs
   type: u16 **
   count: 0x7
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x75FEE0
     E: 0x773D80
@@ -1750,9 +1732,8 @@
   label: MinimapDataPtrs
   type: u16 *
   count: 0xB
-  tags:
-  - lz
-  - tilemap
+  cat: tilemap
+  comp: lz
   addr:
     U: 0x7601EC
     E: 0x77408C
@@ -1780,8 +1761,7 @@
   label: DescriptionTextPtrs
   type: u16 **
   count: 0x7
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7602D4
     E: 0x77417C
@@ -1800,8 +1780,7 @@
   label: JapaneseMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760458
     E: 0x774300
@@ -1811,8 +1790,7 @@
   label: JapaneseLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7604F4
     E: 0x77439C
@@ -1822,8 +1800,7 @@
   label: HiraganaMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x76055C
     E: 0x774404
@@ -1833,8 +1810,7 @@
   label: HiraganaLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7605F8
     E: 0x7744A0
@@ -1844,8 +1820,7 @@
   label: EnglishMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760660
     E: 0x774508
@@ -1855,8 +1830,7 @@
   label: EnglishLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7606FC
     E: 0x7745A4
@@ -1866,72 +1840,63 @@
   label: GermanMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x77460C
 - desc: German location text pointers
   label: GermanLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x7746A8
 - desc: French message text pointers
   label: FrenchMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774710
 - desc: French location text pointers
   label: FrenchLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x7747AC
 - desc: Italian message text pointers
   label: ItalianMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774814
 - desc: Italian location text pointers
   label: ItalianLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x7748B0
 - desc: Spanish message text pointers
   label: SpanishMessageTextPtrs
   type: u16 *
   count: 0x27
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774918
 - desc: Spanish location text pointers
   label: SpanishLocationTextPtrs
   type: u16 *
   count: 0x1A
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x7749B4
 - desc: Location text pointers
   label: LocationTextPtrs
   type: u16 **
   count: 0x7
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760764
     E: 0x774A1C
@@ -1941,8 +1906,7 @@
   label: MessageTextPtrs
   type: u16 **
   count: 0x7
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760780
     E: 0x774A38
@@ -1952,8 +1916,7 @@
   label: FileScreenTextPtrs
   type: u16 **
   count: 0x7
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x76079C
     E: 0x774A54
@@ -1963,8 +1926,7 @@
   label: JapaneseDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7607B8
     E: 0x774A70
@@ -1974,8 +1936,7 @@
   label: JapaneseStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760804
     E: 0x774ABC
@@ -1985,8 +1946,7 @@
   label: JapaneseFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x76081C
     E: 0x774AD4
@@ -1996,8 +1956,7 @@
   label: HiraganaDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7608B0
     E: 0x774B68
@@ -2007,8 +1966,7 @@
   label: HiraganaStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7608FC
     E: 0x774BB4
@@ -2018,8 +1976,7 @@
   label: HiraganaFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760914
     E: 0x774BCC
@@ -2029,8 +1986,7 @@
   label: EnglishDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7609A8
     E: 0x774C60
@@ -2040,8 +1996,7 @@
   label: EnglishStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x7609F4
     E: 0x774CAC
@@ -2051,8 +2006,7 @@
   label: EnglishFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760A0C
     E: 0x774CC4
@@ -2062,96 +2016,84 @@
   label: GermanDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774D58
 - desc: German story text pointers
   label: GermanStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774DA4
 - desc: German file screen text pointers
   label: GermanFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774DBC
 - desc: French description text pointers
   label: FrenchDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774E50
 - desc: French story text pointers
   label: FrenchStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774E9C
 - desc: French file screen text pointers
   label: FrenchFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774EB4
 - desc: Italian description text pointers
   label: ItalianDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774F48
 - desc: Italian story text pointers
   label: ItalianStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774F94
 - desc: Italian file screen text pointers
   label: ItalianFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x774FAC
 - desc: Spanish description text pointers
   label: SpanishDescriptionTextPtrs
   type: u16 *
   count: 0x13
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x775040
 - desc: Spanish story text pointers
   label: SpanishStoryTextPtrs
   type: u16 *
   count: 0x6
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x77508C
 - desc: Spanish file screen text pointers
   label: SpanishFileScreenTextPtrs
   type: u16 *
   count: 0x25
-  tags:
-  - text
+  cat: text
   addr:
     E: 0x7750A4
 - desc: Sound test sound IDs
@@ -2167,8 +2109,7 @@
   label: MenuSoundIDs
   type: u16
   count: 0xD
-  tags:
-  - text
+  cat: text
   addr:
     U: 0x760C4C
     E: 0x775328
@@ -2178,8 +2119,7 @@
   label: TimeAttackPasswordSeedFunctionPtrs
   type: void *
   count: 0xF
-  tags:
-  - thumb
+  cat: thumb
   addr:
     U: 0x760C68
     E: 0x775344
