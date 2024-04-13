@@ -301,8 +301,7 @@
   - desc: V-Blank code pointer
     label: VBlankCodePtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
   return: null
 - desc: Call H-Blank code
   label: CallHBlankCode
@@ -328,8 +327,7 @@
   - desc: H-Blank code pointer
     label: HBlankCodePtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
   return: null
 - desc: Call V-Count code
   label: CallVCountCode
@@ -355,8 +353,7 @@
   - desc: V-Count code pointer
     label: VCountCodePtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
   return: null
 - desc: Call serial communication code
   label: CallSerialCommunicationCode
@@ -382,8 +379,7 @@
   - desc: Function pointer
     label: FunctionPtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
   return: null
 - desc: Call Timer 3 overflow code
   label: CallTimer3OverflowCode
@@ -409,8 +405,7 @@
   - desc: Function pointer
     label: FunctionPtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
   return: null
 - desc: Empty function C00
   label: EmptyFunction_C00
@@ -1262,8 +1257,7 @@
   - desc: Queue flags
     label: QueueFlags
     type: u8
-    tags:
-    - flags
+    cat: flags
   return: null
 - desc: Music related
   label: MusicRelated
@@ -4875,8 +4869,7 @@
   - desc: Status
     label: Status
     type: u16
-    tags:
-    - flags
+    cat: flags
     enum: SpriteStatus
   return:
     desc: Assigned sprite RAM slot
@@ -4912,8 +4905,7 @@
   - desc: Status
     label: Status
     type: u16
-    tags:
-    - flags
+    cat: flags
     enum: SpriteStatus
   return:
     desc: Assigned sprite RAM slot
@@ -4952,8 +4944,7 @@
   - desc: Status
     label: Status
     type: u16
-    tags:
-    - flags
+    cat: flags
     enum: SpriteStatus
   return:
     desc: Assigned sprite RAM slot
@@ -7465,13 +7456,11 @@
   - desc: Normal graphics source address
     label: NormalGfxSourceAddress
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
   - desc: Refill graphics source address
     label: RefillGfxSourceAddress
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
   - desc: Number of energy tanks
     label: NumOfEnergyTanks
     type: u8
@@ -7849,8 +7838,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
   return: null
 - desc: Particle sprite splash water small
   label: ParticleSpriteSplashWaterSmall
@@ -14847,13 +14835,11 @@
   - desc: Text pointer
     label: TextPtr
     type: u16 *
-    tags:
-    - text
+    cat: text
   - desc: Destination address
     label: DestinationAddress
     type: u16 *
-    tags:
-    - text
+    cat: text
   return:
     desc: Line state
     label: LineState
@@ -15573,13 +15559,11 @@
   - desc: Destination address
     label: DestinationAddress
     type: s8 *
-    tags:
-    - ascii
+    cat: ascii
   - desc: String pointer
     label: StringPtr
     type: s8 *
-    tags:
-    - ascii
+    cat: ascii
   - desc: Length
     label: Length
     type: u8
@@ -15990,9 +15974,8 @@
   - desc: Special graphics data pointer
     label: SpecialGfxDataPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
   return: null
 - desc: Load special graphics data copy
   label: LoadSpecialGraphicsData_Copy
@@ -16007,9 +15990,8 @@
   - desc: Special graphics data pointer
     label: SpecialGfxDataPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
   return: null
 - desc: Update title screen OAM ID
   label: UpdateTitleScreenOamId
