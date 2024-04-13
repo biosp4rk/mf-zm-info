@@ -22,6 +22,19 @@ class PrimType(Enum):
     STRUCT = 8
     VOID = 9
 
+PRIM_TO_STR = {
+    PrimType.U8: "u8",
+    PrimType.S8: "s8",
+    PrimType.BOOL: "bool",
+    PrimType.U16: "u16",
+    PrimType.S16: "s16",
+    PrimType.U32: "u32",
+    PrimType.S32: "s32",
+    PrimType.VOID: "void"
+}
+
+STR_TO_PRIM = {s: p for p, s in PRIM_TO_STR.items()}
+
 
 class Category(Enum):
     FLAGS = 1
@@ -149,13 +162,7 @@ class VarEntry(InfoEntry):
         parts = type.split()
         # primitive
         prim = parts[0]
-        prim = prim[0].upper() + prim[1:]
-        pt = None
-        try:
-            # TODO: use dictionary of strings instead
-            pt = PrimType[prim]
-        except KeyError:
-            pt = None
+        pt = STR_TO_PRIM.get(prim)
         if pt is not None:
             self.primitive = pt
             self.struct_name = None
@@ -186,8 +193,7 @@ class VarEntry(InfoEntry):
         """
         if self.primitive == PrimType.STRUCT:
             return self.struct_name
-        # TODO: use dictionary instead
-        return self.primitive.name.lower()
+        return PRIM_TO_STR[self.primitive]
 
     def type_str(self) -> str:
         if self.declaration is None:
@@ -549,7 +555,7 @@ class CodeEntry(InfoEntry):
                 obj[K_LABEL],
                 obj[K_ADDR],
                 obj[K_SIZE],
-                STR_TO_MODE[K_MODE],
+                STR_TO_MODE[obj[K_MODE]],
                 params,
                 ret,
                 obj.get(K_NOTES)
