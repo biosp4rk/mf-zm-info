@@ -5,22 +5,19 @@
   - desc: Beam status flag
     label: BeamStatusFlag
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: BeamStatus
   - desc: Missile/bomb status flag
     label: MissileBombStatusFlag
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x1
     enum: MissileBombStatus
   - desc: Suit/misc status flag
     label: SuitMiscStatusFlag
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x2
     enum: SuitMiscStatus
   - desc: Is suit flag
@@ -99,8 +96,7 @@
   - desc: Graphics pointer
     label: GfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
 - desc: Animated palette and tileset number
   label: AnimatedPaletteAndTilesetNum
@@ -134,8 +130,7 @@
   - desc: Palette pointer
     label: PalettePtr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x4
 - desc: Animated palette timing
   label: AnimatedPaletteTiming
@@ -186,8 +181,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x4
 - desc: Arm cannon opening offsets
   label: ArmCannonOpeningOffsets
@@ -507,20 +501,17 @@
   - desc: Palette row 0 pointer
     label: PaletteRow0Ptr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x8
   - desc: Palette row 1 pointer
     label: PaletteRow1Ptr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0xC
   - desc: Graphics pointer
     label: GfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x14
 - desc: Current power bomb
   label: CurrPowerBomb
@@ -733,8 +724,7 @@
   - desc: Downloaded maps
     label: DownloadedMaps
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x8
     enum: AreaBitFlags
   - desc: Security hatch level
@@ -787,8 +777,7 @@
   - desc: Downloaded map status
     label: DownloadedMapStatus
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x3
     enum: AreaBitFlags
   - desc: Event counter
@@ -958,8 +947,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x8
 - desc: Envelope
   label: Envelope
@@ -1012,22 +1000,19 @@
   - desc: Beam status
     label: BeamStatus
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xA
     enum: BeamStatus
   - desc: Missile/bomb status
     label: MissileBombStatus
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xB
     enum: MissileBombStatus
   - desc: Suit/misc status
     label: SuitMiscStatus
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xC
     enum: SuitMiscStatus
   - desc: Security hatch level
@@ -1038,8 +1023,7 @@
   - desc: Downloaded maps
     label: DownloadedMaps
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xE
     enum: AreaBitFlags
   - desc: Low health flag
@@ -1231,8 +1215,7 @@
   - desc: Hatches to lock
     label: HatchesToLock
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x3
 - desc: Haze
   label: Haze
@@ -1431,20 +1414,17 @@
   - desc: Navigation rooms 1-4 hatches
     label: NavRooms_1_to_4_Hatches
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x1
   - desc: Navigation rooms 5-8 hatches
     label: NavRooms_5_to_8_Hatches
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x2
   - desc: Navigation rooms 9-C hatches
     label: NavRooms_9_to_C_Hatches
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x3
 - desc: Navigation room location
   label: NavRoomLocation
@@ -1662,8 +1642,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x0
   - desc: Duration
     label: Duration
@@ -1676,8 +1655,7 @@
   - desc: Status
     label: Status
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
   - desc: Animation frame counter
     label: AnimFrameCounter
@@ -1748,8 +1726,7 @@
   - desc: Weakness
     label: Weakness
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x6
     enum: SpriteWeakness
   - desc: Health X probability
@@ -1774,8 +1751,7 @@
   - desc: Status
     label: Status
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: ProjectileStatus
   - desc: OAM pointer
@@ -1976,16 +1952,16 @@
     label: X
     type: u16
     offset: 0x0
-  - desc: 'Y'
-    label: 'Y'
+  - desc: Y
+    label: Y
     type: u16
     offset: 0x2
 - desc: Raw coords (YX)
   label: RawCoordsYX
   size: 0x4
   vars:
-  - desc: 'Y'
-    label: 'Y'
+  - desc: Y
+    label: Y
     type: u16
     offset: 0x0
   - desc: X
@@ -2039,9 +2015,8 @@
   - desc: BG3 pointer
     label: BG3Ptr
     type: u8 *
-    tags:
-    - lz
-    - tilemap
+    cat: tilemap
+    comp: lz
     offset: 0x18
   - desc: BG3 scrolling
     label: BG3Scrolling
@@ -2157,20 +2132,17 @@
   - desc: Torso graphics pointer
     label: TorsoGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x0
   - desc: Legs graphics pointer
     label: LegsGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x8
   - desc: Timer
     label: Timer
@@ -2360,8 +2332,7 @@
   - desc: Torso top graphics pointer
     label: TorsoTopGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
   - desc: Torso top graphics size
     label: TorsoTopGfxSize
@@ -2370,8 +2341,7 @@
   - desc: Torso bottom graphics pointer
     label: TorsoBottomGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0xC
   - desc: Torso bottom graphics size
     label: TorsoBottomGfxSize
@@ -2380,8 +2350,7 @@
   - desc: Legs top graphics pointer
     label: LegsTopGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x14
   - desc: Legs top graphics size
     label: LegsTopGfxSize
@@ -2390,8 +2359,7 @@
   - desc: Legs bottom graphics pointer
     label: LegsBottomGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x1C
   - desc: Legs bottom graphics size
     label: LegsBottomGfxSize
@@ -2413,14 +2381,12 @@
   - desc: Arm cannon OAM frame pointer
     label: ArmCannonOamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x28
   - desc: Arm cannon top graphics pointer
     label: ArmCannonTopGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x2C
   - desc: Arm cannon top graphics size
     label: ArmCannonTopGfxSize
@@ -2429,8 +2395,7 @@
   - desc: Arm cannon bottom graphics pointer
     label: ArmCannonBottomGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x34
   - desc: Arm cannon bottom graphics size
     label: ArmCannonBottomGfxSize
@@ -2520,8 +2485,7 @@
     label: MetroidEpisode4A_Text
     type: s8
     count: 0x10
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x0
   - desc: Checksum
     label: Checksum
@@ -2670,32 +2634,27 @@
   - desc: Atmospheric stabilizers online
     label: AtmosphericStabilizersOnline
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xD8
   - desc: Normal X-barrier cores destroyed
     label: NormalXBarrierCoresDestroyed
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xDA
   - desc: Super X-barrier cores destroyed
     label: SuperXBarrierCoresDestroyed
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xDC
   - desc: Power X-barrier cores destroyed
     label: PowerXBarrierCoresDestroyed
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xDE
   - desc: Eyedoors destroyed
     label: EyedoorsDestroyed
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xE0
   - desc: Missile hatch destroyed
     label: MissileHatchDestroyed
@@ -2743,8 +2702,7 @@
     label: SAVE_END_Text
     type: s8
     count: 0x8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x124
   - desc: Minimap visited tiles
     label: MinimapVisitedTiles
@@ -2768,14 +2726,12 @@
   - desc: Graphics pointer
     label: GfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x0
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x4
   - desc: Timer
     label: Timer
@@ -2847,14 +2803,12 @@
   - desc: Top graphics pointer
     label: TopGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x14
   - desc: Bottom graphics pointer
     label: BottomGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x18
   - desc: Top graphics length
     label: TopGfxLength
@@ -2867,8 +2821,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x20
 - desc: SA-X elevator data
   label: SaxElevatorData
@@ -2945,8 +2898,7 @@
   - desc: OAM frame
     label: OamFrame
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x10
 - desc: Screen position and velocity
   label: ScreenPositionAndVelocity
@@ -3024,8 +2976,7 @@
   - desc: Weakness
     label: Weakness
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x6
     enum: SpriteWeakness
 - desc: Security unlock event
@@ -3182,8 +3133,7 @@
   - desc: Status
     label: Status
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: SpriteStatus
   - desc: Y position
@@ -3335,8 +3285,7 @@
   - desc: Properties
     label: Properties
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x34
     enum: SpriteProperties
   - desc: Frozen palette row offset
@@ -3509,8 +3458,7 @@
   - desc: Tilemap pointer
     label: TilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0x0
   - desc: Clipdata collision types pointer
     label: ClipdataCollisionTypesPtr
@@ -3527,28 +3475,24 @@
   - desc: RLE background graphics pointer
     label: RleBGGfxPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
     offset: 0x0
   - desc: Background palette pointer
     label: BGPalettePtr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
     label: LZ77BGGfxPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
     offset: 0x8
   - desc: RLE background tilemap pointer
     label: RleBGTilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0xC
   - desc: Animated tileset
     label: AnimatedTileset

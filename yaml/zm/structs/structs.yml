@@ -62,8 +62,7 @@
   - desc: Graphics pointer
     label: GfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
 - desc: Animated palette and tileset number
   label: AnimatedPaletteAndTilesetNum
@@ -97,8 +96,7 @@
   - desc: Palette pointer
     label: PalettePtr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x4
 - desc: Animated palette timing
   label: AnimatedPaletteTiming
@@ -1294,8 +1292,7 @@
   - desc: Subroutine pointer
     label: SubroutinePtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
     offset: 0x4
   - desc: Unknown 08
     label: unk_08
@@ -1355,8 +1352,7 @@
   - desc: Bit flags?
     label: BitFlags
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x1
   - desc: Story text number
     label: StoryTextNum
@@ -1365,8 +1361,7 @@
   - desc: Cutscene code pointer?
     label: CutsceneCodePtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
     offset: 0x4
   - desc: Unknown 08
     label: unk_08
@@ -1585,8 +1580,7 @@
   - desc: Function pointer
     label: FunctionPtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
     offset: 0x0
   - desc: OAM related number
     label: OamRelatedNum
@@ -1691,50 +1685,42 @@
   - desc: ATRUNEND character 0
     label: ATRUNEND_Char0
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x238
   - desc: ATRUNEND character 1
     label: ATRUNEND_Char1
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x239
   - desc: ATRUNEND character 2
     label: ATRUNEND_Char2
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23A
   - desc: ATRUNEND character 3
     label: ATRUNEND_Char3
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23B
   - desc: ATRUNEND character 3
     label: ATRUNEND_Char3
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23C
   - desc: ATRUNEND character 4
     label: ATRUNEND_Char5
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23D
   - desc: ATRUNEND character 6
     label: ATRUNEND_Char6
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23E
   - desc: ATRUNEND character 7
     label: ATRUNEND_Char7
     type: s8
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x23F
   - desc: Mothership doors flag
     label: MothershipDoorsFlag
@@ -1890,36 +1876,31 @@
   - desc: Beam/bombs
     label: BeamBombs
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xC
     enum: BeamBombStatus
   - desc: Beam/bombs activation
     label: BeamBombsActivation
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xD
     enum: BeamBombStatus
   - desc: Suit/misc
     label: SuitMisc
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xE
     enum: SuitMiscStatus
   - desc: Suit/misc activation
     label: SuitMiscActivation
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xF
     enum: SuitMiscStatus
   - desc: Downloaded map status
     label: DownloadedMapStatus
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x10
     enum: AreaBitFlags
   - desc: Low health flag
@@ -1992,8 +1973,7 @@
   - desc: Gallery images unlocked
     label: GalleryImagesUnlocked
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
   - desc: Metroid Fusion gallery unlocked flag
     label: MetroidFusionGalleryUnlockedFlag
@@ -2027,8 +2007,7 @@
     label: ZERO_MISSION_010_text
     type: s8
     count: 0x10
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x0
   - desc: Checksum
     label: Checksum
@@ -2128,8 +2107,7 @@
     label: PlanetZebes_Text
     type: s8
     count: 0x11
-    tags:
-    - ascii
+    cat: ascii
     offset: 0x4F
   - desc: Samus data
     label: SamusData
@@ -2204,8 +2182,7 @@
   - desc: In-game cutscenes triggered
     label: InGameCutscenesTriggered
     type: u32
-    tags:
-    - flags
+    cat: flags
     offset: 0x24C
     enum: InGameCutscene
   - desc: Visited minimap tiles
@@ -2360,8 +2337,7 @@
   - desc: Hatches to lock
     label: HatchesToLock
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x3
 - desc: Hatch locking data
   label: HatchLockingData
@@ -2378,14 +2354,12 @@
   - desc: Hatches locked with timer
     label: HatchesLocked_Timer
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x2
   - desc: Hatches locked with type 7 or event
     label: HatchesLocked_Type7_Event
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x4
   - desc: Unknown 06
     label: unk_06
@@ -2503,8 +2477,7 @@
   - desc: Function pointer
     label: FunctionPtr
     type: void *
-    tags:
-    - thumb
+    cat: thumb
     offset: 0x8
 - desc: In-game time
   label: InGameTime
@@ -2882,32 +2855,27 @@
   - desc: Top half graphics pointer
     label: TopHalfGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x0
   - desc: Bottom half graphics pointer
     label: BottomHalfGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
   - desc: Top half tilemap pointer
     label: TopHalfTilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0x8
   - desc: Bottom half tilemap pointer
     label: BottomHalfTilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0xC
   - desc: Palette pointer
     label: PalettePtr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x10
 - desc: Minimap area connection label
   label: MinimapAreaConnectionLabel
@@ -3287,8 +3255,7 @@
   - desc: Map screen type
     label: MapScreenType
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: MapScreenType
   - desc: Current subroutine
@@ -3420,8 +3387,7 @@
   - desc: Activated Chozo hints
     label: ActivatedChozoHints
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x44
     enum: ChozoHintLocation
   - desc: Map download type
@@ -3489,22 +3455,19 @@
   - desc: Visited areas
     label: VisitedAreas
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xB8
     enum: AreaBitFlags
   - desc: Areas with hints
     label: AreasWithHints
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xB9
     enum: AreaBitFlags
   - desc: Viewable areas
     label: ViewableAreas
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0xBA
     enum: AreaBitFlags
   - desc: Number of viewable areas
@@ -3661,8 +3624,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x0
   - desc: Duration
     label: Duration
@@ -3688,8 +3650,7 @@
   - desc: Status
     label: Status
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: ParticleEffectStatus
   - desc: Animation frame counter
@@ -3747,8 +3708,7 @@
   - desc: Status
     label: Status
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: ProjectileStatus
   - desc: OAM pointer
@@ -3957,16 +3917,16 @@
     label: X
     type: u16
     offset: 0x0
-  - desc: 'Y'
-    label: 'Y'
+  - desc: Y
+    label: Y
     type: u16
     offset: 0x2
 - desc: Raw coords (YX)
   label: RawCoordsYX
   size: 0x4
   vars:
-  - desc: 'Y'
-    label: 'Y'
+  - desc: Y
+    label: Y
     type: u16
     offset: 0x0
   - desc: X
@@ -4041,9 +4001,8 @@
   - desc: BG3 pointer
     label: BG3Ptr
     type: u16 *
-    tags:
-    - lz
-    - tilemap
+    cat: tilemap
+    comp: lz
     offset: 0x18
   - desc: BG3 scrolling
     label: BG3Scrolling
@@ -4289,8 +4248,7 @@
   - desc: OAM frame pointer
     label: OamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x8
 - desc: Samus hazard damage
   label: SamusHazardDamage
@@ -4331,14 +4289,12 @@
   - desc: Body OAM frame pointer
     label: BodyOamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x0
   - desc: Shoulders graphics pointer
     label: ShouldersGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x4
   - desc: Unknown 08
     label: unk_08
@@ -4347,8 +4303,7 @@
   - desc: Torso graphics pointer
     label: TorsoGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0xC
   - desc: Unknown 10
     label: unk_10
@@ -4357,8 +4312,7 @@
   - desc: Legs graphics pointer
     label: LegsGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x14
   - desc: Unknown 18
     label: unk_18
@@ -4367,8 +4321,7 @@
   - desc: Body lower half graphics pointer
     label: BodyLowerHalfGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x1C
   - desc: Unknown 20
     label: unk_20
@@ -4381,14 +4334,12 @@
   - desc: Arm cannon OAM frame pointer
     label: ArmCannonOamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x24
   - desc: Arm cannon upper graphics pointer
     label: ArmCannonUpperGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x28
   - desc: Unknown 2C
     label: unk_2C
@@ -4397,8 +4348,7 @@
   - desc: Arm cannon lower graphics pointer
     label: ArmCannonLowerGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x30
   - desc: Unknown 34
     label: unk_34
@@ -4407,14 +4357,12 @@
   - desc: Screw attack/speed booster effects OAM frame pointer
     label: ScrewAttackSpeedBoosterEffectsOamFramePtr
     type: u16 *
-    tags:
-    - oam_frame
+    cat: oam_frame
     offset: 0x38
   - desc: Screw attack/speed booster effects graphics pointer
     label: ScrewAttackSpeedBoosterEffectsGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x3C
   - desc: Unknown 40
     label: unk_40
@@ -4423,8 +4371,7 @@
   - desc: Screw attack/shinespark graphics pointer
     label: ScrewAttackShinesparkGfxPtr
     type: u8 *
-    tags:
-    - gfx
+    cat: gfx
     offset: 0x44
   - desc: Unknown 48
     label: unk_48
@@ -4687,8 +4634,7 @@
   - desc: Gallery images
     label: GalleryImages
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0xC
   - desc: Sound test and original Metroid
     label: SoundTestAndOriginalMetroid
@@ -4717,8 +4663,7 @@
   - desc: Metroid Fusion gallery images
     label: MetroidFusionGalleryImages
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x14
   - desc: Time attack?
     label: TimeAttack
@@ -4776,8 +4721,7 @@
   - desc: Status flags
     label: StatusFlags
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     notes: 0 = none, 1 = screw attacking/speed boosting, 8 = storing shinespark
   - desc: Animation counter
@@ -5056,8 +5000,7 @@
   - desc: Status
     label: Status
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x0
     enum: SpriteStatus
   - desc: Y position
@@ -5201,8 +5144,7 @@
   - desc: Properties
     label: Properties
     type: u8
-    tags:
-    - flags
+    cat: flags
     offset: 0x32
     enum: SpriteProperties
   - desc: Frozen palette row offset
@@ -5268,8 +5210,7 @@
   - desc: Weakness
     label: Weakness
     type: u16
-    tags:
-    - flags
+    cat: flags
     offset: 0x4
     enum: SpriteWeakness
   - desc: No drop probability
@@ -5443,37 +5384,32 @@
     label: BeamBombActivationFlags
     type: u8
     count: 0x5
-    tags:
-    - flags
+    cat: flags
     offset: 0x4
   - desc: Suit activation flags
     label: SuitActivationFlags
     type: u8
     count: 0x2
-    tags:
-    - flags
+    cat: flags
     offset: 0x9
   - desc: Misc activation flags
     label: MiscActivationFlags
     type: u8
     count: 0x6
-    tags:
-    - flags
+    cat: flags
     offset: 0xB
   - desc: Bombs visibility/activation
     label: BombsVisibilityActivation
     type: u8
     count: 0x2
-    tags:
-    - flags
+    cat: flags
     offset: 0x11
     enum: BombVisibility
   - desc: Missiles visibility/activation
     label: MissilesVisibilityActivation
     type: u8
     count: 0x2
-    tags:
-    - flags
+    cat: flags
     offset: 0x13
 - desc: Sub-sprite data
   label: SubSpriteData
@@ -5614,8 +5550,7 @@
   - desc: Tilemap pointer
     label: TilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0x0
   - desc: Clipdata collision types pointer
     label: ClipdataCollisionTypesPtr
@@ -5632,28 +5567,24 @@
   - desc: RLE background graphics pointer
     label: RleBGGfxPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
     offset: 0x0
   - desc: Background palette pointer
     label: BGPalettePtr
     type: u16 *
-    tags:
-    - palette
+    cat: palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
     label: LZ77BGGfxPtr
     type: u8 *
-    tags:
-    - lz
-    - gfx
+    cat: gfx
+    comp: lz
     offset: 0x8
   - desc: RLE background tilemap pointer
     label: RleBGTilemapPtr
     type: u16 *
-    tags:
-    - tilemap
+    cat: tilemap
     offset: 0xC
   - desc: Animated tileset
     label: AnimatedTileset
