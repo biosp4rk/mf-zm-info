@@ -74,21 +74,24 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting w
 - `u32` - Unsigned 32 bit integer
 - `s32` - Signed 32 bit integer
 
-### Tags
+### Categories
 - `flags` - Integer used for bit flags
 - `ascii` - 8 bit ASCII character
 - `sjis` - 8 bit Shift JIS character
 - `text` - 16 bit in-game text character
-- `rle` - RLE compressed
-- `lz` - LZ77 compressed
 - `gfx` - Graphics, 32 bytes per tile
 - `tilemap` - Tilemap, 2 bytes per tile
 - `palette` - Palette, 32 bytes per row
 - `oam_frame` - OAM frame, 16 bit attributes
 - `bg_blocks` - Block map for a background (RLE)
 - `bg_map` - Tilemap for a background (LZ77)
+- `pcm` - Pulse-code modulation audio sample
 - `thumb` - 16 bit THUMB code
 - `arm` - 32 bit ARM code
+
+### Compression
+- `rle` - RLE compressed
+- `lz` - LZ77 compressed
 
 ### Label Abbreviations
 - `Alt` - Alternate
