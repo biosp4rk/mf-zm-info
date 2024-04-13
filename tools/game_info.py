@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 from constants import *
-from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, DataTag
+from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, Category
 from info_file_utils import get_info_file_from_json, get_info_file_from_yaml
 
 
@@ -87,8 +87,5 @@ class GameInfo(object):
                 game_vars.append(gv)
         return game_vars
 
-    def get_data_by_tags(self, tags: List[DataTag]) -> List[DataEntry]:
-        return [
-            de for de in self.data
-            if de.tags and all(t in de.tags for t in tags)
-        ]
+    def get_data_by_category(self, category: Category) -> List[DataEntry]:
+        return [de for de in self.data if de.cat == category]

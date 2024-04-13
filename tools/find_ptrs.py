@@ -195,7 +195,7 @@ def find_prim_at_offset(
             off %= size
         # check type
         is_ptr = entry.is_ptr()
-        if not is_ptr and entry.primitive == PrimType.Struct:
+        if not is_ptr and entry.primitive == PrimType.STRUCT:
             # check primitive at offset
             s_entry = info.get_struct(entry.struct_name)
             _, entry, num, off = find_prim_at_offset(s_entry.vars, 0, off, info)

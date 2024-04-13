@@ -95,7 +95,7 @@ def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
         return ptr_asm(rom, info, entry, entry_addr)
     # check for struct
     prim = entry.primitive
-    if prim == PrimType.Struct:
+    if prim == PrimType.STRUCT:
         count = entry.get_total_count()
         struct = info.get_struct(entry.struct_name)
         result = []
@@ -125,7 +125,7 @@ def data_asm(rom: Rom, info: GameInfo, entry: VarEntry, entry_addr: int):
                 result.append(unk_asm(rom, addr, diff))
         return "\n".join(result)
     # assume integer type
-    if prim == PrimType.Void:
+    if prim == PrimType.VOID:
         raise ValueError(prim)
     size = entry.get_spec_size(None)
     return uint_asm(rom, entry, entry_addr, size)

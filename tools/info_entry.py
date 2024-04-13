@@ -14,52 +14,67 @@ StructDict = Dict[str, "StructEntry"]
 class PrimType(Enum):
     U8 = 1
     S8 = 2
-    Bool = 3
+    BOOL = 3
     U16 = 4
     S16 = 5
     U32 = 6
     S32 = 7
-    Struct = 8
-    Void = 9
+    STRUCT = 8
+    VOID = 9
 
 
-class DataTag(Enum):
-    Flags = 1
-    Ascii = 2
-    Text = 3
-    Rle = 4
-    LZ = 5
-    Gfx = 6
-    Tilemap = 7
-    Palette = 8
-    OamFrame = 9
-    BGBlocks = 10
-    BGMap = 11
-    Thumb = 12
-    Arm = 13
+class Category(Enum):
+    FLAGS = 1
+    ASCII = 2
+    TEXT = 3
+    GFX = 4
+    TILEMAP = 5
+    PALETTE = 6
+    OAM_FRAME = 7
+    BG_BLOCKS = 8
+    BG_MAP = 9
+    THUMB = 10
+    ARM = 11
 
-TAG_TO_STR = {
-    DataTag.Flags: "flags",
-    DataTag.Ascii: "ascii",
-    DataTag.Text: "text",
-    DataTag.Rle: "rle",
-    DataTag.LZ: "lz",
-    DataTag.Gfx: "gfx",
-    DataTag.Tilemap: "tilemap",
-    DataTag.Palette: "palette",
-    DataTag.OamFrame: "oam_frame",
-    DataTag.BGBlocks: "bg_blocks",
-    DataTag.BGMap: "bg_map",
-    DataTag.Thumb: "thumb",
-    DataTag.Arm: "arm"
+CAT_TO_STR = {
+    Category.FLAGS: "flags",
+    Category.ASCII: "ascii",
+    Category.TEXT: "text",
+    Category.GFX: "gfx",
+    Category.TILEMAP: "tilemap",
+    Category.PALETTE: "palette",
+    Category.OAM_FRAME: "oam_frame",
+    Category.BG_BLOCKS: "bg_blocks",
+    Category.BG_MAP: "bg_map",
+    Category.THUMB: "thumb",
+    Category.ARM: "arm"
 }
 
-STR_TO_TAG = {s: t for t, s in TAG_TO_STR.items()}
+STR_TO_CAT = {s: c for c, s in CAT_TO_STR.items()}
+
+
+class Compression(Enum):
+    RLE = 1
+    LZ77 = 2
+
+COMP_TO_STR = {
+    Compression.RLE: "rle",
+    Compression.LZ77: "lz77"
+}
+
+STR_TO_COMP = {s: c for c, s in COMP_TO_STR.items()}
 
 
 class CodeMode(Enum):
     Thumb = 1
     Arm = 2
+
+MODE_TO_STR = {
+    CodeMode.Thumb: "thumb",
+    CodeMode.Arm: "arm"
+}
+
+STR_TO_MODE = {s: m for m, s in MODE_TO_STR.items()}
 
 
 class InfoEntry(ABC):
@@ -115,14 +130,16 @@ class VarEntry(InfoEntry):
         # arr_count of None implies no array
         # arr_count of 1 implies array [1]
         arr_count: RegionInt,
-        tags: List[DataTag] = [],
+        cat: Category = None,
+        comp: Compression = None,
         enum: str = None,
         notes: str = None
     ):
         super().__init__(desc, label, notes)
         self.parse_type(type)
         self.arr_count = arr_count
-        self.tags = tags
+        self.cat = cat
+        self.comp = comp
         self.enum = enum
 
     def __str__(self) -> str:
@@ -143,7 +160,7 @@ class VarEntry(InfoEntry):
             self.primitive = pt
             self.struct_name = None
         else:
-            self.primitive = PrimType.Struct
+            self.primitive = PrimType.STRUCT
             self.struct_name = prim
         # declaration
         if len(parts) == 2:
@@ -167,7 +184,7 @@ class VarEntry(InfoEntry):
         """
         Returns the base type name (without pointers and arrays).
         """
-        if self.primitive == PrimType.Struct:
+        if self.primitive == PrimType.STRUCT:
             return self.struct_name
         # TODO: use dictionary instead
         return self.primitive.name.lower()
@@ -185,7 +202,7 @@ class VarEntry(InfoEntry):
     def has_ptr(self, structs: StructDict) -> bool:
         if self.is_ptr():
             return True
-        if self.primitive == PrimType.Struct:
+        if self.primitive == PrimType.STRUCT:
             se = structs[self.struct_name]
             if any(v.has_ptr(structs) for v in se.vars):
                 return True
@@ -221,10 +238,10 @@ class VarEntry(InfoEntry):
     def get_spec_size(self, structs: StructDict) -> int:
         """Gets the size of a single item of this type"""
         if self.primitive in {
-            PrimType.Void,
+            PrimType.VOID,
             PrimType.U8,
             PrimType.S8,
-            PrimType.Bool
+            PrimType.BOOL
         }:
             return 1
         elif (self.primitive == PrimType.U16 or
@@ -233,7 +250,7 @@ class VarEntry(InfoEntry):
         elif (self.primitive == PrimType.U32 or
             self.primitive == PrimType.S32):
             return 4
-        elif self.primitive == PrimType.Struct:
+        elif self.primitive == PrimType.STRUCT:
             se = structs.get(self.struct_name)
             if se is not None:
                 return se.size
@@ -243,7 +260,7 @@ class VarEntry(InfoEntry):
     def get_alignment(self, structs: StructDict) -> int:
         if self.is_ptr():
             return 4
-        if self.primitive == PrimType.Struct:
+        if self.primitive == PrimType.STRUCT:
             se = structs[self.struct_name]
             return max(v.get_alignment(structs) for v in se.vars)
         return self.get_spec_size(structs)
@@ -255,7 +272,8 @@ class VarEntry(InfoEntry):
             obj[K_LABEL],
             obj[K_TYPE],
             obj.get(K_COUNT),
-            VarEntry.tags_from_obj(obj.get(K_TAGS)),
+            STR_TO_CAT.get(obj.get(K_CAT)),
+            STR_TO_COMP.get(obj.get(K_COMP)),
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
@@ -269,25 +287,15 @@ class VarEntry(InfoEntry):
         ]
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
-        if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
+        if entry.cat:
+            obj.append((K_CAT, CAT_TO_STR[entry.cat]))
+        if entry.comp:
+            obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
         if entry.notes:
             obj.append((K_NOTES, entry.notes))
         return dict(obj)
-    
-    @staticmethod
-    def tags_from_obj(tags: List[str]) -> List[DataTag]:
-        if tags is None:
-            return None
-        return [STR_TO_TAG[s] for s in tags]
-
-    @staticmethod
-    def tags_to_obj(tags: List[DataTag]) -> List[str]:
-        if tags is None:
-            return None
-        return [TAG_TO_STR[t] for t in tags]
 
 
 class DataEntry(VarEntry):
@@ -298,11 +306,14 @@ class DataEntry(VarEntry):
         type: str,
         arr_count: RegionInt,
         addr: RegionInt,
-        tags: List[DataTag] = [],
+        cat: Category = None,
+        comp: Compression = None,
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(desc, label, type, arr_count, tags, enum, notes)
+        super().__init__(
+            desc, label, type, arr_count, cat, comp, enum, notes
+        )
         self.addr = addr
     
     def __str__(self) -> str:
@@ -332,7 +343,8 @@ class DataEntry(VarEntry):
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
-                VarEntry.tags_from_obj(obj.get(K_TAGS)),
+                STR_TO_CAT.get(obj.get(K_CAT)),
+                STR_TO_COMP.get(obj.get(K_COMP)),
                 obj.get(K_ENUM),
                 obj.get(K_NOTES)
             )
@@ -348,8 +360,10 @@ class DataEntry(VarEntry):
         ]
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
-        if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
+        if entry.cat:
+            obj.append((K_CAT, CAT_TO_STR[entry.cat]))
+        if entry.comp:
+            obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         obj.append((K_ADDR, entry.addr))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
@@ -366,11 +380,14 @@ class StructVarEntry(VarEntry):
         type: str,
         arr_count: RegionInt,
         offset: RegionInt,
-        tags: List[DataTag] = [],
+        cat: Category = None,
+        comp: Compression = None,
         enum: str = None,
         notes: str = None
     ):
-        super().__init__(desc, label, type, arr_count, tags, enum, notes)
+        super().__init__(
+            desc, label, type, arr_count, cat, comp, enum, notes
+        )
         self.offset = offset
 
     def __str__(self) -> str:
@@ -399,7 +416,8 @@ class StructVarEntry(VarEntry):
             obj[K_TYPE],
             obj.get(K_COUNT),
             obj[K_OFFSET],
-            VarEntry.tags_from_obj(obj.get(K_TAGS)),
+            STR_TO_CAT.get(obj.get(K_CAT)),
+            STR_TO_COMP.get(obj.get(K_COMP)),
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
@@ -413,8 +431,10 @@ class StructVarEntry(VarEntry):
         ]
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
-        if entry.tags:
-            obj.append((K_TAGS, VarEntry.tags_to_obj(entry.tags)))
+        if entry.cat:
+            obj.append((K_CAT, CAT_TO_STR[entry.cat]))
+        if entry.comp:
+            obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         obj.append((K_OFFSET, entry.offset))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
@@ -516,7 +536,6 @@ class CodeEntry(InfoEntry):
     @staticmethod
     def from_obj(obj: Any) -> "CodeEntry":
         try:
-            mode = CodeMode.Arm if obj[K_MODE] == "arm" else CodeMode.Thumb
             params = obj[K_PARAMS]
             # TODO: don't allow str for params
             if not isinstance(params, str):
@@ -530,7 +549,7 @@ class CodeEntry(InfoEntry):
                 obj[K_LABEL],
                 obj[K_ADDR],
                 obj[K_SIZE],
-                mode,
+                STR_TO_MODE[K_MODE],
                 params,
                 ret,
                 obj.get(K_NOTES)
@@ -554,7 +573,7 @@ class CodeEntry(InfoEntry):
             (K_LABEL, entry.label),
             (K_ADDR, entry.addr),
             (K_SIZE, entry.size),
-            (K_MODE, mode),
+            (K_MODE, MODE_TO_STR[entry.mode]),
             (K_PARAMS, params),
             (K_RETURN, ret),
         ]

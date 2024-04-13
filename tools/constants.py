@@ -31,6 +31,8 @@ ASM_MODES = (MODE_THUMB, MODE_ARM)
 
 # entry field keys
 K_ADDR = "addr"
+K_CAT = "cat"
+K_COMP = "comp"
 K_COUNT = "count"
 K_DESC = "desc"
 K_ENUM = "enum"
@@ -41,7 +43,6 @@ K_OFFSET = "offset"
 K_PARAMS = "params"
 K_RETURN = "return"
 K_SIZE = "size"
-K_TAGS = "tags"
 K_TYPE = "type"
 K_VAL = "val"
 K_VARS = "vars"

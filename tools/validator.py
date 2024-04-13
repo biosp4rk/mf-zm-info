@@ -105,10 +105,11 @@ class Validator(object):
                     self.check_desc(entry.desc)
                     self.check_label(entry.label)
                     valid_type = self.check_type(entry)
-                    self.check_tags(entry.tags)
+                    self.check_cat(entry.cat)
+                    self.check_comp(entry.comp)
                     self.entry_loc.field_name = K_ADDR
                     align = None
-                    if entry.primitive != PrimType.Struct:
+                    if entry.primitive != PrimType.STRUCT:
                         align = entry.get_spec_size(self.structs)
                     self.check_region_int(K_ADDR, entry.addr, align)
                     self.check_enum(entry.enum)
@@ -211,7 +212,7 @@ class Validator(object):
     def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
         # check struct
-        if (entry.primitive == PrimType.Struct and
+        if (entry.primitive == PrimType.STRUCT and
             entry.struct_name not in self.structs):
             self.add_error("Invalid type")
             return False
@@ -251,7 +252,8 @@ class Validator(object):
         for ve in vars:
             self.check_label(ve.label)
             self.check_type(ve)
-            self.check_tags(ve.tags)
+            self.check_cat(ve.cat)
+            self.check_comp(ve.comp)
             self.check_enum(ve.enum)
             self.check_notes(ve.notes)
             self.check_region_int(K_OFFSET, ve.offset)
@@ -283,16 +285,19 @@ class Validator(object):
             self.check_type(ret)
             self.check_enum(ret.enum)
 
-    def check_tags(self, tags: List[DataTag]):
-        if tags is None:
+    def check_cat(self, cat: Category):
+        if cat is None:
             return
-        self.entry_loc.field_name = K_TAGS
-        if not isinstance(tags, list):
-            self.add_error("tags must be a list")
+        self.entry_loc.field_name = K_CAT
+        if not isinstance(cat, Category):
+            self.add_error("Invalid category")
+
+    def check_comp(self, comp: Compression):
+        if comp is None:
             return
-        for tag in tags:
-            if not isinstance(tag, DataTag):
-                self.add_error(f"Invalid tag {tag}")
+        self.entry_loc.field_name = K_COMP
+        if not isinstance(comp, Compression):
+            self.add_error("Invalid compression")
 
     def check_enum(self, enm: str):
         if enm is None:
