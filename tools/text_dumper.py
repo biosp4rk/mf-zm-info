@@ -111,8 +111,9 @@ def get_text(char_map: Dict[int, str], rom: Rom, addr: int) -> str:
     elif rom.game == GAME_ZM:
         get_control_char = get_control_char_zm
     text = ""
+    rom.seek(addr)
     while True:
-        val = rom.read_16(addr)
+        val = rom.read_next_16(addr)
         if val >> 8 == 0xFF:
             return text
         ch = char_map.get(val)
@@ -121,7 +122,6 @@ def get_text(char_map: Dict[int, str], rom: Rom, addr: int) -> str:
             if ch is None:
                 ch = f"[\\x{val:04X}]"
         text += ch
-        addr += 2
 
 
 if __name__ == "__main__":

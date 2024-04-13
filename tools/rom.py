@@ -1,4 +1,4 @@
-from typing import Dict, Union
+from typing import Dict, Optional, Union
 
 from constants import *
 
@@ -49,6 +49,7 @@ class Rom(object):
             self.region = REGION_C
         else:
             raise ValueError("Not a valid GBA Metroid ROM")
+        self.pos = None
 
     def read_8(self, addr: int) -> int:
         return self.data[addr]
@@ -65,12 +66,10 @@ class Rom(object):
         )
 
     def read_ptr(self, addr: int) -> int:
-        return (
-            self.data[addr] |
-            (self.data[addr + 1] << 8) |
-            (self.data[addr + 2] << 16) |
-            ((self.data[addr + 3] - 8) << 24)
-        )
+        val = self.read_32(addr)
+        if val < ROM_OFFSET:
+            raise ValueError(f"Invalid pointer {val:X} at {addr:X}")
+        return val - ROM_OFFSET
 
     def read_bytes(self, addr: int, size: int) -> bytearray:
         end = addr + size
@@ -82,10 +81,57 @@ class Rom(object):
     def write_8(self, addr: int, val: int) -> None:
         self.data[addr] = val
 
-    def write_bytes(self, dst_addr: int, vals: BytesLike, src_addr: int, size: int) -> None:
+    def write_16(self, addr: int, val: int) -> None:
+        val &= 0xFFFF
+        self.data[addr] = val & 0xFF
+        self.data[addr + 1] = val >> 8
+
+    def write_32(self, addr: int, val: int) -> None:
+        val &= 0xFFFFFFFF
+        self.data[addr] = val & 0xFF
+        self.data[addr + 1] = (val >> 8) & 0xFF
+        self.data[addr + 2] = (val >> 16) & 0xFF
+        self.data[addr + 3] = val >> 24
+
+    def write_ptr(self, addr: int, val: int) -> None:
+        assert val < ROM_OFFSET, f"Pointer should be less than {ROM_OFFSET:X} but is {val:X}"
+        self.write_32(addr, val + ROM_OFFSET)
+        
+    def write_bytes(
+        self,
+        dst_addr: int,
+        vals: BytesLike,
+        src_addr: int = 0,
+        size: Optional[int] = None
+    ) -> None:
+        if size is None:
+            size = len(vals) - src_addr
         dst_end = dst_addr + size
         src_end = src_addr + size
         self.data[dst_addr:dst_end] = vals[src_addr:src_end]
+
+    def seek(self, addr: int) -> None:
+        assert 0 <= addr < len(self.data)
+        self.pos = addr
+
+    def tell(self) -> int:
+        assert self.pos is not None
+        return self.pos
+
+    def read_next_8(self) -> int:
+        val = self.read_8(self.pos)
+        self.pos += 1
+        return val
+    
+    def read_next_16(self) -> int:
+        val = self.read_16(self.pos)
+        self.pos += 2
+        return val
+
+    def read_next_ptr(self) -> int:
+        val = self.read_ptr(self.pos)
+        self.pos += 4
+        return val
 
     def code_start(self, virt: bool = False) -> int:
         addr = None
