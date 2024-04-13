@@ -39,20 +39,22 @@ STR_TO_PRIM = {s: p for p, s in PRIM_TO_STR.items()}
 class Category(Enum):
     FLAGS = 1
     ASCII = 2
-    TEXT = 3
-    GFX = 4
-    TILEMAP = 5
-    PALETTE = 6
-    OAM_FRAME = 7
-    BG_BLOCKS = 8
-    BG_MAP = 9
-    PCM = 10
-    THUMB = 11
-    ARM = 12
+    SJIS = 3
+    TEXT = 4
+    GFX = 5
+    TILEMAP = 6
+    PALETTE = 7
+    OAM_FRAME = 8
+    BG_BLOCKS = 9
+    BG_MAP = 10
+    PCM = 11
+    THUMB = 12
+    ARM = 13
 
 CAT_TO_STR = {
     Category.FLAGS: "flags",
     Category.ASCII: "ascii",
+    Category.SJIS: "sjis",
     Category.TEXT: "text",
     Category.GFX: "gfx",
     Category.TILEMAP: "tilemap",
