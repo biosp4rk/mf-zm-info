@@ -46,8 +46,9 @@ class Category(Enum):
     OAM_FRAME = 7
     BG_BLOCKS = 8
     BG_MAP = 9
-    THUMB = 10
-    ARM = 11
+    PCM = 10
+    THUMB = 11
+    ARM = 12
 
 CAT_TO_STR = {
     Category.FLAGS: "flags",
@@ -59,6 +60,7 @@ CAT_TO_STR = {
     Category.OAM_FRAME: "oam_frame",
     Category.BG_BLOCKS: "bg_blocks",
     Category.BG_MAP: "bg_map",
+    Category.PCM: "pcm",
     Category.THUMB: "thumb",
     Category.ARM: "arm"
 }
@@ -68,11 +70,11 @@ STR_TO_CAT = {s: c for c, s in CAT_TO_STR.items()}
 
 class Compression(Enum):
     RLE = 1
-    LZ77 = 2
+    LZ = 2
 
 COMP_TO_STR = {
     Compression.RLE: "rle",
-    Compression.LZ77: "lz77"
+    Compression.LZ: "lz"
 }
 
 STR_TO_COMP = {s: c for c, s in COMP_TO_STR.items()}
@@ -273,13 +275,19 @@ class VarEntry(InfoEntry):
 
     @staticmethod
     def from_obj(obj: Any) -> "VarEntry":
+        cat = None
+        if K_CAT in obj:
+            cat = STR_TO_CAT[obj[K_CAT]]
+        comp = None
+        if K_COMP in obj:
+            comp = STR_TO_COMP[obj[K_COMP]]
         return VarEntry(
             obj[K_DESC],
             obj[K_LABEL],
             obj[K_TYPE],
             obj.get(K_COUNT),
-            STR_TO_CAT.get(obj.get(K_CAT)),
-            STR_TO_COMP.get(obj.get(K_COMP)),
+            cat,
+            comp,
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
@@ -343,14 +351,20 @@ class DataEntry(VarEntry):
     @staticmethod
     def from_obj(obj: Any) -> "DataEntry":
         try:
+            cat = None
+            if K_CAT in obj:
+                cat = STR_TO_CAT[obj[K_CAT]]
+            comp = None
+            if K_COMP in obj:
+                comp = STR_TO_COMP[obj[K_COMP]]
             return DataEntry(
                 obj[K_DESC],
                 obj[K_LABEL],
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
-                STR_TO_CAT.get(obj.get(K_CAT)),
-                STR_TO_COMP.get(obj.get(K_COMP)),
+                cat,
+                comp,
                 obj.get(K_ENUM),
                 obj.get(K_NOTES)
             )
@@ -416,14 +430,20 @@ class StructVarEntry(VarEntry):
 
     @staticmethod
     def from_obj(obj: Any) -> "StructVarEntry":
+        cat = None
+        if K_CAT in obj:
+            cat = STR_TO_CAT[obj[K_CAT]]
+        comp = None
+        if K_COMP in obj:
+            comp = STR_TO_COMP[obj[K_COMP]]
         return StructVarEntry(
             obj[K_DESC],
             obj[K_LABEL],
             obj[K_TYPE],
             obj.get(K_COUNT),
             obj[K_OFFSET],
-            STR_TO_CAT.get(obj.get(K_CAT)),
-            STR_TO_COMP.get(obj.get(K_COMP)),
+            cat,
+            comp,
             obj.get(K_ENUM),
             obj.get(K_NOTES)
         )
