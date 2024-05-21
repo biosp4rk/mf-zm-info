@@ -6072,9 +6072,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if colliding, 0 otherwise
-    label: 1IfColliding,0Otherwise
-    type: u8
+    desc: Colliding
+    label: Colliding
+    type: bool
 - desc: Space pirate check colliding with pirate when climbing
   label: SpacePirateCheckCollidingWithPirateWhenClimbing
   addr:
@@ -6093,9 +6093,9 @@
     label: Direction
     type: u8
   return:
-    desc: 1 if colliding, 0 otherwise
-    label: 1IfColliding,0Otherwise
-    type: u8
+    desc: Colliding
+    label: Colliding
+    type: bool
 - desc: Space pirate check Samus in shooting range
   label: SpacePirateCheckSamusInShootingRange
   addr:
@@ -6121,9 +6121,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if stopped crawling, 0 otherwise
-    label: 1IfStoppedCrawling,0Otherwise
-    type: u8
+    desc: Stopped crawling
+    label: StoppedCrawling
+    type: bool
 - desc: Space pirate climbing check wall jump or fire
   label: SpacePirateClimbingCheckWallJumpOrFire
   addr:
@@ -8096,9 +8096,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if colliding, 0 otherwise
-    label: 1IfColliding,0Otherwise
-    type: u8
+    desc: Colliding
+    label: Colliding
+    type: bool
 - desc: Piston check Samus in
   label: PistonCheckSamusIn
   addr:
@@ -8252,8 +8252,8 @@
     label: XPosition
     type: u16
   return:
-    desc: 1 if grabbing, 0 otherwise
-    label: 1IfGrabbing,0Otherwise
+    desc: Grabbing
+    label: Grabbing
     type: u32
 - desc: Ridley Samus grabbed
   label: RidleySamusGrabbed
@@ -9688,7 +9688,7 @@
     desc: Colliding
     label: Colliding
     type: bool
-- desc: Ruins test check hit by charged pistol
+- desc: Ruins Test check hit by charged pistol
   label: RuinsTestCheckHitByChargedPistol
   addr:
     U: 0x38D28
@@ -9699,11 +9699,11 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if hit, 0 otherwise
-    label: 1IfHit,0Otherwise
-    type: u8
-- desc: Ruins test check symbol shooted
-  label: RuinsTestCheckSymbolShooted
+    desc: Hit
+    label: Hit
+    type: bool
+- desc: Ruins Test check symbol shot
+  label: RuinsTestCheckSymbolShot
   addr:
     U: 0x38D70
     E: 0x38E3C
@@ -9713,9 +9713,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if last symbol shot, 0 otherwise
-    label: 1IfLastSymbolShot,0Otherwise
-    type: u8
+    desc: Last symbol shot
+    label: LastSymbolShot
+    type: bool
 - desc: Ruins Test check Samus hurting
   label: RuinsTestCheckSamusHurting
   addr:
@@ -9730,7 +9730,7 @@
     desc: Samus getting hurt
     label: SamusGettingHurt
     type: bool
-- desc: Ruins test update symbol
+- desc: Ruins Test update symbol
   label: RuinsTestUpdateSymbol
   addr:
     U: 0x38E28
@@ -9741,9 +9741,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if new movement pattern, 0 otherwise
-    label: 1IfNewMovementPattern,0Otherwise
-    type: u8
+    desc: New movement pattern
+    label: NewMovementPattern
+    type: bool
 - desc: Ruins Test ghost move
   label: RuinsTestGhostMove
   addr:
@@ -9774,7 +9774,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test spawning
+- desc: Ruins Test spawning
   label: RuinsTestSpawning
   addr:
     U: 0x390CC
@@ -9796,7 +9796,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test free Samus
+- desc: Ruins Test free Samus
   label: RuinsTestFreeSamus
   addr:
     U: 0x39194
@@ -9818,7 +9818,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test motionless
+- desc: Ruins Test motionless
   label: RuinsTestMotionless
   addr:
     U: 0x391F0
@@ -9851,7 +9851,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test move circle pattern
+- desc: Ruins Test move circle pattern
   label: RuinsTestMoveCirclePattern
   addr:
     U: 0x392F0
@@ -9862,7 +9862,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test move atom pattern
+- desc: Ruins Test move atom pattern
   label: RuinsTestMoveAtomPattern
   addr:
     U: 0x393EC
@@ -9884,7 +9884,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test check is ghost disappearing
+- desc: Ruins Test check is ghost disappearing
   label: RuinsTestCheckIsGhostDisappearing
   addr:
     U: 0x396A4
@@ -9951,7 +9951,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test ghost move symbol to place
+- desc: Ruins Test ghost move symbol to place
   label: RuinsTestGhostMoveSymbolToPlace
   addr:
     U: 0x39A40
@@ -9984,7 +9984,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test ghost symbol wait for end of fight
+- desc: Ruins Test ghost symbol wait for end of fight
   label: RuinsTestGhostSymbolWaitForEndOfFight
   addr:
     U: 0x39E14
@@ -9995,7 +9995,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Ruins test ghost symbol delay before placing at end of fight
+- desc: Ruins Test ghost symbol delay before placing at end of fight
   label: RuinsTestGhostSymbolDelayBeforePlacingAtEndOfFight
   addr:
     U: 0x39E3C
@@ -14257,9 +14257,9 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if changing height, 0 otherwise
-    label: 1IfChangingHeight,0Otherwise
-    type: u8
+    desc: Changing height
+    label: ChangingHeight
+    type: bool
 - desc: Mecha Ridley crawling backwards initialize
   label: MechaRidleyCrawlingBackwardsInit
   addr:

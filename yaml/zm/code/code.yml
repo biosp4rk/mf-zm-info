@@ -12582,7 +12582,7 @@
     desc: Always 0
     label: Always0
     type: bool
-- desc: Mother brain close up update elevator reflection
+- desc: Mother Brain close up update elevator reflection
   label: MotherBrainCloseUpUpdateElevatorReflection
   addr:
     U: 0x6323C
@@ -12691,7 +12691,7 @@
     label: CutsceneOamDataPtr
     type: CutsceneOamData *
   return: null
-- desc: Mother brain close up init bubbles
+- desc: Mother Brain close up init bubbles
   label: MotherBrainCloseUpInitBubbles
   addr:
     U: 0x6380C
@@ -12705,9 +12705,9 @@
     label: BubblePackId
     type: u8
   return:
-    desc: 0 if could init, 1 otherwise
-    label: 0IfCouldInit,1Otherwise
-    type: u8
+    desc: Could not init
+    label: CouldNotInit
+    type: bool
 - desc: Ridley in space ship leaving
   label: RidleyInSpaceShipLeaving
   addr:
@@ -15689,8 +15689,8 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if checksum invalid, 0 otherwise
-    label: 1IfChecksumInvalid,0Otherwise
+    desc: Checksum invalid
+    label: ChecksumInvalid
     type: u32
 - desc: Backup time attack for SRAM
   label: BackupTimeAttackForSram
@@ -16743,8 +16743,8 @@
   mode: thumb
   params: null
   return:
-    desc: 1 if not currently playing, 0 otherwise
-    label: 1IfNotCurrentlyPlaying,0Otherwise
+    desc: Not currently playing
+    label: NotCurrentlyPlaying
     type: u32
 - desc: Update sound test ID graphics
   label: UpdateSoundTestIdGfx
