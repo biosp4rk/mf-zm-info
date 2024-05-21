@@ -1,7 +1,6 @@
 import argparse
 import json
 import os
-import re
 import sys
 from typing import Dict, List, Tuple
 
@@ -84,6 +83,9 @@ class Validator(object):
         print("Validating info entries")
         for game in GAMES:
             self.entry_loc.game = game
+            # TODO: some errors can happen when creating GameInfo;
+            # consider manually creating each info entry instead
+            # (would need to sort and check for overlap at the end)
             info = GameInfo(game, from_json=False)
             self.enums = info.enums
             self.structs = info.structs

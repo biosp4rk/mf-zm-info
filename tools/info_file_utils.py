@@ -87,7 +87,7 @@ def parse_obj_list(ylist: Any, map_type: str) -> InfoFile:
         return [StructEntry.from_obj(d) for d in ylist]
     elif map_type == MAP_ENUMS:
         return [EnumEntry.from_obj(d) for d in ylist]
-    raise ValueError()
+    raise ValueError(map_type)
 
 
 def parse_obj_lists(ylists: Iterable[Any], map_type: str) -> Generator[InfoFile]:
