@@ -13,14 +13,16 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
   - `function.py` - Class for reading/outputting THUMB functions
   - `game_info.py` - Class for handling all info entries for a game
   - `info_entry.py` - Classes for representing info entries of each type
+  - `oam_dumper.py` - Script for outputting OAM data as an ASM file
+  - `pcm_dumper.py` - Script for outputting PCM samples as WAV or AIFF
   - `references.py` - Script for finding all references to an address
   - `region_find.py` - Script for finding an address from one region in another
   - `rom.py` - Class for handling a Fusion or Zero Mission ROM file
   - `sym_file.py` - Script for generating a sym file to use with no$gba
   - `symbols.py` - Class for storing labels while disassembling functions
+  - `text_dumper.py` - Script for printing text from a ROM file
   - `thumb.py` - Class for representing THUMB instructions
   - `validator.py` - Script for validating data and converting to JSON
-  - `yaml_utils.py` - Functions for working with YAML data
 - `yaml` - Info files in YAML format; large files are split for easier editing
 
 Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting with `unk` are for unlabeled data.
@@ -44,7 +46,8 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting w
 - GameVar (extends GameEntry)
   - **`type`** : `str`
   - **`count`** : `RegionInt`
-  - **`tags`** : `Optional[List[str]]`
+  - **`cat`** : `Optional[Category]`
+  - **`comp`** : `Optional[Compression]`
   - **`enum`** : `Optional[str]`
 - RAM / ROM (extends GameVar)
   - **`addr`** : `RegionInt`
