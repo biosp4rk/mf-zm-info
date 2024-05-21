@@ -5,13 +5,16 @@ import re
 import sys
 from typing import Dict, List, Tuple
 
+from jsonschema import Draft7Validator
+from referencing import Registry, Resource
+
 from constants import *
 from game_info import GameInfo
 from info_entry import *
 import info_file_utils as ifu
 
 
-LABEL_PAT = re.compile(r"^[A-Za-z]\w*$", flags=re.A)
+SCHEMA_PATH = "../schema"
 
 TYPE_SYMS = {"*", "[", "]", "(", ")"}
 
@@ -49,10 +52,38 @@ class Validator(object):
         self.errors: List[Tuple[str, EntryLoc]] = []
 
     def validate(self):
+        #self.validate_files()
+        self.validate_info_entries()
+
+    def validate_files(self) -> None:
+        print("Validating files")
+        # load schema with shared definitions
+        with open(os.path.join(SCHEMA_PATH, "definitions.json")) as f:
+            defs_schema = json.load(f)
+        defs_resource = Resource.from_contents(defs_schema)
+        registry = Registry().with_resource("urn:definitions", defs_resource)
+
+        # go through yaml files of each type
+        for map_type in MAP_TYPES:
+            self.entry_loc.map_type = map_type
+            name = "data" if map_type == "ram" else map_type
+            with open(os.path.join(SCHEMA_PATH, name + JSON_EXT)) as f:
+                map_schema = json.load(f)
+            validator = Draft7Validator(map_schema, registry=registry)
+
+            for game in GAMES:
+                paths = ifu.find_yaml_files(game, map_type)
+                ylists = ifu.load_yaml_files(paths)
+                for path, ylist in zip(paths, ylists):
+                    name = os.path.basename(path)
+                    print(f"Checking {game} {map_type} {name}")
+                    validator.validate(ylist)
+
+
+    def validate_info_entries(self) -> None:
+        print("Validating info entries")
         for game in GAMES:
             self.entry_loc.game = game
-            # get all info
-            # TODO: check yaml files before parsing
             info = GameInfo(game, from_json=False)
             self.enums = info.enums
             self.structs = info.structs
@@ -61,64 +92,45 @@ class Validator(object):
             self.entry_loc.map_type = MAP_ENUMS
             for entry in info.enums.values():
                 self.entry_loc.entry_name = entry.label
-                self.check_desc(entry.desc)
-                self.check_label(entry.label)
                 self.check_vals(entry.vals)
-                self.check_notes(entry.notes)
 
             # check structs
             self.entry_loc.map_type = MAP_STRUCTS
             for entry in info.structs.values():
                 self.entry_loc.entry_name = entry.label
-                self.check_desc(entry.desc)
-                self.check_label(entry.label)
-                self.check_region_int(K_SIZE, entry.size)
                 self.check_vars(entry.vars)
-                self.check_notes(entry.notes)
 
             # check code
             self.entry_loc.map_type = MAP_CODE
             prev: CodeEntry = None
             for entry in info.code:
                 self.entry_loc.entry_name = entry.label
-                self.check_desc(entry.desc)
-                self.check_label(entry.label)
                 self.check_region_int(K_ADDR, entry.addr, 4)
                 self.check_region_int(K_SIZE, entry.size, 2)
-                self.check_mode(entry.mode)
                 self.check_params(entry.params)
                 self.check_return(entry.ret)
-                self.check_notes(entry.notes)
                 self.check_entries_overlap(entry, prev, MAP_CODE)
                 prev = entry
 
             # check data and ram
-            ram_rom: Tuple[Tuple[str, List[DataEntry]]] = (
+            data_and_ram = (
                 (MAP_DATA, info.data),
                 (MAP_RAM, info.ram)
             )
-            for map_type, entries in ram_rom:
+            for map_type, entries in data_and_ram:
                 self.entry_loc.map_type = map_type
                 prev: DataEntry = None
                 for entry in entries:
                     self.entry_loc.entry_name = entry.label
-                    self.check_desc(entry.desc)
-                    self.check_label(entry.label)
                     valid_type = self.check_type(entry)
-                    self.check_cat(entry.cat)
-                    self.check_comp(entry.comp)
                     self.entry_loc.field_name = K_ADDR
-                    align = None
-                    if entry.primitive != PrimType.STRUCT:
-                        align = entry.get_spec_size(self.structs)
+                    align = entry.get_alignment(self.structs)
                     self.check_region_int(K_ADDR, entry.addr, align)
                     self.check_enum(entry.enum)
-                    self.check_notes(entry.notes)
                     if valid_type:
                         # can only check size if type is valid
                         self.check_entries_overlap(entry, prev, map_type)
                         prev = entry
-
         # print any errors
         if len(self.errors) == 0:
             print("No validation errors")
@@ -172,42 +184,12 @@ class Validator(object):
                 # so we only check against one region
                 break
 
-    def check_desc(self, desc: str) -> None:
-        self.entry_loc.field_name = K_DESC
-        if not isinstance(desc, str):
-            self.add_error("desc must be a string")
-            return
-        if not is_ascii(desc):
-            self.add_error("desc must be ascii")
-
-    def check_label(self, label: str) -> None:
-        self.entry_loc.field_name = K_LABEL
-        if not isinstance(label, str):
-            self.add_error("label must be a string")
-            return
-        if not LABEL_PAT.match(label):
-            self.add_error("label must be alphanumeric")
-
-    def check_region_int(self, name: str, entry: RegionInt, align=None) -> None:
+    def check_region_int(self, name: str, entry: RegionInt, align: int) -> None:
         self.entry_loc.field_name = name
-        nums = None
-        if not isinstance(entry, (int, dict)):
-            self.add_error("Expected integer or dictionary")
-            return
-        if isinstance(entry, int):
-            nums = [entry]
-        else:
-            for k, v in entry.items():
-                if k not in REGIONS:
-                    self.add_error("Invalid region")
-                if not isinstance(v, int):
-                    self.add_error("Value must be an integer")
-                    return
-            nums = list(entry.values())
-        if align is not None:
-            for num in nums:
-                if num % align != 0:
-                    self.add_error(f"Number must be {align} byte aligned")
+        nums = [entry] if isinstance(entry, int) else list(entry.values())
+        for num in nums:
+            if num % align != 0:
+                self.add_error(f"Number must be {align} byte aligned")
 
     def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
@@ -228,76 +210,37 @@ class Validator(object):
 
     def check_vals(self, vals: List[EnumValEntry]) -> None:
         self.entry_loc.field_name = K_VALS
-        if not isinstance(vals, list):
-            self.add_error("vals must be a list")
-            return
         prev = -1
         for ve in vals:
-            self.check_label(ve.label)
-            self.check_notes(ve.notes)
-            # check val
-            if not isinstance(ve.val, int):
-                self.add_error("val must be an integer")
-                continue
             if prev >= ve.val:
                 self.add_error("vals should be in ascending order")
             prev = ve.val
 
     def check_vars(self, vars: List[StructVarEntry]):
         self.entry_loc.field_name = K_VARS
-        if not isinstance(vars, list):
-            self.add_error("vars must be a list")
-            return
         prev = -1
         for ve in vars:
-            self.check_label(ve.label)
             self.check_type(ve)
-            self.check_cat(ve.cat)
-            self.check_comp(ve.comp)
             self.check_enum(ve.enum)
-            self.check_notes(ve.notes)
-            self.check_region_int(K_OFFSET, ve.offset)
+            align = ve.get_alignment(self.structs)        
+            self.check_region_int(K_OFFSET, ve.offset, align)
+            # TODO: check for overlap
             if prev >= ve.offset:
                 self.add_error("offsets should be in ascending order")
             prev = ve.offset
 
-    def check_mode(self, mode: CodeMode):
-        self.entry_loc.field_name = K_MODE
-        if not isinstance(mode, CodeMode):
-            self.add_error("Invalid mode")
-
     def check_params(self, params: List[VarEntry]):
         self.entry_loc.field_name = K_PARAMS
-        if params is not None and not isinstance(params, list):
-            self.add_error("params must be null or list")
-        if isinstance(params, list):
+        if params is not None:
             for param in params:
-                self.check_label(param.label)
                 self.check_type(param)
                 self.check_enum(param.enum)
 
     def check_return(self, ret: VarEntry):
         self.entry_loc.field_name = K_RETURN
-        if ret is not None and not isinstance(ret, VarEntry):
-            self.add_error("return must be null or dict")
-        if isinstance(ret, dict):
-            self.check_label(ret.label)
+        if ret is not None:
             self.check_type(ret)
             self.check_enum(ret.enum)
-
-    def check_cat(self, cat: Category):
-        if cat is None:
-            return
-        self.entry_loc.field_name = K_CAT
-        if not isinstance(cat, Category):
-            self.add_error("Invalid category")
-
-    def check_comp(self, comp: Compression):
-        if comp is None:
-            return
-        self.entry_loc.field_name = K_COMP
-        if not isinstance(comp, Compression):
-            self.add_error("Invalid compression")
 
     def check_enum(self, enm: str):
         if enm is None:
@@ -305,17 +248,6 @@ class Validator(object):
         self.entry_loc.field_name = K_ENUM
         if enm not in self.enums:
             self.add_error("Invalid enum")
-
-    def check_notes(self, notes: str) -> None:
-        if notes is None:
-            return
-        self.entry_loc.field_name = K_NOTES
-        if not is_ascii(notes):
-            self.add_error("notes must be ascii")
-
-
-def is_ascii(s: str) -> bool:
-    return all(ord(c) < 128 for c in s)
 
 
 def tokenize_decl(decl: str):
@@ -380,14 +312,9 @@ def output_yamls() -> None:
     # find all yaml files
     yaml_files = []
     for game in GAMES:
-        game_dir = os.path.join(YAML_PATH, game)
         for map_type in MAP_TYPES:
-            map_dir = os.path.join(game_dir, map_type)
-            for file in os.listdir(map_dir):
-                ext = os.path.splitext(file)[1]
-                if ext == YAML_EXT:
-                    path = os.path.join(map_dir, file)
-                    yaml_files.append((path, map_type))
+            paths = ifu.find_yaml_files(game, map_type, True)
+            yaml_files += [(p, map_type) for p in paths]
     # parse files and output
     for path, map_type in yaml_files:
         data = ifu.load_yaml_file(path)

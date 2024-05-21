@@ -24,11 +24,7 @@ def find_yaml_files(
     map_type: str,
     include_unk: bool = False
 ) -> List[str]:
-    """
-    Finds all yaml files of the provided type
-    and returns their paths.
-    """
-    # find all yaml files and load data
+    """Finds all yaml files of the provided type and returns their paths."""
     dir_path = os.path.join(YAML_PATH, game, map_type)
     paths = None
     if not os.path.isdir(dir_path):
