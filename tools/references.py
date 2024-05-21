@@ -1,6 +1,8 @@
 import argparse
 from enum import Enum
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
+
+import yaml
 
 import argparse_utils as apu
 from game_info import GameInfo
@@ -22,6 +24,9 @@ class Ref:
         self.label = label
         self.offset = offset
 
+    def to_obj(self) -> Any:
+        raise NotImplementedError()
+
 
 class BlRef(Ref):
 
@@ -35,6 +40,20 @@ class BlRef(Ref):
             "" if self.offset is None else f"{self.offset:X}"
         ]
         return "\t".join(items)
+    
+    def __repr__(self) -> str:
+        items = ["bl", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("offset", self.offset))
+        return dict(obj)
 
 
 class PoolRef(Ref):
@@ -57,6 +76,20 @@ class PoolRef(Ref):
         ]
         return "\t".join(items)
 
+    def __repr__(self) -> str:
+        items = ["pool", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+    
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("offset", self.offset))
+        return dict(obj)
+
 
 class DataRef(Ref):
 
@@ -78,6 +111,22 @@ class DataRef(Ref):
             "" if self.offset is None else f"{self.offset:X}"
         ]
         return "\t".join(items)
+
+    def __repr__(self) -> str:
+        items = ["data", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.index:X}")
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("index", self.index))
+            obj.append(("offset", self.offset))
+        return dict(obj)
 
 
 class References(object):
@@ -143,9 +192,10 @@ class References(object):
         
         return bl_refs, list(pool_refs.values()), data_refs
 
-    def find_all(self) -> List[Tuple[str, int, List[Ref]]]:
+    def find_all(self) -> List[Tuple[str, List[Ref]]]:
         # TODO: pass refs instead of putting it on self?
-        self.refs: Dict[int, List[Ref]] = {}
+        self.found_refs: Dict[int, List[Ref]] = {}
+
         rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
@@ -170,7 +220,15 @@ class References(object):
         for i in range(code_end, data_end, 4):
             self.check_addr(i, RefType.DATA)
         
-        return sorted(self.refs.items())
+        # get all code and data labels
+        entry_labels = {}
+        for entry in self.info.code + self.info.data:
+            entry_labels[entry.addr] = entry.label
+        return [
+            (entry_labels[addr], ref)
+            for addr, ref in sorted(self.found_refs.items())
+            if addr in entry_labels
+        ]
 
     def check_addr(self, addr: int, kind: RefType) -> None:
         """Checks if an address contains a valid reference."""
@@ -184,10 +242,10 @@ class References(object):
 
     def add_ref(self, val: int, addr: int, kind: RefType) -> None:
         """Creates and adds the reference at the given address."""
-        if val not in self.refs:
-            self.refs[val] = []
+        if val not in self.found_refs:
+            self.found_refs[val] = []
         ref = self.get_ref(addr, kind)
-        self.refs[val].append(ref)
+        self.found_refs[val].append(ref)
 
     def get_prev_entry(self, addr: int) -> InfoEntry:
         left = 0
@@ -293,9 +351,22 @@ if __name__ == "__main__":
     refs = References(rom, args.unk)
 
     if args.all:
-        results = refs.find_all()
-        for name, addr, refs in results:
-            print(f"{name}\t{addr:06X}\t{len(refs)}")
+        all_refs = refs.find_all()
+        kinds = {
+            BlRef: "call",
+            PoolRef: "pool",
+            DataRef: "data"
+        }
+        all_entries = {}
+        for label, refs in all_refs:
+            entry = {}
+            for ref in refs:
+                key = kinds[type(ref)]
+                if key not in entry:
+                    entry[key] = []
+                entry[key].append(ref.to_obj())
+            all_entries[label] = entry
+        print(yaml.safe_dump(all_entries, sort_keys=False))
     else:
         # get address
         addr = None

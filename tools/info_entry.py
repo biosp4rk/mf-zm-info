@@ -261,7 +261,7 @@ class VarEntry(InfoEntry):
         )
 
     @staticmethod
-    def to_obj(entry: "VarEntry") -> str:
+    def to_obj(entry: "VarEntry") -> Any:
         obj = [
             (K_DESC, entry.desc),
             (K_LABEL, entry.label),
