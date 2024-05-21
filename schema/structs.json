@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "desc": {
+                "$ref": "urn:definitions#/definitions/Description"
+            },
+            "label": {
+                "$ref": "urn:definitions#/definitions/Label"
+            },
+            "size": {
+                "type": "integer"
+            },
+            "vars": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "desc": {
+                            "$ref": "urn:definitions#/definitions/Description"
+                        },
+                        "label": {
+                            "$ref": "urn:definitions#/definitions/Label"
+                        },
+                        "type": {
+                            "$ref": "urn:definitions#/definitions/Type"
+                        },
+                        "count": {
+                            "$ref": "urn:definitions#/definitions/RegionInt"
+                        },
+                        "offset": {
+                            "$ref": "urn:definitions#/definitions/RegionInt"
+                        },
+                        "cat": {
+                            "$ref": "urn:definitions#/definitions/Category"
+                        },
+                        "comp": {
+                            "$ref": "urn:definitions#/definitions/Compression"
+                        },
+                        "enum": {
+                            "$ref": "urn:definitions#/definitions/Label"
+                        },
+                        "notes": {
+                            "$ref": "urn:definitions#/definitions/Description"
+                        }
+                    },
+                    "required": ["desc", "label", "type", "offset"],
+                    "additionalProperties": false
+                },
+                "minItems": 1
+            },
+            "notes": {
+                "$ref": "urn:definitions#/definitions/Description"
+            }
+        },
+        "required": ["desc", "label", "size", "vars"],
+        "additionalProperties": false
+    }
+}

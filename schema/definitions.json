@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Description": {
+            "type": "string",
+            "minLength": 1
+        },
+        "Label": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+        },
+        "Type": {
+            "type": "string",
+            "minLength": 1
+        },
+        "RegionInt": {
+            "oneOf": [
+                {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "U": { "type": "integer" },
+                        "E": { "type": "integer" },
+                        "J": { "type": "integer" },
+                        "C": { "type": "integer" }
+                    },
+                    "additionalProperties": false
+                }
+            ]
+        },
+        "Category": {
+            "type": "string",
+            "enum": [
+                "flags",
+                "ascii",
+                "sjis",
+                "text",
+                "gfx",
+                "tilemap",
+                "palette",
+                "oam_frame",
+                "bg_blocks",
+                "bg_map",
+                "pcm",
+                "thumb",
+                "arm"
+            ]
+        },
+        "Compression": {
+            "type": "string",
+            "enum": ["rle", "lz"]
+        }
+    }
+}

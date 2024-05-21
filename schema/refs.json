@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "patternProperties": {
+        "^[A-Za-z_][A-Za-z0-9_]*$": {
+            "type": "object",
+            "properties": {
+                "pool": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "addr": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            },
+                            "label": {
+                                "$ref": "urn:definitions#/definitions/Label"
+                            },
+                            "offset": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            }
+                        },
+                        "required": ["addr"],
+                        "additionalProperties": false
+                    },
+                    "minItems": 1
+                },
+                "call": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "addr": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            },
+                            "label": {
+                                "$ref": "urn:definitions#/definitions/Label"
+                            },
+                            "offset": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            }
+                        },
+                        "required": ["addr"],
+                        "additionalProperties": false
+                    },
+                    "minItems": 1
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "addr": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            },
+                            "label": {
+                                "$ref": "urn:definitions#/definitions/Label"
+                            },
+                            "index": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            },
+                            "offset": {
+                                "$ref": "urn:definitions#/definitions/RegionInt"
+                            }
+                        },
+                        "required": ["addr"],
+                        "additionalProperties": false
+                    },
+                    "minItems": 1
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
