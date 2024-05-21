@@ -1269,7 +1269,8 @@
   return:
     desc: Midair
     label: Midair
-    type: bool
+    type: u8
+    cat: bool
 - desc: Zoomer collision initialize
   label: ZoomerCollisionInit
   addr:
@@ -1450,7 +1451,8 @@
   return:
     desc: Midair
     label: Midair
-    type: bool
+    type: u8
+    cat: bool
 - desc: Zeela hitbox initialize
   label: ZeelaHitboxInit
   addr:
@@ -1809,7 +1811,8 @@
   return:
     desc: Fully up
     label: FullyUp
-    type: bool
+    type: u8
+    cat: bool
 - desc: Kraid go up
   label: KraidGoUp
   addr:
@@ -2672,7 +2675,8 @@
   return:
     desc: Releasing Samus
     label: ReleasingSamus
-    type: bool
+    type: u8
+    cat: bool
 - desc: Zipline graphics update
   label: ZiplineGfxUpdate
   addr:
@@ -2807,7 +2811,8 @@
   return:
     desc: Midair
     label: Midair
-    type: bool
+    type: u8
+    cat: bool
 - desc: Sova hitbox update
   label: SovaHitboxUpdate
   addr:
@@ -3035,7 +3040,8 @@
   return:
     desc: Bouncing
     label: Bouncing
-    type: bool
+    type: u8
+    cat: bool
 - desc: Geruta X movement
   label: GerutaXMovement
   addr:
@@ -3052,7 +3058,8 @@
   return:
     desc: Bouncing
     label: Bouncing
-    type: bool
+    type: u8
+    cat: bool
 - desc: Geruta initialize
   label: GerutaInit
   addr:
@@ -3408,7 +3415,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Save platform initialize
   label: SavePlatformInit
   addr:
@@ -3987,7 +3995,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Deorem spawn charge beam
   label: DeoremSpawnChargeBeam
   addr:
@@ -4590,7 +4599,8 @@
   return:
     desc: Not out of range
     label: NotOutOfRange
-    type: bool
+    type: u8
+    cat: bool
 - desc: Dessgeega initialize
   label: DessgeegaInit
   addr:
@@ -5817,7 +5827,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
   notes: Used when Imago is falling
 - desc: Winged ripper initialize
   label: WingedRipperInit
@@ -6074,7 +6085,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Space pirate check colliding with pirate when climbing
   label: SpacePirateCheckCollidingWithPirateWhenClimbing
   addr:
@@ -6095,7 +6107,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Space pirate check Samus in shooting range
   label: SpacePirateCheckSamusInShootingRange
   addr:
@@ -6109,7 +6122,8 @@
   return:
     desc: In range
     label: InRange
-    type: bool
+    type: u8
+    cat: bool
 - desc: Space pirate detect Samus while crawling
   label: SpacePirateDetectSamusWhileCrawling
   addr:
@@ -6123,7 +6137,8 @@
   return:
     desc: Stopped crawling
     label: StoppedCrawling
-    type: bool
+    type: u8
+    cat: bool
 - desc: Space pirate climbing check wall jump or fire
   label: SpacePirateClimbingCheckWallJumpOrFire
   addr:
@@ -6686,7 +6701,8 @@
   params:
   - desc: Play sound flag
     label: PlaySoundFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
   notes: Disables the alarm if no other space pirates are alive
 - desc: Space pirate hit by laser init
@@ -6900,7 +6916,8 @@
   params:
   - desc: Play sound flag
     label: PlaySoundFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Black space pirate hit by laser init
   label: BlackSpacePirateHitByLaserInit
@@ -7383,7 +7400,8 @@
   return:
     desc: Samus touching front
     label: SamusTouchingFront
-    type: bool
+    type: u8
+    cat: bool
 - desc: Worker robot initialize
   label: WorkerRobotInit
   addr:
@@ -7606,7 +7624,8 @@
   return:
     desc: Count greater than 3
     label: CountGreaterThan3
-    type: bool
+    type: u8
+    cat: bool
   notes: Counts the number of parasites on Samus, used to check if Samus should take damage
 - desc: Parasite initialize
   label: ParasiteInit
@@ -8098,7 +8117,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Piston check Samus in
   label: PistonCheckSamusIn
   addr:
@@ -8112,7 +8132,8 @@
   return:
     desc: In
     label: In
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if Samus is in the top part of the piston after it went up
 - desc: Piston initialize
   label: PistonInit
@@ -8255,6 +8276,7 @@
     desc: Grabbing
     label: Grabbing
     type: u32
+    cat: bool
 - desc: Ridley Samus grabbed
   label: RidleySamusGrabbed
   addr:
@@ -8296,7 +8318,8 @@
   return:
     desc: Previous collision not air
     label: PrevCollisionNotAir
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley tail attacks Y move
   label: RidleyTailAttacksYMove
   addr:
@@ -8829,7 +8852,8 @@
   return:
     desc: Not midair
     label: NotMidair
-    type: bool
+    type: u8
+    cat: bool
 - desc: Metroid move
   label: MetroidMove
   addr:
@@ -8869,7 +8893,8 @@
   return:
     desc: Bomb touching
     label: BombTouching
-    type: bool
+    type: u8
+    cat: bool
 - desc: Metroid check bouncing on Metroid
   label: MetroidCheckBouncingOnMetroid
   addr:
@@ -8897,7 +8922,8 @@
   return:
     desc: Samus grabbed
     label: SamusGrabbed
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if Samus is already grabbed by another Metroid
 - desc: Metroid play sound
   label: MetroidPlaySound
@@ -9478,7 +9504,8 @@
   return:
     desc: Previous collision check is solid
     label: PrevCollisionCheckIsSolid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Holtz X movement
   label: HoltzXMovement
   addr:
@@ -9495,7 +9522,8 @@
   return:
     desc: Previous collision check is solid
     label: PrevCollisionCheckIsSolid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Holtz initialize
   label: HoltzInit
   addr:
@@ -9687,7 +9715,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ruins Test check hit by charged pistol
   label: RuinsTestCheckHitByChargedPistol
   addr:
@@ -9701,7 +9730,8 @@
   return:
     desc: Hit
     label: Hit
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ruins Test check symbol shot
   label: RuinsTestCheckSymbolShot
   addr:
@@ -9715,7 +9745,8 @@
   return:
     desc: Last symbol shot
     label: LastSymbolShot
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ruins Test check Samus hurting
   label: RuinsTestCheckSamusHurting
   addr:
@@ -9729,7 +9760,8 @@
   return:
     desc: Samus getting hurt
     label: SamusGettingHurt
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ruins Test update symbol
   label: RuinsTestUpdateSymbol
   addr:
@@ -9743,7 +9775,8 @@
   return:
     desc: New movement pattern
     label: NewMovementPattern
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ruins Test ghost move
   label: RuinsTestGhostMove
   addr:
@@ -10132,7 +10165,8 @@
   return:
     desc: Previous collision check is solid
     label: PrevCollisionCheckIsSolid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mella X movement
   label: MellaXMovement
   addr:
@@ -10149,7 +10183,8 @@
   return:
     desc: Previous collision check is solid
     label: PrevCollisionCheckIsSolid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mella initialize
   label: MellaInit
   addr:
@@ -10364,7 +10399,8 @@
   return:
     desc: Not atomic or dead
     label: NotAtomicOrDead
-    type: bool
+    type: u8
+    cat: bool
 - desc: Atomic electricity initialize
   label: AtomicElectricityInit
   addr:
@@ -10861,7 +10897,8 @@
   return:
     desc: Colliding
     label: Colliding
-    type: bool
+    type: u8
+    cat: bool
 - desc: Acid worm initialize
   label: AcidWormInit
   addr:
@@ -11198,7 +11235,8 @@
   return:
     desc: Out of range
     label: OutOfRange
-    type: bool
+    type: u8
+    cat: bool
 - desc: Sidehopper initialize
   label: SidehopperInit
   addr:
@@ -12255,7 +12293,8 @@
   return:
     desc: Entering
     label: Entering
-    type: bool
+    type: u8
+    cat: bool
 - desc: Gunship initialize
   label: GunshipInit
   addr:
@@ -13064,7 +13103,8 @@
   return:
     desc: In range
     label: InRange
-    type: bool
+    type: u8
+    cat: bool
 - desc: Baristute initialize
   label: BaristuteInit
   addr:
@@ -13584,7 +13624,8 @@
   return:
     desc: Previous collision check is solid
     label: PrevCollisionCheckIsSolid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Skultera initialize
   label: SkulteraInit
   addr:
@@ -14259,7 +14300,8 @@
   return:
     desc: Changing height
     label: ChangingHeight
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mecha Ridley crawling backwards initialize
   label: MechaRidleyCrawlingBackwardsInit
   addr:
@@ -14357,9 +14399,10 @@
     label: RamSlot
     type: u8
   return:
-    desc: Samus has no more ammo
-    label: SamusHasNoMoreAmmo
-    type: bool
+    desc: Samus out of ammo
+    label: SamusOutOfAmmo
+    type: u8
+    cat: bool
   notes: Checks if Samus is out out missiles and super missiles, used to force a missile attack
 - desc: Mecha Ridley idle
   label: MechaRidleyIdle

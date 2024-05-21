@@ -1241,7 +1241,8 @@
     type: u16
   - desc: Param 1
     label: param_1
-    type: bool
+    type: u8
+    cat: bool
   return: null
   notes: Queues the current music, plays the provided track, and replays the queued music when done
 - desc: Replay queued music track
@@ -1703,7 +1704,8 @@
   return:
     desc: Unknown
     label: unk
-    type: bool
+    type: u8
+    cat: bool
 - desc: Stop music or sound
   label: StopMusicOrSound
   addr:
@@ -1957,7 +1959,8 @@
   return:
     desc: Failure flag
     label: FailureFlag
-    type: bool
+    type: u8
+    cat: bool
   notes: Calls software interrupt 0x25
 - desc: SoundBias 0
   label: SoundBias_0
@@ -2688,7 +2691,8 @@
   return:
     desc: Fired beam or missile
     label: FiredBeamOrMissile
-    type: bool
+    type: u8
+    cat: bool
   notes: Determines which new projectile Samus is firing
 - desc: Samus check fire pistol
   label: SamusCheckFirePistol
@@ -2749,7 +2753,8 @@
   return:
     desc: A button pressed
     label: AButtonPressed
-    type: bool
+    type: u8
+    cat: bool
   notes: If A is pressed, sets forced movement flag to 1, used in the standing pose subroutines (morphball, turning around, and standing)
 - desc: Samus set selected weapon
   label: SamusSetSelectedWeapon
@@ -2836,7 +2841,8 @@
   return:
     desc: Getting knocked back or dying
     label: GettingKnockedBackOrDying
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks for varia and gravity and inflicts hazard damage
 - desc: Samus check shinesparking pose
   label: SamusCheckShinesparkingPose
@@ -2886,7 +2892,8 @@
     type: SamusData *
   - desc: Is slowed flag
     label: IsSlowedFlag
-    type: bool
+    type: u8
+    cat: bool
   return:
     desc: Animation state
     label: AnimState
@@ -4553,7 +4560,8 @@
   return:
     desc: Change game mode
     label: ChangeGameMode
-    type: bool
+    type: u8
+    cat: bool
 - desc: Set V-Blank code for in-game
   label: SetVBlankCodeForInGame
   addr:
@@ -5009,7 +5017,8 @@
   params:
   - desc: Knockback flag
     label: KnockbackFlag
-    type: bool
+    type: u8
+    cat: bool
   - desc: Sprite data pointer
     label: SpriteDataPtr
     type: SpriteData *
@@ -5019,7 +5028,8 @@
   return:
     desc: Energy at 0
     label: EnergyAt0
-    type: bool
+    type: u8
+    cat: bool
   notes: Handles Samus taking damage from a sprite
 - desc: Check objects touching
   label: CheckObjectsTouching
@@ -5058,7 +5068,8 @@
   return:
     desc: Objects touching
     label: ObjectsTouching
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if two objects are touching
 - desc: Samus and sprite collision
   label: SamusAndSpriteCollision
@@ -5308,7 +5319,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check near end of sprite animation (current)
   label: CheckNearEndOfSpriteAnim_Curr
   addr:
@@ -5322,7 +5334,8 @@
   return:
     desc: Animation near end
     label: AnimNearEnd
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check end of sprite animation (slot)
   label: CheckEndOfSpriteAnim_Slot
   addr:
@@ -5339,7 +5352,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check near end of sprite animation (slot)
   label: CheckNearEndOfSpriteAnim_Slot
   addr:
@@ -5356,7 +5370,8 @@
   return:
     desc: Animation near end
     label: AnimNearEnd
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check end of sub sprite data 1 animation
   label: CheckEndOfSubSpriteData1Anim
   addr:
@@ -5370,7 +5385,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check near end of sub sprite data 1 animation
   label: CheckNearEndOfSubSpriteData1Anim
   addr:
@@ -5384,7 +5400,8 @@
   return:
     desc: Animation near end
     label: AnimNearEnd
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check end of sub sprite data 2 animation
   label: CheckEndOfSubSpriteData2Anim
   addr:
@@ -5398,7 +5415,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check end of sub sprite animation (pointer)
   label: CheckEndOfSubSpriteAnim_Ptr
   addr:
@@ -5415,7 +5433,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check near end of sub sprite animation (pointer)
   label: CheckNearEndOfSubSpriteAnim_Ptr
   addr:
@@ -5432,7 +5451,8 @@
   return:
     desc: Animation near end
     label: AnimNearEnd
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check Samus near sprite (left/right)
   label: CheckSamusNearSprite_LeftRight
   addr:
@@ -5601,7 +5621,8 @@
   return:
     desc: Energy not full at start
     label: EnergyNotFullAtStart
-    type: bool
+    type: u8
+    cat: bool
 - desc: Refill missiles
   label: RefillMissiles
   addr:
@@ -5615,7 +5636,8 @@
   return:
     desc: Missiles not full at start
     label: MissilesNotFullAtStart
-    type: bool
+    type: u8
+    cat: bool
 - desc: Refill super missiles
   label: RefillSuperMissiles
   addr:
@@ -5629,7 +5651,8 @@
   return:
     desc: Super missiles not full at start
     label: SuperMissilesNotFullAtStart
-    type: bool
+    type: u8
+    cat: bool
 - desc: Refill power bombs
   label: RefillPowerBombs
   addr:
@@ -5643,7 +5666,8 @@
   return:
     desc: Power bombs not full at start
     label: PowerBombsNotFullAtStart
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check crouching or morphed
   label: CheckCrouchingOrMorphed
   addr:
@@ -5657,7 +5681,8 @@
   return:
     desc: Crouching or morphed
     label: CrouchingOrMorphed
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check crouching or crawling
   label: CheckCrouchingOrCrawling
   addr:
@@ -5671,7 +5696,8 @@
   return:
     desc: Crouching or crawling
     label: CrouchingOrCrawling
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check morphed
   label: CheckMorphed
   addr:
@@ -5685,7 +5711,8 @@
   return:
     desc: Morphed
     label: Morphed
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check Samus movement is prevented
   label: CheckSamusMovementIsPrevented
   addr:
@@ -5699,7 +5726,8 @@
   return:
     desc: Samus cannot move
     label: SamusCannotMove
-    type: bool
+    type: u8
+    cat: bool
 - desc: Sprite take damage from Samus contact
   label: SpriteTakeDamageFromSamusContact
   addr:
@@ -5735,7 +5763,8 @@
   return:
     desc: Pulling self up
     label: PullingSelfUp
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check on zipline
   label: CheckOnZipline
   addr:
@@ -5749,7 +5778,8 @@
   return:
     desc: On A zipline
     label: OnAZipline
-    type: bool
+    type: u8
+    cat: bool
 - desc: Count primary sprites
   label: CountPrimarySprites
   addr:
@@ -5859,7 +5889,8 @@
   return:
     desc: Current enemy has drop
     label: CurrEnemyHasDrop
-    type: bool
+    type: u8
+    cat: bool
 - desc: Count enemy drops
   label: CountEnemyDrops
   addr:
@@ -6022,7 +6053,8 @@
     type: u16
   - desc: Play sound flag
     label: PlaySoundFlag
-    type: bool
+    type: u8
+    cat: bool
   - desc: Particle effect
     label: ParticleEffect
     type: u8
@@ -6042,7 +6074,8 @@
   return:
     desc: Sprite is stunned
     label: SpriteIsStunned
-    type: bool
+    type: u8
+    cat: bool
 - desc: Is sprite on screen and shaking
   label: IsSpriteOnScreenAndShaking
   addr:
@@ -6056,7 +6089,8 @@
   return:
     desc: Sprite on screen and screen shake is active
     label: SpriteOnScreenAndScreenShakeIsActive
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if a sprite is on screen and a screen shake is active (used in sova, zoomer and zeela AI)
 - desc: Update sub-sprite data 1 timer
   label: UpdateSubSpriteData1Timer
@@ -6180,7 +6214,8 @@
   return:
     desc: Overlapping
     label: Overlapping
-    type: bool
+    type: u8
+    cat: bool
   notes: Calls CheckObjectsTouching to detect overlap between the current sprite and Samus draw distance offsets
 - desc: Set sprite splash effect
   label: SetSpriteSplashEffect
@@ -6229,7 +6264,8 @@
   return:
     desc: Leaving liquid
     label: LeavingLiquid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check sprite entering liquid
   label: CheckSpriteEnteringLiquid
   addr:
@@ -6255,7 +6291,8 @@
   return:
     desc: Entering liquid
     label: EnteringLiquid
-    type: bool
+    type: u8
+    cat: bool
 - desc: Get number of items collected
   label: GetNumOfItemsCollected
   addr:
@@ -6534,7 +6571,8 @@
   return:
     desc: Within limit
     label: WithinLimit
-    type: bool
+    type: u8
+    cat: bool
 - desc: Initialize projectile
   label: InitProjectile
   addr:
@@ -6558,7 +6596,8 @@
   return:
     desc: Initialized
     label: Initialized
-    type: bool
+    type: u8
+    cat: bool
 - desc: Update arm cannon and weapons
   label: UpdateArmCannonAndWeapons
   addr:
@@ -6700,7 +6739,8 @@
   return:
     desc: Hitting solid clipdata
     label: HittingSolidClipdata
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if a projectile is hitting solid clipdata
 - desc: Projectile check center collision at position
   label: ProjectileCheckCenterCollisionAtPosition
@@ -6844,7 +6884,8 @@
   return:
     desc: Sprite is dead
     label: SpriteIsDead
-    type: bool
+    type: u8
+    cat: bool
 - desc: Projectile hit immune sprite
   label: ProjectileHitImmuneSprite
   addr:
@@ -7559,7 +7600,8 @@
   params:
   - desc: Update highlight flag
     label: UpdateHighlightFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Draw HUD power bombs
   label: DrawHudPowerBombs
@@ -7573,7 +7615,8 @@
   params:
   - desc: Update highlight flag
     label: UpdateHighlightFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Draw HUD super missiles
   label: DrawHudSuperMissiles
@@ -7587,7 +7630,8 @@
   params:
   - desc: Update highlight flag
     label: UpdateHighlightFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Draw HUD weapon highlight
   label: DrawHudWeaponHighlight
@@ -7651,7 +7695,8 @@
   return:
     desc: Timer should stop
     label: TimerShouldStop
-    type: bool
+    type: u8
+    cat: bool
   notes: Checks if Samus has finished the escape
 - desc: Update escape timer OAM
   label: UpdateEscapeTimerOam
@@ -7821,7 +7866,8 @@
   return:
     desc: Animation ended
     label: AnimEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Set current particle effect OAM frame pointer
   label: SetCurrParticleEffectOamFramePtr
   addr:
@@ -9523,7 +9569,8 @@
     type: u16
   - desc: Don't check for elevator
     label: DontCheckForElevator
-    type: bool
+    type: u8
+    cat: bool
   return:
     desc: Current clipdata action
     label: CurrClipdataAction
@@ -9542,7 +9589,8 @@
   return:
     desc: Cannot be used
     label: CannotBeUsed
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check ground type under Samus
   label: CheckGroundTypeUnderSamus
   addr:
@@ -9824,7 +9872,8 @@
   return:
     desc: Block destroyed
     label: BlockDestroyed
-    type: bool
+    type: u8
+    cat: bool
 - desc: Destroy non-reform blocks
   label: DestroyNonReformBlocks
   addr:
@@ -9841,7 +9890,8 @@
   return:
     desc: Valid block
     label: ValidBlock
-    type: bool
+    type: u8
+    cat: bool
 - desc: Destroy single bomb chain block
   label: DestorySingleBombChainBlock
   addr:
@@ -9858,7 +9908,8 @@
   return:
     desc: Always 1
     label: Always1
-    type: bool
+    type: u8
+    cat: bool
 - desc: Destroy single breakable block
   label: DestroySingleBreakableBlock
   addr:
@@ -9875,7 +9926,8 @@
   return:
     desc: Always 1
     label: Always1
-    type: bool
+    type: u8
+    cat: bool
 - desc: Destroy 2x2 block
   label: Destroy2x2Block
   addr:
@@ -9892,7 +9944,8 @@
   return:
     desc: Always 1
     label: Always1
-    type: bool
+    type: u8
+    cat: bool
 - desc: Store single never reform block
   label: StoreSingleNeverReformBlock
   addr:
@@ -9966,7 +10019,8 @@
   return:
     desc: Should destroy block
     label: ShouldDestroyBlock
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check reveal or destroy bomb block
   label: CheckRevealOrDestroyBombBlock
   addr:
@@ -9983,7 +10037,8 @@
   return:
     desc: Should destroy block
     label: ShouldDestroyBlock
-    type: bool
+    type: u8
+    cat: bool
 - desc: Apply current clipdata affecting action
   label: ApplyCurrClipdataAffectingAction
   addr:
@@ -10006,7 +10061,8 @@
   return:
     desc: Block changed
     label: BlockChanged
-    type: bool
+    type: u8
+    cat: bool
     notes: Returns 1 if block was destroyed, made solid, or hatch opened
 - desc: Update make solid block
   label: UpdateMakeSolidBlock
@@ -10020,7 +10076,8 @@
   params:
   - desc: Make solid
     label: MakeSolid
-    type: bool
+    type: u8
+    cat: bool
   - desc: X position
     label: XPosition
     type: u8
@@ -10052,7 +10109,8 @@
   return:
     desc: Block destroyed
     label: BlockDestroyed
-    type: bool
+    type: u8
+    cat: bool
   notes: Return value is not initialized, can be garbage in false case
 - desc: Update broken reform blocks
   label: UpdateBrokenReformBlocks
@@ -10100,11 +10158,13 @@
     type: u16
   - desc: Stop Samus
     label: StopSamus
-    type: bool
+    type: u8
+    cat: bool
   return:
     desc: Stored
     label: Stored
-    type: bool
+    type: u8
+    cat: bool
   notes: Stores a new broken reform block in RAM
 - desc: Store broken non-reform block
   label: StoreBrokenNonReformBlock
@@ -10149,7 +10209,8 @@
   return:
     desc: Could store
     label: CouldStore
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check Samus in reforming block
   label: CheckSamusInReformingBlock
   addr:
@@ -10169,7 +10230,8 @@
   return:
     desc: In block
     label: InBlock
-    type: bool
+    type: u8
+    cat: bool
 - desc: Start bomb chain
   label: StartBombChain
   addr:
@@ -10193,7 +10255,8 @@
   return:
     desc: Chain started
     label: ChainStarted
-    type: bool
+    type: u8
+    cat: bool
 - desc: Process bomb chains
   label: ProcessBombChains
   addr:
@@ -10436,7 +10499,8 @@
   params:
   - desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Check opening hatch
   label: CheckOpeningHatch
@@ -10707,7 +10771,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Color fading subroutine empty
   label: ColorFadingSubroutine_Empty
   addr:
@@ -10828,7 +10893,8 @@
   return:
     desc: Unknown
     label: unk
-    type: bool
+    type: u8
+    cat: bool
 - desc: Door transition fade
   label: DoorTransitionFade
   addr:
@@ -10842,7 +10908,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Color fading default
   label: ColorFading_Default
   addr:
@@ -10870,7 +10937,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before Chozodia escape fade
   label: BeforeChozodiaEscapeFade
   addr:
@@ -10884,7 +10952,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Color fading before demo ending
   label: ColorFading_BeforeDemoEnding
   addr:
@@ -10912,7 +10981,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before getting fully powered fade
   label: BeforeGettingFullyPoweredFade
   addr:
@@ -10926,7 +10996,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before Ridley spawn fade
   label: BeforeRidleySpawnFade
   addr:
@@ -10940,7 +11011,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before statue opening fade
   label: BeforeStatueOpeningFade
   addr:
@@ -10954,7 +11026,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before intro text fade
   label: BeforeIntroTextFade
   addr:
@@ -10968,7 +11041,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Color fading before blue ship
   label: ColorFading_BeforeBlueShip
   addr:
@@ -11024,7 +11098,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Color fading update door transition
   label: ColorFading_UpdateDoorTransition
   addr:
@@ -11112,7 +11187,8 @@
   return:
     desc: Power bomb ended and room has haze
     label: PBEndedAndRoomHasHaze
-    type: bool
+    type: u8
+    cat: bool
 - desc: Haze BG3
   label: HazeBG3
   addr:
@@ -11185,7 +11261,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Haze power bomb retracting
   label: HazePowerBombRetracting
   addr:
@@ -11203,7 +11280,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Transfer animated graphics
   label: TransferAnimatedGraphics
   addr:
@@ -11344,7 +11422,8 @@
   return:
     desc: Effect started
     label: EffectStarted
-    type: bool
+    type: u8
+    cat: bool
 - desc: Update opening/closing hatches
   label: UpdateOpeningOrClosingHatches
   addr:
@@ -11425,7 +11504,8 @@
   return:
     desc: Door found
     label: DoorFound
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check area connection
   label: CheckAreaConnection
   addr:
@@ -11445,7 +11525,8 @@
   return:
     desc: Door found
     label: DoorFound
-    type: bool
+    type: u8
+    cat: bool
 - desc: Process door type
   label: ProcessDoorType
   addr:
@@ -11499,7 +11580,8 @@
   return:
     desc: Hatch was unopened
     label: HatchWasUnopened
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check unlock hatches
   label: CheckUnlockHatches
   addr:
@@ -11523,7 +11605,8 @@
   params:
   - desc: Don't set raw
     label: DontSetRaw
-    type: bool
+    type: u8
+    cat: bool
   - desc: Hatch number
     label: HatchNum
     type: u8
@@ -11544,7 +11627,8 @@
   params:
   - desc: Is hatch lock event
     label: IsHatchLockEvent
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Load room doors
   label: LoadRoomDoors
@@ -11651,7 +11735,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
   notes: Handles both varia and full suit
 - desc: Suit flash calculate movement offset
   label: SuitFlashCalcMovementOffset
@@ -11790,7 +11875,8 @@
   params:
   - desc: Set flag
     label: SetFlag
-    type: bool
+    type: u8
+    cat: bool
   - desc: Cutscene number
     label: CutsceneNum
     type: u8
@@ -11817,7 +11903,8 @@
   return:
     desc: Event is set
     label: EventIsSet
-    type: bool
+    type: u8
+    cat: bool
   notes: Used to clear, set, toggle, or check events
 - desc: Check play room music track
   label: CheckPlayRoomMusicTrack
@@ -11932,7 +12019,8 @@
   return:
     desc: Always 1
     label: Always1
-    type: bool
+    type: u8
+    cat: bool
   notes: Returns 1 (used for cutscenes)
 - desc: Zebes escape cutscene subroutine
   label: ZebesEscapeCutsceneSubroutine
@@ -11947,7 +12035,8 @@
   return:
     desc: Cutscene ended
     label: CutsceneEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: Update music after cutscene skip
   label: UpdateMusicAfterCutsceneSkip
   addr:
@@ -11983,7 +12072,8 @@
   return:
     desc: Cutscene ended
     label: CutsceneEnded
-    type: bool
+    type: u8
+    cat: bool
 - desc: End cutscene
   label: EndCutscene
   addr:
@@ -11997,7 +12087,8 @@
   return:
     desc: End
     label: End
-    type: bool
+    type: u8
+    cat: bool
     notes: Always 1
   notes: Returns 1 to indicate end of cutscene functions
 - desc: V-Blank code during cutscenes
@@ -12195,7 +12286,8 @@
   params:
   - desc: Update scrolling flag
     label: UpdateScrollingFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Cutscene update screen shake
   label: CutsceneUpdateScreenShake
@@ -12209,7 +12301,8 @@
   params:
   - desc: Is vertical flag
     label: IsVerticalFlag
-    type: bool
+    type: u8
+    cat: bool
   - desc: Cutscene screen shake pointer
     label: CutsceneScreenShakePtr
     type: CutsceneScreenShake *
@@ -12362,7 +12455,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Kraid rising update puff
   label: KraidRisingUpdatePuff
   addr:
@@ -12416,7 +12510,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Kraid rising initialize
   label: KraidRisingInit
   addr:
@@ -12430,7 +12525,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Kraid rising subroutine
   label: KraidRisingSubroutine
   addr:
@@ -12444,7 +12540,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Kraid rising process OAM
   label: KraidRisingProcessOam
   addr:
@@ -12469,7 +12566,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene process text
   label: StoryTextCutsceneProcessText
   addr:
@@ -12483,7 +12581,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene set vertical offset
   label: StoryTextCutsceneSetVerticalOffset
   addr:
@@ -12497,7 +12596,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene text fade in
   label: StoryTextCutsceneTextFadeIn
   addr:
@@ -12511,7 +12611,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene text fade out
   label: StoryTextCutsceneTextFadeOut
   addr:
@@ -12525,7 +12626,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene check input
   label: StoryTextCutsceneCheckInput
   addr:
@@ -12539,7 +12641,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Story text cutscene end
   label: StoryTextCutsceneEnd
   addr:
@@ -12567,7 +12670,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close-up looking at Samus
   label: MotherBrainCloseUpLookingAtSamus
   addr:
@@ -12581,7 +12685,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close up update elevator reflection
   label: MotherBrainCloseUpUpdateElevatorReflection
   addr:
@@ -12609,7 +12714,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close-up tank view
   label: MotherBrainCloseUpTankView
   addr:
@@ -12623,7 +12729,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close-up initialize
   label: MotherBrainCloseUpInit
   addr:
@@ -12637,7 +12744,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close-up subroutine
   label: MotherBrainCloseUpSubroutine
   addr:
@@ -12651,7 +12759,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mother Brain close up process OAM
   label: MotherBrainCloseUpProcessOam
   addr:
@@ -12675,7 +12784,8 @@
   params:
   - desc: Looking at Samus flag
     label: LookingAtSamusFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Mother Brain close up update bubble
   label: MotherBrainCloseUpUpdateBubble
@@ -12707,7 +12817,8 @@
   return:
     desc: Could not init
     label: CouldNotInit
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space ship leaving
   label: RidleyInSpaceShipLeaving
   addr:
@@ -12721,7 +12832,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space update ship leaving
   label: RidleyInSpaceUpdateShipLeaving
   addr:
@@ -12749,7 +12861,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space red alert
   label: RidleyInSpaceRedAlert
   addr:
@@ -12763,7 +12876,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space update alert palette
   label: RidleyInSpaceUpdateAlertPalette
   addr:
@@ -12791,7 +12905,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space update view of ship
   label: RidleyInSpaceUpdateViewOfShip
   addr:
@@ -12847,7 +12962,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space subroutine
   label: RidleyInSpaceSubroutine
   addr:
@@ -12861,7 +12977,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley in space process OAM
   label: RidleyInSpaceProcessOam
   addr:
@@ -12942,7 +13059,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley landing update Ridley
   label: RidleyLandingUpdateRidley
   addr:
@@ -12974,7 +13092,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley landing update ship landing
   label: RidleyLandingUpdateShipLanding
   addr:
@@ -13005,7 +13124,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley landing initialize
   label: RidleyLandingInit
   addr:
@@ -13019,7 +13139,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley landing subroutine
   label: RidleyLandingSubroutine
   addr:
@@ -13033,7 +13154,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley landing process OAM
   label: RidleyLandingProcessOam
   addr:
@@ -13058,7 +13180,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley spawn update Ridley
   label: RidleySpawnUpdateRidley
   addr:
@@ -13086,7 +13209,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley spawn Samus looking up
   label: RidleySpawnSamusLookingUp
   addr:
@@ -13100,7 +13224,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley spawn cutscene initialize
   label: RidleySpawnCutsceneInit
   addr:
@@ -13114,7 +13239,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley spawn subroutine
   label: RidleySpawnSubroutine
   addr:
@@ -13128,7 +13254,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ridley spawn process OAM
   label: RidleySpawnProcessOam
   addr:
@@ -13153,7 +13280,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mecha Ridley sees Samus initialize
   label: MechaRidleySeesSamusInit
   addr:
@@ -13167,7 +13295,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mecha Ridley sees Samus subroutine
   label: MechaRidleySeesSamusSubroutine
   addr:
@@ -13181,7 +13310,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Mecha Ridley sees Samus process OAM
   label: MechaRidleySeesSamusProcessOam
   addr:
@@ -13206,7 +13336,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Getting fully powered suit update ring palette
   label: GettingFullyPoweredSuitUpdateRingPalette
   addr:
@@ -13282,7 +13413,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Getting fully powered suit subroutine
   label: GettingFullyPoweredSuitSubroutine
   addr:
@@ -13296,7 +13428,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Getting fully powered suit process OAM
   label: GettingFullyPoweredSuitProcessOam
   addr:
@@ -13321,7 +13454,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before Ruins Test wall and Grey Voice
   label: BeforeRuinsTestWallAndGreyVoice
   addr:
@@ -13335,7 +13469,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
   notes: Handles the wall view and the grey voice part of the before Ruins Test cutscene
 - desc: Before charlie wall and grey voice scroll and load young Samus graphics
   label: BeforeCharlieWallAndGreyVoiceScrollAndLoadYoungSamusGfx
@@ -13392,7 +13527,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before Ruins Test initialize
   label: BeforeRuinsTestInit
   addr:
@@ -13406,7 +13542,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Before Ruins Test subroutine
   label: BeforeRuinsTestSubroutine
   addr:
@@ -13420,7 +13557,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Statue opening opening
   label: StatueOpeningOpening
   addr:
@@ -13434,7 +13572,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Statue opening initialize
   label: StatueOpeningInit
   addr:
@@ -13484,7 +13623,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Enter tourian move background and check stop
   label: EnterTourianMoveBgAndCheckStop
   addr:
@@ -13557,7 +13697,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Enter Tourian subroutine
   label: EnterTourianSubroutine
   addr:
@@ -13571,7 +13712,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Enter tourian process OAM
   label: EnterTourianProcessOam
   addr:
@@ -13596,7 +13738,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Samus in blue ship shake screen
   label: SamusInBlueShipShakeScreen
   addr:
@@ -13638,7 +13781,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Samus in blue ship subroutine
   label: SamusInBlueShipSubroutine
   addr:
@@ -13652,7 +13796,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Samus in blue ship process OAM
   label: SamusInBlueShipProcessOam
   addr:
@@ -13714,7 +13859,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Map screen copy PALRAM to EWRAM unused
   label: MapScreenCopyPalramToEwram_Unused
   addr:
@@ -13727,7 +13873,8 @@
   params:
   - desc: Don't clear PALRAM flag
     label: DontClearPalramFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Check transfer pause screen BG palette unused
   label: CheckTransferPauseScreenBgPalette_Unused
@@ -13774,7 +13921,8 @@
   params:
   - desc: Don't draw flag
     label: DontDrawFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
   notes: Draws the pause screen info (in-game time and tanks)
 - desc: Update world map highlight
@@ -13913,7 +14061,8 @@
   return:
     desc: Leaving map screen
     label: LeavingMapScreen
-    type: bool
+    type: u8
+    cat: bool
 - desc: V-Blank code during map screen
   label: VBlankCodeDuringMapScreen
   addr:
@@ -14000,7 +14149,8 @@
   return:
     desc: Leaving map screen
     label: LeavingMapScreen
-    type: bool
+    type: u8
+    cat: bool
 - desc: Debug menu move cursor
   label: DebugMenuMoveCursor
   addr:
@@ -14013,7 +14163,8 @@
   params:
   - desc: Allow screen overflow flag
     label: AllowScreenOverflowFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Map screen update top visor overlay
   label: MapScreenUpdateTopVisorOverlay
@@ -14103,7 +14254,8 @@
   return:
     desc: Done
     label: Done
-    type: bool
+    type: u8
+    cat: bool
 - desc: Quit easy sleep menu
   label: QuitEasySleepMenu
   addr:
@@ -14117,7 +14269,8 @@
   return:
     desc: Done
     label: Done
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check sustained input for scrolling
   label: CheckSustainedInputForScrolling
   addr:
@@ -14171,7 +14324,8 @@
   params:
   - desc: After transition flag
     label: AfterTransitionFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
   notes: Checks if the area connection label tiles on the minimap should be set as explored
 - desc: Check for unexplored minimap square
@@ -14477,7 +14631,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Map download instant unused
   label: MapDownloadInstant_Unused
   addr:
@@ -14491,7 +14646,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Map download instant with line unused
   label: MapDownloadInstantWithLine_Unused
   addr:
@@ -14505,7 +14661,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Map download update
   label: MapDownloadUpdate
   addr:
@@ -14523,7 +14680,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Get absolute map borders positions
   label: GetAbsoluteMapBordersPositions
   addr:
@@ -14909,7 +15067,8 @@
   return:
     desc: Done drawing
     label: DoneDrawing
-    type: bool
+    type: u8
+    cat: bool
 - desc: Draw status screen tank amounts
   label: DrawStatusScreenTankAmounts
   addr:
@@ -14957,7 +15116,8 @@
     notes: Always 0xB?
   - desc: Is at max flag
     label: IsAtMaxFlag
-    type: bool
+    type: u8
+    cat: bool
   return: null
 - desc: Set status screen beams visibility
   label: SetStatusScreenBeamsVisibility
@@ -15064,7 +15224,8 @@
   return:
     desc: Select pressed
     label: SelectPressed
-    type: bool
+    type: u8
+    cat: bool
 - desc: Status screen init cursor and item
   label: StatusScreenInitCursorAndItem
   addr:
@@ -15089,7 +15250,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Map screen fully powered items
   label: MapScreenFullyPoweredItems
   addr:
@@ -15103,7 +15265,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Status screen subroutine
   label: StatusScreenSubroutine
   addr:
@@ -15166,7 +15329,8 @@
   return:
     desc: Enabled
     label: Enabled
-    type: bool
+    type: u8
+    cat: bool
 - desc: Status screen toggle item
   label: StatusScreenToggleItem
   addr:
@@ -15275,7 +15439,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Chozo statue hint change area
   label: ChozoStatueHintChangeArea
   addr:
@@ -15448,7 +15613,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: SRAM write header and game info
   label: SramWrite_HeaderAndGameInfo
   addr:
@@ -15473,7 +15639,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check set new best completion time
   label: CheckSetNewBestCompletionTime
   addr:
@@ -15509,7 +15676,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Save file
   label: SaveFile
   addr:
@@ -15523,7 +15691,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Write SRAM data
   label: WriteSramData
   addr:
@@ -15692,6 +15861,7 @@
     desc: Checksum invalid
     label: ChecksumInvalid
     type: u32
+    cat: bool
 - desc: Backup time attack for SRAM
   label: BackupTimeAttackForSram
   addr:
@@ -15737,7 +15907,8 @@
   params:
   - desc: Loading Samus data flag
     label: LoadingSamusDataFlag
-    type: bool
+    type: u8
+    cat: bool
   - desc: Demo number
     label: DemoNum
     type: u8
@@ -15758,7 +15929,8 @@
   return:
     desc: Done
     label: Done
-    type: bool
+    type: u8
+    cat: bool
 - desc: Copy file
   label: CopyFile
   addr:
@@ -15778,7 +15950,8 @@
   return:
     desc: Done
     label: Done
-    type: bool
+    type: u8
+    cat: bool
 - desc: Write file info
   label: WriteFileInfo
   addr:
@@ -15836,7 +16009,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Erase SRAM menu process input
   label: EraseSramMenuProcessInput
   addr:
@@ -16045,7 +16219,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Title screen fading out
   label: TitleScreenFadingOut
   addr:
@@ -16206,7 +16381,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Title screen idle
   label: TitleScreenIdle
   addr:
@@ -16291,7 +16467,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Game over menu handle input
   label: GameOverMenuHandleInput
   addr:
@@ -16305,7 +16482,8 @@
   return:
     desc: Option selected
     label: OptionSelected
-    type: bool
+    type: u8
+    cat: bool
 - desc: Game over menu update text graphics
   label: GameOverMenuUpdateTextGfx
   addr:
@@ -16579,7 +16757,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Erase file menu subroutine
   label: EraseFileMenuSubroutine
   addr:
@@ -16593,7 +16772,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: File screen file corrupted subroutine
   label: FileScreenFileCorruptedSubroutine
   addr:
@@ -16607,7 +16787,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Setup options tile table
   label: SetupOptionsTileTable
   addr:
@@ -16642,11 +16823,13 @@
   params:
   - desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
   return:
     desc: Done
     label: Done
-    type: bool
+    type: u8
+    cat: bool
 - desc: File select options subroutine
   label: FileSelectOptionsSubroutine
   addr:
@@ -16660,7 +16843,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Reset IO transfer info
   label: ResetIOTransferInfo
   addr:
@@ -16685,7 +16869,8 @@
   return:
     desc: Pressed B to cancel
     label: PressedBToCancel
-    type: bool
+    type: u8
+    cat: bool
 - desc: Settings sub menu empty
   label: SettingsSubMenu_Empty
   addr:
@@ -16699,7 +16884,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Stereo selection subroutine
   label: StereoSelectionSubroutine
   addr:
@@ -16713,7 +16899,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Sound test subroutine
   label: SoundTestSubroutine
   addr:
@@ -16731,7 +16918,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Options sound test check not already playing
   label: OptionsSoundTestCheckNotAlreadyPlaying
   addr:
@@ -16746,6 +16934,7 @@
     desc: Not currently playing
     label: NotCurrentlyPlaying
     type: u32
+    cat: bool
 - desc: Update sound test ID graphics
   label: UpdateSoundTestIdGfx
   addr:
@@ -16770,7 +16959,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Load time attack time for record
   label: LoadTimeAttackTimeForRecord
   addr:
@@ -16813,7 +17003,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: File select menu subroutine
   label: FileSelectMenuSubroutine
   addr:
@@ -16831,7 +17022,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: File select fading
   label: FileSelectFading
   addr:
@@ -16845,7 +17037,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: File select menu initialize
   label: FileSelectMenuInit
   addr:
@@ -17010,7 +17203,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
     notes: Includes starting game and going back to title screen
   notes: Handles file select, file copy, options, etc.
 - desc: Check time attack code input
@@ -17026,7 +17220,8 @@
   return:
     desc: Fully entered
     label: FullyEntered
-    type: bool
+    type: u8
+    cat: bool
 - desc: Process file selection
   label: ProcessFileSelection
   addr:
@@ -17044,7 +17239,8 @@
   return:
     desc: Return to file select menu
     label: ReturnToFileSelectMenu
-    type: bool
+    type: u8
+    cat: bool
 - desc: File select update tilemap
   label: FileSelectUpdateTilemap
   addr:
@@ -17065,7 +17261,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Play menu sound
   label: PlayMenuSound
   addr:
@@ -17098,7 +17295,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Soft reset init
   label: SoftResetInit
   addr:
@@ -17338,7 +17536,8 @@
   return:
     desc: Invalid
     label: Invalid
-    type: bool
+    type: u8
+    cat: bool
   notes: Compares in-game time at bosses with anti-cheat times
 - desc: Check unlock time attack
   label: CheckUnlockTimeAttack
@@ -17524,7 +17723,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Check set new time attack record
   label: CheckSetNewTimeAttackRecord
   addr:
@@ -17538,7 +17738,8 @@
   return:
     desc: New record set
     label: NewRecordSet
-    type: bool
+    type: u8
+    cat: bool
 - desc: Process complex OAM
   label: ProcessComplexOam
   addr:
@@ -17577,7 +17778,8 @@
   return:
     desc: Always false
     label: AlwaysFalse
-    type: bool
+    type: u8
+    cat: bool
 - desc: Calculate OAM part 4
   label: CalculateOamPart4
   addr:
@@ -17689,7 +17891,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro ship flying towards camera process OAM
   label: IntroShipFlyingTowardsCameraProcessOAM
   addr:
@@ -17714,7 +17917,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro Samus in her ship
   label: IntroSamusInHerShip
   addr:
@@ -17728,7 +17932,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro exterminate
   label: IntroExterminate
   addr:
@@ -17742,7 +17947,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro view of Zebes process OAM
   label: IntroViewOfZebesProcessOAM
   addr:
@@ -17771,7 +17977,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro defeat
   label: IntroDefeat
   addr:
@@ -17785,7 +17992,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro Mother Brain
   label: IntroMotherBrain
   addr:
@@ -17799,7 +18007,8 @@
   return:
     desc: Always 0
     label: Always0
-    type: bool
+    type: u8
+    cat: bool
 - desc: Intro fuzz process OAM
   label: IntroFuzzProcessOAM
   addr:
@@ -17828,7 +18037,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Title intro subroutine
   label: TitleIntroSubroutine
   addr:
@@ -17842,7 +18052,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: V-Blank code during intro
   label: VBlankCodeDuringIntro
   addr:
@@ -17931,7 +18142,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus in her ship
   label: TourianEscapeSamusInHerShip
   addr:
@@ -17949,7 +18161,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus looking around
   label: TourianEscapeSamusLookingAround
   addr:
@@ -17967,7 +18180,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus surrounded
   label: TourianEscapeSamusSurrounded
   addr:
@@ -17985,7 +18199,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus flying in
   label: TourianEscapeSamusFlyingIn
   addr:
@@ -17999,7 +18214,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus chased by pirates
   label: TourianEscapeSamusChasedByPirates
   addr:
@@ -18017,7 +18233,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus chased pirates firing
   label: TourianEscapeSamusChasedPiratesFiring
   addr:
@@ -18035,7 +18252,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus getting shot
   label: TourianEscapeSamusGettingShot
   addr:
@@ -18053,7 +18271,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus going to crash
   label: TourianEscapeSamusGoingToCrash
   addr:
@@ -18071,7 +18290,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus crashing
   label: TourianEscapeSamusCrashing
   addr:
@@ -18089,7 +18309,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus looking at sky
   label: TourianEscapeSamusLookingAtSky
   addr:
@@ -18107,7 +18328,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape Samus looking at mother ship
   label: TourianEscapeSamusLookingAtMotherShip
   addr:
@@ -18125,7 +18347,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Tourian escape call subroutines
   label: TourianEscapeCallSubroutines
   addr:
@@ -18139,7 +18362,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: V-Blank during fusion gallery
   label: VBlankDuringFusionGallery
   addr:
@@ -18179,7 +18403,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Fusion gallery subroutine
   label: FusionGallerySubroutine
   addr:
@@ -18193,7 +18418,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ending image check display letter
   label: EndingImageCheckDisplayLetter
   addr:
@@ -18342,7 +18568,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Credits Chozo wall movement
   label: CreditsChozoWallMovement
   addr:
@@ -18356,7 +18583,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Credits Chozo wall zoom
   label: CreditsChozoWallZoom
   addr:
@@ -18408,7 +18636,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Ending image initialize
   label: EndingImageInit
   addr:
@@ -18452,7 +18681,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Unlocked options initialize
   label: UnlockedOptionsInit
   addr:
@@ -18496,7 +18726,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Gallery initialize
   label: GalleryInit
   addr:
@@ -18521,7 +18752,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: Gallery subroutine
   label: GallerySubroutine
   addr:
@@ -18535,7 +18767,8 @@
   return:
     desc: Leaving
     label: Leaving
-    type: bool
+    type: u8
+    cat: bool
 - desc: V-Blank during Chozodia escape
   label: VBlankDuringChozodiaEscape
   addr:
@@ -18659,7 +18892,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Chozodia escape mother ship heating up
   label: ChozodiaEscapeMotherShipHeatingUp
   addr:
@@ -18673,7 +18907,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Chozodia escape mother ship blowing up
   label: ChozodiaEscapeMotherShipBlowingUp
   addr:
@@ -18691,7 +18926,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Chozodia escape escape ship leaving planet
   label: ChozodiaEscapeEscapeShipLeavingPlanet
   addr:
@@ -18709,7 +18945,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Chozodia escape mission accomplished
   label: ChozodiaEscapeMissionAccomplished
   addr:
@@ -18742,7 +18979,8 @@
   return:
     desc: Ended
     label: Ended
-    type: bool
+    type: u8
+    cat: bool
 - desc: Serial communication code connecting
   label: SerialCommunicationCodeConnecting
   addr:
@@ -18823,7 +19061,8 @@
   return:
     desc: Error flag
     label: ErrorFlag
-    type: bool
+    type: u8
+    cat: bool
 - desc: Set SIOCNT start bit duplicate
   label: SetSIOCNTStartBit_Duplicate
   addr:

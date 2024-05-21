@@ -47,24 +47,3 @@ K_TYPE = "type"
 K_VAL = "val"
 K_VARS = "vars"
 K_VALS = "vals"
-
-# primitive type sizes
-PRIMITIVES = {
-    "void": 1,
-    "u8": 1,
-    "s8": 1,
-    "bool": 1,
-    "u16": 2,
-    "s16": 2,
-    "u32": 4,
-    "s32": 4
-}
-
-# valid strings for tags field
-TAGS = {
-    "flags", "ascii", "text",
-    "rle", "lz", "gfx", "tilemap",
-    "palette", "oam_frame",
-    "bg_blocks", "bg_map",
-    "thumb", "arm"
-}

@@ -52,7 +52,7 @@ class Validator(object):
         self.errors: List[Tuple[str, EntryLoc]] = []
 
     def validate(self):
-        #self.validate_files()
+        self.validate_files()
         self.validate_info_entries()
 
     def validate_files(self) -> None:

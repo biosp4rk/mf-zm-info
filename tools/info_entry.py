@@ -14,18 +14,16 @@ StructDict = Dict[str, "StructEntry"]
 class PrimType(Enum):
     U8 = 1
     S8 = 2
-    BOOL = 3
-    U16 = 4
-    S16 = 5
-    U32 = 6
-    S32 = 7
-    STRUCT = 8
-    VOID = 9
+    U16 = 3
+    S16 = 4
+    U32 = 5
+    S32 = 6
+    STRUCT = 7
+    VOID = 8
 
 PRIM_TO_STR = {
     PrimType.U8: "u8",
     PrimType.S8: "s8",
-    PrimType.BOOL: "bool",
     PrimType.U16: "u16",
     PrimType.S16: "s16",
     PrimType.U32: "u32",
@@ -37,21 +35,23 @@ STR_TO_PRIM = {s: p for p, s in PRIM_TO_STR.items()}
 
 
 class Category(Enum):
-    FLAGS = 1
-    ASCII = 2
-    SJIS = 3
-    TEXT = 4
-    GFX = 5
-    TILEMAP = 6
-    PALETTE = 7
-    OAM_FRAME = 8
-    BG_BLOCKS = 9
-    BG_MAP = 10
-    PCM = 11
-    THUMB = 12
-    ARM = 13
+    BOOL = 1
+    FLAGS = 2
+    ASCII = 3
+    SJIS = 4
+    TEXT = 5
+    GFX = 6
+    TILEMAP = 7
+    PALETTE = 8
+    OAM_FRAME = 9
+    BG_BLOCKS = 10
+    BG_MAP = 11
+    PCM = 12
+    THUMB = 13
+    ARM = 14
 
 CAT_TO_STR = {
+    Category.BOOL: "bool",
     Category.FLAGS: "flags",
     Category.ASCII: "ascii",
     Category.SJIS: "sjis",
@@ -250,8 +250,7 @@ class VarEntry(InfoEntry):
         if self.primitive in {
             PrimType.VOID,
             PrimType.U8,
-            PrimType.S8,
-            PrimType.BOOL
+            PrimType.S8
         }:
             return 1
         elif (self.primitive == PrimType.U16 or

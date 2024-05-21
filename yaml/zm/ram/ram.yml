@@ -138,7 +138,8 @@
   addr: 0x3000000
 - desc: SRAM error flag
   label: SramErrorFlag
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x3000001
 - desc: 16-bit frame counter
   label: FrameCounter16Bit
@@ -399,7 +400,8 @@
   addr: 0x300007E
 - desc: Free movement lock camera
   label: FreeMovementLockCamera
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x300007F
 - desc: Haze VRAM info
   label: HazeVramInfo
@@ -537,7 +539,8 @@
   enum: CollisionCheck
 - desc: Ignore Samus and sprite collision
   label: IgnoreSamusAndSpriteCollision
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x30007F2
 - desc: Sprite draw order
   label: SpriteDrawOrder
@@ -727,11 +730,13 @@
   addr: 0x3000C0C
 - desc: SRAM corrupt flag
   label: SramCorruptFlag
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x3000C1C
 - desc: Loading file flag
   label: LoadingFileFlag
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x3000C1D
 - desc: Most recent save file
   label: MostRecentSaveFile
@@ -739,7 +744,8 @@
   addr: 0x3000C1E
 - desc: Has saved
   label: HasSaved
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x3000C1F
 - desc: SRAM operation stage
   label: SramOperationStage
@@ -1151,7 +1157,8 @@
   enum: ButtonInput
 - desc: Not pressing up
   label: NotPressingUp
-  type: bool
+  type: u8
+  cat: bool
   addr: 0x30053D0
 - desc: Samus palette
   label: SamusPalette

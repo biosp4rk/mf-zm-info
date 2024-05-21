@@ -71,13 +71,13 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting w
 ### Primitive Types
 - `u8` - Unsigned 8 bit integer
 - `s8` - Signed 8 bit integer
-- `bool` - u8 that only takes values 0 (false) or 1 (true)
 - `u16` - Unsigned 16 bit integer
 - `s16` - Signed 16 bit integer
 - `u32` - Unsigned 32 bit integer
 - `s32` - Signed 32 bit integer
 
 ### Categories
+- `bool` - Integer that only takes values 0 (false) or 1 (true)
 - `flags` - Integer used for bit flags
 - `ascii` - 8 bit ASCII character
 - `sjis` - 8 bit Shift JIS character
