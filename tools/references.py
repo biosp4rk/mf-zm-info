@@ -1,5 +1,8 @@
 import argparse
-from typing import Dict, List, Tuple
+from enum import Enum
+from typing import Any, Dict, List, Tuple
+
+import yaml
 
 import argparse_utils as apu
 from game_info import GameInfo
@@ -8,29 +11,122 @@ from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
 
 
-class Ref(object):
-    def __init__(self,
-        addr: int,
-        kind: str,
-        label: str = None,
-        offset: int = None,
-        index: int = None
-    ):
+class RefType(Enum):
+    BL = 1
+    POOL = 2
+    DATA = 3
+
+
+class Ref:
+    def __init__(self, addr: int, label: str, offset: int):
+        assert (label is None) == (offset is None)
         self.addr = addr
-        self.kind = kind
         self.label = label
-        self.index = index
         self.offset = offset
+
+    def to_obj(self) -> Any:
+        raise NotImplementedError()
+
+
+class BlRef(Ref):
+
+    def __init__(self, addr: int, label: str = None, offset: int = None):
+        super().__init__(addr, label, offset)
 
     def __str__(self) -> str:
         items = [
             f"{self.addr:X}",
-            self.kind,
             "" if self.label is None else self.label,
-            "" if self.index is None else f"{self.index:X}",
-            "" if self.offset is None else f"{self.offset:X}",
+            "" if self.offset is None else f"{self.offset:X}"
         ]
         return "\t".join(items)
+    
+    def __repr__(self) -> str:
+        items = ["bl", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("offset", self.offset))
+        return dict(obj)
+
+
+class PoolRef(Ref):
+
+    def __init__(self,
+        addr: int,
+        ldrs: List[int],
+        label: str = None,
+        offset: int = None
+    ):
+        super().__init__(addr, label, offset)
+        self.ldrs = ldrs
+
+    def __str__(self) -> str:
+        items = [
+            f"{self.addr:X}",
+            ",".join(f"{a:X}" for a in self.ldrs),
+            "" if self.label is None else self.label,
+            "" if self.offset is None else f"{self.offset:X}"
+        ]
+        return "\t".join(items)
+
+    def __repr__(self) -> str:
+        items = ["pool", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+    
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("offset", self.offset))
+        return dict(obj)
+
+
+class DataRef(Ref):
+
+    def __init__(self,
+        addr: int,
+        label: str = None,
+        index: int = None,
+        offset: int = None
+    ):
+        assert (label is None) == (index is None)
+        super().__init__(addr, label, offset)
+        self.index = index
+
+    def __str__(self) -> str:
+        items = [
+            f"{self.addr:X}",
+            "" if self.label is None else self.label,
+            "" if self.index is None else f"{self.index:X}",
+            "" if self.offset is None else f"{self.offset:X}"
+        ]
+        return "\t".join(items)
+
+    def __repr__(self) -> str:
+        items = ["data", f"{self.addr:X}"]
+        if self.label:
+            items.append(self.label)
+            items.append(f"{self.index:X}")
+            items.append(f"{self.offset:X}")
+        return ",".join(items)
+
+    def to_obj(self) -> Any:
+        obj = [("addr", self.addr)]
+        if self.label:
+            obj.append(("label", self.label))
+            obj.append(("index", self.index))
+            obj.append(("offset", self.offset))
+        return dict(obj)
 
 
 class References(object):
@@ -39,9 +135,8 @@ class References(object):
         self.rom = rom
         from_json = not include_unk
         self.info = GameInfo(rom.game, rom.region, from_json, include_unk)
-        self.refs: Dict[int, List[Ref]] = {}
 
-    def find(self, addr: int) -> Tuple[List[Ref], List[Ref], List[Ref]]:
+    def find(self, addr: int) -> Tuple[List[BlRef], List[PoolRef], List[DataRef]]:
         rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
@@ -60,13 +155,12 @@ class References(object):
             if addr >= code_start and addr < code_end:
                 in_code = True
 
-        bl_addrs = []
-        ldr_addrs = []
-        data_addrs = []
+        bl_refs = []
+        pool_refs = {}
+        data_refs = []
 
         # check bl and ldr in code
         self.entries = self.info.code
-        self.idx = 0
         addr_val = addr
         if in_rom:
             addr_val += ROM_OFFSET
@@ -75,161 +169,171 @@ class References(object):
         for i in range(code_start, code_end, 2):
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.LdPC:
-                val = rom.read_32(inst.pc_rel_addr())
+                pool_addr = inst.pc_rel_addr()
+                val = rom.read_32(pool_addr)
                 if addr_val == val:
-                    ref = self.get_ref(i, "pool")
-                    ldr_addrs.append(ref)
+                    ref = pool_refs.get(pool_addr)
+                    if ref is None:
+                        ref = self.get_ref(pool_addr, RefType.POOL)
+                        pool_refs[pool_addr] = ref
+                    ref.ldrs.append(i)
             elif in_code and inst.format == ThumbForm.Link:
                 if addr == inst.branch_addr():
-                    ref = self.get_ref(i, "bl")
-                    bl_addrs.append(ref)
+                    ref = self.get_ref(i, RefType.BL)
+                    bl_refs.append(ref)
 
         # check data
         self.entries = self.info.data
-        self.idx = 0
         for i in range(code_end, data_end, 4):
             val = rom.read_32(i)
             if addr_val == val:
-                ref = self.get_ref(i, "data")
-                data_addrs.append(ref)
+                ref = self.get_ref(i, RefType.DATA)
+                data_refs.append(ref)
         
-        return bl_addrs, ldr_addrs, data_addrs
+        return bl_refs, list(pool_refs.values()), data_refs
 
-    def find_all(self) -> List[Tuple[str, int, List[Ref]]]:
-        # load all ram, code, data, and structs
+    def find_all(self) -> List[Tuple[str, List[Ref]]]:
+        # TODO: pass refs instead of putting it on self?
+        self.found_refs: Dict[int, List[Ref]] = {}
+
         rom = self.rom
-        ram_entries = self.info.ram
-        code_entries = self.info.code
-        data_entries = self.info.data
-
-        # create dictionary of all labeled addresses
-        combined = ram_entries + code_entries + data_entries
-        all_refs = {entry.addr: entry for entry in combined}
-        combined = None
-
         code_start = rom.code_start()
         code_end = rom.code_end()
         data_end = rom.data_end()
 
         # check every ref in code
-        self.entries = code_entries
+        self.entries = self.info.code
         for i in range(code_start, code_end, 2):
             # check for bl
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.Link:
                 bl_addr = inst.branch_addr()
                 if bl_addr >= code_start and bl_addr < code_end:
-                    self.check_ref(bl_addr, i, "bl", all_refs)
+                    self.add_ref(bl_addr, i, RefType.BL)
             # check for pool
             elif i % 4 == 0:
-                self.check_addr(i, "pool", all_refs)
+                self.check_addr(i, RefType.POOL)
 
         # check every ref in data
-        self.entries = data_entries
+        self.entries = self.info.data
         self.entries.append(DataEntry(None, None, "u8", 1, data_end))
         for i in range(code_end, data_end, 4):
-            self.check_addr(i, "data", all_refs)
+            self.check_addr(i, RefType.DATA)
         
-        # return results
-        results = []
-        for addr, refs in sorted(self.refs.items()):
-            entry = all_refs[addr]
-            results.append((entry.label, addr, refs))
-        return results
+        # get all code and data labels
+        entry_labels = {}
+        for entry in self.info.code + self.info.data:
+            entry_labels[entry.addr] = entry.label
+        return [
+            (entry_labels[addr], ref)
+            for addr, ref in sorted(self.found_refs.items())
+            if addr in entry_labels
+        ]
 
-    def check_addr(
-        self, addr: int, kind: str, refs: Dict[int, InfoEntry]
-    ) -> None:
+    def check_addr(self, addr: int, kind: RefType) -> None:
+        """Checks if an address contains a valid reference."""
         val = self.rom.read_32(addr)
         if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
             val -= ROM_OFFSET
             if val < self.rom.code_end() and val % 4 == 1:
                 # subtract one for thumb code pointers
                 val -= 1
-            self.check_ref(val, addr, kind, refs)
+            self.add_ref(val, addr, kind)
 
-    def check_ref(self,
-        val: int,
-        addr: int,
-        kind: str,
-        refs: Dict[int, InfoEntry]
-    ) -> None:
-        entry = None
-        if val in refs:
-            entry = refs[val]
-        else:
-            label = f"unk_{val:X}"
-            entry = DataEntry("", label, "u8", 1, val)
-            refs[val] = entry
-        if entry.addr not in self.refs:
-            self.refs[entry.addr] = []
-        self.idx = self.find_prev_entry(addr)
+    def add_ref(self, val: int, addr: int, kind: RefType) -> None:
+        """Creates and adds the reference at the given address."""
+        if val not in self.found_refs:
+            self.found_refs[val] = []
         ref = self.get_ref(addr, kind)
-        self.refs[entry.addr].append(ref)
+        self.found_refs[val].append(ref)
 
-    def find_prev_entry(self, addr: int) -> int:
+    def get_prev_entry(self, addr: int) -> InfoEntry:
         left = 0
         right = len(self.entries) - 1
-        mid: int = -1
+        result = None
         while left <= right:
             mid = (left + right) // 2
-            if self.entries[mid].addr < addr:
+            if self.entries[mid].addr <= addr:
+                result = self.entries[mid]
                 left = mid + 1
-            elif self.entries[mid].addr > addr:
+            else:
                 right = mid - 1
-            else:
-                return mid
-        return mid
+        return result
 
-    def get_ref(self, addr: int, kind: str) -> Ref:
-        # find next entry before address
-        while self.entries[self.idx].addr <= addr:
-            self.idx += 1
-        self.idx -= 1
-        entry = self.entries[self.idx]
-        # get length and count of entry
-        length = None
-        count = 1
-        if isinstance(entry, CodeEntry):
-            if isinstance(entry.size, int):
-                length = entry.size
-            else:
-                length = entry.size[self.rom.region]
+    def get_ref(self, addr: int, kind: RefType) -> Ref:
+        # get closest entry before address
+        entry = self.get_prev_entry(addr)
+        # create reference based on type
+        if kind == RefType.BL:
+            return self.get_bl_ref(addr, entry)
+        elif kind == RefType.POOL:
+            return self.get_pool_ref(addr, entry)
+        elif kind == RefType.DATA:
+            return self.get_data_ref(addr, entry)
         else:
+            raise NotImplementedError()
+
+    def get_code_len(self, entry: CodeEntry) -> int:
+        if isinstance(entry.size, int):
+            return entry.size
+        else:
+            return entry.size[self.rom.region]
+    
+    def get_offset_within_entry(self, addr, entry_addr, entry_len) -> int:
+        assert entry_addr <= addr
+        offset = addr - entry_addr
+        if offset < entry_len:
+            return offset
+        return -1
+
+    def get_bl_ref(self, addr: int, entry: CodeEntry) -> BlRef:
+        if entry is not None:
+            length = self.get_code_len(entry)
+            offset = self.get_offset_within_entry(addr, entry.addr, length)
+            if offset != -1:
+                return BlRef(addr, entry.label, offset)
+        return BlRef(addr)
+    
+    def get_pool_ref(self, addr: int, entry: CodeEntry) -> PoolRef:
+        if entry is not None:
+            length = self.get_code_len(entry)
+            offset = self.get_offset_within_entry(addr, entry.addr, length)
+            if offset != -1:
+                return PoolRef(addr, [], entry.label, offset)
+        return PoolRef(addr, [])
+    
+    def get_data_ref(self, addr: int, entry: DataEntry) -> DataRef:
+        if entry is not None:
             length = entry.get_size(self.info.structs)
-            count = entry.get_count()
-        # check if addr falls within entry
-        if addr < entry.addr + length:
-            lab = entry.label
-            off = addr - entry.addr
-            num = None
-            if count > 1:
-                size = length // count
-                num = off // size
-                off %= size
-            return Ref(addr, kind, lab, off, num)
-        return Ref(addr, kind)
+            offset = self.get_offset_within_entry(addr, entry.addr, length)
+            if offset != -1:
+                count = entry.get_count()
+                idx = 0
+                if count > 1:
+                    size = length // count
+                    idx = offset // size
+                    offset %= size
+                return DataRef(addr, entry.label, idx, offset)
+        return DataRef(addr)
+    
 
-
-def output_section(title: str, refs) -> List[str]:
+def output_section(refs: List[Ref], title: str, fields: List[str]) -> List[str]:
     lines = []
     num_refs = len(refs)
     if num_refs > 0:
-        lines.append(f"{title} ({num_refs}):")
+        lines.append(f"{title} ({len(refs)}):")
+        lines.append("\t".join(fields))
         for ref in refs:
             lines.append(str(ref))
         lines.append("")
     return lines
 
 
-def print_refs(bls: List[Ref], ldrs: List[Ref], dats: List[Ref]) -> None:
+def print_refs(bls: List[BlRef], pools: List[PoolRef], datas: List[DataRef]) -> None:
     lines = []
-    if bls:
-        lines += output_section("Calls", bls)
-    if ldrs:
-        lines += output_section("Pools", ldrs)
-    if dats:
-        lines += output_section("Data", dats)
+    lines += output_section(bls, "Calls", ["addr", "label", "off"])
+    lines += output_section(pools, "Pools", ["addr", "ldrs", "label", "off"])
+    lines += output_section(datas, "Data", ["addr", "label", "idx", "off"])
     print("\n".join(lines))
 
 
@@ -247,9 +351,22 @@ if __name__ == "__main__":
     refs = References(rom, args.unk)
 
     if args.all:
-        results = refs.find_all()
-        for name, addr, refs in results:
-            print(f"{name}\t{addr:06X}\t{len(refs)}")
+        all_refs = refs.find_all()
+        kinds = {
+            BlRef: "call",
+            PoolRef: "pool",
+            DataRef: "data"
+        }
+        all_entries = {}
+        for label, refs in all_refs:
+            entry = {}
+            for ref in refs:
+                key = kinds[type(ref)]
+                if key not in entry:
+                    entry[key] = []
+                entry[key].append(ref.to_obj())
+            all_entries[label] = entry
+        print(yaml.safe_dump(all_entries, sort_keys=False))
     else:
         # get address
         addr = None

@@ -128,6 +128,11 @@ class Rom(object):
         self.pos += 2
         return val
 
+    def read_next_32(self) -> int:
+        val = self.read_32(self.pos)
+        self.pos += 4
+        return val
+
     def read_next_ptr(self) -> int:
         val = self.read_ptr(self.pos)
         self.pos += 4

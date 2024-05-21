@@ -97,17 +97,16 @@ class Reg(object):
 
 
 class ThumbInstruct(object):
-    phys_addr: int
-    format: ThumbForm
-    opcode: int
-    opname: ThumbOp
-    rd: int
-    # use Rs for Rb
-    rs: int
-    rn: int
-    ro: int
-    rlist: List[int]
-    imm: int
+    # phys_addr: int
+    # format: ThumbForm
+    # opcode: int
+    # opname: ThumbOp
+    # rd: int (use Rs for Rb)
+    # rs: int
+    # rn: int
+    # ro: int
+    # rlist: List[int]
+    # imm: int
 
     def __init__(self, rom: Rom, addr: int):
         self.phys_addr = addr
