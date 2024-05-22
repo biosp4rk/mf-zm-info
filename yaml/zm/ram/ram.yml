@@ -60,17 +60,17 @@
   count: 0x1800
   addr: 0x2027800
 - desc: Decompressed BG0 data
-  label: DecompBG0Data
+  label: DecompBg0Data
   type: u16
   count: 0x1800
   addr: 0x202A800
 - desc: Decompressed BG1 data
-  label: DecompBG1Data
+  label: DecompBg1Data
   type: u16
   count: 0x1800
   addr: 0x202D800
 - desc: Decompressed BG2 data
-  label: DecompBG2Data
+  label: DecompBg2Data
   type: u16
   count: 0x1800
   addr: 0x2030800
@@ -206,16 +206,16 @@
   type: u8
   addr: 0x3000028
 - desc: Fades backgrounds to black or white
-  label: FadeBGBlackWhite
+  label: FadeBgBlackWhite
   type: u8
   addr: 0x3000029
   enum: BackgroundFade
 - desc: Background position written to BG3OFS
-  label: BGPositionWrittenToBG3OFS
+  label: BgPositionWrittenToBg3OFS
   type: u8
   addr: 0x300002A
 - desc: Samus on top of backgrounds flag
-  label: SamusOnTopOfBGFlag
+  label: SamusOnTopOfBgFlag
   type: u8
   addr: 0x300002B
 - desc: Difficulty
@@ -412,8 +412,8 @@
   type: BackupOfIORegisters
   addr: 0x3000088
 - desc: Background pointers and dimensions
-  label: BGPtrsAndDimensions
-  type: BGPtrsAndDimensions
+  label: BgPtrsAndDimensions
+  type: BgPtrsAndDimensions
   addr: 0x300009C
 - desc: Current room entry
   label: CurrRoomEntry
@@ -424,16 +424,16 @@
   type: CurrAffectingClipdata
   addr: 0x30000DC
 - desc: Background positions
-  label: BGPositions
-  type: BGPositions
+  label: BgPositions
+  type: BgPositions
   addr: 0x30000E4
 - desc: Waiting space pirates position
   label: WaitingSpacePiratesPosition
   type: RawCoordsXY
   addr: 0x30000F8
 - desc: BG2 movement
-  label: BG2Movement
-  type: BG2Movement
+  label: Bg2Movement
+  type: Bg2Movement
   addr: 0x30000FC
 - desc: Lock screen position
   label: LockScreenPosition
@@ -681,35 +681,35 @@
   type: u8
   addr: 0x3000BF3
 - desc: BG0 HOFS during non-gameplay
-  label: BG0_HOFS_NonGameplay
+  label: Bg0_HOFS_NonGameplay
   type: u16
   addr: 0x3000BF4
 - desc: BG0 VOFS during non-gameplay
-  label: BG0_VOFS_NonGameplay
+  label: Bg0_VOFS_NonGameplay
   type: u16
   addr: 0x3000BF6
 - desc: BG1 HOFS during non-gameplay
-  label: BG1_HOFS_NonGameplay
+  label: Bg1_HOFS_NonGameplay
   type: u16
   addr: 0x3000BF8
 - desc: BG1 VOFS during non-gameplay
-  label: BG1_VOFS_NonGameplay
+  label: Bg1_VOFS_NonGameplay
   type: u16
   addr: 0x3000BFA
 - desc: BG2 HOFS during non-gameplay
-  label: BG2_HOFS_NonGameplay
+  label: Bg2_HOFS_NonGameplay
   type: u16
   addr: 0x3000BFC
 - desc: BG2 VOFS during non-gameplay
-  label: BG2_VOFS_NonGameplay
+  label: Bg2_VOFS_NonGameplay
   type: u16
   addr: 0x3000BFE
 - desc: BG3 HOFS during non-gameplay
-  label: BG3_HOFS_NonGameplay
+  label: Bg3_HOFS_NonGameplay
   type: u16
   addr: 0x3000C00
 - desc: BG3 VOFS during non-gameplay
-  label: BG3_VOFS_NonGameplay
+  label: Bg3_VOFS_NonGameplay
   type: u16
   addr: 0x3000C02
 - desc: Current sine Y offset
@@ -819,12 +819,12 @@
   type: u8
   addr: 0x3001382
 - desc: Written to BG2X
-  label: WrittenToBG2X
+  label: WrittenToBg2X
   type: u32
   addr: 0x3001394
   notes: BG2 reference point X-coordinate
 - desc: Written to BG2Y
-  label: WrittenToBG2Y
+  label: WrittenToBg2Y
   type: u32
   addr: 0x3001398
   notes: BG2 reference point Y-coordinate
@@ -847,22 +847,22 @@
   type: u16
   addr: 0x30013A4
 - desc: Written to BG2PA
-  label: WrittenToBG2PA
+  label: WrittenToBg2PA
   type: u16
   addr: 0x30013A6
   notes: BG2 rotation/scaling parameter A
 - desc: Written to BG2PB
-  label: WrittenToBG2PB
+  label: WrittenToBg2PB
   type: u16
   addr: 0x30013A8
   notes: BG2 rotation/scaling parameter B
 - desc: Written to BG2PC
-  label: WrittenToBG2PC
+  label: WrittenToBg2PC
   type: u16
   addr: 0x30013AA
   notes: BG2 rotation/scaling parameter C
 - desc: Written to BG2PD
-  label: WrittenToBG2PD
+  label: WrittenToBg2PD
   type: u16
   addr: 0x30013AC
   notes: BG2 rotation/scaling parameter D
@@ -882,35 +882,35 @@
   addr: 0x30013B2
   notes: Alpha blending coefficients
 - desc: BG0 X position
-  label: BG0XPosition
+  label: Bg0XPosition
   type: u16
   addr: 0x30013B4
 - desc: BG0 Y position
-  label: BG0YPosition
+  label: Bg0YPosition
   type: u16
   addr: 0x30013B6
 - desc: BG1 X position
-  label: BG1XPosition
+  label: Bg1XPosition
   type: u16
   addr: 0x30013B8
 - desc: BG1 Y position
-  label: BG1YPosition
+  label: Bg1YPosition
   type: u16
   addr: 0x30013BA
 - desc: BG2 X position
-  label: BG2XPosition
+  label: Bg2XPosition
   type: u16
   addr: 0x30013BC
 - desc: BG2 Y position
-  label: BG2YPosition
+  label: Bg2YPosition
   type: u16
   addr: 0x30013BE
 - desc: BG3 X position
-  label: BG3XPosition
+  label: Bg3XPosition
   type: u16
   addr: 0x30013C0
 - desc: BG3 Y position
-  label: BG3YPosition
+  label: Bg3YPosition
   type: u16
   addr: 0x30013C2
 - desc: Demo state
@@ -1204,12 +1204,12 @@
   type: HatchLockingData
   addr: 0x30054E4
 - desc: BG3 movement
-  label: BG3Movement
-  type: BG3Movement
+  label: Bg3Movement
+  type: Bg3Movement
   addr: 0x30054EC
 - desc: BG0 movement
-  label: BG0Movement
-  type: BG0Movement
+  label: Bg0Movement
+  type: Bg0Movement
   addr: 0x30054F4
 - desc: Tileset's transparent color
   label: TilesetTransparentColor
@@ -1307,8 +1307,8 @@
   type: AnimatedPaletteAndTilesetNum
   addr: 0x30056F4
 - desc: Current special background effect
-  label: CurrSpecialBGEffect
-  type: SpecialBGEffect
+  label: CurrSpecialBgEffect
+  type: SpecialBgEffect
   addr: 0x30056F8
 - desc: Scroll counter
   label: ScrollCounter

@@ -133,7 +133,7 @@
     offset: 0x2
     enum: AreaID
 - desc: BG0 movement
-  label: BG0Movement
+  label: Bg0Movement
   size: 0x8
   vars:
   - desc: Type
@@ -162,7 +162,7 @@
     type: u16
     offset: 0x6
 - desc: BG0 water movement
-  label: BG0WaterMovement
+  label: Bg0WaterMovement
   size: 0x4
   vars:
   - desc: Moving flag
@@ -182,7 +182,7 @@
     type: s8
     offset: 0x3
 - desc: BG2 movement
-  label: BG2Movement
+  label: Bg2Movement
   size: 0x4
   vars:
   - desc: X position offset
@@ -194,7 +194,7 @@
     type: u16
     offset: 0x2
 - desc: BG3 movement
-  label: BG3Movement
+  label: Bg3Movement
   size: 0x6
   vars:
   - desc: Direction
@@ -214,39 +214,39 @@
     type: u16
     offset: 0x4
 - desc: BG positions
-  label: BGPositions
+  label: BgPositions
   size: 0x14
   vars:
   - desc: BG0 X position
-    label: BG0XPosition
+    label: Bg0XPosition
     type: u16
     offset: 0x0
   - desc: BG0 Y position
-    label: BG0YPosition
+    label: Bg0YPosition
     type: u16
     offset: 0x2
   - desc: BG1 X position
-    label: BG1XPosition
+    label: Bg1XPosition
     type: u16
     offset: 0x4
   - desc: BG1 Y position
-    label: BG1YPosition
+    label: Bg1YPosition
     type: u16
     offset: 0x6
   - desc: BG2 X position
-    label: BG2XPosition
+    label: Bg2XPosition
     type: u16
     offset: 0x8
   - desc: BG2 Y position
-    label: BG2YPosition
+    label: Bg2YPosition
     type: u16
     offset: 0xA
   - desc: BG3 X position
-    label: BG3XPosition
+    label: Bg3XPosition
     type: u16
     offset: 0xC
   - desc: BG3 Y position
-    label: BG3YPosition
+    label: Bg3YPosition
     type: u16
     offset: 0xE
   - desc: Door transition X position
@@ -258,43 +258,43 @@
     type: u16
     offset: 0x12
 - desc: BG pointers and dimensions
-  label: BGPtrsAndDimensions
+  label: BgPtrsAndDimensions
   size: 0x20
   vars:
   - desc: Decompressed BG0 pointer
-    label: DecompressedBG0Ptr
+    label: DecompressedBg0Ptr
     type: u16 *
     offset: 0x0
   - desc: Width of BG0 in blocks
-    label: WidthOfBG0InBlocks
+    label: WidthOfBg0InBlocks
     type: u16
     offset: 0x4
   - desc: Height of BG0 in blocks
-    label: HeightOfBG0InBlocks
+    label: HeightOfBg0InBlocks
     type: u16
     offset: 0x6
   - desc: Decompressed BG1 pointer
-    label: DecompressedBG1Ptr
+    label: DecompressedBg1Ptr
     type: u16 *
     offset: 0x8
   - desc: Width of BG1 in blocks
-    label: WidthOfBG1InBlocks
+    label: WidthOfBg1InBlocks
     type: u16
     offset: 0xC
   - desc: Height of BG1 in blocks
-    label: HeightOfBG1InBlocks
+    label: HeightOfBg1InBlocks
     type: u16
     offset: 0xE
   - desc: Decompressed BG2 pointer
-    label: DecompressedBG2Ptr
+    label: DecompressedBg2Ptr
     type: u16 *
     offset: 0x10
   - desc: Width of BG2 in blocks
-    label: WidthOfBG2InBlocks
+    label: WidthOfBg2InBlocks
     type: u16
     offset: 0x14
   - desc: Height of BG2 in blocks
-    label: HeightOfBG2InBlocks
+    label: HeightOfBg2InBlocks
     type: u16
     offset: 0x16
   - desc: Decompressed clipdata pointer
@@ -339,27 +339,27 @@
     offset: 0x7
     notes: Outside of windows
   - desc: Backup of BG0CNT, written to only
-    label: BackupOfBG0CNT_WriteOnly
+    label: BackupOfBg0CNT_WriteOnly
     type: u16
     offset: 0x8
     notes: BG0 control
   - desc: Backup of BG1CNT
-    label: BackupOfBG1CNT
+    label: BackupOfBg1CNT
     type: u16
     offset: 0xA
     notes: BG1 control
   - desc: Backup of BG2CNT
-    label: BackupOfBG2CNT
+    label: BackupOfBg2CNT
     type: u16
     offset: 0xC
     notes: BG2 control
   - desc: Backup of BG3CNT
-    label: BackupOfBG3CNT
+    label: BackupOfBg3CNT
     type: u16
     offset: 0xE
     notes: BG3 control
   - desc: Backup of BG0CNT
-    label: BackupOfBG0CNT
+    label: BackupOfBg0CNT
     type: u16
     offset: 0x10
     notes: BG0 control
@@ -1145,32 +1145,32 @@
     type: u8
     offset: 0x0
   - desc: BG0 properties
-    label: BG0Properties
+    label: Bg0Properties
     type: u8
     offset: 0x1
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG1 properties
-    label: BG1Properties
+    label: Bg1Properties
     type: u8
     offset: 0x2
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG2 properties
-    label: BG2Properties
+    label: Bg2Properties
     type: u8
     offset: 0x3
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG3 properties
-    label: BG3Properties
+    label: Bg3Properties
     type: u8
     offset: 0x4
-    enum: BGProperty
+    enum: BgProperty
   - desc: Scrolls flag
     label: ScrollsFlag
     type: u8
     offset: 0x5
     enum: ScrollsFlag
   - desc: BG3 scrolling method
-    label: BG3ScrollingMethod
+    label: Bg3ScrollingMethod
     type: u8
     offset: 0x6
   - desc: Transparency
@@ -1217,17 +1217,17 @@
     type: u16
     offset: 0x16
   - desc: BG0 size
-    label: BG0Size
+    label: Bg0Size
     type: u8
     offset: 0x18
     enum: LZ77BackgroundSize
   - desc: BG3 size
-    label: BG3Size
+    label: Bg3Size
     type: u8
     offset: 0x19
     enum: LZ77BackgroundSize
   - desc: BG3 starts from bottom flag
-    label: BG3StartsFromBottomFlag
+    label: Bg3StartsFromBottomFlag
     type: u8
     offset: 0x1A
   - desc: Animated tileset number
@@ -1251,11 +1251,11 @@
     type: ActiveScroll
     offset: 0xC
 - desc: Cutscene BG scrolling
-  label: CutsceneBGScrolling
+  label: CutsceneBgScrolling
   size: 0xC
   vars:
   - desc: Background position pointer
-    label: BGPositionPtr
+    label: BgPositionPtr
     type: u16 *
     offset: 0x0
   - desc: Unknown 04
@@ -1305,10 +1305,10 @@
     type: u16
     offset: 0xA
   - desc: Special BG fade
-    label: SpecialBGFade
+    label: SpecialBgFade
     type: u8
     offset: 0xC
-    enum: SpecialBGFadeType
+    enum: SpecialBgFadeType
   - desc: Event
     label: Event
     type: u8
@@ -1504,7 +1504,7 @@
   size: 0x8
   vars:
   - desc: Affected background flag
-    label: AffectedBGFlag
+    label: AffectedBgFlag
     type: u16
     offset: 0x0
   - desc: Unknown 02
@@ -1537,11 +1537,11 @@
     type: u8
     offset: 0x1
   - desc: Written to BLDALPHA_L (BG)
-    label: WrittenToBLDALPHA_L_BG
+    label: WrittenToBLDALPHA_L_Bg
     type: u8
     offset: 0x2
   - desc: Written to BLDALPHA_H (BG)
-    label: WrittenToBLDALPHA_H_BG
+    label: WrittenToBLDALPHA_H_Bg
     type: u8
     offset: 0x3
   - desc: BLDCNT copy (OBJ)
@@ -1561,19 +1561,19 @@
     type: u8
     offset: 0x8
   - desc: Written to BLDCNT (BG)
-    label: WrittenToBLDCNT_BG
+    label: WrittenToBLDCNT_Bg
     type: u16
     offset: 0xA
   - desc: Intensity (BG)
-    label: Intensity_BG
+    label: Intensity_Bg
     type: u8
     offset: 0xC
   - desc: Interval (BG)
-    label: Interval_BG
+    label: Interval_Bg
     type: u8
     offset: 0xD
   - desc: Timer (BG)
-    label: Timer_BG
+    label: Timer_Bg
     type: u8
     offset: 0xE
 - desc: Cutscene subroutine data
@@ -2054,35 +2054,35 @@
     type: ScreenPositionAndVelocity
     offset: 0x24
   - desc: BG0 X position
-    label: BG0XPosition
+    label: Bg0XPosition
     type: u16
     offset: 0x2C
   - desc: BG0 Y position
-    label: BG0YPosition
+    label: Bg0YPosition
     type: u16
     offset: 0x2E
   - desc: BG1 X position
-    label: BG1XPosition
+    label: Bg1XPosition
     type: u16
     offset: 0x30
   - desc: BG1 Y position
-    label: BG1YPosition
+    label: Bg1YPosition
     type: u16
     offset: 0x32
   - desc: BG2 X position
-    label: BG2XPosition
+    label: Bg2XPosition
     type: u16
     offset: 0x34
   - desc: BG2 Y position
-    label: BG2YPosition
+    label: Bg2YPosition
     type: u16
     offset: 0x36
   - desc: BG3 X position
-    label: BG3XPosition
+    label: Bg3XPosition
     type: u16
     offset: 0x38
   - desc: BG3 Y position
-    label: BG3YPosition
+    label: Bg3YPosition
     type: u16
     offset: 0x3A
   - desc: Difficulty
@@ -2402,7 +2402,7 @@
     offset: 0x1
     enum: RoomEffect
   - desc: BG0 water moving flag
-    label: BG0WaterMovingFlag
+    label: Bg0WaterMovingFlag
     type: u8
     offset: 0x2
   - desc: Power bomb related
@@ -3132,45 +3132,45 @@
     type: u16
     offset: 0x1E
   - desc: BGCNT
-    label: BGCNT
+    label: BgCNT
     type: u16
     count: 0x4
     offset: 0x20
   - desc: BG0VOFS
-    label: BG0VOFS
+    label: Bg0VOFS
     type: u16
     offset: 0x28
   - desc: BG1VOFS
-    label: BG1VOFS
+    label: Bg1VOFS
     type: u16
     offset: 0x2A
   - desc: BG2VOFS
-    label: BG2VOFS
+    label: Bg2VOFS
     type: u16
     offset: 0x2C
   - desc: BG3VOFS
-    label: BG3VOFS
+    label: Bg3VOFS
     type: u16
     offset: 0x2E
   - desc: BG0HOFS
-    label: BG0HOFS
+    label: Bg0HOFS
     type: u16
     offset: 0x30
   - desc: BG1HOFS
-    label: BG1HOFS
+    label: Bg1HOFS
     type: u16
     offset: 0x32
   - desc: BG2HOFS
-    label: BG2HOFS
+    label: Bg2HOFS
     type: u16
     offset: 0x34
   - desc: BG3HOFS
-    label: BG3HOFS
+    label: Bg3HOFS
     type: u16
     offset: 0x36
   - desc: BG scrolling
-    label: BGScrolling
-    type: CutsceneBGScrolling
+    label: BgScrolling
+    type: CutsceneBgScrolling
     count: 0x8
     offset: 0x38
   - desc: Horizontal screen shake
@@ -3431,19 +3431,19 @@
     type: u16
     offset: 0x5C
   - desc: BG0CNT
-    label: BG0CNT
+    label: Bg0CNT
     type: u16
     offset: 0x5E
   - desc: BG1CNT
-    label: BG1CNT
+    label: Bg1CNT
     type: u16
     offset: 0x60
   - desc: BG2CNT
-    label: BG2CNT
+    label: Bg2CNT
     type: u16
     offset: 0x62
   - desc: BG3CNT
-    label: BG3CNT
+    label: Bg3CNT
     type: u16
     offset: 0x64
   - desc: BLDCNT
@@ -3977,35 +3977,35 @@
     type: u8
     offset: 0x0
   - desc: BG0 properties
-    label: BG0Properties
+    label: Bg0Properties
     type: u8
     offset: 0x1
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG1 properties
-    label: BG1Properties
+    label: Bg1Properties
     type: u8
     offset: 0x2
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG2 properties
-    label: BG2Properties
+    label: Bg2Properties
     type: u8
     offset: 0x3
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG3 properties
-    label: BG3Properties
+    label: Bg3Properties
     type: u8
     offset: 0x4
-    enum: BGProperty
+    enum: BgProperty
   - desc: BG0 pointer
-    label: BG0Ptr
+    label: Bg0Ptr
     type: u16 *
     offset: 0x8
   - desc: BG1 pointer
-    label: BG1Ptr
+    label: Bg1Ptr
     type: u16 *
     offset: 0xC
   - desc: BG2 pointer
-    label: BG2Ptr
+    label: Bg2Ptr
     type: u16 *
     offset: 0x10
   - desc: Clipdata pointer
@@ -4013,13 +4013,13 @@
     type: u16 *
     offset: 0x14
   - desc: BG3 pointer
-    label: BG3Ptr
+    label: Bg3Ptr
     type: u16 *
     cat: tilemap
     comp: lz
     offset: 0x18
   - desc: BG3 scrolling
-    label: BG3Scrolling
+    label: Bg3Scrolling
     type: u8
     offset: 0x1C
   - desc: Transparency
@@ -4918,7 +4918,7 @@
     count: 0x10
     offset: 0x17
 - desc: Special BG effect
-  label: SpecialBGEffect
+  label: SpecialBgEffect
   size: 0x8
   vars:
   - desc: Unused
@@ -4937,20 +4937,20 @@
     label: Type
     type: u8
     offset: 0x5
-    enum: SpecialBGEffect
+    enum: SpecialBgEffect
   - desc: Stage
     label: Stage
     type: u8
     offset: 0x6
 - desc: Special BG effect behavior
-  label: SpecialBGEffectBehavior
+  label: SpecialBgEffectBehavior
   size: 0x6
   vars:
   - desc: Current behavior
     label: CurrBehavior
     type: u16
     offset: 0x0
-    enum: SpecialBGEffectBehavior
+    enum: SpecialBgEffectBehavior
   - desc: Timer
     label: Timer
     type: u16
@@ -4960,7 +4960,7 @@
     type: u16
     offset: 0x4
 - desc: Special BG effect color data
-  label: SpecialBGEffectColorData
+  label: SpecialBgEffectColorData
   size: 0x8
   vars:
   - desc: Color mask
@@ -4981,14 +4981,14 @@
     cat: bool
     offset: 0x6
 - desc: Special BG fade
-  label: SpecialBGFade
+  label: SpecialBgFade
   size: 0x8
   vars:
   - desc: Type
     label: Type
     type: u8
     offset: 0x0
-    enum: SpecialBGFadeType
+    enum: SpecialBgFadeType
   - desc: Stage
     label: Stage
     type: u8
@@ -5092,7 +5092,7 @@
     type: u8
     offset: 0x20
   - desc: Background priority
-    label: BGPriority
+    label: BgPriority
     type: u8
     offset: 0x21
   - desc: Draw order
@@ -5585,24 +5585,24 @@
   size: 0x14
   vars:
   - desc: RLE background graphics pointer
-    label: RleBGGfxPtr
+    label: RleBgGfxPtr
     type: u8 *
     cat: gfx
     comp: lz
     offset: 0x0
   - desc: Background palette pointer
-    label: BGPalettePtr
+    label: BgPalettePtr
     type: u16 *
     cat: palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
-    label: LZ77BGGfxPtr
+    label: LZ77BgGfxPtr
     type: u8 *
     cat: gfx
     comp: lz
     offset: 0x8
   - desc: RLE background tilemap pointer
-    label: RleBGTilemapPtr
+    label: RleBgTilemapPtr
     type: u16 *
     cat: tilemap
     offset: 0xC

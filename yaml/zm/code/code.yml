@@ -8858,7 +8858,7 @@
     type: u8
   notes: Updates the horizontal screen shake and returns the X position offset for the backgrounds
 - desc: Set transparency and background effects
-  label: SetTransparencyAndBGEffects
+  label: SetTransparencyAndBgEffects
   addr:
     U: 0x554AC
     E: 0x55578
@@ -8869,7 +8869,7 @@
   params: null
   return: null
 - desc: Get background size flag
-  label: GetBGSizeFlag
+  label: GetBgSizeFlag
   addr:
     U: 0x559F8
     E: 0x55AC4
@@ -8879,7 +8879,7 @@
   mode: thumb
   params:
   - desc: Background size
-    label: BGSize
+    label: BgSize
     type: u8
   return:
     desc: Size flag
@@ -9110,7 +9110,7 @@
   params: null
   return: null
 - desc: Set automatic background movement
-  label: SetAutomaticBGMovement
+  label: SetAutomaticBgMovement
   addr:
     U: 0x56AC8
     E: 0x56B94
@@ -9209,7 +9209,7 @@
   params: null
   return: null
 - desc: Update background positions
-  label: UpdateBGPositions
+  label: UpdateBgPositions
   addr:
     U: 0x570AC
     E: 0x57174
@@ -9449,10 +9449,10 @@
     label: RoomID1
     type: u8
   - desc: Background X Position
-    label: BGXPosition
+    label: BgXPosition
     type: u16
   - desc: Background Y Position
-    label: BGYPosition
+    label: BgYPosition
     type: u16
   return: null
 - desc: Copy clipdata handling code
@@ -9781,7 +9781,7 @@
     type: u8 *
   return: null
 - desc: Handle moving BG0
-  label: HandleMovingBG0
+  label: HandleMovingBg0
   addr:
     U: 0x58CC0
     E: 0x58D88
@@ -9793,7 +9793,7 @@
   return: null
   notes: Handles the automatic scrolling of BG0
 - desc: Get BG3 scrolling values
-  label: GetBG3ScrollingValues
+  label: GetBg3ScrollingValues
   addr:
     U: 0x58D20
     E: 0x58DE8
@@ -9808,7 +9808,7 @@
     type: u8
   notes: Gets the X/Y scrolling values of BG3 depending on the current room entry BG3 scrolling
 - desc: Scroll BG3
-  label: ScrollBG3
+  label: ScrollBg3
   addr:
     U: 0x58DA0
     E: 0x58E68
@@ -9819,7 +9819,7 @@
   params: null
   return: null
 - desc: Handle moving BG3
-  label: HandleMovingBG3
+  label: HandleMovingBg3
   addr:
     U: 0x58F14
     E: 0x58FDC
@@ -9831,7 +9831,7 @@
   return: null
   notes: Handles the automatic scrolling of BG3
 - desc: Scroll BG2
-  label: ScrollBG2
+  label: ScrollBg2
   addr:
     U: 0x58F40
     E: 0x59008
@@ -9975,7 +9975,7 @@
   params: null
   return: null
 - desc: Remove never reform block from clipdata and BG
-  label: RemoveNeverReformBlockFromClipAndBG
+  label: RemoveNeverReformBlockFromClipAndBg
   addr:
     U: 0x59580
     E: 0x59648
@@ -10330,7 +10330,7 @@
     type: u16
   return: null
 - desc: Set BG1 block value
-  label: SetBG1BlockValue
+  label: SetBg1BlockValue
   addr:
     U: 0x5A55C
     E: 0x5A624
@@ -10350,7 +10350,7 @@
     type: u16
   return: null
 - desc: Set raw BG1 block value
-  label: SetRawBG1BlockValue
+  label: SetRawBg1BlockValue
   addr:
     U: 0x5A628
     E: 0x5A6F0
@@ -10690,7 +10690,7 @@
     type: u8
   return: null
 - desc: Apply special background effect color on BG
-  label: ApplySpecialBGEffectColorOnBG
+  label: ApplySpecialBgEffectColorOnBg
   addr:
     U: 0x5B830
     E: 0x5B8F8
@@ -10711,7 +10711,7 @@
   return: null
   notes: Color is only applied if the color bit of mask isn't 0; mask is 0x7FFF (white) for every effect
 - desc: Apply special background effect color on OBJ
-  label: ApplySpecialBGEffectColorOnObj
+  label: ApplySpecialBgEffectColorOnObj
   addr:
     U: 0x5B96C
     E: 0x5BA34
@@ -10732,7 +10732,7 @@
   return: null
   notes: Not applied to Samus; color is only applied if the color bit of mask isn't 0
 - desc: Apply special background fading color
-  label: ApplySpecialBGFadingColor
+  label: ApplySpecialBgFadingColor
   addr:
     U: 0x5BAAC
     E: 0x5BB74
@@ -10820,7 +10820,7 @@
     enum: CutsceneRequest
   return: null
 - desc: Start special background fading
-  label: StartSpecialBGFading
+  label: StartSpecialBgFading
   addr:
     U: 0x5C074
     E: 0x5C13C
@@ -10832,7 +10832,7 @@
   - desc: Fade type
     label: FadeType
     type: u8
-    enum: SpecialBGFadeType
+    enum: SpecialBgFadeType
   return: null
 - desc: Hide screen during load
   label: HideScreenDuringLoad
@@ -10847,7 +10847,7 @@
   return: null
   notes: If removed, briely shows garbage tiles when loading the game
 - desc: BG3OFS related
-  label: BG3OFSRelated
+  label: Bg3OFSRelated
   addr:
     U: 0x5C158
     E: 0x5C220
@@ -11112,7 +11112,7 @@
   params: null
   return: null
 - desc: Set background haze effect
-  label: SetBGHazeEffect
+  label: SetBgHazeEffect
   addr:
     U: 0x5CFE0
     E: 0x5D0A8
@@ -11190,7 +11190,7 @@
     type: u8
     cat: bool
 - desc: Haze BG3
-  label: HazeBG3
+  label: HazeBg3
   addr:
     U: 0x5D768
     E: 0x5D83C
@@ -11201,7 +11201,7 @@
   params: null
   return: null
 - desc: Haze BG3 (strong effect, weak outside)
-  label: HazeBG3StrongEffectWeakOutside
+  label: HazeBg3StrongEffectWeakOutside
   addr:
     U: 0x5D828
     E: 0x5D8FC
@@ -11212,7 +11212,7 @@
   params: null
   return: null
 - desc: Haze BG3 (none effect, weak outside)
-  label: HazeBG3NoneEffectWeakOutside
+  label: HazeBg3NoneEffectWeakOutside
   addr:
     U: 0x5D940
     E: 0x5DA14
@@ -11223,7 +11223,7 @@
   params: null
   return: null
 - desc: Haze BG3/BG2 (strong effect, weak outside, medium everywhere)
-  label: HazeBG3BG2StrongEffectWeakOutsideMediumEverywhere
+  label: HazeBg3Bg2StrongEffectWeakOutsideMediumEverywhere
   addr:
     U: 0x5D9B0
     E: 0x5DA84
@@ -11234,7 +11234,7 @@
   params: null
   return: null
 - desc: Haze BG1 BG2 BG3
-  label: Haze_BG1_BG2_BG3
+  label: Haze_Bg1_Bg2_Bg3
   addr:
     U: 0x5DA40
     E: 0x5DB14
@@ -11391,7 +11391,7 @@
   params: null
   return: null
 - desc: Process special background effect
-  label: ProcessSpecialBGEffect
+  label: ProcessSpecialBgEffect
   addr:
     U: 0x5E5CC
     E: 0x5E6C0
@@ -11406,7 +11406,7 @@
     type: u8
     notes: 1 = default, 2 = second
 - desc: Start special background effect
-  label: StartSpecialBGEffect
+  label: StartSpecialBgEffect
   addr:
     U: 0x5E6F8
     E: 0x5E7EC
@@ -11418,7 +11418,7 @@
   - desc: Effect
     label: Effect
     type: u8
-    enum: SpecialBGEffect
+    enum: SpecialBgEffect
   return:
     desc: Effect started
     label: EffectStarted
@@ -12143,7 +12143,7 @@
     type: CutscenePageData
   return: null
 - desc: Cutscene update BGCNT
-  label: CutsceneUpdateBGCNT
+  label: CutsceneUpdateBgCNT
   addr:
     U: 0x61484
     E: 0x6159C
@@ -12161,7 +12161,7 @@
   return: null
   notes: Updates the BGCNT of the provided background
 - desc: Cutscene update background position
-  label: CutsceneUpdateBGPosition
+  label: CutsceneUpdateBgPosition
   addr:
     U: 0x614D4
     E: 0x615EC
@@ -12219,7 +12219,7 @@
     label: VOFSPtr
     type: u16 *
 - desc: Cutscene start automatic background scrolling
-  label: CutsceneStartAutomaticBGScrolling
+  label: CutsceneStartAutomaticBgScrolling
   addr:
     U: 0x61618
     E: 0x61730
@@ -12239,7 +12239,7 @@
     type: u8
   return: null
 - desc: Cutscene update automatic background scrolling
-  label: CutsceneUpdateAutomaticBGScrolling
+  label: CutsceneUpdateAutomaticBgScrolling
   addr:
     U: 0x618D8
     E: 0x619F0
@@ -12249,11 +12249,11 @@
   mode: thumb
   params:
   - desc: Cutscene background scrolling pointer
-    label: CutsceneBGScrollingPtr
-    type: CutsceneBGScrolling *
+    label: CutsceneBgScrollingPtr
+    type: CutsceneBgScrolling *
   return: null
 - desc: Cutscene check background scrolling active
-  label: CutsceneCheckBGScrollingActive
+  label: CutsceneCheckBgScrollingActive
   addr:
     U: 0x61944
     E: 0x61A5C
@@ -12275,7 +12275,7 @@
     type: u8
     notes: 0 = not active, 1 = horizontal, 2 = vertical, 3 = both
 - desc: Cutscene update backgrounds position
-  label: CutsceneUpdateBGsPosition
+  label: CutsceneUpdateBgsPosition
   addr:
     U: 0x619C4
     E: 0x61ADC
@@ -12321,7 +12321,7 @@
     label: Type
     type: u8
   - desc: Affected background
-    label: AffectedBG
+    label: AffectedBg
     type: u16
   return: null
 - desc: Update cutscene special effect
@@ -12359,7 +12359,7 @@
     type: u8
   return: null
 - desc: Cutscene start background effect
-  label: CutsceneStartBGEffect
+  label: CutsceneStartBgEffect
   addr:
     U: 0x61DC8
     E: 0x61EE0
@@ -18099,7 +18099,7 @@
   params: null
   return: null
 - desc: Tourian escape Samus surrounded calculate BG2 position
-  label: TourianEscapeSamusSurroundedCalcBG2Position
+  label: TourianEscapeSamusSurroundedCalcBg2Position
   addr:
     U: 0x81684
     E: 0x81D90
