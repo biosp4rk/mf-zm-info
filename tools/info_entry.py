@@ -98,8 +98,8 @@ class InfoEntry(ABC):
 
     def __init__(self, desc: str, label: str, notes: str = None):
         self.desc = desc
-        self.label = label  
-        self.notes = notes      
+        self.label = label
+        self.notes = notes
 
     def __lt__(self, other: "InfoEntry") -> bool:
         return self.label < other.label
@@ -330,7 +330,7 @@ class DataEntry(VarEntry):
             desc, label, type, arr_count, cat, comp, enum, notes
         )
         self.addr = addr
-    
+
     def __str__(self) -> str:
         return f"{self.label}"
 

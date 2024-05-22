@@ -796,7 +796,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   return: null
 - desc: Stop sound
@@ -810,7 +810,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   return: null
 - desc: Stop all music and sounds
@@ -849,7 +849,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   return: null
   notes: Plays a sound if it's not already playing
@@ -864,7 +864,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   - desc: Timer
     label: Timer
@@ -915,7 +915,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   - desc: Timer
     label: Timer
@@ -1332,7 +1332,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   - desc: Timer
     label: Timer
@@ -1350,7 +1350,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   - desc: Timer
     label: Timer
@@ -1444,7 +1444,7 @@
   mode: thumb
   params:
   - desc: Sound ID
-    label: SoundID
+    label: SoundId
     type: u16
   return: null
 - desc: Check replay file select music
@@ -4771,9 +4771,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   - desc: Sprite graphics row
     label: SpriteGfxRow
     type: u8
@@ -4789,9 +4789,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   - desc: Sprite graphics row
     label: SpriteGfxRow
     type: u8
@@ -4856,9 +4856,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: SecondarySpriteID
+    enum: SecondarySpriteId
   - desc: Part number
     label: PartNum
     type: u8
@@ -4895,9 +4895,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   - desc: Room slot
     label: RoomSlot
     type: u8
@@ -4931,9 +4931,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   - desc: Room slot
     label: RoomSlot
     type: u8
@@ -5579,9 +5579,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: SecondarySpriteID
+    enum: SecondarySpriteId
   - desc: Primary RAM slot
     label: PrimaryRamSlot
     type: u8
@@ -5791,9 +5791,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   return:
     desc: Primary sprite count
     label: PrimarySpriteCount
@@ -5809,9 +5809,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: SecondarySpriteID
+    enum: SecondarySpriteId
   return:
     desc: Secondary sprite count
     label: SecondarySpriteCount
@@ -5827,9 +5827,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   return:
     desc: Primary sprite count
     label: PrimarySpriteCount
@@ -5845,9 +5845,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   return:
     desc: Sprite RAM slot
     label: SpriteRamSlot
@@ -5865,9 +5865,9 @@
   mode: thumb
   params:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
-    enum: SecondarySpriteID
+    enum: SecondarySpriteId
   - desc: Part number
     label: PartNum
     type: u8
@@ -5997,7 +5997,7 @@
   return: null
   notes: Initialize 1 to 3 sprite debris choosen randomly among 2 options (only the debris type changes)
 - desc: Get ammo drop sprite ID
-  label: GetAmmoDropSpriteID
+  label: GetAmmoDropSpriteId
   addr:
     U: 0x10E90
     E: 0x10F44
@@ -6011,12 +6011,12 @@
     type: u8
   return:
     desc: Ammo drop sprite ID
-    label: AmmoDropSpriteID
+    label: AmmoDropSpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
     notes: 0 if none
 - desc: Determine enemy drop sprite ID
-  label: DetermineEnemyDropSpriteID
+  label: DetermineEnemyDropSpriteId
   addr:
     U: 0x10EEC
     E: 0x10FA0
@@ -6027,9 +6027,9 @@
   params: null
   return:
     desc: Enemy drop sprite ID
-    label: EnemyDropSpriteID
+    label: EnemyDropSpriteId
     type: u8
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
     notes: 0 if none
 - desc: Sprite death
   label: SpriteDeath
@@ -9442,11 +9442,11 @@
   mode: thumb
   params:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID 1
-    label: RoomID1
+    label: RoomId1
     type: u8
   - desc: Background X Position
     label: BgXPosition
@@ -11402,7 +11402,7 @@
   params: null
   return:
     desc: Color ID
-    label: ColorID
+    label: ColorId
     type: u8
     notes: 1 = default, 2 = second
 - desc: Start special background effect
@@ -11676,7 +11676,7 @@
   - desc: Area
     label: Area
     type: u8
-    enum: AreaID
+    enum: AreaId
   - desc: Destination room + 1
     label: DestinationRoomPlus1
     type: u8
@@ -11917,11 +11917,11 @@
   mode: thumb
   params:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID
-    label: RoomID
+    label: RoomId
     type: u8
   return: null
 - desc: Check play loading jingle
@@ -13938,7 +13938,7 @@
   - desc: Area
     label: Area
     type: u8
-    enum: AreaID
+    enum: AreaId
   return: null
 - desc: Map screen update world map OAM
   label: MapScreenUpdateWorldMapOam
@@ -14395,7 +14395,7 @@
     label: DestinationAddress
     type: u32
   - desc: Tile ID pointer
-    label: TileIDPtr
+    label: TileIdPtr
     type: u16 *
   - desc: Palette
     label: Palette
@@ -14419,7 +14419,7 @@
     label: DestinationAddress
     type: u32
   - desc: Tile ID pointer
-    label: TileIDPtr
+    label: TileIdPtr
     type: u16 *
   - desc: Palette
     label: Palette
@@ -14443,7 +14443,7 @@
     label: DestinationAddress
     type: u32
   - desc: Tile ID pointer
-    label: TileIDPtr
+    label: TileIdPtr
     type: u16 *
   - desc: Palette
     label: Palette
@@ -14467,7 +14467,7 @@
     label: DestinationAddress
     type: u32
   - desc: Tile ID pointer
-    label: TileIDPtr
+    label: TileIdPtr
     type: u16 *
   - desc: Palette
     label: Palette
@@ -14484,9 +14484,9 @@
   mode: thumb
   params:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
-    enum: AreaID
+    enum: AreaId
   - desc: Destination address
     label: DestinationAddress
     type: u16 *
@@ -14502,9 +14502,9 @@
   mode: thumb
   params:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
-    enum: AreaID
+    enum: AreaId
   - desc: Destination address
     label: DestinationAddress
     type: u16 *
@@ -14779,7 +14779,7 @@
   mode: thumb
   params:
   - desc: Character ID
-    label: CharacterID
+    label: CharacterId
     type: u16
   return:
     desc: Character width
@@ -14800,7 +14800,7 @@
   mode: thumb
   params:
   - desc: Character ID
-    label: CharacterID
+    label: CharacterId
     type: u16
   - desc: Destination address
     label: DestinationAddress
@@ -14828,7 +14828,7 @@
   mode: thumb
   params:
   - desc: Character ID
-    label: CharacterID
+    label: CharacterId
     type: u16
   - desc: Destination address
     label: DestinationAddress
@@ -14873,7 +14873,7 @@
   mode: thumb
   params:
   - desc: Location text ID
-    label: LocationTextID
+    label: LocationTextId
     type: u8
   - desc: Graphics slot
     label: GfxSlot
@@ -14921,7 +14921,7 @@
   mode: thumb
   params:
   - desc: Story text ID
-    label: StoryTextID
+    label: StoryTextId
     type: u8
   return: null
 - desc: Process intro story text
@@ -15293,7 +15293,7 @@
     type: u8
   return:
     desc: Equipment ID
-    label: EquipmentID
+    label: EquipmentId
     type: u8
     notes: Long beam = 0, ..., space jump = 10, unknown item = 11, pistol = 12, none = 80)
 - desc: Status screen update cursor OAM position
@@ -16632,7 +16632,7 @@
     type: u8
     enum: FileSelectCursorState
   - desc: Sub-menu ID
-    label: SubMenuID
+    label: SubMenuId
     type: u8
   return: null
 - desc: File select update copy cursor
@@ -16972,7 +16972,7 @@
   mode: thumb
   params:
   - desc: Time attack ID
-    label: TimeAttackID
+    label: TimeAttackId
     type: u8
   return: null
 - desc: Load time attack password for record
@@ -17274,9 +17274,9 @@
   mode: thumb
   params:
   - desc: Menu sound ID
-    label: MenuSoundID
+    label: MenuSoundId
     type: u8
-    enum: MenuSoundID
+    enum: MenuSoundId
   return: null
 - desc: Soft reset subroutine
   label: SoftResetSubroutine

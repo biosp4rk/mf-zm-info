@@ -160,7 +160,7 @@
     label: SourceArea
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Source door
     label: SourceDoor
     type: u8
@@ -169,7 +169,7 @@
     label: DestinationArea
     type: u8
     offset: 0x2
-    enum: AreaID
+    enum: AreaId
 - desc: Arm cannon animation data
   label: ArmCannonAnimData
   size: 0x8
@@ -203,6 +203,60 @@
     label: NewProjectileXOffset
     type: u16
     offset: 0x6
+- desc: Backup of IO registers
+  label: BackupOfIoRegisters
+  size: 0x12
+  vars:
+  - desc: Backup of DISPCNT during non-gameplay
+    label: BackupOfDISPCNT_NonGameplay
+    type: u16
+    offset: 0x0
+    notes: LCD control
+  - desc: Backup of BLDCNT during non-gameplay
+    label: BackupOfBLDCNT_NonGameplay
+    type: u16
+    offset: 0x2
+    notes: Color special effects selection
+  - desc: Backup of BLDALPHA during non-gameplay
+    label: BackupOfBLDALPHA_NonGameplay
+    type: u16
+    offset: 0x4
+    notes: Alpha blending coefficients
+  - desc: Backup of WININ_H during non-gameplay
+    label: BackupOfWININ_H_NonGameplay
+    type: u8
+    offset: 0x6
+    notes: Inside of window 1
+  - desc: Backup of WINOUT_L during non-gameplay
+    label: BackupOfWINOUT_L_NonGameplay
+    type: u8
+    offset: 0x7
+    notes: Outside of windows
+  - desc: Backup of BG0CNT, written to only
+    label: BackupOfBg0CNT_WriteOnly
+    type: u16
+    offset: 0x8
+    notes: BG0 control
+  - desc: Backup of BG1CNT
+    label: BackupOfBg1CNT
+    type: u16
+    offset: 0xA
+    notes: BG1 control
+  - desc: Backup of BG2CNT
+    label: BackupOfBg2CNT
+    type: u16
+    offset: 0xC
+    notes: BG2 control
+  - desc: Backup of BG3CNT
+    label: BackupOfBg3CNT
+    type: u16
+    offset: 0xE
+    notes: BG3 control
+  - desc: Backup of BG0CNT
+    label: BackupOfBg0CNT
+    type: u16
+    offset: 0x10
+    notes: BG0 control
 - desc: BG3 movement
   label: Bg3Movement
   size: 0x6
@@ -319,60 +373,6 @@
     label: HeightOfClipdataInBlocks
     type: u16
     offset: 0x1E
-- desc: Backup of IO registers
-  label: BackupOfIoRegisters
-  size: 0x12
-  vars:
-  - desc: Backup of DISPCNT during non-gameplay
-    label: BackupOfDISPCNT_NonGameplay
-    type: u16
-    offset: 0x0
-    notes: LCD control
-  - desc: Backup of BLDCNT during non-gameplay
-    label: BackupOfBLDCNT_NonGameplay
-    type: u16
-    offset: 0x2
-    notes: Color special effects selection
-  - desc: Backup of BLDALPHA during non-gameplay
-    label: BackupOfBLDALPHA_NonGameplay
-    type: u16
-    offset: 0x4
-    notes: Alpha blending coefficients
-  - desc: Backup of WININ_H during non-gameplay
-    label: BackupOfWININ_H_NonGameplay
-    type: u8
-    offset: 0x6
-    notes: Inside of window 1
-  - desc: Backup of WINOUT_L during non-gameplay
-    label: BackupOfWINOUT_L_NonGameplay
-    type: u8
-    offset: 0x7
-    notes: Outside of windows
-  - desc: Backup of BG0CNT, written to only
-    label: BackupOfBg0CNT_WriteOnly
-    type: u16
-    offset: 0x8
-    notes: BG0 control
-  - desc: Backup of BG1CNT
-    label: BackupOfBg1CNT
-    type: u16
-    offset: 0xA
-    notes: BG1 control
-  - desc: Backup of BG2CNT
-    label: BackupOfBg2CNT
-    type: u16
-    offset: 0xC
-    notes: BG2 control
-  - desc: Backup of BG3CNT
-    label: BackupOfBg3CNT
-    type: u16
-    offset: 0xE
-    notes: BG3 control
-  - desc: Backup of BG0CNT
-    label: BackupOfBg0CNT
-    type: u16
-    offset: 0x10
-    notes: BG0 control
 - desc: Boss part OAM data
   label: BossPartOamData
   size: 0x6
@@ -458,7 +458,7 @@
   size: 0x4
   vars:
   - desc: Room ID
-    label: RoomID
+    label: RoomId
     type: u8
     offset: 0x0
   - desc: Tank type
@@ -761,10 +761,10 @@
   size: 0x1C
   vars:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Previous door
     label: PrevDoor
     type: u8
@@ -902,21 +902,21 @@
   size: 0x4
   vars:
   - desc: Area ID 1
-    label: AreaID1
+    label: AreaId1
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID 1
-    label: RoomID1
+    label: RoomId1
     type: u8
     offset: 0x1
   - desc: Area ID 2
-    label: AreaID2
+    label: AreaId2
     type: u8
     offset: 0x2
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID 2
-    label: RoomID2
+    label: RoomId2
     type: u8
     offset: 0x3
 - desc: Ending text draw info
@@ -1066,7 +1066,7 @@
     label: SourceArea
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Source door
     label: SourceDoor
     type: u8
@@ -1085,12 +1085,12 @@
   size: 0xC
   vars:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID + 1
-    label: RoomID_Plus1
+    label: RoomId_Plus1
     type: u8
     offset: 0x1
   - desc: X start
@@ -1204,12 +1204,12 @@
     offset: 0x0
     enum: Event
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x1
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID + 1
-    label: RoomID_Plus1
+    label: RoomId_Plus1
     type: u8
     offset: 0x2
   - desc: Hatches to lock
@@ -1431,12 +1431,12 @@
   size: 0x2
   vars:
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x0
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID + 1
-    label: RoomID_Plus1
+    label: RoomId_Plus1
     type: u8
     offset: 0x1
 - desc: Navigation target
@@ -1470,7 +1470,7 @@
   size: 0x3
   vars:
   - desc: Room ID
-    label: RoomID
+    label: RoomId
     type: u8
     offset: 0x0
   - desc: X position
@@ -2504,12 +2504,12 @@
     type: u8
     offset: 0x1C
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x1D
-    enum: AreaID
+    enum: AreaId
   - desc: Room ID
-    label: RoomID
+    label: RoomId
     type: u8
     offset: 0x1E
   - desc: Previous door
@@ -2992,10 +2992,10 @@
     type: u8
     offset: 0x0
   - desc: Area ID
-    label: AreaID
+    label: AreaId
     type: u8
     offset: 0x1
-    enum: AreaID
+    enum: AreaId
   - desc: Previous event
     label: PrevEvent
     type: u8
@@ -3193,7 +3193,7 @@
     type: u8
     offset: 0x1C
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
     offset: 0x1D
   - desc: Room slot/part number
@@ -3345,10 +3345,10 @@
   size: 0x2
   vars:
   - desc: Sprite ID
-    label: SpriteID
+    label: SpriteId
     type: u8
     offset: 0x0
-    enum: PrimarySpriteID
+    enum: PrimarySpriteId
   - desc: Graphics row
     label: GfxRow
     type: u8
