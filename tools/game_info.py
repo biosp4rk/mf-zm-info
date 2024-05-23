@@ -34,7 +34,6 @@ class GameInfo(object):
             enum_list = get_info_file_from_yaml(game, MAP_ENUMS, region, include_unk)
         self.structs: Dict[str, StructEntry] = {e.label: e for e in struct_list}
         self.enums: Dict[str, EnumEntry] = {e.label: e for e in enum_list}
-        
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]
