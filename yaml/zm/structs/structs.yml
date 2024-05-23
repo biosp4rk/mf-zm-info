@@ -137,7 +137,7 @@
   size: 0x12
   vars:
   - desc: Backup of DISPCNT during non-gameplay
-    label: BackupOfDISPCNT_NonGameplay
+    label: BackupOfDispcnt_NonGameplay
     type: u16
     offset: 0x0
     notes: LCD control
@@ -147,7 +147,7 @@
     offset: 0x2
     notes: Color special effects selection
   - desc: Backup of BLDALPHA during non-gameplay
-    label: BackupOfBLDALPHA_NonGameplay
+    label: BackupOfBldalpha_NonGameplay
     type: u16
     offset: 0x4
     notes: Alpha blending coefficients
@@ -1220,12 +1220,12 @@
     label: Bg0Size
     type: u8
     offset: 0x18
-    enum: LZ77BackgroundSize
+    enum: Lz77BackgroundSize
   - desc: BG3 size
     label: Bg3Size
     type: u8
     offset: 0x19
-    enum: LZ77BackgroundSize
+    enum: Lz77BackgroundSize
   - desc: BG3 starts from bottom flag
     label: Bg3StartsFromBottomFlag
     type: u8
@@ -1533,31 +1533,31 @@
     offset: 0x0
     enum: CutsceneSpecialEffectStatus
   - desc: Written to BLDY (OBJ)
-    label: WrittenToBLDY_OBJ
+    label: WrittenToBldy_Obj
     type: u8
     offset: 0x1
   - desc: Written to BLDALPHA_L (BG)
-    label: WrittenToBLDALPHA_L_Bg
+    label: WrittenToBldalpha_L_Bg
     type: u8
     offset: 0x2
   - desc: Written to BLDALPHA_H (BG)
-    label: WrittenToBLDALPHA_H_Bg
+    label: WrittenToBldalpha_H_Bg
     type: u8
     offset: 0x3
   - desc: BLDCNT copy (OBJ)
-    label: BLDCNTCopy_OBJ
+    label: BLDCNTCopy_Obj
     type: u16
     offset: 0x4
   - desc: Intensity (OBJ)
-    label: Intensity_OBJ
+    label: Intensity_Obj
     type: u8
     offset: 0x6
   - desc: Interval (OBJ)
-    label: Interval_OBJ
+    label: Interval_Obj
     type: u8
     offset: 0x7
   - desc: Timer (OBJ)
-    label: Timer_OBJ
+    label: Timer_Obj
     type: u8
     offset: 0x8
   - desc: Written to BLDCNT (BG)
@@ -3124,7 +3124,7 @@
     type: CutsceneGfxData
     offset: 0xC
   - desc: DISPCNT
-    label: DISPCNT
+    label: Dispcnt
     type: u16
     offset: 0x1C
   - desc: BLDCNT
@@ -3137,35 +3137,35 @@
     count: 0x4
     offset: 0x20
   - desc: BG0VOFS
-    label: Bg0VOFS
+    label: Bg0Vofs
     type: u16
     offset: 0x28
   - desc: BG1VOFS
-    label: Bg1VOFS
+    label: Bg1Vofs
     type: u16
     offset: 0x2A
   - desc: BG2VOFS
-    label: Bg2VOFS
+    label: Bg2Vofs
     type: u16
     offset: 0x2C
   - desc: BG3VOFS
-    label: Bg3VOFS
+    label: Bg3Vofs
     type: u16
     offset: 0x2E
   - desc: BG0HOFS
-    label: Bg0HOFS
+    label: Bg0Hofs
     type: u16
     offset: 0x30
   - desc: BG1HOFS
-    label: Bg1HOFS
+    label: Bg1Hofs
     type: u16
     offset: 0x32
   - desc: BG2HOFS
-    label: Bg2HOFS
+    label: Bg2Hofs
     type: u16
     offset: 0x34
   - desc: BG3HOFS
-    label: Bg3HOFS
+    label: Bg3Hofs
     type: u16
     offset: 0x36
   - desc: BG scrolling
@@ -3427,7 +3427,7 @@
     type: u8
     offset: 0x58
   - desc: DISPCNT
-    label: DISPCNT
+    label: Dispcnt
     type: u16
     offset: 0x5C
   - desc: BG0CNT
@@ -5596,7 +5596,7 @@
     cat: palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
-    label: LZ77BgGfxPtr
+    label: Lz77BgGfxPtr
     type: u8 *
     cat: gfx
     comp: lz

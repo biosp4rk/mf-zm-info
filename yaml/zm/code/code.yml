@@ -88,7 +88,7 @@
   params: null
   return: null
 - desc: Call LZ77UnComp16Bit
-  label: CallLZ77UnComp16Bit
+  label: CallLz77UnComp16Bit
   addr:
     U: 0x90C
     E: 0x960
@@ -106,7 +106,7 @@
   return: null
   notes: Calls LZ77UnCompReadNormalWrite16bit
 - desc: Call LZ77UnComp8Bit
-  label: CallLZ77UnComp8Bit
+  label: CallLz77UnComp8Bit
   addr:
     U: 0x918
     E: 0x96C
@@ -1872,7 +1872,7 @@
     type: s32
   notes: Calls software interrupt 0x7
 - desc: LZ77UnCompReadNormalWrite16bit
-  label: LZ77UnCompReadNormalWrite16bit
+  label: Lz77UnCompReadNormalWrite16bit
   addr:
     U: 0x51A4
     E: 0x51F8
@@ -1896,7 +1896,7 @@
   return: null
   notes: Calls software interrupt 0x12
 - desc: LZ77UnCompReadNormalWrite8bit
-  label: LZ77UnCompReadNormalWrite8bit
+  label: Lz77UnCompReadNormalWrite8bit
   addr:
     U: 0x51A8
     E: 0x51FC
@@ -6127,7 +6127,7 @@
   params: null
   return: null
 - desc: Sync current sprite position with sub-sprite 1 OAM
-  label: SyncCurrSpritePositionWithSubSprite1OAM
+  label: SyncCurrSpritePositionWithSubSprite1Oam
   addr:
     U: 0x113B0
     E: 0x11464
@@ -6149,7 +6149,7 @@
   params: null
   return: null
 - desc: Sync current sprite position with sub-sprite 2 OAM
-  label: SyncCurrSpritePositionWithSubSprite2OAM
+  label: SyncCurrSpritePositionWithSubSprite2Oam
   addr:
     U: 0x1144C
     E: 0x11500
@@ -6174,7 +6174,7 @@
     type: SubSpriteData *
   return: null
 - desc: Sync current sprite position with sub-sprite OAM
-  label: SyncCurrSpritePositionWithSubSpriteOAM
+  label: SyncCurrSpritePositionWithSubSpriteOam
   addr:
     U: 0x114E4
     E: 0x11598
@@ -8982,7 +8982,7 @@
     type: u32
   return: null
 - desc: Update BLDALPHA
-  label: UpdateBLDALPHA
+  label: UpdateBldalpha
   addr:
     U: 0x55BD0
     E: 0x55C9C
@@ -9016,7 +9016,7 @@
   params: null
   return: null
 - desc: Apply new BLDALPHA
-  label: ApplyNewBLDALPHA
+  label: ApplyNewBldalpha
   addr:
     U: 0x55CDC
     E: 0x55DA8
@@ -9400,7 +9400,7 @@
   params: null
   return: null
 - desc: Update DISPCNT
-  label: UpdateDISPCNT
+  label: UpdateDispcnt
   addr:
     U: 0x57BD8
     E: 0x57CA0
@@ -10414,7 +10414,7 @@
   params: null
   return: null
 - desc: Check clip behavior value changes BLDALPHA
-  label: CheckClipBehaviorValueChangesBLDALPHA
+  label: CheckClipBehaviorValueChangesBldalpha
   addr:
     U: 0x5A770
     E: 0x5A838
@@ -12183,7 +12183,7 @@
     type: u16
   return: null
 - desc: Cutscene get HOFS pointer
-  label: CutsceneGetHOFSPtr
+  label: CutsceneGetHofsPtr
   addr:
     U: 0x61578
     E: 0x61690
@@ -12198,10 +12198,10 @@
     notes: Value is 0x100 << BG number
   return:
     desc: HOFS pointer
-    label: HOFSPtr
+    label: HofsPtr
     type: u16 *
 - desc: Cutscene get VOFS pointer
-  label: CutsceneGetVOFSPtr
+  label: CutsceneGetVofsPtr
   addr:
     U: 0x615C8
     E: 0x616E0
@@ -12216,7 +12216,7 @@
     notes: Value is 0x100 << BG number
   return:
     desc: VOFS pointer
-    label: VOFSPtr
+    label: VofsPtr
     type: u16 *
 - desc: Cutscene start automatic background scrolling
   label: CutsceneStartAutomaticBgScrolling
@@ -12336,7 +12336,7 @@
   params: null
   return: null
 - desc: Cutscene start OBJ effect
-  label: CutsceneStartOBJEffect
+  label: CutsceneStartObjEffect
   addr:
     U: 0x61D68
     E: 0x61E80
@@ -12349,7 +12349,7 @@
     label: BLDCNT
     type: u16
   - desc: BLDY
-    label: BLDY
+    label: Bldy
     type: u16
   - desc: Interval
     label: Interval
@@ -12372,10 +12372,10 @@
     label: BLDCNT
     type: u16
   - desc: BLDALPHA_L
-    label: BLDALPHA_L
+    label: Bldalpha_L
     type: u8
   - desc: BLDALPHA_H
-    label: BLDALPHA_H
+    label: Bldalpha_H
     type: u8
   - desc: Interval
     label: Interval
@@ -14025,7 +14025,7 @@
     type: OamArray *
   return: null
 - desc: Cutscene process OAM
-  label: CutsceneProcessOAM
+  label: CutsceneProcessOam
   addr:
     U: 0x69DC8
     E: 0x69EE4
@@ -16111,7 +16111,7 @@
   params: null
   return: null
 - desc: Erase SRAM menu process OAM
-  label: EraseSramMenuProcessOAM
+  label: EraseSramMenuProcessOam
   addr:
     U: 0x76364
     E: 0x764A0
@@ -16185,7 +16185,7 @@
     type: u8
   return: null
 - desc: Title screen process OAM
-  label: TitleScreenProcessOAM
+  label: TitleScreenProcessOam
   addr:
     U: 0x7644C
     E: 0x76588
@@ -16574,7 +16574,7 @@
     notes: 0 = loading, 1 = moving, 2 = selecting
   return: null
 - desc: Game over menu process OAM
-  label: GameOverMenuProcessOAM
+  label: GameOverMenuProcessOam
   addr:
     U: 0x781FC
     E: 0x784FC
@@ -16596,7 +16596,7 @@
   params: null
   return: null
 - desc: File select menu process OAM
-  label: FileSelectMenuProcessOAM
+  label: FileSelectMenuProcessOam
   addr:
     U: 0x7824C
     E: 0x7854C
@@ -17843,7 +17843,7 @@
   params: null
   return: null
 - desc: Intro text process OAM
-  label: IntroTextProcessOAM
+  label: IntroTextProcessOam
   addr:
     U: 0x803B0
     E: 0x80ABC
@@ -17894,7 +17894,7 @@
     type: u8
     cat: bool
 - desc: Intro ship flying towards camera process OAM
-  label: IntroShipFlyingTowardsCameraProcessOAM
+  label: IntroShipFlyingTowardsCameraProcessOam
   addr:
     U: 0x807B8
     E: 0x80EC4
@@ -17950,7 +17950,7 @@
     type: u8
     cat: bool
 - desc: Intro view of Zebes process OAM
-  label: IntroViewOfZebesProcessOAM
+  label: IntroViewOfZebesProcessOam
   addr:
     U: 0x80B78
     E: 0x81284
@@ -18010,7 +18010,7 @@
     type: u8
     cat: bool
 - desc: Intro fuzz process OAM
-  label: IntroFuzzProcessOAM
+  label: IntroFuzzProcessOam
   addr:
     U: 0x81018
     E: 0x8172C
@@ -18843,7 +18843,7 @@
     label: ItemCountsAndEndingNum
     type: u32
 - desc: Chozodia escape process OAM
-  label: ChozodiaEscapeProcessOAM
+  label: ChozodiaEscapeProcessOam
   addr:
     U: 0x87C08
     E: 0x888A8
@@ -18854,7 +18854,7 @@
   params: null
   return: null
 - desc: Chozodia escape process OAM 2
-  label: ChozodiaEscapeProcessOAM2
+  label: ChozodiaEscapeProcessOam2
   addr:
     U: 0x87CFC
     E: 0x8899C

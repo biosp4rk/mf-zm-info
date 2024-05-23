@@ -208,7 +208,7 @@
   size: 0x12
   vars:
   - desc: Backup of DISPCNT during non-gameplay
-    label: BackupOfDISPCNT_NonGameplay
+    label: BackupOfDispcnt_NonGameplay
     type: u16
     offset: 0x0
     notes: LCD control
@@ -218,7 +218,7 @@
     offset: 0x2
     notes: Color special effects selection
   - desc: Backup of BLDALPHA during non-gameplay
-    label: BackupOfBLDALPHA_NonGameplay
+    label: BackupOfBldalpha_NonGameplay
     type: u16
     offset: 0x4
     notes: Alpha blending coefficients
@@ -650,12 +650,12 @@
     label: Bg0Size
     type: u8
     offset: 0x18
-    enum: LZ77BackgroundSize
+    enum: Lz77BackgroundSize
   - desc: BG3 size
     label: Bg3Size
     type: u8
     offset: 0x19
-    enum: LZ77BackgroundSize
+    enum: Lz77BackgroundSize
   - desc: Animated tileset number
     label: AnimatedTilesetNum
     type: u8
@@ -3488,7 +3488,7 @@
     cat: palette
     offset: 0x4
   - desc: LZ77 background graphics pointer
-    label: LZ77BgGfxPtr
+    label: Lz77BgGfxPtr
     type: u8 *
     cat: gfx
     comp: lz
