@@ -161,11 +161,11 @@ def info_file_to_obj(map_type: str, data: InfoFile) -> List[Any]:
 
 
 def obj_to_yaml_str(obj: Any) -> str:
-    return yaml.safe_dump(obj, width=math.inf, sort_keys=False)
+    return yaml.safe_dump(obj, width=math.inf, allow_unicode=True, sort_keys=False)
 
 
 def write_info_file(path: str, map_type: str, data: InfoFile) -> None:
     data = info_file_to_obj(map_type, data)
     with open(path, "w") as f:
-        yaml.safe_dump(data, f, width=math.inf, sort_keys=False)
+        yaml.safe_dump(data, f, width=math.inf, allow_unicode=True, sort_keys=False)
 
