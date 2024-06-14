@@ -4,7 +4,7 @@ from typing import List, Tuple, Union
 
 import argparse_utils as apu
 from constants import *
-from function import Function
+from function import all_functions
 from game_info import GameInfo
 from info_entry import PrimType, DataEntry, StructEntry, StructVarEntry
 from rom import Rom, ROM_OFFSET
@@ -17,24 +17,17 @@ class Validity(Enum):
 
 
 def find_code_ptrs(rom: Rom) -> List[int]:
-    addr = rom.code_start()
-    code_end = rom.code_end()
     v_code_start = rom.code_start(True)
     v_data_end = rom.data_end(True)
-    arm_funcs = rom.arm_functions()
     ptr_locs: List[int] = []
-    while addr < code_end:
-        if addr in arm_funcs:
-            addr = arm_funcs[addr]
-            continue
-        func = Function(rom, addr)
+    funcs = all_functions(rom)
+    for func in funcs:
         ptr_locs += func.get_jump_tables()
         for loc in func.data_pool:
             val = rom.read_32(loc)
             # check if value falls within rom
             if val >= v_code_start and val < v_data_end:
                 ptr_locs.append(loc)
-        addr = func.end_addr
     ptr_locs.sort()
     return ptr_locs
 

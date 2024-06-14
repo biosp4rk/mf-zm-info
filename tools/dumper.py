@@ -4,7 +4,7 @@ import re
 from typing import List, Tuple
 
 import argparse_utils as apu
-from function import Function
+from function import all_functions
 from game_info import GameInfo
 from info_entry import VarEntry
 from rom import Rom
@@ -36,22 +36,11 @@ def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
     """
     Returns (addr, size) pairs for every function in the ROM.
     """
-    addr = rom.code_start()
-    code_end = rom.code_end()
-    arm_funcs = rom.arm_functions()
-    all_funcs: List[Tuple[int, int]] = []
-    while addr < code_end:
-        end = None
-        size = None
-        if addr in arm_funcs:
-            end = arm_funcs[addr]
-        else:
-            func = Function(rom, addr)
-            end = func.end_addr
-        size = end - addr
-        all_funcs.append((addr, size))
-        addr = end
-    return all_funcs
+    funcs = all_functions(rom)
+    sizes = [(f.start_addr, f.end_addr - f.start_addr) for f in funcs]
+    sizes += [(k, v - k) for k, v in rom.arm_functions().items()]
+    sizes.sort()
+    return sizes
 
 
 def coverage(rom: Rom):

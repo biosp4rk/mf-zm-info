@@ -3,33 +3,20 @@ from typing import List
 
 import argparse_utils as apu
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
-from function import Function
+from function import all_functions
 from info_entry import DataEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
 from info_file_utils import get_info_file_from_json
 
 
 def gen_sym_file(rom: Rom):
-    # go through each function
-    addr = rom.code_start()
-    end = rom.code_end()
-    arm_funcs = rom.arm_functions()
-    region = rom.region
-    
     # get all function offsets and their pointers and pools
     func_addrs = []
     loaded_words = set()
     pool_sizes = []
-    while addr < end:
-        func_addrs.append(addr)
-        
-        # skip dumping ARM functions
-        if addr in arm_funcs:
-            addr = arm_funcs[addr]
-            continue
-
-        # find any data pools in the function
-        func = Function(rom, addr)
+    funcs = all_functions(func)
+    for func in funcs:
+        func_addrs.append(func.start_addr)
         func_pools = func.get_data_pools()
         if len(func_pools) > 0:
             pool_sizes += func_pools
@@ -37,14 +24,15 @@ def gen_sym_file(rom: Rom):
                 for i in range(0, size, 4):
                     word = rom.read_32(offset + i)
                     loaded_words.add(word)
-        addr = func.end_addr
+    func_addrs += list(rom.arm_functions().keys())
+    func_addrs.sort()
 
     # get dictionaries with <addr, label>
-    ram: List[DataEntry] = get_info_file_from_json(rom.game, MAP_RAM, region)
+    ram: List[DataEntry] = get_info_file_from_json(rom.game, MAP_RAM, rom.region)
     ram_dict = {r.addr: r.label for r in ram}
-    code: List[CodeEntry] = get_info_file_from_json(rom.game, MAP_CODE, region)
+    code: List[CodeEntry] = get_info_file_from_json(rom.game, MAP_CODE, rom.region)
     code_dict = {r.addr: r.label for r in code}
-    data: List[DataEntry] = get_info_file_from_json(rom.game, MAP_DATA, region)
+    data: List[DataEntry] = get_info_file_from_json(rom.game, MAP_DATA, rom.region)
     data_dict = {r.addr: r.label for r in data}
 
     # write to file

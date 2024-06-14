@@ -335,7 +335,7 @@ def output_jsons() -> None:
             obj = ifu.info_file_to_obj(map_type, data)
             p = os.path.join(json_dir, map_type + JSON_EXT)
             with open(p, "w") as f:
-                json.dump(obj, f)
+                json.dump(obj, f, ensure_ascii=False)
     print("Output JSON files")
 
 
