@@ -440,11 +440,12 @@ class ThumbInstruct(object):
             ThumbForm.LdPC,
             ThumbForm.LdStSP,
             ThumbForm.RelAddr,
-            ThumbForm.AddSP,
             ThumbForm.CondB,
             ThumbForm.Swi
         }:
             self.imm = val & 255
+        elif self.format == ThumbForm.AddSP:
+            self.imm = val & 127
         elif self.format == ThumbForm.UncondB:
             self.imm = val & 2047
         elif self.format == ThumbForm.Link:
@@ -508,9 +509,13 @@ class ThumbInstruct(object):
                 val = self.imm
         elif self.format == ThumbForm.LdStIH:
             val = self.imm * 2
-        elif (self.format == ThumbForm.LdStSP or
-            self.format == ThumbForm.AddSP):
+        elif self.format == ThumbForm.LdStSP:
             val = self.imm * 4
+        elif self.format == ThumbForm.AddSP:
+            val = self.imm * 4
+            # check if negative
+            if self.opcode == 1:
+                val = -val
         else:
             raise ValueError()
         return hex_str(val, True)
@@ -635,7 +640,11 @@ class ThumbInstruct(object):
 
 
 def hex_str(number: int, prefix: bool = False) -> str:
+    negative = number < 0
+    number = abs(number)
     text = f"{number:X}"
     if prefix and number >= 0xA:
         text = "0x" + text
+    if negative:
+        text = "-" + text
     return text
