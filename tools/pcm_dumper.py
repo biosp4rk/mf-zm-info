@@ -5,7 +5,7 @@ import os
 from typing import List
 
 import argparse_utils as apu
-from game_info import GameInfo
+from game_info import GameInfo, Category
 from rom import Rom
 
 
@@ -252,8 +252,7 @@ if __name__ == "__main__":
         dump_pcm(rom, addr, args.format, args.path)
     elif args.all:
         info = GameInfo(rom.game, rom.region, False, True)
-        # TODO: add tag for pcm?
-        addrs = [e.addr for e in info.data if e.label.startswith("pcm_")]
+        addrs = [e.addr for e in info.data if e.cat == Category.PCM]
         if not os.path.exists(args.path):
             os.mkdir(args.path)
         for i, addr in enumerate(addrs):

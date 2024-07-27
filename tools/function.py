@@ -76,7 +76,7 @@ class Function(object):
             if inst.format == ThumbForm.Link:
                 self.addr += 4
             else:
-               self.addr += 2
+                self.addr += 2
 
             # check if at jump
             if self.at_jump:
@@ -223,55 +223,56 @@ class Function(object):
         lines.append(f"; Size: {size:X}")
 
         # go until end of function
-        addr = self.start_addr
+        self.addr = self.start_addr
         in_pool = False
-        while addr < self.end_addr:
+        while self.addr < self.end_addr:
             # check if anything branches to current offset
-            if addr in self.branches:
-                lines.append(self.symbols.get_local(addr) + ":")
-            if addr in self.data_pool or (
-                addr % 4 == 2 and
-                self.rom.read_16(addr) == 0 and
-                addr + 2 in self.data_pool):
+            if self.addr in self.branches:
+                lines.append(self.symbols.get_local(self.addr) + ":")
+            if self.addr in self.data_pool or (
+                self.addr % 4 == 2 and
+                self.rom.read_16(self.addr) == 0 and
+                self.addr + 2 in self.data_pool):
                 # if already in a data pool, do nothing
                 # if just entered a data pool, write .pool
                 if not in_pool:
                     lines.append(self.INDENT + self.DOT_POOL)
                     in_pool = True
                     self.align(4)
-                addr += 4
-            elif addr in self.jump_tables:
-                lines.append(self.symbols.get_local(addr) + ":")
+                self.addr += 4
+            elif self.addr in self.jump_tables:
+                lines.append(self.symbols.get_local(self.addr) + ":")
                 jumps = []
                 while True:
-                    if addr in self.branches:
+                    if self.addr in self.branches:
                         break
-                    jump = self.rom.read_ptr(addr)
+                    jump = self.rom.read_ptr(self.addr)
                     jumps.append(self.symbols.get_local(jump))
-                    addr += 4
+                    self.addr += 4
                 num_jumps = len(jumps)
                 for j in range(0, num_jumps, 4):
                     end = j + min(4, num_jumps - j)
                     jump_labels = ",".join(jumps[j:end])
                     lines.append(f"{self.INDENT}.dw {jump_labels}")
                 in_pool = False
-            elif addr in self.instructs:
-                inst = self.instructs[addr]
+            elif self.addr in self.instructs:
+                inst = self.instructs[self.addr]
                 asm_str = inst.asm_str(self.rom, self.symbols, self.branches)
                 if include_addrs:
-                    asm_str = f"{asm_str:35} ; {addr:X}"
+                    asm_str = f"{asm_str:35} ; {self.addr:X}"
                 lines.append("    " + asm_str)
                 if inst.format == ThumbForm.Link:
-                    addr += 4
+                    self.addr += 4
                 else:
-                    addr += 2
+                    self.addr += 2
                 in_pool = False
-            elif addr + 2 == self.end_addr:
+            elif self.addr + 2 == self.end_addr:
                 break
             else:
-                err = f"Unsure what to output at {addr:X}"
+                err = f"Unsure what to output at {self.addr:X}"
                 raise ValueError(err)
         self.symbols.reset_locals()
+        delattr(self, "addr")
         return lines
 
     def compare(self, other: "Function") -> List[bool]:

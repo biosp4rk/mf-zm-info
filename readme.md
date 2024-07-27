@@ -5,6 +5,7 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
 
 ## Structure
 - `json` - Combined YAML files in JSON format; used for the data maps website
+- `schema` - JSON schema files used for validating the YAML files
 - `sym` - Symbols files for each game and version; can be used with no$gba
 - `tools`
   - `compress.py` - Functions for decompressing RLE and LZ77 compressed data
@@ -22,8 +23,14 @@ These files contain labeled RAM and ROM data, along with struct and enum definit
   - `symbols.py` - Class for storing labels while disassembling functions
   - `text_dumper.py` - Script for printing text from a ROM file
   - `thumb.py` - Class for representing THUMB instructions
-  - `validator.py` - Script for validating data and converting to JSON
-- `yaml` - Info files in YAML format; large files are split for easier editing
+  - `validator.py` - Script for validating YAML files and converting to JSON
+- `yaml` - Info files in YAML format; each map type has multiple files for easier editing
+  - `code` - ROM function addresses and their parameters/return value
+  - `data` - ROM data addresses and their types
+  - `enums` - Constants and enum values
+  - `ram` - RAM addresses and their types
+  - `structs` - Composite data types and their variables
+  - `char_map.yml` - Map of in-game text characters and their values
 
 Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting with `unk` are for unlabeled data.
 
@@ -32,8 +39,8 @@ Game directories are `mf` for Fusion and `zm` for Zero Mission. Files starting w
 ### Type Definitions
 
 - `hex` is a hexadecimal string that matches the pattern `0x[0-9A-F]+`
-- Labels must match the pattern `[A-Za-z]\w*`
-- `Region = Literal['U', 'E', 'J']`
+- Labels must match the pattern `[A-Za-z][0-9A-Za-z_]*`
+- `Region = Literal['U', 'E', 'J', 'C']`
 - `RegionDict = Dict[Region, hex]`
 - `RegionInt = Union[hex, RegionDict]`
 

@@ -6,17 +6,79 @@ import argparse_utils as apu
 from constants import *
 from function import all_functions
 from game_info import GameInfo
-from info_entry import PrimType, DataEntry, StructEntry, StructVarEntry
+from info_entry import PrimType, DataEntry, StructEntry, StructVarEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
 
 
 class Validity(Enum):
-    Unknown = 0
-    Invalid = 1
-    Valid = 2
+    UNKNOWN = 0
+    INVALID = 1
+    VALID = 2
+
+VALID_STR = {
+    Validity.UNKNOWN: "unk",
+    Validity.INVALID: "no",
+    Validity.VALID: "yes"
+}
+
+
+class Status(Enum):
+    UNKNOWN = 0
+    # The primitive at the pointer's location is not 4-byte aligned (invalid)
+    LOC_NOT_ALIGNED = 1
+    # The primitive at the pointer's location is not a pointer (invalid)
+    LOC_NOT_PTR = 2
+    # The primitive at the pointer's location is a pointer (valid)
+    LOC_IS_PTR = 3
+    # The pointer points to the middle of a function (invalid)
+    PTR_CODE_MIDDLE = 4
+    # The pointer points to the start of a function (likely valid)
+    PTR_CODE = 5
+    # The pointer points to the middle of a data entry (likely invalid)
+    PTR_DATA_MIDDLE = 6
+    # The pointer points to the start of a piece of data (likely valid)
+    PTR_DATA = 7
+
+STATUS_STR = {
+    Status.UNKNOWN: "unk",
+    Status.LOC_NOT_ALIGNED: "loc not aligned",
+    Status.LOC_NOT_PTR: "loc not ptr",
+    Status.LOC_IS_PTR: "loc is ptr",
+    Status.PTR_CODE_MIDDLE: "ptr middle code",
+    Status.PTR_CODE: "ptr code",
+    Status.PTR_DATA_MIDDLE: "ptr middle data",
+    Status.PTR_DATA: "ptr data",
+}
+
+
+class PtrLoc:
+    def __init__(self,
+        loc_addr: int,
+        ptr_val: int,
+        validity = Validity.UNKNOWN,
+        status = Status.UNKNOWN,
+        entry: Union[DataEntry, CodeEntry] = None
+    ):
+        self.loc_addr = loc_addr
+        self.ptr_val = ptr_val
+        self.validity = validity
+        self.status = status
+        self.entry = entry
+
+    def print(self, diff: int) -> None:
+        entry = f"{self.entry.addr:X} {self.entry.label}" if self.entry else ""
+        print("\t".join([
+            f"{self.loc_addr:X}",
+            f"{self.ptr_val:X}",
+            f"{diff:X}",
+            VALID_STR[self.validity],
+            STATUS_STR[self.status],
+            entry
+        ]))
 
 
 def find_code_ptrs(rom: Rom) -> List[int]:
+    """Finds all pointers in code data pools. These are all assumed to be valid."""
     v_code_start = rom.code_start(True)
     v_data_end = rom.data_end(True)
     ptr_locs: List[int] = []
@@ -43,7 +105,7 @@ def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
         num_tracks = rom.read_8(addr)
         if num_tracks == 0:
             continue
-        ptr_locs.append(addr + 4)
+        #ptr_locs.append(addr + 4)
         for j in range(num_tracks):
             ptr_locs.append(addr + 8 + (j * 4))
     ptr_locs.sort()
@@ -51,16 +113,21 @@ def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
 
 
 def get_track_start_end(rom: Rom) -> Tuple[int, int]:
+    """Returns the start and end address of all track data."""
     addrs = None
     if rom.game == GAME_MF:
         if rom.region == REGION_U:
             addrs = (0x25895C, 0x289960)
+    elif rom.game == GAME_ZM:
+        if rom.region == REGION_U:
+            addrs = (0x20B090, 0x2320B0)
     if addrs is None:
         raise NotImplementedError()
     return addrs
 
 
 def find_track_ptrs(rom: Rom):
+    """Finds all pointers within track data (these don't need to be 4-byte aligned)."""
     start, end = get_track_start_end(rom)
     v_start = start + ROM_OFFSET
     v_end = end + ROM_OFFSET
@@ -81,7 +148,7 @@ def find_track_ptrs(rom: Rom):
 
 
 def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
-    code_dict = {c.addr: c.label for c in info.code}
+    code_dict = {c.addr: c for c in info.code}
     data_list = info.data
 
     code_end = rom.code_end()
@@ -101,56 +168,47 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
             continue
         val -= ROM_OFFSET
         # check if this address falls within a known asset
-        valid = Validity.Unknown
-        msg = "?"
+        validity = Validity.UNKNOWN
+        status = Status.UNKNOWN
+        main_entry = None
         idx, entry, _, _ = find_prim_at_offset(data_list, idx, addr, info)
         if entry:
-            data_entry = data_list[idx]
-            data_addr = data_entry.addr
-            text = f"{data_addr:X} {data_entry.label}"
-            if data_addr % 4 != 0:
-                valid = Validity.Invalid
-                msg = f"X loc entry not aligned {text}"
+            main_entry = data_list[idx]
+            if main_entry.addr % 4 != 0:
+                validity = Validity.INVALID
+                status = Status.LOC_NOT_ALIGNED
             elif not entry.is_ptr():
-                valid = Validity.Invalid
-                msg = f"X loc entry not ptr {text}"
+                validity = Validity.INVALID
+                status = Status.LOC_NOT_PTR
             else:
-                valid = Validity.Valid
-                msg = f"O loc entry {text}"
+                validity = Validity.VALID
+                status = Status.LOC_IS_PTR
         
         # check if the value points to known asset
-        if valid == Validity.Unknown:
+        else:
             if val < code_end:
                 # check if value points to code
                 # subtract one for thumb code pointers
                 val -= 1
                 if val not in code_dict:
-                    valid = Validity.Invalid
-                    msg = "X ptr code middle"
+                    status = Status.PTR_CODE_MIDDLE
                 else:
-                    label = code_dict[val]
-                    msg = f"O ptr code {label}"
+                    main_entry = code_dict[val]
+                    status = Status.PTR_CODE
             else:
                 # check if value points to known data
                 j, entry, prim_idx, prim_off = find_prim_at_offset(data_list, 0, val, info)
                 if entry:
-                    data_entry = data_list[j]
-                    data_addr = data_entry.addr
-                    text = f"{data_addr:X} {data_entry.label}"
+                    main_entry = data_list[j]
                     if prim_idx != 0 or prim_off != 0:
-                        valid = Validity.Invalid
-                        msg = f"X ptr data middle {text}"
+                        status = Status.PTR_DATA_MIDDLE
                     else:
-                        msg = f"O ptr data {text}"
+                        status = Status.PTR_DATA
         # print
-        # valid_str = "unk"
-        # if valid == Validity.Invalid:
-        #     valid_str = "no"
-        # elif valid == Validity.Valid:
-        #     valid_str = "yes"
-        # diff = addr - prev_addr
-        # print(f"{addr:X}\t{val:06X}\t{diff:X}\t{valid_str}\t{msg}")
-        if valid != Validity.Invalid:
+        ptr_loc = PtrLoc(addr, val, validity, status, main_entry)
+        diff = addr - prev_addr
+        ptr_loc.print(diff)
+        if validity != Validity.INVALID:
             ptr_locs.append(addr)
         prev_addr = addr
     return ptr_locs
@@ -165,7 +223,7 @@ def find_prim_at_offset(
     """
     Tries to find the primitive at the provided address (for data entries)
     or offset (for struct var entries).
-    Returns (index, entry, prim_num, prim_offset).
+    Returns (entry_index, entry, prim_num, prim_offset).
     """
     if len(entries) == 0:
         return (idx, None, None, None)
