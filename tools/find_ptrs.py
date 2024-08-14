@@ -147,7 +147,7 @@ def find_track_ptrs(rom: Rom):
     return ptr_locs
 
 
-def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
+def find_data_ptrs(rom: Rom, info: GameInfo) -> List[PtrLoc]:
     code_dict = {c.addr: c for c in info.code}
     data_list = info.data
 
@@ -158,8 +158,7 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
     v_data_end = rom.data_end(True)
 
     idx = 0
-    prev_addr = 0
-    ptr_locs: List[int] = []
+    ptr_locs: List[PtrLoc] = []
 
     for addr in range(data_start, data_end, 4):
         # check if value at address falls within rom
@@ -204,13 +203,8 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
                         status = Status.PTR_DATA_MIDDLE
                     else:
                         status = Status.PTR_DATA
-        # print
         ptr_loc = PtrLoc(addr, val, validity, status, main_entry)
-        diff = addr - prev_addr
-        ptr_loc.print(diff)
-        if validity != Validity.INVALID:
-            ptr_locs.append(addr)
-        prev_addr = addr
+        ptr_locs.append(ptr_loc)
     return ptr_locs
 
 
@@ -254,6 +248,13 @@ def find_prim_at_offset(
     return (idx, None, None, None)
 
 
+def print_ptr_list(title: str, ptrs: list[int]) -> None:
+    print(title + ":")
+    for loc in ptrs:
+        print(f"{loc:05X}")
+    print()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
@@ -265,8 +266,20 @@ if __name__ == "__main__":
     c_ptrs = find_code_ptrs(rom)
     sh_ptrs = find_sound_header_ptrs(rom, info)
     t_ptrs = find_track_ptrs(rom)
-    d_ptrs = find_data_ptrs(rom, info)
-    all_ptrs = sorted(c_ptrs + sh_ptrs + t_ptrs + d_ptrs)
+    d_ptr_locs = find_data_ptrs(rom, info)
+    d_ptrs = [p.loc_addr for p in d_ptr_locs if p.validity != Validity.INVALID]
+    all_ptrs = c_ptrs + sh_ptrs + t_ptrs + d_ptrs
     assert len(set(all_ptrs)) == len(all_ptrs)
-    for loc in all_ptrs:
-        print(f"{loc:05X}")
+    
+    print_ptr_list("Code Pointers", c_ptrs)
+    print_ptr_list("Sound Header Pointers", sh_ptrs)
+    print_ptr_list("Track Pointers", t_ptrs)
+    print_ptr_list("Known Data Pointers", d_ptrs)
+
+    print("All Data Pointers:")
+    prev_addr = 0
+    for ptr_loc in d_ptr_locs:
+        addr = ptr_loc.loc_addr
+        diff = addr - prev_addr
+        ptr_loc.print(diff)
+        prev_addr = addr

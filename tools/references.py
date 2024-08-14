@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Tuple
 import yaml
 
 import argparse_utils as apu
+from function import all_functions
 from game_info import GameInfo
 from info_entry import InfoEntry, CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
@@ -195,29 +196,29 @@ class References(object):
     def find_all(self) -> List[Tuple[str, List[Ref]]]:
         # TODO: pass refs instead of putting it on self?
         self.found_refs: Dict[int, List[Ref]] = {}
-
         rom = self.rom
-        code_start = rom.code_start()
-        code_end = rom.code_end()
-        data_end = rom.data_end()
 
         # check every ref in code
         self.entries = self.info.code
-        for i in range(code_start, code_end, 2):
+        for func in all_functions(rom):
             # check for bl
-            inst = ThumbInstruct(rom, i)
-            if inst.format == ThumbForm.Link:
+            for addr, inst in func.instructs.items():
+                if inst.format != ThumbForm.Link:
+                    continue
                 bl_addr = inst.branch_addr()
-                if bl_addr >= code_start and bl_addr < code_end:
-                    self.add_ref(bl_addr, i, RefType.BL)
+                if bl_addr >= func.start_addr and bl_addr < func.end_addr:
+                    continue
+                self.add_ref(bl_addr, addr, RefType.BL)
             # check for pool
-            elif i % 4 == 0:
-                self.check_addr(i, RefType.POOL)
+            for addr in func.data_pool:
+                self.check_addr(addr, RefType.POOL)
 
         # check every ref in data
         self.entries = self.info.data
+        data_start = rom.data_start()
+        data_end = rom.data_end()
         self.entries.append(DataEntry(None, None, "u8", 1, data_end))
-        for i in range(code_end, data_end, 4):
+        for i in range(data_start, data_end, 4):
             self.check_addr(i, RefType.DATA)
         
         # get all code and data labels
@@ -248,6 +249,7 @@ class References(object):
         self.found_refs[val].append(ref)
 
     def get_prev_entry(self, addr: int) -> InfoEntry:
+        """Binary search to find the first entry <= addr"""
         left = 0
         right = len(self.entries) - 1
         result = None
