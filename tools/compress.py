@@ -3,9 +3,12 @@ from typing import Tuple
 
 import argparse_utils as apu
 
+
 MIN_MATCH_SIZE = 3
-MAX_MATCH_SIZE = 18
-MAX_WINDOW_SIZE = 0x1000
+MIN_WINDOW_SIZE = 1
+
+MAX_MATCH_SIZE = (1 << 4) - 1 + MIN_MATCH_SIZE
+MAX_WINDOW_SIZE = (1 << 12) - 1 + MIN_WINDOW_SIZE
 
 
 def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
@@ -95,7 +98,7 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
             else:
                 # compressed
                 amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
-                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
+                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + MIN_WINDOW_SIZE
                 idx += 2
                 remain -= amount_to_copy
                 
@@ -109,6 +112,104 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
                 comp_size = idx - start
                 return bytes(output), comp_size
             cflag <<= 1
+
+
+def comp_lz77(input: bytes) -> bytes:
+    # Assumes input stream starts at 0
+    length = len(input)
+    idx = 0
+    longest_matches = find_longest_matches(input)
+
+    # Write start of data
+    output = bytearray()
+    output.append(0x10)
+    output.append(length & 0xFF)
+    output.append((length >> 8) & 0xFF)
+    output.append((length >> 16))
+
+    while idx < length:
+        # Get index of new compression flag
+        flag = len(output)
+        output.append(0)
+
+        for i in range(8):
+            # Find longest match at current position
+            _match = longest_matches.get(idx)
+            if _match is not None:
+                # Compressed
+                match_len, match_idx = _match
+                match_offset = idx - match_idx - MIN_WINDOW_SIZE
+                output.append(((match_len - MIN_MATCH_SIZE) << 4) | (match_offset >> 8))
+                output.append(match_offset & 0xFF)
+                output[flag] |= 0x80 >> i
+                idx += match_len
+            else:
+                # Uncompressed
+                output.append(input[idx])
+                idx += 1
+
+            # Check if at end
+            if idx >= length:
+                return bytes(output)
+    
+    raise Exception("LZ77 compression error")
+
+
+def find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
+    length = len(input)
+    triplets: dict[int, list[int]] = {}
+    longest_matches: dict[int, tuple[int, int]] = {}
+
+    for i in range(length - 2):
+        # Get triplet at current position
+        triplet = input[i] | (input[i + 1] << 8) | (input[i + 2] << 16)
+
+        # Check if triplet has no match
+        indexes = triplets.get(triplet)
+        if indexes is None:
+            triplets[triplet] = [i]
+            continue
+
+        window_start = max(i - MAX_WINDOW_SIZE, 0)
+        max_size = min(MAX_MATCH_SIZE, length - i)
+        longest_len = 0
+        longest_idx = -1
+
+        # Skip first index if one byte behind current position
+        j = len(indexes) - 1
+        if indexes[j] >= i - 1:
+            j -= 1
+
+        # Try each index to find the longest match
+        while j >= 0:
+            idx = indexes[j]
+            # Stop if past window
+            if idx < window_start:
+                break
+
+            # Find length of match
+            match_len = MIN_MATCH_SIZE
+            while match_len < max_size:
+                if input[idx + match_len] != input[i + match_len]:
+                    break
+                match_len += 1
+            
+            # Update longest match
+            if match_len > longest_len:
+                longest_len = match_len
+                longest_idx = idx
+
+                # Stop looking if max size
+                if longest_len == max_size:
+                    break
+            
+            j -= 1
+
+        indexes.append(i)
+        if longest_len >= MIN_MATCH_SIZE:
+            longest_matches[i] = (longest_len, longest_idx)
+
+    return longest_matches
 
 
 def is_lz77(input: bytes, idx: int) -> int:
