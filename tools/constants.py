@@ -25,6 +25,15 @@ REGION_J = "J"
 REGION_C = "C"
 REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C)
 
+PRIMITIVES = {
+    "u8": 1,
+    "s8": 1,
+    "u16": 2,
+    "s16": 2,
+    "u32": 4,
+    "s32": 4
+}
+
 MODE_THUMB = "thumb"
 MODE_ARM = "arm"
 ASM_MODES = (MODE_THUMB, MODE_ARM)
