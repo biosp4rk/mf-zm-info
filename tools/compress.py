@@ -1,4 +1,6 @@
 import argparse
+from enum import Enum
+import heapq
 from typing import Tuple
 
 import argparse_utils as apu
@@ -9,6 +11,11 @@ MIN_WINDOW_SIZE = 1
 
 MAX_MATCH_SIZE = (1 << 4) - 1 + MIN_MATCH_SIZE
 MAX_WINDOW_SIZE = (1 << 12) - 1 + MIN_WINDOW_SIZE
+
+
+class LzCompMethod(Enum):
+    FAST = 0
+    OPTIMAL = 1
 
 
 def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
@@ -76,7 +83,7 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
     output = bytearray([0] * remain)
 
     # check for valid data size
-    if remain < 32 or remain % 32 != 0:
+    if remain == 0:
         raise ValueError("Invalid data size")
 
     start = idx
@@ -114,11 +121,65 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
             cflag <<= 1
 
 
-def comp_lz77(input: bytes) -> bytes:
+def is_lz77(input: bytes, idx: int) -> int:
+    # check for 0x10 flag
+    if input[idx] != 0x10:
+        return -1
+
+    # get length of decompressed data
+    remain = input[idx + 1] | (input[idx + 2] << 8) | (input[idx + 3] << 16)
+
+    # check for valid data size
+    if remain == 0:
+        return -1
+
+    start = idx
+    idx += 4
+    dst = 0
+
+    # decompress
+    while (True):
+        cflag = input[idx]
+        idx += 1
+
+        for _ in range(8):
+            if (cflag & 0x80) == 0:
+                # uncompressed
+                idx += 1
+                dst += 1
+                remain -= 1
+            else:
+                # compressed
+                amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
+                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
+                idx += 2
+                remain -= amount_to_copy
+                
+                if dst - window < 0:
+                    return -1
+                dst += amount_to_copy
+
+            if remain <= 0:
+                if remain < 0:
+                    return -1
+                # return compressed length
+                return idx - start
+            cflag <<= 1
+
+
+def comp_lz77(input: bytes, method: LzCompMethod = LzCompMethod.FAST) -> bytes:
+    if method == LzCompMethod.FAST:
+        return _comp_lz77_fast(input)
+    elif method == LzCompMethod.OPTIMAL:
+        return _comp_lz77_optimal(input)
+
+
+def _comp_lz77_fast(input: bytes) -> bytes:
+    """LZ77 compresses data by greedily selecting the longest match at each step."""
     # Assumes input stream starts at 0
     length = len(input)
     idx = 0
-    longest_matches = find_longest_matches(input)
+    longest_matches = _find_longest_matches(input)
 
     # Write start of data
     output = bytearray()
@@ -137,7 +198,7 @@ def comp_lz77(input: bytes) -> bytes:
             _match = longest_matches.get(idx)
             if _match is not None:
                 # Compressed
-                match_len, match_idx = _match
+                match_idx, match_len = _match
                 match_offset = idx - match_idx - MIN_WINDOW_SIZE
                 output.append(((match_len - MIN_MATCH_SIZE) << 4) | (match_offset >> 8))
                 output.append(match_offset & 0xFF)
@@ -155,7 +216,53 @@ def comp_lz77(input: bytes) -> bytes:
     raise Exception("LZ77 compression error")
 
 
-def find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
+def _comp_lz77_optimal(input: bytes) -> bytes:
+    """LZ77 compresses data by finding the optimal sequence of matches."""
+    # Assumes input stream starts at 0
+    length = len(input)
+    idx = 0
+    flag_counter = 8
+    flag_idx = -1
+
+    longest_matches = _find_longest_matches(input)
+    path = _find_best_path(length, longest_matches)
+
+    # Write start of data
+    output = bytearray()
+    output.append(0x10)
+    output.append(length & 0xFF)
+    output.append((length >> 8) & 0xFF)
+    output.append((length >> 16))
+
+    for i in range(len(path) - 2, -1, -1):
+        next_idx = path[i]
+
+        # Check flag
+        if flag_counter == 8:
+            flag_idx = len(output)
+            output.append(0)
+            flag_counter = 0
+        
+        size = next_idx - idx
+        if size == 1:
+            # Uncompressed
+            output.append(input[idx])
+        else:
+            # Compressed
+            match_idx = longest_matches[idx][0]
+            offset = idx - match_idx - MIN_WINDOW_SIZE
+            size -= MIN_MATCH_SIZE
+            output.append((size << 4) | (offset >> 8))
+            output.append(offset & 0xFF)
+            output[flag_idx] |= 0x80 >> flag_counter
+        
+        idx = next_idx
+        flag_counter += 1
+    
+    return bytes(output)
+
+
+def _find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
     length = len(input)
     triplets: dict[int, list[int]] = {}
     longest_matches: dict[int, tuple[int, int]] = {}
@@ -207,55 +314,58 @@ def find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
 
         indexes.append(i)
         if longest_len >= MIN_MATCH_SIZE:
-            longest_matches[i] = (longest_len, longest_idx)
+            longest_matches[i] = (longest_idx, longest_len)
 
     return longest_matches
 
 
-def is_lz77(input: bytes, idx: int) -> int:
-    # check for 0x10 flag
-    if input[idx] != 0x10:
-        return -1
+def _find_best_path(length: int, longest_matches: dict[int, tuple[int, int]]) -> list[int]:
+    # Set of nodes to explore, sorted by score
+    heap = []
+    heapq.heappush(heap, (0, 0))
+    # Stores previous node on cheapest path
+    came_from: dict[int, int] = {}
+    # Cost of cheapest paths
+    best_scores: dict[int, int] = {}
+    best_scores[0] = 0
 
-    # get length of decompressed data
-    remain = input[idx + 1] | (input[idx + 2] << 8) | (input[idx + 3] << 16)
+    while len(heap) > 0:
+        # Get state with lowest score
+        _, idx = heapq.heappop(heap)
+        if idx == length:
+            return _construct_path(came_from, idx)
+        
+        # Uncompressed
+        score = best_scores[idx] + 9
+        n = idx + 1
+        prev_score = best_scores.get(n)
+        if prev_score is None or score < prev_score:
+            came_from[n] = idx
+            best_scores[n] = score
+            heapq.heappush(heap, (score, n))
+        
+        # Compressed
+        longest = longest_matches.get(idx)
+        if longest is not None:
+            longest_len = longest[1]
+            score += 8
+            for size in range(MIN_MATCH_SIZE, longest_len + 1):
+                n = idx + size
+                prev_score = best_scores.get(n)
+                if prev_score is None or score < prev_score:
+                    came_from[n] = idx
+                    best_scores[n] = score
+                    heapq.heappush(heap, (score, n))
 
-    # check for valid data size
-    if remain < 32 or remain % 32 != 0:
-        return -1
+    raise Exception("Processed heap without reaching input length")
 
-    start = idx
-    idx += 4
-    dst = 0
 
-    # decompress
-    while (True):
-        cflag = input[idx]
-        idx += 1
-
-        for _ in range(8):
-            if (cflag & 0x80) == 0:
-                # uncompressed
-                idx += 1
-                dst += 1
-                remain -= 1
-            else:
-                # compressed
-                amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
-                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
-                idx += 2
-                remain -= amount_to_copy
-                
-                if dst - window < 0:
-                    return -1
-                dst += amount_to_copy
-
-            if remain <= 0:
-                if remain < 0:
-                    return -1
-                # return compressed length
-                return idx - start
-            cflag <<= 1
+def _construct_path(came_from: dict[int, int], idx: int) -> list[int]:
+    path: list[int] = [idx]
+    while idx in came_from:
+        idx = came_from[idx]
+        path.append(idx)
+    return path
 
 
 if __name__ == "__main__":
