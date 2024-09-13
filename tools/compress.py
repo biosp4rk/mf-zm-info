@@ -28,24 +28,22 @@ def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
             half = len(passes)
         num_bytes = input[idx]
         idx += 1
+        flag = 0x80 if num_bytes == 1 else 0x8000
         while True:
             amount = None
-            compare = None
             if num_bytes == 1:
                 amount = input[idx]
-                compare = 0x80
             else:
                 # num_bytes == 2
                 amount = (input[idx] << 8) | input[idx + 1]
-                compare = 0x8000
             idx += num_bytes
 
             if amount == 0:
                 break
 
-            if (amount & compare) != 0:
+            if (amount & flag) != 0:
                 # compressed
-                amount %= compare
+                amount %= flag
                 val = input[idx]
                 idx += 1
                 while amount > 0:
@@ -266,10 +264,11 @@ def _find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
     length = len(input)
     triplets: dict[int, list[int]] = {}
     longest_matches: dict[int, tuple[int, int]] = {}
+    triplet = (input[0] << 8) | (input[1] << 16)
 
     for i in range(length - 2):
         # Get triplet at current position
-        triplet = input[i] | (input[i + 1] << 8) | (input[i + 2] << 16)
+        triplet = (triplet >> 8) | (input[i + 2] << 16)
 
         # Check if triplet has no match
         indexes = triplets.get(triplet)
