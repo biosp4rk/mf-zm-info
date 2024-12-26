@@ -2024,9 +2024,10 @@
     label: GameCompletion
     type: GameCompletion
     offset: 0x18
-  - desc: Value of 0x3000C1F
-    label: ValueOf3000C1F
+  - desc: Has saved
+    label: HasSaved
     type: u8
+    cat: bool
     offset: 0x1C
   - desc: Area ID
     label: AreaId
@@ -2124,11 +2125,6 @@
     label: SamusEcho
     type: SamusEcho
     offset: 0x88
-  - desc: Has saved
-    label: HasSaved
-    type: u8
-    cat: bool
-    offset: 0x9C
   - desc: Screw attack and speed booster animation
     label: ScrewAttackAndSpeedBoosterAnim
     type: ScrewAttackSpeedBoosterAnim
@@ -2506,7 +2502,7 @@
     offset: 0x3
 - desc: In-game time at bosses
   label: InGameTimeAtBosses
-  size: 0x10
+  size: 0x14
   vars:
   - desc: When Kraid killed
     label: WhenKraidKilled
@@ -2524,6 +2520,10 @@
     label: WhenMechaRidleyKilled
     type: InGameTime
     offset: 0xC
+  - desc: Unused
+    label: Unused
+    type: InGameTime
+    offset: 0x10
 - desc: IO transfer info
   label: IoTransferInfo
   size: 0x18
