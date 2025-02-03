@@ -113,7 +113,7 @@ def get_text(char_map: Dict[int, str], rom: Rom, addr: int) -> str:
     text = ""
     rom.seek(addr)
     while True:
-        val = rom.read_next_16(addr)
+        val = rom.read_next_16()
         if val >> 8 == 0xFF:
             return text
         ch = char_map.get(val)
