@@ -32,8 +32,8 @@ class GameInfo(object):
                 game, MAP_DATA, region, include_unk)
             struct_list = get_info_file_from_yaml(game, MAP_STRUCTS, region, include_unk)
             enum_list = get_info_file_from_yaml(game, MAP_ENUMS, region, include_unk)
-        self.structs: Dict[str, StructEntry] = {e.label: e for e in struct_list}
-        self.enums: Dict[str, EnumEntry] = {e.label: e for e in enum_list}
+        self.structs: Dict[str, StructEntry] = {e.name: e for e in struct_list}
+        self.enums: Dict[str, EnumEntry] = {e.name: e for e in enum_list}
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]
@@ -41,28 +41,28 @@ class GameInfo(object):
     def get_struct(self, key: str) -> StructEntry:
         return self.structs[key]
 
-    def get_ram(self, label: str) -> DataEntry:
+    def get_ram(self, name: str) -> DataEntry:
         for gv in self.ram:
-            if gv.label == label:
+            if gv.name == name:
                 return gv
         return None
 
-    def get_code(self, label: str) -> CodeEntry:
+    def get_code(self, name: str) -> CodeEntry:
         for ce in self.code:
-            if ce.label == label:
+            if ce.name == name:
                 return ce
         return None
 
-    def get_data(self, label: str) -> DataEntry:
+    def get_data(self, name: str) -> DataEntry:
         for gv in self.data:
-            if gv.label == label:
+            if gv.name == name:
                 return gv
         return None
 
-    def get_entry(self, label: str) -> InfoEntry:
+    def get_entry(self, name: str) -> InfoEntry:
         getters = (self.get_ram, self.get_code, self.get_data)
         for getter in getters:
-            entry = getter(label)
+            entry = getter(name)
             if entry is not None:
                 return entry
         return None
@@ -75,14 +75,14 @@ class GameInfo(object):
                     return entry
         return None
 
-    def label_exists(self, label: str) -> bool:
-        return self.get_entry(label) is not None
+    def name_exists(self, name: str) -> bool:
+        return self.get_entry(name) is not None
     
-    def find_data_by_label(self, tokens: str) -> List[DataEntry]:
+    def find_data_by_name(self, tokens: str) -> List[DataEntry]:
         tokens = tokens.lower()
         game_vars: List[DataEntry] = []
         for gv in self.data:
-            if tokens in gv.label.lower():
+            if tokens in gv.name.lower():
                 game_vars.append(gv)
         return game_vars
 

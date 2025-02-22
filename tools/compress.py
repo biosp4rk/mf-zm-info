@@ -3,6 +3,7 @@ from typing import Tuple
 
 import argparse_utils as apu
 
+
 MIN_MATCH_SIZE = 3
 MAX_MATCH_SIZE = 18
 MAX_WINDOW_SIZE = 0x1000

@@ -93,20 +93,20 @@ class Validator(object):
             # check enums
             self.entry_loc.map_type = MAP_ENUMS
             for entry in info.enums.values():
-                self.entry_loc.entry_name = entry.label
+                self.entry_loc.entry_name = entry.name
                 self.check_vals(entry.vals)
 
             # check structs
             self.entry_loc.map_type = MAP_STRUCTS
             for entry in info.structs.values():
-                self.entry_loc.entry_name = entry.label
+                self.entry_loc.entry_name = entry.name
                 self.check_vars(entry.vars)
 
             # check code
             self.entry_loc.map_type = MAP_CODE
             prev: CodeEntry = None
             for entry in info.code:
-                self.entry_loc.entry_name = entry.label
+                self.entry_loc.entry_name = entry.name
                 self.check_region_int(K_ADDR, entry.addr, 4)
                 self.check_region_int(K_SIZE, entry.size, 2)
                 self.check_params(entry.params)
@@ -123,7 +123,7 @@ class Validator(object):
                 self.entry_loc.map_type = map_type
                 prev: DataEntry = None
                 for entry in entries:
-                    self.entry_loc.entry_name = entry.label
+                    self.entry_loc.entry_name = entry.name
                     valid_type = self.check_type(entry)
                     self.entry_loc.field_name = K_ADDR
                     align = entry.get_alignment(self.structs)
@@ -181,7 +181,7 @@ class Validator(object):
         for r, a in prev_end.items():
             if r in curr_addr:
                 if a >= curr_addr[r]:
-                    self.add_error(f"{map_type} entries overlap\n{prev.label}")
+                    self.add_error(f"{map_type} entries overlap\n{prev.name}")
                 # some data is in a different order in different regions,
                 # so we only check against one region
                 break
@@ -196,8 +196,8 @@ class Validator(object):
     def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
         # check struct
-        if (entry.primitive == PrimType.STRUCT and
-            entry.struct_name not in self.structs):
+        if (entry.data_type() == DataType.STRUCT and
+            entry.struct_name() not in self.structs):
             self.add_error("Invalid type")
             return False
         if entry.declaration is None:

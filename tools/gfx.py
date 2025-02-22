@@ -12,7 +12,6 @@ RGB = Tuple[int, int, int]
 
 
 class Palette(object):
-    
     def __init__(self, rows: int, rom: Rom = None, addr: int = None):
         assert rows >= 1
         self.colors = []
@@ -44,7 +43,6 @@ class Palette(object):
 
 
 class Gfx(object):
-
     def __init__(self,
         rom: Rom,
         addr: int,

@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, auto
 from typing import List, Set
 
 from rom import Rom, ROM_OFFSET
@@ -6,86 +6,86 @@ from symbols import Symbols, LabelType
 
 
 class ThumbOp(Enum):
-    Undef = 0
+    Undef = auto()
     # logical operations
-    MOV = 1
-    MVN = 2
-    AND = 3
-    TST = 4
-    BIC = 5
-    ORR = 6
-    EOR = 7
-    LSL = 8
-    LSR = 9
-    ASR = 10
-    ROR = 11
-    NOP = 12
+    MOV = auto()
+    MVN = auto()
+    AND = auto()
+    TST = auto()
+    BIC = auto()
+    ORR = auto()
+    EOR = auto()
+    LSL = auto()
+    LSR = auto()
+    ASR = auto()
+    ROR = auto()
+    NOP = auto()
     # arithmetic operations
-    ADD = 13
-    ADC = 14
-    SUB = 15
-    SBC = 16
-    NEG = 17
-    CMP = 18
-    CMN = 19
-    MUL = 20
+    ADD = auto()
+    ADC = auto()
+    SUB = auto()
+    SBC = auto()
+    NEG = auto()
+    CMP = auto()
+    CMN = auto()
+    MUL = auto()
     # jumps and calls
-    B = 21
-    BEQ = 22
-    BNE = 23
-    BCS = 24
-    BCC = 25
-    BMI = 26
-    BPL = 27
-    BVS = 28
-    BVC = 29
-    BHI = 30
-    BLS = 31
-    BGE = 32
-    BLT = 33
-    BGT = 34
-    BLE = 35
-    BL = 36
-    BX = 37
-    SWI = 38
-    BKPT = 39
-    BLX = 40
+    B = auto()
+    BEQ = auto()
+    BNE = auto()
+    BCS = auto()
+    BCC = auto()
+    BMI = auto()
+    BPL = auto()
+    BVS = auto()
+    BVC = auto()
+    BHI = auto()
+    BLS = auto()
+    BGE = auto()
+    BLT = auto()
+    BGT = auto()
+    BLE = auto()
+    BL = auto()
+    BX = auto()
+    SWI = auto()
+    BKPT = auto()
+    BLX = auto()
     # memory load/store
-    LDR = 41
-    LDRB = 42
-    LDRH = 43
-    LDSB = 44
-    LDSH = 45
-    STR = 46
-    STRB = 47
-    STRH = 48
-    PUSH = 49
-    POP = 50
-    LDMIA = 51
-    STMIA = 52
+    LDR = auto()
+    LDRB = auto()
+    LDRH = auto()
+    LDSB = auto()
+    LDSH = auto()
+    STR = auto()
+    STRB = auto()
+    STRH = auto()
+    PUSH = auto()
+    POP = auto()
+    LDMIA = auto()
+    STMIA = auto()
 
 
 class ThumbForm(Enum):
-    Undef = 0
-    Shift = 1
-    AddSub = 2
-    Immed = 3
-    AluOp = 4
-    HiReg = 5
-    LdPC = 6
-    LdStR = 7
-    LdStRS = 8
-    LdStI = 9
-    LdStIH = 10
-    LdStSP = 11
-    RelAddr = 12
-    AddSP = 13
-    PushPop = 14
-    LdStM = 15
-    CondB = 16
-    Swi = 17
-    UncondB = 18
-    Link = 19
+    Undef = auto()
+    Shift = auto()
+    AddSub = auto()
+    Immed = auto()
+    AluOp = auto()
+    HiReg = auto()
+    LdPC = auto()
+    LdStR = auto()
+    LdStRS = auto()
+    LdStI = auto()
+    LdStIH = auto()
+    LdStSP = auto()
+    RelAddr = auto()
+    AddSP = auto()
+    PushPop = auto()
+    LdStM = auto()
+    CondB = auto()
+    Swi = auto()
+    UncondB = auto()
+    Link = auto()
 
 
 class Reg(object):

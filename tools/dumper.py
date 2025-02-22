@@ -76,41 +76,41 @@ class FindPtrData(object):
         for entry in self.info.data:
             self.check_entry(entry)
         for addr in sorted(self.results):
-            labels = ", ".join(self.results[addr])
-            print(f"{addr:X}: {labels}")
+            names = ", ".join(self.results[addr])
+            print(f"{addr:X}: {names}")
 
     def check_entry(self,
         entry: VarEntry,
         base_addr: int = None,
-        base_label: str = None
+        base_name: str = None
     ):
         if base_addr is None:
             base_addr = entry.addr
-            base_label = entry.label
+            base_name = entry.name
         else:
             base_addr = base_addr + entry.offset
-            base_label = base_label + "_" + entry.label
+            base_name = base_name + "_" + entry.name
         count = entry.get_count()
         if entry.is_ptr():
-            base_label = re.sub("Ptrs?$", "", base_label)
+            base_name = re.sub("Ptrs?$", "", base_name)
             for i in range(count):
                 addr = rom.read_ptr(base_addr + i * 4)
                 if (addr >= self.data_start and
                     addr < self.data_end and
                     addr not in self.data_set):
-                    label = base_label
+                    name = base_name
                     if count > 1:
-                        label += f"_{i:02X}"
-                    self.results[addr].append(label)
-        elif entry.struct_name is not None:
-            struct = self.info.get_struct(entry.struct_name)
+                        name += f"_{i:02X}"
+                    self.results[addr].append(name)
+        elif entry.struct_name() is not None:
+            struct = self.info.get_struct(entry.struct_name())
             for i in range(count):
                 addr = base_addr + i * struct.size
-                label = base_label
+                name = base_name
                 if count > 1:
-                    label += f"_{i:02X}"
+                    name += f"_{i:02X}"
                 for var in struct.vars:
-                    self.check_entry(var, addr, label)
+                    self.check_entry(var, addr, name)
 
 
 if __name__ == "__main__":

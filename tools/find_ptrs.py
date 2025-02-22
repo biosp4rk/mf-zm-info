@@ -6,7 +6,7 @@ import argparse_utils as apu
 from constants import *
 from function import all_functions
 from game_info import GameInfo
-from info_entry import PrimType, DataEntry, StructEntry, StructVarEntry, CodeEntry
+from info_entry import DataType, DataEntry, StructEntry, StructVarEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
 
 
@@ -98,7 +98,7 @@ def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
     sound_entries = info.get_data("SoundDataEntries")
     se_addr = sound_entries.addr
     count = sound_entries.arr_count
-    size = info.get_struct(sound_entries.struct_name).size
+    size = info.get_struct(sound_entries.struct_name()).size
     ptr_locs: List[int] = []
     for idx in range(count):
         addr = rom.read_ptr(se_addr + (idx * size))
@@ -246,9 +246,9 @@ def find_prim_at_offset(
             off %= size
         # check type
         is_ptr = entry.is_ptr()
-        if not is_ptr and entry.primitive == PrimType.STRUCT:
+        if not is_ptr and entry.data_type() == DataType.STRUCT:
             # check primitive at offset
-            s_entry = info.get_struct(entry.struct_name)
+            s_entry = info.get_struct(entry.struct_name())
             _, entry, num, off = find_prim_at_offset(s_entry.vars, 0, off, info)
         return (idx, entry, num, off)
     return (idx, None, None, None)

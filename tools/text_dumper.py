@@ -4,8 +4,8 @@ from typing import Dict
 
 import argparse_utils as apu
 from constants import *
-from rom import Rom
 from info_file_utils import load_yaml_file
+from rom import Rom
 
 
 def get_char_map(game: str, region: str) -> Dict[int, str]:

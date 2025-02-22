@@ -24,7 +24,7 @@ def struct_list_var_addrs(
     data_addr = data.addr
     data_count = data.get_count()
     # get struct info
-    struct = info.get_struct(data.struct_name)
+    struct = info.get_struct(data.struct_name())
     size = struct.size
     var_off = struct.get_var(var_label).offset
     # compute addresses

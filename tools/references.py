@@ -18,10 +18,10 @@ class RefType(Enum):
 
 
 class Ref:
-    def __init__(self, addr: int, label: str, offset: int):
-        assert (label is None) == (offset is None)
+    def __init__(self, addr: int, name: str, offset: int):
+        assert (name is None) == (offset is None)
         self.addr = addr
-        self.label = label
+        self.name = name
         self.offset = offset
 
     def to_obj(self) -> Any:
@@ -30,28 +30,28 @@ class Ref:
 
 class BlRef(Ref):
 
-    def __init__(self, addr: int, label: str = None, offset: int = None):
-        super().__init__(addr, label, offset)
+    def __init__(self, addr: int, name: str = None, offset: int = None):
+        super().__init__(addr, name, offset)
 
     def __str__(self) -> str:
         items = [
             f"{self.addr:X}",
-            "" if self.label is None else self.label,
+            "" if self.name is None else self.name,
             "" if self.offset is None else f"{self.offset:X}"
         ]
         return "\t".join(items)
     
     def __repr__(self) -> str:
         items = ["bl", f"{self.addr:X}"]
-        if self.label:
-            items.append(self.label)
+        if self.name:
+            items.append(self.name)
             items.append(f"{self.offset:X}")
         return ",".join(items)
 
     def to_obj(self) -> Any:
         obj = [("addr", self.addr)]
-        if self.label:
-            obj.append(("label", self.label))
+        if self.name:
+            obj.append(("name", self.name))
             obj.append(("offset", self.offset))
         return dict(obj)
 
@@ -61,32 +61,32 @@ class PoolRef(Ref):
     def __init__(self,
         addr: int,
         ldrs: List[int],
-        label: str = None,
+        name: str = None,
         offset: int = None
     ):
-        super().__init__(addr, label, offset)
+        super().__init__(addr, name, offset)
         self.ldrs = ldrs
 
     def __str__(self) -> str:
         items = [
             f"{self.addr:X}",
             ",".join(f"{a:X}" for a in self.ldrs),
-            "" if self.label is None else self.label,
+            "" if self.name is None else self.name,
             "" if self.offset is None else f"{self.offset:X}"
         ]
         return "\t".join(items)
 
     def __repr__(self) -> str:
         items = ["pool", f"{self.addr:X}"]
-        if self.label:
-            items.append(self.label)
+        if self.name:
+            items.append(self.name)
             items.append(f"{self.offset:X}")
         return ",".join(items)
     
     def to_obj(self) -> Any:
         obj = [("addr", self.addr)]
-        if self.label:
-            obj.append(("label", self.label))
+        if self.name:
+            obj.append(("name", self.name))
             obj.append(("offset", self.offset))
         return dict(obj)
 
@@ -95,18 +95,18 @@ class DataRef(Ref):
 
     def __init__(self,
         addr: int,
-        label: str = None,
+        name: str = None,
         index: int = None,
         offset: int = None
     ):
-        assert (label is None) == (index is None)
-        super().__init__(addr, label, offset)
+        assert (name is None) == (index is None)
+        super().__init__(addr, name, offset)
         self.index = index
 
     def __str__(self) -> str:
         items = [
             f"{self.addr:X}",
-            "" if self.label is None else self.label,
+            "" if self.name is None else self.name,
             "" if self.index is None else f"{self.index:X}",
             "" if self.offset is None else f"{self.offset:X}"
         ]
@@ -114,16 +114,16 @@ class DataRef(Ref):
 
     def __repr__(self) -> str:
         items = ["data", f"{self.addr:X}"]
-        if self.label:
-            items.append(self.label)
+        if self.name:
+            items.append(self.name)
             items.append(f"{self.index:X}")
             items.append(f"{self.offset:X}")
         return ",".join(items)
 
     def to_obj(self) -> Any:
         obj = [("addr", self.addr)]
-        if self.label:
-            obj.append(("label", self.label))
+        if self.name:
+            obj.append(("name", self.name))
             obj.append(("index", self.index))
             obj.append(("offset", self.offset))
         return dict(obj)
@@ -220,14 +220,14 @@ class References(object):
         for i in range(code_end, data_end, 4):
             self.check_addr(i, RefType.DATA)
         
-        # get all code and data labels
-        entry_labels = {}
+        # get all code and data names
+        entry_names = {}
         for entry in self.info.code + self.info.data:
-            entry_labels[entry.addr] = entry.label
+            entry_names[entry.addr] = entry.name
         return [
-            (entry_labels[addr], ref)
+            (entry_names[addr], ref)
             for addr, ref in sorted(self.found_refs.items())
-            if addr in entry_labels
+            if addr in entry_names
         ]
 
     def check_addr(self, addr: int, kind: RefType) -> None:
@@ -291,7 +291,7 @@ class References(object):
             length = self.get_code_len(entry)
             offset = self.get_offset_within_entry(addr, entry.addr, length)
             if offset != -1:
-                return BlRef(addr, entry.label, offset)
+                return BlRef(addr, entry.name, offset)
         return BlRef(addr)
     
     def get_pool_ref(self, addr: int, entry: CodeEntry) -> PoolRef:
@@ -299,7 +299,7 @@ class References(object):
             length = self.get_code_len(entry)
             offset = self.get_offset_within_entry(addr, entry.addr, length)
             if offset != -1:
-                return PoolRef(addr, [], entry.label, offset)
+                return PoolRef(addr, [], entry.name, offset)
         return PoolRef(addr, [])
     
     def get_data_ref(self, addr: int, entry: DataEntry) -> DataRef:
@@ -313,7 +313,7 @@ class References(object):
                     size = length // count
                     idx = offset // size
                     offset %= size
-                return DataRef(addr, entry.label, idx, offset)
+                return DataRef(addr, entry.name, idx, offset)
         return DataRef(addr)
     
 
@@ -331,9 +331,9 @@ def output_section(refs: List[Ref], title: str, fields: List[str]) -> List[str]:
 
 def print_refs(bls: List[BlRef], pools: List[PoolRef], datas: List[DataRef]) -> None:
     lines = []
-    lines += output_section(bls, "Calls", ["addr", "label", "off"])
-    lines += output_section(pools, "Pools", ["addr", "ldrs", "label", "off"])
-    lines += output_section(datas, "Data", ["addr", "label", "idx", "off"])
+    lines += output_section(bls, "Calls", ["addr", "name", "off"])
+    lines += output_section(pools, "Pools", ["addr", "ldrs", "name", "off"])
+    lines += output_section(datas, "Data", ["addr", "name", "idx", "off"])
     print("\n".join(lines))
 
 
@@ -342,7 +342,7 @@ if __name__ == "__main__":
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
-    group.add_argument("-l", "--label", type=str)
+    group.add_argument("-n", "--name", type=str)
     group.add_argument("--all", action="store_true")
     parser.add_argument("-u", "--unk", action="store_true")
 
@@ -358,14 +358,14 @@ if __name__ == "__main__":
             DataRef: "data"
         }
         all_entries = {}
-        for label, refs in all_refs:
+        for name, refs in all_refs:
             entry = {}
             for ref in refs:
                 key = kinds[type(ref)]
                 if key not in entry:
                     entry[key] = []
                 entry[key].append(ref.to_obj())
-            all_entries[label] = entry
+            all_entries[name] = entry
         print(yaml.safe_dump(all_entries, sort_keys=False))
     else:
         # get address
@@ -376,8 +376,8 @@ if __name__ == "__main__":
             except:
                 print(f"Invalid hex address {args.addr}")
                 quit()
-        elif args.label:
-            entry = refs.info.get_entry(args.label)
+        elif args.name:
+            entry = refs.info.get_entry(args.name)
             if entry is None:
                 print("Label not found")
                 quit()

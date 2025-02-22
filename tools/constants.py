@@ -25,15 +25,6 @@ REGION_J = "J"
 REGION_C = "C"
 REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C)
 
-PRIMITIVES = {
-    "u8": 1,
-    "s8": 1,
-    "u16": 2,
-    "s16": 2,
-    "u32": 4,
-    "s32": 4
-}
-
 MODE_THUMB = "thumb"
 MODE_ARM = "arm"
 ASM_MODES = (MODE_THUMB, MODE_ARM)
@@ -45,8 +36,9 @@ K_COMP = "comp"
 K_COUNT = "count"
 K_DESC = "desc"
 K_ENUM = "enum"
-K_LABEL = "label"
 K_MODE = "mode"
+K_NAME = "name"
+# TODO: Remove (use desc)
 K_NOTES = "notes"
 K_OFFSET = "offset"
 K_PARAMS = "params"

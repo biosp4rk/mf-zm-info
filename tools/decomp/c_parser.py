@@ -3,10 +3,19 @@ import os
 
 from pycparser import c_ast, parse_file, plyparser
 
-from constants import PRIMITIVES
 from decomp.ident_formatter import desc_from_ident, label_from_ident
 from info_entry import StructEntry, StructVarEntry
 from info_file_utils import obj_to_yaml_str
+
+
+PRIMITIVES = {
+    "u8": 1,
+    "s8": 1,
+    "u16": 2,
+    "s16": 2,
+    "u32": 4,
+    "s32": 4
+}
 
 
 class DcVarEntry:

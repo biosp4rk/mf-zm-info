@@ -317,7 +317,7 @@ if __name__ == "__main__":
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
-    group.add_argument("-l", "--label", type=str)
+    group.add_argument("-n", "--name", type=str)
     parser.add_argument("-s", "--symbols", action="store_true")
     parser.add_argument("-c", "--addr_comments", action="store_true")
 
@@ -336,8 +336,8 @@ if __name__ == "__main__":
         except:
             print(f"Invalid hex address {args.addr}")
             quit()
-    elif args.label:
-        entry = info.get_code(args.label)
+    elif args.name:
+        entry = info.get_code(args.name)
         if entry is None:
             print("Label not found")
             quit()

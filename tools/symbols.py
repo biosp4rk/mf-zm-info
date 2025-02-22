@@ -24,16 +24,16 @@ class Symbols(object):
             for entry in info.ram:
                 addr = entry.addr
                 assert isinstance(addr, int)
-                self.globals[addr] = entry.label
+                self.globals[addr] = entry.name
             for entry in info.code:
                 addr = entry.addr
                 assert isinstance(addr, int)
-                self.globals[addr + ROM_OFFSET] = entry.label
+                self.globals[addr + ROM_OFFSET] = entry.name
                 self.thumb_code.add(addr + ROM_OFFSET + 1)
             for entry in info.data:
                 addr = entry.addr
                 assert isinstance(addr, int)
-                self.globals[addr + ROM_OFFSET] = entry.label
+                self.globals[addr + ROM_OFFSET] = entry.name
 
     def add_global(self, offset: int, label: str):
         self.globals[offset] = label
