@@ -83,6 +83,7 @@ class DcCodeEntry(DcBaseEntry):
 
 
 def linked_text_to_str(linked_text: dxp.linkedTextType):
+    """TODO: document"""
     str = ""
     if linked_text:
         for text_or_ref in linked_text.content_:
@@ -94,15 +95,18 @@ def linked_text_to_str(linked_text: dxp.linkedTextType):
 
 
 def is_body_file(item: Union[dxp.compounddefType, dxp.memberdefType]) -> bool:
+    """Returns true if the item is in a body file rather than a header file."""
     loc = item.get_location()
     return loc.get_file() == loc.get_bodyfile()
 
 
 def get_loc_str(item: Union[dxp.compounddefType, dxp.memberdefType]) -> str:
+    """Gets a string with an item's file and line number."""
     loc = item.get_location()
     return f"{loc.get_file()}:{loc.get_line()}"
 
 
+# TODO: remove
 code_entries = []
 
 
@@ -166,6 +170,7 @@ def parse_detailed_desc(desc: dxp.descriptionType) -> tuple[str, dict[str, str],
 
 
 def parse_function(memberdef: dxp.memberdefType):
+    """Parses a function declaration."""
     # Skip function defs in header files
     if not is_body_file(memberdef):
         return
@@ -208,6 +213,7 @@ def parse_function(memberdef: dxp.memberdefType):
 
 
 def parse_members(compounddef: dxp.compounddefType, sectiondef: dxp.sectiondefType):
+    """Parses struct variables, functions, or global variables."""
     memberdefs: list[dxp.memberdefType] = sectiondef.get_memberdef()
     if compounddef.get_kind() == DoxCompoundKind.STRUCT:
         # TODO: Create struct entry
@@ -221,15 +227,17 @@ def parse_members(compounddef: dxp.compounddefType, sectiondef: dxp.sectiondefTy
                 #parse_function(memberdef)
                 pass
             elif memberdef.get_kind() == DoxMemberKind.VARIABLE:
-                # Data (and RAM?) variable
+                # Data or RAM variable
+                # TODO: get description
                 var_name = memberdef.get_name()
                 var_decl = memberdef.get_definition()
                 loc = get_loc_str(memberdef)
-                print("\t".join([var_name, var_decl, loc]))
-                input()
+                entry = DcVarEntry(var_name, var_decl, loc, None)
+                print(entry)
 
 
 def parse_compound(xml_dir: str, name: str):
+    """Parses an xml file."""
     xml_path = os.path.join(xml_dir, name + ".xml")
     root_obj = dxpc.parse(xml_path, True)
     compounddefs: list[dxp.compounddefType] = root_obj.get_compounddef()
@@ -240,6 +248,7 @@ def parse_compound(xml_dir: str, name: str):
 
 
 def parse_index(xml_dir: str):
+    """Parses the main xml file."""
     index_path = os.path.join(xml_dir, "index.xml")
     root_obj = dxp.index.parse(index_path, True)
     compounds: list[dxp.CompoundType] = root_obj.get_compound()
