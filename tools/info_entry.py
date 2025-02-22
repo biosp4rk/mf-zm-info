@@ -261,10 +261,18 @@ class VarEntry(InfoEntry):
         )
 
     @staticmethod
-    def to_obj(entry: "VarEntry") -> Any:
+    def to_obj(entry: "VarEntry", is_ret: bool = False) -> Any:
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.desc))
+        desc = None
+        if is_ret:
+            desc = entry.desc
+            if entry.notes:
+                desc = f"{desc} ({entry.notes})"
+        else:
+            if entry.notes:
+                desc = entry.notes
+        if desc:
+            obj.append((K_DESC, desc))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
@@ -342,7 +350,7 @@ class DataEntry(VarEntry):
     def to_obj(entry: "DataEntry") -> Any:
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
@@ -418,7 +426,7 @@ class StructVarEntry(VarEntry):
     def to_obj(entry: "StructVarEntry") -> Any:
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
@@ -475,7 +483,7 @@ class StructEntry(InfoEntry):
         vars = [StructVarEntry.to_obj(e) for e in entry.vars]
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj.append((K_SIZE, entry.size))
         obj.append((K_VARS, vars))
         # if entry.notes:
@@ -526,14 +534,8 @@ class CodeEntry(InfoEntry):
     @staticmethod
     def from_obj(obj: Any) -> "CodeEntry":
         try:
-            params = obj[K_PARAMS]
-            # TODO: Don't allow str for params
-            if not isinstance(params, str):
-                params = [VarEntry.from_obj(p) for p in params] if params else None
-            ret = obj[K_RETURN]
-            # TODO: Don't allow str for return
-            if not isinstance(ret, str):
-                ret = VarEntry.from_obj(ret) if ret else None
+            params = [VarEntry.from_obj(p) for p in obj[K_PARAMS]] if obj[K_PARAMS] else None
+            ret = VarEntry.from_obj(obj[K_RETURN]) if obj[K_RETURN] else None
             return CodeEntry(
                 obj["label"],
                 obj[K_DESC],
@@ -549,17 +551,11 @@ class CodeEntry(InfoEntry):
 
     @staticmethod
     def to_obj(entry: "CodeEntry") -> Any:
-        # TODO: Don't allow str for params
-        params = entry.params
-        if not isinstance(entry.params, str):
-            params = [VarEntry.to_obj(p) for p in entry.params] if entry.params else None
-        # TODO: Don't allow str for return
-        ret = entry.ret
-        if not isinstance(entry.ret, str):
-            ret = VarEntry.to_obj(entry.ret) if entry.ret else None
+        params = [VarEntry.to_obj(p) for p in entry.params] if entry.params else None
+        ret = VarEntry.to_obj(entry.ret, True) if entry.ret else None
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj += [
             (K_ADDR, entry.addr),
             (K_SIZE, entry.size),
@@ -602,7 +598,7 @@ class EnumValEntry(InfoEntry):
     def to_obj(entry: "EnumValEntry") -> Any:
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj.append((K_VAL, entry.val))
         # if entry.notes:
         #     obj.append(("notes", entry.notes))
@@ -641,7 +637,7 @@ class EnumEntry(InfoEntry):
         vals = [EnumValEntry.to_obj(e) for e in entry.vals]
         obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_DESC, entry.desc))
+            obj.append((K_DESC, entry.notes))
         obj.append((K_VALS, vals))
         # if entry.notes:
         #     obj.append((K_NOTES, entry.notes))
