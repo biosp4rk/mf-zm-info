@@ -71,7 +71,7 @@ class Validator(object):
             validator = Draft7Validator(map_schema, registry=registry)
 
             for game in GAMES:
-                paths = ifu.find_yaml_files(game, map_type)
+                paths = ifu.find_yaml_files(game, map_type, True)
                 ylists = ifu.load_yaml_files(paths)
                 for path, ylist in zip(paths, ylists):
                     name = os.path.basename(path)
@@ -86,7 +86,7 @@ class Validator(object):
             # TODO: Some errors can happen when creating GameInfo;
             # consider manually creating each info entry instead
             # (would need to sort and check for overlap at the end)
-            info = GameInfo(game, from_json=False)
+            info = GameInfo(game, from_json=False, include_unk=True)
             self.enums = info.enums
             self.structs = info.structs
 
