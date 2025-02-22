@@ -50,7 +50,7 @@ class CallStack(object):
             line = f"{tab}{addr:05X}"
             entry = self.info.get_entry_by_addr(addr)
             if entry:
-                line += f" {entry.label}"
+                line += f" {entry.name}"
             lines.append(line)
             self.add_lines(calls, depth + 1, indent, lines)
 

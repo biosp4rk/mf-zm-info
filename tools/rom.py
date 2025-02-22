@@ -1,7 +1,9 @@
+from typing import Optional, Union
+
 from constants import *
 
 
-BytesLike = bytes | bytearray
+BytesLike = Union[bytes, bytearray]
 
 SIZE_8MB = 0x800000
 SIZE_16MB = SIZE_8MB * 2
@@ -101,7 +103,7 @@ class Rom(object):
         dst_addr: int,
         vals: BytesLike,
         src_addr: int = 0,
-        size: int | None = None
+        size: Optional[int] = None
     ) -> None:
         if size is None:
             size = len(vals) - src_addr

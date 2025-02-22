@@ -6,6 +6,7 @@ import sys
 from jsonschema import Draft7Validator
 from referencing import Registry, Resource
 
+from asset_type import AssetType, OuterType, PointerType, FunctionType
 from constants import *
 from game_info import GameInfo
 from info_entry import *
@@ -13,8 +14,6 @@ import info_file_utils as ifu
 
 
 SCHEMA_PATH = "../schema"
-
-TYPE_SYMS = {"*", "[", "]", "(", ")"}
 
 
 class EntryLoc(object):
@@ -201,14 +200,18 @@ class Validator(object):
             entry.struct_name() not in self.structs):
             self.add_error("Invalid type")
             return False
-        if entry.declaration is None:
-            return True
-        # Check that declaration can be fully parsed
-        tokens = tokenize_decl(entry.declaration)
-        index = parse_decl(tokens, 0)
-        if index != len(tokens):
-            self.add_error("Invalid type")
-            return False
+        # Check for non-pointer functions
+        type = entry.type
+        prev_type: AssetType = None
+        while isinstance(type, OuterType):
+            if (
+                isinstance(type, FunctionType) and
+                not isinstance(prev_type, PointerType)
+            ):
+                self.add_error("Functions must be pointers")
+                return False
+            prev_type = type
+            type = type.inner_type
         return True
 
     def check_vals(self, vals: list[EnumValEntry]) -> None:
@@ -251,64 +254,6 @@ class Validator(object):
         self.entry_loc.field_name = K_ENUM
         if enm not in self.enums:
             self.add_error("Invalid enum")
-
-
-def tokenize_decl(decl: str):
-    tokens = []
-    i = 0
-    while i < len(decl):
-        c = decl[i]
-        if c in TYPE_SYMS:
-            tokens.append(c)
-            i += 1
-        elif c == "0" and decl[i + 1] == "x":
-            start = i
-            i += 2
-            while "0" <= decl[i] <= "9" or "A" <= decl[i] <= "F":
-                i += 1
-            tokens.append(decl[start:i])
-        elif "0" <= c <= "9":
-            start = i
-            while "0" <= decl[i] <= "9":
-                i += 1
-            tokens.append(decl[start:i])
-        else:
-            raise AssertionError(f"Unexpected char {c} in type")
-    return tokens
-
-
-def parse_decl(tokens, index: int) -> int:
-    # Grammar
-    # Decl  -> Ptr Inner Arr | ""
-    # Inner -> "(" Decl ")" | ""
-    # Ptr   -> "*" Ptr | ""
-    # Arr   -> "[" Num "]" Arr | ""
-    # Num   -> Dec | Hex
-    if index == len(tokens):
-        return index
-    # Check for pointer
-    while tokens[index] == "*":
-        index += 1
-        if index == len(tokens):
-            return index
-    # Check for inner declaration
-    if tokens[index] == "(":
-        index = parse_decl(tokens, index + 1)
-        assert (index < len(tokens) and
-            tokens[index] == ")"), f"Expected ) in type"
-        index += 1
-        if index == len(tokens):
-            return index
-    # Check for arrays
-    while tokens[index] == "[":
-        assert (index + 1 < len(tokens) and
-            tokens[index+1] != "]"), f"Array missing size in type"
-        assert (index + 2 < len(tokens) and
-            tokens[index+2] == "]"), f"Expected ] in type"
-        index += 3
-        if index == len(tokens):
-            return index
-    return index
 
 
 def output_yamls() -> None:

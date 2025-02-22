@@ -388,6 +388,10 @@ class TypeParser:
         return root
 
     def _parse_type_spec(self) -> AssetType:
+        # TODO: Remove
+        if self._accept(TokenName.IDENT):
+            return TaggedType(DataType.STRUCT, self.prev_token.text)
+        #
         self._expect(TokenName.TYPE_SPEC)
         data_type = DATA_TYPE_STRS[self.prev_token.text]
         if data_type.is_tag():

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum, auto
-from typing import Any
+from typing import Any, Union
 
 from asset_type import (
     DataType, OuterType, PointerType, ArrayType,
@@ -10,7 +10,7 @@ from constants import *
 
 
 # Type for numbers that can vary by region (addr, size)
-RegionInt = int | dict[str, int]
+RegionInt = Union[int, dict[str, int]]
 StructDict = dict[str, "StructEntry"]
 
 
@@ -236,7 +236,7 @@ class VarEntry(InfoEntry):
     def get_alignment(self, structs: StructDict) -> int:
         if self.is_ptr():
             return 4
-        if self.data_type == DataType.STRUCT:
+        if self.data_type() == DataType.STRUCT:
             se = structs[self.struct_name()]
             return max(v.get_alignment(structs) for v in se.vars)
         return self.get_spec_size(structs)
@@ -250,7 +250,7 @@ class VarEntry(InfoEntry):
         if K_COMP in obj:
             comp = STR_TO_COMP[obj[K_COMP]]
         return VarEntry(
-            obj[K_NAME],
+            obj["label"],
             obj[K_DESC],
             obj[K_TYPE],
             obj.get(K_COUNT),
@@ -262,11 +262,10 @@ class VarEntry(InfoEntry):
 
     @staticmethod
     def to_obj(entry: "VarEntry") -> Any:
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_TYPE, entry.type_str())
-        ]
+        obj = [(K_NAME, entry.name)]
+        if entry.notes:
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
@@ -275,8 +274,8 @@ class VarEntry(InfoEntry):
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
@@ -326,7 +325,7 @@ class DataEntry(VarEntry):
             if K_COMP in obj:
                 comp = STR_TO_COMP[obj[K_COMP]]
             return DataEntry(
-                obj[K_NAME],
+                obj["label"],
                 obj[K_DESC],
                 obj[K_TYPE],
                 obj.get(K_COUNT),
@@ -341,11 +340,10 @@ class DataEntry(VarEntry):
 
     @staticmethod
     def to_obj(entry: "DataEntry") -> Any:
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_TYPE, entry.type_str())
-        ]
+        obj = [(K_NAME, entry.name)]
+        if entry.notes:
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
@@ -355,8 +353,8 @@ class DataEntry(VarEntry):
         obj.append((K_ADDR, entry.addr))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
@@ -405,7 +403,7 @@ class StructVarEntry(VarEntry):
         if K_COMP in obj:
             comp = STR_TO_COMP[obj[K_COMP]]
         return StructVarEntry(
-            obj[K_NAME],
+            obj["label"],
             obj[K_DESC],
             obj[K_TYPE],
             obj.get(K_COUNT),
@@ -418,11 +416,10 @@ class StructVarEntry(VarEntry):
 
     @staticmethod
     def to_obj(entry: "StructVarEntry") -> Any:
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_TYPE, entry.type_str())
-        ]
+        obj = [(K_NAME, entry.name)]
+        if entry.notes:
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
@@ -432,8 +429,8 @@ class StructVarEntry(VarEntry):
         obj.append((K_OFFSET, entry.offset))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
@@ -464,7 +461,7 @@ class StructEntry(InfoEntry):
         try:
             vars = [StructVarEntry.from_obj(e) for e in obj[K_VARS]]
             return StructEntry(
-                obj[K_NAME],
+                obj["label"],
                 obj[K_DESC],
                 obj[K_SIZE],
                 vars,
@@ -476,14 +473,13 @@ class StructEntry(InfoEntry):
     @staticmethod
     def to_obj(entry: "StructEntry") -> Any:
         vars = [StructVarEntry.to_obj(e) for e in entry.vars]
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_SIZE, entry.size),
-            (K_VARS, vars)
-        ]
+        obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_SIZE, entry.size))
+        obj.append((K_VARS, vars))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
@@ -539,7 +535,7 @@ class CodeEntry(InfoEntry):
             if not isinstance(ret, str):
                 ret = VarEntry.from_obj(ret) if ret else None
             return CodeEntry(
-                obj[K_NAME],
+                obj["label"],
                 obj[K_DESC],
                 obj[K_ADDR],
                 obj[K_SIZE],
@@ -561,17 +557,18 @@ class CodeEntry(InfoEntry):
         ret = entry.ret
         if not isinstance(entry.ret, str):
             ret = VarEntry.to_obj(entry.ret) if entry.ret else None
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
+        obj = [(K_NAME, entry.name)]
+        if entry.notes:
+            obj.append((K_DESC, entry.desc))
+        obj += [
             (K_ADDR, entry.addr),
             (K_SIZE, entry.size),
             (K_MODE, MODE_TO_STR[entry.mode]),
             (K_PARAMS, params),
             (K_RETURN, ret),
         ]
-        if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
@@ -595,7 +592,7 @@ class EnumValEntry(InfoEntry):
     @staticmethod
     def from_obj(obj: Any) -> "EnumValEntry":
         return EnumValEntry(
-            obj[K_NAME],
+            obj["label"],
             obj[K_DESC],
             obj[K_VAL],
             obj.get(K_NOTES)
@@ -603,13 +600,12 @@ class EnumValEntry(InfoEntry):
 
     @staticmethod
     def to_obj(entry: "EnumValEntry") -> Any:
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_VAL, entry.val)
-        ]
+        obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append(("notes", entry.notes))
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_VAL, entry.val))
+        # if entry.notes:
+        #     obj.append(("notes", entry.notes))
         return dict(obj)
 
 
@@ -632,7 +628,7 @@ class EnumEntry(InfoEntry):
         try:
             vals = [EnumValEntry.from_obj(e) for e in obj[K_VALS]]
             return EnumEntry(
-                obj[K_NAME],
+                obj["label"],
                 obj[K_DESC],
                 vals,
                 obj.get(K_NOTES)
@@ -643,11 +639,10 @@ class EnumEntry(InfoEntry):
     @staticmethod
     def to_obj(entry: "EnumEntry") -> Any:
         vals = [EnumValEntry.to_obj(e) for e in entry.vals]
-        obj = [
-            (K_NAME, entry.name),
-            (K_DESC, entry.desc),
-            (K_VALS, vals)
-        ]
+        obj = [(K_NAME, entry.name)]
         if entry.notes:
-            obj.append((K_NOTES, entry.notes))
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_VALS, vals))
+        # if entry.notes:
+        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
