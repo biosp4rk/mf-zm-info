@@ -1,5 +1,4 @@
-- desc: SRAM related
-  label: SramRelated
+- name: SramRelated
   addr:
     U: 0xDEC
     E: 0xDEC
@@ -8,12 +7,10 @@
   size: 0x28
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: TODO
-  label: sub_E44
+- name: sub_E44
   addr:
     J: 0xE44
     C: 0xE44
@@ -23,8 +20,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x1A3C
     E: 0x1A3C
@@ -33,15 +29,12 @@
   size: 0x90
   mode: thumb
   params:
-  - desc: Track variables pointer
-    label: TrackVariablesPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: TrackVariablesPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u16
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x1B9C
     E: 0x1B9C
@@ -50,15 +43,12 @@
   size: 0x110
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: TrackDataPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u8 *
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x1D00
     E: 0x1D00
@@ -67,15 +57,12 @@
   size: 0x50
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: TrackDataPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u8 *
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x1D50
     E: 0x1D50
@@ -84,15 +71,12 @@
   size: 0x50
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: TrackDataPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u8 *
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x1DA0
     E: 0x1DA0
@@ -101,18 +85,14 @@
   size: 0x74
   mode: thumb
   params:
-  - desc: PSG sound pointer
-    label: PsgSoundPtr
-    type: PsgSoundData *
-  - desc: Track variables pointer
-    label: TrackVariablesPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: PsgSoundPtr
+    type: struct PsgSoundData *
+  - name: TrackVariablesPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u8
   return: null
-- desc: Get note delay?
-  label: GetNoteDelay
+- name: GetNoteDelay
   addr:
     U: 0x1E48
     E: 0x1E48
@@ -121,21 +101,17 @@
   size: 0x6C
   mode: thumb
   params:
-  - desc: Track variables pointer
-    label: TrackVariablesPtr
-    type: TrackVariables *
-  - desc: Note
-    label: Note
+  - name: TrackVariablesPtr
+    type: struct TrackVariables *
+  - name: Note
     type: u8
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return:
+    name: NoteDelay
     desc: Note delay?
-    label: NoteDelay
     type: u8
-- desc: Update SOUNDCNT_H
-  label: UpdateSoundcnt_H
+- name: UpdateSoundcnt_H
   addr:
     U: 0x24EC
     E: 0x24EC
@@ -144,12 +120,10 @@
   size: 0xFC
   mode: thumb
   params:
-  - desc: Action?
-    label: Action
+  - name: Action
     type: u8
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x28FC
     E: 0x28FC
@@ -158,12 +132,10 @@
   size: 0x3C
   mode: thumb
   params:
-  - desc: Sound ID?
-    label: SoundId
+  - name: SoundId
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2AD4
     E: 0x2AD4
@@ -172,15 +144,12 @@
   size: 0x34
   mode: thumb
   params:
-  - desc: Sound ID
-    label: SoundId
+  - name: SoundId
     type: u16
-  - desc: Timer?
-    label: Timer
+  - name: Timer
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2B08
     E: 0x2B08
@@ -189,18 +158,14 @@
   size: 0x64
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Sound header pointer
-    label: SoundHeaderPtr
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: SoundHeaderPtr
     type: u8 *
-  - desc: Timer?
-    label: Timer
+  - name: Timer
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2D60
     E: 0x2D60
@@ -209,15 +174,12 @@
   size: 0x30
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: TODO
-    label: TODO
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: TODO
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2D90
     E: 0x2D90
@@ -226,18 +188,14 @@
   size: 0x5C
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Mask
-    label: Mask
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: Mask
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2DEC
     E: 0x2DEC
@@ -246,18 +204,14 @@
   size: 0x5C
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Mask
-    label: Mask
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: Mask
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u16
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2E48
     E: 0x2E48
@@ -266,18 +220,14 @@
   size: 0x4C
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Mask
-    label: Mask
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: Mask
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2E94
     E: 0x2E94
@@ -286,18 +236,14 @@
   size: 0x44
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Mask
-    label: Mask
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: Mask
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Sound related
-  label: SoundRelated
+- name: SoundRelated
   addr:
     U: 0x2ED8
     E: 0x2ED8
@@ -306,18 +252,14 @@
   size: 0x44
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
-  - desc: Mask
-    label: Mask
+  - name: TrackDataPtr
+    type: struct TrackData *
+  - name: Mask
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x372C
     E: 0x372C
@@ -326,18 +268,14 @@
   size: 0x4C
   mode: thumb
   params:
-  - desc: Timer
-    label: Timer
+  - name: Timer
     type: u16
-  - desc: Music track
-    label: MusicTrack
+  - name: MusicTrack
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x3778
     E: 0x3778
@@ -346,18 +284,14 @@
   size: 0x130
   mode: thumb
   params:
-  - desc: Music track
-    label: MusicTrack
+  - name: MusicTrack
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x38A8
     E: 0x38A8
@@ -366,15 +300,12 @@
   size: 0x124
   mode: thumb
   params:
-  - desc: Music track
-    label: MusicTrack
+  - name: MusicTrack
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x3BD4
     E: 0x3BD4
@@ -383,15 +314,12 @@
   size: 0x40
   mode: thumb
   params:
-  - desc: Music track
-    label: MusicTrack
+  - name: MusicTrack
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x3C14
     E: 0x3C14
@@ -400,15 +328,12 @@
   size: 0x20
   mode: thumb
   params:
-  - desc: Sound ID
-    label: SoundId
+  - name: SoundId
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x475C
     E: 0x475C
@@ -417,15 +342,13 @@
   size: 0x20
   mode: thumb
   params:
-  - desc: Track data pointer
-    label: TrackDataPtr
-    type: TrackData *
+  - name: TrackDataPtr
+    type: struct TrackData *
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8
-- desc: Music related
-  label: MusicRelated
+- name: MusicRelated
   addr:
     U: 0x4998
     E: 0x4998
@@ -434,18 +357,14 @@
   size: 0xA4
   mode: thumb
   params:
-  - desc: Sound channel pointer
-    label: SoundChannelPtr
-    type: SoundChannel *
-  - desc: Track variables pointer
-    label: TrackVariablesPtr
-    type: TrackVariables *
-  - desc: TODO
-    label: TODO
+  - name: SoundChannelPtr
+    type: struct SoundChannel *
+  - name: TrackVariablesPtr
+    type: struct TrackVariables *
+  - name: TODO
     type: u16
   return: null
-- desc: Samus update collision data?
-  label: SamusUpdateCollisionData
+- name: SamusUpdateCollisionData
   addr:
     U: 0x4FEC
     E: 0x4FEC
@@ -455,8 +374,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Samus slope related
-  label: SamusSlopeRelated
+- name: SamusSlopeRelated
   addr:
     U: 0xA4E0
     E: 0xA4E0
@@ -465,27 +383,21 @@
   size: 0x190
   mode: thumb
   params:
-  - desc: X position
-    label: XPosition
+  - name: XPosition
     type: u16
-  - desc: Y position
-    label: YPosition
+  - name: YPosition
     type: u16
-  - desc: Next X position pointer
-    label: NextXPositionPtr
+  - name: NextXPositionPtr
     type: u16 *
-  - desc: Next Y position pointer
-    label: NextYPositionPtr
+  - name: NextYPositionPtr
     type: u16 *
-  - desc: Pointer?
-    label: Ptr
+  - name: Ptr
     type: u16 *
   return:
+    name: SlopeType
     desc: Slope type
-    label: SlopeType
     type: u8
-- desc: Samus collision related
-  label: SamusCollisionRelated
+- name: SamusCollisionRelated
   addr:
     U: 0xA670
     E: 0xA670
@@ -494,22 +406,18 @@
   size: 0x148
   mode: thumb
   params:
-  - desc: Collision type
-    label: CollisionType
+  - name: CollisionType
     type: u8
     enum: ClipdataCollisionType
-  - desc: Next X position pointer
-    label: NextXPositionPtr
+  - name: NextXPositionPtr
     type: u16 *
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return:
+    name: CollisionDetectionResult
     desc: Collision detection result
-    label: CollisionDetectionResult
     type: u8
-- desc: Samus collision related
-  label: SamusCollisionRelated
+- name: SamusCollisionRelated
   addr:
     U: 0xA7B8
     E: 0xA7B8
@@ -518,21 +426,17 @@
   size: 0x144
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
-  - desc: Hitbox offset
-    label: HitboxOffset
+  - name: HitboxOffset
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return:
+    name: CollisionDetectionResult
     desc: Collision detection Result
-    label: CollisionDetectionResult
     type: u8
-- desc: Samus collision related
-  label: SamusCollisionRelated
+- name: SamusCollisionRelated
   addr:
     U: 0xA8FC
     E: 0xA8FC
@@ -541,22 +445,18 @@
   size: 0x100
   mode: thumb
   params:
-  - desc: Collision type
-    label: CollisionType
+  - name: CollisionType
     type: u8
     enum: ClipdataCollisionType
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u16
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u16 *
   return:
+    name: CollisionDetectionResult
     desc: Collision detection Result
-    label: CollisionDetectionResult
     type: u8
-- desc: SA-X update?
-  label: SaxUpdate
+- name: SaxUpdate
   addr:
     U: 0xD694
     E: 0xD694
@@ -566,11 +466,10 @@
   mode: thumb
   params: null
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8
-- desc: TODO
-  label: sub_1129C
+- name: sub_1129C
   addr:
     U: 0x1129C
     E: 0x1129C
@@ -580,8 +479,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_11310
+- name: sub_11310
   addr:
     U: 0x11310
     E: 0x11310
@@ -591,8 +489,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_12008
+- name: sub_12008
   addr:
     U: 0x12008
     E: 0x12008
@@ -602,8 +499,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_120AC
+- name: sub_120AC
   addr:
     U: 0x120AC
     E: 0x120AC
@@ -613,8 +509,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_1214C
+- name: sub_1214C
   addr:
     U: 0x1214C
     E: 0x1214C
@@ -624,8 +519,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_12160
+- name: sub_12160
   addr:
     U: 0x12160
     E: 0x12160
@@ -635,8 +529,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_121E0
+- name: sub_121E0
   addr:
     U: 0x121E0
     E: 0x121E0
@@ -646,8 +539,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_122D0
+- name: sub_122D0
   addr:
     U: 0x122D0
     E: 0x122D0
@@ -657,8 +549,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_12B54
+- name: sub_12B54
   addr:
     U: 0x12B54
     E: 0x12B54
@@ -668,8 +559,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_1343C
+- name: sub_1343C
   addr:
     U: 0x1343C
     E: 0x1343C
@@ -679,8 +569,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_136AC
+- name: sub_136AC
   addr:
     U: 0x136AC
     E: 0x136AC
@@ -690,8 +579,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_1605C
+- name: sub_1605C
   addr:
     U: 0x1605C
     E: 0x1605C
@@ -701,8 +589,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_2B690
+- name: sub_2B690
   addr:
     U: 0x2B690
     E: 0x2B690
@@ -712,8 +599,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_4C138
+- name: sub_4C138
   addr:
     J: 0x4C138
     C: 0x4C138
@@ -723,8 +609,7 @@
   mode: thumb
   params: null
   return: null
-- desc: X-parasite related
-  label: XParasiteRelated
+- name: XParasiteRelated
   addr:
     U: 0x61004
     E: 0x61004
@@ -734,12 +619,11 @@
   mode: thumb
   params: null
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8
     cat: bool
-- desc: X parasite flying movement
-  label: XParasiteFlyingMovement
+- name: XParasiteFlyingMovement
   addr:
     U: 0x61DB0
     E: 0x61DB0
@@ -749,11 +633,10 @@
   mode: thumb
   params: null
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8
-- desc: TODO
-  label: sub_62328
+- name: sub_62328
   addr:
     U: 0x62328
     E: 0x62328
@@ -763,8 +646,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_62CB4
+- name: sub_62CB4
   addr:
     U: 0x62CB4
     E: 0x62CB4
@@ -774,8 +656,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Hatch start lock animation
-  label: HatchStartLockAnim
+- name: HatchStartLockAnim
   addr:
     U: 0x63008
     E: 0x63008
@@ -784,18 +665,14 @@
   size: 0x68
   mode: thumb
   params:
-  - desc: Hatch slot
-    label: HatchSlot
+  - name: HatchSlot
     type: u8
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: TODO
-  label: sub_65618
+- name: sub_65618
   addr:
     U: 0x65618
     E: 0x65618
@@ -805,8 +682,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_659A0
+- name: sub_659A0
   addr:
     U: 0x659A0
     E: 0x659A0
@@ -816,8 +692,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_659E4
+- name: sub_659E4
   addr:
     U: 0x659E4
     E: 0x659E4
@@ -827,8 +702,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_65A1C
+- name: sub_65A1C
   addr:
     U: 0x65A1C
     E: 0x65A1C
@@ -838,8 +712,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_68974
+- name: sub_68974
   addr:
     U: 0x68974
     E: 0x68974
@@ -849,8 +722,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_689F0
+- name: sub_689F0
   addr:
     U: 0x689F0
     E: 0x689F0
@@ -860,8 +732,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6956C
+- name: sub_6956C
   addr:
     U: 0x6956C
     E: 0x6956C
@@ -871,8 +742,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6A7B4
+- name: sub_6A7B4
   addr:
     U: 0x6A7B4
     E: 0x6A7B4
@@ -882,8 +752,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6A8D0
+- name: sub_6A8D0
   addr:
     U: 0x6A8D0
     E: 0x6A8D0
@@ -893,8 +762,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6B890
+- name: sub_6B890
   addr:
     U: 0x6B890
     E: 0x6B890
@@ -904,8 +772,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6CF0C
+- name: sub_6CF0C
   addr:
     U: 0x6CF0C
     E: 0x6CF0C
@@ -915,8 +782,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6CF20
+- name: sub_6CF20
   addr:
     U: 0x6CF20
     E: 0x6CF20
@@ -926,8 +792,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6CF60
+- name: sub_6CF60
   addr:
     U: 0x6CF60
     E: 0x6CF60
@@ -937,8 +802,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6CFA0
+- name: sub_6CFA0
   addr:
     U: 0x6CFA0
     E: 0x6CFA0
@@ -948,8 +812,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6CFE0
+- name: sub_6CFE0
   addr:
     U: 0x6CFE0
     E: 0x6CFE0
@@ -959,8 +822,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D020
+- name: sub_6D020
   addr:
     U: 0x6D020
     E: 0x6D020
@@ -970,8 +832,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D238
+- name: sub_6D238
   addr:
     U: 0x6D238
     E: 0x6D238
@@ -981,8 +842,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D3E8
+- name: sub_6D3E8
   addr:
     U: 0x6D3E8
     E: 0x6D3E8
@@ -992,8 +852,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D560
+- name: sub_6D560
   addr:
     U: 0x6D560
     E: 0x6D560
@@ -1003,8 +862,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D6B8
+- name: sub_6D6B8
   addr:
     U: 0x6D6B8
     E: 0x6D6B8
@@ -1014,8 +872,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D95C
+- name: sub_6D95C
   addr:
     U: 0x6D95C
     E: 0x6D95C
@@ -1025,8 +882,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6D9C8
+- name: sub_6D9C8
   addr:
     U: 0x6D9C8
     E: 0x6D9C8
@@ -1036,8 +892,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DA10
+- name: sub_6DA10
   addr:
     U: 0x6DA10
     E: 0x6DA10
@@ -1047,8 +902,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DA54
+- name: sub_6DA54
   addr:
     U: 0x6DA54
     E: 0x6DA54
@@ -1058,8 +912,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DA8C
+- name: sub_6DA8C
   addr:
     U: 0x6DA8C
     E: 0x6DA8C
@@ -1069,8 +922,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DD30
+- name: sub_6DD30
   addr:
     U: 0x6DD30
     E: 0x6DD30
@@ -1080,8 +932,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DDB8
+- name: sub_6DDB8
   addr:
     U: 0x6DDB8
     E: 0x6DDB8
@@ -1091,8 +942,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DE40
+- name: sub_6DE40
   addr:
     U: 0x6DE40
     E: 0x6DE40
@@ -1102,8 +952,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DEC0
+- name: sub_6DEC0
   addr:
     U: 0x6DEC0
     E: 0x6DEC0
@@ -1113,8 +962,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DECC
+- name: sub_6DECC
   addr:
     U: 0x6DECC
     E: 0x6DECC
@@ -1124,8 +972,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DEE8
+- name: sub_6DEE8
   addr:
     U: 0x6DEE8
     E: 0x6DEE8
@@ -1135,8 +982,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DF04
+- name: sub_6DF04
   addr:
     U: 0x6DF04
     E: 0x6DF04
@@ -1146,8 +992,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DF20
+- name: sub_6DF20
   addr:
     U: 0x6DF20
     E: 0x6DF20
@@ -1157,8 +1002,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6DFB0
+- name: sub_6DFB0
   addr:
     U: 0x6DFB0
     E: 0x6DFB0
@@ -1168,8 +1012,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E11C
+- name: sub_6E11C
   addr:
     U: 0x6E11C
     E: 0x6E11C
@@ -1179,8 +1022,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E1AC
+- name: sub_6E1AC
   addr:
     U: 0x6E1AC
     E: 0x6E1AC
@@ -1190,8 +1032,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E264
+- name: sub_6E264
   addr:
     U: 0x6E264
     E: 0x6E264
@@ -1201,8 +1042,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E31C
+- name: sub_6E31C
   addr:
     U: 0x6E31C
     E: 0x6E31C
@@ -1212,8 +1052,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E3C0
+- name: sub_6E3C0
   addr:
     U: 0x6E3C0
     E: 0x6E3C0
@@ -1223,8 +1062,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E4BC
+- name: sub_6E4BC
   addr:
     U: 0x6E4BC
     E: 0x6E4BC
@@ -1234,8 +1072,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E670
+- name: sub_6E670
   addr:
     U: 0x6E670
     E: 0x6E670
@@ -1245,8 +1082,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E8C0
+- name: sub_6E8C0
   addr:
     U: 0x6E8C0
     E: 0x6E8C0
@@ -1256,8 +1092,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E92C
+- name: sub_6E92C
   addr:
     U: 0x6E92C
     E: 0x6E92C
@@ -1267,8 +1102,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6E9A8
+- name: sub_6E9A8
   addr:
     U: 0x6E9A8
     E: 0x6E9A8
@@ -1278,12 +1112,11 @@
   mode: thumb
   params: null
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8
     cat: bool
-- desc: TODO
-  label: sub_6EA40
+- name: sub_6EA40
   addr:
     U: 0x6EA40
     E: 0x6EA40
@@ -1293,8 +1126,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6EAA4
+- name: sub_6EAA4
   addr:
     U: 0x6EAA4
     E: 0x6EAA4
@@ -1304,8 +1136,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6EB04
+- name: sub_6EB04
   addr:
     U: 0x6EB04
     E: 0x6EB04
@@ -1315,8 +1146,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6EE8C
+- name: sub_6EE8C
   addr:
     U: 0x6EE8C
     E: 0x6EE8C
@@ -1326,8 +1156,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6FCA8
+- name: sub_6FCA8
   addr:
     U: 0x6FCA8
     E: 0x6FCA8
@@ -1337,8 +1166,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_6FDD0
+- name: sub_6FDD0
   addr:
     U: 0x6FDD0
     E: 0x6FDD0
@@ -1348,8 +1176,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_73874
+- name: sub_73874
   addr:
     J: 0x73874
     C: 0x73874
@@ -1359,8 +1186,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Particle?
-  label: Particle
+- name: Particle
   addr:
     U: 0x73E90
     E: 0x73E90
@@ -1370,8 +1196,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Particle?
-  label: Particle
+- name: Particle
   addr:
     U: 0x74560
     E: 0x74560
@@ -1385,8 +1210,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_74FD8
+- name: sub_74FD8
   addr:
     J: 0x74FD8
     C: 0x74FD8
@@ -1396,8 +1220,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_75988
+- name: sub_75988
   addr:
     U: 0x75988
     E: 0x75988
@@ -1407,8 +1230,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Pause screen draw in-game time and tanks
-  label: PauseScreenDrawInGameTimeAndTanks
+- name: PauseScreenDrawInGameTimeAndTanks
   addr:
     U: 0x75E64
     E: 0x75E64
@@ -1417,12 +1239,10 @@
   size: 0x374
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: TODO
-  label: sub_77840
+- name: sub_77840
   addr:
     U: 0x77840
     E: 0x77840
@@ -1432,8 +1252,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_78AF0
+- name: sub_78AF0
   addr:
     U: 0x78AF0
     E: 0x78AF0
@@ -1443,8 +1262,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Pause screen set navigation text panel OAM
-  label: PauseScreenSetNavTextPanelOam
+- name: PauseScreenSetNavTextPanelOam
   addr:
     U: 0x78BA4
     E: 0x78BA4
@@ -1453,12 +1271,10 @@
   size: 0xA0
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return: null
-- desc: Draw location text characters
-  label: DrawLocationTextCharacters
+- name: DrawLocationTextCharacters
   addr:
     U: 0x79654
     E: 0x79654
@@ -1467,15 +1283,12 @@
   size: 0xEC
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
-  - desc: Text pointers pointer
-    label: TextPointersPtr
+  - name: TextPointersPtr
     type: u16 **
   return: null
-- desc: TODO
-  label: sub_7A0FC
+- name: sub_7A0FC
   addr:
     U: 0x7A0FC
     E: 0x7A0FC
@@ -1485,8 +1298,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7B56C
+- name: sub_7B56C
   addr:
     U: 0x7B56C
     E: 0x7B56C
@@ -1496,8 +1308,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7B674
+- name: sub_7B674
   addr:
     U: 0x7B674
     E: 0x7B674
@@ -1507,8 +1318,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7C3B4
+- name: sub_7C3B4
   addr:
     U: 0x7C3B4
     E: 0x7C3B4
@@ -1518,8 +1328,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7C440
+- name: sub_7C440
   addr:
     U: 0x7C440
     E: 0x7C440
@@ -1529,8 +1338,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7C630
+- name: sub_7C630
   addr:
     U: 0x7C630
     E: 0x7C630
@@ -1540,8 +1348,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7CE6C
+- name: sub_7CE6C
   addr:
     U: 0x7CE6C
     E: 0x7CE6C
@@ -1551,8 +1358,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7CFB0
+- name: sub_7CFB0
   addr:
     U: 0x7CFB0
     E: 0x7CFB0
@@ -1562,8 +1368,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7D27C
+- name: sub_7D27C
   addr:
     U: 0x7D27C
     E: 0x7D27C
@@ -1573,8 +1378,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7E224
+- name: sub_7E224
   addr:
     U: 0x7E224
     E: 0x7E224
@@ -1584,8 +1388,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7FA08
+- name: sub_7FA08
   addr:
     J: 0x7FA08
     C: 0x7FA08
@@ -1595,8 +1398,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7FC54
+- name: sub_7FC54
   addr:
     J: 0x7FC54
     C: 0x7FC54
@@ -1606,8 +1408,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7FB84
+- name: sub_7FB84
   addr:
     U: 0x7FB84
     E: 0x7FB84
@@ -1621,8 +1422,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_7FD10
+- name: sub_7FD10
   addr:
     U: 0x7FD10
     E: 0x7FD10
@@ -1632,8 +1432,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_80C30
+- name: sub_80C30
   addr:
     J: 0x80C30
     C: 0x80C30
@@ -1643,8 +1442,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_80CBC
+- name: sub_80CBC
   addr:
     J: 0x80CBC
     C: 0x80CBC
@@ -1654,8 +1452,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_86854
+- name: sub_86854
   addr:
     U: 0x86854
     E: 0x86854
@@ -1669,8 +1466,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8690C
+- name: sub_8690C
   addr:
     U: 0x8690C
     E: 0x86918
@@ -1684,8 +1480,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_86B58
+- name: sub_86B58
   addr:
     U: 0x86B58
     E: 0x86B64
@@ -1699,8 +1494,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_86CF0
+- name: sub_86CF0
   addr:
     U: 0x86CF0
     J: 0x879EC
@@ -1712,8 +1506,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_86D30
+- name: sub_86D30
   addr:
     E: 0x86D30
     J: 0x87B4C
@@ -1725,8 +1518,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_87CE8
+- name: sub_87CE8
   addr:
     J: 0x87CE8
     C: 0x87CE8
@@ -1736,8 +1528,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_87920
+- name: sub_87920
   addr:
     U: 0x87920
     E: 0x879E0
@@ -1747,8 +1538,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_89090
+- name: sub_89090
   addr:
     U: 0x89090
     E: 0x89150
@@ -1758,8 +1548,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_89488
+- name: sub_89488
   addr:
     U: 0x89488
     E: 0x89548
@@ -1769,8 +1558,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_89A74
+- name: sub_89A74
   addr:
     U: 0x89A74
     E: 0x89B34
@@ -1780,8 +1568,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_89AB0
+- name: sub_89AB0
   addr:
     U: 0x89AB0
     E: 0x89B70
@@ -1791,8 +1578,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8A0F0
+- name: sub_8A0F0
   addr:
     U: 0x8A0F0
     E: 0x8A1B0
@@ -1802,8 +1588,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8A130
+- name: sub_8A130
   addr:
     U: 0x8A130
     E: 0x8A1F0
@@ -1813,8 +1598,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8A1DC
+- name: sub_8A1DC
   addr:
     U: 0x8A1DC
     E: 0x8A29C
@@ -1824,8 +1608,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8A204
+- name: sub_8A204
   addr:
     U: 0x8A204
     E: 0x8A2C4
@@ -1835,8 +1618,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8B660
+- name: sub_8B660
   addr:
     U: 0x8B660
     E: 0x8B720
@@ -1846,8 +1628,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8BE18
+- name: sub_8BE18
   addr:
     U: 0x8BE18
     E: 0x8BED8
@@ -1857,8 +1638,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8BE44
+- name: sub_8BE44
   addr:
     U: 0x8BE44
     E: 0x8BF04
@@ -1868,8 +1648,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8BF1C
+- name: sub_8BF1C
   addr:
     U: 0x8BF1C
     E: 0x8BFDC
@@ -1879,8 +1658,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8BF68
+- name: sub_8BF68
   addr:
     U: 0x8BF68
     E: 0x8C028
@@ -1890,8 +1668,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8C084
+- name: sub_8C084
   addr:
     U: 0x8C084
     E: 0x8C144
@@ -1901,8 +1678,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8C504
+- name: sub_8C504
   addr:
     U: 0x8C504
     E: 0x8C5C4
@@ -1912,8 +1688,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D06C
+- name: sub_8D06C
   addr:
     U: 0x8D06C
     E: 0x8D12C
@@ -1923,8 +1698,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D1C8
+- name: sub_8D1C8
   addr:
     U: 0x8D1C8
     E: 0x8D288
@@ -1934,8 +1708,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D2AC
+- name: sub_8D2AC
   addr:
     U: 0x8D2AC
     E: 0x8D36C
@@ -1945,8 +1718,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D39C
+- name: sub_8D39C
   addr:
     U: 0x8D39C
     E: 0x8D45C
@@ -1956,8 +1728,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D480
+- name: sub_8D480
   addr:
     U: 0x8D480
     E: 0x8D540
@@ -1967,8 +1738,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D570
+- name: sub_8D570
   addr:
     U: 0x8D570
     E: 0x8D630
@@ -1978,8 +1748,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8D660
+- name: sub_8D660
   addr:
     U: 0x8D660
     E: 0x8D720
@@ -1989,8 +1758,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8DDC4
+- name: sub_8DDC4
   addr:
     U: 0x8DDC4
     E: 0x8DE84
@@ -2000,8 +1768,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8E908
+- name: sub_8E908
   addr:
     U: 0x8E908
     E: 0x8E9C8
@@ -2011,8 +1778,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8EB7C
+- name: sub_8EB7C
   addr:
     U: 0x8EB7C
     E: 0x8EC3C
@@ -2022,8 +1788,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_8F5C0
+- name: sub_8F5C0
   addr:
     U: 0x8F5C0
     E: 0x8F680
@@ -2033,8 +1798,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9043C
+- name: sub_9043C
   addr:
     U: 0x9043C
     E: 0x904FC
@@ -2044,8 +1808,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_90478
+- name: sub_90478
   addr:
     U: 0x90478
     E: 0x90538
@@ -2055,8 +1818,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_90648
+- name: sub_90648
   addr:
     U: 0x90648
     E: 0x90708
@@ -2066,8 +1828,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_90D5C
+- name: sub_90D5C
   addr:
     U: 0x90D5C
     E: 0x90E1C
@@ -2077,8 +1838,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_91444
+- name: sub_91444
   addr:
     U: 0x91444
     E: 0x91504
@@ -2088,8 +1848,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_914A8
+- name: sub_914A8
   addr:
     U: 0x914A8
     E: 0x91568
@@ -2099,8 +1858,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_918A8
+- name: sub_918A8
   addr:
     U: 0x918A8
     E: 0x91968
@@ -2110,8 +1868,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_92098
+- name: sub_92098
   addr:
     U: 0x92098
     E: 0x92158
@@ -2121,8 +1878,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9209C
+- name: sub_9209C
   addr:
     U: 0x9209C
     E: 0x9215C
@@ -2132,8 +1888,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_92D0C
+- name: sub_92D0C
   addr:
     U: 0x92D0C
     E: 0x92DCC
@@ -2143,8 +1898,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_93300
+- name: sub_93300
   addr:
     U: 0x93300
     E: 0x933C0
@@ -2154,8 +1908,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_93334
+- name: sub_93334
   addr:
     U: 0x93334
     E: 0x933F4
@@ -2165,8 +1918,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_93884
+- name: sub_93884
   addr:
     U: 0x93884
     E: 0x93944
@@ -2176,8 +1928,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9397C
+- name: sub_9397C
   addr:
     U: 0x9397C
     E: 0x93A3C
@@ -2187,8 +1938,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_94E80
+- name: sub_94E80
   addr:
     U: 0x94E80
     E: 0x94F40
@@ -2198,8 +1948,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9579C
+- name: sub_9579C
   addr:
     U: 0x9579C
     E: 0x9585C
@@ -2209,8 +1958,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_95E20
+- name: sub_95E20
   addr:
     U: 0x95E20
     E: 0x95EE0
@@ -2220,8 +1968,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_969E0
+- name: sub_969E0
   addr:
     U: 0x969E0
     E: 0x96AA0
@@ -2231,8 +1978,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_96A70
+- name: sub_96A70
   addr:
     U: 0x96A70
     E: 0x96B30
@@ -2242,8 +1988,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_96F00
+- name: sub_96F00
   addr:
     U: 0x96F00
     E: 0x96FC0
@@ -2253,8 +1998,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_97418
+- name: sub_97418
   addr:
     U: 0x97418
     E: 0x974D8
@@ -2264,8 +2008,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_979D0
+- name: sub_979D0
   addr:
     U: 0x979D0
     E: 0x97A90
@@ -2275,8 +2018,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_97DCC
+- name: sub_97DCC
   addr:
     U: 0x97DCC
     E: 0x97E8C
@@ -2286,8 +2028,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_98158
+- name: sub_98158
   addr:
     U: 0x98158
     E: 0x98218
@@ -2297,8 +2038,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_98A04
+- name: sub_98A04
   addr:
     U: 0x98A04
     E: 0x98AC4
@@ -2308,8 +2048,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_99940
+- name: sub_99940
   addr:
     U: 0x99940
     E: 0x99A00
@@ -2319,8 +2058,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_99AF8
+- name: sub_99AF8
   addr:
     U: 0x99AF8
     E: 0x99BB8
@@ -2330,8 +2068,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9A1A8
+- name: sub_9A1A8
   addr:
     U: 0x9A1A8
     E: 0x9A268
@@ -2341,8 +2078,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9A31C
+- name: sub_9A31C
   addr:
     U: 0x9A31C
     E: 0x9A3DC
@@ -2352,8 +2088,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9A63C
+- name: sub_9A63C
   addr:
     U: 0x9A63C
     E: 0x9A6FC
@@ -2363,8 +2098,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Cutscene federation monologue
-  label: CutsceneFederationMonologue
+- name: CutsceneFederationMonologue
   addr:
     U: 0x9A648
     E: 0x9A708
@@ -2373,16 +2107,14 @@
   size: 0x84
   mode: thumb
   params:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     type: u8
   return:
+    name: Ended
     desc: Ended
-    label: Ended
     type: u8
     cat: bool
-- desc: TODO
-  label: sub_9A99C
+- name: sub_9A99C
   addr:
     U: 0x9A99C
     E: 0x9AA5C
@@ -2392,8 +2124,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9AE0C
+- name: sub_9AE0C
   addr:
     U: 0x9AE0C
     E: 0x9AECC
@@ -2403,8 +2134,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BA50
+- name: sub_9BA50
   addr:
     U: 0x9BA50
     E: 0x9BB10
@@ -2414,8 +2144,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BAC0
+- name: sub_9BAC0
   addr:
     U: 0x9BAC0
     E: 0x9BB80
@@ -2425,8 +2154,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BB30
+- name: sub_9BB30
   addr:
     U: 0x9BB30
     E: 0x9BBF0
@@ -2436,8 +2164,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BC04
+- name: sub_9BC04
   addr:
     U: 0x9BC04
     E: 0x9BCC4
@@ -2447,8 +2174,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BCDC
+- name: sub_9BCDC
   addr:
     U: 0x9BCDC
     E: 0x9BD9C
@@ -2458,8 +2184,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BD24
+- name: sub_9BD24
   addr:
     U: 0x9BD24
     E: 0x9BDE4
@@ -2469,8 +2194,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BDF8
+- name: sub_9BDF8
   addr:
     U: 0x9BDF8
     E: 0x9BEB8
@@ -2480,8 +2204,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BE8C
+- name: sub_9BE8C
   addr:
     U: 0x9BE8C
     E: 0x9BF4C
@@ -2491,8 +2214,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BF54
+- name: sub_9BF54
   addr:
     U: 0x9BF54
     E: 0x9C014
@@ -2502,8 +2224,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9BFB8
+- name: sub_9BFB8
   addr:
     U: 0x9BFB8
     E: 0x9C078
@@ -2513,8 +2234,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9C04C
+- name: sub_9C04C
   addr:
     U: 0x9C04C
     E: 0x9C10C
@@ -2524,8 +2244,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9C080
+- name: sub_9C080
   addr:
     U: 0x9C080
     E: 0x9C140
@@ -2535,8 +2254,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9C0B4
+- name: sub_9C0B4
   addr:
     U: 0x9C0B4
     E: 0x9C174
@@ -2546,8 +2264,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9C1BC
+- name: sub_9C1BC
   addr:
     U: 0x9C1BC
     E: 0x9C27C
@@ -2557,8 +2274,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9C92C
+- name: sub_9C92C
   addr:
     U: 0x9C92C
     E: 0x9C9EC
@@ -2568,8 +2284,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9CC4C
+- name: sub_9CC4C
   addr:
     U: 0x9CC4C
     E: 0x9CD0C
@@ -2579,8 +2294,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9D09C
+- name: sub_9D09C
   addr:
     U: 0x9D09C
     E: 0x9D15C
@@ -2590,8 +2304,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9D0A0
+- name: sub_9D0A0
   addr:
     U: 0x9D0A0
     E: 0x9D160
@@ -2601,8 +2314,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9D1C4
+- name: sub_9D1C4
   addr:
     U: 0x9D1C4
     E: 0x9D284
@@ -2612,8 +2324,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9DB70
+- name: sub_9DB70
   addr:
     U: 0x9DB70
     E: 0x9DC30
@@ -2623,8 +2334,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9DDB0
+- name: sub_9DDB0
   addr:
     U: 0x9DDB0
     E: 0x9DE70
@@ -2634,8 +2344,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9E2CC
+- name: sub_9E2CC
   addr:
     U: 0x9E2CC
     E: 0x9E38C
@@ -2645,8 +2354,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9E58C
+- name: sub_9E58C
   addr:
     U: 0x9E58C
     E: 0x9E64C
@@ -2656,8 +2364,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9EAA4
+- name: sub_9EAA4
   addr:
     U: 0x9EAA4
     E: 0x9EB64
@@ -2667,8 +2374,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9FDDC
+- name: sub_9FDDC
   addr:
     U: 0x9FDDC
     E: 0x9FE9C
@@ -2678,8 +2384,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_9FF00
+- name: sub_9FF00
   addr:
     U: 0x9FF00
     E: 0x9FFC0
@@ -2689,8 +2394,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A016C
+- name: sub_A016C
   addr:
     U: 0xA016C
     E: 0xA022C
@@ -2700,8 +2404,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A01CC
+- name: sub_A01CC
   addr:
     U: 0xA01CC
     E: 0xA028C
@@ -2711,8 +2414,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A039C
+- name: sub_A039C
   addr:
     U: 0xA039C
     E: 0xA045C
@@ -2726,8 +2428,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A0424
+- name: sub_A0424
   addr:
     U: 0xA0424
     E: 0xA04E4
@@ -2741,8 +2442,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A1E90
+- name: sub_A1E90
   addr:
     J: 0xA1E90
     C: 0xA1ED4
@@ -2752,8 +2452,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A1F1C
+- name: sub_A1F1C
   addr:
     J: 0xA1F1C
     C: 0xA1F60
@@ -2763,8 +2462,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A2014
+- name: sub_A2014
   addr:
     J: 0xA2014
     C: 0xA2058
@@ -2774,8 +2472,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A209C
+- name: sub_A209C
   addr:
     J: 0xA209C
     C: 0xA20E0
@@ -2785,8 +2482,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A2190
+- name: sub_A2190
   addr:
     J: 0xA2190
     C: 0xA21D4
@@ -2796,8 +2492,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A22B0
+- name: sub_A22B0
   addr:
     J: 0xA22B0
     C: 0xA22F4
@@ -2807,8 +2502,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A2344
+- name: sub_A2344
   addr:
     J: 0xA2344
     C: 0xA2388
@@ -2818,8 +2512,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A0518
+- name: sub_A0518
   addr:
     U: 0xA0518
     E: 0xA05D8
@@ -2829,8 +2522,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A2B30
+- name: sub_A2B30
   addr:
     J: 0xA2B30
     C: 0xA2B74
@@ -2840,8 +2532,7 @@
   mode: thumb
   params: null
   return: null
-- desc: File select draw corruption text
-  label: FileSelectDrawCorruptionText
+- name: FileSelectDrawCorruptionText
   addr:
     U: 0xA0F18
     E: 0xA0FD8
@@ -2850,12 +2541,10 @@
   size: 0xF0
   mode: thumb
   params:
-  - desc: Text?
-    label: Text
+  - name: Text
     type: u8
   return: null
-- desc: TODO
-  label: sub_A3388
+- name: sub_A3388
   addr:
     J: 0xA3388
     C: 0xA33CC
@@ -2865,8 +2554,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A1478
+- name: sub_A1478
   addr:
     U: 0xA1478
     E: 0xA1684
@@ -2880,8 +2568,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A147C
+- name: sub_A147C
   addr:
     U: 0xA147C
     E: 0xA16B0
@@ -2895,12 +2582,10 @@
   mode: thumb
   params: null
   return:
-    desc: TODO
-    label: TODO
+    name: TODO
+    desc: TODO (U and J return 1, E calls 0x47A8 (music related))
     type: u8
-    notes: U and J return 1, E calls 0x47A8 (music related)
-- desc: TODO
-  label: sub_A16BC
+- name: sub_A16BC
   addr:
     E: 0xA16BC
   size:
@@ -2908,8 +2593,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A17A4
+- name: sub_A17A4
   addr:
     E: 0xA17A4
   size:
@@ -2917,20 +2601,17 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A18AC
+- name: sub_A18AC
   addr:
     E: 0xA18AC
   size:
     E: 0xE0
   mode: thumb
   params:
-  - desc: RAM pointer?
-    label: RamPtr
+  - name: RamPtr
     type: u8 *
   return: null
-- desc: TODO
-  label: sub_A3AA8
+- name: sub_A3AA8
   addr:
     J: 0xA3AA8
     C: 0xA3AEC
@@ -2940,8 +2621,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A3B74
+- name: sub_A3B74
   addr:
     J: 0xA3B74
     C: 0xA3BB8
@@ -2951,8 +2631,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A3D84
+- name: sub_A3D84
   addr:
     J: 0xA3D84
     C: 0xA3DC8
@@ -2962,8 +2641,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A3F50
+- name: sub_A3F50
   addr:
     J: 0xA3F50
     C: 0xA3F94
@@ -2973,8 +2651,7 @@
   mode: thumb
   params: null
   return: null
-- desc: TODO
-  label: sub_A1CFC
+- name: sub_A1CFC
   addr:
     U: 0xA1CFC
     E: 0xA2358
@@ -2984,8 +2661,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Credits display line
-  label: CreditsDisplayLine
+- name: CreditsDisplayLine
   addr:
     U: 0xA22E0
     E: 0xA293C
@@ -2998,10 +2674,9 @@
     C: 0x224
   mode: thumb
   params:
-  - desc: Line
-    label: Line
+  - name: Line
     type: u8
   return:
+    name: TODO
     desc: TODO
-    label: TODO
     type: u8

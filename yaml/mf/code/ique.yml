@@ -1,5 +1,4 @@
-- desc: Set iQue V-Blank request flag
-  label: iQue_SetVBlankRequestFlag
+- name: iQue_SetVBlankRequestFlag
   addr:
     C: 0x7FD354
   size:
@@ -7,8 +6,8 @@
   mode: thumb
   params: null
   return: null
-- desc: Display iQue boot screens
-  label: iQue_DisplayBootScreens
+- name: iQue_DisplayBootScreens
+  desc: Jumps to normal InterruptSetup at end
   addr:
     C: 0x7FD360
   size:
@@ -16,9 +15,7 @@
   mode: thumb
   params: null
   return: null
-  notes: Jumps to normal InterruptSetup at end
-- desc: Setup iQue logo screen
-  label: iQue_SetupLogoScreen
+- name: iQue_SetupLogoScreen
   addr:
     C: 0x7FD480
   size:
@@ -26,8 +23,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Display iQue logo screen
-  label: iQue_DisplayLogoScreen
+- name: iQue_DisplayLogoScreen
   addr:
     C: 0x7FD580
   size:
@@ -35,8 +31,7 @@
   mode: thumb
   params: null
   return: null
-- desc: Setup iQue info screen
-  label: iQue_SetupInfoScreen
+- name: iQue_SetupInfoScreen
   addr:
     C: 0x7FD5FC
   size:
@@ -44,8 +39,8 @@
   mode: thumb
   params: null
   return: null
-- desc: Display iQue info screen
-  label: iQue_DisplayInfoScreen
+- name: iQue_DisplayInfoScreen
+  desc: Waits on the screen for 100 frames
   addr:
     C: 0x7FD66C
   size:
@@ -53,58 +48,47 @@
   mode: thumb
   params: null
   return: null
-  notes: Waits on the screen for 100 frames
-- desc: iQue CpuSet
-  label: iQue_CpuSet
+- name: iQue_CpuSet
+  desc: Calls software interrupt 0xB
   addr:
     C: 0x7FD6A0
   size:
     C: 0x4
   mode: thumb
   params:
-  - desc: Source address
-    label: SourceAddress
+  - name: SourceAddress
     type: u8 *
-  - desc: Destination address
-    label: DestinationAddress
+  - name: DestinationAddress
     type: u8 *
-  - desc: Length
-    label: Length
+  - name: Length
     type: u32
   return: null
-  notes: Calls software interrupt 0xB
-- desc: iQue LZ77UnCompReadNormalWrite16bit
-  label: iQue_Lz77UnCompReadNormalWrite16bit
+- name: iQue_Lz77UnCompReadNormalWrite16bit
+  desc: Calls software interrupt 0x12
   addr:
     C: 0x7FD6A4
   size:
     C: 0x4
   mode: thumb
   params:
-  - desc: Source address
-    label: SourceAddress
+  - name: SourceAddress
     type: u16 *
-  - desc: Destination address
-    label: DestinationAddress
+  - name: DestinationAddress
     type: u16 *
   return: null
-  notes: Calls software interrupt 0x12
-- desc: iQue RegisterRamReset
-  label: iQue_RegisterRamReset
+- name: iQue_RegisterRamReset
+  desc: Calls software interrupt 0x1
   addr:
     C: 0x7FD6A8
   size:
     C: 0x4
   mode: thumb
   params:
-  - desc: Reset flags
-    label: ResetFlags
+  - name: ResetFlags
     type: u8
     cat: flags
   return: null
-  notes: Calls software interrupt 0x1
-- desc: iQue bx_r0
-  label: iQue_bx_r0
+- name: iQue_bx_r0
   addr:
     C: 0x7FD6AC
   size:
@@ -112,8 +96,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r1
-  label: iQue_bx_r1
+- name: iQue_bx_r1
   addr:
     C: 0x7FD6B0
   size:
@@ -121,8 +104,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r2
-  label: iQue_bx_r2
+- name: iQue_bx_r2
   addr:
     C: 0x7FD6B4
   size:
@@ -130,8 +112,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r3
-  label: iQue_bx_r3
+- name: iQue_bx_r3
   addr:
     C: 0x7FD6B8
   size:
@@ -139,8 +120,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r4
-  label: iQue_bx_r4
+- name: iQue_bx_r4
   addr:
     C: 0x7FD6BC
   size:
@@ -148,8 +128,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r5
-  label: iQue_bx_r5
+- name: iQue_bx_r5
   addr:
     C: 0x7FD6C0
   size:
@@ -157,8 +136,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r6
-  label: iQue_bx_r6
+- name: iQue_bx_r6
   addr:
     C: 0x7FD6C4
   size:
@@ -166,8 +144,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r7
-  label: iQue_bx_r7
+- name: iQue_bx_r7
   addr:
     C: 0x7FD6C8
   size:
@@ -175,8 +152,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r8
-  label: iQue_bx_r8
+- name: iQue_bx_r8
   addr:
     C: 0x7FD6CC
   size:
@@ -184,8 +160,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r9
-  label: iQue_bx_r9
+- name: iQue_bx_r9
   addr:
     C: 0x7FD6D0
   size:
@@ -193,8 +168,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r10
-  label: iQue_bx_r10
+- name: iQue_bx_r10
   addr:
     C: 0x7FD6D4
   size:
@@ -202,8 +176,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r11
-  label: iQue_bx_r11
+- name: iQue_bx_r11
   addr:
     C: 0x7FD6D8
   size:
@@ -211,8 +184,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r12
-  label: iQue_bx_r12
+- name: iQue_bx_r12
   addr:
     C: 0x7FD6DC
   size:
@@ -220,8 +192,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r13
-  label: iQue_bx_r13
+- name: iQue_bx_r13
   addr:
     C: 0x7FD6E0
   size:
@@ -229,8 +200,7 @@
   mode: thumb
   params: null
   return: null
-- desc: iQue bx_r14
-  label: iQue_bx_r14
+- name: iQue_bx_r14
   addr:
     C: 0x7FD6E4
   size:

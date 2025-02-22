@@ -1,5 +1,4 @@
-- desc: Sine Y values
-  label: SineYValues
+- name: SineYValues
   type: u16
   count: 0x140
   addr:
@@ -7,8 +6,7 @@
     E: 0x8D3A8
     J: 0x8C778
     C: 0x90494
-- desc: Random number table
-  label: RandomNumberTable
+- name: RandomNumberTable
   type: u8
   count: 0x100
   addr:
@@ -16,8 +14,7 @@
     E: 0x8D628
     J: 0x8C9F8
     C: 0x90714
-- desc: Interrupt handler pointers
-  label: InterruptHandlerPtrs
+- name: InterruptHandlerPtrs
   type: void *
   count: 0xD
   cat: thumb
@@ -26,8 +23,7 @@
     E: 0x8D728
     J: 0x8CAF8
     C: 0x90814
-- desc: Delay/note length table
-  label: DelayNoteLengthTable
+- name: DelayNoteLengthTable
   type: u8
   count: 0x31
   addr:
@@ -35,8 +31,7 @@
     E: 0x8D85C
     J: 0x8CC2C
     C: 0xA63BC
-- desc: Sound channel 3 square 50% waveform
-  label: Sound3Waveform_Square50
+- name: Sound3Waveform_Square50
   type: u8
   count: 0x10
   addr:
@@ -44,53 +39,47 @@
     E: 0x8FED0
     J: 0x8F2A0
     C: 0xA8A30
-- desc: Sound data entries
-  label: SoundDataEntries
-  type: SoundDataEntry
+- name: SoundDataEntries
+  type: struct SoundDataEntry
   count: 0x2C4
   addr:
     U: 0x8F2C0
     E: 0x8FF4C
     J: 0x8F31C
     C: 0xA8AAC
-- desc: Samus pose draw info
-  label: SamusPoseDrawInfo
-  type: SamusPoseDrawInfo
+- name: SamusPoseDrawInfo
+  type: struct SamusPoseDrawInfo
   count: 0x3
   addr:
     U: 0x239464
     E: 0x23A0F0
     J: 0x2394C0
     C: 0x252C50
-- desc: Samus draw distance offsets
-  label: SamusDrawDistanceOffsets
-  type: BoxBounds
+- name: SamusDrawDistanceOffsets
+  type: struct BoxBounds
   count: 0x4
   addr:
     U: 0x23A534
     E: 0x23B1C0
     J: 0x23A590
     C: 0x253D20
-- desc: Samus hitbox data
-  label: SamusHitboxData
-  type: SamusHitbox
+- name: SamusHitboxData
+  type: struct SamusHitbox
   count: 0x4
   addr:
     U: 0x23A554
     E: 0x23B1E0
     J: 0x23A5B0
     C: 0x253D40
-- desc: Samus environmental effects OAM pointers
-  label: SamusEnvironEffectsOamPtrs
-  type: Oam *
+- name: SamusEnvironEffectsOamPtrs
+  type: struct Oam *
   count: 0x12
   addr:
     U: 0x23A56C
     E: 0x23B1F8
     J: 0x23A5C8
     C: 0x253D58
-- desc: Samus pulling self up Y velocity
-  label: SamusPullingSelfUpYVelocity
+- name: SamusPullingSelfUpYVelocity
   type: s16
   count: 0x4
   addr:
@@ -98,8 +87,8 @@
     E: 0x23B240
     J: 0x23A610
     C: 0x253DA0
-- desc: Random number table (0-F)
-  label: RandomNumTable_0_F
+- name: RandomNumTable_0_F
+  desc: Random number table used for most sprite randomness, values range from 0-F
   type: u8
   count: 0x20
   addr:
@@ -107,9 +96,7 @@
     E: 0x2B1938
     J: 0x2B0D08
     C: 0x2CA498
-  notes: Random number table used for most sprite randomness, values range from 0-F
-- desc: Dessgeega/Sidehopper jump speeds
-  label: DessgeegaAndSidehopperJumpSpeeds
+- name: DessgeegaAndSidehopperJumpSpeeds
   type: s16
   count: 0x10
   addr:
@@ -117,8 +104,7 @@
     E: 0x2B1970
     J: 0x2B0D40
     C: 0x2CA4D0
-- desc: Enemy fall speeds
-  label: EnemyFallSpeeds
+- name: EnemyFallSpeeds
   type: s16
   count: 0x28
   addr:
@@ -126,8 +112,7 @@
     E: 0x2B1990
     J: 0x2B0D60
     C: 0x2CA4F0
-- desc: Worker robot falling while sleeping speeds
-  label: WorkerRobotFallingWhileSleepingSpeeds
+- name: WorkerRobotFallingWhileSleepingSpeeds
   type: s16
   count: 0xA
   addr:
@@ -135,26 +120,23 @@
     E: 0x2B19E0
     J: 0x2B0DB0
     C: 0x2CA540
-- desc: Primary sprite stats
-  label: PrimarySpriteStats
-  type: SpriteStats
+- name: PrimarySpriteStats
+  type: struct SpriteStats
   count: 0xCE
   addr:
     U: 0x2B0D68
     E: 0x2B19F4
     J: 0x2B0DC4
     C: 0x2CA554
-- desc: Secondary sprite stats
-  label: SecondarySpriteStats
-  type: SpriteStats
+- name: SecondarySpriteStats
+  type: struct SpriteStats
   count: 0x4D
   addr:
     U: 0x2B1BE4
     E: 0x2B2870
     J: 0x2B1C40
     C: 0x2CB3D0
-- desc: Charge beam sprite Y position offsets
-  label: ChargeBeamSpriteYPositionOffsets
+- name: ChargeBeamSpriteYPositionOffsets
   type: s16
   count: 0x42
   addr:
@@ -162,8 +144,7 @@
     E: 0x2B3E38
     J: 0x2B3208
     C: 0x2CC998
-- desc: Zeela eyes falling from top speeds
-  label: ZeelaEyesFallingFromTopSpeeds
+- name: ZeelaEyesFallingFromTopSpeeds
   type: s16
   count: 0x10
   addr:
@@ -171,8 +152,7 @@
     E: 0x2C5814
     J: 0x2C4BE4
     C: 0x2DE374
-- desc: Zeela eyes falling from bottom speeds
-  label: ZeelaEyesFallingFromBottomSpeeds
+- name: ZeelaEyesFallingFromBottomSpeeds
   type: s16
   count: 0xC
   addr:
@@ -180,8 +160,7 @@
     E: 0x2C5834
     J: 0x2C4C04
     C: 0x2DE394
-- desc: Skree diving speeds
-  label: SkreeDivingSpeeds
+- name: SkreeDivingSpeeds
   type: s16
   count: 0x8
   addr:
@@ -189,8 +168,7 @@
     E: 0x2CD708
     J: 0x2CCAD8
     C: 0x2E6268
-- desc: Reo idle animation Y position offsets
-  label: ReoIdleAnimYPositionOffsets
+- name: ReoIdleAnimYPositionOffsets
   type: s16
   count: 0x41
   addr:
@@ -198,8 +176,7 @@
     E: 0x2CE290
     J: 0x2CD660
     C: 0x2E6DF0
-- desc: Reo idle animation X position offsets
-  label: ReoIdleAnimXPositionOffsets
+- name: ReoIdleAnimXPositionOffsets
   type: s16
   count: 0x51
   addr:
@@ -207,8 +184,7 @@
     E: 0x2CE312
     J: 0x2CD6E2
     C: 0x2E6E72
-- desc: Mellow idle Y velocity
-  label: MellowIdleYVelocity
+- name: MellowIdleYVelocity
   type: s16
   count: 0x41
   addr:
@@ -216,8 +192,7 @@
     E: 0x2D9570
     J: 0x2D8940
     C: 0x2F20D0
-- desc: Mellow idle X velocity
-  label: MellowIdleXVelocity
+- name: MellowIdleXVelocity
   type: s16
   count: 0x51
   addr:
@@ -225,8 +200,7 @@
     E: 0x2D95F2
     J: 0x2D89C2
     C: 0x2F2152
-- desc: Metroid spawning Y position offsets
-  label: MetroidSpawningYPositionOffsets
+- name: MetroidSpawningYPositionOffsets
   type: s16
   count: 0x41
   addr:
@@ -234,8 +208,7 @@
     E: 0x2ED7EC
     J: 0x2ECBBC
     C: 0x30634C
-- desc: Metroid spawning X position offsets
-  label: MetroidSpawningXPositionOffsets
+- name: MetroidSpawningXPositionOffsets
   type: s16
   count: 0x52
   addr:
@@ -243,8 +216,7 @@
     E: 0x2ED86E
     J: 0x2ECC3E
     C: 0x3063CE
-- desc: Gunship taking off Y velocity
-  label: GunshipTakingOffYVelocity
+- name: GunshipTakingOffYVelocity
   type: s16
   count: 0x99
   addr:
@@ -252,8 +224,7 @@
     E: 0x30A0FC
     J: 0x3094CC
     C: 0x322C5C
-- desc: Gunship flying Y velocity
-  label: GunshipFlyingYVelocity
+- name: GunshipFlyingYVelocity
   type: s16
   count: 0x17
   addr:
@@ -261,8 +232,7 @@
     E: 0x30A22E
     J: 0x3095FE
     C: 0x322D8E
-- desc: Tumbling missile speeds
-  label: TumblingMissileSpeeds
+- name: TumblingMissileSpeeds
   type: s16
   count: 0x10
   addr:
@@ -270,287 +240,255 @@
     E: 0x327934
     J: 0x326D04
     C: 0x340494
-- desc: Samus environmental effect running on dusty ground OAM
-  label: SamusEnvironEffect_RunningOnDustyGroundOam
-  type: Oam
+- name: SamusEnvironEffect_RunningOnDustyGroundOam
+  type: struct Oam
   count: 0x6
   addr:
     U: 0x33C778
     E: 0x33D404
     J: 0x33C7D4
     C: 0x355F64
-- desc: Samus environmental effect landing/skidding on dusty ground OAM
-  label: SamusEnvironEffect_LandingOrSkiddingOnDustyGroundOam
-  type: Oam
+- name: SamusEnvironEffect_LandingOrSkiddingOnDustyGroundOam
+  type: struct Oam
   count: 0x7
   addr:
     U: 0x33C7A8
     E: 0x33D434
     J: 0x33C804
     C: 0x355F94
-- desc: Samus environmental effect taking damage in lava OAM
-  label: SamusEnvironEffect_TakingDamageInLavaOam
-  type: Oam
+- name: SamusEnvironEffect_TakingDamageInLavaOam
+  type: struct Oam
   count: 0x9
   addr:
     U: 0x33C7E8
     E: 0x33D474
     J: 0x33C844
     C: 0x355FD4
-- desc: Samus environmental effect taking damage in acid OAM
-  label: SamusEnvironEffect_TakingDamageInAcidOam
-  type: Oam
+- name: SamusEnvironEffect_TakingDamageInAcidOam
+  type: struct Oam
   count: 0x9
   addr:
     U: 0x33C830
     E: 0x33D4BC
     J: 0x33C88C
     C: 0x35601C
-- desc: Samus environmental effect running on wet ground OAM
-  label: SamusEnvironEffect_RunningOnWetGroundOam
-  type: Oam
+- name: SamusEnvironEffect_RunningOnWetGroundOam
+  type: struct Oam
   count: 0x6
   addr:
     U: 0x33C878
     E: 0x33D504
     J: 0x33C8D4
     C: 0x356064
-- desc: Samus environmental effect landing/skidding on wet ground OAM
-  label: SamusEnvironEffect_LandingOrSkiddingOnWetGroundOam
-  type: Oam
+- name: SamusEnvironEffect_LandingOrSkiddingOnWetGroundOam
+  type: struct Oam
   count: 0x6
   addr:
     U: 0x33C8A8
     E: 0x33D534
     J: 0x33C904
     C: 0x356094
-- desc: Samus environmental effect going out of water OAM
-  label: SamusEnvironEffect_GoingOutOfWaterOam
-  type: Oam
+- name: SamusEnvironEffect_GoingOutOfWaterOam
+  type: struct Oam
   count: 0xA
   addr:
     U: 0x33C8D8
     E: 0x33D564
     J: 0x33C934
     C: 0x3560C4
-- desc: Samus environmental effect running into water OAM
-  label: SamusEnvironEffect_RunningIntoWaterOam
-  type: Oam
+- name: SamusEnvironEffect_RunningIntoWaterOam
+  type: struct Oam
   count: 0x7
   addr:
     U: 0x33C928
     E: 0x33D5B4
     J: 0x33C984
     C: 0x356114
-- desc: Samus environmental effect going out of lava OAM
-  label: SamusEnvironEffect_GoingOutOfLavaOam
-  type: Oam
+- name: SamusEnvironEffect_GoingOutOfLavaOam
+  type: struct Oam
   count: 0xA
   addr:
     U: 0x33C960
     E: 0x33D5EC
     J: 0x33C9BC
     C: 0x35614C
-- desc: Samus environmental effect running into lava OAM
-  label: SamusEnvironEffect_RunningIntoLavaOam
-  type: Oam
+- name: SamusEnvironEffect_RunningIntoLavaOam
+  type: struct Oam
   count: 0x7
   addr:
     U: 0x33C9B0
     E: 0x33D63C
     J: 0x33CA0C
     C: 0x35619C
-- desc: Samus environmental effect going out of acid OAM
-  label: SamusEnvironEffect_GoingOutOfAcidOam
-  type: Oam
+- name: SamusEnvironEffect_GoingOutOfAcidOam
+  type: struct Oam
   count: 0xB
   addr:
     U: 0x33C9E8
     E: 0x33D674
     J: 0x33CA44
     C: 0x3561D4
-- desc: Samus environmental effect running into acid OAM
-  label: SamusEnvironEffect_RunningIntoAcidOam
-  type: Oam
+- name: SamusEnvironEffect_RunningIntoAcidOam
+  type: struct Oam
   count: 0x7
   addr:
     U: 0x33CA40
     E: 0x33D6CC
     J: 0x33CA9C
     C: 0x35622C
-- desc: Samus environmental effect landing on bubbly ground OAM
-  label: SamusEnvironEffect_LandingOnBubblyGroundOam
-  type: Oam
+- name: SamusEnvironEffect_LandingOnBubblyGroundOam
+  type: struct Oam
   count: 0x7
   addr:
     U: 0x33CA78
     E: 0x33D704
     J: 0x33CAD4
     C: 0x356264
-- desc: Samus environmental effect breathing bubbles OAM
-  label: SamusEnvironEffect_BreathingBubblesOam
-  type: Oam
+- name: SamusEnvironEffect_BreathingBubblesOam
+  type: struct Oam
   count: 0x8
   addr:
     U: 0x33CAB0
     E: 0x33D73C
     J: 0x33CB0C
     C: 0x35629C
-- desc: Samus environmental effect running on very dusty ground OAM
-  label: SamusEnvironEffect_RunningOnVeryDustyGroundOam
-  type: Oam
+- name: SamusEnvironEffect_RunningOnVeryDustyGroundOam
+  type: struct Oam
   count: 0xC
   addr:
     U: 0x33CAF0
     E: 0x33D77C
     J: 0x33CB4C
     C: 0x3562DC
-- desc: Samus environmental effect landing on very dusty ground OAM
-  label: SamusEnvironEffect_LandingOnVeryDustyGroundOam
-  type: Oam
+- name: SamusEnvironEffect_LandingOnVeryDustyGroundOam
+  type: struct Oam
   count: 0x10
   addr:
     U: 0x33CB50
     E: 0x33D7DC
     J: 0x33CBAC
     C: 0x35633C
-- desc: Tileset entries
-  label: TilesetEntries
-  type: TilesetEntry
+- name: TilesetEntries
+  type: struct TilesetEntry
   count: 0x4F
   addr:
     U: 0x33DFDC
     E: 0x33EC68
     J: 0x33E038
     C: 0x3577C8
-- desc: Brinstar doors
-  label: BrinstarDoors
-  type: DoorEntry
+- name: BrinstarDoors
+  type: struct DoorEntry
   count: 0x63
   addr:
     U: 0x33E608
     E: 0x33F294
     J: 0x33E664
     C: 0x357DF4
-- desc: Kraid doors
-  label: KraidDoors
-  type: DoorEntry
+- name: KraidDoors
+  type: struct DoorEntry
   count: 0x6B
   addr:
     U: 0x33EAAC
     E: 0x33F738
     J: 0x33EB08
     C: 0x358298
-- desc: Norfair doors
-  label: NorfairDoors
-  type: DoorEntry
+- name: NorfairDoors
+  type: struct DoorEntry
   count: 0x85
   addr:
     U: 0x33EFB0
     E: 0x33FC3C
     J: 0x33F00C
     C: 0x35879C
-- desc: Ridley doors
-  label: RidleyDoors
-  type: DoorEntry
+- name: RidleyDoors
+  type: struct DoorEntry
   count: 0x4D
   addr:
     U: 0x33F5EC
     E: 0x340278
     J: 0x33F648
     C: 0x358DD8
-- desc: Tourian doors
-  label: TourianDoors
-  type: DoorEntry
+- name: TourianDoors
+  type: struct DoorEntry
   count: 0x2C
   addr:
     U: 0x33F988
     E: 0x340614
     J: 0x33F9E4
     C: 0x359174
-- desc: Crateria doors
-  label: CrateriaDoors
-  type: DoorEntry
+- name: CrateriaDoors
+  type: struct DoorEntry
   count: 0x35
   addr:
     U: 0x33FB98
     E: 0x340824
     J: 0x33FBF4
     C: 0x359384
-- desc: Chozodia doors
-  label: ChozodiaDoors
-  type: DoorEntry
+- name: ChozodiaDoors
+  type: struct DoorEntry
   count: 0xF6
   addr:
     U: 0x33FE14
     E: 0x340AA0
     J: 0x33FE70
     C: 0x359600
-- desc: Brinstar room entries
-  label: BrinstarRoomEntries
-  type: RoomEntry
+- name: BrinstarRoomEntries
+  type: struct RoomEntry
   count: 0x2A
   addr:
     U: 0x340AD4
     E: 0x341760
     J: 0x340B30
     C: 0x35A2C0
-- desc: Kraid room entries
-  label: KraidRoomEntries
-  type: RoomEntry
+- name: KraidRoomEntries
+  type: struct RoomEntry
   count: 0x2A
   addr:
     U: 0x3414AC
     E: 0x342138
     J: 0x341508
     C: 0x35AC98
-- desc: Norfair room entries
-  label: NorfairRoomEntries
-  type: RoomEntry
+- name: NorfairRoomEntries
+  type: struct RoomEntry
   count: 0x39
   addr:
     U: 0x341E84
     E: 0x342B10
     J: 0x341EE0
     C: 0x35B670
-- desc: Ridley room entries
-  label: RidleyRoomEntries
-  type: RoomEntry
+- name: RidleyRoomEntries
+  type: struct RoomEntry
   count: 0x21
   addr:
     U: 0x342BE0
     E: 0x34386C
     J: 0x342C3C
     C: 0x35C3CC
-- desc: Tourian room entries
-  label: TourianRoomEntries
-  type: RoomEntry
+- name: TourianRoomEntries
+  type: struct RoomEntry
   count: 0x14
   addr:
     U: 0x34339C
     E: 0x344028
     J: 0x3433F8
     C: 0x35CB88
-- desc: Crateria room entries
-  label: CrateriaRoomEntries
-  type: RoomEntry
+- name: CrateriaRoomEntries
+  type: struct RoomEntry
   count: 0x16
   addr:
     U: 0x34384C
     E: 0x3444D8
     J: 0x3438A8
     C: 0x35D038
-- desc: Chozodia room entries
-  label: ChozodiaRoomEntries
-  type: RoomEntry
+- name: ChozodiaRoomEntries
+  type: struct RoomEntry
   count: 0x73
   addr:
     U: 0x343D74
     E: 0x344A00
     J: 0x343DD0
     C: 0x35D560
-- desc: Movement preventing clipdata values
-  label: MovementPreventingClipdataValues
+- name: MovementPreventingClipdataValues
   type: u16
   count: 0xF
   addr:
@@ -558,44 +496,39 @@
     E: 0x346570
     J: 0x345940
     C: 0x35F0D0
-- desc: Elevator room pairs
-  label: ElevatorRoomPairs
-  type: ElevatorRoomPair
+- name: ElevatorRoomPairs
+  type: struct ElevatorRoomPair
   count: 0x9
   addr:
     U: 0x345934
     E: 0x3465C0
     J: 0x345990
     C: 0x35F120
-- desc: Number of tanks per area
-  label: NumTanksPerArea
-  type: NumTanksInArea
+- name: NumTanksPerArea
+  desc: Last entry is total in all areas
+  type: struct NumTanksInArea
   count: 0x8
   addr:
     U: 0x3459A0
     E: 0x34662C
     J: 0x3459FC
     C: 0x35F18C
-  notes: Last entry is total in all areas
-- desc: Starting health/ammo
-  label: StartingHealthAndAmmo
-  type: StartingHealthAmmo
+- name: StartingHealthAndAmmo
+  type: struct StartingHealthAmmo
   addr:
     U: 0x3459C0
     E: 0x34664C
     J: 0x345A1C
     C: 0x35F1AC
-- desc: Tank increase amounts
-  label: TankIncreaseAmounts
-  type: TankIncreaseAmounts
+- name: TankIncreaseAmounts
+  type: struct TankIncreaseAmounts
   count: 0x3
   addr:
     U: 0x3459C4
     E: 0x346650
     J: 0x345A20
     C: 0x35F1B0
-- desc: Clipdata affecting action damage type
-  label: ClipdataAffectingActionDamageType
+- name: ClipdataAffectingActionDamageType
   type: u16
   count: 0x10
   addr:
@@ -603,17 +536,15 @@
     E: 0x34665C
     J: 0x345A2C
     C: 0x35F1BC
-- desc: Breakable block behavior
-  label: BreakableBlockBehavior
-  type: BreakableBlockBehavior
+- name: BreakableBlockBehavior
+  type: struct BreakableBlockBehavior
   count: 0x30
   addr:
     U: 0x3459F0
     E: 0x34667C
     J: 0x345A4C
     C: 0x35F1DC
-- desc: Block weaknesses
-  label: BlockWeaknesses
+- name: BlockWeaknesses
   type: u16
   count: 0x16
   addr:
@@ -622,8 +553,7 @@
     J: 0x345B0C
     C: 0x35F29C
   enum: BlockWeaknessFlags
-- desc: Reform blocks time to reform
-  label: ReformBlocksTimeToReform
+- name: ReformBlocksTimeToReform
   type: u8
   count: 0x120
   addr:
@@ -631,26 +561,23 @@
     E: 0x346794
     J: 0x345B64
     C: 0x35F2F4
-- desc: Tank collection info
-  label: TankCollectionInfo
-  type: TankCollectionInfo
+- name: TankCollectionInfo
+  type: struct TankCollectionInfo
   count: 0xC
   addr:
     U: 0x345C48
     E: 0x3468D4
     J: 0x345CA4
     C: 0x35F434
-- desc: Hatch behaviors
-  label: HatchBehaviors
-  type: HatchBehavior
+- name: HatchBehaviors
+  type: struct HatchBehavior
   count: 0x8
   addr:
     U: 0x345CA8
     E: 0x346934
     J: 0x345D04
     C: 0x35F494
-- desc: BLDALPHA values for clipdata
-  label: Bldalpha_ValuesForClipdata
+- name: Bldalpha_ValuesForClipdata
   type: u16
   count: 0xB
   addr:
@@ -658,8 +585,7 @@
     E: 0x346954
     J: 0x345D24
     C: 0x35F4B4
-- desc: Sub-bomb chain trigger position offset
-  label: SubBombChainTriggerPositionOffset
+- name: SubBombChainTriggerPositionOffset
   type: s8
   count: 0x10
   addr:
@@ -667,8 +593,7 @@
     E: 0x34696A
     J: 0x345D3A
     C: 0x35F4CA
-- desc: Mother Brain glass breaking BG values start
-  label: MotherBrainGlassBreakingBgValuesStart
+- name: MotherBrainGlassBreakingBgValuesStart
   type: u16
   count: 0x5
   addr:
@@ -676,8 +601,7 @@
     E: 0x346982
     J: 0x345D52
     C: 0x35F4E2
-- desc: Strong BG3 haze movement
-  label: StrongBg3HazeMovement
+- name: StrongBg3HazeMovement
   type: s8
   count: 0x30
   addr:
@@ -685,8 +609,7 @@
     E: 0x346D08
     J: 0x3460D8
     C: 0x35F868
-- desc: Haze BG1 BG2 BG3 offsets
-  label: Haze_Bg1_Bg2_Bg3_Offsets
+- name: Haze_Bg1_Bg2_Bg3_Offsets
   type: s8 [0x9]
   count: 0x20
   addr:
@@ -694,17 +617,15 @@
     E: 0x360480
     J: 0x35F850
     C: 0x378FE0
-- desc: Animated graphics entries
-  label: AnimatedGraphicsEntries
-  type: AnimatedGraphicsEntry
+- name: AnimatedGraphicsEntries
+  type: struct AnimatedGraphicsEntry
   count: 0x26
   addr:
     U: 0x35F948
     E: 0x3605D4
     J: 0x35F9A4
     C: 0x379134
-- desc: Animated tileset entries
-  label: AnimatedTilesetEntries
+- name: AnimatedTilesetEntries
   type: u8 [0x30]
   count: 0x8
   addr:
@@ -712,116 +633,103 @@
     E: 0x360704
     J: 0x35FAD4
     C: 0x379264
-- desc: Animated palette entries
-  label: AnimatedPaletteEntries
-  type: AnimatedPaletteEntry
+- name: AnimatedPaletteEntries
+  type: struct AnimatedPaletteEntry
   count: 0x12
   addr:
     U: 0x35FBFC
     E: 0x360888
     J: 0x35FC58
     C: 0x3793E8
-- desc: Special BG effects color data
-  label: SpecialBgEffectsColorData
-  type: SpecialBgEffectColorData
+- name: SpecialBgEffectsColorData
+  type: struct SpecialBgEffectColorData
   count: 0x9
   addr:
     U: 0x35FC8C
     E: 0x360918
     J: 0x35FCE8
     C: 0x379478
-- desc: Special background effect behavior lightning
-  label: SpecialBgEffectBehavior_Lightning
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_Lightning
+  type: struct SpecialBgEffectBehavior
   count: 0x22
   addr:
     U: 0x35FCD4
     E: 0x360960
     J: 0x35FD30
     C: 0x3794C0
-- desc: Special background effect behavior quick flash
-  label: SpecialBgEffectBehavior_QuickFlash
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_QuickFlash
+  type: struct SpecialBgEffectBehavior
   count: 0xC
   addr:
     U: 0x35FDA0
     E: 0x360A2C
     J: 0x35FDFC
     C: 0x37958C
-- desc: Special background effect behavior slight yellow
-  label: SpecialBgEffectBehavior_SlightYellow
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_SlightYellow
+  type: struct SpecialBgEffectBehavior
   count: 0x15
   addr:
     U: 0x35FDE8
     E: 0x360A74
     J: 0x35FE44
     C: 0x3795D4
-- desc: Special background effect behavior heavy yellow
-  label: SpecialBgEffectBehavior_HeavyYellow
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_HeavyYellow
+  type: struct SpecialBgEffectBehavior
   count: 0x14
   addr:
     U: 0x35FE66
     E: 0x360AF2
     J: 0x35FEC2
     C: 0x379652
-- desc: Special background effect behavior exit Zebes
-  label: SpecialBgEffectBehavior_ExitZebes
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_ExitZebes
+  type: struct SpecialBgEffectBehavior
   count: 0x1E
   addr:
     U: 0x35FEDE
     E: 0x360B6A
     J: 0x35FF3A
     C: 0x3796CA
-- desc: Special background effect behavior intro text
-  label: SpecialBgEffectBehavior_IntroText
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_IntroText
+  type: struct SpecialBgEffectBehavior
   count: 0x1E
   addr:
     U: 0x35FF92
     E: 0x360C1E
     J: 0x35FFEE
     C: 0x37977E
-- desc: Special background effect behavior all black/white
-  label: SpecialBgEffectBehavior_AllBlackWhite
-  type: SpecialBgEffectBehavior
+- name: SpecialBgEffectBehavior_AllBlackWhite
+  type: struct SpecialBgEffectBehavior
   count: 0x27
   addr:
     U: 0x360046
     E: 0x360CD2
     J: 0x3600A2
     C: 0x379832
-- desc: Hatch lock events
-  label: HatchLockEvents
-  type: HatchLockEvent
+- name: HatchLockEvents
+  type: struct HatchLockEvent
   count: 0x13
   addr:
     U: 0x360138
     E: 0x360DC4
     J: 0x360194
     C: 0x379924
-- desc: Event based connections
-  label: EventBasedConnections
-  type: EventBasedConnection
+- name: EventBasedConnections
+  type: struct EventBasedConnection
   count: 0x29
   addr:
     U: 0x3601D0
     E: 0x360E5C
     J: 0x36022C
     C: 0x3799BC
-- desc: Area connections
-  label: AreaConnections
-  type: AreaConnection
+- name: AreaConnections
+  type: struct AreaConnection
   count: 0x1A
   addr:
     U: 0x360274
     E: 0x360F00
     J: 0x3602D0
     C: 0x379A60
-- desc: Hatches time between animations
-  label: HatchesTimeBetweenAnims
+- name: HatchesTimeBetweenAnims
   type: u8
   count: 0x6
   addr:
@@ -829,8 +737,7 @@
     E: 0x360F4E
     J: 0x36031E
     C: 0x379AAE
-- desc: Number of hatch lock events per area
-  label: NumOfHatchLockEventsPerArea
+- name: NumOfHatchLockEventsPerArea
   type: u16
   count: 0x8
   addr:
@@ -838,8 +745,7 @@
     E: 0x360F64
     J: 0x360334
     C: 0x379AC4
-- desc: Demo 0 inputs
-  label: Demo00_Inputs
+- name: Demo00_Inputs
   type: u16
   count: 0x68
   addr:
@@ -847,8 +753,7 @@
     E: 0x361074
     J: 0x360444
     C: 0x379BD4
-- desc: Demo 0 input durations
-  label: Demo00_InputDurations
+- name: Demo00_InputDurations
   type: u16
   count: 0x68
   addr:
@@ -856,8 +761,7 @@
     E: 0x361144
     J: 0x360514
     C: 0x379CA4
-- desc: Demo 1 inputs
-  label: Demo01_Inputs
+- name: Demo01_Inputs
   type: u16
   count: 0x58
   addr:
@@ -865,8 +769,7 @@
     E: 0x361214
     J: 0x3605E4
     C: 0x379D74
-- desc: Demo 1 input durations
-  label: Demo01_InputDurations
+- name: Demo01_InputDurations
   type: u16
   count: 0x58
   addr:
@@ -874,8 +777,7 @@
     E: 0x3612C4
     J: 0x360694
     C: 0x379E24
-- desc: Demo 2 inputs
-  label: Demo02_Inputs
+- name: Demo02_Inputs
   type: u16
   count: 0x50
   addr:
@@ -883,8 +785,7 @@
     E: 0x361374
     J: 0x360744
     C: 0x379ED4
-- desc: Demo 2 input durations
-  label: Demo02_InputDurations
+- name: Demo02_InputDurations
   type: u16
   count: 0x50
   addr:
@@ -892,8 +793,7 @@
     E: 0x361414
     J: 0x3607E4
     C: 0x379F74
-- desc: Demo 3 inputs
-  label: Demo03_Inputs
+- name: Demo03_Inputs
   type: u16
   count: 0x40
   addr:
@@ -901,8 +801,7 @@
     E: 0x3614B4
     J: 0x360884
     C: 0x37A014
-- desc: Demo 3 input durations
-  label: Demo03_InputDurations
+- name: Demo03_InputDurations
   type: u16
   count: 0x40
   addr:
@@ -910,8 +809,7 @@
     E: 0x361534
     J: 0x360904
     C: 0x37A094
-- desc: Demo 4 inputs
-  label: Demo04_Inputs
+- name: Demo04_Inputs
   type: u16
   count: 0x40
   addr:
@@ -919,8 +817,7 @@
     E: 0x3615B4
     J: 0x360984
     C: 0x37A114
-- desc: Demo 4 input durations
-  label: Demo04_InputDurations
+- name: Demo04_InputDurations
   type: u16
   count: 0x40
   addr:
@@ -928,8 +825,7 @@
     E: 0x361634
     J: 0x360A04
     C: 0x37A194
-- desc: Demo 5 inputs
-  label: Demo05_Inputs
+- name: Demo05_Inputs
   type: u16
   count: 0x28
   addr:
@@ -937,8 +833,7 @@
     E: 0x3616B4
     J: 0x360A84
     C: 0x37A214
-- desc: Demo 5 input durations
-  label: Demo05_InputDurations
+- name: Demo05_InputDurations
   type: u16
   count: 0x28
   addr:
@@ -946,8 +841,7 @@
     E: 0x361704
     J: 0x360AD4
     C: 0x37A264
-- desc: Demo 6 inputs
-  label: Demo06_Inputs
+- name: Demo06_Inputs
   type: u16
   count: 0x20
   addr:
@@ -955,8 +849,7 @@
     E: 0x361754
     J: 0x360B24
     C: 0x37A2B4
-- desc: Demo 6 input durations
-  label: Demo06_InputDurations
+- name: Demo06_InputDurations
   type: u16
   count: 0x20
   addr:
@@ -964,8 +857,7 @@
     E: 0x361794
     J: 0x360B64
     C: 0x37A2F4
-- desc: Demo 7 inputs
-  label: Demo07_Inputs
+- name: Demo07_Inputs
   type: u16
   count: 0x28
   addr:
@@ -973,8 +865,7 @@
     E: 0x3617D4
     J: 0x360BA4
     C: 0x37A334
-- desc: Demo 7 input durations
-  label: Demo07_InputDurations
+- name: Demo07_InputDurations
   type: u16
   count: 0x28
   addr:
@@ -982,8 +873,7 @@
     E: 0x361824
     J: 0x360BF4
     C: 0x37A384
-- desc: Demo 8 inputs
-  label: Demo08_Inputs
+- name: Demo08_Inputs
   type: u16
   count: 0x88
   addr:
@@ -991,8 +881,7 @@
     E: 0x361874
     J: 0x360C44
     C: 0x37A3D4
-- desc: Demo 8 input durations
-  label: Demo08_InputDurations
+- name: Demo08_InputDurations
   type: u16
   count: 0x88
   addr:
@@ -1000,8 +889,7 @@
     E: 0x361984
     J: 0x360D54
     C: 0x37A4E4
-- desc: Demo 9 inputs
-  label: Demo09_Inputs
+- name: Demo09_Inputs
   type: u16
   count: 0x30
   addr:
@@ -1009,8 +897,7 @@
     E: 0x361A94
     J: 0x360E64
     C: 0x37A5F4
-- desc: Demo 9 input durations
-  label: Demo09_InputDurations
+- name: Demo09_InputDurations
   type: u16
   count: 0x30
   addr:
@@ -1018,8 +905,7 @@
     E: 0x361AF4
     J: 0x360EC4
     C: 0x37A654
-- desc: Demo A inputs
-  label: Demo0A_Inputs
+- name: Demo0A_Inputs
   type: u16
   count: 0x58
   addr:
@@ -1027,8 +913,7 @@
     E: 0x361B54
     J: 0x360F24
     C: 0x37A6B4
-- desc: Demo A input durations
-  label: Demo0A_InputDurations
+- name: Demo0A_InputDurations
   type: u16
   count: 0x58
   addr:
@@ -1036,8 +921,7 @@
     E: 0x361C04
     J: 0x360FD4
     C: 0x37A764
-- desc: Demo B inputs
-  label: Demo0B_Inputs
+- name: Demo0B_Inputs
   type: u16
   count: 0x20
   addr:
@@ -1045,8 +929,7 @@
     E: 0x361CB4
     J: 0x361084
     C: 0x37A814
-- desc: Demo B input durations
-  label: Demo0B_InputDurations
+- name: Demo0B_InputDurations
   type: u16
   count: 0x20
   addr:
@@ -1054,8 +937,7 @@
     E: 0x361CF4
     J: 0x3610C4
     C: 0x37A854
-- desc: Demo C inputs
-  label: Demo0C_Inputs
+- name: Demo0C_Inputs
   type: u16
   count: 0x30
   addr:
@@ -1063,8 +945,7 @@
     E: 0x361D34
     J: 0x361104
     C: 0x37A894
-- desc: Demo C input durations
-  label: Demo0C_InputDurations
+- name: Demo0C_InputDurations
   type: u16
   count: 0x30
   addr:
@@ -1072,8 +953,7 @@
     E: 0x361D94
     J: 0x361164
     C: 0x37A8F4
-- desc: Demo D inputs
-  label: Demo0D_Inputs
+- name: Demo0D_Inputs
   type: u16
   count: 0x28
   addr:
@@ -1081,8 +961,7 @@
     E: 0x361DF4
     J: 0x3611C4
     C: 0x37A954
-- desc: Demo D input durations
-  label: Demo0D_InputDurations
+- name: Demo0D_InputDurations
   type: u16
   count: 0x28
   addr:
@@ -1090,8 +969,7 @@
     E: 0x361E44
     J: 0x361214
     C: 0x37A9A4
-- desc: Demo E inputs
-  label: Demo0E_Inputs
+- name: Demo0E_Inputs
   type: u16
   count: 0x18
   addr:
@@ -1099,8 +977,7 @@
     E: 0x361E94
     J: 0x361264
     C: 0x37A9F4
-- desc: Demo E input durations
-  label: Demo0E_InputDurations
+- name: Demo0E_InputDurations
   type: u16
   count: 0x18
   addr:
@@ -1108,8 +985,7 @@
     E: 0x361EC4
     J: 0x361294
     C: 0x37AA24
-- desc: Demo F inputs
-  label: Demo0F_Inputs
+- name: Demo0F_Inputs
   type: u16
   count: 0x60
   addr:
@@ -1117,8 +993,7 @@
     E: 0x361EF4
     J: 0x3612C4
     C: 0x37AA54
-- desc: Demo F input durations
-  label: Demo0F_InputDurations
+- name: Demo0F_InputDurations
   type: u16
   count: 0x60
   addr:
@@ -1126,145 +1001,127 @@
     E: 0x361FB4
     J: 0x361384
     C: 0x37AB14
-- desc: Demo 0 RAM data
-  label: Demo00_RamData
-  type: DemoRam
+- name: Demo00_RamData
+  type: struct DemoRam
   addr:
     U: 0x3613E8
     E: 0x362074
     J: 0x361444
     C: 0x37ABD4
-- desc: Demo 1 RAM data
-  label: Demo01_RamData
-  type: DemoRam
+- name: Demo01_RamData
+  type: struct DemoRam
   addr:
     U: 0x361668
     E: 0x3622F4
     J: 0x3616C4
     C: 0x37AE54
-- desc: Demo 2 RAM data
-  label: Demo02_RamData
-  type: DemoRam
+- name: Demo02_RamData
+  type: struct DemoRam
   addr:
     U: 0x3618E8
     E: 0x362574
     J: 0x361944
     C: 0x37B0D4
-- desc: Demo 3 RAM data
-  label: Demo03_RamData
-  type: DemoRam
+- name: Demo03_RamData
+  type: struct DemoRam
   addr:
     U: 0x361B68
     E: 0x3627F4
     J: 0x361BC4
     C: 0x37B354
-- desc: Demo 4 RAM data
-  label: Demo04_RamData
-  type: DemoRam
+- name: Demo04_RamData
+  type: struct DemoRam
   addr:
     U: 0x361DE8
     E: 0x362A74
     J: 0x361E44
     C: 0x37B5D4
-- desc: Demo 5 RAM data
-  label: Demo05_RamData
-  type: DemoRam
+- name: Demo05_RamData
+  type: struct DemoRam
   addr:
     U: 0x362068
     E: 0x362CF4
     J: 0x3620C4
     C: 0x37B854
-- desc: Demo 6 RAM data
-  label: Demo06_RamData
-  type: DemoRam
+- name: Demo06_RamData
+  type: struct DemoRam
   addr:
     U: 0x3622E8
     E: 0x362F74
     J: 0x362344
     C: 0x37BAD4
-- desc: Demo 7 RAM data
-  label: Demo07_RamData
-  type: DemoRam
+- name: Demo07_RamData
+  type: struct DemoRam
   addr:
     U: 0x362568
     E: 0x3631F4
     J: 0x3625C4
     C: 0x37BD54
-- desc: Demo 8 RAM data
-  label: Demo08_RamData
-  type: DemoRam
+- name: Demo08_RamData
+  type: struct DemoRam
   addr:
     U: 0x3627E8
     E: 0x363474
     J: 0x362844
     C: 0x37BFD4
-- desc: Demo 9 RAM data
-  label: Demo09_RamData
-  type: DemoRam
+- name: Demo09_RamData
+  type: struct DemoRam
   addr:
     U: 0x362A68
     E: 0x3636F4
     J: 0x362AC4
     C: 0x37C254
-- desc: Demo A RAM data
-  label: Demo0A_RamData
-  type: DemoRam
+- name: Demo0A_RamData
+  type: struct DemoRam
   addr:
     U: 0x362CE8
     E: 0x363974
     J: 0x362D44
     C: 0x37C4D4
-- desc: Demo B RAM data
-  label: Demo0B_RamData
-  type: DemoRam
+- name: Demo0B_RamData
+  type: struct DemoRam
   addr:
     U: 0x362F68
     E: 0x363BF4
     J: 0x362FC4
     C: 0x37C754
-- desc: Demo C RAM data
-  label: Demo0C_RamData
-  type: DemoRam
+- name: Demo0C_RamData
+  type: struct DemoRam
   addr:
     U: 0x3631E8
     E: 0x363E74
     J: 0x363244
     C: 0x37C9D4
-- desc: Demo D RAM data
-  label: Demo0D_RamData
-  type: DemoRam
+- name: Demo0D_RamData
+  type: struct DemoRam
   addr:
     U: 0x363468
     E: 0x3640F4
     J: 0x3634C4
     C: 0x37CC54
-- desc: Demo E RAM data
-  label: Demo0E_RamData
-  type: DemoRam
+- name: Demo0E_RamData
+  type: struct DemoRam
   addr:
     U: 0x3636E8
     E: 0x364374
     J: 0x363744
     C: 0x37CED4
-- desc: Demo F RAM data
-  label: Demo0F_RamData
-  type: DemoRam
+- name: Demo0F_RamData
+  type: struct DemoRam
   addr:
     U: 0x363968
     E: 0x3645F4
     J: 0x3639C4
     C: 0x37D154
-- desc: Demo input data
-  label: DemoInputData
-  type: DemoInputData
+- name: DemoInputData
+  type: struct DemoInputData
   count: 0x10
   addr:
     U: 0x363BE8
     E: 0x364874
     J: 0x363C44
     C: 0x37D3D4
-- desc: Door transition tilemap (RLE compressed)
-  label: DoorTransitionTilemap_RLE
+- name: DoorTransitionTilemap_RLE
   type: u8
   count: 0xB8
   comp: rle
@@ -1273,8 +1130,7 @@
     E: 0x365C0C
     J: 0x364FDC
     C: 0x37E76C
-- desc: Clipdata behavior types (0x400)
-  label: ClipdataBehaviorTypes400
+- name: ClipdataBehaviorTypes400
   type: u16
   count: 0xD0
   addr:
@@ -1283,8 +1139,7 @@
     J: 0x36538C
     C: 0x37EB1C
   enum: ClipdataBehaviorType
-- desc: Clipdata collision types (0x400)
-  label: ClipdataCollisionTypes400
+- name: ClipdataCollisionTypes400
   type: u8
   count: 0xD0
   addr:
@@ -1293,8 +1148,7 @@
     J: 0x36552C
     C: 0x37ECBC
   enum: ClipdataCollisionType
-- desc: Tilemap (0x400)
-  label: Tilemap400
+- name: Tilemap400
   type: u16
   count: 0x340
   addr:
@@ -1302,8 +1156,7 @@
     E: 0x36622C
     J: 0x3655FC
     C: 0x37ED8C
-- desc: Clipdata collision types (debug)
-  label: ClipdataCollisionTypes_Debug
+- name: ClipdataCollisionTypes_Debug
   type: u8
   count: 0xA0
   addr:
@@ -1312,8 +1165,7 @@
     J: 0x365C7C
     C: 0x37F40C
   enum: ClipdataCollisionType
-- desc: Clipdata behavior types (debug)
-  label: ClipdataBehaviorTypes_Debug
+- name: ClipdataBehaviorTypes_Debug
   type: u16
   count: 0xA0
   addr:
@@ -1322,26 +1174,23 @@
     J: 0x365D1C
     C: 0x37F4AC
   enum: ClipdataBehaviorType
-- desc: Cutscene data
-  label: CutsceneData
-  type: CutsceneData
+- name: CutsceneData
+  type: struct CutsceneData
   count: 0xF
   addr:
     U: 0x36BDAC
     E: 0x36CA38
     J: 0x36BE08
     C: 0x385598
-- desc: Boss map icons
-  label: BossMapIcons
-  type: BossMapIcon
+- name: BossMapIcons
+  type: struct BossMapIcon
   count: 0x7
   addr:
     U: 0x40D200
     E: 0x40E02C
     J: 0x40D25C
     C: 0x42ED94
-- desc: Character widths
-  label: CharacterWidths
+- name: CharacterWidths
   type: u8
   count: 0x4A0
   addr:
@@ -1349,26 +1198,23 @@
     E: 0x40E5E4
     J: 0x40D80C
     C: 0x42F34C
-- desc: Chozo statue hints
-  label: ChozoStatueHints
-  type: ChozoHint
+- name: ChozoStatueHints
+  type: struct ChozoHint
   count: 0xA
   addr:
     U: 0x40DF78
     E: 0x40EDAC
     J: 0x40DFD4
     C: 0x42FB14
-- desc: Chozo hint checks
-  label: ChozoHintChecks
-  type: ChozoHintCheck
+- name: ChozoHintChecks
+  type: struct ChozoHintCheck
   count: 0x10
   addr:
     U: 0x40E038
     E: 0x40EE6C
     J: 0x40E094
     C: 0x42FBD4
-- desc: Chozo hint trigger events
-  label: ChozoHintTriggerEvents
+- name: ChozoHintTriggerEvents
   type: u8
   count: 0x10
   addr:
@@ -1377,8 +1223,7 @@
     J: 0x40E0B4
     C: 0x42FBF4
   enum: Event
-- desc: Default button assignments
-  label: DefaultButtonAssignments
+- name: DefaultButtonAssignments
   type: u16
   count: 0x8
   addr:
@@ -1387,8 +1232,7 @@
     J: 0x41156C
     C: 0x4340AC
   enum: ButtonInput
-- desc: Time attack button code
-  label: TimeAttackButtonCode
+- name: TimeAttackButtonCode
   type: u16
   count: 0x5
   addr:
@@ -1397,8 +1241,7 @@
     J: 0x45F4AE
     C: 0x48172A
   enum: ButtonInput
-- desc: Time attack password characters
-  label: TimeAttackPasswordChars
+- name: TimeAttackPasswordChars
   type: s8
   count: 0x20
   cat: ascii
@@ -1407,17 +1250,15 @@
     E: 0x46D808
     J: 0x45FD50
     C: 0x481FD0
-- desc: Metroid Fusion gallery data
-  label: MetroidFusionGalleryData
-  type: MetroidFusionGalleryData
+- name: MetroidFusionGalleryData
+  type: struct MetroidFusionGalleryData
   count: 0xD
   addr:
     U: 0x4C18E4
     E: 0x4CF3F8
     J: 0x4C1940
     C: 0x4E3BC0
-- desc: Ending images top half graphics pointers
-  label: EndingImagesTopHalfGfxPtrs
+- name: EndingImagesTopHalfGfxPtrs
   type: u8 *
   count: 0x8
   cat: gfx
@@ -1427,8 +1268,7 @@
     E: 0x55A34C
     J: 0x54C0C8
     C: 0x56EA74
-- desc: Ending images bottom half graphics pointers
-  label: EndingImagesBottomHalfGfxPtrs
+- name: EndingImagesBottomHalfGfxPtrs
   type: u8 *
   count: 0x8
   cat: gfx
@@ -1438,8 +1278,7 @@
     E: 0x55A36C
     J: 0x54C0E8
     C: 0x56EA94
-- desc: Ending images top half tilemap pointers
-  label: EndingImagesTopHalfTilemapPtrs
+- name: EndingImagesTopHalfTilemapPtrs
   type: u16 *
   count: 0x8
   cat: tilemap
@@ -1449,8 +1288,7 @@
     E: 0x55A38C
     J: 0x54C108
     C: 0x56EAB4
-- desc: Ending images bottom half tilemap pointers
-  label: EndingImagesBottomHalfTilemapPtrs
+- name: EndingImagesBottomHalfTilemapPtrs
   type: u16 *
   count: 0x8
   cat: tilemap
@@ -1460,8 +1298,7 @@
     E: 0x55A3AC
     J: 0x54C128
     C: 0x56EAD4
-- desc: Ending images palette pointers
-  label: EndingImagesPalettePtrs
+- name: EndingImagesPalettePtrs
   type: u16 *
   count: 0x8
   cat: palette
@@ -1470,8 +1307,7 @@
     E: 0x55A3CC
     J: 0x54C148
     C: 0x56EAF4
-- desc: Clipdata collision types
-  label: ClipdataCollisionTypes
+- name: ClipdataCollisionTypes
   type: u8
   count: 0xB0
   addr:
@@ -1480,8 +1316,7 @@
     J: 0x5D930C
     C: 0x600404
   enum: ClipdataCollisionType
-- desc: Clipdata behavior types
-  label: ClipdataBehaviorTypes
+- name: ClipdataBehaviorTypes
   type: u16
   count: 0xB0
   addr:
@@ -1490,64 +1325,56 @@
     J: 0x5D93BC
     C: 0x6004B4
   enum: ClipdataBehaviorType
-- desc: EWRAM pointer (2000000)
-  label: EwramPtr
+- name: EwramPtr
   type: u32 *
   addr:
     U: 0x754BB4
     E: 0x767900
     J: 0x754CC4
     C: 0x7924F0
-- desc: PALRAM BG pointer (5000000)
-  label: PalramBgPtr
+- name: PalramBgPtr
   type: u32 *
   addr:
     U: 0x754BB8
     E: 0x767904
     J: 0x754CC8
     C: 0x7924F4
-- desc: PALRAM OBJ pointer (5000200)
-  label: PalramObjPtr
+- name: PalramObjPtr
   type: u32 *
   addr:
     U: 0x754BBC
     E: 0x767908
     J: 0x754CCC
     C: 0x7924F8
-- desc: Visited minimap tiles pointer (2037400)
-  label: VisitedMinimapTilesPtr
+- name: VisitedMinimapTilesPtr
   type: u32 *
   addr:
     U: 0x754BC0
     E: 0x76790C
     J: 0x754CD0
     C: 0x7924FC
-- desc: Non-gameplay RAM pointer
-  label: NonGameplayRamPtr
+- name: NonGameplayRamPtr
   type: u8 **
   addr:
     U: 0x754BC4
     E: 0x767910
     J: 0x754CD4
     C: 0x792500
-- desc: SRAM EWRAM Pointer (2038000)
-  label: SramEwramPtr
+- name: SramEwramPtr
   type: u32 *
   addr:
     U: 0x754BC8
     E: 0x767914
     J: 0x754CD8
     C: 0x7925A8
-- desc: SRAM flash pointer (E000000)
-  label: SramFlashPtr
+- name: SramFlashPtr
   type: u32 *
   addr:
     U: 0x754BCC
     E: 0x767918
     J: 0x754CDC
     C: 0x7925AC
-- desc: Samus pose function pointers
-  label: SamusPoseFunctionPtrs
+- name: SamusPoseFunctionPtrs
   type: void *
   count: 0x43
   cat: thumb
@@ -1556,8 +1383,7 @@
     E: 0x772548
     J: 0x75E7B8
     C: 0x79D8A0
-- desc: Samus pose graphics function pointers
-  label: SamusPoseGfxFunctionPtrs
+- name: SamusPoseGfxFunctionPtrs
   type: void *
   count: 0x43
   cat: thumb
@@ -1566,8 +1392,7 @@
     E: 0x772654
     J: 0x75E8C4
     C: 0x79D9AC
-- desc: Primary sprite AI pointers
-  label: PrimarySpriteAiPtrs
+- name: PrimarySpriteAiPtrs
   type: void *
   count: 0xCE
   cat: thumb
@@ -1576,8 +1401,7 @@
     E: 0x772760
     J: 0x75E9D0
     C: 0x79DAB8
-- desc: Sprite graphics pointers
-  label: SpriteGraphicsPtrs
+- name: SpriteGraphicsPtrs
   type: u8 *
   count: 0xBE
   cat: gfx
@@ -1587,8 +1411,7 @@
     E: 0x772A98
     J: 0x75ED08
     C: 0x79DDF0
-- desc: Sprite palette pointers
-  label: SpritePalettePtrs
+- name: SpritePalettePtrs
   type: u16 *
   count: 0xBE
   cat: palette
@@ -1597,8 +1420,7 @@
     E: 0x772D90
     J: 0x75F000
     C: 0x79E0E8
-- desc: Secondary sprite AI pointers
-  label: SecondarySpriteAiPtrs
+- name: SecondarySpriteAiPtrs
   type: void *
   count: 0x4D
   cat: thumb
@@ -1607,17 +1429,15 @@
     E: 0x773088
     J: 0x75F2F8
     C: 0x79E3E0
-- desc: Spriteset pointers
-  label: SpritesetPtrs
-  type: SpritesetEntry *
+- name: SpritesetPtrs
+  type: struct SpritesetEntry *
   count: 0x72
   addr:
     U: 0x75F31C
     E: 0x7731BC
     J: 0x75F42C
     C: 0x79E514
-- desc: Process projectile pointers
-  label: ProcessProjectilePtrs
+- name: ProcessProjectilePtrs
   type: void *
   count: 0x10
   cat: thumb
@@ -1626,8 +1446,7 @@
     E: 0x773814
     J: 0x75FA84
     C: 0x79EB6C
-- desc: Process particle effect pointers
-  label: ProcessParticleEffectPtrs
+- name: ProcessParticleEffectPtrs
   type: void *
   count: 0x3D
   cat: thumb
@@ -1636,26 +1455,23 @@
     E: 0x773854
     J: 0x75FAC4
     C: 0x79EBAC
-- desc: Area doors pointers
-  label: AreaDoorsPtrs
-  type: DoorEntry *
+- name: AreaDoorsPtrs
+  type: struct DoorEntry *
   count: 0x7
   addr:
     U: 0x75FAA8
     E: 0x773948
     J: 0x75FBB8
     C: 0x79ECA0
-- desc: Area room entry pointers
-  label: AreaRoomEntryPtrs
-  type: RoomEntry *
+- name: AreaRoomEntryPtrs
+  type: struct RoomEntry *
   count: 0x7
   addr:
     U: 0x75FAC4
     E: 0x773964
     J: 0x75FBD4
     C: 0x79ECBC
-- desc: Room scrolls pointers
-  label: RoomScrollsPtrs
+- name: RoomScrollsPtrs
   type: u8 *
   count: 0x92
   addr:
@@ -1663,8 +1479,7 @@
     E: 0x773980
     J: 0x75FBF0
     C: 0x79ECD8
-- desc: Area scrolls pointers
-  label: AreaScrollsPtrs
+- name: AreaScrollsPtrs
   type: u8 **
   count: 0xB
   addr:
@@ -1672,8 +1487,7 @@
     E: 0x773BC8
     J: 0x75FE38
     C: 0x79EF20
-- desc: No/never reform block destroy function pointers
-  label: NonReformDestroyFunctionPtrs
+- name: NonReformDestroyFunctionPtrs
   type: void *
   count: 0x5
   cat: thumb
@@ -1682,44 +1496,39 @@
     E: 0x773C04
     J: 0x75FE74
     C: 0x79EF5C
-- desc: Haze data
-  label: HazeData
-  type: HazeData
+- name: HazeData
+  type: struct HazeData
   count: 0xD
   addr:
     U: 0x75FD88
     E: 0x773C28
     J: 0x75FE98
     C: 0x79EF80
-- desc: Special background effect behavior pointers
-  label: SpecialBgEffectBehaviorPtrs
-  type: SpecialBgEffectBehavior *
+- name: SpecialBgEffectBehaviorPtrs
+  type: struct SpecialBgEffectBehavior *
   count: 0x9
   addr:
     U: 0x75FDBC
     E: 0x773C5C
     J: 0x75FECC
     C: 0x79EFB4
-- desc: Hatch lock event pointers
-  label: HatchLockEventPtrs
-  type: HatchLockEvent *
+- name: HatchLockEventPtrs
+  type: struct HatchLockEvent *
   count: 0x7
   addr:
     U: 0x75FDE0
     E: 0x773C80
     J: 0x75FEF0
     C: 0x79EFD8
-- desc: Demo RAM data pointers
-  label: DemoRamDataPtrs
-  type: DemoRam *
+- name: DemoRamDataPtrs
+  type: struct DemoRam *
   count: 0x10
   addr:
     U: 0x75FDFC
     E: 0x773C9C
     J: 0x75FF0C
     C: 0x79EFF4
-- desc: Story text pointers
-  label: StoryTextPtrs
+- name: StoryTextPtrs
   type: u16 **
   count: 0x7
   cat: text
@@ -1728,8 +1537,7 @@
     E: 0x773D80
     J: 0x75FFF0
     C: 0x79F0D8
-- desc: Minimap data pointers
-  label: MinimapDataPtrs
+- name: MinimapDataPtrs
   type: u16 *
   count: 0xB
   cat: tilemap
@@ -1739,8 +1547,7 @@
     E: 0x77408C
     J: 0x7602FC
     C: 0x79F3EC
-- desc: Explored minimap bit flags
-  label: ExploredMinimapBitFlags
+- name: ExploredMinimapBitFlags
   type: u8
   count: 0x80
   addr:
@@ -1748,8 +1555,7 @@
     E: 0x7740C0
     J: 0x760328
     C: 0x79F418
-- desc: Copy minimap tile graphics function pointers
-  label: CopyMinimapTileGfxFunctionPtrs
+- name: CopyMinimapTileGfxFunctionPtrs
   type: void *
   count: 0x4
   addr:
@@ -1757,8 +1563,7 @@
     E: 0x774140
     J: 0x7603A8
     C: 0x79F498
-- desc: Description text pointers
-  label: DescriptionTextPtrs
+- name: DescriptionTextPtrs
   type: u16 **
   count: 0x7
   cat: text
@@ -1767,8 +1572,7 @@
     E: 0x77417C
     J: 0x7603E4
     C: 0x79F4D4
-- desc: Chozo statue hint path pointers
-  label: ChozoStatueHintPathPtrs
+- name: ChozoStatueHintPathPtrs
   type: u8 *
   count: 0x6
   addr:
@@ -1776,8 +1580,7 @@
     E: 0x774298
     J: 0x760500
     C: 0x79F5F0
-- desc: Japanese message text pointers
-  label: JapaneseMessageTextPtrs
+- name: JapaneseMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
@@ -1786,8 +1589,7 @@
     E: 0x774300
     J: 0x760568
     C: 0x79F658
-- desc: Japanese location text pointers
-  label: JapaneseLocationTextPtrs
+- name: JapaneseLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
@@ -1796,8 +1598,7 @@
     E: 0x77439C
     J: 0x760604
     C: 0x79F6F4
-- desc: Hiragana message text pointers
-  label: HiraganaMessageTextPtrs
+- name: HiraganaMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
@@ -1806,8 +1607,7 @@
     E: 0x774404
     J: 0x76066C
     C: 0x79F75C
-- desc: Hiragana location text pointers
-  label: HiraganaLocationTextPtrs
+- name: HiraganaLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
@@ -1816,8 +1616,7 @@
     E: 0x7744A0
     J: 0x760708
     C: 0x79F7F8
-- desc: English message text pointers
-  label: EnglishMessageTextPtrs
+- name: EnglishMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
@@ -1826,8 +1625,7 @@
     E: 0x774508
     J: 0x760770
     C: 0x79F860
-- desc: English location text pointers
-  label: EnglishLocationTextPtrs
+- name: EnglishLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
@@ -1836,64 +1634,55 @@
     E: 0x7745A4
     J: 0x76080C
     C: 0x79F8FC
-- desc: German message text pointers
-  label: GermanMessageTextPtrs
+- name: GermanMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
   addr:
     E: 0x77460C
-- desc: German location text pointers
-  label: GermanLocationTextPtrs
+- name: GermanLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
   addr:
     E: 0x7746A8
-- desc: French message text pointers
-  label: FrenchMessageTextPtrs
+- name: FrenchMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
   addr:
     E: 0x774710
-- desc: French location text pointers
-  label: FrenchLocationTextPtrs
+- name: FrenchLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
   addr:
     E: 0x7747AC
-- desc: Italian message text pointers
-  label: ItalianMessageTextPtrs
+- name: ItalianMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
   addr:
     E: 0x774814
-- desc: Italian location text pointers
-  label: ItalianLocationTextPtrs
+- name: ItalianLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
   addr:
     E: 0x7748B0
-- desc: Spanish message text pointers
-  label: SpanishMessageTextPtrs
+- name: SpanishMessageTextPtrs
   type: u16 *
   count: 0x27
   cat: text
   addr:
     E: 0x774918
-- desc: Spanish location text pointers
-  label: SpanishLocationTextPtrs
+- name: SpanishLocationTextPtrs
   type: u16 *
   count: 0x1A
   cat: text
   addr:
     E: 0x7749B4
-- desc: Location text pointers
-  label: LocationTextPtrs
+- name: LocationTextPtrs
   type: u16 **
   count: 0x7
   cat: text
@@ -1902,8 +1691,7 @@
     E: 0x774A1C
     J: 0x760874
     C: 0x79F964
-- desc: Message text pointers
-  label: MessageTextPtrs
+- name: MessageTextPtrs
   type: u16 **
   count: 0x7
   cat: text
@@ -1912,8 +1700,7 @@
     E: 0x774A38
     J: 0x760890
     C: 0x79F980
-- desc: File screen text pointers
-  label: FileScreenTextPtrs
+- name: FileScreenTextPtrs
   type: u16 **
   count: 0x7
   cat: text
@@ -1922,8 +1709,7 @@
     E: 0x774A54
     J: 0x7608AC
     C: 0x79F99C
-- desc: Japanese description text pointers
-  label: JapaneseDescriptionTextPtrs
+- name: JapaneseDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
@@ -1932,8 +1718,7 @@
     E: 0x774A70
     J: 0x7608C8
     C: 0x79F9B8
-- desc: Japanese story text pointers
-  label: JapaneseStoryTextPtrs
+- name: JapaneseStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
@@ -1942,8 +1727,7 @@
     E: 0x774ABC
     J: 0x760914
     C: 0x79FA04
-- desc: Japanese file screen text pointers
-  label: JapaneseFileScreenTextPtrs
+- name: JapaneseFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
@@ -1952,8 +1736,7 @@
     E: 0x774AD4
     J: 0x76092C
     C: 0x79FA1C
-- desc: Hiragana description text pointers
-  label: HiraganaDescriptionTextPtrs
+- name: HiraganaDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
@@ -1962,8 +1745,7 @@
     E: 0x774B68
     J: 0x7609C0
     C: 0x79FAB0
-- desc: Hiragana story text pointers
-  label: HiraganaStoryTextPtrs
+- name: HiraganaStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
@@ -1972,8 +1754,7 @@
     E: 0x774BB4
     J: 0x760A0C
     C: 0x79FAFC
-- desc: Hiragana file screen text pointers
-  label: HiraganaFileScreenTextPtrs
+- name: HiraganaFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
@@ -1982,8 +1763,7 @@
     E: 0x774BCC
     J: 0x760A24
     C: 0x79FB14
-- desc: English description text pointers
-  label: EnglishDescriptionTextPtrs
+- name: EnglishDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
@@ -1992,8 +1772,7 @@
     E: 0x774C60
     J: 0x760AB8
     C: 0x79FBA8
-- desc: English story text pointers
-  label: EnglishStoryTextPtrs
+- name: EnglishStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
@@ -2002,8 +1781,7 @@
     E: 0x774CAC
     J: 0x760B04
     C: 0x79FBF4
-- desc: English file screen text pointers
-  label: EnglishFileScreenTextPtrs
+- name: EnglishFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
@@ -2012,92 +1790,79 @@
     E: 0x774CC4
     J: 0x760B1C
     C: 0x79FC0C
-- desc: German description text pointers
-  label: GermanDescriptionTextPtrs
+- name: GermanDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
   addr:
     E: 0x774D58
-- desc: German story text pointers
-  label: GermanStoryTextPtrs
+- name: GermanStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
   addr:
     E: 0x774DA4
-- desc: German file screen text pointers
-  label: GermanFileScreenTextPtrs
+- name: GermanFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
   addr:
     E: 0x774DBC
-- desc: French description text pointers
-  label: FrenchDescriptionTextPtrs
+- name: FrenchDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
   addr:
     E: 0x774E50
-- desc: French story text pointers
-  label: FrenchStoryTextPtrs
+- name: FrenchStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
   addr:
     E: 0x774E9C
-- desc: French file screen text pointers
-  label: FrenchFileScreenTextPtrs
+- name: FrenchFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
   addr:
     E: 0x774EB4
-- desc: Italian description text pointers
-  label: ItalianDescriptionTextPtrs
+- name: ItalianDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
   addr:
     E: 0x774F48
-- desc: Italian story text pointers
-  label: ItalianStoryTextPtrs
+- name: ItalianStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
   addr:
     E: 0x774F94
-- desc: Italian file screen text pointers
-  label: ItalianFileScreenTextPtrs
+- name: ItalianFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
   addr:
     E: 0x774FAC
-- desc: Spanish description text pointers
-  label: SpanishDescriptionTextPtrs
+- name: SpanishDescriptionTextPtrs
   type: u16 *
   count: 0x13
   cat: text
   addr:
     E: 0x775040
-- desc: Spanish story text pointers
-  label: SpanishStoryTextPtrs
+- name: SpanishStoryTextPtrs
   type: u16 *
   count: 0x6
   cat: text
   addr:
     E: 0x77508C
-- desc: Spanish file screen text pointers
-  label: SpanishFileScreenTextPtrs
+- name: SpanishFileScreenTextPtrs
   type: u16 *
   count: 0x25
   cat: text
   addr:
     E: 0x7750A4
-- desc: Sound test sound IDs
-  label: SoundTestSoundIds
+- name: SoundTestSoundIds
   type: u16
   count: 0x18
   addr:
@@ -2105,8 +1870,7 @@
     E: 0x775288
     J: 0x760CBC
     C: 0x79FDA0
-- desc: Menu sound IDs
-  label: MenuSoundIds
+- name: MenuSoundIds
   type: u16
   count: 0xD
   cat: text
@@ -2115,8 +1879,7 @@
     E: 0x775328
     J: 0x760D5C
     C: 0x79FE4C
-- desc: Time attack password seed function pointers
-  label: TimeAttackPasswordSeedFunctionPtrs
+- name: TimeAttackPasswordSeedFunctionPtrs
   type: void *
   count: 0xF
   cat: thumb
@@ -2125,8 +1888,7 @@
     E: 0x775344
     J: 0x760D78
     C: 0x79FE68
-- desc: NES Metroid data
-  label: NesMetroidData
+- name: NesMetroidData
   type: u8
   count: 0x1F734
   addr:

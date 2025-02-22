@@ -1,2277 +1,1522 @@
-- desc: Ability count
-  label: AbilityCount
+- name: AbilityCount
   vals:
-  - desc: Missiles
-    label: Missiles
+  - name: Missiles
     val: 0x1
-  - desc: Morph ball
-    label: MorphBall
+  - name: MorphBall
     val: 0x2
-  - desc: Charge beam
-    label: ChargeBeam
+  - name: ChargeBeam
     val: 0x3
-  - desc: Bombs
-    label: Bombs
+  - name: Bombs
     val: 0x4
-  - desc: Hi-jump
-    label: HiJump
+  - name: HiJump
     val: 0x5
-  - desc: Speed booster
-    label: SpeedBooster
+  - name: SpeedBooster
     val: 0x6
-  - desc: Super missiles
-    label: SuperMissiles
+  - name: SuperMissiles
     val: 0x7
-  - desc: Varia suit
-    label: VariaSuit
+  - name: VariaSuit
     val: 0x8
-  - desc: Ice missiles
-    label: IceMissiles
+  - name: IceMissiles
     val: 0x9
-  - desc: Wide beam
-    label: WideBeam
+  - name: WideBeam
     val: 0xA
-  - desc: Power bombs
-    label: PowerBombs
+  - name: PowerBombs
     val: 0xB
-  - desc: Space jump
-    label: SpaceJump
+  - name: SpaceJump
     val: 0xC
-  - desc: Plasma beam
-    label: PlasmaBeam
+  - name: PlasmaBeam
     val: 0xD
-  - desc: Gravity suit
-    label: GravitySuit
+  - name: GravitySuit
     val: 0xE
-  - desc: Diffusion missiles
-    label: DiffusionMissiles
+  - name: DiffusionMissiles
     val: 0xF
-  - desc: Wave beam
-    label: WaveBeam
+  - name: WaveBeam
     val: 0x10
-  - desc: Screw attack
-    label: ScrewAttack
+  - name: ScrewAttack
     val: 0x11
-  - desc: Ice beam
-    label: IceBeam
+  - name: IceBeam
     val: 0x12
-- desc: Area bit flags
-  label: AreaBitFlags
+- name: AreaBitFlags
   vals:
-  - desc: Main Deck
-    label: MainDeck
+  - name: MainDeck
     val: 0x1
-  - desc: Sector 1
-    label: Sector1
+  - name: Sector1
     val: 0x2
-  - desc: Sector 2
-    label: Sector2
+  - name: Sector2
     val: 0x4
-  - desc: Sector 3
-    label: Sector3
+  - name: Sector3
     val: 0x8
-  - desc: Sector 4
-    label: Sector4
+  - name: Sector4
     val: 0x10
-  - desc: Sector 5
-    label: Sector5
+  - name: Sector5
     val: 0x20
-  - desc: Sector 6
-    label: Sector6
+  - name: Sector6
     val: 0x40
-- desc: Area ID
-  label: AreaId
+- name: AreaId
   vals:
-  - desc: Main Deck
-    label: MainDeck
+  - name: MainDeck
     val: 0x0
-  - desc: Sector 1
-    label: Sector1
+  - name: Sector1
     val: 0x1
-  - desc: Sector 2
-    label: Sector2
+  - name: Sector2
     val: 0x2
-  - desc: Sector 3
-    label: Sector3
+  - name: Sector3
     val: 0x3
-  - desc: Sector 4
-    label: Sector4
+  - name: Sector4
     val: 0x4
-  - desc: Sector 5
-    label: Sector5
+  - name: Sector5
     val: 0x5
-  - desc: Sector 6
-    label: Sector6
+  - name: Sector6
     val: 0x6
-  - desc: Debug 1
-    label: Debug1
+  - name: Debug1
     val: 0x7
-  - desc: Debug 2
-    label: Debug2
+  - name: Debug2
     val: 0x8
-  - desc: Debug 3
-    label: Debug3
+  - name: Debug3
     val: 0x9
-- desc: Arm cannon direction
-  label: ArmCannonDirection
+- name: ArmCannonDirection
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Forward
-    label: Forward
+  - name: Forward
     val: 0x1
-  - desc: Diagonally up
-    label: DiagonallyUp
+  - name: DiagonallyUp
     val: 0x2
-  - desc: Diagonally down
-    label: DiagonallyDown
+  - name: DiagonallyDown
     val: 0x3
-  - desc: Up
-    label: Up
+  - name: Up
     val: 0x4
-  - desc: Down
-    label: Down
+  - name: Down
     val: 0x5
-- desc: Background fade
-  label: BackgroundFade
+- name: BackgroundFade
   vals:
-  - desc: Nothing
-    label: Nothing
+  - name: Nothing
     val: 0x0
-  - desc: Fade to black
-    label: FadeToBlack
+  - name: FadeToBlack
     val: 0x1
-  - desc: Fade to white
-    label: FadeToWhite
+  - name: FadeToWhite
     val: 0x2
-- desc: Beam status
-  label: BeamStatus
+- name: BeamStatus
   vals:
-  - desc: Charge beam
-    label: ChargeBeam
+  - name: ChargeBeam
     val: 0x1
-  - desc: Wide beam
-    label: WideBeam
+  - name: WideBeam
     val: 0x2
-  - desc: Plasma beam
-    label: PlasmaBeam
+  - name: PlasmaBeam
     val: 0x4
-  - desc: Wave beam
-    label: WaveBeam
+  - name: WaveBeam
     val: 0x8
-  - desc: Ice beam
-    label: IceBeam
+  - name: IceBeam
     val: 0x10
-- desc: BG property
-  label: BgProperty
+- name: BgProperty
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: RLE compressed
-    label: RleCompressed
+  - name: RleCompressed
     val: 0x10
-  - desc: Dim rooms (during power outage)
-    label: DimRoomsDuringPowerOutage
+  - name: DimRoomsDuringPowerOutage
     val: 0x12
-  - desc: Elevator hall
-    label: ElevatorHall
+  - name: ElevatorHall
     val: 0x13
-  - desc: Nettori power rooms/Restricted Lab rooms
-    label: NettoriPowerRooms_RestrictedLabRooms
+  - name: NettoriPowerRooms_RestrictedLabRooms
     val: 0x14
-  - desc: LZ77 compressed
-    label: Lz77Compressed
+  - name: Lz77Compressed
     val: 0x40
-  - desc: Nightmare's room
-    label: NightmaresRoom
+  - name: NightmaresRoom
     val: 0x41
-  - desc: Always dark room
-    label: AlwaysDarkRoom
+  - name: AlwaysDarkRoom
     val: 0x43
-  - desc: SA-X room
-    label: SaxRoom
+  - name: SaxRoom
     val: 0x44
-  - desc: Dark room (on Main Deck)
-    label: DarkRoom_MainDeck
+  - name: DarkRoom_MainDeck
     val: 0x45
-  - desc: Electric water room
-    label: ElectricWaterRoom
+  - name: ElectricWaterRoom
     val: 0x46
-  - desc: Atmospheric stabilizer room
-    label: AtmosphericStabilizerRoom
+  - name: AtmosphericStabilizerRoom
     val: 0x47
-  - desc: Meltdown room
-    label: MeltdownRoom
+  - name: MeltdownRoom
     val: 0x48
-  - desc: Nightmare shadow
-    label: NightmareShadow
+  - name: NightmareShadow
     val: 0x49
-  - desc: Omega Metroid room
-    label: OmegaMetroidRoom
+  - name: OmegaMetroidRoom
     val: 0x4A
-- desc: Button input
-  label: ButtonInput
+- name: ButtonInput
   vals:
-  - desc: A
-    label: A
+  - name: A
     val: 0x1
-  - desc: B
-    label: B
+  - name: B
     val: 0x2
-  - desc: Select
-    label: Select
+  - name: Select
     val: 0x4
-  - desc: Start
-    label: Start
+  - name: Start
     val: 0x8
-  - desc: Right
-    label: Right
+  - name: Right
     val: 0x10
-  - desc: Left
-    label: Left
+  - name: Left
     val: 0x20
-  - desc: Up
-    label: Up
+  - name: Up
     val: 0x40
-  - desc: Down
-    label: Down
+  - name: Down
     val: 0x80
-  - desc: R
-    label: R
+  - name: R
     val: 0x100
-  - desc: L
-    label: L
+  - name: L
     val: 0x200
-- desc: Clipdata affecting action
-  label: ClipdataAffectingAction
+- name: ClipdataAffectingAction
   vals:
-  - desc: Remove solid
-    label: RemoveSolid
+  - name: RemoveSolid
     val: 0x1
-  - desc: Make solid
-    label: MakeSolid
+  - name: MakeSolid
     val: 0x2
-  - desc: Make stop enemy block
-    label: MakeStopEnemyBlock
+  - name: MakeStopEnemyBlock
     val: 0x3
-  - desc: Sciser/Zeela/Gadora projectile
-    label: SciserZeelaGadoraProjectile
+  - name: SciserZeelaGadoraProjectile
     val: 0x5
-  - desc: Beam
-    label: Beam
+  - name: Beam
     val: 0x6
-  - desc: Bomb
-    label: Bomb
+  - name: Bomb
     val: 0x7
-  - desc: Missile
-    label: Missile
+  - name: Missile
     val: 0x8
-  - desc: Power bomb
-    label: PowerBomb
+  - name: PowerBomb
     val: 0x9
-  - desc: Speed boost
-    label: SpeedBoost
+  - name: SpeedBoost
     val: 0xA
-  - desc: Speed boost (ground)
-    label: SpeedBoost_Ground
+  - name: SpeedBoost_Ground
     val: 0xB
-  - desc: Screw attack
-    label: ScrewAttack
+  - name: ScrewAttack
     val: 0xC
-  - desc: Bomb chain
-    label: BombChain
+  - name: BombChain
     val: 0xD
-- desc: Clipdata behavior type
-  label: ClipdataBehaviorType
+- name: ClipdataBehaviorType
   vals:
-  - desc: Air/solid
-    label: AirOrSolid
+  - name: AirOrSolid
     val: 0x0
-  - desc: Elevator down block
-    label: ElevatorDownBlock
+  - name: ElevatorDownBlock
     val: 0x1
-  - desc: Elevator up block
-    label: ElevatorUpBlock
+  - name: ElevatorUpBlock
     val: 0x2
-  - desc: Door transition block
-    label: DoorTransitionBlock
+  - name: DoorTransitionBlock
     val: 0x3
-  - desc: Vertical up transition block
-    label: VerticalUpTransitionBlock
+  - name: VerticalUpTransitionBlock
     val: 0x4
-  - desc: Vertical down transition block
-    label: VerticalDownTransitionBlock
+  - name: VerticalDownTransitionBlock
     val: 0x5
-  - desc: Prevents climbing into from ladder
-    label: PreventsClimbingIntoFromLadder
+  - name: PreventsClimbingIntoFromLadder
     val: 0x7
-  - desc: Wall ladder
-    label: WallLadder
+  - name: WallLadder
     val: 0x8
-  - desc: Ceiling ladder
-    label: CeilingLadder
+  - name: CeilingLadder
     val: 0x9
-  - desc: Shot block (never reform)
-    label: ShotBlock_NeverReform
+  - name: ShotBlock_NeverReform
     val: 0x10
-  - desc: Top left shot block (never reform)
-    label: TopLeftShotBlock_NeverReform
+  - name: TopLeftShotBlock_NeverReform
     val: 0x11
-  - desc: Top right shot block (never reform)
-    label: TopRightShotBlock_NeverReform
+  - name: TopRightShotBlock_NeverReform
     val: 0x12
-  - desc: Bottom left shot block (never reform)
-    label: BottomLeftShotBlock_NeverReform
+  - name: BottomLeftShotBlock_NeverReform
     val: 0x13
-  - desc: Bottom right shot block (never reform)
-    label: BottomRightShotBlock_NeverReform
+  - name: BottomRightShotBlock_NeverReform
     val: 0x14
-  - desc: Shot block (reform)
-    label: ShotBlock_Reform
+  - name: ShotBlock_Reform
     val: 0x15
-  - desc: Missile block (never reform)
-    label: MissileBlock_NeverReform
+  - name: MissileBlock_NeverReform
     val: 0x16
-  - desc: Bomb block (never reform)
-    label: BombBlock_NeverReform
+  - name: BombBlock_NeverReform
     val: 0x17
-  - desc: Bomb block (reform)
-    label: BombBlock_Reform
+  - name: BombBlock_Reform
     val: 0x18
-  - desc: Power bomb block (never reform)
-    label: PowerBombBlock_NeverReform
+  - name: PowerBombBlock_NeverReform
     val: 0x19
-  - desc: Missile block (no reform)
-    label: MissileBlock_NoReform
+  - name: MissileBlock_NoReform
     val: 0x1A
-  - desc: Shot block (no reform)
-    label: ShotBlock_NoReform
+  - name: ShotBlock_NoReform
     val: 0x1B
-  - desc: Top left shot block (no reform)
-    label: TopLeftShotBlock_NoReform
+  - name: TopLeftShotBlock_NoReform
     val: 0x1C
-  - desc: Top right shot block (no reform)
-    label: TopRightShotBlock_NoReform
+  - name: TopRightShotBlock_NoReform
     val: 0x1D
-  - desc: Bottom left shot block (no reform)
-    label: BottomLeftShotBlock_NoReform
+  - name: BottomLeftShotBlock_NoReform
     val: 0x1E
-  - desc: Bottom right shot block (no reform)
-    label: BottomRightShotBlock_NoReform
+  - name: BottomRightShotBlock_NoReform
     val: 0x1F
-  - desc: Speed boost block (no reform)
-    label: SpeedBoostBlock_NoReform
+  - name: SpeedBoostBlock_NoReform
     val: 0x20
-  - desc: Speed boost block (reform)
-    label: SpeedBoostBlock_Reform
+  - name: SpeedBoostBlock_Reform
     val: 0x21
-  - desc: Screw attack block (no reform)
-    label: ScrewAttackBlockNoReform
+  - name: ScrewAttackBlockNoReform
     val: 0x22
-  - desc: Crumble block
-    label: CrumbleBlock
+  - name: CrumbleBlock
     val: 0x23
-  - desc: Energy tank
-    label: EnergyTank
+  - name: EnergyTank
     val: 0x24
-  - desc: Missile tank
-    label: MissileTank
+  - name: MissileTank
     val: 0x25
-  - desc: Power bomb tank
-    label: PowerBombTank
+  - name: PowerBombTank
     val: 0x26
-  - desc: Hidden energy tank
-    label: HiddenEnergyTank
+  - name: HiddenEnergyTank
     val: 0x27
-  - desc: Hidden missile tank
-    label: HiddenMissileTank
+  - name: HiddenMissileTank
     val: 0x28
-  - desc: Hidden power bomb tank
-    label: HiddenPowerBombTank
+  - name: HiddenPowerBombTank
     val: 0x29
-  - desc: Underwater energy tank
-    label: UnderwaterEnergyTank
+  - name: UnderwaterEnergyTank
     val: 0x2A
-  - desc: Underwater missile tank
-    label: UnderwaterMissileTank
+  - name: UnderwaterMissileTank
     val: 0x2B
-  - desc: Underwater power bomb tank
-    label: UnderwaterPowerBombTank
+  - name: UnderwaterPowerBombTank
     val: 0x2C
-  - desc: Vertical bomb chain 1
-    label: VerticalBombChain1
+  - name: VerticalBombChain1
     val: 0x2D
-  - desc: Vertical bomb chain 2
-    label: VerticalBombChain2
+  - name: VerticalBombChain2
     val: 0x2E
-  - desc: Vertical bomb chain 3
-    label: VerticalBombChain3
+  - name: VerticalBombChain3
     val: 0x2F
-  - desc: Vertical bomb chain 4
-    label: VerticalBombChain4
+  - name: VerticalBombChain4
     val: 0x30
-  - desc: Horizontal bomb chain 1
-    label: HorizontalBombChain1
+  - name: HorizontalBombChain1
     val: 0x31
-  - desc: Horizontal bomb chain 2
-    label: HorizontalBombChain2
+  - name: HorizontalBombChain2
     val: 0x32
-  - desc: Horizontal bomb chain 3
-    label: HorizontalBombChain3
+  - name: HorizontalBombChain3
     val: 0x33
-  - desc: Horizontal bomb chain 4
-    label: HorizontalBombChain4
+  - name: HorizontalBombChain4
     val: 0x34
-  - desc: Water
-    label: Water
+  - name: Water
     val: 0x40
-  - desc: Wet ground
-    label: WetGround
+  - name: WetGround
     val: 0x50
-  - desc: Dusty ground
-    label: DustyGround
+  - name: DustyGround
     val: 0x51
-  - desc: Unused (solid)
-    label: UnusedSolid
+  - name: UnusedSolid
     val: 0x52
-  - desc: Bubbly ground
-    label: BubblyGround
+  - name: BubblyGround
     val: 0x53
-  - desc: Very dusty ground
-    label: VeryDustyGround
+  - name: VeryDustyGround
     val: 0x54
-  - desc: Gray door
-    label: GrayDoor
+  - name: GrayDoor
     val: 0x7F
-  - desc: White door slot 1
-    label: WhiteDoorSlot1
+  - name: WhiteDoorSlot1
     val: 0x80
-  - desc: White door slot 2
-    label: WhiteDoorSlot2
+  - name: WhiteDoorSlot2
     val: 0x81
-  - desc: White door slot 3
-    label: WhiteDoorSlot3
+  - name: WhiteDoorSlot3
     val: 0x82
-  - desc: White door slot 4
-    label: WhiteDoorSlot4
+  - name: WhiteDoorSlot4
     val: 0x83
-  - desc: White door slot 5
-    label: WhiteDoorSlot5
+  - name: WhiteDoorSlot5
     val: 0x84
-  - desc: White door slot 6
-    label: WhiteDoorSlot6
+  - name: WhiteDoorSlot6
     val: 0x85
-  - desc: Blue door slot 1
-    label: BlueDoorSlot1
+  - name: BlueDoorSlot1
     val: 0x86
-  - desc: Blue door slot 2
-    label: BlueDoorSlot2
+  - name: BlueDoorSlot2
     val: 0x87
-  - desc: Blue door slot 3
-    label: BlueDoorSlot3
+  - name: BlueDoorSlot3
     val: 0x88
-  - desc: Blue door slot 4
-    label: BlueDoorSlot4
+  - name: BlueDoorSlot4
     val: 0x89
-  - desc: Blue door slot 5
-    label: BlueDoorSlot5
+  - name: BlueDoorSlot5
     val: 0x8A
-  - desc: Blue door slot 6
-    label: BlueDoorSlot6
+  - name: BlueDoorSlot6
     val: 0x8B
-  - desc: Green door slot 1
-    label: GreenDoorSlot1
+  - name: GreenDoorSlot1
     val: 0x8C
-  - desc: Green door slot 2
-    label: GreenDoorSlot2
+  - name: GreenDoorSlot2
     val: 0x8D
-  - desc: Green door slot 3
-    label: GreenDoorSlot3
+  - name: GreenDoorSlot3
     val: 0x8E
-  - desc: Green door slot 4
-    label: GreenDoorSlot4
+  - name: GreenDoorSlot4
     val: 0x8F
-  - desc: Green door slot 5
-    label: GreenDoorSlot5
+  - name: GreenDoorSlot5
     val: 0x90
-  - desc: Green door slot 6
-    label: GreenDoorSlot6
+  - name: GreenDoorSlot6
     val: 0x91
-  - desc: Yellow door slot 1
-    label: YellowDoorSlot1
+  - name: YellowDoorSlot1
     val: 0x92
-  - desc: Yellow door slot 2
-    label: YellowDoorSlot2
+  - name: YellowDoorSlot2
     val: 0x93
-  - desc: Yellow door slot 3
-    label: YellowDoorSlot3
+  - name: YellowDoorSlot3
     val: 0x94
-  - desc: Yellow door slot 4
-    label: YellowDoorSlot4
+  - name: YellowDoorSlot4
     val: 0x95
-  - desc: Yellow door slot 5
-    label: YellowDoorSlot5
+  - name: YellowDoorSlot5
     val: 0x96
-  - desc: Yellow door slot 6
-    label: YellowDoorSlot6
+  - name: YellowDoorSlot6
     val: 0x97
-  - desc: Red door slot 1
-    label: RedDoorSlot1
+  - name: RedDoorSlot1
     val: 0x98
-  - desc: Red door slot 2
-    label: RedDoorSlot2
+  - name: RedDoorSlot2
     val: 0x99
-  - desc: Red door slot 3
-    label: RedDoorSlot3
+  - name: RedDoorSlot3
     val: 0x9A
-  - desc: Red door slot 4
-    label: RedDoorSlot4
+  - name: RedDoorSlot4
     val: 0x9B
-  - desc: Red door slot 5
-    label: RedDoorSlot5
+  - name: RedDoorSlot5
     val: 0x9C
-  - desc: Red door slot 6
-    label: RedDoorSlot6
+  - name: RedDoorSlot6
     val: 0x9D
-- desc: Clipdata collision type
-  label: ClipdataCollisionType
+- name: ClipdataCollisionType
   vals:
-  - desc: Air
-    label: Air
+  - name: Air
     val: 0x0
-  - desc: Solid
-    label: Solid
+  - name: Solid
     val: 0x1
-  - desc: ◣ steep floor slope
-    label: LeftSteepFloorSlope
+  - name: LeftSteepFloorSlope
     val: 0x2
-  - desc: ◢ Steep floor slope
-    label: RightSteepFloorSlope
+  - name: RightSteepFloorSlope
     val: 0x3
-  - desc: ◣ upper slight floor slope
-    label: LeftUpperSlightFloorSlope
+  - name: LeftUpperSlightFloorSlope
     val: 0x4
-  - desc: ◣ lower slight floor slope
-    label: LeftLowerSlightFloorSlope
+  - name: LeftLowerSlightFloorSlope
     val: 0x5
-  - desc: ◢ lower slight floor slope
-    label: RightLowerSlightFloorSlope
+  - name: RightLowerSlightFloorSlope
     val: 0x6
-  - desc: ◢ upper slight floor slope
-    label: RightUpperSlightFloorSlope
+  - name: RightUpperSlightFloorSlope
     val: 0x7
-  - desc: Enemy only
-    label: EnemyOnly
+  - name: EnemyOnly
     val: 0x8
-  - desc: Stop enemy block
-    label: StopEnemyBlock
+  - name: StopEnemyBlock
     val: 0x9
-  - desc: Tank
-    label: Tank
+  - name: Tank
     val: 0xA
-  - desc: Hatch
-    label: Hatch
+  - name: Hatch
     val: 0xB
-  - desc: Pass through bottom
-    label: PassThroughBottom
+  - name: PassThroughBottom
     val: 0xC
-- desc: Collision check
-  label: CollisionCheck
+- name: CollisionCheck
   vals:
-  - desc: Air/no collision
-    label: AirOrNoCollision
+  - name: AirOrNoCollision
     val: 0x0
-  - desc: ◣ slight floor slope
-    label: LeftSlightFloorSlope
+  - name: LeftSlightFloorSlope
     val: 0x2
-  - desc: ◢ slight floor slope
-    label: RightSlightFloorSlope
+  - name: RightSlightFloorSlope
     val: 0x3
-  - desc: ◣ steep floor slope
-    label: LeftSteepFloorSlope
+  - name: LeftSteepFloorSlope
     val: 0x4
-  - desc: ◢ steep floor slope
-    label: RightSteepFloorSlope
+  - name: RightSteepFloorSlope
     val: 0x5
-  - desc: Pass through bottom
-    label: PassThroughBottom
+  - name: PassThroughBottom
     val: 0x10
-  - desc: Solid/collision
-    label: SolidOrCollision
+  - name: SolidOrCollision
     val: 0x11
-- desc: Cutscene
-  label: Cutscene
+- name: Cutscene
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Samus monologue during intro
-    label: SamusMonologueDuringIntro
+  - name: SamusMonologueDuringIntro
     val: 0x1
-  - desc: Elevator monologue before missiles
-    label: ElevatorMonologueBeforeMissiles
+  - name: ElevatorMonologueBeforeMissiles
     val: 0x2
-  - desc: Elevator monologue after charge beam
-    label: ElevatorMonologueAfterChargeBeam
+  - name: ElevatorMonologueAfterChargeBeam
     val: 0x3
-  - desc: Elevator monologue after hi-jump
-    label: ElevatorMonologueAfterHiJump
+  - name: ElevatorMonologueAfterHiJump
     val: 0x4
-  - desc: Elevator monologue after habitation Deck
-    label: ElevatorMonologueAfterHabitationDeck
+  - name: ElevatorMonologueAfterHabitationDeck
     val: 0x5
-  - desc: Elevator monologue after Restricted Lab
-    label: ElevatorMonologueAfterRestrictedLab
+  - name: ElevatorMonologueAfterRestrictedLab
     val: 0x6
-  - desc: Samus monologue in navigation room
-    label: SamusMonologueInNavRoom
+  - name: SamusMonologueInNavRoom
     val: 0x7
-  - desc: Samus monologue before credits
-    label: SamusMonologueBeforeCredits
+  - name: SamusMonologueBeforeCredits
     val: 0x8
-  - desc: Navigation room incoming dispatch
-    label: NavRoomIncomingDispatch
+  - name: NavRoomIncomingDispatch
     val: 0x9
-  - desc: Restricted Lab exploding
-    label: RestrictedLabExploding
+  - name: RestrictedLabExploding
     val: 0xA
-  - desc: Restricted Lab exploding (game over)
-    label: RestrictedLabExploding_GameOver
+  - name: RestrictedLabExploding_GameOver
     val: 0xB
-  - desc: BSL exploding from boiler melt down
-    label: BSLExplodingFromBoilerMeltDown
+  - name: BSLExplodingFromBoilerMeltDown
     val: 0xC
-- desc: Debris cloud type
-  label: DebrisCloudType
+- name: DebrisCloudType
   vals:
-  - desc: TODO
-    label: TODO
+  - name: TODO
     val: 0x0
-- desc: Demo
-  label: Demo
+- name: Demo
   vals:
-  - desc: Sector 2, demonstrating bomb jumping
-    label: Sector2_BombJumping
+  - name: Sector2_BombJumping
     val: 0x0
-  - desc: Sector 5, demonstrating ice missiles
-    label: Sector5_IceMissiles
+  - name: Sector5_IceMissiles
     val: 0x1
-  - desc: Sector 4, demonstrating pseudo screw attack
-    label: Sector4_PseudoScrewAttack
+  - name: Sector4_PseudoScrewAttack
     val: 0x2
-  - desc: Main Deck, demonstrating eyedoor
-    label: MainDeck_Eyedoor
+  - name: MainDeck_Eyedoor
     val: 0x3
-  - desc: Sector 1, demonstrating wall jumping
-    label: Sector1_WallJumping
+  - name: Sector1_WallJumping
     val: 0x4
-  - desc: Sector 2, demonstrating shinesparking
-    label: Sector2_Shinesparking
+  - name: Sector2_Shinesparking
     val: 0x5
-  - desc: Sector 4, demonstrating chain blocks
-    label: Sector4_ChainBlocks
+  - name: Sector4_ChainBlocks
     val: 0x6
-  - desc: Sector 5, demonstrating power bombs
-    label: Sector5_PowerBombs
+  - name: Sector5_PowerBombs
     val: 0x7
-  - desc: Sector 3, demonstrating diagonal sparking
-    label: Sector3_DiagonalSparking
+  - name: Sector3_DiagonalSparking
     val: 0x8
-  - desc: Sector 6, demonstrating diffusion missiles
-    label: Sector6_DiffusionMissiles
+  - name: Sector6_DiffusionMissiles
     val: 0x9
-  - desc: Main Deck, demonstrating boss formation
-    label: MainDeck_BossFormation
+  - name: MainDeck_BossFormation
     val: 0xA
-  - desc: Sector 1, demonstrating screw attack
-    label: Sector1_ScrewAttack
+  - name: Sector1_ScrewAttack
     val: 0xB
-- desc: Demo state
-  label: DemoState
+- name: DemoState
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Recording
-    label: Recording
+  - name: Recording
     val: 0x1
-  - desc: Playing
-    label: Playing
+  - name: Playing
     val: 0x2
-  - desc: Loading
-    label: Loading
+  - name: Loading
     val: 0x3
-- desc: Diagonal aim
-  label: DiagonalAim
+- name: DiagonalAim
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Diagonally up
-    label: DiagonallyUp
+  - name: DiagonallyUp
     val: 0x1
-  - desc: Diagonally down
-    label: DiagonallyDown
+  - name: DiagonallyDown
     val: 0x2
-- desc: Difficulty
-  label: Difficulty
+- name: Difficulty
   vals:
-  - desc: Easy
-    label: Easy
+  - name: Easy
     val: 0x0
-  - desc: Normal
-    label: Normal
+  - name: Normal
     val: 0x1
-  - desc: Hard
-    label: Hard
+  - name: Hard
     val: 0x2
-- desc: Door type
-  label: DoorType
+- name: DoorType
   vals:
-  - desc: Area connection
-    label: AreaConnection
+  - name: AreaConnection
     val: 0x1
-  - desc: No hatch
-    label: NoHatch
+  - name: NoHatch
     val: 0x2
-  - desc: Open hatch
-    label: OpenHatch
+  - name: OpenHatch
     val: 0x3
-  - desc: Hatch (can lock)
-    label: Hatch_CanLock
+  - name: Hatch_CanLock
     val: 0x4
-  - desc: Loads event based room
-    label: LoadsEventBasedRoom
+  - name: LoadsEventBasedRoom
     val: 0x20
-  - desc: Displays location name
-    label: DisplaysLocationName
+  - name: DisplaysLocationName
     val: 0x40
-- desc: Elevator
-  label: Elevator
+- name: Elevator
   vals:
-  - desc: Main Deck to Operations Deck
-    label: MainDeckToOperationsDeck
+  - name: MainDeckToOperationsDeck
     val: 0x0
-  - desc: Main Deck long elevator
-    label: MainDeckLongElevator
+  - name: MainDeckLongElevator
     val: 0x1
-  - desc: Main Deck to Sector 1
-    label: MainDeckToSector1
+  - name: MainDeckToSector1
     val: 0x2
-  - desc: Main Deck to Sector 2
-    label: MainDeckToSector2
+  - name: MainDeckToSector2
     val: 0x3
-  - desc: Main Deck to Sector 4
-    label: MainDeckToSector4
+  - name: MainDeckToSector4
     val: 0x4
-  - desc: Main Deck to Sector 5
-    label: MainDeckToSector5
+  - name: MainDeckToSector5
     val: 0x5
-  - desc: Main Deck to Sector 6
-    label: MainDeckToSector6
+  - name: MainDeckToSector6
     val: 0x6
-  - desc: Main Deck to Sector 3
-    label: MainDeckToSector3
+  - name: MainDeckToSector3
     val: 0x7
-  - desc: Main Deck long elevator (power outage)
-    label: MainDeckLongElevator_PowerOutage
+  - name: MainDeckLongElevator_PowerOutage
     val: 0x8
-  - desc: Main Deck to Habitation Deck
-    label: MainDeckToHabitationDeck
+  - name: MainDeckToHabitationDeck
     val: 0x9
-  - desc: Restricted Zone to Sector 1
-    label: RestrictedZoneToSector1
+  - name: RestrictedZoneToSector1
     val: 0xA
-- desc: Escape status
-  label: EscapeStatus
+- name: EscapeStatus
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Happening
-    label: Happening
+  - name: Happening
     val: 0x1
-  - desc: Failed
-    label: Failed
+  - name: Failed
     val: 0x2
-- desc: Event based effect
-  label: EventBasedEffect
+- name: EventBasedEffect
   vals:
-  - desc: Atmospheric stabilizer room
-    label: AtmosphericStabilizerRoom
+  - name: AtmosphericStabilizerRoom
     val: 0x1
-  - desc: BOX 2's room
-    label: Box2Room
+  - name: Box2Room
     val: 0x3
-  - desc: Sector 1 non-stabilizer room
-    label: Sector1NonStabilizerRoom
+  - name: Sector1NonStabilizerRoom
     val: 0x4
-  - desc: Electrified water room
-    label: ElectrifiedWaterRoom
+  - name: ElectrifiedWaterRoom
     val: 0x5
-  - desc: Meltdown
-    label: Meltdown
+  - name: Meltdown
     val: 0x6
-  - desc: Auxiliary power station room (inactive)
-    label: AuxiliaryPowerStationRoom_Inactive
+  - name: AuxiliaryPowerStationRoom_Inactive
     val: 0x7
-  - desc: Explosion after SA-X elevator cutscene
-    label: ExplosionAfterSaxElevatorCutscene
+  - name: ExplosionAfterSaxElevatorCutscene
     val: 0x8
-  - desc: Power outage after SA-X elevator cutscene
-    label: PowerOutageAfterSaxElevatorCutscene
+  - name: PowerOutageAfterSaxElevatorCutscene
     val: 0x9
-  - desc: Main boiler room
-    label: MainBoilerRoom
+  - name: MainBoilerRoom
     val: 0xA
-  - desc: Central reactor core (active)
-    label: CentralReactorCore_Active
+  - name: CentralReactorCore_Active
     val: 0xB
-  - desc: Yakuza's room
-    label: YakuzaRoom
+  - name: YakuzaRoom
     val: 0xD
-  - desc: Restricted Laboratory (before SA-X)
-    label: RestrictedLab_BeforeSax
+  - name: RestrictedLab_BeforeSax
     val: 0xE
-  - desc: Nightmare silhouette room
-    label: NightmareSilhouetteRoom
+  - name: NightmareSilhouetteRoom
     val: 0xF
-  - desc: Nightmare's room
-    label: NightmareRoom
+  - name: NightmareRoom
     val: 0x10
-  - desc: Operations room
-    label: OperationsRoom
+  - name: OperationsRoom
     val: 0x11
-  - desc: Omega Metroid room
-    label: OmegaMetroidRoom
+  - name: OmegaMetroidRoom
     val: 0x12
-  - desc: Power outage (after missiles)
-    label: PowerOutage_AfterMissiles
+  - name: PowerOutage_AfterMissiles
     val: 0x13
-  - desc: Power outage (before Yakuza)
-    label: PowerOutage_BeforeYakuza
+  - name: PowerOutage_BeforeYakuza
     val: 0x14
-  - desc: Recovering suit
-    label: RecoveringSuit
+  - name: RecoveringSuit
     val: 0x16
-- desc: Floating point class
-  label: FloatingPointClass
+- name: FloatingPointClass
   vals:
-  - desc: Signaling NaN
-    label: SignalingNan
+  - name: SignalingNan
     val: 0x0
-  - desc: Quiet NaN
-    label: QuietNan
+  - name: QuietNan
     val: 0x1
-  - desc: Zero
-    label: Zero
+  - name: Zero
     val: 0x2
-  - desc: Number
-    label: Number
+  - name: Number
     val: 0x3
-  - desc: Infinity
-    label: Infinity
+  - name: Infinity
     val: 0x4
-- desc: Forced movement
-  label: ForcedMovement
+- name: ForcedMovement
   vals:
-  - desc: None/sparking upwards
-    label: NoneOrSparkingUpwards
+  - name: NoneOrSparkingUpwards
     val: 0x0
-  - desc: Bouncing/wall-jumping/sparking sidewards
-    label: BouncingWallJumpingSparkingSidewards
+  - name: BouncingWallJumpingSparkingSidewards
     val: 0x1
-  - desc: Sparking diagonally
-    label: SparkingDiagonally
+  - name: SparkingDiagonally
     val: 0x2
-  - desc: Dropping through clipdata
-    label: DroppingThroughClipdata
+  - name: DroppingThroughClipdata
     val: 0x3
-  - desc: Holding jump when bouncing (frame 1)
-    label: HoldingJumpWhenBouncing_Frame1
+  - name: HoldingJumpWhenBouncing_Frame1
     val: 0x14
-  - desc: Holding jump when bouncing (frame 2)
-    label: HoldingJumpWhenBouncing_Frame2
+  - name: HoldingJumpWhenBouncing_Frame2
     val: 0x15
-  - desc: Holding jump when bouncing (frame 3)
-    label: HoldingJumpWhenBouncing_Frame3
+  - name: HoldingJumpWhenBouncing_Frame3
     val: 0x16
-- desc: Foreground effect
-  label: ForegroundEffect
+- name: ForegroundEffect
   vals:
-  - desc: Nothing
-    label: Nothing
+  - name: Nothing
     val: 0x0
-  - desc: Gradient background
-    label: GradientBg
+  - name: GradientBg
     val: 0x1
-  - desc: Acid/electric water room
-    label: AcidOrElectricWaterRoom
+  - name: AcidOrElectricWaterRoom
     val: 0x2
-  - desc: Heat haze (BG3)
-    label: HeatHaze_Bg3
+  - name: HeatHaze_Bg3
     val: 0x3
-  - desc: Atmospheric stabilizer room
-    label: AtmosphericStabilizerRoom
+  - name: AtmosphericStabilizerRoom
     val: 0x4
-  - desc: Heat haze (BG2+3)
-    label: HeatHaze_Bg2_Bg3
+  - name: HeatHaze_Bg2_Bg3
     val: 0x6
-  - desc: Nightmare's room
-    label: NightmaresRoom
+  - name: NightmaresRoom
     val: 0x7
-  - desc: Power bomb exploding
-    label: PowerBombExploding
+  - name: PowerBombExploding
     val: 0x8
-  - desc: Power bomb imploding
-    label: PowerBombImploding
+  - name: PowerBombImploding
     val: 0x9
-- desc: Game mode
-  label: GameMode
+- name: GameMode
   vals:
-  - desc: Title
-    label: Title
+  - name: Title
     val: 0x0
-  - desc: In-game
-    label: InGame
+  - name: InGame
     val: 0x1
-  - desc: Soft reset
-    label: SoftReset
+  - name: SoftReset
     val: 0x2
-  - desc: Pause screen
-    label: PauseScreen
+  - name: PauseScreen
     val: 0x3
-  - desc: Cutscene
-    label: Cutscene
+  - name: Cutscene
     val: 0x4
-  - desc: SA-X close-up
-    label: SaxCloseUp
+  - name: SaxCloseUp
     val: 0x5
-  - desc: Erase SRAM menu
-    label: EraseSramMenu
+  - name: EraseSramMenu
     val: 0x6
-  - desc: File select/intro
-    label: FileSelectAndIntro
+  - name: FileSelectAndIntro
     val: 0x7
-  - desc: Game over
-    label: GameOver
+  - name: GameOver
     val: 0x8
-  - desc: Ending
-    label: Ending
+  - name: Ending
     val: 0x9
-  - desc: Died from SR388 collision
-    label: DiedFromSR388Collision
+  - name: DiedFromSR388Collision
     val: 0xA
-  - desc: Credits
-    label: Credits
+  - name: Credits
     val: 0xB
-  - desc: Demo
-    label: Demo
+  - name: Demo
     val: 0xC
-  - desc: Unknown
-    label: Unknown
+  - name: Unknown
     val: 0xD
-  - desc: Debug menu (beta ROM only)
-    label: DebugMenu_BetaOnly
+  - name: DebugMenu_BetaOnly
     val: 0xE
-- desc: Graphics animation type
-  label: GraphicsAnimType
+- name: GraphicsAnimType
   vals:
-  - desc: Not animated
-    label: NotAnimated
+  - name: NotAnimated
     val: 0x0
-  - desc: Normal
-    label: Normal
+  - name: Normal
     val: 0x1
-  - desc: Alternate
-    label: Alternate
+  - name: Alternate
     val: 0x4
-- desc: Ground type under Samus
-  label: GroundTypeUnderSamus
+- name: GroundTypeUnderSamus
   vals:
-  - desc: Normal
-    label: Normal
+  - name: Normal
     val: 0x0
-  - desc: Wet ground
-    label: WetGround
+  - name: WetGround
     val: 0x1
-  - desc: Dusty ground
-    label: DustyGround
+  - name: DustyGround
     val: 0x2
-  - desc: Very dusty ground
-    label: VeryDustyGround
+  - name: VeryDustyGround
     val: 0x3
-  - desc: Behavior 52 (unused)
-    label: Behavior_52
+  - name: Behavior_52
+    desc: Unused
     val: 0x4
-    notes: Unused
-  - desc: Bubbly ground
-    label: BubblyGround
+  - name: BubblyGround
     val: 0x5
-- desc: Hazard affecting Samus
-  label: HazardAffectingSamus
+- name: HazardAffectingSamus
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Water
-    label: Water
+  - name: Water
     val: 0x1
-  - desc: Lava
-    label: Lava
+  - name: Lava
     val: 0x2
-  - desc: Acid
-    label: Acid
+  - name: Acid
     val: 0x3
-  - desc: Heat damage
-    label: HeatDamage
+  - name: HeatDamage
     val: 0x4
-  - desc: Cold damage + knockback
-    label: ColdDamage_Knockback
+  - name: ColdDamage_Knockback
     val: 0x5
-  - desc: Cold damage
-    label: ColdDamage
+  - name: ColdDamage
     val: 0x6
-- desc: Horizontal Direction
-  label: HorizontalDirection
+- name: HorizontalDirection
   vals:
-  - desc: Right
-    label: Right
+  - name: Right
     val: 0x10
-  - desc: Left
-    label: Left
+  - name: Left
     val: 0x20
-- desc: Instrument type
-  label: InstrumentType
+- name: InstrumentType
   vals:
-  - desc: Sample
-    label: Sample
+  - name: Sample
     val: 0x0
-  - desc: Square 1
-    label: Square1
+  - name: Square1
+    desc: Game Boy channel 1
     val: 0x1
-    notes: Game Boy channel 1
-  - desc: Square 2
-    label: Square2
+  - name: Square2
+    desc: Game Boy channel 2
     val: 0x2
-    notes: Game Boy channel 2
-  - desc: Wave
-    label: Wave
+  - name: Wave
+    desc: Game Boy channel 3
     val: 0x3
-    notes: Game Boy channel 3
-  - desc: Noise
-    label: Noise
+  - name: Noise
+    desc: Game Boy channel 4
     val: 0x4
-    notes: Game Boy channel 4
-  - desc: Sample (never resampled)
-    label: Sample_NeverResampled
+  - name: Sample_NeverResampled
     val: 0x8
-  - desc: Square 1
-    label: Square1
+  - name: Square1
+    desc: Game Boy channel 1
     val: 0x9
-    notes: Game Boy channel 1
-  - desc: Square 2
-    label: Square2
+  - name: Square2
+    desc: Game Boy channel 2
     val: 0xA
-    notes: Game Boy channel 2
-  - desc: Wave
-    label: Wave
+  - name: Wave
+    desc: Game Boy channel 3
     val: 0xB
-    notes: Game Boy channel 3
-  - desc: Noise
-    label: Noise
+  - name: Noise
     val: 0xC
-  - desc: Key split
-    label: KeySplit
+  - name: KeySplit
     val: 0x40
-  - desc: Every key split
-    label: EveryKeySplit
+  - name: EveryKeySplit
     val: 0x80
-- desc: Language
-  label: Language
+- name: Language
   vals:
-  - desc: Japanese (Kanji)
-    label: Japanese_Kanji
+  - name: Japanese_Kanji
     val: 0x0
-  - desc: Japanese (Hiragana)
-    label: Japanese_Hiragana
+  - name: Japanese_Hiragana
     val: 0x1
-  - desc: English
-    label: English
+  - name: English
     val: 0x2
-  - desc: German
-    label: German
+  - name: German
     val: 0x3
-  - desc: French
-    label: French
+  - name: French
     val: 0x4
-  - desc: Italian
-    label: Italian
+  - name: Italian
     val: 0x5
-  - desc: Spanish
-    label: Spanish
+  - name: Spanish
     val: 0x6
-- desc: LZ77 background size
-  label: Lz77BackgroundSize
+- name: Lz77BackgroundSize
   vals:
-  - desc: 256x256
-    label: Size_256_256
+  - name: Size_256_256
     val: 0x0
-  - desc: 512x256
-    label: Size_512_256
+  - name: Size_512_256
     val: 0x1
-  - desc: 256x512
-    label: Size_256_512
+  - name: Size_256_512
     val: 0x2
-- desc: Missile/bomb status
-  label: MissileBombStatus
+- name: MissileBombStatus
   vals:
-  - desc: Missiles
-    label: Missiles
+  - name: Missiles
     val: 0x1
-  - desc: Super missiles
-    label: SuperMissiles
+  - name: SuperMissiles
     val: 0x2
-  - desc: Ice missiles
-    label: IceMissiles
+  - name: IceMissiles
     val: 0x4
-  - desc: Diffusion missiles
-    label: DiffusionMissiles
+  - name: DiffusionMissiles
     val: 0x8
-  - desc: Bombs
-    label: Bombs
+  - name: Bombs
     val: 0x10
-  - desc: Power bombs
-    label: PowerBombs
+  - name: PowerBombs
     val: 0x20
-- desc: Navigation room
-  label: NavRoom
+- name: NavRoom
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Main Deck room 10
-    label: MainDeckRoom10
+  - name: MainDeckRoom10
     val: 0x1
-  - desc: Main Deck room 9
-    label: MainDeckRoom09
+  - name: MainDeckRoom09
     val: 0x2
-  - desc: Main Deck room 20
-    label: MainDeckRoom20
+  - name: MainDeckRoom20
     val: 0x3
-  - desc: Sector 1 room 2
-    label: Sector1Room02
+  - name: Sector1Room02
     val: 0x4
-  - desc: Sector 5 room 2
-    label: Sector5Room02
+  - name: Sector5Room02
     val: 0x5
-  - desc: Sector 2 room 2
-    label: Sector2Room02
+  - name: Sector2Room02
     val: 0x6
-  - desc: Sector 4 room 2
-    label: Sector4Room02
+  - name: Sector4Room02
     val: 0x7
-  - desc: Sector 3 room 2
-    label: Sector3Room02
+  - name: Sector3Room02
     val: 0x8
-  - desc: Sector 6 room 2
-    label: Sector6Room02
+  - name: Sector6Room02
     val: 0x9
-  - desc: Main Deck room 38
-    label: MainDeckRoom38
+  - name: MainDeckRoom38
     val: 0xA
-  - desc: Main Deck room 42
-    label: MainDeckRoom42
+  - name: MainDeckRoom42
     val: 0xB
-- desc: Navigation target area
-  label: NavTargetArea
+- name: NavTargetArea
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Operations Deck
-    label: OperationsDeck
+  - name: OperationsDeck
     val: 0x1
-  - desc: Docking Bays
-    label: DockingBays
+  - name: DockingBays
     val: 0x2
-  - desc: Habitation Deck
-    label: HabitationDeck
+  - name: HabitationDeck
     val: 0x3
-  - desc: Main Deck
-    label: MainDeck
+  - name: MainDeck
     val: 0x4
-  - desc: Reactor Silo
-    label: ReactorSilo
+  - name: ReactorSilo
     val: 0x5
-  - desc: Restricted Lab (unused?)
-    label: RestrictedLab
+  - name: RestrictedLab
     val: 0x6
-  - desc: Sector 1
-    label: Sector1
+  - name: Sector1
     val: 0x7
-  - desc: Sector 2
-    label: Sector2
+  - name: Sector2
     val: 0x8
-  - desc: Sector 3
-    label: Sector3
+  - name: Sector3
     val: 0x9
-  - desc: Sector 4
-    label: Sector4
+  - name: Sector4
     val: 0xA
-  - desc: Sector 5
-    label: Sector5
+  - name: Sector5
     val: 0xB
-  - desc: Sector 6
-    label: Sector6
+  - name: Sector6
     val: 0xC
-- desc: Navigation target text direction
-  label: NavTargetTextDirection
+- name: NavTargetTextDirection
   vals:
-  - desc: Top
-    label: Top
+  - name: Top
     val: 0x0
-  - desc: Bottom
-    label: Bottom
+  - name: Bottom
     val: 0x1
-  - desc: Left
-    label: Left
+  - name: Left
     val: 0x2
-  - desc: Right
-    label: Right
+  - name: Right
     val: 0x3
-- desc: New projectile type
-  label: NewProjectileType
+- name: NewProjectileType
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Beam
-    label: Beam
+  - name: Beam
     val: 0x1
-  - desc: Missile
-    label: Missile
+  - name: Missile
     val: 0x2
-  - desc: Unused
-    label: Unused
+  - name: Unused
     val: 0x3
-  - desc: Bomb
-    label: Bomb
+  - name: Bomb
     val: 0x4
-  - desc: Charged beam
-    label: ChargedBeam
+  - name: ChargedBeam
     val: 0x5
-  - desc: Power bomb
-    label: PowerBomb
+  - name: PowerBomb
     val: 0x6
-- desc: Non-gameplay flag
-  label: NonGameplayFlag
+- name: NonGameplayFlag
   vals:
-  - desc: First navigation conversation
-    label: FirstNavConversation
+  - name: FirstNavConversation
     val: 0x1
-  - desc: Pause screen
-    label: PauseScreen
+  - name: PauseScreen
     val: 0x2
-  - desc: Navigation conversation
-    label: NavConversation
+  - name: NavConversation
     val: 0x3
-  - desc: Federation conversation
-    label: FederationConversation
+  - name: FederationConversation
     val: 0x4
-  - desc: Self-destruct monologue
-    label: SelfDestructMonologue
+  - name: SelfDestructMonologue
     val: 0x5
-  - desc: SA-X face close-up
-    label: SaxFaceCloseUp
+  - name: SaxFaceCloseUp
     val: 0x6
-- desc: Palette animation type
-  label: PaletteAnimType
+- name: PaletteAnimType
   vals:
-  - desc: Not animated
-    label: NotAnimated
+  - name: NotAnimated
     val: 0x0
-  - desc: Normal
-    label: Normal
+  - name: Normal
     val: 0x1
-  - desc: Alternate
-    label: Alternate
+  - name: Alternate
     val: 0x2
-- desc: Particle effect
-  label: ParticleEffect
+- name: ParticleEffect
   vals:
-  - desc: None?
-    label: None
+  - name: None
     val: 0x0
-  - desc: Bomb explosion
-    label: BombExplosion
+  - name: BombExplosion
     val: 0x1
-  - desc: Flare hit
-    label: FlareHit
+  - name: FlareHit
     val: 0x2
-  - desc: Normal beam hit
-    label: NormalBeamHit
+  - name: NormalBeamHit
     val: 0x3
-  - desc: Charge beam hit
-    label: ChargeBeamHit
+  - name: ChargeBeamHit
     val: 0x4
-  - desc: Wide beam hit
-    label: WideBeamHit
+  - name: WideBeamHit
     val: 0x5
-  - desc: Plasma beam hit
-    label: PlasmaBeamHit
+  - name: PlasmaBeamHit
     val: 0x6
-  - desc: Tink
-    label: Tink
+  - name: Tink
     val: 0x7
-  - desc: Normal missile explosion
-    label: NormalMissileExplosion
+  - name: NormalMissileExplosion
     val: 0x8
-  - desc: Super missile explosion
-    label: SuperMissileExplosion
+  - name: SuperMissileExplosion
     val: 0x9
-  - desc: Ice missile explosion
-    label: IceMissileExplosion
+  - name: IceMissileExplosion
     val: 0xA
-  - desc: Diffusion missile explosion
-    label: DiffusionMissileExplosion
+  - name: DiffusionMissileExplosion
     val: 0xB
-  - desc: Charged diffusion missile explosion
-    label: ChargedDiffusionMissileExplosion
+  - name: ChargedDiffusionMissileExplosion
     val: 0xC
-  - desc: Explosion? (no sound)
-    label: Explosion_NoSound
+  - name: Explosion_NoSound
     val: 0xD
-  - desc: Ice beam trail
-    label: IceBeamTrail
+  - name: IceBeamTrail
     val: 0xE
-  - desc: Charged normal beam trail
-    label: ChargedNormalBeamTrail
+  - name: ChargedNormalBeamTrail
     val: 0xF
-  - desc: Charged charge beam trail
-    label: ChargedChargeBeamTrail
+  - name: ChargedChargeBeamTrail
     val: 0x10
-  - desc: Charged wide beam trail
-    label: ChargedWideBeamTrail
+  - name: ChargedWideBeamTrail
     val: 0x11
-  - desc: Charged plasma beam trail
-    label: ChargedPlasmaBeamTrail
+  - name: ChargedPlasmaBeamTrail
     val: 0x12
-  - desc: Charged wave beam trail
-    label: ChargedWaveBeamTrail
+  - name: ChargedWaveBeamTrail
     val: 0x13
-  - desc: Charged ice beam trail
-    label: ChargedIceBeamTrail
+  - name: ChargedIceBeamTrail
     val: 0x14
-  - desc: Normal missile trail
-    label: NormalMissileTrail
+  - name: NormalMissileTrail
     val: 0x15
-  - desc: Super missile trail
-    label: SuperMissileTrail
+  - name: SuperMissileTrail
     val: 0x16
-  - desc: Ice missile trail
-    label: IceMissileTrail
+  - name: IceMissileTrail
     val: 0x17
-  - desc: Diffusion missile trail
-    label: DiffusionMissileTrail
+  - name: DiffusionMissileTrail
     val: 0x18
-  - desc: Charged diffusion missile trail
-    label: ChargedDiffusionMissileTrail
+  - name: ChargedDiffusionMissileTrail
     val: 0x19
-  - desc: Absorb health X
-    label: AbsorbHealthX
+  - name: AbsorbHealthX
     val: 0x1A
-  - desc: Absorb missile X
-    label: AbsorbMissileX
+  - name: AbsorbMissileX
     val: 0x1B
-  - desc: Absorb red X
-    label: AbsorbRedX
+  - name: AbsorbRedX
     val: 0x1C
-  - desc: Absorb ability
-    label: AbsorbAbility
+  - name: AbsorbAbility
     val: 0x1D
-  - desc: Absorb ice X (pre-varia)
-    label: AbsorbIceXPreVaria
+  - name: AbsorbIceXPreVaria
     val: 0x1E
-  - desc: Ice X trail
-    label: IceXTrail
+  - name: IceXTrail
     val: 0x1F
-  - desc: Diffusion ice particles
-    label: DiffusionIceParticles
+  - name: DiffusionIceParticles
     val: 0x20
-  - desc: Explosion 1
-    label: Explosion1
+  - name: Explosion1
     val: 0x21
-  - desc: Explosion 2
-    label: Explosion2
+  - name: Explosion2
     val: 0x22
-  - desc: Explosion 3
-    label: Explosion3
+  - name: Explosion3
     val: 0x23
-  - desc: Explosion 4
-    label: Explosion4
+  - name: Explosion4
     val: 0x24
-  - desc: BOX missile explosion
-    label: BoxMissileExplosion
+  - name: BoxMissileExplosion
     val: 0x25
-  - desc: Explosion 5
-    label: Explosion5
+  - name: Explosion5
     val: 0x26
-  - desc: Heavy dust 1
-    label: HeavyDust1
+  - name: HeavyDust1
     val: 0x27
-  - desc: Heavy dust 2
-    label: HeavyDust2
+  - name: HeavyDust2
     val: 0x28
-  - desc: Dust 1
-    label: Dust1
+  - name: Dust1
     val: 0x29
-  - desc: Dust 2
-    label: Dust2
+  - name: Dust2
     val: 0x2A
-  - desc: Fire beam
-    label: FireBeam
+  - name: FireBeam
     val: 0x2B
-  - desc: Unused
-    label: Unused
+  - name: Unused
     val: 0x2C
-  - desc: Explosion/smoke
-    label: ExplosionAndSmoke
+  - name: ExplosionAndSmoke
     val: 0x2D
-  - desc: Tall explosion/smoke
-    label: TallExplosionAndSmoke
+  - name: TallExplosionAndSmoke
     val: 0x2E
-  - desc: Explosion 6
-    label: Explosion6
+  - name: Explosion6
     val: 0x2F
-  - desc: Explosion 7
-    label: Explosion7
+  - name: Explosion7
     val: 0x30
-  - desc: Smoke
-    label: Smoke
+  - name: Smoke
     val: 0x31
-  - desc: Explosion 8
-    label: Explosion8
+  - name: Explosion8
     val: 0x32
-  - desc: Tall smoke 1
-    label: TallSmoke1
+  - name: TallSmoke1
     val: 0x33
-  - desc: Tall explosion
-    label: TallExplosion
+  - name: TallExplosion
     val: 0x34
-  - desc: Tall smoke 2
-    label: TallSmoke2
+  - name: TallSmoke2
     val: 0x35
-  - desc: Enter/exit water
-    label: EnterOrExitWater
+  - name: EnterOrExitWater
     val: 0x36
-  - desc: Large enter/exit water
-    label: LargeEnterOrExitWater
+  - name: LargeEnterOrExitWater
     val: 0x37
-  - desc: Smoke/water?
-    label: SmokeWater
+  - name: SmokeWater
     val: 0x38
-  - desc: Unused
-    label: Unused
+  - name: Unused
     val: 0x39
-  - desc: Explosion 9
-    label: Explosion9
+  - name: Explosion9
     val: 0x3A
-  - desc: Outward ice explosion (unused?)
-    label: OutwardIceExplosion
+  - name: OutwardIceExplosion
     val: 0x3B
-  - desc: Outward smoke
-    label: OutwardSmoke
+  - name: OutwardSmoke
     val: 0x3C
-  - desc: Screw attack kill
-    label: ScrewAttackKill
+  - name: ScrewAttackKill
     val: 0x3D
-  - desc: Speed booster kill
-    label: SpeedBoosterKill
+  - name: SpeedBoosterKill
     val: 0x3E
-  - desc: Shinespark kill
-    label: ShinesparkKill
+  - name: ShinesparkKill
     val: 0x3F
-  - desc: Pseudo-screw attack kill
-    label: PseudoScrewAttackKill
+  - name: PseudoScrewAttackKill
     val: 0x40
-  - desc: Unused
-    label: Unused
+  - name: Unused
     val: 0x41
-  - desc: Get suit?
-    label: GetSuit
+  - name: GetSuit
     val: 0x42
-- desc: Projectile status
-  label: ProjectileStatus
+- name: ProjectileStatus
   vals:
-  - desc: Exists
-    label: Exists
+  - name: Exists
     val: 0x1
-  - desc: On screen
-    label: OnScreen
+  - name: OnScreen
     val: 0x2
-  - desc: Exploding?
-    label: Exploding
+  - name: Exploding
     val: 0x4
-  - desc: Ignore collision
-    label: IgnoreCollision
+  - name: IgnoreCollision
     val: 0x8
-  - desc: Can affect environment
-    label: CanAffectEnvironment
+  - name: CanAffectEnvironment
     val: 0x10
-  - desc: Y flip
-    label: YFlip
+  - name: YFlip
     val: 0x20
-  - desc: X flip
-    label: XFlip
+  - name: XFlip
     val: 0x40
-  - desc: Draw under sprites?
-    label: DrawUnderSprites
+  - name: DrawUnderSprites
     val: 0x80
-- desc: Projectile type
-  label: ProjectileType
+- name: ProjectileType
   vals:
-  - desc: Normal beam
-    label: NormalBeam
+  - name: NormalBeam
     val: 0x0
-  - desc: Charge beam
-    label: ChargeBeam
+  - name: ChargeBeam
     val: 0x1
-  - desc: Wide beam
-    label: WideBeam
+  - name: WideBeam
     val: 0x2
-  - desc: Plasma beam
-    label: PlasmaBeam
+  - name: PlasmaBeam
     val: 0x3
-  - desc: Wave beam
-    label: WaveBeam
+  - name: WaveBeam
     val: 0x4
-  - desc: Charged normal beam
-    label: ChargedNormalBeam
+  - name: ChargedNormalBeam
     val: 0x5
-  - desc: Charged charge beam
-    label: ChargedChargeBeam
+  - name: ChargedChargeBeam
     val: 0x6
-  - desc: Charged wide beam
-    label: ChargedWideBeam
+  - name: ChargedWideBeam
     val: 0x7
-  - desc: Charged plasma beam
-    label: ChargedPlasmaBeam
+  - name: ChargedPlasmaBeam
     val: 0x8
-  - desc: Charged wave beam
-    label: ChargedWaveBeam
+  - name: ChargedWaveBeam
     val: 0x9
-  - desc: Normal missile
-    label: NormalMissile
+  - name: NormalMissile
     val: 0xA
-  - desc: Super missile
-    label: SuperMissile
+  - name: SuperMissile
     val: 0xB
-  - desc: Ice missile
-    label: IceMissile
+  - name: IceMissile
     val: 0xC
-  - desc: Diffusion missile
-    label: DiffusionMissile
+  - name: DiffusionMissile
     val: 0xD
-  - desc: Charged diffusion missile
-    label: ChargedDiffusionMissile
+  - name: ChargedDiffusionMissile
     val: 0xE
-  - desc: Flare
-    label: Flare
+  - name: Flare
     val: 0xF
-  - desc: Bomb
-    label: Bomb
+  - name: Bomb
     val: 0x10
-  - desc: Power bomb
-    label: PowerBomb
+  - name: PowerBomb
     val: 0x11
-  - desc: Diffusion flake
-    label: DiffusionFlake
+  - name: DiffusionFlake
     val: 0x12
-- desc: Room effect
-  label: RoomEffect
+- name: RoomEffect
   vals:
-  - desc: None
-    label: None
+  - name: None
     val: 0x0
-  - desc: Water
-    label: Water
+  - name: Water
     val: 0x1
-  - desc: Lava
-    label: Lava
+  - name: Lava
     val: 0x2
-  - desc: Lava, heat damage, BG3 haze
-    label: Lava_HeatDamage_Bg3Haze
+  - name: Lava_HeatDamage_Bg3Haze
     val: 0x3
-  - desc: Acid
-    label: Acid
+  - name: Acid
     val: 0x4
-  - desc: Snowflakes, cold damage + knockback
-    label: Snowflakes_ColdDamage_Knockback
+  - name: Snowflakes_ColdDamage_Knockback
     val: 0x5
-  - desc: Snowflakes, cold damage
-    label: Snowflakes_ColdDamage
+  - name: Snowflakes_ColdDamage
     val: 0x6
-  - desc: Heat haze (BG3)
-    label: HeatHaze_Bg3
+  - name: HeatHaze_Bg3
     val: 0x7
-  - desc: Heat haze (BG2+3)
-    label: HeatHaze_Bg2_Bg3
+  - name: HeatHaze_Bg2_Bg3
     val: 0x8
-  - desc: Gradient (BG3)
-    label: Gradient_Bg3
+  - name: Gradient_Bg3
     val: 0x9
-  - desc: Gradient (BG2)
-    label: Gradient_Bg2
+  - name: Gradient_Bg2
     val: 0xA
-  - desc: Nightmare's room
-    label: NightmaresRoom
+  - name: NightmaresRoom
     val: 0xB
-- desc: Samus hitbox type
-  label: SamusHitboxType
+- name: SamusHitboxType
   vals:
-  - desc: Standing
-    label: Standing
+  - name: Standing
     val: 0x0
-  - desc: Midair
-    label: Midair
+  - name: Midair
     val: 0x1
-  - desc: Crouching
-    label: Crouching
+  - name: Crouching
     val: 0x2
-  - desc: Spinning
-    label: Spinning
+  - name: Spinning
     val: 0x4
-  - desc: Morphed
-    label: Morphed
+  - name: Morphed
     val: 0x5
-  - desc: Morphed midair
-    label: MorphedMidair
+  - name: MorphedMidair
     val: 0x6
-- desc: Samus pose
-  label: SamusPose
+- name: SamusPose
   vals:
-  - desc: Standing
-    label: Standing
+  - name: Standing
     val: 0x0
-  - desc: Turning around
-    label: TurningAround
+  - name: TurningAround
     val: 0x1
-  - desc: Shooting
-    label: Shooting
+  - name: Shooting
     val: 0x2
-  - desc: Running
-    label: Running
+  - name: Running
     val: 0x3
-  - desc: Jumping/falling
-    label: JumpingOrFalling
+  - name: JumpingOrFalling
     val: 0x4
-  - desc: Turning around and jumping/falling
-    label: TurningAroundAndJumpingOrFalling
+  - name: TurningAroundAndJumpingOrFalling
     val: 0x5
-  - desc: Landing
-    label: Landing
+  - name: Landing
     val: 0x6
-  - desc: Crouching
-    label: Crouching
+  - name: Crouching
     val: 0x7
-  - desc: Turning around and crouching
-    label: TurningAroundAndCrouching
+  - name: TurningAroundAndCrouching
     val: 0x8
-  - desc: Shooting and crouching
-    label: ShootingAndCrouching
+  - name: ShootingAndCrouching
     val: 0x9
-  - desc: Starting spin jump
-    label: StartingSpinJump
+  - name: StartingSpinJump
     val: 0xA
-  - desc: Spinning
-    label: Spinning
+  - name: Spinning
     val: 0xB
-  - desc: Morphing
-    label: Morphing
+  - name: Morphing
     val: 0xC
-  - desc: Morphball
-    label: Morphball
+  - name: Morphball
     val: 0xD
-  - desc: Rolling
-    label: Rolling
+  - name: Rolling
     val: 0xE
-  - desc: Unmorphing
-    label: Unmorphing
+  - name: Unmorphing
     val: 0xF
-  - desc: Jumping/falling in morphball
-    label: JumpingOrFallingInMorphball
+  - name: JumpingOrFallingInMorphball
     val: 0x10
-  - desc: Getting hurt
-    label: GettingHurt
+  - name: GettingHurt
     val: 0x11
-  - desc: Getting hurt in morphball
-    label: GettingHurtInMorphball
+  - name: GettingHurtInMorphball
     val: 0x12
-  - desc: Getting knocked back
-    label: GettingKnockedBack
+  - name: GettingKnockedBack
     val: 0x13
-  - desc: Getting knocked back in morphball
-    label: GettingKnockedBackInMorphball
+  - name: GettingKnockedBackInMorphball
     val: 0x14
-  - desc: Starting wall-jump
-    label: StartingWallJump
+  - name: StartingWallJump
     val: 0x15
-  - desc: Wall-jumping
-    label: WallJumping
+  - name: WallJumping
     val: 0x16
-  - desc: Using an elevator
-    label: UsingAnElevator
+  - name: UsingAnElevator
     val: 0x17
-  - desc: Hanging on ledge
-    label: HangingOnLedge
+  - name: HangingOnLedge
     val: 0x18
-  - desc: Pulling self up from hanging
-    label: PullingSelfUpFromHanging
+  - name: PullingSelfUpFromHanging
     val: 0x19
-  - desc: Pulling self forward from hanging
-    label: PullingSelfForwardFromHanging
+  - name: PullingSelfForwardFromHanging
     val: 0x1A
-  - desc: Pulling self into morphball tunnel
-    label: PullingSelfIntoMorphballTunnel
+  - name: PullingSelfIntoMorphballTunnel
     val: 0x1B
-  - desc: Unused pulling self down to start hanging
-    label: UnusedPullingSelfDownToStartHanging
+  - name: UnusedPullingSelfDownToStartHanging
     val: 0x1C
-  - desc: Space jumping
-    label: SpaceJumping
+  - name: SpaceJumping
     val: 0x1D
-  - desc: Screw attacking
-    label: ScrewAttacking
+  - name: ScrewAttacking
     val: 0x1E
-  - desc: Skidding
-    label: Skidding
+  - name: Skidding
     val: 0x1F
-  - desc: On save pad
-    label: OnSavePad
+  - name: OnSavePad
     val: 0x20
-  - desc: On recharge security pad
-    label: OnRechargeSecurityPad
+  - name: OnRechargeSecurityPad
     val: 0x21
-  - desc: Turning around to be recharged
-    label: TurningAroundToBeRecharged
+  - name: TurningAroundToBeRecharged
     val: 0x22
-  - desc: Delay before shinesparking
-    label: DelayBeforeShinesparking
+  - name: DelayBeforeShinesparking
     val: 0x23
-  - desc: Shinesparking
-    label: Shinesparking
+  - name: Shinesparking
     val: 0x24
-  - desc: Delay after shinesparking
-    label: DelayAfterShinesparking
+  - name: DelayAfterShinesparking
     val: 0x25
-  - desc: Hanging from vertical ladder
-    label: HangingFromVerticalLadder
+  - name: HangingFromVerticalLadder
     val: 0x26
-  - desc: Starting to hold arm cannon out on vertical ladder
-    label: StartingToHoldArmCannonOutOnVerticalLadder
+  - name: StartingToHoldArmCannonOutOnVerticalLadder
     val: 0x27
-  - desc: Holding arm cannon out on vertical ladder
-    label: HoldingArmCannonOutOnVerticalLadder
+  - name: HoldingArmCannonOutOnVerticalLadder
     val: 0x28
-  - desc: Shooting on vertical ladder
-    label: ShootingOnVerticalLadder
+  - name: ShootingOnVerticalLadder
     val: 0x29
-  - desc: Starting to put away arm cannon on vertical ladder
-    label: StartingToPutAwayArmCannonOnVerticalLadder
+  - name: StartingToPutAwayArmCannonOnVerticalLadder
     val: 0x2A
-  - desc: Hanging on horizontal ladder
-    label: HangingOnHorizontalLadder
+  - name: HangingOnHorizontalLadder
     val: 0x2B
-  - desc: Moving on horizontal ladder
-    label: MovingOnHorizontalLadder
+  - name: MovingOnHorizontalLadder
     val: 0x2C
-  - desc: Turning around on horizontal ladder
-    label: TurningAroundOnHorizontalLadder
+  - name: TurningAroundOnHorizontalLadder
     val: 0x2D
-  - desc: Delay after shooting on horizontal ladder
-    label: DelayAfterShootingOnHorizontalLadder
+  - name: DelayAfterShootingOnHorizontalLadder
     val: 0x2E
-  - desc: Shooting on horizontal ladder
-    label: ShootingOnHorizontalLadder
+  - name: ShootingOnHorizontalLadder
     val: 0x2F
-  - desc: Frozen
-    label: Frozen
+  - name: Frozen
     val: 0x30
-  - desc: Frozen and falling
-    label: FrozenAndFalling
+  - name: FrozenAndFalling
     val: 0x31
-  - desc: Frozen in morphball
-    label: FrozenInMorphball
+  - name: FrozenInMorphball
     val: 0x32
-  - desc: Frozen in morphball and falling
-    label: FrozenInMorphballAndFalling
+  - name: FrozenInMorphballAndFalling
     val: 0x33
-  - desc: Unlocking security
-    label: UnlockingSecurity
+  - name: UnlockingSecurity
     val: 0x34
-  - desc: Saving game
-    label: SavingGame
+  - name: SavingGame
     val: 0x35
-  - desc: On navigation pad
-    label: OnNavPad
+  - name: OnNavPad
     val: 0x36
-  - desc: Downloading an ability
-    label: DownloadingAnAbility
+  - name: DownloadingAnAbility
     val: 0x37
-  - desc: Being recharged
-    label: BeingRecharged
+  - name: BeingRecharged
     val: 0x38
-  - desc: Facing the foreground
-    label: FacingTheForeground
+  - name: FacingTheForeground
     val: 0x39
-  - desc: Facing the background
-    label: FacingTheBg
+  - name: FacingTheBg
     val: 0x3A
-  - desc: Unlocking the habitations Deck
-    label: UnlockingTheHabitationsDeck
+  - name: UnlockingTheHabitationsDeck
     val: 0x3B
-  - desc: Grabbed by Zazabi
-    label: GrabbedByZazabi
+  - name: GrabbedByZazabi
     val: 0x3C
-  - desc: Loading save
-    label: LoadingSave
+  - name: LoadingSave
     val: 0x3D
-  - desc: Dying
-    label: Dying
+  - name: Dying
     val: 0x3E
-  - desc: Hit by Omega Metroid
-    label: HitByOmegaMetroid
+  - name: HitByOmegaMetroid
     val: 0x3F
-  - desc: Grabbed by Yakuza
-    label: GrabbedByYakuza
+  - name: GrabbedByYakuza
     val: 0x40
-- desc: Samus slope type
-  label: SamusSlopeType
+- name: SamusSlopeType
   vals:
-  - desc: Steep
-    label: Steep
+  - name: Steep
+    desc: 45 degree angle
     val: 0x1
-    notes: 45 degree angle
-  - desc: Slight
-    label: Slight
+  - name: Slight
+    desc: 26.5 degree angle
     val: 0x2
-    notes: 26.5 degree angle
-  - desc: Right
-    label: Right
+  - name: Right
+    desc: Fills the bottom right of a block
     val: 0x10
-    notes: Fills the bottom right of a block
-  - desc: Left
-    label: Left
+  - name: Left
+    desc: Fills the bottom left of a block
     val: 0x20
-    notes: Fills the bottom left of a block
-- desc: Samus standing status
-  label: SamusStandingStatus
+- name: SamusStandingStatus
   vals:
-  - desc: Standing on ground
-    label: StandingOnGround
+  - name: StandingOnGround
     val: 0x0
-  - desc: Standing on enemy
-    label: StandingOnEnemy
+  - name: StandingOnEnemy
     val: 0x1
-  - desc: Midair
-    label: Midair
+  - name: Midair
     val: 0x2
-  - desc: Not in control of Samus
-    label: NotInControlOfSamus
+  - name: NotInControlOfSamus
     val: 0x3
-- desc: SA-X on-screen flag
-  label: SaxOnScreenFlag
+- name: SaxOnScreenFlag
   vals:
-  - desc: Not present
-    label: NotPresent
+  - name: NotPresent
     val: 0x0
-  - desc: Not on screen
-    label: NotOnScreen
+  - name: NotOnScreen
     val: 0x1
-  - desc: On screen
-    label: OnScreen
+  - name: OnScreen
     val: 0x2
-- desc: SA-X pose
-  label: SaxPose
+- name: SaxPose
   vals:
-  - desc: Running
-    label: Running
+  - name: Running
     val: 0x0
-  - desc: Walking
-    label: Walking
+  - name: Walking
     val: 0x1
-  - desc: Standing
-    label: Standing
+  - name: Standing
     val: 0x2
-  - desc: Shooting
-    label: Shooting
+  - name: Shooting
     val: 0x3
-  - desc: Turning
-    label: Turning
+  - name: Turning
     val: 0x4
-  - desc: Jumping
-    label: Jumping
+  - name: Jumping
     val: 0x5
-  - desc: Landing
-    label: Landing
+  - name: Landing
     val: 0x6
-  - desc: Falling
-    label: Falling
+  - name: Falling
     val: 0x7
-  - desc: Getting hurt
-    label: GettingHurt
+  - name: GettingHurt
     val: 0x8
-  - desc: Shooting Restricted labratory
-    label: ShootingRestrictedLabratory
+  - name: ShootingRestrictedLabratory
     val: 0x9
-  - desc: Covered by metroids
-    label: CoveredByMetroids
+  - name: CoveredByMetroids
     val: 0xA
-  - desc: Kneeling
-    label: Kneeling
+  - name: Kneeling
     val: 0xB
-  - desc: Transforming into monster
-    label: TransformingIntoMonster
+  - name: TransformingIntoMonster
     val: 0xC
-  - desc: Morphing
-    label: Morphing
+  - name: Morphing
     val: 0xD
-  - desc: Unmorphing
-    label: Unmorphing
+  - name: Unmorphing
     val: 0xE
-  - desc: Morph ball
-    label: MorphBall
+  - name: MorphBall
     val: 0xF
-  - desc: Rolling
-    label: Rolling
+  - name: Rolling
     val: 0x10
-  - desc: Unused, slow walk
-    label: UnusedSlowWalk
+  - name: UnusedSlowWalk
     val: 0x11
-  - desc: Turning toward camera
-    label: TurningTowardCamera
+  - name: TurningTowardCamera
     val: 0x12
-  - desc: Turning away from camera
-    label: TurningAwayFromCamera
+  - name: TurningAwayFromCamera
     val: 0x13
-- desc: Scrolls flag
-  label: ScrollsFlag
+- name: ScrollsFlag
   vals:
-  - desc: No scrolls
-    label: NoScrolls
+  - name: NoScrolls
     val: 0x2
-  - desc: Room has scrolls
-    label: RoomHasScrolls
+  - name: RoomHasScrolls
     val: 0x3
-- desc: Security level
-  label: SecurityLevel
+- name: SecurityLevel
   vals:
-  - desc: White hatches
-    label: WhiteHatches
+  - name: WhiteHatches
     val: 0x0
-  - desc: Level 1 (blue hatches)
-    label: Level1_BlueHatches
+  - name: Level1_BlueHatches
     val: 0x1
-  - desc: Level 2 (green hatches)
-    label: Level2_GreenHatches
+  - name: Level2_GreenHatches
     val: 0x2
-  - desc: Level 3 (yellow hatches)
-    label: Level3_YellowHatches
+  - name: Level3_YellowHatches
     val: 0x3
-  - desc: Level 4 (red hatches)
-    label: Level4_RedHatches
+  - name: Level4_RedHatches
     val: 0x4
-  - desc: No hatches
-    label: NoHatches
+  - name: NoHatches
     val: 0xFF
-- desc: Sprite debris type
-  label: SpriteDebrisType
+- name: SpriteDebrisType
   vals:
-  - desc: Todo
-    label: Todo
+  - name: Todo
     val: 0x0
-- desc: Sprite properties
-  label: SpriteProperties
+- name: SpriteProperties
   vals:
-  - desc: No collision?
-    label: NoCollision
+  - name: NoCollision
     val: 0x1
-  - desc: Can absorb X parasite
-    label: CanAbsorbXParasite
+  - name: CanAbsorbXParasite
     val: 0x2
-  - desc: Projectile?
-    label: Projectile
+  - name: Projectile
     val: 0x4
-  - desc: Solid for projectiles
-    label: SolidForProjectiles
+  - name: SolidForProjectiles
     val: 0x8
-  - desc: Destroyed?
-    label: Destroyed
+  - name: Destroyed
     val: 0x10
-  - desc: Message banner?
-    label: MessageBanner
+  - name: MessageBanner
     val: 0x20
-  - desc: Immune to projectiles
-    label: ImmuneToProjectiles
+  - name: ImmuneToProjectiles
     val: 0x40
-  - desc: Secondary sprite
-    label: SecondarySprite
+  - name: SecondarySprite
     val: 0x80
-- desc: Sprite Samus collision
-  label: SpriteSamusCollision
+- name: SpriteSamusCollision
   vals:
-  - desc: Solid
-    label: Solid
+  - name: Solid
     val: 0x1
-  - desc: Hurts Samus
-    label: HurtsSamus
+  - name: HurtsSamus
     val: 0x2
-  - desc: Hurts Samus, stops/dies when hit
-    label: HurtsSamus_StopsWhenHit
+  - name: HurtsSamus_StopsWhenHit
     val: 0x4
-  - desc: Knocks back Samus
-    label: KnocksBackSamus
+  - name: KnocksBackSamus
     val: 0x5
-  - desc: SA-X ice beam
-    label: SaxIceBeam
+  - name: SaxIceBeam
     val: 0x7
-  - desc: SA-X super missile
-    label: SaxSuperMissile
+  - name: SaxSuperMissile
     val: 0x8
-  - desc: Save platform
-    label: SavePlatform
+  - name: SavePlatform
     val: 0xA
-  - desc: Yameba
-    label: Yameba
+  - name: Yameba
     val: 0xB
-  - desc: Core X ability
-    label: CoreXAbility
+  - name: CoreXAbility
     val: 0xC
-  - desc: Hurts Samus, cannot pass through
-    label: HurtsSamus_CannotPassThrough
+  - name: HurtsSamus_CannotPassThrough
     val: 0xD
-  - desc: Yellow X parasite (spawns on room load)
-    label: YellowXParasite_SpawnsOnRoomLoad
+  - name: YellowXParasite_SpawnsOnRoomLoad
     val: 0xF
-  - desc: Green X parasite
-    label: GreenXParasite
+  - name: GreenXParasite
     val: 0x10
-  - desc: Red X parasite
-    label: RedXParasite
+  - name: RedXParasite
     val: 0x11
-  - desc: Yellow X parasite
-    label: YellowXParasite
+  - name: YellowXParasite
     val: 0x12
-  - desc: Blue X parasite
-    label: BlueXParasite
+  - name: BlueXParasite
     val: 0x13
-  - desc: Omega Metroid swiping
-    label: OmegaMetroidSwiping
+  - name: OmegaMetroidSwiping
     val: 0x15
-  - desc: Omega Metroid body
-    label: OmegaMetroidBody
+  - name: OmegaMetroidBody
     val: 0x16
-  - desc: Ridley tail Serris segment
-    label: RidleyTailSerrisSegment
+  - name: RidleyTailSerrisSegment
     val: 0x18
-  - desc: Ridley claw (can be grabbed)
-    label: RidleyClaw_CanBeGrabbed
+  - name: RidleyClaw_CanBeGrabbed
     val: 0x1A
-  - desc: Ridley claw (while grabbed)
-    label: RidleyClaw_WhileGrabbed
+  - name: RidleyClaw_WhileGrabbed
     val: 0x1B
-- desc: Sprite status
-  label: SpriteStatus
+- name: SpriteStatus
   vals:
-  - desc: Exists
-    label: Exists
+  - name: Exists
     val: 0x1
-  - desc: On screen
-    label: OnScreen
+  - name: OnScreen
     val: 0x2
-  - desc: Not drawn
-    label: NotDrawn
+  - name: NotDrawn
     val: 0x4
-  - desc: Unknown 8
-    label: unk_8
+  - name: unk_8
     val: 0x8
-  - desc: Unknown 10
-    label: unk_10
+  - name: unk_10
     val: 0x10
-  - desc: Mosaic flag
-    label: MosaicFlag
+  - name: MosaicFlag
     val: 0x20
-  - desc: X flip
-    label: XFlip
+  - name: XFlip
     val: 0x40
-  - desc: Rotation/scaling flag
-    label: RotationScalingFlag
+  - name: RotationScalingFlag
     val: 0x80
-  - desc: Y flip
-    label: YFlip
+  - name: YFlip
     val: 0x100
-  - desc: Facing right
-    label: FacingRight
+  - name: FacingRight
     val: 0x200
-  - desc: Samus detected
-    label: SamusDetected
+  - name: SamusDetected
     val: 0x400
-  - desc: Samus colliding
-    label: SamusColliding
+  - name: SamusColliding
     val: 0x800
-  - desc: Samus on top
-    label: SamusOnTop
+  - name: SamusOnTop
     val: 0x1000
-  - desc: Alpha blending
-    label: AlphaBlending
+  - name: AlphaBlending
     val: 0x2000
-  - desc: Ignore projectiles
-    label: IgnoreProjectiles
+  - name: IgnoreProjectiles
     val: 0x8000
-- desc: Sprite weakness
-  label: SpriteWeakness
+- name: SpriteWeakness
   vals:
-  - desc: Charge beam (no normal beam)
-    label: ChargeBeam_NoNormalBeam
+  - name: ChargeBeam_NoNormalBeam
     val: 0x1
-  - desc: Beam and bombs
-    label: BeamAndBombs
+  - name: BeamAndBombs
     val: 0x2
-  - desc: Super missiles (no normal missiles)
-    label: SuperMissiles_NoNormalMissiles
+  - name: SuperMissiles_NoNormalMissiles
     val: 0x4
-  - desc: Missiles
-    label: Missiles
+  - name: Missiles
     val: 0x8
-  - desc: Power bombs
-    label: PowerBombs
+  - name: PowerBombs
     val: 0x10
-  - desc: Speed booster/screw attack
-    label: SpeedBoosterScrewAttack
+  - name: SpeedBoosterScrewAttack
     val: 0x20
-  - desc: Can be frozen
-    label: CanBeFrozen
+  - name: CanBeFrozen
     val: 0x40
-- desc: Sub-event trigger
-  label: SubEventTrigger
+- name: SubEventTrigger
   vals:
-  - desc: Starting room load
-    label: StartingRoomLoad
+  - name: StartingRoomLoad
     val: 0x2
-  - desc: Unknown 03
-    label: unk_03
+  - name: unk_03
     val: 0x3
-  - desc: Unknown 04
-    label: unk_04
+  - name: unk_04
     val: 0x4
-  - desc: Unknown 05
-    label: unk_05
+  - name: unk_05
     val: 0x5
-  - desc: Starting navigation conversation
-    label: StartingNavConversation
+  - name: StartingNavConversation
     val: 0x6
-  - desc: Ending navigation conversation
-    label: EndingNavConversation
+  - name: EndingNavConversation
     val: 0x7
-  - desc: SA-X elevator cutscene?
-    label: SaxElevatorCutscene
+  - name: SaxElevatorCutscene
     val: 0x8
-  - desc: Downloading item
-    label: DownloadingItem
+  - name: DownloadingItem
     val: 0x9
-  - desc: Unlocking security
-    label: UnlockingSecurity
+  - name: UnlockingSecurity
     val: 0xA
-  - desc: Start of game?
-    label: StartOfGame
+  - name: StartOfGame
     val: 0xB
-  - desc: Unknown 20
-    label: unk_20
+  - name: unk_20
     val: 0x20
-  - desc: Starting door transition
-    label: StartingDoorTransition
+  - name: StartingDoorTransition
     val: 0x21
-  - desc: Room fade-in finished
-    label: RoomFadeInFinished
+  - name: RoomFadeInFinished
     val: 0x22
-  - desc: Starting elevator ride up
-    label: StartingElevatorRideUp
+  - name: StartingElevatorRideUp
     val: 0x40
-  - desc: Starting elevator ride down
-    label: StartingElevatorRideDown
+  - name: StartingElevatorRideDown
     val: 0x41
-  - desc: Ending elevator ride up
-    label: EndingElevatorRideUp
+  - name: EndingElevatorRideUp
     val: 0x42
-  - desc: Ending elevator ride down
-    label: EndingElevatorRideDown
+  - name: EndingElevatorRideDown
     val: 0x43
-- desc: Suit damage reduction
-  label: SuitDamageReduction
+- name: SuitDamageReduction
   vals:
-  - desc: Reduce 30%/10%
-    label: Reduce_30_10
+  - name: Reduce_30_10
     val: 0x0
-  - desc: Reduce 60%/30%
-    label: Reduce_60_30
+  - name: Reduce_60_30
     val: 0x1
-  - desc: Reduce 80%/10%
-    label: Reduce_80_10
+  - name: Reduce_80_10
     val: 0x2
-  - desc: Reduce 90%/80%
-    label: Reduce_90_80
+  - name: Reduce_90_80
     val: 0x3
-  - desc: Can create debris
-    label: CanCreateDebris
+  - name: CanCreateDebris
     val: 0x10
-- desc: Suit/misc status
-  label: SuitMiscStatus
+- name: SuitMiscStatus
   vals:
-  - desc: Hi-jump
-    label: HiJump
+  - name: HiJump
     val: 0x1
-  - desc: Speed booster
-    label: SpeedBooster
+  - name: SpeedBooster
     val: 0x2
-  - desc: Space jump
-    label: SpaceJump
+  - name: SpaceJump
     val: 0x4
-  - desc: Screw attack
-    label: ScrewAttack
+  - name: ScrewAttack
     val: 0x8
-  - desc: Varia suit
-    label: VariaSuit
+  - name: VariaSuit
     val: 0x10
-  - desc: Gravity suit
-    label: GravitySuit
+  - name: GravitySuit
     val: 0x20
-  - desc: Morph ball
-    label: MorphBall
+  - name: MorphBall
     val: 0x40
-  - desc: SA-X suit
-    label: SaxSuit
+  - name: SaxSuit
     val: 0x80
-- desc: Tank type
-  label: TankType
+- name: TankType
   vals:
-  - desc: Missile tank
-    label: MissileTank
+  - name: MissileTank
     val: 0x1
-  - desc: Energy tank
-    label: EnergyTank
+  - name: EnergyTank
     val: 0x2
-  - desc: Power bomb tank
-    label: PowerBombTank
+  - name: PowerBombTank
     val: 0x3
-- desc: Vertical direction
-  label: VerticalDirection
+- name: VerticalDirection
   vals:
-  - desc: Up
-    label: Up
+  - name: Up
     val: 0x40
-  - desc: Down
-    label: Down
+  - name: Down
     val: 0x80

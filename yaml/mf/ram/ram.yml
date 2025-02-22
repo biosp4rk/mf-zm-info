@@ -1,5 +1,4 @@
-- desc: Pause BG0 map
-  label: PauseBg0Map
+- name: PauseBg0Map
   type: u16
   count: 0x400
   cat: tilemap
@@ -8,8 +7,7 @@
     E: 0x200F800
     J: 0x200F800
     C: 0x200F800
-- desc: Sleep mode BG0 map
-  label: SleepModeBg0Map
+- name: SleepModeBg0Map
   type: u16
   count: 0x800
   cat: tilemap
@@ -18,8 +16,8 @@
     E: 0x2010000
     J: 0x2010000
     C: 0x2010000
-- desc: Paused common sprite graphics
-  label: PausedCommonSpriteGfx
+- name: PausedCommonSpriteGfx
+  desc: Holds common sprite graphics while paused
   type: u8
   count: 0x4000
   cat: gfx
@@ -28,9 +26,8 @@
     E: 0x201C000
     J: 0x201C000
     C: 0x201C000
-  notes: Holds common sprite graphics while paused
-- desc: Paused room sprite graphics
-  label: PausedRoomSpriteGfx
+- name: PausedRoomSpriteGfx
+  desc: Holds room sprite graphics while paused
   type: u8
   count: 0x4000
   cat: gfx
@@ -39,9 +36,7 @@
     E: 0x2020000
     J: 0x2020000
     C: 0x2020000
-  notes: Holds room sprite graphics while paused
-- desc: Decompressed clipdata
-  label: DecompClipdata
+- name: DecompClipdata
   type: u16
   count: 0x1800
   addr:
@@ -49,8 +44,7 @@
     E: 0x2026000
     J: 0x2026000
     C: 0x2026000
-- desc: Decompressed BG0 data
-  label: DecompBg0Data
+- name: DecompBg0Data
   type: u16
   count: 0x1800
   addr:
@@ -58,8 +52,7 @@
     E: 0x2029000
     J: 0x2029000
     C: 0x2029000
-- desc: Decompressed BG1 data
-  label: DecompBg1Data
+- name: DecompBg1Data
   type: u16
   count: 0x1800
   addr:
@@ -67,8 +60,7 @@
     E: 0x202C000
     J: 0x202C000
     C: 0x202C000
-- desc: Decompressed BG2 data
-  label: DecompBg2Data
+- name: DecompBg2Data
   type: u16
   count: 0x1800
   addr:
@@ -76,8 +68,7 @@
     E: 0x202F000
     J: 0x202F000
     C: 0x202F000
-- desc: Decompressed BG3 data
-  label: DecompBg3Data
+- name: DecompBg3Data
   type: u16
   count: 0x1000
   addr:
@@ -85,8 +76,7 @@
     E: 0x2032000
     J: 0x2032000
     C: 0x2032000
-- desc: Current minimap data
-  label: CurrMinimapData
+- name: CurrMinimapData
   type: u16
   count: 0x400
   addr:
@@ -94,8 +84,7 @@
     E: 0x2034000
     J: 0x2034000
     C: 0x2034000
-- desc: Decomp minimap data
-  label: DecompMinimapData
+- name: DecompMinimapData
   type: u16
   count: 0x400
   addr:
@@ -103,8 +92,7 @@
     E: 0x2034800
     J: 0x2034800
     C: 0x2034800
-- desc: Background palette
-  label: BackgroundPalette
+- name: BackgroundPalette
   type: u16
   count: 0x10
   cat: palette
@@ -113,8 +101,7 @@
     E: 0x2035400
     J: 0x2035400
     C: 0x2035400
-- desc: Sprite palette
-  label: SpritePalette
+- name: SpritePalette
   type: u16
   count: 0x10
   cat: palette
@@ -123,26 +110,23 @@
     E: 0x2035600
     J: 0x2035600
     C: 0x2035600
-- desc: Never reform blocks
-  label: NeverReformBlocks
-  type: NeverReformBlock
+- name: NeverReformBlocks
+  type: struct NeverReformBlock
   count: 0x600
   addr:
     U: 0x2036000
     E: 0x2036000
     J: 0x2036000
     C: 0x2036000
-- desc: Tanks collected
-  label: TanksCollected
-  type: CollectedTank
+- name: TanksCollected
+  type: struct CollectedTank
   count: 0x280
   addr:
     U: 0x2037200
     E: 0x2037200
     J: 0x2037200
     C: 0x2037200
-- desc: Minimap visited tiles
-  label: MinimapVisitedTiles
+- name: MinimapVisitedTiles
   type: u8
   count: 0x400
   addr:
@@ -150,8 +134,8 @@
     E: 0x2037C00
     J: 0x2037C00
     C: 0x2037C00
-- desc: SRAM header
-  label: SramHeader
+- name: SramHeader
+  desc: 00-7F of SRAM
   type: u8
   count: 0x80
   addr:
@@ -159,9 +143,7 @@
     E: 0x2038000
     J: 0x2038000
     C: 0x2038000
-  notes: 00-7F of SRAM
-- desc: SRAM header copy
-  label: SramHeaderCopy
+- name: SramHeaderCopy
   type: u8
   count: 0x80
   addr:
@@ -169,110 +151,97 @@
     E: 0x2038080
     J: 0x2038080
     C: 0x2038080
-- desc: SRAM
-  label: Sram
-  type: SaveFileRam
+- name: Sram
+  type: struct SaveFileRam
   count: 0x6
   addr:
     U: 0x2038200
     E: 0x2038200
     J: 0x2038200
     C: 0x2038200
-- desc: Debug flag
-  label: DebugFlag
+- name: DebugFlag
   type: u8
   addr:
     U: 0x3000000
     E: 0x3000000
     J: 0x3000000
     C: 0x3000000
-- desc: 16-bit frame counter
-  label: FrameCounter16Bit
+- name: FrameCounter16Bit
   type: u16
   addr:
     U: 0x3000002
     E: 0x3000002
     J: 0x3000002
     C: 0x3000002
-- desc: Stereo flag
-  label: StereoFlag
+- name: StereoFlag
   type: u8
   addr:
     J: 0x3000004
     C: 0x3000004
-- desc: Written to BLDALPHA
-  label: WrittenToBldalpha
+- name: WrittenToBldalpha
+  desc: Alpha blending coefficients
   type: u16
   addr:
     U: 0x3000004
     E: 0x3000004
     J: 0x3000006
     C: 0x3000006
-  notes: Alpha blending coefficients
-- desc: Written to BLDCNT
-  label: WrittenToBldcnt
+- name: WrittenToBldcnt
+  desc: Color special effects selection
   type: u16
   addr:
     U: 0x3000006
     E: 0x3000006
     J: 0x3000008
     C: 0x3000008
-  notes: Color special effects selection
-- desc: Written to DISPCNT
-  label: WrittenToDispcnt
+- name: WrittenToDispcnt
+  desc: LCD control
   type: u16
   addr:
     U: 0x3000008
     E: 0x3000008
     J: 0x300000A
     C: 0x300000A
-  notes: LCD control
-- desc: Written to BG3CNT
-  label: WrittenToBg3CNT
+- name: WrittenToBg3CNT
+  desc: BG3 control
   type: u16
   addr:
     U: 0x300000A
     E: 0x300000A
     J: 0x300000C
     C: 0x300000C
-  notes: BG3 control
-- desc: Written to WININ_H
-  label: WrittenToWININ_H
+- name: WrittenToWININ_H
+  desc: Inside of window 1
   type: u8
   addr:
     U: 0x300000C
     E: 0x300000C
     J: 0x300000E
     C: 0x300000E
-  notes: Inside of window 1
-- desc: Written to WINOUT_L
-  label: WrittenToWINOUT_L
+- name: WrittenToWINOUT_L
+  desc: Outside of windows
   type: u8
   addr:
     U: 0x300000D
     E: 0x300000D
     J: 0x300000F
     C: 0x300000F
-  notes: Outside of windows
-- desc: Written to 5000000
-  label: WrittenTo5000000
+- name: WrittenTo5000000
+  desc: Transparent color
   type: u16
   addr:
     U: 0x300000E
     E: 0x300000E
     J: 0x3000010
     C: 0x3000010
-  notes: Transparent color
-- desc: Copied to 203800C
-  label: CopiedTo203800C
+- name: CopiedTo203800C
   type: u8
   addr:
     U: 0x3000010
     E: 0x3000010
     J: 0x3000012
     C: 0x3000012
-- desc: Language
-  label: Language
+- name: Language
   type: u8
   addr:
     U: 0x3000011
@@ -280,16 +249,14 @@
     J: 0x3000014
     C: 0x3000014
   enum: Language
-- desc: Game completion
-  label: GameCompletion
-  type: GameCompletion
+- name: GameCompletion
+  type: struct GameCompletion
   addr:
     U: 0x3000014
     E: 0x3000014
     J: 0x3000018
     C: 0x3000018
-- desc: Fades backgrounds to black or white
-  label: FadeBgBlackWhite
+- name: FadeBgBlackWhite
   type: u8
   addr:
     U: 0x3000018
@@ -297,25 +264,22 @@
     J: 0x300001C
     C: 0x300001C
   enum: BackgroundFade
-- desc: Background position written to BG3OFS
-  label: BgPositionWrittenToBg3OFS
+- name: BgPositionWrittenToBg3OFS
+  desc: Which background's position is written to BG3OFS
   type: u8
   addr:
     U: 0x3000019
     E: 0x3000019
     J: 0x300001D
     C: 0x300001D
-  notes: Which background's position is written to BG3OFS
-- desc: Samus on top of backgrounds flag
-  label: SamusOnTopOfBgFlag
+- name: SamusOnTopOfBgFlag
   type: u8
   addr:
     U: 0x300001A
     E: 0x300001A
     J: 0x300001E
     C: 0x300001E
-- desc: Ability count
-  label: AbilityCount
+- name: AbilityCount
   type: u8
   addr:
     U: 0x300001B
@@ -323,15 +287,13 @@
     J: 0x300001F
     C: 0x300001F
   enum: AbilityCount
-- desc: Difficulty
-  label: Difficulty
+- name: Difficulty
   type: u8
   addr:
     J: 0x3000020
     C: 0x3000020
   enum: Difficulty
-- desc: Security hatch flash level
-  label: SecurityHatchFlashLevel
+- name: SecurityHatchFlashLevel
   type: u8
   addr:
     U: 0x300001C
@@ -339,8 +301,8 @@
     J: 0x3000021
     C: 0x3000021
   enum: SecurityLevel
-- desc: Security hatch flash level backup
-  label: SecurityHatchFlashLevelBackup
+- name: SecurityHatchFlashLevelBackup
+  desc: Backup of security hatch flash level during power outage
   type: u8
   addr:
     U: 0x300001D
@@ -348,9 +310,7 @@
     J: 0x3000022
     C: 0x3000022
   enum: SecurityLevel
-  notes: Backup of security hatch flash level during power outage
-- desc: Current demo
-  label: CurrDemo
+- name: CurrDemo
   type: u8
   addr:
     U: 0x300001E
@@ -358,72 +318,63 @@
     J: 0x3000023
     C: 0x3000023
   enum: Demo
-- desc: Demo playing flag
-  label: DemoPlayingFlag
+- name: DemoPlayingFlag
   type: u8
   addr:
     U: 0x300001F
     E: 0x300001F
     J: 0x3000024
     C: 0x3000024
-- desc: Reboot game flag
-  label: RebootGameFlag
+- name: RebootGameFlag
   type: u8
   addr:
     U: 0x3000020
     E: 0x3000020
     J: 0x3000025
     C: 0x3000025
-- desc: Disable scrolling flag
-  label: DisableScrollingFlag
+- name: DisableScrollingFlag
   type: u8
   addr:
     U: 0x3000021
     E: 0x3000021
     J: 0x3000026
     C: 0x3000026
-- desc: Disable music flag
-  label: DisableMusicFlag
+- name: DisableMusicFlag
   type: u8
   addr:
     U: 0x3000022
     E: 0x3000022
     J: 0x3000027
     C: 0x3000027
-- desc: Skip door transition flag
-  label: SkipDoorTransitionFlag
+- name: SkipDoorTransitionFlag
   type: u8
   addr:
     U: 0x3000024
     E: 0x3000024
     J: 0x3000029
     C: 0x3000029
-- desc: Disable soft reset flag
-  label: DisableSoftResetFlag
+- name: DisableSoftResetFlag
   type: u8
   addr:
     U: 0x3000025
     E: 0x3000025
     J: 0x300002A
     C: 0x300002A
-- desc: Collecting tank flag
-  label: CollectingTankFlag
+- name: CollectingTankFlag
   type: u8
   addr:
     U: 0x3000026
     E: 0x3000026
     J: 0x300002B
     C: 0x300002B
-- desc: Disable animated graphics timer
-  label: DisableAnimatedGfxTimer
+- name: DisableAnimatedGfxTimer
   type: u8
   addr:
     U: 0x3000027
     E: 0x3000027
     J: 0x300002C
     C: 0x300002C
-- desc: Animated graphics to update
-  label: AnimatedGfxToUpdate
+- name: AnimatedGfxToUpdate
   type: u16
   cat: flags
   addr:
@@ -431,24 +382,21 @@
     E: 0x3000028
     J: 0x300002E
     C: 0x300002E
-- desc: Disable doors and tanks flag
-  label: DisableDoorsAndTanksFlag
+- name: DisableDoorsAndTanksFlag
   type: u8
   addr:
     U: 0x300002A
     E: 0x300002A
     J: 0x3000030
     C: 0x3000030
-- desc: Disable pause flag
-  label: DisablePauseFlag
+- name: DisablePauseFlag
   type: u8
   addr:
     U: 0x300002B
     E: 0x300002B
     J: 0x3000031
     C: 0x3000031
-- desc: Area ID
-  label: AreaId
+- name: AreaId
   type: u8
   addr:
     U: 0x300002C
@@ -456,73 +404,64 @@
     J: 0x3000032
     C: 0x3000032
   enum: AreaId
-- desc: Room ID
-  label: RoomId
+- name: RoomId
   type: u8
   addr:
     U: 0x300002D
     E: 0x300002D
     J: 0x3000033
     C: 0x3000033
-- desc: Previous door
-  label: PrevDoor
+- name: PrevDoor
   type: u8
   addr:
     U: 0x300002E
     E: 0x300002E
     J: 0x3000034
     C: 0x3000034
-- desc: Previous door properties
-  label: PrevDoorProperties
+- name: PrevDoorProperties
   type: u8
   addr:
     U: 0x300002F
     E: 0x300002F
     J: 0x3000035
     C: 0x3000035
-- desc: Door display location flag
-  label: DoorDisplayLocationFlag
+- name: DoorDisplayLocationFlag
+  desc: Bit 6 of door properties, displays location pop-up
   type: u8
   addr:
     U: 0x3000030
     E: 0x3000030
     J: 0x3000036
     C: 0x3000036
-  notes: Bit 6 of door properties, displays location pop-up
-- desc: Minimap X position
-  label: MinimapXPosition
+- name: MinimapXPosition
   type: u8
   addr:
     U: 0x3000031
     E: 0x3000031
     J: 0x3000037
     C: 0x3000037
-- desc: Minimap Y position
-  label: MinimapYPosition
+- name: MinimapYPosition
   type: u8
   addr:
     U: 0x3000032
     E: 0x3000032
     J: 0x3000038
     C: 0x3000038
-- desc: Number of never reform blocks broken
-  label: NumNeverReformBlocksBroken
-  type: NumNeverReformBlocksBroken
+- name: NumNeverReformBlocksBroken
+  type: struct NumNeverReformBlocksBroken
   addr:
     U: 0x3000033
     E: 0x3000033
     J: 0x3000039
     C: 0x3000039
-- desc: Number of tanks collected
-  label: NumTanksCollected
-  type: NumTanksCollected
+- name: NumTanksCollected
+  type: struct NumTanksCollected
   addr:
     U: 0x300003B
     E: 0x300003B
     J: 0x3000041
     C: 0x3000041
-- desc: Foreground effect
-  label: ForegroundEffect
+- name: ForegroundEffect
   type: u8
   addr:
     U: 0x3000043
@@ -530,24 +469,21 @@
     J: 0x3000049
     C: 0x3000049
   enum: ForegroundEffect
-- desc: Foreground effect Y position
-  label: ForegroundEffectYPosition
+- name: ForegroundEffectYPosition
   type: u16
   addr:
     U: 0x3000044
     E: 0x3000044
     J: 0x300004A
     C: 0x300004A
-- desc: Door unlock timer
-  label: DoorUnlockTimer
+- name: DoorUnlockTimer
   type: u8
   addr:
     U: 0x3000046
     E: 0x3000046
     J: 0x300004C
     C: 0x300004C
-- desc: Current navigation room
-  label: CurrNavRoom
+- name: CurrNavRoom
   type: u8
   addr:
     U: 0x3000048
@@ -555,8 +491,7 @@
     J: 0x300004E
     C: 0x300004E
   enum: NavRoom
-- desc: Last elevator used
-  label: LastElevatorUsed
+- name: LastElevatorUsed
   type: u8
   addr:
     U: 0x3000049
@@ -564,8 +499,7 @@
     J: 0x300004F
     C: 0x300004F
   enum: Elevator
-- desc: Current event based effect
-  label: CurrEventBasedEffect
+- name: CurrEventBasedEffect
   type: u8
   addr:
     U: 0x300004A
@@ -573,8 +507,7 @@
     J: 0x3000050
     C: 0x3000050
   enum: EventBasedEffect
-- desc: Event based effect copy
-  label: EventBasedEffectCopy
+- name: EventBasedEffectCopy
   type: u8
   addr:
     U: 0x300004B
@@ -582,40 +515,35 @@
     J: 0x3000051
     C: 0x3000051
   enum: EventBasedEffect
-- desc: Current flashing sector number
-  label: CurrFlashingSectorNum
+- name: CurrFlashingSectorNum
   type: u8
   addr:
     U: 0x300004D
     E: 0x300004D
     J: 0x3000053
     C: 0x3000053
-- desc: Screen shake X offset
-  label: ScreenShakeXOffset
+- name: ScreenShakeXOffset
   type: u8
   addr:
     U: 0x300004E
     E: 0x300004E
     J: 0x3000054
     C: 0x3000054
-- desc: Screen shake Y offset
-  label: ScreenShakeYOffset
+- name: ScreenShakeYOffset
   type: u8
   addr:
     U: 0x300004F
     E: 0x300004F
     J: 0x3000055
     C: 0x3000055
-- desc: Spriteset number
-  label: SpritesetNum
+- name: SpritesetNum
   type: u8
   addr:
     U: 0x3000052
     E: 0x3000052
     J: 0x3000058
     C: 0x3000058
-- desc: Current clipdata affecting action
-  label: CurrClipdataAffectingAction
+- name: CurrClipdataAffectingAction
   type: u8
   addr:
     U: 0x3000053
@@ -623,17 +551,16 @@
     J: 0x3000059
     C: 0x3000059
   enum: ClipdataAffectingAction
-- desc: Spriteset entry used
-  label: SpritesetEntryUsed
+- name: SpritesetEntryUsed
+  desc: Which spriteset entry was used
   type: u8
   addr:
     U: 0x3000054
     E: 0x3000054
     J: 0x300005A
     C: 0x300005A
-  notes: Which spriteset entry was used
-- desc: Use alternate animated tileset flag
-  label: UseAltAnimatedTilesetFlag
+- name: UseAltAnimatedTilesetFlag
+  desc: Unused flag to use alternate animated tileset
   type: u8
   count: 0x5
   addr:
@@ -641,162 +568,141 @@
     E: 0x3000058
     J: 0x300005E
     C: 0x300005E
-  notes: Unused flag to use alternate animated tileset
-- desc: Sub-event counter
-  label: SubEventCounter
+- name: SubEventCounter
   type: u16
   addr:
     U: 0x3000060
     E: 0x3000060
     J: 0x3000066
     C: 0x3000066
-- desc: Previous sub-event
-  label: PrevSubEvent
+- name: PrevSubEvent
   type: u16
   addr:
     U: 0x3000062
     E: 0x3000062
     J: 0x3000068
     C: 0x3000068
-- desc: HazeInfo
-  label: HazeInfo
-  type: Haze
+- name: HazeInfo
+  type: struct Haze
   addr:
     U: 0x3000068
     E: 0x3000068
     J: 0x300006C
     C: 0x300006C
-- desc: Backup of I/O registers
-  label: BackupOfIoRegisters
-  type: BackupOfIoRegisters
+- name: BackupOfIoRegisters
+  type: struct BackupOfIoRegisters
   addr:
     U: 0x3000070
     E: 0x3000070
     J: 0x3000074
     C: 0x3000074
-- desc: Background pointers and dimensions
-  label: BgPtrsAndDimensions
-  type: BgPtrsAndDimensions
+- name: BgPtrsAndDimensions
+  type: struct BgPtrsAndDimensions
   addr:
     U: 0x3000084
     E: 0x3000084
     J: 0x3000088
     C: 0x3000088
-- desc: Current room entry
-  label: CurrRoomEntry
-  type: CurrRoomEntry
+- name: CurrRoomEntry
+  type: struct CurrRoomEntry
   addr:
     U: 0x30000A4
     E: 0x30000A4
     J: 0x30000A8
     C: 0x30000A8
-- desc: CurrentAffectingClipdata
-  label: CurrentAffectingClipdata
-  type: CurrentAffectingClipdata
+- name: CurrentAffectingClipdata
+  type: struct CurrentAffectingClipdata
   addr:
     U: 0x30000C0
     E: 0x30000C0
     J: 0x30000C4
     C: 0x30000C4
-- desc: Background positions
-  label: BgPositions
-  type: BgPositions
+- name: BgPositions
+  type: struct BgPositions
   addr:
     U: 0x30000C8
     E: 0x30000C8
     J: 0x30000CC
     C: 0x30000CC
-- desc: SA-X spawn position
-  label: SaxSpawnPosition
-  type: RawCoordsXY
+- name: SaxSpawnPosition
+  type: struct RawCoordsXY
   addr:
     U: 0x30000DC
     E: 0x30000DC
     J: 0x30000E0
     C: 0x30000E0
-- desc: Window 1 border
-  label: Window1Border
-  type: WindowBorder
+- name: Window1Border
+  type: struct WindowBorder
   addr:
     U: 0x30000E8
     E: 0x30000E8
     J: 0x30000EC
     C: 0x30000EC
-- desc: Screen shake Y
-  label: ScreenShakeY
-  type: ScreenShake
+- name: ScreenShakeY
+  type: struct ScreenShake
   addr:
     U: 0x30000F0
     E: 0x30000F0
     J: 0x30000F4
     C: 0x30000F4
-- desc: Screen shake X
-  label: ScreenShakeX
-  type: ScreenShake
+- name: ScreenShakeX
+  type: struct ScreenShake
   addr:
     U: 0x30000F4
     E: 0x30000F4
     J: 0x30000F8
     C: 0x30000F8
-- desc: Current scrolls
-  label: CurrScrolls
-  type: CurrScrolls
+- name: CurrScrolls
+  type: struct CurrScrolls
   addr:
     U: 0x30000F8
     E: 0x30000F8
     J: 0x30000FC
     C: 0x30000FC
-- desc: Current power bomb
-  label: CurrPowerBomb
-  type: CurrPowerBomb
+- name: CurrPowerBomb
+  type: struct CurrPowerBomb
   addr:
     U: 0x3000110
     E: 0x3000110
     J: 0x3000114
     C: 0x3000114
-- desc: Screen position and velocity
-  label: ScreenPositionAndVelocity
-  type: ScreenPositionAndVelocity
+- name: ScreenPositionAndVelocity
+  type: struct ScreenPositionAndVelocity
   addr:
     U: 0x3000124
     E: 0x3000124
     J: 0x3000128
     C: 0x3000128
-- desc: In-game timer
-  label: InGameTimer
-  type: InGameTime
+- name: InGameTimer
+  type: struct InGameTime
   addr:
     U: 0x3000138
     E: 0x3000138
     J: 0x300013C
     C: 0x300013C
-- desc: Max in-game time flag
-  label: MaxInGameTimeFlag
+- name: MaxInGameTimeFlag
   type: u8
   addr:
     U: 0x300013C
     E: 0x300013C
     J: 0x3000140
     C: 0x3000140
-- desc: Best completion times
-  label: BestCompletionTimes
-  type: InGameTime
+- name: BestCompletionTimes
+  desc: Seems to be unused
+  type: struct InGameTime
   count: 0xC
   addr:
     J: 0x3000144
     C: 0x3000144
-  notes: Seems to be unused
-- desc: Sprite data
-  label: SpriteData
-  type: SpriteData
+- name: SpriteData
+  type: struct SpriteData
   count: 0x18
   addr:
     U: 0x3000140
     E: 0x3000140
     J: 0x3000174
     C: 0x3000174
-- desc: Spriteset sprite IDs
-  label: SpritesetSpriteIds
+- name: SpritesetSpriteIds
   type: u8
   count: 0xF
   addr:
@@ -805,8 +711,7 @@
     J: 0x30006B4
     C: 0x30006B4
   enum: PrimarySpriteId
-- desc: Spriteset sprite graphics slots
-  label: SpritesetSpriteGfxSlots
+- name: SpritesetSpriteGfxSlots
   type: u8
   count: 0xF
   addr:
@@ -814,56 +719,49 @@
     E: 0x300068F
     J: 0x30006C3
     C: 0x30006C3
-- desc: X parasite target Y position
-  label: XParasiteTargetYPosition
+- name: XParasiteTargetYPosition
   type: u16
   addr:
     U: 0x30006A0
     E: 0x30006A0
     J: 0x30006D4
     C: 0x30006D4
-- desc: X parasite target X position
-  label: XParasiteTargetXPosition
+- name: XParasiteTargetXPosition
   type: u16
   addr:
     U: 0x30006A2
     E: 0x30006A2
     J: 0x30006D6
     C: 0x30006D6
-- desc: Ability resting Y position
-  label: AbilityRestingYPosition
+- name: AbilityRestingYPosition
   type: u16
   addr:
     U: 0x30006A4
     E: 0x30006A4
     J: 0x30006D8
     C: 0x30006D8
-- desc: Ability resting X position
-  label: AbilityRestingXPosition
+- name: AbilityRestingXPosition
   type: u16
   addr:
     U: 0x30006A6
     E: 0x30006A6
     J: 0x30006DA
     C: 0x30006DA
-- desc: Serris spawn Y position
-  label: SerrisSpawnYPosition
+- name: SerrisSpawnYPosition
   type: u16
   addr:
     U: 0x30006A8
     E: 0x30006A8
     J: 0x30006DC
     C: 0x30006DC
-- desc: Serris spawn X position
-  label: SerrisSpawnXPosition
+- name: SerrisSpawnXPosition
   type: u16
   addr:
     U: 0x30006AA
     E: 0x30006AA
     J: 0x30006DE
     C: 0x30006DE
-- desc: Boss formation sprite ID
-  label: BossFormationSpriteId
+- name: BossFormationSpriteId
   type: u8
   addr:
     U: 0x30006AC
@@ -871,8 +769,7 @@
     J: 0x30006E0
     C: 0x30006E0
   enum: PrimarySpriteId
-- desc: Core-X formation sprite ID
-  label: CoreXFormationSpriteId
+- name: CoreXFormationSpriteId
   type: u8
   addr:
     U: 0x30006AD
@@ -880,8 +777,7 @@
     J: 0x30006E1
     C: 0x30006E1
   enum: PrimarySpriteId
-- desc: Atmospheric stabilizers online
-  label: AtmosphericStabilizersOnline
+- name: AtmosphericStabilizersOnline
   type: u16
   cat: flags
   addr:
@@ -889,8 +785,7 @@
     E: 0x30006AE
     J: 0x30006E2
     C: 0x30006E2
-- desc: Normal X-barriers destroyed
-  label: NormalXBarriersDestroyed
+- name: NormalXBarriersDestroyed
   type: u16
   cat: flags
   addr:
@@ -898,8 +793,7 @@
     E: 0x30006B0
     J: 0x30006E4
     C: 0x30006E4
-- desc: Super X-barriers destroyed
-  label: SuperXBarriersDestroyed
+- name: SuperXBarriersDestroyed
   type: u16
   cat: flags
   addr:
@@ -907,8 +801,7 @@
     E: 0x30006B2
     J: 0x30006E6
     C: 0x30006E6
-- desc: Power X-barriers destroyed
-  label: PowerXBarriersDestroyed
+- name: PowerXBarriersDestroyed
   type: u16
   cat: flags
   addr:
@@ -916,8 +809,7 @@
     E: 0x30006B4
     J: 0x30006E8
     C: 0x30006E8
-- desc: Eyedoors destroyed
-  label: EyedoorsDestroyed
+- name: EyedoorsDestroyed
   type: u16
   cat: flags
   addr:
@@ -925,67 +817,59 @@
     E: 0x30006B6
     J: 0x30006EA
     C: 0x30006EA
-- desc: Missile hatch destroyed
-  label: MissileHatchDestroyed
+- name: MissileHatchDestroyed
   type: u8
   addr:
     U: 0x30006B8
     E: 0x30006B8
     J: 0x30006EC
     C: 0x30006EC
-- desc: Water lowered flag
-  label: WaterLoweredFlag
+- name: WaterLoweredFlag
   type: u8
   addr:
     U: 0x30006B9
     E: 0x30006B9
     J: 0x30006ED
     C: 0x30006ED
-- desc: Current sprite data
-  label: CurrSpriteData
-  type: SpriteData
+- name: CurrSpriteData
+  desc: Current sprite being processed
+  type: struct SpriteData
   addr:
     U: 0x30006BC
     E: 0x30006BC
     J: 0x30006F0
     C: 0x30006F0
-  notes: Current sprite being processed
-- desc: Sprite debris
-  label: SpriteDebris
-  type: SpriteDebris
+- name: SpriteDebris
+  type: struct SpriteDebris
   count: 0x8
   addr:
     U: 0x30006F4
     E: 0x30006F4
     J: 0x3000728
     C: 0x3000728
-- desc: Current sprite debris
-  label: CurrSpriteDebris
-  type: SpriteDebris
+- name: CurrSpriteDebris
+  desc: Current sprite debris being processed
+  type: struct SpriteDebris
   addr:
     U: 0x3000774
     E: 0x3000774
     J: 0x30007A8
     C: 0x30007A8
-  notes: Current sprite debris being processed
-- desc: Sub-sprite data 1
-  label: SubSpriteData1
-  type: SubSpriteData
+- name: SubSpriteData1
+  type: struct SubSpriteData
   addr:
     U: 0x3000784
     E: 0x3000784
     J: 0x30007B8
     C: 0x30007B8
-- desc: Sub-sprite data 2
-  label: SubSpriteData2
-  type: SubSpriteData
+- name: SubSpriteData2
+  type: struct SubSpriteData
   addr:
     U: 0x3000794
     E: 0x3000794
     J: 0x30007C8
     C: 0x30007C8
-- desc: Previous center collision check
-  label: PrevCenterCollisionCheck
+- name: PrevCenterCollisionCheck
   type: u8
   addr:
     U: 0x30007A4
@@ -993,8 +877,7 @@
     J: 0x30007D8
     C: 0x30007D8
   enum: CollisionCheck
-- desc: Previous left/right edge collision check
-  label: PrevLeftRightEdgeCollisionCheck
+- name: PrevLeftRightEdgeCollisionCheck
   type: u8
   addr:
     U: 0x30007A5
@@ -1002,8 +885,7 @@
     J: 0x30007D9
     C: 0x30007D9
   enum: CollisionCheck
-- desc: Ignore Samus and sprite collision
-  label: IgnoreSamusAndSpriteCollision
+- name: IgnoreSamusAndSpriteCollision
   type: u8
   cat: bool
   addr:
@@ -1011,8 +893,7 @@
     E: 0x30007A6
     J: 0x30007DA
     C: 0x30007DA
-- desc: Sprite draw order
-  label: SpriteDrawOrder
+- name: SpriteDrawOrder
   type: u8
   count: 0x18
   addr:
@@ -1020,139 +901,122 @@
     E: 0x30007A7
     J: 0x30007DB
     C: 0x30007DB
-- desc: Sprite random number
-  label: SpriteRandomNum
+- name: SpriteRandomNum
+  desc: Ranges between 0-F
   type: u8
   addr:
     U: 0x30007F0
     E: 0x30007F0
     J: 0x3000824
     C: 0x3000824
-  notes: Ranges between 0-F
-- desc: Boss work 0
-  label: BossWork0
+- name: BossWork0
   type: u8
   addr:
     U: 0x30007F1
     E: 0x30007F1
     J: 0x3000825
     C: 0x3000825
-- desc: Boss work 1
-  label: BossWork1
+- name: BossWork1
   type: u8
   addr:
     U: 0x30007F2
     E: 0x30007F2
     J: 0x3000826
     C: 0x3000826
-- desc: Boss work 2
-  label: BossWork2
+- name: BossWork2
   type: u8
   addr:
     U: 0x30007F3
     E: 0x30007F3
     J: 0x3000827
     C: 0x3000827
-- desc: Boss work 3
-  label: BossWork3
+- name: BossWork3
   type: u8
   addr:
     U: 0x30007F4
     E: 0x30007F4
     J: 0x3000828
     C: 0x3000828
-- desc: Boss work 4
-  label: BossWork4
+- name: BossWork4
   type: u8
   addr:
     U: 0x30007F5
     E: 0x30007F5
     J: 0x3000829
     C: 0x3000829
-- desc: Boss work 5
-  label: BossWork5
+- name: BossWork5
   type: u16
   addr:
     U: 0x30007F6
     E: 0x30007F6
     J: 0x300082A
     C: 0x300082A
-- desc: Particle effects
-  label: ParticleEffects
-  type: ParticleEffect
+- name: ParticleEffects
+  type: struct ParticleEffect
   count: 0x10
   addr:
     U: 0x30007F8
     E: 0x30007F8
     J: 0x300082C
     C: 0x300082C
-- desc: Current particle effect
-  label: CurrParticleEffect
-  type: ParticleEffect
+- name: CurrParticleEffect
+  desc: Current particle effect being processed
+  type: struct ParticleEffect
   addr:
     U: 0x30008B8
     E: 0x30008B8
     J: 0x30008EC
     C: 0x30008EC
-  notes: Current particle effect being processed
-- desc: Missile highlight status
-  label: MissileHighlightStatus
+- name: MissileHighlightStatus
   type: u8
   addr:
     U: 0x30008C4
     E: 0x30008C4
     J: 0x30008F8
     C: 0x30008F8
-- desc: Power bomb highlight status
-  label: PowerBombHighlightStatus
+- name: PowerBombHighlightStatus
   type: u8
   addr:
     U: 0x30008C5
     E: 0x30008C5
     J: 0x30008F9
     C: 0x30008F9
-- desc: Update corner map flag
-  label: UpdateCornerMapFlag
+- name: UpdateCornerMapFlag
   type: u8
   addr:
     U: 0x30008C6
     E: 0x30008C6
     J: 0x30008FA
     C: 0x30008FA
-- desc: Energy digits
-  label: EnergyDigits
-  type: AmmoDigits
+- name: EnergyDigits
+  type: struct AmmoDigits
   addr:
     U: 0x30008C7
     E: 0x30008C7
     J: 0x30008FB
     C: 0x30008FB
-- desc: Max energy digits
-  label: MaxEnergyDigits
-  type: AmmoDigits
+- name: MaxEnergyDigits
+  type: struct AmmoDigits
   addr:
     U: 0x30008CB
     E: 0x30008CB
     J: 0x30008FF
     C: 0x30008FF
-- desc: Missile digits
-  label: MissileDigits
-  type: AmmoDigits
+- name: MissileDigits
+  type: struct AmmoDigits
   addr:
     U: 0x30008CF
     E: 0x30008CF
     J: 0x3000903
     C: 0x3000903
-- desc: Power bomb digits
-  label: PowerBombDigits
-  type: AmmoDigits
+- name: PowerBombDigits
+  type: struct AmmoDigits
   addr:
     U: 0x30008D3
     E: 0x30008D3
     J: 0x3000907
     C: 0x3000907
-- desc: Escape status
-  label: EscapeStatus
+- name: EscapeStatus
   type: u8
   addr:
     U: 0x30008D7
@@ -1160,24 +1024,21 @@
     J: 0x300090B
     C: 0x300090B
   enum: EscapeStatus
-- desc: Escape timer counter
-  label: EscapeTimerCounter
+- name: EscapeTimerCounter
   type: u8
   addr:
     U: 0x30008D8
     E: 0x30008D8
     J: 0x300090C
     C: 0x300090C
-- desc: Escape timer digits
-  label: EscapeTimerDigits
-  type: EscapeTimerDigits
+- name: EscapeTimerDigits
+  type: struct EscapeTimerDigits
   addr:
     U: 0x30008D9
     E: 0x30008D9
     J: 0x300090D
     C: 0x300090D
-- desc: Escape digits OAM
-  label: EscapeDigitsOam
+- name: EscapeDigitsOam
   type: u16
   count: 0x19
   cat: oam_frame
@@ -1186,8 +1047,7 @@
     E: 0x30008E0
     J: 0x3000914
     C: 0x3000914
-- desc: Ammo digits graphics
-  label: AmmoDigitsGfx
+- name: AmmoDigitsGfx
   type: u8
   count: 0x40
   addr:
@@ -1195,42 +1055,37 @@
     E: 0x3000912
     J: 0x3000946
     C: 0x3000946
-- desc: Projectile data
-  label: ProjectileData
-  type: ProjectileData
+- name: ProjectileData
+  type: struct ProjectileData
   count: 0x10
   addr:
     U: 0x3000960
     E: 0x3000960
     J: 0x3000994
     C: 0x3000994
-- desc: Current projectile data
-  label: CurrProjectileData
-  type: ProjectileData
+- name: CurrProjectileData
+  desc: Current projectile being processed
+  type: struct ProjectileData
   addr:
     U: 0x3000B60
     E: 0x3000B60
     J: 0x3000B94
     C: 0x3000B94
-  notes: Current projectile being processed
-- desc: Arm cannon Y position
-  label: ArmCannonYPosition
+- name: ArmCannonYPosition
   type: u16
   addr:
     U: 0x3000B80
     E: 0x3000B80
     J: 0x3000BB4
     C: 0x3000BB4
-- desc: Arm cannon X position
-  label: ArmCannonXPosition
+- name: ArmCannonXPosition
   type: u16
   addr:
     U: 0x3000B82
     E: 0x3000B82
     J: 0x3000BB6
     C: 0x3000BB6
-- desc: Non-gameplay flag
-  label: NonGameplayFlag
+- name: NonGameplayFlag
   type: u8
   addr:
     U: 0x3000B84
@@ -1238,8 +1093,7 @@
     J: 0x3000BB8
     C: 0x3000BB8
   enum: NonGameplayFlag
-- desc: Previous area
-  label: PreviousArea
+- name: PreviousArea
   type: u8
   addr:
     U: 0x3000B86
@@ -1247,8 +1101,7 @@
     J: 0x3000BBA
     C: 0x3000BBA
   enum: AreaId
-- desc: Event counter
-  label: EventCounter
+- name: EventCounter
   type: u8
   addr:
     U: 0x3000B87
@@ -1256,24 +1109,21 @@
     J: 0x3000BBB
     C: 0x3000BBB
   enum: Event
-- desc: Previous navigation conversation
-  label: PrevNavConversation
+- name: PrevNavConversation
   type: u8
   addr:
     U: 0x3000B88
     E: 0x3000B88
     J: 0x3000BBC
     C: 0x3000BBC
-- desc: Previous cutscene
-  label: PrevCutscene
+- name: PrevCutscene
   type: u8
   addr:
     U: 0x3000B89
     E: 0x3000B89
     J: 0x3000BBD
     C: 0x3000BBD
-- desc: Room event trigger
-  label: RoomEventTrigger
+- name: RoomEventTrigger
   type: s8
   addr:
     U: 0x3000B8A
@@ -1281,8 +1131,7 @@
     J: 0x3000BBE
     C: 0x3000BBE
   enum: Event
-- desc: Is loading file
-  label: IsLoadingFile
+- name: IsLoadingFile
   type: u8
   cat: bool
   addr:
@@ -1290,24 +1139,21 @@
     E: 0x3000B8B
     J: 0x3000BBF
     C: 0x3000BBF
-- desc: Most recent save file
-  label: MostRecentSaveFile
+- name: MostRecentSaveFile
   type: u8
   addr:
     U: 0x3000B8D
     E: 0x3000B8D
     J: 0x3000BC1
     C: 0x3000BC1
-- desc: SRAM corrupt flag
-  label: SramCorruptFlag
+- name: SramCorruptFlag
   type: u8
   addr:
     U: 0x3000B8E
     E: 0x3000B8E
     J: 0x3000BC2
     C: 0x3000BC2
-- desc: Save file data
-  label: SaveFileData
+- name: SaveFileData
   type: u8
   count: 0x3C
   addr:
@@ -1315,24 +1161,21 @@
     E: 0x3000B94
     J: 0x3000BC8
     C: 0x3000BC8
-- desc: Debug menu options
-  label: DebugMenuOptions
-  type: DebugMenuOptions
+- name: DebugMenuOptions
+  type: struct DebugMenuOptions
   addr:
     U: 0x3000BD0
     E: 0x3000BD0
     J: 0x3000C04
     C: 0x3000C04
-- desc: Current cutscene
-  label: CurrCutscene
+- name: CurrCutscene
   type: u8
   addr:
     U: 0x3000BDC
     E: 0x3000BDC
     J: 0x3000C10
     C: 0x3000C10
-- desc: Game mode
-  label: GameMode
+- name: GameMode
   type: u16
   addr:
     U: 0x3000BDE
@@ -1340,48 +1183,42 @@
     J: 0x3000C12
     C: 0x3000C12
   enum: GameMode
-- desc: Sub-game mode 1
-  label: SubGameMode1
+- name: SubGameMode1
   type: u16
   addr:
     U: 0x3000BE0
     E: 0x3000BE0
     J: 0x3000C14
     C: 0x3000C14
-- desc: Sub-game mode 2
-  label: SubGameMode2
+- name: SubGameMode2
   type: s8
   addr:
     U: 0x3000BE2
     E: 0x3000BE2
     J: 0x3000C16
     C: 0x3000C16
-- desc: V-Blank active flag
-  label: VBlankActiveFlag
+- name: VBlankActiveFlag
   type: u8
   addr:
     U: 0x3000BE4
     E: 0x3000BE4
     J: 0x3000C18
     C: 0x3000C18
-- desc: 8-bit frame counter
-  label: FrameCounter8Bit
+- name: FrameCounter8Bit
   type: u8
   addr:
     U: 0x3000BE5
     E: 0x3000BE5
     J: 0x3000C19
     C: 0x3000C19
-- desc: V-Blank request flag
-  label: VBlankRequestFlag
+- name: VBlankRequestFlag
   type: u16
   addr:
     U: 0x3000BE6
     E: 0x3000BE6
     J: 0x3000C1A
     C: 0x3000C1A
-- desc: Interrupt code
-  label: InterruptCode
+- name: InterruptCode
   type: u8
   count: 0x200
   cat: arm
@@ -1390,8 +1227,7 @@
     E: 0x3000BE8
     J: 0x3000C1C
     C: 0x3000C1C
-- desc: OAM data
-  label: OamData
+- name: OamData
   type: u16 [0x4]
   count: 0x80
   addr:
@@ -1399,8 +1235,7 @@
     E: 0x3000DE8
     J: 0x3000E1C
     C: 0x3000E1C
-- desc: Button input
-  label: ButtonInput
+- name: ButtonInput
   type: u16
   cat: flags
   addr:
@@ -1409,8 +1244,7 @@
     J: 0x300121C
     C: 0x300121C
   enum: ButtonInput
-- desc: Button input copy
-  label: ButtonInputCopy
+- name: ButtonInputCopy
   type: u16
   cat: flags
   addr:
@@ -1419,8 +1253,7 @@
     J: 0x300121E
     C: 0x300121E
   enum: ButtonInput
-- desc: Changed input
-  label: ChangedInput
+- name: ChangedInput
   type: u16
   cat: flags
   addr:
@@ -1429,16 +1262,14 @@
     J: 0x3001220
     C: 0x3001220
   enum: ButtonInput
-- desc: Next OAM slot
-  label: NextOamSlot
+- name: NextOamSlot
   type: u8
   addr:
     U: 0x30011EE
     E: 0x30011EE
     J: 0x3001222
     C: 0x3001222
-- desc: SA-X elevator BG CNT
-  label: SaxElevatorBgCnt
+- name: SaxElevatorBgCnt
   type: u16
   count: 0x4
   addr:
@@ -1446,115 +1277,101 @@
     E: 0x30011F6
     J: 0x300122A
     C: 0x300122A
-- desc: Written to MOSAIC_H
-  label: WrittenToMosaic_H
+- name: WrittenToMosaic_H
+  desc: Mosaic size
   type: u16
   addr:
     U: 0x300120C
     E: 0x300120C
     J: 0x3001240
     C: 0x3001240
-  notes: Mosaic size
-- desc: Written to MOSAIC_L
-  label: WrittenToMosaic_L
+- name: WrittenToMosaic_L
+  desc: Mosaic size
   type: u16
   addr:
     U: 0x300120E
     E: 0x300120E
     J: 0x3001242
     C: 0x3001242
-  notes: Mosaic size
-- desc: Written to BLDY
-  label: WrittenToBldy
+- name: WrittenToBldy
+  desc: Brightness coefficient
   type: u16
   addr:
     U: 0x300121E
     E: 0x300121E
     J: 0x3001252
     C: 0x3001252
-  notes: Brightness coefficient
-- desc: Written to BLDALPHA_L
-  label: WrittenToBldalpha_L
+- name: WrittenToBldalpha_L
   type: u16
   addr:
     U: 0x3001220
     E: 0x3001220
     J: 0x3001254
     C: 0x3001254
-- desc: Written to BLDALPHA_H
-  label: WrittenToBldalpha_H
+- name: WrittenToBldalpha_H
   type: u16
   addr:
     U: 0x3001222
     E: 0x3001222
     J: 0x3001256
     C: 0x3001256
-- desc: BG0 X position
-  label: Bg0XPosition
+- name: Bg0XPosition
   type: u16
   addr:
     U: 0x3001224
     E: 0x3001224
     J: 0x3001258
     C: 0x3001258
-- desc: BG0 Y position
-  label: Bg0YPosition
+- name: Bg0YPosition
   type: u16
   addr:
     U: 0x3001226
     E: 0x3001226
     J: 0x300125A
     C: 0x300125A
-- desc: BG1 X position
-  label: Bg1XPosition
+- name: Bg1XPosition
   type: u16
   addr:
     U: 0x3001228
     E: 0x3001228
     J: 0x300125C
     C: 0x300125C
-- desc: BG1 Y position
-  label: Bg1YPosition
+- name: Bg1YPosition
   type: u16
   addr:
     U: 0x300122A
     E: 0x300122A
     J: 0x300125E
     C: 0x300125E
-- desc: BG2 X position
-  label: Bg2XPosition
+- name: Bg2XPosition
   type: u16
   addr:
     U: 0x300122C
     E: 0x300122C
     J: 0x3001260
     C: 0x3001260
-- desc: BG2 Y position
-  label: Bg2YPosition
+- name: Bg2YPosition
   type: u16
   addr:
     U: 0x300122E
     E: 0x300122E
     J: 0x3001262
     C: 0x3001262
-- desc: BG3 X position
-  label: Bg3XPosition
+- name: Bg3XPosition
   type: u16
   addr:
     U: 0x3001230
     E: 0x3001230
     J: 0x3001264
     C: 0x3001264
-- desc: BG3 Y position
-  label: Bg3YPosition
+- name: Bg3YPosition
   type: u16
   addr:
     U: 0x3001232
     E: 0x3001232
     J: 0x3001266
     C: 0x3001266
-- desc: Demo state
-  label: DemoState
+- name: DemoState
   type: u8
   addr:
     U: 0x3001242
@@ -1562,73 +1379,64 @@
     J: 0x3001276
     C: 0x3001276
   enum: DemoState
-- desc: Pose lock flag
-  label: PoseLockFlag
+- name: PoseLockFlag
   type: u8
   addr:
     U: 0x3001243
     E: 0x3001243
     J: 0x3001277
     C: 0x3001277
-- desc: Samus data
-  label: SamusData
-  type: SamusData
+- name: SamusData
+  type: struct SamusData
   addr:
     U: 0x3001244
     E: 0x3001244
     J: 0x3001278
     C: 0x3001278
-- desc: Samus data copy
-  label: SamusDataCopy
-  type: SamusData
+- name: SamusDataCopy
+  desc: Samus data copy when changing pose
+  type: struct SamusData
   addr:
     U: 0x3001270
     E: 0x3001270
     J: 0x30012A4
     C: 0x30012A4
-  notes: Samus data copy when changing pose
-- desc: Samus graphics info
-  label: SamusGraphicsInfo
-  type: SamusGraphicsInfo
+- name: SamusGraphicsInfo
+  type: struct SamusGraphicsInfo
   addr:
     U: 0x300129C
     E: 0x300129C
     J: 0x30012D0
     C: 0x30012D0
-- desc: Samus animation info
-  label: SamusAnimInfo
-  type: SamusAnimInfo
+- name: SamusAnimInfo
+  type: struct SamusAnimInfo
   addr:
     U: 0x30012D8
     E: 0x30012D8
     J: 0x300130C
     C: 0x300130C
-- desc: Samus echo
-  label: SamusEcho
-  type: SamusEcho
+- name: SamusEcho
+  type: struct SamusEcho
   addr:
     U: 0x30012E4
     E: 0x30012E4
     J: 0x3001318
     C: 0x3001318
-- desc: Samus timers and counters
-  label: SamusTimersAndCounters
-  type: SamusTimersAndCounters
+- name: SamusTimersAndCounters
+  type: struct SamusTimersAndCounters
   addr:
     U: 0x30012F0
     E: 0x30012F0
     J: 0x3001324
     C: 0x3001324
-- desc: Equipment
-  label: Equipment
-  type: Equipment
+- name: Equipment
+  type: struct Equipment
   addr:
     U: 0x3001310
     E: 0x3001310
     J: 0x3001344
     C: 0x3001344
-- desc: Horizontal movement direction
-  label: HorizontalMovementDirection
+- name: HorizontalMovementDirection
   type: u16
   cat: flags
   addr:
@@ -1637,8 +1445,7 @@
     J: 0x3001354
     C: 0x3001354
   enum: HorizontalDirection
-- desc: Vertical movement direction
-  label: VerticalMovementDirection
+- name: VerticalMovementDirection
   type: u16
   cat: flags
   addr:
@@ -1647,8 +1454,7 @@
     J: 0x3001356
     C: 0x3001356
   enum: VerticalDirection
-- desc: Samus hitbox type
-  label: SamusHitboxType
+- name: SamusHitboxType
   type: u8
   addr:
     U: 0x3001329
@@ -1656,64 +1462,57 @@
     J: 0x300135D
     C: 0x300135D
   enum: SamusHitboxType
-- desc: Samus physics
-  label: SamusPhysics
-  type: SamusPhysics
+- name: SamusPhysics
+  type: struct SamusPhysics
   addr:
     U: 0x3001330
     E: 0x3001330
     J: 0x3001364
     C: 0x3001364
-- desc: Previous value of Samus data 0
-  label: PrevValueOfSamusData0
+- name: PrevValueOfSamusData0
   type: u8
   addr:
     U: 0x3001340
     E: 0x3001340
     J: 0x3001374
     C: 0x3001374
-- desc: Previous X position
-  label: PrevXPosition
+- name: PrevXPosition
   type: u16
   addr:
     U: 0x3001342
     E: 0x3001342
     J: 0x3001376
     C: 0x3001376
-- desc: Previous Y position
-  label: PrevYPosition
+- name: PrevYPosition
   type: u16
   addr:
     U: 0x3001344
     E: 0x3001344
     J: 0x3001378
     C: 0x3001378
-- desc: Underwater flag
-  label: UnderwaterFlag
+- name: UnderwaterFlag
   type: u8
   addr:
     U: 0x3001346
     E: 0x3001346
     J: 0x300137A
     C: 0x300137A
-- desc: Prevent movement timer
-  label: PreventMovementTimer
+- name: PreventMovementTimer
   type: u16
   addr:
     U: 0x3001348
     E: 0x3001348
     J: 0x300137C
     C: 0x300137C
-- desc: Disable drawing Samus and scrolling flag
-  label: DisableDrawingSamusAndScrollingFlag
+- name: DisableDrawingSamusAndScrollingFlag
   type: u8
   addr:
     U: 0x300134A
     E: 0x300134A
     J: 0x300137E
     C: 0x300137E
-- desc: Previous 64 positions
-  label: Prev64Positions
+- name: Prev64Positions
+  desc: Used for Samus echo effects
   type: u16
   count: 0x80
   addr:
@@ -1721,41 +1520,36 @@
     E: 0x300134C
     J: 0x3001380
     C: 0x3001380
-  notes: Used for Samus echo effects
-- desc: Previous position counter
-  label: PrevPositionCounter
+- name: PrevPositionCounter
   type: u16
   addr:
     U: 0x300144C
     E: 0x300144C
     J: 0x3001480
     C: 0x3001480
-- desc: Button assignments
-  label: ButtonAssignments
-  type: ButtonAssignments
+- name: ButtonAssignments
+  type: struct ButtonAssignments
   addr:
     U: 0x3001450
     E: 0x3001450
     J: 0x3001484
     C: 0x3001484
-- desc: SA-X data
-  label: SaxData
-  type: SaxData
+- name: SaxData
+  type: struct SaxData
   addr:
     U: 0x3001458
     E: 0x3001458
     J: 0x300148C
     C: 0x300148C
-- desc: SA-X elevator data
-  label: SaxElevatorData
-  type: SaxElevatorData
+- name: SaxElevatorData
+  type: struct SaxElevatorData
   addr:
     U: 0x300147C
     E: 0x300147C
     J: 0x30014B0
     C: 0x30014B0
-- desc: Non-gameplay RAM
-  label: NonGameplayRam
+- name: NonGameplayRam
+  desc: Shared portion of RAM used for title, file select, pause screen, game over, and erase SRAM
   type: u8
   count: 0x540
   addr:
@@ -1763,9 +1557,7 @@
     E: 0x3001484
     J: 0x30014B8
     C: 0x30014B8
-  notes: Shared portion of RAM used for title, file select, pause screen, game over, and erase SRAM
-- desc: V-Blank code pointer
-  label: VBlankCodePtr
+- name: VBlankCodePtr
   type: void *
   cat: thumb
   addr:
@@ -1773,8 +1565,7 @@
     E: 0x30019C4
     J: 0x30019F8
     C: 0x30019F8
-- desc: H-Blank code pointer
-  label: HBlankCodePtr
+- name: HBlankCodePtr
   type: void *
   cat: thumb
   addr:
@@ -1782,8 +1573,7 @@
     E: 0x30019C8
     J: 0x30019FC
     C: 0x30019FC
-- desc: V-Count code pointer
-  label: VCountCodePtr
+- name: VCountCodePtr
   type: void *
   cat: thumb
   addr:
@@ -1791,16 +1581,14 @@
     E: 0x30019CC
     J: 0x3001A00
     C: 0x3001A00
-- desc: Music info
-  label: MusicInfo
-  type: MusicInfo
+- name: MusicInfo
+  type: struct MusicInfo
   addr:
     U: 0x30019D0
     E: 0x30019D0
     J: 0x3001A04
     C: 0x3001A04
-- desc: Sound code A pointer
-  label: SoundCodeAPtr
+- name: SoundCodeAPtr
   type: void *
   cat: arm
   addr:
@@ -1808,8 +1596,7 @@
     E: 0x3003654
     J: 0x3003688
     C: 0x3003688
-- desc: Sound code A
-  label: SoundCodeARam
+- name: SoundCodeARam
   type: u8
   count: 0x658
   cat: arm
@@ -1818,8 +1605,7 @@
     E: 0x3003658
     J: 0x300368C
     C: 0x300368C
-- desc: Sound code B pointer
-  label: SoundCodeBPtr
+- name: SoundCodeBPtr
   type: void *
   cat: arm
   addr:
@@ -1827,8 +1613,7 @@
     E: 0x3003CB0
     J: 0x3003CE4
     C: 0x3003CE4
-- desc: Sound code B
-  label: SoundCodeBRam
+- name: SoundCodeBRam
   type: u8
   count: 0xA4
   addr:
@@ -1836,8 +1621,7 @@
     E: 0x3003CB4
     J: 0x3003CE8
     C: 0x3003CE8
-- desc: Sound code C pointer
-  label: SoundCodeCPtr
+- name: SoundCodeCPtr
   type: void *
   cat: arm
   addr:
@@ -1845,8 +1629,7 @@
     E: 0x3003D58
     J: 0x3003D8C
     C: 0x3003D8C
-- desc: Sound code C
-  label: SoundCodeCRam
+- name: SoundCodeCRam
   type: u8
   count: 0xAC
   addr:
@@ -1854,8 +1637,7 @@
     E: 0x3003D5C
     J: 0x3003D90
     C: 0x3003D90
-- desc: Demo inputs
-  label: DemoInputs
+- name: DemoInputs
   type: u16
   count: 0x100
   addr:
@@ -1864,8 +1646,7 @@
     J: 0x3004842
     C: 0x3004842
   enum: ButtonInput
-- desc: Demo input durations
-  label: DemoInputDurations
+- name: DemoInputDurations
   type: u16
   count: 0x100
   addr:
@@ -1873,24 +1654,21 @@
     E: 0x3004A12
     J: 0x3004A42
     C: 0x3004A42
-- desc: Demo input number
-  label: DemoInputNumber
+- name: DemoInputNumber
   type: u16
   addr:
     U: 0x3004C12
     E: 0x3004C12
     J: 0x3004C42
     C: 0x3004C42
-- desc: Demo input timer
-  label: DemoInputTimer
+- name: DemoInputTimer
   type: u16
   addr:
     U: 0x3004C14
     E: 0x3004C14
     J: 0x3004C44
     C: 0x3004C44
-- desc: Demo button input
-  label: DemoButtonInput
+- name: DemoButtonInput
   type: u16
   addr:
     U: 0x3004C16
@@ -1898,17 +1676,15 @@
     J: 0x3004C46
     C: 0x3004C46
   enum: ButtonInput
-- desc: SA-X elevator sprites
-  label: SaxElevatorSprites
-  type: SaxElevatorSprite
+- name: SaxElevatorSprites
+  type: struct SaxElevatorSprite
   count: 0xB
   addr:
     U: 0x3004C18
     E: 0x3004C18
     J: 0x3004C48
     C: 0x3004C48
-- desc: Not pressing up
-  label: NotPressingUp
+- name: NotPressingUp
   type: u8
   cat: bool
   addr:
@@ -1916,8 +1692,7 @@
     E: 0x3004D1C
     J: 0x3004D4C
     C: 0x3004D4C
-- desc: Samus palette
-  label: SamusPalette
+- name: SamusPalette
   type: u16
   count: 0x30
   cat: palette
@@ -1926,16 +1701,14 @@
     E: 0x3004D28
     J: 0x3004D58
     C: 0x3004D58
-- desc: Samus palette length
-  label: SamusPaletteLength
+- name: SamusPaletteLength
   type: u16
   addr:
     U: 0x3004D88
     E: 0x3004D88
     J: 0x3004DB8
     C: 0x3004DB8
-- desc: SA-X palette
-  label: SaxPalette
+- name: SaxPalette
   type: u16
   count: 0x10
   cat: palette
@@ -1944,139 +1717,122 @@
     E: 0x3004D90
     J: 0x3004DC0
     C: 0x3004DC0
-- desc: Written to WIN1H
-  label: WrittenToWin1H
+- name: WrittenToWin1H
   type: u16
   addr:
     U: 0x3004DD4
     E: 0x3004DD4
     J: 0x3004E04
     C: 0x3004E04
-- desc: Written to WIN1V
-  label: WrittenToWin1V
+- name: WrittenToWin1V
   type: u16
   addr:
     U: 0x3004DD6
     E: 0x3004DD6
     J: 0x3004E06
     C: 0x3004E06
-- desc: Written to BLDCNT (special)
-  label: WrittenToBldcnt_Special
+- name: WrittenToBldcnt_Special
   type: u16
   addr:
     U: 0x3004DD8
     E: 0x3004DD8
     J: 0x3004E08
     C: 0x3004E08
-- desc: Elevator direction
-  label: ElevatorDirection
+- name: ElevatorDirection
+  desc: 1 = up, 2 = down
   type: u8
   addr:
     U: 0x3004DDA
     E: 0x3004DDA
     J: 0x3004E0A
     C: 0x3004E0A
-  notes: 1 = up, 2 = down
-- desc: Tilemap and clipdata pointers
-  label: TilemapAndClipdataPtrs
-  type: TilemapAndClipdataPtrs
+- name: TilemapAndClipdataPtrs
+  type: struct TilemapAndClipdataPtrs
   addr:
     U: 0x3004DDC
     E: 0x3004DDC
     J: 0x3004E0C
     C: 0x3004E0C
-- desc: Current music track
-  label: CurrMusicTrack
+- name: CurrMusicTrack
   type: u16
   addr:
     U: 0x3004DE8
     E: 0x3004DE8
     J: 0x3004E18
     C: 0x3004E18
-- desc: Hatch data
-  label: HatchData
-  type: HatchData
+- name: HatchData
+  type: struct HatchData
   count: 0x6
   addr:
     U: 0x3004DEC
     E: 0x3004DEC
     J: 0x3004E1C
     C: 0x3004E1C
-- desc: Door position start
-  label: DoorPositionStart
-  type: DoorPositionStart
+- name: DoorPositionStart
+  type: struct DoorPositionStart
   addr:
     U: 0x3004E0C
     E: 0x3004E0C
     J: 0x3004E3C
     C: 0x3004E3C
-- desc: BG3 movement
-  label: Bg3Movement
-  type: Bg3Movement
+- name: Bg3Movement
+  type: struct Bg3Movement
   addr:
     U: 0x3004E18
     E: 0x3004E18
     J: 0x3004E48
     C: 0x3004E48
-- desc: Tileset's transparent color
-  label: TilesetTransparentColor
+- name: TilesetTransparentColor
   type: u16
   addr:
     U: 0x3004E28
     E: 0x3004E28
     J: 0x3004E58
     C: 0x3004E58
-- desc: Samus door position offset
-  label: SamusDoorPositionOffset
+- name: SamusDoorPositionOffset
   type: s16
   addr:
     U: 0x3004E38
     E: 0x3004E38
     J: 0x3004E68
     C: 0x3004E68
-- desc: Destination room
-  label: DestinationRoom
+- name: DestinationRoom
   type: u8
   addr:
     U: 0x3004E3C
     E: 0x3004E3C
     J: 0x3004E6C
     C: 0x3004E6C
-- desc: Color fading
-  label: ColorFading
+- name: ColorFading
   type: u8
   addr:
     U: 0x3004E58
     E: 0x3004E58
     J: 0x3004E88
     C: 0x3004E88
-- desc: Broken reform blocks
-  label: BrokenReformBlocks
-  type: BrokenReformBlock
+- name: BrokenReformBlocks
+  type: struct BrokenReformBlock
   count: 0x20
   addr:
     U: 0x3004E60
     E: 0x3004E60
     J: 0x3004E90
     C: 0x3004E90
-- desc: Animated palette timing
-  label: AnimatedPaletteTiming
-  type: AnimatedPaletteTiming
+- name: AnimatedPaletteTiming
+  type: struct AnimatedPaletteTiming
   addr:
     U: 0x3004FC0
     E: 0x3004FC0
     J: 0x3004FF0
     C: 0x3004FF0
-- desc: Animated palette and tileset number
-  label: AnimatedPaletteAndTilesetNum
-  type: AnimatedPaletteAndTilesetNum
+- name: AnimatedPaletteAndTilesetNum
+  type: struct AnimatedPaletteAndTilesetNum
   addr:
     U: 0x3004FC8
     E: 0x3004FC8
     J: 0x3004FF8
     C: 0x3004FF8
-- desc: Clipdata handling code pointer
-  label: ClipdataHandlingCodePtr
+- name: ClipdataHandlingCodePtr
   type: void *
   cat: thumb
   addr:
@@ -2084,8 +1840,7 @@
     E: 0x3005318
     J: 0x3005348
     C: 0x3005348
-- desc: Animated tileset data
-  label: AnimatedTilesetData
+- name: AnimatedTilesetData
   type: u8
   count: 0x30
   addr:
@@ -2093,33 +1848,29 @@
     E: 0x300531C
     J: 0x300534C
     C: 0x300534C
-- desc: Collectible tank animation
-  label: CollectibleTankAnim
-  type: CollectibleTankAnim
+- name: CollectibleTankAnim
+  type: struct CollectibleTankAnim
   count: 0x3
   addr:
     U: 0x30053DC
     E: 0x30053DC
     J: 0x300540C
     C: 0x300540C
-- desc: Room scrolls pointer
-  label: RoomScrollsPtr
+- name: RoomScrollsPtr
   type: u8 *
   addr:
     U: 0x30053E8
     E: 0x30053E8
     J: 0x3005418
     C: 0x3005418
-- desc: Space cutscene random number
-  label: SpaceCutsceneRandomNum
+- name: SpaceCutsceneRandomNum
   type: u16
   addr:
     U: 0x3005404
     E: 0x3005404
     J: 0x3005434
     C: 0x3005434
-- desc: Interrupt code pointer
-  label: InterruptCodePtr
+- name: InterruptCodePtr
   type: void *
   cat: arm
   addr:
