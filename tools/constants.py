@@ -37,8 +37,6 @@ K_DESC = "desc"
 K_ENUM = "enum"
 K_MODE = "mode"
 K_NAME = "name"
-# TODO: Remove (use desc)
-K_NOTES = "notes"
 K_OFFSET = "offset"
 K_PARAMS = "params"
 K_RETURN = "return"

@@ -4,40 +4,34 @@
     "items": {
         "type": "object",
         "properties": {
+            "name": {
+                "$ref": "urn:definitions#/definitions/Name"
+            },
             "desc": {
                 "$ref": "urn:definitions#/definitions/Description"
-            },
-            "label": {
-                "$ref": "urn:definitions#/definitions/Label"
             },
             "vals": {
                 "type": "array",
                 "items": {
                     "type": "object",
                     "properties": {
+                        "name": {
+                            "$ref": "urn:definitions#/definitions/Name"
+                        },
                         "desc": {
                             "$ref": "urn:definitions#/definitions/Description"
                         },
-                        "label": {
-                            "$ref": "urn:definitions#/definitions/Label"
-                        },
                         "val": {
                             "type": "integer"
-                        },
-                        "notes": {
-                            "$ref": "urn:definitions#/definitions/Description"
                         }
                     },
-                    "required": ["desc", "label", "val"],
+                    "required": ["name", "val"],
                     "additionalProperties": false
                 },
                 "minItems": 1
-            },
-            "notes": {
-                "$ref": "urn:definitions#/definitions/Description"
             }
         },
-        "required": ["desc", "label", "vals"],
+        "required": ["name", "vals"],
         "additionalProperties": false
     }
 }

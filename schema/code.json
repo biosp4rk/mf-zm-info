@@ -4,11 +4,11 @@
     "items": {
         "type": "object",
         "properties": {
+            "name": {
+                "$ref": "urn:definitions#/definitions/Name"
+            },
             "desc": {
                 "$ref": "urn:definitions#/definitions/Description"
-            },
-            "label": {
-                "$ref": "urn:definitions#/definitions/Label"
             },
             "addr": {
                 "$ref": "urn:definitions#/definitions/RegionInt"
@@ -42,23 +42,20 @@
                         "$ref": "#/$defs/CodeVar"
                     }
                 ]
-            },
-            "notes": {
-                "$ref": "urn:definitions#/definitions/Description"
             }
         },
-        "required": ["desc", "label", "addr", "size", "mode", "params", "return"],
+        "required": ["name", "addr", "size", "mode", "params", "return"],
         "additionalProperties": false
     },
     "$defs": {
         "CodeVar": {
             "type": "object",
             "properties": {
+                "name": {
+                    "$ref": "urn:definitions#/definitions/Name"
+                },
                 "desc": {
                     "$ref": "urn:definitions#/definitions/Description"
-                },
-                "label": {
-                    "$ref": "urn:definitions#/definitions/Label"
                 },
                 "type": {
                     "$ref": "urn:definitions#/definitions/Type"
@@ -73,13 +70,10 @@
                     "$ref": "urn:definitions#/definitions/Compression"
                 },
                 "enum": {
-                    "$ref": "urn:definitions#/definitions/Label"
-                },
-                "notes": {
-                    "$ref": "urn:definitions#/definitions/Description"
+                    "$ref": "urn:definitions#/definitions/Name"
                 }
             },
-            "required": ["desc", "label", "type"],
+            "required": ["name", "type"],
             "additionalProperties": false
         }
     }

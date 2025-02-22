@@ -4,11 +4,11 @@
     "items": {
         "type": "object",
         "properties": {
+            "name": {
+                "$ref": "urn:definitions#/definitions/Name"
+            },
             "desc": {
                 "$ref": "urn:definitions#/definitions/Description"
-            },
-            "label": {
-                "$ref": "urn:definitions#/definitions/Label"
             },
             "size": {
                 "type": "integer"
@@ -18,11 +18,11 @@
                 "items": {
                     "type": "object",
                     "properties": {
+                        "name": {
+                            "$ref": "urn:definitions#/definitions/Name"
+                        },
                         "desc": {
                             "$ref": "urn:definitions#/definitions/Description"
-                        },
-                        "label": {
-                            "$ref": "urn:definitions#/definitions/Label"
                         },
                         "type": {
                             "$ref": "urn:definitions#/definitions/Type"
@@ -40,22 +40,16 @@
                             "$ref": "urn:definitions#/definitions/Compression"
                         },
                         "enum": {
-                            "$ref": "urn:definitions#/definitions/Label"
-                        },
-                        "notes": {
-                            "$ref": "urn:definitions#/definitions/Description"
+                            "$ref": "urn:definitions#/definitions/Name"
                         }
                     },
-                    "required": ["desc", "label", "type", "offset"],
+                    "required": ["name", "type", "offset"],
                     "additionalProperties": false
                 },
                 "minItems": 1
-            },
-            "notes": {
-                "$ref": "urn:definitions#/definitions/Description"
             }
         },
-        "required": ["desc", "label", "size", "vars"],
+        "required": ["name", "size", "vars"],
         "additionalProperties": false
     }
 }

@@ -79,10 +79,9 @@ STR_TO_MODE = {s: m for m, s in MODE_TO_STR.items()}
 
 class InfoEntry(ABC):
 
-    def __init__(self, name: str, desc: str, notes: str = None):
+    def __init__(self, name: str, desc: str):
         self.name = name
         self.desc = desc
-        self.notes = notes
 
     def __lt__(self, other: "InfoEntry") -> bool:
         return self.name < other.name
@@ -135,10 +134,9 @@ class VarEntry(InfoEntry):
         arr_count: RegionInt,
         cat: Category = None,
         comp: Compression = None,
-        enum: str = None,
-        notes: str = None
+        enum: str = None
     ):
-        super().__init__(name, desc, notes)
+        super().__init__(name, desc)
         tokens = self.TOKENIZER.tokenize(type)
         self.type = self.PARSER.parse(tokens)
         self.arr_count = arr_count
@@ -250,28 +248,20 @@ class VarEntry(InfoEntry):
         if K_COMP in obj:
             comp = STR_TO_COMP[obj[K_COMP]]
         return VarEntry(
-            obj["label"],
-            obj[K_DESC],
+            obj[K_NAME],
+            obj.get(K_DESC),
             obj[K_TYPE],
             obj.get(K_COUNT),
             cat,
             comp,
-            obj.get(K_ENUM),
-            obj.get(K_NOTES)
+            obj.get(K_ENUM)
         )
 
     @staticmethod
     def to_obj(entry: "VarEntry", is_ret: bool = False) -> Any:
         obj = [(K_NAME, entry.name)]
         desc = None
-        if is_ret:
-            desc = entry.desc
-            if entry.notes:
-                desc = f"{desc} ({entry.notes})"
-        else:
-            if entry.notes:
-                desc = entry.notes
-        if desc:
+        if entry.desc:
             obj.append((K_DESC, desc))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
@@ -282,26 +272,23 @@ class VarEntry(InfoEntry):
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
 class DataEntry(VarEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
+        desc: str,
         type: str,
         arr_count: RegionInt,
         addr: RegionInt,
         cat: Category = None,
         comp: Compression = None,
-        enum: str = None,
-        notes: str = None
+        enum: str = None
     ):
         super().__init__(
-            desc, name, type, arr_count, cat, comp, enum, notes
+            name, desc, type, arr_count, cat, comp, enum
         )
         self.addr = addr
 
@@ -333,15 +320,14 @@ class DataEntry(VarEntry):
             if K_COMP in obj:
                 comp = STR_TO_COMP[obj[K_COMP]]
             return DataEntry(
-                obj["label"],
-                obj[K_DESC],
+                obj[K_NAME],
+                obj.get(K_DESC),
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
                 cat,
                 comp,
-                obj.get(K_ENUM),
-                obj.get(K_NOTES)
+                obj.get(K_ENUM)
             )
         except:
             raise Exception(f"Error parsing data entry: {obj}")
@@ -349,8 +335,8 @@ class DataEntry(VarEntry):
     @staticmethod
     def to_obj(entry: "DataEntry") -> Any:
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
@@ -361,26 +347,23 @@ class DataEntry(VarEntry):
         obj.append((K_ADDR, entry.addr))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
 class StructVarEntry(VarEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
+        desc: str,
         type: str,
         arr_count: RegionInt,
         offset: RegionInt,
         cat: Category = None,
         comp: Compression = None,
-        enum: str = None,
-        notes: str = None
+        enum: str = None
     ):
         super().__init__(
-            desc, name, type, arr_count, cat, comp, enum, notes
+            name, desc, type, arr_count, cat, comp, enum
         )
         self.offset = offset
 
@@ -411,22 +394,21 @@ class StructVarEntry(VarEntry):
         if K_COMP in obj:
             comp = STR_TO_COMP[obj[K_COMP]]
         return StructVarEntry(
-            obj["label"],
-            obj[K_DESC],
+            obj[K_NAME],
+            obj.get(K_DESC),
             obj[K_TYPE],
             obj.get(K_COUNT),
             obj[K_OFFSET],
             cat,
             comp,
-            obj.get(K_ENUM),
-            obj.get(K_NOTES)
+            obj.get(K_ENUM)
         )
 
     @staticmethod
     def to_obj(entry: "StructVarEntry") -> Any:
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
@@ -437,21 +419,18 @@ class StructVarEntry(VarEntry):
         obj.append((K_OFFSET, entry.offset))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
 class StructEntry(InfoEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
+        desc: str,
         size: int,
-        vars: list[StructVarEntry],
-        notes: str = None
+        vars: list[StructVarEntry]
     ):
-        super().__init__(desc, name, notes)
+        super().__init__(name, desc)
         self.size = size
         self.vars = vars
 
@@ -469,11 +448,10 @@ class StructEntry(InfoEntry):
         try:
             vars = [StructVarEntry.from_obj(e) for e in obj[K_VARS]]
             return StructEntry(
-                obj["label"],
-                obj[K_DESC],
+                obj[K_NAME],
+                obj.get(K_DESC),
                 obj[K_SIZE],
-                vars,
-                obj.get(K_NOTES)
+                vars
             )
         except:
             raise Exception(f"Error parsing struct entry: {obj}")
@@ -482,28 +460,25 @@ class StructEntry(InfoEntry):
     def to_obj(entry: "StructEntry") -> Any:
         vars = [StructVarEntry.to_obj(e) for e in entry.vars]
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj.append((K_SIZE, entry.size))
         obj.append((K_VARS, vars))
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
 class CodeEntry(InfoEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
+        desc: str,
         addr: RegionInt,
         size: RegionInt,
         mode: CodeMode,
         params: list[VarEntry],
-        ret: VarEntry,
-        notes: str = None
+        ret: VarEntry
     ):
-        super().__init__(desc, name, notes)
+        super().__init__(name, desc)
         self.addr = addr
         self.size = size
         self.mode = mode
@@ -537,14 +512,13 @@ class CodeEntry(InfoEntry):
             params = [VarEntry.from_obj(p) for p in obj[K_PARAMS]] if obj[K_PARAMS] else None
             ret = VarEntry.from_obj(obj[K_RETURN]) if obj[K_RETURN] else None
             return CodeEntry(
-                obj["label"],
-                obj[K_DESC],
+                obj[K_NAME],
+                obj.get(K_DESC),
                 obj[K_ADDR],
                 obj[K_SIZE],
                 STR_TO_MODE[obj[K_MODE]],
                 params,
-                ret,
-                obj.get(K_NOTES)
+                ret
             )
         except:
             raise Exception(f"Error parsing code entry: {obj}")
@@ -554,8 +528,8 @@ class CodeEntry(InfoEntry):
         params = [VarEntry.to_obj(p) for p in entry.params] if entry.params else None
         ret = VarEntry.to_obj(entry.ret, True) if entry.ret else None
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj += [
             (K_ADDR, entry.addr),
             (K_SIZE, entry.size),
@@ -563,20 +537,17 @@ class CodeEntry(InfoEntry):
             (K_PARAMS, params),
             (K_RETURN, ret),
         ]
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)
 
 
 class EnumValEntry(InfoEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
-        val: int,
-        notes: str = None
+        desc: str,
+        val: int
     ):
-        super().__init__(desc, name, notes)
+        super().__init__(name, desc)
         self.val = val
 
     def __str__(self) -> str:
@@ -588,32 +559,28 @@ class EnumValEntry(InfoEntry):
     @staticmethod
     def from_obj(obj: Any) -> "EnumValEntry":
         return EnumValEntry(
-            obj["label"],
-            obj[K_DESC],
-            obj[K_VAL],
-            obj.get(K_NOTES)
+            obj[K_NAME],
+            obj.get(K_DESC),
+            obj[K_VAL]
         )
 
     @staticmethod
     def to_obj(entry: "EnumValEntry") -> Any:
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj.append((K_VAL, entry.val))
-        # if entry.notes:
-        #     obj.append(("notes", entry.notes))
         return dict(obj)
 
 
 class EnumEntry(InfoEntry):
 
     def __init__(self,
-        desc: str,
         name: str,
-        vals: list[EnumValEntry],
-        notes: str = None
+        desc: str,
+        vals: list[EnumValEntry]
     ):
-        super().__init__(desc, name, notes)
+        super().__init__(name, desc)
         self.vals = vals
 
     def __str__(self) -> str:
@@ -624,10 +591,9 @@ class EnumEntry(InfoEntry):
         try:
             vals = [EnumValEntry.from_obj(e) for e in obj[K_VALS]]
             return EnumEntry(
-                obj["label"],
-                obj[K_DESC],
-                vals,
-                obj.get(K_NOTES)
+                obj[K_NAME],
+                obj.get(K_DESC),
+                vals
             )
         except:
             raise Exception(f"Error parsing enum entry: {obj}")
@@ -636,9 +602,7 @@ class EnumEntry(InfoEntry):
     def to_obj(entry: "EnumEntry") -> Any:
         vals = [EnumValEntry.to_obj(e) for e in entry.vals]
         obj = [(K_NAME, entry.name)]
-        if entry.notes:
-            obj.append((K_DESC, entry.notes))
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
         obj.append((K_VALS, vals))
-        # if entry.notes:
-        #     obj.append((K_NOTES, entry.notes))
         return dict(obj)

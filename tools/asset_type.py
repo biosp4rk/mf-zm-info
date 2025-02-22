@@ -388,10 +388,6 @@ class TypeParser:
         return root
 
     def _parse_type_spec(self) -> AssetType:
-        # TODO: Remove
-        if self._accept(TokenName.IDENT):
-            return TaggedType(DataType.STRUCT, self.prev_token.text)
-        #
         self._expect(TokenName.TYPE_SPEC)
         data_type = DATA_TYPE_STRS[self.prev_token.text]
         if data_type.is_tag():
@@ -410,44 +406,6 @@ class TypeParser:
                     self._next_token()
                     continue
             break
-
-    # TODO: Remove
-    def _print_state(self, start: int, left: int) -> None:
-        items = []
-        for i, t in enumerate(self.tokens):
-            if i == start:
-                prefix = "S="
-            elif i == left:
-                prefix = "L="
-            elif i == self.index:
-                prefix = "R="
-            else:
-                prefix = ""
-            items.append(prefix + t.text)
-        print(" ".join(items))
-
-
-TEST_CASES = [
-    "u8",
-    "u8 *",
-    "u8 [0x2]",
-    "u8 ()",
-    "u8 (void)",
-    "u8 (u16, u32)",
-    "u8 **",
-    "u8 *[0x2]",
-    "u8 *()",
-    "u8 *(void)",
-    "u8 *(u16, u32)",
-    "u8 [0x2][0x4]",
-    "u8 [0x2]()",
-    "u8 [0x2](void)",
-    "u8 [0x2](u16, u32)",
-    "u8 ()()",
-    "u8 ()[0x2]",
-    #
-    "u8 (*[0x2])[0x4]",
-]
 
 
 if __name__ == "__main__":
