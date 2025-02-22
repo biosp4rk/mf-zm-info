@@ -7,10 +7,10 @@ import yaml
 
 from constants import *
 from info_entry import *
-from typing import Any, List
+from typing import Any
 
 
-InfoFile = List[InfoEntry]
+InfoFile = list[InfoEntry]
 
 
 def hex_int_presenter(dumper, data: int):
@@ -23,7 +23,7 @@ def find_yaml_files(
     game: str,
     map_type: str,
     include_unk: bool = False
-) -> List[str]:
+) -> list[str]:
     """Finds all yaml files of the provided type and returns their paths."""
     dir_path = os.path.join(YAML_PATH, game, map_type)
     paths = None
@@ -38,9 +38,9 @@ def find_yaml_files(
 def find_json_file(
     game: str,
     map_type: str
-) -> List[str]:
+) -> list[str]:
     """Returns the path of the json file for the provided type."""
-    # find all yaml files and load data
+    # Find all yaml files and load data
     return os.path.join(JSON_PATH, game, map_type + JSON_EXT)
 
 
@@ -53,7 +53,7 @@ def load_yaml_file(path: str) -> Any:
         return yaml.safe_load(f)
 
 
-def load_yaml_files(paths: List[str]) -> Generator[Any]:
+def load_yaml_files(paths: list[str]) -> Generator[Any]:
     """
     Loads each yaml file from the provided list of paths
     and returns a generator of objects.
@@ -95,7 +95,7 @@ def parse_obj_lists(ylists: Iterable[Any], map_type: str) -> Generator[InfoFile]
         yield parse_obj_list(ylist, map_type)
 
 
-def combine_info_files(data_list: List[InfoFile]) -> InfoFile:
+def combine_info_files(data_list: list[InfoFile]) -> InfoFile:
     combined = []
     for data in data_list:
         combined += data
@@ -112,12 +112,12 @@ def get_info_file_from_yaml(
     Finds, loads, and parses all yaml files of the provided type
     and returns them as a single sorted list of InfoEntry.
     """
-    # load files and combine
+    # Load files and combine
     paths = find_yaml_files(game, map_type, include_unk)
     ylists = load_yaml_files(paths)
     ifiles = parse_obj_lists(ylists, map_type)
     ifile = combine_info_files(ifiles)
-    # filter by region
+    # Filter by region
     if region is not None:
         ifile = [e for e in ifile if e.to_region(region)]
     ifile.sort()
@@ -133,18 +133,18 @@ def get_info_file_from_json(
     Loads and parses the json file for the provided type
     and returns it as a sorted list of InfoEntry.
     """
-    # load files and combine
+    # Load files and combine
     path = os.path.join(JSON_PATH, game, map_type + JSON_EXT)
     obj_list = load_json_file(path)
     ifile = parse_obj_list(obj_list, map_type)
-    # filter by region
+    # Filter by region
     if region is not None:
         ifile = [e for e in ifile if e.to_region(region)]
     ifile.sort()
     return ifile
 
 
-def info_file_to_obj(map_type: str, data: InfoFile) -> List[Any]:
+def info_file_to_obj(map_type: str, data: InfoFile) -> list[Any]:
     """Converts an InfoFile to an object suitable for dumping."""
     if map_type == MAP_RAM:
         return [DataEntry.to_obj(d) for d in data]

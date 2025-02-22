@@ -1,6 +1,5 @@
 import argparse
 from collections.abc import Iterator
-from typing import Dict, List, Set, Tuple
 
 import argparse_utils as apu
 from constants import *
@@ -11,6 +10,7 @@ from thumb import *
 
 
 class Function(object):
+
     INDENT = " " * 4
     DOT_POOL = ".pool"
 
@@ -19,33 +19,33 @@ class Function(object):
         self.symbols = symbols
         self.start_addr = addr
         self.end_addr = -1
-        self.instructs: Dict[int, ThumbInstruct] = {}
-        self.jump_tables: Set[int] = set()
-        self.branches: Set[int] = set()
-        self.data_pool: Set[int] = set()
+        self.instructs: dict[int, ThumbInstruct] = {}
+        self.jump_tables: set[int] = set()
+        self.branches: set[int] = set()
+        self.data_pool: set[int] = set()
         self.at_end = False
         self.at_jump = False
-        self.locals: Set[int] = None
-        self.local_indexes: Dict[int, int] = None
+        self.locals: set[int] = None
+        self.local_indexes: dict[int, int] = None
         self.step_through()
 
-    def get_instructions(self) -> List[ThumbInstruct]:
+    def get_instructions(self) -> list[ThumbInstruct]:
         keys = sorted(self.instructs.keys())
         return [self.instructs[a] for a in keys]
 
     def step_through(self) -> None:
         self.addr = self.start_addr
-        # step through each instruction
+        # Step through each instruction
         while not self.at_end:
-            # skip if in data pool
+            # Skip if in data pool
             if self.addr in self.data_pool:
                 self.addr += 4
                 continue
 
-            # get current instruction
+            # Get current instruction
             inst = ThumbInstruct(self.rom, self.addr)
 
-            # check for branches, data pools, jump tables, and end of function
+            # Check for branches, data pools, jump tables, and end of function
             if inst.format == ThumbForm.HiReg:
                 if inst.opname == ThumbOp.MOV:
                     if inst.rd == 15:
@@ -69,33 +69,33 @@ class Function(object):
                 inst.format == ThumbForm.UncondB):
                 self.branches.add(inst.branch_addr())
 
-            # add current instruction to dictionary
+            # Add current instruction to dictionary
             self.instructs[self.addr] = inst
             
-            # increment address
+            # Increment address
             if inst.format == ThumbForm.Link:
                 self.addr += 4
             else:
                 self.addr += 2
 
-            # check if at jump
+            # Check if at jump
             if self.at_jump:
                 self.handle_jump()
 
-        # find end of last data pool (if present)
+        # Find end of last data pool (if present)
         self.align(4)
         while (self.addr in self.data_pool):
             self.addr += 4
         self.end_addr = self.addr
 
-        # find any BLs that are local branches
+        # Find any BLs that are local branches
         for inst in self.instructs.values():
             if inst.format == ThumbForm.Link:
                 pa = inst.branch_addr()
                 if pa > self.start_addr and pa < self.end_addr:
                     self.branches.add(pa)
 
-        # add local labels for branches
+        # Add local labels for branches
         for branch in self.branches:
             self.symbols.add_local(branch)
         self.symbols.finalize_locals()
@@ -110,14 +110,14 @@ class Function(object):
             self.addr += num - r
 
     def handle_jump(self) -> None:
-        # find start of table (should start after data pool)
+        # Find start of table (should start after data pool)
         self.align(4)
         while self.addr in self.data_pool:
             self.addr += 4
-        # add offset to jump tables and symbols
+        # Add offset to jump tables and symbols
         self.jump_tables.add(self.addr)
         self.symbols.add_local(self.addr)
-        # find all branches in table
+        # Find all branches in table
         while True:
             if self.addr in self.branches:
                 break
@@ -126,7 +126,7 @@ class Function(object):
             self.addr += 4
         self.at_jump = False
 
-    def get_jump_tables(self) -> Set[int]:
+    def get_jump_tables(self) -> set[int]:
         jumps = set()
         for start in self.jump_tables:
             offset = start
@@ -135,9 +135,9 @@ class Function(object):
                 offset += 4
         return jumps
 
-    def get_data_pools(self) -> List[Tuple[int, int]]:
-        # returns (address, size) pairs of each data pool
-        pools: List[Tuple[int, int]] = []
+    def get_data_pools(self) -> list[tuple[int, int]]:
+        # Returns (address, size) pairs of each data pool
+        pools: list[tuple[int, int]] = []
         all_words = self.data_pool | self.get_jump_tables()
         if len(all_words) == 0:
             return pools
@@ -154,19 +154,19 @@ class Function(object):
             prev_addr = addr
         return pools
 
-    def get_symbols(self) -> Dict[int, str]:
+    def get_symbols(self) -> dict[int, str]:
         syms = {}
-        # find all bls
+        # Find all bls
         for inst in self.instructs.values():
             if inst.format == ThumbForm.Link:
                 addr = inst.branch_addr()
-                # skip if within this function
+                # Skip if within this function
                 if addr >= self.start_addr and addr < self.end_addr:
                     continue
                 addr += ROM_OFFSET
                 label = self.symbols.get_label(addr, LabelType.Code)
                 syms[addr] = label
-        # check all data pools
+        # Check all data pools
         pools = self.get_data_pools()
         rom_start = self.rom.code_start(True)
         rom_end = self.rom.data_end(True)
@@ -175,19 +175,19 @@ class Function(object):
             end = addr + size
             for i in range(addr, end, 4):
                 val = self.rom.read_32(i)
-                # check if in ram
+                # Check if in ram
                 if (
                     (val >= 0x2000000 and val < 0x2040000) or
                     (val >= 0x3000000 and val < 0x3008000)
                 ):
                     label = self.symbols.get_label(val, LabelType.Data)
                     syms[val] = label
-                # check if in rom
+                # Check if in rom
                 elif val >= rom_start and val < rom_end:
                     pa = val - ROM_OFFSET
                     label_type = None
                     if pa < code_end:
-                        # skip if within this function
+                        # Skip if within this function
                         if pa >= self.start_addr and pa < self.end_addr:
                             continue
                         label_type = LabelType.Code
@@ -198,7 +198,7 @@ class Function(object):
                     syms[val] = label
         return syms
 
-    def get_lines(self, include_syms: bool, include_addrs: bool = False) -> List[str]:
+    def get_lines(self, include_syms: bool, include_addrs: bool = False) -> list[str]:
         self.symbols.locals = self.locals
         self.symbols.local_indexes = self.local_indexes
 
@@ -210,31 +210,31 @@ class Function(object):
                 lines.append(f".definelabel {label},0x{addr:X}")
             lines.append("")
 
-        # add address
+        # Add address
         lines.append(f"; {self.start_addr:X}")
 
-        # get label for function name
+        # Get label for function name
         func_addr = self.start_addr + ROM_OFFSET
         label = self.symbols.get_label(func_addr, LabelType.Code)
         lines.append(label + ":")
 
-        # add size
+        # Add size
         size = self.end_addr - self.start_addr
         lines.append(f"; Size: {size:X}")
 
-        # go until end of function
+        # Go until end of function
         self.addr = self.start_addr
         in_pool = False
         while self.addr < self.end_addr:
-            # check if anything branches to current offset
+            # Check if anything branches to current offset
             if self.addr in self.branches:
                 lines.append(self.symbols.get_local(self.addr) + ":")
             if self.addr in self.data_pool or (
                 self.addr % 4 == 2 and
                 self.rom.read_16(self.addr) == 0 and
                 self.addr + 2 in self.data_pool):
-                # if already in a data pool, do nothing
-                # if just entered a data pool, write .pool
+                # If already in a data pool, do nothing
+                # If just entered a data pool, write .pool
                 if not in_pool:
                     lines.append(self.INDENT + self.DOT_POOL)
                     in_pool = True
@@ -275,14 +275,14 @@ class Function(object):
         delattr(self, "addr")
         return lines
 
-    def compare(self, other: "Function") -> List[bool]:
-        # get instructions of both functions
+    def compare(self, other: "Function") -> list[bool]:
+        # Get instructions of both functions
         self_instructs = self.get_instructions()
         other_instructs = other.get_instructions()
         num_instructs = len(self_instructs)
         if num_instructs != len(other_instructs):
             return [False]
-        # compare each instruction in order
+        # Compare each instruction in order
         has_bl = False
         for i in range(num_instructs):
             self_inst = self_instructs[i]
@@ -324,11 +324,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
     
-    # load symbols
+    # Load symbols
     info = GameInfo(rom.game, rom.region)
     syms = Symbols(info)
 
-    # get address
+    # Get address
     addr = None
     if args.addr:
         try:
@@ -343,7 +343,7 @@ if __name__ == "__main__":
             quit()
         addr = entry.addr
 
-    # print function
+    # Print function
     func = Function(rom, addr, syms)
     lines = func.get_lines(args.symbols, args.addr_comments)
     print("\n".join(lines))

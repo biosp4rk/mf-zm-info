@@ -1,13 +1,13 @@
 from enum import Enum, auto
-from typing import List, Set
 
 from rom import Rom, ROM_OFFSET
 from symbols import Symbols, LabelType
 
 
 class ThumbOp(Enum):
+
     Undef = auto()
-    # logical operations
+    # Logical operations
     MOV = auto()
     MVN = auto()
     AND = auto()
@@ -20,7 +20,7 @@ class ThumbOp(Enum):
     ASR = auto()
     ROR = auto()
     NOP = auto()
-    # arithmetic operations
+    # Arithmetic operations
     ADD = auto()
     ADC = auto()
     SUB = auto()
@@ -29,7 +29,7 @@ class ThumbOp(Enum):
     CMP = auto()
     CMN = auto()
     MUL = auto()
-    # jumps and calls
+    # Jumps and calls
     B = auto()
     BEQ = auto()
     BNE = auto()
@@ -50,7 +50,7 @@ class ThumbOp(Enum):
     SWI = auto()
     BKPT = auto()
     BLX = auto()
-    # memory load/store
+    # Memory load/store
     LDR = auto()
     LDRB = auto()
     LDRH = auto()
@@ -66,6 +66,7 @@ class ThumbOp(Enum):
 
 
 class ThumbForm(Enum):
+
     Undef = auto()
     Shift = auto()
     AddSub = auto()
@@ -89,6 +90,7 @@ class ThumbForm(Enum):
 
 
 class Reg(object):
+
     LoMax = 7
     Hi = 8
     SP = 13
@@ -97,6 +99,7 @@ class Reg(object):
 
 
 class ThumbInstruct(object):
+
     # phys_addr: int
     # format: ThumbForm
     # opcode: int
@@ -105,7 +108,7 @@ class ThumbInstruct(object):
     # rs: int
     # rn: int
     # ro: int
-    # rlist: List[int]
+    # rlist: list[int]
     # imm: int
 
     def __init__(self, rom: Rom, addr: int):
@@ -415,7 +418,7 @@ class ThumbInstruct(object):
             self.ro = val >> 6 & 7
 
     def set_rlist(self, val: int) -> None:
-        self.rlist: List[int] = None
+        self.rlist: list[int] = None
         if self.format == ThumbForm.PushPop or self.format == ThumbForm.LdStM:
             self.rlist = [r for r in range(8) if val >> r & 1]
             if self.format == ThumbForm.PushPop and (val & 0x100):
@@ -465,7 +468,7 @@ class ThumbInstruct(object):
         else:
             raise ValueError()
         off = self.imm
-        # check if negative
+        # Check if negative
         flag = 1 << (bits - 1)
         if off >= flag:
             off -= flag << 1
@@ -513,7 +516,7 @@ class ThumbInstruct(object):
             val = self.imm * 4
         elif self.format == ThumbForm.AddSP:
             val = self.imm * 4
-            # check if negative
+            # Check if negative
             if self.opcode == 1:
                 val = -val
         else:
@@ -541,7 +544,7 @@ class ThumbInstruct(object):
         return regs.rstrip(",")
 
 
-    def asm_str(self, rom: Rom, symbols: Symbols, branches: Set[int]) -> str:
+    def asm_str(self, rom: Rom, symbols: Symbols, branches: set[int]) -> str:
         args = []
         if self.format == ThumbForm.Shift:
             args.append(f"r{self.rd}")

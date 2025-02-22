@@ -1,5 +1,4 @@
 import argparse
-from typing import List
 
 import argparse_utils as apu
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
@@ -10,7 +9,7 @@ from rom import Rom, ROM_OFFSET
 
 
 def gen_sym_file(rom: Rom):
-    # get all function offsets and their pointers and pools
+    # Get all function offsets and their pointers and pools
     func_addrs = []
     loaded_words = set()
     pool_sizes = []
@@ -27,15 +26,15 @@ def gen_sym_file(rom: Rom):
     func_addrs += list(rom.arm_functions().keys())
     func_addrs.sort()
 
-    # get dictionaries with <addr, name>
-    ram: List[DataEntry] = get_info_file_from_json(rom.game, MAP_RAM, rom.region)
+    # Get dictionaries with <addr, name>
+    ram: list[DataEntry] = get_info_file_from_json(rom.game, MAP_RAM, rom.region)
     ram_dict = {r.addr: r.name for r in ram}
-    code: List[CodeEntry] = get_info_file_from_json(rom.game, MAP_CODE, rom.region)
+    code: list[CodeEntry] = get_info_file_from_json(rom.game, MAP_CODE, rom.region)
     code_dict = {r.addr: r.name for r in code}
-    data: List[DataEntry] = get_info_file_from_json(rom.game, MAP_DATA, rom.region)
+    data: list[DataEntry] = get_info_file_from_json(rom.game, MAP_DATA, rom.region)
     data_dict = {r.addr: r.name for r in data}
 
-    # write to file
+    # Write to file
     lines = []
     words = sorted(loaded_words)
     j = 0
@@ -68,7 +67,7 @@ def gen_sym_file(rom: Rom):
             lines.append(f";{word:08X}")
     lines.append("")
 
-    # code
+    # Code
     lines.append("; ROM code")
     for func_addr in func_addrs:
         word = func_addr + ROM_OFFSET
@@ -79,7 +78,7 @@ def gen_sym_file(rom: Rom):
             lines.append(f";{word:08X}")
     lines.append("")
 
-    # data
+    # Data
     data_start = rom.data_start(True)
     data_end = rom.data_end(True)
     while words[j] < data_start:
@@ -96,7 +95,7 @@ def gen_sym_file(rom: Rom):
             lines.append(f";{word:08X}")
     lines.append("")
 
-    # pools
+    # Pools
     lines.append("; Pools")
     for offset, size in pool_sizes:
         off = offset + ROM_OFFSET

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum, auto
-from typing import Any, Dict, List, Union
+from typing import Any
 
 from asset_type import (
     DataType, OuterType, PointerType, ArrayType,
@@ -9,12 +9,13 @@ from asset_type import (
 from constants import *
 
 
-# type for numbers that can vary by region (addr, size)
-RegionInt = Union[int, Dict[str, int]]
-StructDict = Dict[str, "StructEntry"]
+# Type for numbers that can vary by region (addr, size)
+RegionInt = int | dict[str, int]
+StructDict = dict[str, "StructEntry"]
 
 
 class Category(Enum):
+
     BOOL = auto()
     FLAGS = auto()
     ASCII = auto()
@@ -51,6 +52,7 @@ STR_TO_CAT = {s: c for c, s in CAT_TO_STR.items()}
 
 
 class Compression(Enum):
+
     RLE = auto()
     LZ = auto()
 
@@ -63,6 +65,7 @@ STR_TO_COMP = {s: c for c, s in COMP_TO_STR.items()}
 
 
 class CodeMode(Enum):
+
     Thumb = auto()
     Arm = auto()
 
@@ -75,6 +78,7 @@ STR_TO_MODE = {s: m for m, s in MODE_TO_STR.items()}
 
 
 class InfoEntry(ABC):
+
     def __init__(self, name: str, desc: str, notes: str = None):
         self.name = name
         self.desc = desc
@@ -98,18 +102,18 @@ class InfoEntry(ABC):
 
     @staticmethod
     def less_than(ri1: RegionInt, ri2: RegionInt) -> bool:
-        # get region dictionaries
+        # Get region dictionaries
         addr1 = ri1
         addr2 = ri2
         if isinstance(ri1, int):
             addr1 = {r: ri1 for r in REGIONS}
         if isinstance(ri2, int):
             addr2 = {r: ri2 for r in REGIONS}
-        # compare by first region containing both
+        # Compare by first region containing both
         for r in REGIONS:
             if r in addr1 and r in addr2:
                 return addr1[r] < addr2[r]
-        # entries are unique to each region,
+        # Entries are unique to each region,
         # so they're not directly comparable;
         # just compare averages instead
         avg1 = sum(addr1.values()) / len(addr1)
@@ -118,6 +122,7 @@ class InfoEntry(ABC):
 
 
 class VarEntry(InfoEntry):
+
     TOKENIZER = TypeTokenizer()
     PARSER = TypeParser()
 
@@ -300,12 +305,12 @@ class DataEntry(VarEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        # check addr
+        # Check addr
         if isinstance(self.addr, dict):
             if region not in self.addr:
                 return False
             self.addr = self.addr[region]
-        # check arr_count
+        # Check arr_count
         if isinstance(self.arr_count, dict):
             if region in self.arr_count:
                 self.arr_count = self.arr_count[region]
@@ -380,12 +385,12 @@ class StructVarEntry(VarEntry):
         return InfoEntry.less_than(self.offset, other.offset)
 
     def to_region(self, region: str) -> bool:
-        # check offset
+        # Check offset
         if isinstance(self.offset, dict):
             if region not in self.offset:
                 return False
             self.offset = self.offset[region]
-        # check arr_count
+        # Check arr_count
         if isinstance(self.arr_count, dict):
             if region in self.arr_count:
                 self.arr_count = self.arr_count[region]
@@ -438,7 +443,7 @@ class StructEntry(InfoEntry):
         desc: str,
         name: str,
         size: int,
-        vars: List[StructVarEntry],
+        vars: list[StructVarEntry],
         notes: str = None
     ):
         super().__init__(desc, name, notes)
@@ -490,7 +495,7 @@ class CodeEntry(InfoEntry):
         addr: RegionInt,
         size: RegionInt,
         mode: CodeMode,
-        params: List[VarEntry],
+        params: list[VarEntry],
         ret: VarEntry,
         notes: str = None
     ):
@@ -508,12 +513,12 @@ class CodeEntry(InfoEntry):
         return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
-        # check addr
+        # Check addr
         if isinstance(self.addr, dict):
             if region not in self.addr:
                 return False
             self.addr = self.addr[region]
-        # check size
+        # Check size
         if isinstance(self.size, dict):
             if region in self.size:
                 self.size = self.size[region]
@@ -526,11 +531,11 @@ class CodeEntry(InfoEntry):
     def from_obj(obj: Any) -> "CodeEntry":
         try:
             params = obj[K_PARAMS]
-            # TODO: don't allow str for params
+            # TODO: Don't allow str for params
             if not isinstance(params, str):
                 params = [VarEntry.from_obj(p) for p in params] if params else None
             ret = obj[K_RETURN]
-            # TODO: don't allow str for return
+            # TODO: Don't allow str for return
             if not isinstance(ret, str):
                 ret = VarEntry.from_obj(ret) if ret else None
             return CodeEntry(
@@ -548,11 +553,11 @@ class CodeEntry(InfoEntry):
 
     @staticmethod
     def to_obj(entry: "CodeEntry") -> Any:
-        # TODO: don't allow str for params
+        # TODO: Don't allow str for params
         params = entry.params
         if not isinstance(entry.params, str):
             params = [VarEntry.to_obj(p) for p in entry.params] if entry.params else None
-        # TODO: don't allow str for return
+        # TODO: Don't allow str for return
         ret = entry.ret
         if not isinstance(entry.ret, str):
             ret = VarEntry.to_obj(entry.ret) if entry.ret else None
@@ -613,7 +618,7 @@ class EnumEntry(InfoEntry):
     def __init__(self,
         desc: str,
         name: str,
-        vals: List[EnumValEntry],
+        vals: list[EnumValEntry],
         notes: str = None
     ):
         super().__init__(desc, name, notes)

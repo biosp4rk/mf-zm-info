@@ -2,7 +2,6 @@ import argparse
 import json
 import os
 import sys
-from typing import Dict, List, Tuple
 
 from jsonschema import Draft7Validator
 from referencing import Registry, Resource
@@ -19,6 +18,7 @@ TYPE_SYMS = {"*", "[", "]", "(", ")"}
 
 
 class EntryLoc(object):
+
     def __init__(self):
         self.game: str = None
         self.map_type: str = None
@@ -44,11 +44,12 @@ class EntryLoc(object):
 
 
 class Validator(object):
+
     def __init__(self):
         self.entry_loc: EntryLoc = EntryLoc()
-        self.structs: Dict[str, StructEntry] = None
-        self.enums: Dict[str, EnumEntry] = None
-        self.errors: List[Tuple[str, EntryLoc]] = []
+        self.structs: dict[str, StructEntry] = None
+        self.enums: dict[str, EnumEntry] = None
+        self.errors: list[tuple[str, EntryLoc]] = []
 
     def validate(self):
         self.validate_files()
@@ -56,13 +57,13 @@ class Validator(object):
 
     def validate_files(self) -> None:
         print("Validating files")
-        # load schema with shared definitions
+        # Load schema with shared definitions
         with open(os.path.join(SCHEMA_PATH, "definitions.json")) as f:
             defs_schema = json.load(f)
         defs_resource = Resource.from_contents(defs_schema)
         registry = Registry().with_resource("urn:definitions", defs_resource)
 
-        # go through yaml files of each type
+        # Go through yaml files of each type
         for map_type in MAP_TYPES:
             self.entry_loc.map_type = map_type
             name = "data" if map_type == "ram" else map_type
@@ -83,26 +84,26 @@ class Validator(object):
         print("Validating info entries")
         for game in GAMES:
             self.entry_loc.game = game
-            # TODO: some errors can happen when creating GameInfo;
+            # TODO: Some errors can happen when creating GameInfo;
             # consider manually creating each info entry instead
             # (would need to sort and check for overlap at the end)
             info = GameInfo(game, from_json=False)
             self.enums = info.enums
             self.structs = info.structs
 
-            # check enums
+            # Check enums
             self.entry_loc.map_type = MAP_ENUMS
             for entry in info.enums.values():
                 self.entry_loc.entry_name = entry.name
                 self.check_vals(entry.vals)
 
-            # check structs
+            # Check structs
             self.entry_loc.map_type = MAP_STRUCTS
             for entry in info.structs.values():
                 self.entry_loc.entry_name = entry.name
                 self.check_vars(entry.vars)
 
-            # check code
+            # Check code
             self.entry_loc.map_type = MAP_CODE
             prev: CodeEntry = None
             for entry in info.code:
@@ -114,7 +115,7 @@ class Validator(object):
                 self.check_entries_overlap(entry, prev, MAP_CODE)
                 prev = entry
 
-            # check data and ram
+            # Check data and ram
             data_and_ram = (
                 (MAP_DATA, info.data),
                 (MAP_RAM, info.ram)
@@ -130,10 +131,10 @@ class Validator(object):
                     self.check_region_int(K_ADDR, entry.addr, align)
                     self.check_enum(entry.enum)
                     if valid_type:
-                        # can only check size if type is valid
+                        # Can only check size if type is valid
                         self.check_entries_overlap(entry, prev, map_type)
                         prev = entry
-        # print any errors
+        # Print any errors
         if len(self.errors) == 0:
             print("No validation errors")
         else:
@@ -158,11 +159,11 @@ class Validator(object):
         self.entry_loc.field_name = K_ADDR
         if prev is None:
             return
-        # get current address
+        # Get current address
         curr_addr = entry.addr
         if isinstance(curr_addr, int):
             curr_addr = {r: curr_addr for r in REGIONS}
-        # get end of previous
+        # Get end of previous
         prev_addr = prev.addr
         if isinstance(prev_addr, int):
             prev_addr = {r: prev_addr for r in REGIONS}
@@ -177,12 +178,12 @@ class Validator(object):
             r: paddr + prev_len[r] - 1
             for r, paddr in prev_addr.items()
         }
-        # compare
+        # Compare
         for r, a in prev_end.items():
             if r in curr_addr:
                 if a >= curr_addr[r]:
                     self.add_error(f"{map_type} entries overlap\n{prev.name}")
-                # some data is in a different order in different regions,
+                # Some data is in a different order in different regions,
                 # so we only check against one region
                 break
 
@@ -195,14 +196,14 @@ class Validator(object):
 
     def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
-        # check struct
+        # Check struct
         if (entry.data_type() == DataType.STRUCT and
             entry.struct_name() not in self.structs):
             self.add_error("Invalid type")
             return False
         if entry.declaration is None:
             return True
-        # check that declaration can be fully parsed
+        # Check that declaration can be fully parsed
         tokens = tokenize_decl(entry.declaration)
         index = parse_decl(tokens, 0)
         if index != len(tokens):
@@ -210,7 +211,7 @@ class Validator(object):
             return False
         return True
 
-    def check_vals(self, vals: List[EnumValEntry]) -> None:
+    def check_vals(self, vals: list[EnumValEntry]) -> None:
         self.entry_loc.field_name = K_VALS
         prev = -1
         for ve in vals:
@@ -218,7 +219,7 @@ class Validator(object):
                 self.add_error("vals should be in ascending order")
             prev = ve.val
 
-    def check_vars(self, vars: List[StructVarEntry]):
+    def check_vars(self, vars: list[StructVarEntry]):
         self.entry_loc.field_name = K_VARS
         prev = -1
         for ve in vars:
@@ -226,12 +227,12 @@ class Validator(object):
             self.check_enum(ve.enum)
             align = ve.get_alignment(self.structs)        
             self.check_region_int(K_OFFSET, ve.offset, align)
-            # TODO: check for overlap
+            # TODO: Check for overlap
             if prev >= ve.offset:
                 self.add_error("offsets should be in ascending order")
             prev = ve.offset
 
-    def check_params(self, params: List[VarEntry]):
+    def check_params(self, params: list[VarEntry]):
         self.entry_loc.field_name = K_PARAMS
         if params is not None:
             for param in params:
@@ -285,12 +286,12 @@ def parse_decl(tokens, index: int) -> int:
     # Num   -> Dec | Hex
     if index == len(tokens):
         return index
-    # check for pointer
+    # Check for pointer
     while tokens[index] == "*":
         index += 1
         if index == len(tokens):
             return index
-    # check for inner declaration
+    # Check for inner declaration
     if tokens[index] == "(":
         index = parse_decl(tokens, index + 1)
         assert (index < len(tokens) and
@@ -298,7 +299,7 @@ def parse_decl(tokens, index: int) -> int:
         index += 1
         if index == len(tokens):
             return index
-    # check for arrays
+    # Check for arrays
     while tokens[index] == "[":
         assert (index + 1 < len(tokens) and
             tokens[index+1] != "]"), f"Array missing size in type"
@@ -311,13 +312,13 @@ def parse_decl(tokens, index: int) -> int:
 
 
 def output_yamls() -> None:
-    # find all yaml files
+    # Find all yaml files
     yaml_files = []
     for game in GAMES:
         for map_type in MAP_TYPES:
             paths = ifu.find_yaml_files(game, map_type, True)
             yaml_files += [(p, map_type) for p in paths]
-    # parse files and output
+    # Parse files and output
     for path, map_type in yaml_files:
         data = ifu.load_yaml_file(path)
         ifile = ifu.parse_obj_list(data, map_type)
@@ -329,7 +330,7 @@ def output_yamls() -> None:
 def output_jsons() -> None:
     for game in GAMES:
         json_dir = os.path.join(JSON_PATH, game)
-        # convert each to json
+        # Convert each to json
         for map_type in MAP_TYPES:
             data = ifu.get_info_file_from_yaml(game, map_type)
             obj = ifu.info_file_to_obj(map_type, data)

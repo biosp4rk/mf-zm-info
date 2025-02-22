@@ -18,7 +18,7 @@ def dump(rom: Rom, addr: int) -> None:
     frame_num = 0
 
     while True:
-        # for each pose
+        # For each pose
         offset = rom.read_32(addr)
         if offset < data_start or offset >= data_end:
             break
@@ -27,7 +27,7 @@ def dump(rom: Rom, addr: int) -> None:
         lines2.append(f"{INDENT}; {addr:X}")
 
         while True:
-            # for each frame
+            # For each frame
             offset = rom.read_32(addr)
             if offset == 0:
                 addr += 8
@@ -48,7 +48,7 @@ def dump(rom: Rom, addr: int) -> None:
             lines1.append(f"{INDENT}{D16} {num_parts}")
 
             for _ in range(num_parts):
-                # for each piece
+                # For each piece
                 attr1 = rom.read_next_16()
                 attr2 = rom.read_next_16()
                 attr3 = rom.read_next_16()
@@ -65,7 +65,7 @@ def dump(rom: Rom, addr: int) -> None:
         lines2.append("")
         oam_num += 1
 
-    # output
+    # Output
     print("\n".join(lines1) + "\n" + "\n".join(lines2))
 
 

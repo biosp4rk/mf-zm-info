@@ -1,7 +1,7 @@
 import argparse
 import json
 import os
-from typing import Any, Union
+from typing import Any
 
 import decomp.doxmlparser as dxp
 import decomp.doxmlparser.compound as dxpc
@@ -9,6 +9,7 @@ from decomp.doxmlparser.compound import DoxCompoundKind, DoxMemberKind, MixedCon
 
 
 class DcBaseEntry:
+
     def to_dict(self) -> dict[str, Any]:
         raise NotImplementedError()
 
@@ -17,6 +18,7 @@ class DcBaseEntry:
 
 
 class DcTypeDecl(DcBaseEntry):
+
     """Used for return types."""
     def __init__(self, decl: str, desc: str):
         self.decl = decl
@@ -30,6 +32,7 @@ class DcTypeDecl(DcBaseEntry):
 
 
 class DcNamedTypeDecl(DcTypeDecl):
+
     """Used for function parameters."""
     def __init__(self, name: str, decl: str, desc: str):
         super().__init__(decl, desc)
@@ -46,6 +49,7 @@ class DcNamedTypeDecl(DcTypeDecl):
 
 
 class DcVarEntry(DcNamedTypeDecl):
+
     """Used for RAM and ROM variables."""
     def __init__(self, name: str, decl: str, loc: str, desc: str):
         super().__init__(name, decl, desc)
@@ -63,6 +67,7 @@ class DcVarEntry(DcNamedTypeDecl):
 
 
 class DcCodeEntry(DcBaseEntry):
+
     def __init__(self, name: str, params: list[DcNamedTypeDecl], ret: DcTypeDecl, loc: str, desc: str):
         self.name = name
         self.params = params
@@ -83,7 +88,7 @@ class DcCodeEntry(DcBaseEntry):
 
 
 def linked_text_to_str(linked_text: dxp.linkedTextType):
-    """TODO: document"""
+    """TODO: Document"""
     str = ""
     if linked_text:
         for text_or_ref in linked_text.content_:
@@ -94,23 +99,23 @@ def linked_text_to_str(linked_text: dxp.linkedTextType):
     return str
 
 
-def is_body_file(item: Union[dxp.compounddefType, dxp.memberdefType]) -> bool:
+def is_body_file(item: dxp.compounddefType | dxp.memberdefType) -> bool:
     """Returns true if the item is in a body file rather than a header file."""
     loc = item.get_location()
     return loc.get_file() == loc.get_bodyfile()
 
 
-def get_loc_str(item: Union[dxp.compounddefType, dxp.memberdefType]) -> str:
+def get_loc_str(item: dxp.compounddefType | dxp.memberdefType) -> str:
     """Gets a string with an item's file and line number."""
     loc = item.get_location()
     return f"{loc.get_file()}:{loc.get_line()}"
 
 
-# TODO: remove
+# TODO: Remove
 code_entries = []
 
 
-def parse_single_text_para(item: Union[dxp.descriptionType, dxp.docSimpleSectType]) -> str:
+def parse_single_text_para(item: dxp.descriptionType | dxp.docSimpleSectType) -> str:
     """
     Gets the text from an item that should have a single para with plain text.
     Returns None if there are no paras.
@@ -228,7 +233,7 @@ def parse_members(compounddef: dxp.compounddefType, sectiondef: dxp.sectiondefTy
                 pass
             elif memberdef.get_kind() == DoxMemberKind.VARIABLE:
                 # Data or RAM variable
-                # TODO: get description
+                # TODO: Get description
                 var_name = memberdef.get_name()
                 var_decl = memberdef.get_definition()
                 loc = get_loc_str(memberdef)

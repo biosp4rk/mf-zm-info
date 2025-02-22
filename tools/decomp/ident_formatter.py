@@ -1,4 +1,4 @@
-from typing import Callable, List
+from typing import Callable
 
 
 ABBREVIATIONS = {
@@ -26,12 +26,13 @@ CAPITALIZE = {
 }
 
 class IdentSplitter:
+
     def __init__(self):
         self.ident = None
         self.idx = None
         self.word = None
 
-    def split(self, ident: str) -> List[str]:
+    def split(self, ident: str) -> list[str]:
         self.ident = ident
         self.idx = 0
         words = []

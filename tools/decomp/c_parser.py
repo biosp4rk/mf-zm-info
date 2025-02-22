@@ -19,6 +19,7 @@ PRIMITIVES = {
 
 
 class DcVarEntry:
+
     def __init__(self, name: str, decl: str, count: int):
         self.name = name
         self.decl = decl
@@ -26,6 +27,7 @@ class DcVarEntry:
 
 
 class DcCodeEntry:
+
     def __init__(self, name: str, params: list[DcVarEntry], ret: DcVarEntry, file: str):
         self.name = name
         self.params = params
@@ -93,7 +95,7 @@ def parse_func_decl(node: c_ast.FuncDecl):
 
 def parse_struct(filename: str, struct_name: str) -> None:
     ast = parse_file(filename, True)
-    # find struct definitions
+    # Find struct definitions
     for child in ast:
         if not isinstance(child, c_ast.Decl):
             continue
@@ -102,14 +104,14 @@ def parse_struct(filename: str, struct_name: str) -> None:
             continue
         if ct.name != struct_name:
             continue
-        # create struct entry
+        # Create struct entry
         struct_size = 0
         fields = []
         for decl in ct.decls:
             dt = decl.type
             field_name = dt.declname
             field_type = dt.type.names[0]
-            # align if necessary
+            # Align if necessary
             field_size = PRIMITIVES[field_type]
             while struct_size % field_size != 0:
                 struct_size += 1

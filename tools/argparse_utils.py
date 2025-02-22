@@ -1,11 +1,11 @@
 from argparse import ArgumentParser
 from enum import Enum, auto
-from typing import List
 
 from rom import Rom
 
 
 class ArgType(Enum):
+
     ROM_PATH = auto()
     ADDR = auto()
     ADDR_LIST = auto()
@@ -39,7 +39,7 @@ def get_hex(hex_str: str) -> int:
         raise ValueError(f"Invalid hex address {hex_str}")
 
 
-def get_hex_list(hex_list: str) -> List[int]:
+def get_hex_list(hex_list: str) -> list[int]:
     hex_strs = hex_list.split(",")
     try:
         return [int(a, 16) for a in hex_strs]

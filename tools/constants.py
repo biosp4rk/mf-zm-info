@@ -1,11 +1,10 @@
-
-# paths and extensions
+# Paths and extensions
 YAML_PATH = "../yaml"
 YAML_EXT = ".yml"
 JSON_PATH = "../json"
 JSON_EXT = ".json"
 
-# map types
+# Map types
 MAP_CODE = "code"
 MAP_DATA = "data"
 MAP_ENUMS = "enums"
@@ -13,12 +12,12 @@ MAP_RAM = "ram"
 MAP_STRUCTS = "structs"
 MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS)
 
-# game names
+# Game names
 GAME_MF = "mf"
 GAME_ZM = "zm"
 GAMES = (GAME_MF, GAME_ZM)
 
-# game regions
+# Game regions
 REGION_U = "U"
 REGION_E = "E"
 REGION_J = "J"
@@ -29,7 +28,7 @@ MODE_THUMB = "thumb"
 MODE_ARM = "arm"
 ASM_MODES = (MODE_THUMB, MODE_ARM)
 
-# entry field keys
+# Entry field keys
 K_ADDR = "addr"
 K_CAT = "cat"
 K_COMP = "comp"

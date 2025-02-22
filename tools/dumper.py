@@ -1,7 +1,6 @@
 import argparse
 from collections import defaultdict
 import re
-from typing import List, Tuple
 
 import argparse_utils as apu
 from function import all_functions
@@ -32,7 +31,7 @@ def dump_bytes(
             print(" ".join(f"{rom.read_32(a):08X}" for a in range(i, j, 4)))
 
 
-def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
+def all_funcs(rom: Rom) -> list[tuple[int, int]]:
     """
     Returns (addr, size) pairs for every function in the ROM.
     """
@@ -45,15 +44,15 @@ def all_funcs(rom: Rom) -> List[Tuple[int, int]]:
 
 def coverage(rom: Rom):
     info = GameInfo(rom.game, rom.region)
-    # get total size of code entries
+    # Get total size of code entries
     code_cov = 0
     for entry in info.code:
         code_cov += entry.size
-    # get total size of data entries
+    # Get total size of data entries
     data_cov = 0
     for entry in info.data:
         data_cov += entry.get_size(info.structs)
-    # compute percent of rom covered
+    # Compute percent of rom covered
     code_size = rom.code_end() - 0xC0
     data_size = rom.data_end() - rom.data_start()
     rom_size = code_size + data_size

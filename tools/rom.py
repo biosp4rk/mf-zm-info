@@ -1,9 +1,7 @@
-from typing import Dict, Optional, Union
-
 from constants import *
 
 
-BytesLike = Union[bytes, bytearray]
+BytesLike = bytes | bytearray
 
 SIZE_8MB = 0x800000
 SIZE_16MB = SIZE_8MB * 2
@@ -14,14 +12,15 @@ ROM_END = ROM_OFFSET + SIZE_32MB
 
 
 class Rom(object):
+
     def __init__(self, path: str):
-        # read file
+        # Read file
         with open(path, "rb") as f:
             self.data = bytearray(f.read())
-        # check length
+        # Check length
         if len(self.data) != SIZE_8MB:
             raise ValueError("ROM should be 8MB")
-        # check title and code
+        # Check title and code
         title = self.read_ascii(0xA0, 0x10)
         if title == "METROID4USA\0AMTE":
             self.game = GAME_MF
@@ -102,7 +101,7 @@ class Rom(object):
         dst_addr: int,
         vals: BytesLike,
         src_addr: int = 0,
-        size: Optional[int] = None
+        size: int | None = None
     ) -> None:
         if size is None:
             size = len(vals) - src_addr
@@ -202,7 +201,7 @@ class Rom(object):
             addr += ROM_OFFSET
         return addr
 
-    def arm_functions(self) -> Dict[int, int]:
+    def arm_functions(self) -> dict[int, int]:
         if self.game == GAME_MF:
             if self.region == REGION_U:
                 return {

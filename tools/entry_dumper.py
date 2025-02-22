@@ -1,6 +1,5 @@
 import argparse
 from collections import defaultdict
-from typing import Dict, List
 import os
 
 from constants import *
@@ -14,20 +13,20 @@ def struct_list_var_addrs(
     info: GameInfo,
     data_label: str,
     var_label: str
-) -> List[int]:
+) -> list[int]:
     """
     Given a data label for a list of structs and a label for a field on
     the struct, returns the address of the field for each entry.
     """
-    # get data entry info
+    # Get data entry info
     data = info.get_data(data_label)
     data_addr = data.addr
     data_count = data.get_count()
-    # get struct info
+    # Get struct info
     struct = info.get_struct(data.struct_name())
     size = struct.size
     var_off = struct.get_var(var_label).offset
-    # compute addresses
+    # Compute addresses
     addrs = []
     for i in range(data_count):
         off = i * size + var_off
@@ -36,20 +35,20 @@ def struct_list_var_addrs(
     return addrs
 
 
-def dump_instrument_defs(roms: Dict[str, Rom]):
+def dump_instrument_defs(roms: dict[str, Rom]):
     first = next(iter(roms.values()))
     info = GameInfo(first.game)
     addrs = struct_list_var_addrs(info, "SoundDataEntries", "SoundHeaderPtr")
-    # group entries by address
+    # Group entries by address
     addr_dict = defaultdict(list)
     for i, addr in enumerate(addrs):
-        # get song header addresses
+        # Get song header addresses
         addr = {r: roms[r].read_ptr(a) for r, a in addr.items()}
-        # get instrument def addresses
+        # Get instrument def addresses
         addr = {r: roms[r].read_ptr(a + 4) for r, a in addr.items()}
         key = tuple(addr[r] for r in REGIONS)
         addr_dict[key].append(i)
-    # loop through entries
+    # Loop through entries
     data_entries = []
     for key, idxs in addr_dict.items():
         addr = {REGIONS[i]: a for i, a in enumerate(key)}
@@ -61,7 +60,7 @@ def dump_instrument_defs(roms: Dict[str, Rom]):
             "InstrumentDef", None, addr
         )
         data_entries.append(de)
-    # sort by address and print
+    # Sort by address and print
     data_entries.sort(key=lambda de: de.addr[REGION_U])
     for de in data_entries:
         s = obj_to_yaml_str(DataEntry.to_obj(de))

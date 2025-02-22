@@ -1,6 +1,5 @@
 import argparse
 import os
-from typing import Dict
 
 import argparse_utils as apu
 from constants import *
@@ -8,7 +7,7 @@ from info_file_utils import load_yaml_file
 from rom import Rom
 
 
-def get_char_map(game: str, region: str) -> Dict[int, str]:
+def get_char_map(game: str, region: str) -> dict[int, str]:
     path = os.path.join(YAML_PATH, game, "char_map.yml")
     sections = load_yaml_file(path)
     char_map = {}
@@ -45,7 +44,7 @@ def get_control_char_mf(val: int) -> str:
         elif val == 0xB003:
             return "[GAME_START]"
     elif msn == 0xC:
-        # TODO: investigate more
+        # TODO: Investigate more
         return "[END_CONVO]"
     elif msn == 0xE:
         msb = val >> 8
@@ -104,7 +103,7 @@ def get_control_char_zm(val: int) -> str:
     return None
 
 
-def get_text(char_map: Dict[int, str], rom: Rom, addr: int) -> str:
+def get_text(char_map: dict[int, str], rom: Rom, addr: int) -> str:
     assert addr % 2 == 0
     if rom.game == GAME_MF:
         get_control_char = get_control_char_mf

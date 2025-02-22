@@ -1,5 +1,4 @@
 import argparse
-from typing import Tuple
 
 import argparse_utils as apu
 
@@ -9,11 +8,11 @@ MAX_MATCH_SIZE = 18
 MAX_WINDOW_SIZE = 0x1000
 
 
-def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
+def decomp_rle(input: bytes, idx: int) -> tuple[bytes, int]:
     src_start = idx
     passes = []
     half = None
-    # for each pass
+    # For each pass
     for p in range(2):
         if p == 1:
             half = len(passes)
@@ -35,7 +34,7 @@ def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
                 break
 
             if (amount & compare) != 0:
-                # compressed
+                # Compressed
                 amount %= compare
                 val = input[idx]
                 idx += 1
@@ -43,37 +42,37 @@ def decomp_rle(input: bytes, idx: int) -> Tuple[bytes, int]:
                     passes.append(val)
                     amount -= 1
             else:
-                # uncompressed
+                # Uncompressed
                 while amount > 0:
                     passes.append(input[idx])
                     idx +=1
                     amount -=1
     
-    # each pass must be equal length
+    # Each pass must be equal length
     if len(passes) != half * 2:
         raise ValueError()
     
-    # combine passes to get output
+    # Combine passes to get output
     out_list = bytearray()
     for i in range(half):
         out_list.append(passes[i])
         out_list.append(passes[half + i])
     
-    # return bytes and compressed size
+    # Return bytes and compressed size
     comp_size = idx - src_start
     return bytes(out_list), comp_size
 
 
-def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
-    # check for 0x10 flag
+def decomp_lz77(input: bytes, idx: int) -> tuple[bytes, int]:
+    # Check for 0x10 flag
     if input[idx] != 0x10:
         raise ValueError("Missing 0x10 flag")
 
-    # get length of decompressed data
+    # Get length of decompressed data
     remain = input[idx + 1] | (input[idx + 2] << 8) | (input[idx + 3] << 16)
     output = bytearray([0] * remain)
 
-    # check for valid data size
+    # Check for valid data size
     if remain < 32 or remain % 32 != 0:
         raise ValueError("Invalid data size")
 
@@ -81,20 +80,20 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
     idx += 4
     dst = 0
 
-    # decompress
+    # Decompress
     while (True):
         cflag = input[idx]
         idx += 1
 
         for _ in range(8):
             if (cflag & 0x80) == 0:
-                # uncompressed
+                # Uncompressed
                 output[dst] = input[idx]
                 idx += 1
                 dst += 1
                 remain -= 1
             else:
-                # compressed
+                # Compressed
                 amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
                 window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
                 idx += 2
@@ -113,14 +112,14 @@ def decomp_lz77(input: bytes, idx: int) -> Tuple[bytes, int]:
 
 
 def is_lz77(input: bytes, idx: int) -> int:
-    # check for 0x10 flag
+    # Check for 0x10 flag
     if input[idx] != 0x10:
         return -1
 
-    # get length of decompressed data
+    # Get length of decompressed data
     remain = input[idx + 1] | (input[idx + 2] << 8) | (input[idx + 3] << 16)
 
-    # check for valid data size
+    # Check for valid data size
     if remain < 32 or remain % 32 != 0:
         return -1
 
@@ -128,19 +127,19 @@ def is_lz77(input: bytes, idx: int) -> int:
     idx += 4
     dst = 0
 
-    # decompress
+    # Decompress
     while (True):
         cflag = input[idx]
         idx += 1
 
         for _ in range(8):
             if (cflag & 0x80) == 0:
-                # uncompressed
+                # Uncompressed
                 idx += 1
                 dst += 1
                 remain -= 1
             else:
-                # compressed
+                # Compressed
                 amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
                 window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
                 idx += 2
@@ -153,7 +152,7 @@ def is_lz77(input: bytes, idx: int) -> int:
             if remain <= 0:
                 if remain < 0:
                     return -1
-                # return compressed length
+                # Return compressed length
                 return idx - start
             cflag <<= 1
 

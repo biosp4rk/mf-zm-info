@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 import argparse
 import math
 import os
-from typing import List
 
 import argparse_utils as apu
 from game_info import GameInfo, Category
@@ -58,7 +57,7 @@ class WavChunk(ABC):
 
 class WavRiffChunk(WavChunk):
 
-    def __init__(self, chunks: List[WavChunk]):
+    def __init__(self, chunks: list[WavChunk]):
         self.chunks = chunks
 
     def get_id(self) -> str:
@@ -142,7 +141,7 @@ class AiffChunk(ABC):
 
 class AiffFormChunk(AiffChunk):
 
-    def __init__(self, chunks: List[AiffChunk]):
+    def __init__(self, chunks: list[AiffChunk]):
         self.chunks = chunks
 
     def get_id(self) -> str:
@@ -213,12 +212,12 @@ class AiffSoundChunk(AiffChunk):
 
 
 def dump_pcm(rom: Rom, addr: int, format: str, path: str) -> None:
-    # get data from rom
+    # Get data from rom
     pitch = rom.read_32(addr + 4)
     sample_rate = pitch / 1024
     size = rom.read_32(addr + 0xC)
     sound_data = rom.read_bytes(addr + 0x10, size)
-    # create wav or aiff file
+    # Create wav or aiff file
     file_bytes = None
     if format == "wav":
         fmt_chunk = WavFmtChunk(1, 8, int(sample_rate))

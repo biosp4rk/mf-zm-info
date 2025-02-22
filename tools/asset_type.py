@@ -8,6 +8,7 @@ import re
 
 
 class DataType(Enum):
+
     VOID = auto()
     U8 = auto()
     S8 = auto()
@@ -28,6 +29,7 @@ class DataType(Enum):
 
 
 class AssetType(ABC):
+
     @abstractmethod
     def base_type(self) -> DataType:
         pass
@@ -42,6 +44,7 @@ class AssetType(ABC):
 
 
 class SpecifierType(AssetType):
+
     def __init__(self, data_type: DataType):
         self.data_type = data_type
 
@@ -50,6 +53,7 @@ class SpecifierType(AssetType):
 
 
 class PrimitiveType(SpecifierType):
+
     def __init__(self, data_type: DataType):
         assert not data_type.is_tag()
         super().__init__(data_type)
@@ -67,6 +71,7 @@ class PrimitiveType(SpecifierType):
 
 
 class TaggedType(SpecifierType):
+
     def __init__(self, data_type: DataType, name: str):
         assert data_type.is_tag()
         super().__init__(data_type)
@@ -86,6 +91,7 @@ class TaggedType(SpecifierType):
 
 
 class OuterType(AssetType):
+
     def __init__(self, inner_type: AssetType):
         self.inner_type = inner_type
 
@@ -97,6 +103,7 @@ class OuterType(AssetType):
 
 
 class PointerType(OuterType):
+
     def __init__(self, inner_type: AssetType):
         super().__init__(inner_type)
 
@@ -111,6 +118,7 @@ class PointerType(OuterType):
 
 
 class ArrayType(OuterType):
+
     def __init__(self, inner_type: AssetType, size: int):
         super().__init__(inner_type)
         self.size = size
@@ -125,6 +133,7 @@ class ArrayType(OuterType):
 
 
 class FunctionType(OuterType):
+
     def __init__(self, inner_type: AssetType, params: list[AssetType]):
         super().__init__(inner_type)
         self.params = params
@@ -147,6 +156,7 @@ class FunctionType(OuterType):
 
 
 class TokenName(Enum):
+
     EOS = auto()
     # Identifiers and literals
     IDENT = auto()          # [A-Za-z_][A-Za-z0-9_]*
@@ -165,6 +175,7 @@ class TokenName(Enum):
 
 
 class Token:
+
     def __init__(self, name: TokenName, text: str):
         self.name = name
         self.text = text
@@ -205,6 +216,7 @@ KEYWORDS = {
 }
 
 class TypeTokenizer:
+
     def __init__(self):
         self.tokens: list[Token] = None
         self.index: int = None
@@ -272,6 +284,7 @@ DATA_TYPE_STRS = {
 
 
 class TypeParser:
+
     def __init__(self):
         self.tokens: list[Token] = None
         self.index: int = None
@@ -442,14 +455,6 @@ if __name__ == "__main__":
     tokenizer = TypeTokenizer()
     parser = TypeParser()
 
-    # tokens = tokenizer.tokenize(args.text)
-    # node = parser.parse(tokens)
-    # print(node)
-
-    for text in TEST_CASES:
-        print(text)
-        tokens = tokenizer.tokenize(text)
-        node = parser.parse(tokens)
-        print(node.decl_str())
-        print(node)
-        print()
+    tokens = tokenizer.tokenize(args.text)
+    node = parser.parse(tokens)
+    print(node)

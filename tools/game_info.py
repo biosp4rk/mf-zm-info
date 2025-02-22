@@ -1,11 +1,10 @@
-from typing import Dict, List
-
 from constants import *
 from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, Category
 from info_file_utils import get_info_file_from_json, get_info_file_from_yaml
 
 
 class GameInfo(object):
+
     def __init__(self,
         game: str,
         region: str = None,
@@ -15,25 +14,25 @@ class GameInfo(object):
         self.game = game
         self.region = region
         if from_json:
-            self.ram: List[DataEntry] = get_info_file_from_json(
+            self.ram: list[DataEntry] = get_info_file_from_json(
                 game, MAP_RAM, region)
-            self.code: List[CodeEntry] = get_info_file_from_json(
+            self.code: list[CodeEntry] = get_info_file_from_json(
                 game, MAP_CODE, region)
-            self.data: List[DataEntry] = get_info_file_from_json(
+            self.data: list[DataEntry] = get_info_file_from_json(
                 game, MAP_DATA, region)
             struct_list = get_info_file_from_json(game, MAP_STRUCTS, region)
             enum_list = get_info_file_from_json(game, MAP_ENUMS, region)
         else:
-            self.ram: List[DataEntry] = get_info_file_from_yaml(
+            self.ram: list[DataEntry] = get_info_file_from_yaml(
                 game, MAP_RAM, region, include_unk)
-            self.code: List[CodeEntry] = get_info_file_from_yaml(
+            self.code: list[CodeEntry] = get_info_file_from_yaml(
                 game, MAP_CODE, region, include_unk)
-            self.data: List[DataEntry] = get_info_file_from_yaml(
+            self.data: list[DataEntry] = get_info_file_from_yaml(
                 game, MAP_DATA, region, include_unk)
             struct_list = get_info_file_from_yaml(game, MAP_STRUCTS, region, include_unk)
             enum_list = get_info_file_from_yaml(game, MAP_ENUMS, region, include_unk)
-        self.structs: Dict[str, StructEntry] = {e.name: e for e in struct_list}
-        self.enums: Dict[str, EnumEntry] = {e.name: e for e in enum_list}
+        self.structs: dict[str, StructEntry] = {e.name: e for e in struct_list}
+        self.enums: dict[str, EnumEntry] = {e.name: e for e in enum_list}
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]
@@ -78,13 +77,13 @@ class GameInfo(object):
     def name_exists(self, name: str) -> bool:
         return self.get_entry(name) is not None
     
-    def find_data_by_name(self, tokens: str) -> List[DataEntry]:
+    def find_data_by_name(self, tokens: str) -> list[DataEntry]:
         tokens = tokens.lower()
-        game_vars: List[DataEntry] = []
+        game_vars: list[DataEntry] = []
         for gv in self.data:
             if tokens in gv.name.lower():
                 game_vars.append(gv)
         return game_vars
 
-    def get_data_by_category(self, category: Category) -> List[DataEntry]:
+    def get_data_by_category(self, category: Category) -> list[DataEntry]:
         return [de for de in self.data if de.cat == category]

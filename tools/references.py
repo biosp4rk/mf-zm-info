@@ -1,6 +1,6 @@
 import argparse
 from enum import Enum
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 import yaml
 
@@ -12,12 +12,14 @@ from thumb import ThumbForm, ThumbInstruct
 
 
 class RefType(Enum):
+
     BL = 1
     POOL = 2
     DATA = 3
 
 
 class Ref:
+
     def __init__(self, addr: int, name: str, offset: int):
         assert (name is None) == (offset is None)
         self.addr = addr
@@ -60,7 +62,7 @@ class PoolRef(Ref):
 
     def __init__(self,
         addr: int,
-        ldrs: List[int],
+        ldrs: list[int],
         name: str = None,
         offset: int = None
     ):
@@ -136,22 +138,22 @@ class References(object):
         from_json = not include_unk
         self.info = GameInfo(rom.game, rom.region, from_json, include_unk)
 
-    def find(self, addr: int) -> Tuple[List[BlRef], List[PoolRef], List[DataRef]]:
+    def find(self, addr: int) -> tuple[list[BlRef], list[PoolRef], list[DataRef]]:
         rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
         data_end = rom.data_end()
 
-        # check if address has rom offset
+        # Check if address has rom offset
         if addr >= ROM_OFFSET and addr < ROM_END:
             addr -= ROM_OFFSET
 
-        # check if address is part of rom
+        # Check if address is part of rom
         in_rom = False
         in_code = False
         if addr < SIZE_32MB:
             in_rom = True
-            # check if address is part of code
+            # Check if address is part of code
             if addr >= code_start and addr < code_end:
                 in_code = True
 
@@ -159,7 +161,7 @@ class References(object):
         pool_refs = {}
         data_refs = []
 
-        # check bl and ldr in code
+        # Check bl and ldr in code
         self.entries = self.info.code
         addr_val = addr
         if in_rom:
@@ -182,7 +184,7 @@ class References(object):
                     ref = self.get_ref(i, RefType.BL)
                     bl_refs.append(ref)
 
-        # check data
+        # Check data
         self.entries = self.info.data
         for i in range(code_end, data_end, 4):
             val = rom.read_32(i)
@@ -192,35 +194,35 @@ class References(object):
         
         return bl_refs, list(pool_refs.values()), data_refs
 
-    def find_all(self) -> List[Tuple[str, List[Ref]]]:
-        # TODO: pass refs instead of putting it on self?
-        self.found_refs: Dict[int, List[Ref]] = {}
+    def find_all(self) -> list[tuple[str, list[Ref]]]:
+        # TODO: Pass refs instead of putting it on self?
+        self.found_refs: dict[int, list[Ref]] = {}
 
         rom = self.rom
         code_start = rom.code_start()
         code_end = rom.code_end()
         data_end = rom.data_end()
 
-        # check every ref in code
+        # Check every ref in code
         self.entries = self.info.code
         for i in range(code_start, code_end, 2):
-            # check for bl
+            # Check for bl
             inst = ThumbInstruct(rom, i)
             if inst.format == ThumbForm.Link:
                 bl_addr = inst.branch_addr()
                 if bl_addr >= code_start and bl_addr < code_end:
                     self.add_ref(bl_addr, i, RefType.BL)
-            # check for pool
+            # Check for pool
             elif i % 4 == 0:
                 self.check_addr(i, RefType.POOL)
 
-        # check every ref in data
+        # Check every ref in data
         self.entries = self.info.data
         self.entries.append(DataEntry(None, None, "u8", 1, data_end))
         for i in range(code_end, data_end, 4):
             self.check_addr(i, RefType.DATA)
         
-        # get all code and data names
+        # Get all code and data names
         entry_names = {}
         for entry in self.info.code + self.info.data:
             entry_names[entry.addr] = entry.name
@@ -236,7 +238,7 @@ class References(object):
         if val >= self.rom.code_start(True) and val < self.rom.data_end(True):
             val -= ROM_OFFSET
             if val < self.rom.code_end() and val % 4 == 1:
-                # subtract one for thumb code pointers
+                # Subtract one for thumb code pointers
                 val -= 1
             self.add_ref(val, addr, kind)
 
@@ -261,9 +263,9 @@ class References(object):
         return result
 
     def get_ref(self, addr: int, kind: RefType) -> Ref:
-        # get closest entry before address
+        # Get closest entry before address
         entry = self.get_prev_entry(addr)
-        # create reference based on type
+        # Create reference based on type
         if kind == RefType.BL:
             return self.get_bl_ref(addr, entry)
         elif kind == RefType.POOL:
@@ -317,7 +319,7 @@ class References(object):
         return DataRef(addr)
     
 
-def output_section(refs: List[Ref], title: str, fields: List[str]) -> List[str]:
+def output_section(refs: list[Ref], title: str, fields: list[str]) -> list[str]:
     lines = []
     num_refs = len(refs)
     if num_refs > 0:
@@ -329,7 +331,7 @@ def output_section(refs: List[Ref], title: str, fields: List[str]) -> List[str]:
     return lines
 
 
-def print_refs(bls: List[BlRef], pools: List[PoolRef], datas: List[DataRef]) -> None:
+def print_refs(bls: list[BlRef], pools: list[PoolRef], datas: list[DataRef]) -> None:
     lines = []
     lines += output_section(bls, "Calls", ["addr", "name", "off"])
     lines += output_section(pools, "Pools", ["addr", "ldrs", "name", "off"])
@@ -368,7 +370,7 @@ if __name__ == "__main__":
             all_entries[name] = entry
         print(yaml.safe_dump(all_entries, sort_keys=False))
     else:
-        # get address
+        # Get address
         addr = None
         if args.addr:
             try:
@@ -382,6 +384,6 @@ if __name__ == "__main__":
                 print("Label not found")
                 quit()
             addr = entry.addr
-        # find references and print
+        # Find references and print
         bls, ldrs, dats = refs.find(addr)
         print_refs(bls, ldrs, dats)

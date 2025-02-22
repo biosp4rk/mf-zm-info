@@ -1,6 +1,5 @@
 import argparse
 import math
-from typing import List, Tuple
 
 import png
 
@@ -8,10 +7,11 @@ import argparse_utils as apu
 from compress import decomp_lz77
 from rom import Rom
 
-RGB = Tuple[int, int, int]
+RGB = tuple[int, int, int]
 
 
 class Palette(object):
+
     def __init__(self, rows: int, rom: Rom = None, addr: int = None):
         assert rows >= 1
         self.colors = []
@@ -37,12 +37,13 @@ class Palette(object):
             pal.colors[i] = (c, c, c)
         return pal        
 
-    def get_row(self, row: int) -> List[RGB]:
+    def get_row(self, row: int) -> list[RGB]:
         i = row * 16
         return self.colors[i:i+16]
 
 
 class Gfx(object):
+
     def __init__(self,
         rom: Rom,
         addr: int,
@@ -50,10 +51,10 @@ class Gfx(object):
         tile_width: int = 32
     ):
         if size is None:
-            # compressed
+            # Compressed
             self.data, _ = decomp_lz77(rom.data, addr)
         else:
-            # uncompressed
+            # Uncompressed
             assert size % 32 == 0
             self.data = rom.read_bytes(addr, size)
         self.set_tile_width(tile_width)
@@ -67,10 +68,10 @@ class Gfx(object):
 
     def get_at(self, x: int, y: int) -> int:
         i = (
-            y // 8 * 32 * self.tile_width + # y tile
-            y % 8 * 4 +                     # y pixel
-            x // 8 * 32 +                   # x tile
-            x % 8 // 2                      # x pixel
+            y // 8 * 32 * self.tile_width + # Y tile
+            y % 8 * 4 +                     # Y pixel
+            x // 8 * 32 +                   # X tile
+            x % 8 // 2                      # X pixel
         )
         if i >= len(self.data):
             return 0

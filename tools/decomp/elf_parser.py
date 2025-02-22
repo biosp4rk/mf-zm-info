@@ -17,6 +17,7 @@ def update_info_files(game: str) -> None:
 
 
 class ElfType(Enum):
+
     NOTYPE = 0
     SECTION = 1
     FILE = 2
@@ -25,11 +26,13 @@ class ElfType(Enum):
 
 
 class ElfBind(Enum):
+
     LOCAL = 0
     GLOBAL = 1
 
 
 class ElfSym:
+
     # ndx
     # ABS: constants
     # 1: ewram

@@ -1,6 +1,5 @@
 import argparse
 from enum import Enum
-from typing import List, Tuple, Union
 
 import argparse_utils as apu
 from constants import *
@@ -11,6 +10,7 @@ from rom import Rom, ROM_OFFSET
 
 
 class Validity(Enum):
+
     UNKNOWN = 0
     INVALID = 1
     VALID = 2
@@ -23,6 +23,7 @@ VALID_STR = {
 
 
 class Status(Enum):
+
     UNKNOWN = 0
     # The primitive at the pointer's location is not 4-byte aligned (invalid)
     LOC_NOT_ALIGNED = 1
@@ -52,12 +53,13 @@ STATUS_STR = {
 
 
 class PtrLoc:
+
     def __init__(self,
         loc_addr: int,
         ptr_val: int,
         validity = Validity.UNKNOWN,
         status = Status.UNKNOWN,
-        entry: Union[DataEntry, CodeEntry] = None
+        entry: DataEntry | CodeEntry = None
     ):
         self.loc_addr = loc_addr
         self.ptr_val = ptr_val
@@ -77,29 +79,29 @@ class PtrLoc:
         ]))
 
 
-def find_code_ptrs(rom: Rom) -> List[int]:
+def find_code_ptrs(rom: Rom) -> list[int]:
     """Finds all pointers in code data pools. These are all assumed to be valid."""
     v_code_start = rom.code_start(True)
     v_data_end = rom.data_end(True)
-    ptr_locs: List[int] = []
+    ptr_locs: list[int] = []
     funcs = all_functions(rom)
     for func in funcs:
         ptr_locs += func.get_jump_tables()
         for loc in func.data_pool:
             val = rom.read_32(loc)
-            # check if value falls within rom
+            # Check if value falls within rom
             if val >= v_code_start and val < v_data_end:
                 ptr_locs.append(loc)
     ptr_locs.sort()
     return ptr_locs
 
 
-def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
+def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> list[int]:
     sound_entries = info.get_data("SoundDataEntries")
     se_addr = sound_entries.addr
     count = sound_entries.arr_count
     size = info.get_struct(sound_entries.struct_name()).size
-    ptr_locs: List[int] = []
+    ptr_locs: list[int] = []
     for idx in range(count):
         addr = rom.read_ptr(se_addr + (idx * size))
         num_tracks = rom.read_8(addr)
@@ -112,7 +114,7 @@ def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> List[int]:
     return ptr_locs
 
 
-def get_track_start_end(rom: Rom) -> Tuple[int, int]:
+def get_track_start_end(rom: Rom) -> tuple[int, int]:
     """Returns the start and end address of all track data."""
     addrs = None
     if rom.game == GAME_MF:
@@ -131,7 +133,7 @@ def find_track_ptrs(rom: Rom):
     start, end = get_track_start_end(rom)
     v_start = start + ROM_OFFSET
     v_end = end + ROM_OFFSET
-    ptr_locs: List[int] = []
+    ptr_locs: list[int] = []
     for addr in range(start, end):
         val = rom.read_8(addr)
         if val != 0xB2 and val != 0xB3:
@@ -147,7 +149,7 @@ def find_track_ptrs(rom: Rom):
     return ptr_locs
 
 
-def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
+def find_data_ptrs(rom: Rom, info: GameInfo) -> list[int]:
     code_dict = {c.addr: c for c in info.code}
     data_list = info.data
 
@@ -159,15 +161,15 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
 
     idx = 0
     prev_addr = 0
-    ptr_locs: List[int] = []
+    ptr_locs: list[int] = []
 
     for addr in range(data_start, data_end, 4):
-        # check if value at address falls within rom
+        # Check if value at address falls within rom
         val = rom.read_32(addr)
         if val < v_code_start or val >= v_data_end:
             continue
         val -= ROM_OFFSET
-        # check if this address falls within a known asset
+        # Check if this address falls within a known asset
         validity = Validity.UNKNOWN
         status = Status.UNKNOWN
         main_entry = None
@@ -184,11 +186,11 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
                 validity = Validity.VALID
                 status = Status.LOC_IS_PTR
         
-        # check if the value points to known asset
+        # Check if the value points to known asset
         else:
             if val < code_end:
-                # check if value points to code
-                # subtract one for thumb code pointers
+                # Check if value points to code
+                # Subtract one for thumb code pointers
                 val -= 1
                 if val not in code_dict:
                     status = Status.PTR_CODE_MIDDLE
@@ -196,7 +198,7 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
                     main_entry = code_dict[val]
                     status = Status.PTR_CODE
             else:
-                # check if value points to known data
+                # Check if value points to known data
                 j, entry, prim_idx, prim_off = find_prim_at_offset(data_list, 0, val, info)
                 if entry:
                     main_entry = data_list[j]
@@ -204,7 +206,7 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
                         status = Status.PTR_DATA_MIDDLE
                     else:
                         status = Status.PTR_DATA
-        # print
+        # Print
         ptr_loc = PtrLoc(addr, val, validity, status, main_entry)
         diff = addr - prev_addr
         ptr_loc.print(diff)
@@ -215,11 +217,11 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> List[int]:
 
 
 def find_prim_at_offset(
-    entries: Union[List[DataEntry], List[StructVarEntry]],
+    entries: list[DataEntry] | list[StructVarEntry],
     idx: int,
     offset: int,
     info: GameInfo
-) -> Tuple[int, Union[DataEntry, StructEntry], int, int]:
+) -> tuple[int, DataEntry | StructEntry, int, int]:
     """
     Tries to find the primitive at the provided address (for data entries)
     or offset (for struct var entries).
@@ -232,11 +234,11 @@ def find_prim_at_offset(
         idx += 1
     idx -= 1
     entry = entries[idx]
-    # check if address within entry
+    # Check if address within entry
     entry_off = getattr(entry, off_attr)
     length = entry.get_size(info.structs)
     if offset < entry_off + length:
-        # get offset within single item
+        # Get offset within single item
         off = offset - entry_off
         num = 0
         count = entry.get_count()
@@ -244,10 +246,10 @@ def find_prim_at_offset(
             size = length // count
             num = off // size
             off %= size
-        # check type
+        # Check type
         is_ptr = entry.is_ptr()
         if not is_ptr and entry.data_type() == DataType.STRUCT:
-            # check primitive at offset
+            # Check primitive at offset
             s_entry = info.get_struct(entry.struct_name())
             _, entry, num, off = find_prim_at_offset(s_entry.vars, 0, off, info)
         return (idx, entry, num, off)
