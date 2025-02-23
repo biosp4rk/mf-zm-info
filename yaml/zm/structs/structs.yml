@@ -1542,8 +1542,9 @@
   - name: GameCompletion
     type: struct GameCompletion
     offset: 0x18
-  - name: ValueOf3000C1F
+  - name: HasSaved
     type: u8
+    cat: bool
     offset: 0x1C
   - name: AreaId
     type: u8
@@ -1618,10 +1619,6 @@
   - name: SamusEcho
     type: struct SamusEcho
     offset: 0x88
-  - name: HasSaved
-    type: u8
-    cat: bool
-    offset: 0x9C
   - name: ScrewAttackAndSpeedBoosterAnim
     type: struct ScrewAttackSpeedBoosterAnim
     offset: 0x194
@@ -1911,7 +1908,7 @@
     type: u8
     offset: 0x3
 - name: InGameTimeAtBosses
-  size: 0x10
+  size: 0x14
   vars:
   - name: WhenKraidKilled
     type: struct InGameTime
@@ -1925,6 +1922,9 @@
   - name: WhenMechaRidleyKilled
     type: struct InGameTime
     offset: 0xC
+  - name: Unused
+    type: InGameTime
+    offset: 0x10
 - name: IoTransferInfo
   size: 0x18
   vars:
