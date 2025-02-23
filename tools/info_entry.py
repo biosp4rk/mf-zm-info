@@ -158,7 +158,7 @@ class VarEntry(InfoEntry):
 
     def struct_name(self) -> str:
         if self.data_type() != DataType.STRUCT:
-            raise ValueError("Not a struct")
+            return None
         return self.spec_name()
 
     def type_str(self) -> str:

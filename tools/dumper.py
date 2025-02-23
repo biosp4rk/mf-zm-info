@@ -6,7 +6,7 @@ import argparse_utils as apu
 from function import all_functions
 from game_info import GameInfo
 from info_entry import VarEntry
-from rom import Rom
+from rom import Rom, ROM_OFFSET
 
 
 def dump_bytes(
@@ -93,7 +93,10 @@ class FindPtrData(object):
         if entry.is_ptr():
             base_name = re.sub("Ptrs?$", "", base_name)
             for i in range(count):
-                addr = rom.read_ptr(base_addr + i * 4)
+                addr = rom.read_32(base_addr + i * 4)
+                if addr < ROM_OFFSET:
+                    continue
+                addr -= ROM_OFFSET
                 if (addr >= self.data_start and
                     addr < self.data_end and
                     addr not in self.data_set):

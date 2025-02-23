@@ -1,5 +1,6 @@
 import argparse
 from enum import Enum
+from typing import Union
 
 import argparse_utils as apu
 from constants import *
@@ -59,7 +60,7 @@ class PtrLoc:
         ptr_val: int,
         validity = Validity.UNKNOWN,
         status = Status.UNKNOWN,
-        entry: DataEntry | CodeEntry = None
+        entry: Union[DataEntry, CodeEntry] = None
     ):
         self.loc_addr = loc_addr
         self.ptr_val = ptr_val
@@ -217,11 +218,11 @@ def find_data_ptrs(rom: Rom, info: GameInfo) -> list[int]:
 
 
 def find_prim_at_offset(
-    entries: list[DataEntry] | list[StructVarEntry],
+    entries: Union[list[DataEntry], list[StructVarEntry]],
     idx: int,
     offset: int,
     info: GameInfo
-) -> tuple[int, DataEntry | StructEntry, int, int]:
+) -> tuple[int, Union[DataEntry, StructEntry], int, int]:
     """
     Tries to find the primitive at the provided address (for data entries)
     or offset (for struct var entries).
