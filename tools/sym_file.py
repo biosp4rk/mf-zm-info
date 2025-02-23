@@ -13,7 +13,7 @@ def gen_sym_file(rom: Rom):
     func_addrs = []
     loaded_words = set()
     pool_sizes = []
-    funcs = all_functions(func)
+    funcs = all_functions(rom)
     for func in funcs:
         func_addrs.append(func.start_addr)
         func_pools = func.get_data_pools()
