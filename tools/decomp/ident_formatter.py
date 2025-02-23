@@ -79,6 +79,13 @@ class IdentSplitter:
             self.idx += 1
 
 
+def name_from_ident(ident: str) -> str:
+    words = IdentSplitter().split(ident)
+    words = [w.capitalize() for w in words]
+    words = [ABBREVIATIONS.get(w, w) for w in words]
+    return "".join(words)
+
+
 def desc_from_ident(ident: str) -> str:
     words = IdentSplitter().split(ident)
     words = [w.lower() for w in words if w != "_"]
@@ -91,10 +98,3 @@ def desc_from_ident(ident: str) -> str:
     first = words[0]
     words[0] = first[0].upper() + first[1:]
     return " ".join(words)
-
-
-def label_from_ident(ident: str) -> str:
-    words = IdentSplitter().split(ident)
-    words = [w.capitalize() for w in words]
-    words = [ABBREVIATIONS.get(w, w) for w in words]
-    return "".join(words)

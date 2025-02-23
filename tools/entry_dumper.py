@@ -11,21 +11,21 @@ from info_file_utils import obj_to_yaml_str
 
 def struct_list_var_addrs(
     info: GameInfo,
-    data_label: str,
-    var_label: str
+    data_name: str,
+    var_name: str
 ) -> list[int]:
     """
-    Given a data label for a list of structs and a label for a field on
+    Given a data name for a list of structs and a name for a field on
     the struct, returns the address of the field for each entry.
     """
     # Get data entry info
-    data = info.get_data(data_label)
+    data = info.get_data(data_name)
     data_addr = data.addr
     data_count = data.get_count()
     # Get struct info
     struct = info.get_struct(data.struct_name())
     size = struct.size
-    var_off = struct.get_var(var_label).offset
+    var_off = struct.get_var(var_name).offset
     # Compute addresses
     addrs = []
     for i in range(data_count):
@@ -52,12 +52,10 @@ def dump_instrument_defs(roms: dict[str, Rom]):
     data_entries = []
     for key, idxs in addr_dict.items():
         addr = {REGIONS[i]: a for i, a in enumerate(key)}
-        idxs_desc = ", ".join(f"{i:X}" for i in idxs)
-        idxs_label = "_".join(f"{i:03X}" for i in idxs)
+        idxs_name = "_".join(f"{i:03X}" for i in idxs)
         de = DataEntry(
-            f"Sound {idxs_desc} instrument definition",
-            f"InstrumentDef_Sound_{idxs_label}",
-            "InstrumentDef", None, addr
+            f"InstrumentDef_Sound_{idxs_name}", None,
+            "struct InstrumentDef", None, addr
         )
         data_entries.append(de)
     # Sort by address and print

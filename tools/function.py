@@ -185,7 +185,7 @@ class Function(object):
                 # Check if in rom
                 elif val >= rom_start and val < rom_end:
                     pa = val - ROM_OFFSET
-                    label_type = None
+                    label_type: LabelType = None
                     if pa < code_end:
                         # Skip if within this function
                         if pa >= self.start_addr and pa < self.end_addr:
@@ -339,7 +339,7 @@ if __name__ == "__main__":
     elif args.name:
         entry = info.get_code(args.name)
         if entry is None:
-            print("Label not found")
+            print("Name not found")
             quit()
         addr = entry.addr
 

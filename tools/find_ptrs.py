@@ -68,7 +68,7 @@ class PtrLoc:
         self.entry = entry
 
     def print(self, diff: int) -> None:
-        entry = f"{self.entry.addr:X} {self.entry.label}" if self.entry else ""
+        entry = f"{self.entry.addr:X} {self.entry.name}" if self.entry else ""
         print("\t".join([
             f"{self.loc_addr:X}",
             f"{self.ptr_val:X}",

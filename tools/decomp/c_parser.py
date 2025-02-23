@@ -3,7 +3,7 @@ import os
 
 from pycparser import c_ast, parse_file, plyparser
 
-from decomp.ident_formatter import desc_from_ident, label_from_ident
+from decomp.ident_formatter import name_from_ident, desc_from_ident
 from info_entry import StructEntry, StructVarEntry
 from info_file_utils import obj_to_yaml_str
 
@@ -116,16 +116,16 @@ def parse_struct(filename: str, struct_name: str) -> None:
             while struct_size % field_size != 0:
                 struct_size += 1
             fields.append(StructVarEntry(
+                name_from_ident(field_name),
                 desc_from_ident(field_name),
-                label_from_ident(field_name),
                 field_type,
                 None,
                 struct_size
             ))
             struct_size += field_size
         entry = StructEntry(
+            name_from_ident(struct_name),
             desc_from_ident(struct_name),
-            label_from_ident(struct_name),
             struct_size,
             fields
         )
