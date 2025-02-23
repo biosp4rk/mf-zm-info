@@ -7,7 +7,6 @@ import argparse_utils as apu
 
 MIN_MATCH_SIZE = 3
 MIN_WINDOW_SIZE = 1
-
 MAX_MATCH_SIZE = (1 << 4) - 1 + MIN_MATCH_SIZE
 MAX_WINDOW_SIZE = (1 << 12) - 1 + MIN_WINDOW_SIZE
 
@@ -42,7 +41,7 @@ def decomp_rle(input: bytes, idx: int) -> tuple[bytes, int]:
                 break
 
             if (amount & flag) != 0:
-                # compressed
+                # Compressed
                 amount %= flag
                 val = input[idx]
                 idx += 1
