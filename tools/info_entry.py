@@ -260,9 +260,8 @@ class VarEntry(InfoEntry):
     @staticmethod
     def to_obj(entry: "VarEntry", is_ret: bool = False) -> Any:
         obj = [(K_NAME, entry.name)]
-        desc = None
         if entry.desc:
-            obj.append((K_DESC, desc))
+            obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
         if entry.arr_count:
             obj.append((K_COUNT, entry.arr_count))
