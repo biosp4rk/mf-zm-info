@@ -5,7 +5,7 @@ from typing import Union
 import argparse_utils as apu
 from constants import *
 from function import all_functions
-from game_info import GameInfo
+from game_info import GameInfo, InfoSource
 from info_entry import DataType, DataEntry, StructEntry, StructVarEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
 
@@ -264,7 +264,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    info = GameInfo(rom.game, rom.region, False, True)
+    info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
 
     c_ptrs = find_code_ptrs(rom)
     sh_ptrs = find_sound_header_ptrs(rom, info)

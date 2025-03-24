@@ -4,7 +4,7 @@ import re
 
 import argparse_utils as apu
 from function import all_functions
-from game_info import GameInfo
+from game_info import GameInfo, InfoSource
 from info_entry import VarEntry
 from rom import Rom, ROM_OFFSET
 
@@ -67,7 +67,7 @@ class FindPtrData(object):
         self.rom = rom
         self.data_start = rom.data_start()
         self.data_end = rom.data_end()
-        self.info = GameInfo(rom.game, rom.region, False, True)
+        self.info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
         self.data_set = {d.addr for d in self.info.data}
         self.results = defaultdict(list)
 

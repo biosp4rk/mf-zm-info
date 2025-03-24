@@ -4,7 +4,8 @@ import math
 import os
 
 import argparse_utils as apu
-from game_info import GameInfo, Category
+from info_entry import Category
+from game_info import GameInfo, InfoSource
 from rom import Rom
 
 
@@ -250,7 +251,7 @@ if __name__ == "__main__":
         addr = apu.get_hex(args.addr)
         dump_pcm(rom, addr, args.format, args.path)
     elif args.all:
-        info = GameInfo(rom.game, rom.region, False, True)
+        info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
         addrs = [e.addr for e in info.data if e.cat == Category.PCM]
         if not os.path.exists(args.path):
             os.mkdir(args.path)
