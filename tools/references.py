@@ -6,7 +6,7 @@ import yaml
 
 import argparse_utils as apu
 from function import all_functions
-from game_info import GameInfo
+from game_info import GameInfo, InfoSource
 from info_entry import InfoEntry, CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
@@ -136,8 +136,8 @@ class References(object):
 
     def __init__(self, rom: Rom, include_unk = False):
         self.rom = rom
-        from_json = not include_unk
-        self.info = GameInfo(rom.game, rom.region, from_json, include_unk)
+        source = InfoSource.YAML_UNK if include_unk else InfoSource.JSON
+        self.info = GameInfo(rom.game, rom.region, source)
 
     def find(self, addr: int) -> tuple[list[BlRef], list[PoolRef], list[DataRef]]:
         rom = self.rom

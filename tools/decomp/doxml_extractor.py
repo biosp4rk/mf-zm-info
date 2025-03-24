@@ -111,10 +111,6 @@ def get_loc_str(item: dxp.compounddefType | dxp.memberdefType) -> str:
     return f"{loc.get_file()}:{loc.get_line()}"
 
 
-# TODO: Remove
-code_entries = []
-
-
 def parse_single_text_para(item: dxp.descriptionType | dxp.docSimpleSectType) -> str:
     """
     Gets the text from an item that should have a single para with plain text.
@@ -214,7 +210,6 @@ def parse_function(memberdef: dxp.memberdefType):
         memberdef.get_name(), param_entries, ret_entry,
         get_loc_str(memberdef), brief_desc
     )
-    code_entries.append(entry)
 
 
 def parse_members(compounddef: dxp.compounddefType, sectiondef: dxp.sectiondefType):

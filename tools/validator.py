@@ -8,7 +8,7 @@ from referencing import Registry, Resource
 
 from asset_type import AssetType, OuterType, PointerType, FunctionType
 from constants import *
-from game_info import GameInfo
+from game_info import GameInfo, InfoSource
 from info_entry import *
 import info_file_utils as ifu
 
@@ -86,7 +86,7 @@ class Validator(object):
             # TODO: Some errors can happen when creating GameInfo;
             # consider manually creating each info entry instead
             # (would need to sort and check for overlap at the end)
-            info = GameInfo(game, from_json=False, include_unk=True)
+            info = GameInfo(game, source=InfoSource.YAML_UNK)
             self.enums = info.enums
             self.structs = info.structs
 

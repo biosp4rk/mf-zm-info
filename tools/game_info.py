@@ -1,6 +1,14 @@
+from enum import Enum, auto
+
 from constants import *
 from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, Category
 from info_file_utils import get_info_file_from_json, get_info_file_from_yaml
+
+
+class InfoSource(Enum):
+    JSON = auto()
+    YAML = auto()
+    YAML_UNK = auto()
 
 
 class GameInfo(object):
@@ -8,12 +16,11 @@ class GameInfo(object):
     def __init__(self,
         game: str,
         region: str = None,
-        from_json: bool = True,
-        include_unk: bool = False
+        source: InfoSource = InfoSource.JSON
     ):
         self.game = game
         self.region = region
-        if from_json:
+        if source == InfoSource.JSON:
             self.ram: list[DataEntry] = get_info_file_from_json(
                 game, MAP_RAM, region)
             self.code: list[CodeEntry] = get_info_file_from_json(
@@ -23,6 +30,7 @@ class GameInfo(object):
             struct_list = get_info_file_from_json(game, MAP_STRUCTS, region)
             enum_list = get_info_file_from_json(game, MAP_ENUMS, region)
         else:
+            include_unk = source == InfoSource.YAML_UNK
             self.ram: list[DataEntry] = get_info_file_from_yaml(
                 game, MAP_RAM, region, include_unk)
             self.code: list[CodeEntry] = get_info_file_from_yaml(

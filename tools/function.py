@@ -1,9 +1,11 @@
 import argparse
 from collections.abc import Iterator
+from enum import Enum, auto
 
 import argparse_utils as apu
 from constants import *
 from game_info import GameInfo
+from info_entry import CodeMode
 from rom import Rom, ROM_OFFSET
 from symbols import LabelType, Symbols
 from thumb import *
@@ -38,7 +40,8 @@ class Function(object):
         # Step through each instruction
         while not self.at_end:
             # Skip if in data pool
-            if self.addr in self.data_pool:
+            if self.in_data_pool():
+                self.align(4)
                 self.addr += 4
                 continue
 
@@ -135,6 +138,13 @@ class Function(object):
                 offset += 4
         return jumps
 
+    def in_data_pool(self) -> bool:
+        return self.addr in self.data_pool or (
+            self.addr % 4 == 2 and
+            self.rom.read_16(self.addr) == 0 and
+            self.addr + 2 in self.data_pool
+        )
+
     def get_data_pools(self) -> list[tuple[int, int]]:
         # Returns (address, size) pairs of each data pool
         pools: list[tuple[int, int]] = []
@@ -229,10 +239,7 @@ class Function(object):
             # Check if anything branches to current offset
             if self.addr in self.branches:
                 lines.append(self.symbols.get_local(self.addr) + ":")
-            if self.addr in self.data_pool or (
-                self.addr % 4 == 2 and
-                self.rom.read_16(self.addr) == 0 and
-                self.addr + 2 in self.data_pool):
+            if self.in_data_pool():
                 # If already in a data pool, do nothing
                 # If just entered a data pool, write .pool
                 if not in_pool:
@@ -275,25 +282,69 @@ class Function(object):
         delattr(self, "addr")
         return lines
 
-    def compare(self, other: "Function") -> list[bool]:
-        # Get instructions of both functions
-        self_instructs = self.get_instructions()
-        other_instructs = other.get_instructions()
-        num_instructs = len(self_instructs)
-        if num_instructs != len(other_instructs):
-            return [False]
-        # Compare each instruction in order
-        has_bl = False
-        for i in range(num_instructs):
-            self_inst = self_instructs[i]
-            other_inst = other_instructs[i]
-            if self_inst.format != other_inst.format:
-                return [False]
-            if self_inst.format == ThumbForm.Link:
-                has_bl = True
-            elif str(self_inst) != str(other_inst):
-                return [False]
-        return [True, has_bl]
+
+class FuncDiff(Enum):
+
+    DIFF_SIZE = auto()
+    """Functions are different sizes."""
+    DIFF_INST = auto()
+    """Functions have at least one instruction that is different."""
+    SAME_WITH_BL = auto()
+    """Functions are the same, but have a bl instruction."""
+    IDENTICAL = auto()
+    """Functions are identical."""
+
+    def is_same(self) -> bool:
+        return self == FuncDiff.SAME_WITH_BL or self == FuncDiff.IDENTICAL
+
+
+def compare(func_a: Function, func_b: Function) -> FuncDiff:
+    # Get instructions of both functions
+    instructs_a = func_a.get_instructions()
+    instructs_b = func_b.get_instructions()
+    num_instructs = len(instructs_a)
+    if num_instructs != len(instructs_b):
+        return FuncDiff.DIFF_SIZE
+    # Compare each instruction in order
+    has_bl = False
+    for i in range(num_instructs):
+        self_inst = instructs_a[i]
+        other_inst = instructs_b[i]
+        if self_inst.format != other_inst.format:
+            return FuncDiff.DIFF_INST
+        if self_inst.format == ThumbForm.Link:
+            has_bl = True
+        elif str(self_inst) != str(other_inst):
+            return FuncDiff.DIFF_INST
+    return FuncDiff.SAME_WITH_BL if has_bl else FuncDiff.IDENTICAL
+
+
+def compare_all(rom_a: Rom, rom_b: Rom) -> None:
+    region_a = rom_a.region
+    region_b = rom_b.region
+    assert rom_a.game == rom_b.game and region_a != region_b
+    info = GameInfo(rom_a.game)
+    for entry in info.code:
+        if entry.mode == CodeMode.Arm:
+            continue
+        addr_a = entry.addr.get(region_a)
+        addr_b = entry.addr.get(region_b)
+        msg = None
+        if addr_a is not None and addr_b is not None:
+            func_a = Function(rom_a, addr_a)
+            func_b = Function(rom_b, addr_b)
+            diff = compare(func_a, func_b)
+            if not diff.is_same():
+                msg = diff.name
+        elif addr_a is not None:
+            msg = f"{region_a} only"
+        elif addr_b is not None:
+            msg = f"{region_b} only"
+        if msg is not None:
+            addr_str_a = "" if addr_a is None else f"{addr_a:X}"
+            addr_str_b = "" if addr_b is None else f"{addr_b:X}"
+            print("\t".join([entry.name, msg, addr_str_a, addr_str_b]))
+
 
 
 def all_functions(rom: Rom) -> Iterator[Function]:
