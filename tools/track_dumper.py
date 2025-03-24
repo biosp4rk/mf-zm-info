@@ -368,7 +368,6 @@ class TrackDumper:
         else:
             raise ValueError("Expected command value")
 
-    # , repeated_cmd: str
     def _get_command_params(self, type: ParamType, cmd: str, repeated: bool) -> str:
         params = []
         comment = []
