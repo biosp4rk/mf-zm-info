@@ -3,12 +3,13 @@ import argparse
 import argparse_utils as apu
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import all_functions
+from game_info import GameInfo, InfoSource
 from info_entry import DataEntry, CodeEntry
 from info_file_utils import get_info_file_from_json
 from rom import Rom, ROM_OFFSET
 
 
-def gen_sym_file(rom: Rom):
+def gen_sym_file(rom: Rom) -> list[str]:
     # Get all function offsets and their pointers and pools
     func_addrs = []
     loaded_words = set()
@@ -101,6 +102,21 @@ def gen_sym_file(rom: Rom):
         off = offset + ROM_OFFSET
         lines.append(f"{off:08X} .dbl:{size:04X}")
 
+    return lines
+
+
+def gen_ghidra_sym_file(info: GameInfo) -> list[str]:
+    lines = []
+    for entry in info.ram:
+        name = "g" + entry.name
+        lines.append(f"{name} {entry.addr:X} l")
+    for entry in info.data:
+        name = "s" + entry.name
+        addr = entry.addr + ROM_OFFSET
+        lines.append(f"{name} {addr:X} l")
+    for entry in info.code:
+        addr = entry.addr + ROM_OFFSET
+        lines.append(f"{entry.name} {addr:X} f")
     return lines
 
 
