@@ -35,11 +35,11 @@ class Symbols(object):
                 assert isinstance(addr, int)
                 self.globals[addr + ROM_OFFSET] = entry.name
 
-    def add_global(self, offset: int, label: str):
-        self.globals[offset] = label
+    def add_global(self, addr: int, label: str):
+        self.globals[addr] = label
 
-    def add_local(self, offset: int):
-        self.locals.add(offset)
+    def add_local(self, addr: int):
+        self.locals.add(addr)
 
     def finalize_locals(self):
         idx = 0
@@ -47,22 +47,23 @@ class Symbols(object):
             self.local_indexes[addr] = idx
             idx += 1
 
-    def get_local(self, offset: int) -> str:
-        idx = self.local_indexes[offset]
-        return f"@@_{idx:03X}"
+    def get_local(self, addr: int, prefixed: bool) -> str:
+        idx = self.local_indexes[addr]
+        prefix = "@@" if prefixed else ""
+        return f"{prefix}_{idx:03X}"
 
-    def get_label(self, offset: int, type: LabelType = LabelType.Undef) -> str:
+    def get_label(self, addr: int, prefixed: bool, type: LabelType = LabelType.Undef) -> str:
         # Check for existing label
-        if offset in self.globals:
-            return self.globals[offset]
+        if addr in self.globals:
+            return self.globals[addr]
         # Check for code
-        if offset % 4 == 1 and offset in self.thumb_code:
-            return self.globals[offset - 1] + "+1"
-        pa = offset - ROM_OFFSET
+        if addr % 4 == 1 and addr in self.thumb_code:
+            return self.globals[addr - 1] + "+1"
+        pa = addr - ROM_OFFSET
         if pa in self.locals:
-            return self.get_local(pa)
-        # Create label using offset
-        label = f"{offset:X}"
+            return self.get_local(pa, prefixed)
+        # Create label using addr
+        label = f"{addr:X}"
         if type == LabelType.Imm:
             label = "0x" + label
         elif type == LabelType.Data:
