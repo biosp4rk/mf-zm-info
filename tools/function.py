@@ -4,20 +4,19 @@ from enum import Enum, auto
 
 import argparse_utils as apu
 from constants import *
-from game_info import GameInfo
+from game_info import GameInfo, InfoSource
 from info_entry import CodeMode
-from rom import Rom, ROM_OFFSET
-from symbols import LabelType, Symbols
+from rom import Rom
+from symbols import Symbols
 from thumb import *
 
 
-class Function(object):
+class Function:
 
-    INDENT = " " * 4
-    DOT_POOL = ".pool"
-
-    def __init__(self, rom: Rom, addr: int, symbols: Symbols = Symbols()):
+    def __init__(self, rom: Rom, addr: int, symbols: Symbols = None):
         self.rom = rom
+        if symbols is None:
+            symbols = Symbols()
         self.symbols = symbols
         self.start_addr = addr
         self.end_addr = -1
@@ -164,124 +163,6 @@ class Function(object):
             prev_addr = addr
         return pools
 
-    def get_symbols(self) -> dict[int, str]:
-        syms = {}
-        # Find all bls
-        for inst in self.instructs.values():
-            if inst.format == ThumbForm.Link:
-                addr = inst.branch_addr()
-                # Skip if within this function
-                if addr >= self.start_addr and addr < self.end_addr:
-                    continue
-                addr += ROM_OFFSET
-                label = self.symbols.get_label(addr, LabelType.Code)
-                syms[addr] = label
-        # Check all data pools
-        pools = self.get_data_pools()
-        rom_start = self.rom.code_start(True)
-        rom_end = self.rom.data_end(True)
-        code_end = self.rom.code_end()
-        for addr, size in pools:
-            end = addr + size
-            for i in range(addr, end, 4):
-                val = self.rom.read_32(i)
-                # Check if in ram
-                if (
-                    (val >= 0x2000000 and val < 0x2040000) or
-                    (val >= 0x3000000 and val < 0x3008000)
-                ):
-                    label = self.symbols.get_label(val, LabelType.Data)
-                    syms[val] = label
-                # Check if in rom
-                elif val >= rom_start and val < rom_end:
-                    pa = val - ROM_OFFSET
-                    label_type: LabelType = None
-                    if pa < code_end:
-                        # Skip if within this function
-                        if pa >= self.start_addr and pa < self.end_addr:
-                            continue
-                        label_type = LabelType.Code
-                        val -= 1
-                    else:
-                        label_type = LabelType.Data
-                    label = self.symbols.get_label(val, label_type)
-                    syms[val] = label
-        return syms
-
-    def get_lines(self, include_syms: bool, include_addrs: bool = False) -> list[str]:
-        self.symbols.locals = self.locals
-        self.symbols.local_indexes = self.local_indexes
-
-        lines = []
-        if include_syms:
-            syms = self.get_symbols()
-            syms = sorted(syms.items())
-            for addr, label in syms:
-                lines.append(f".definelabel {label},0x{addr:X}")
-            lines.append("")
-
-        # Add address
-        lines.append(f"; {self.start_addr:X}")
-
-        # Get label for function name
-        func_addr = self.start_addr + ROM_OFFSET
-        label = self.symbols.get_label(func_addr, LabelType.Code)
-        lines.append(label + ":")
-
-        # Add size
-        size = self.end_addr - self.start_addr
-        lines.append(f"; Size: {size:X}")
-
-        # Go until end of function
-        self.addr = self.start_addr
-        in_pool = False
-        while self.addr < self.end_addr:
-            # Check if anything branches to current offset
-            if self.addr in self.branches:
-                lines.append(self.symbols.get_local(self.addr) + ":")
-            if self.in_data_pool():
-                # If already in a data pool, do nothing
-                # If just entered a data pool, write .pool
-                if not in_pool:
-                    lines.append(self.INDENT + self.DOT_POOL)
-                    in_pool = True
-                    self.align(4)
-                self.addr += 4
-            elif self.addr in self.jump_tables:
-                lines.append(self.symbols.get_local(self.addr) + ":")
-                jumps = []
-                while True:
-                    if self.addr in self.branches:
-                        break
-                    jump = self.rom.read_ptr(self.addr)
-                    jumps.append(self.symbols.get_local(jump))
-                    self.addr += 4
-                num_jumps = len(jumps)
-                for j in range(0, num_jumps, 4):
-                    end = j + min(4, num_jumps - j)
-                    jump_labels = ",".join(jumps[j:end])
-                    lines.append(f"{self.INDENT}.dw {jump_labels}")
-                in_pool = False
-            elif self.addr in self.instructs:
-                inst = self.instructs[self.addr]
-                asm_str = inst.asm_str(self.rom, self.symbols, self.branches)
-                if include_addrs:
-                    asm_str = f"{asm_str:35} ; {self.addr:X}"
-                lines.append("    " + asm_str)
-                if inst.format == ThumbForm.Link:
-                    self.addr += 4
-                else:
-                    self.addr += 2
-                in_pool = False
-            elif self.addr + 2 == self.end_addr:
-                break
-            else:
-                err = f"Unsure what to output at {self.addr:X}"
-                raise ValueError(err)
-        self.symbols.reset_locals()
-        delattr(self, "addr")
-        return lines
-
 
 class FuncDiff(Enum):
 
@@ -376,7 +257,7 @@ if __name__ == "__main__":
     rom = apu.get_rom(args.rom_path)
     
     # Load symbols
-    info = GameInfo(rom.game, rom.region)
+    info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
     syms = Symbols(info)
 
     # Get address
@@ -396,5 +277,6 @@ if __name__ == "__main__":
 
     # Print function
     func = Function(rom, addr, syms)
-    lines = func.get_lines(args.symbols, args.addr_comments)
-    print("\n".join(lines))
+    from asm_writer import AsmWriter, AsmFormat
+    writer = AsmWriter.create(rom, syms, func.branches, AsmFormat.DECOMP)
+    print(writer.function_str(func, args.symbols, args.addr_comments))
