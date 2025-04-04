@@ -337,6 +337,27 @@
     desc: Bits 0-2 = type, 0x40 = going left or up, 0x80 = ?
     type: u8
     offset: 0x3
+- name: BootDebugText
+  size: 0xC
+  vars:
+  - name: Background
+    type: u8
+    offset: 0x0
+  - name: XPosition
+    type: u8
+    offset: 0x1
+  - name: YPosition
+    type: u8
+    offset: 0x2
+  - name: Palette
+    type: u8
+    offset: 0x3
+  - name: Size
+    type: u8
+    offset: 0x4
+  - name: TextPtr
+    type: u8 *
+    offset: 0x8
 - name: BossFlameData
   size: 0xC
   vars:

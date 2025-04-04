@@ -83,6 +83,9 @@ class Rom(object):
 
     def read_ascii(self, addr: int, size: int) -> str:
         return self.read_bytes(addr, size).decode("ascii")
+    
+    def read_sjis(self, addr: int, size: int) -> str:
+        return self.read_bytes(addr, size).decode("shift_jis")
 
     def write_8(self, addr: int, val: int) -> None:
         self.data[addr] = val
