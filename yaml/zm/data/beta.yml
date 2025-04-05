@@ -1,3 +1,29 @@
+- name: BootDebugBgPal
+  type: u16
+  count: 0x80
+  cat: palette
+  addr:
+    B: 0x417F38
+- name: BootDebugObjPal
+  type: u16
+  count: 0x30
+  cat: palette
+  addr:
+    B: 0x418038
+- name: BootDebugObjGfx
+  type: u32
+  count: 0xDE
+  cat: gfx
+  comp: lz
+  addr:
+    B: 0x418098
+- name: BootDebugBgGfx
+  type: u32
+  count: 0x303
+  cat: gfx
+  comp: lz
+  addr:
+    B: 0x418638
 - name: BootDebugMenuNamesText
   type: struct BootDebugText
   count: 0xA
