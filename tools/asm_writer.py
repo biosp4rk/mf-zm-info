@@ -210,7 +210,7 @@ class AsmWriter:
                     args.append("=" + self._get_label(va, LabelType.Imm))
             else:
                 args.append("sp")
-                args.append(self._hex_str(instruct.imm * 4, True))
+                args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.AddSP:
             args.append("sp")
             args.append(self._imm_str(instruct))
@@ -313,6 +313,9 @@ class AsmWriter:
             val = instruct.imm * 2
         elif instruct.format == ThumbForm.LdStSP:
             val = instruct.imm * 4
+        elif instruct.format == ThumbForm.RelAddr:
+            assert instruct.rs == Reg.SP
+            val = instruct.imm * 4
         elif instruct.format == ThumbForm.AddSP:
             val = instruct.imm * 4
             # Check if negative
@@ -321,7 +324,7 @@ class AsmWriter:
         else:
             raise ValueError()
         prefix = "#" if self.format_opts.prefixed_immed else ""
-        return prefix + self._hex_str(val, True)
+        return prefix + self._hex_str(val)
 
     def _rlist_str(self, instruct: ThumbInstruct) -> str:
         bits = instruct.rlist_bits()
@@ -346,11 +349,11 @@ class AsmWriter:
             result = "{" + result + "}"
         return result
 
-    def _hex_str(self, number: int, prefix: bool = False) -> str:
+    def _hex_str(self, number: int) -> str:
         negative = number < 0
         number = abs(number)
         text = f"{number:X}"
-        if prefix and number >= 0xA:
+        if number >= 0xA:
             text = "0x" + text
         if negative:
             text = "-" + text
