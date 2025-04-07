@@ -150,6 +150,33 @@
   mode: thumb
   params: null
   return: null
+- name: BootDebugSetupMenuOam
+  addr:
+    B: 0x782F0
+  size:
+    B: 0xEC
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugUpdateCursorOam
+  addr:
+    B: 0x783DC
+  size:
+    B: 0x23C
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugWriteBootDebugRam
+  addr:
+    B: 0x78890
+  size:
+    B: 0x74
+  mode: thumb
+  params:
+  - name: SelectSaveFile
+    type: u8
+    cat: bool
+  return: null
 - name: BootDebugSubroutine
   addr:
     B: 0x78904
@@ -157,7 +184,10 @@
     B: 0x204
   mode: thumb
   params: null
-  return: null
+  return:
+    name: Result
+    type: s32
+    cat: bool
 - name: BootDebugSetVBlankCodePtr
   addr:
     B: 0x78B08
@@ -222,6 +252,14 @@
   mode: thumb
   params: null
   return: null
+- name: BootDebug_SAVE_SetSaveTextColor
+  addr:
+    B: 0x79D0C
+  size:
+    B: 0x58
+  mode: thumb
+  params: null
+  return: null
 - name: BootDebug_SAMUS_Subroutine
   addr:
     B: 0x79D64
@@ -270,6 +308,14 @@
   mode: thumb
   params: null
   return: null
+- name: BootDebugDrawSubMenuText
+  addr:
+    B: 0x7A584
+  size:
+    B: 0x23C
+  mode: thumb
+  params: null
+  return: null
 - name: BootDebugDrawText
   addr:
     B: 0x7A7C0
@@ -294,7 +340,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebugUpdateSingleText
+- name: BootDebugDrawSubMenuOptionText
   addr:
     B: 0x7AA88
   size:
