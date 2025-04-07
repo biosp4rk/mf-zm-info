@@ -1,4 +1,4 @@
-- name: ChozoStatueEcho
+- name: SpawnChozoStatueMovement
   addr:
     U: 0x125E8
     E: 0x1269C
@@ -11,7 +11,7 @@
   - name: Stage
     type: u8
   return: null
-- name: ChozoStatueMovement_Ai
+- name: ChozoStatueMovement
   addr:
     U: 0x12748
     E: 0x127FC
@@ -33,7 +33,7 @@
   mode: thumb
   params: null
   return: null
-- name: WaterDrop_Ai
+- name: WaterDrop
   addr:
     U: 0x127AC
     E: 0x12860
@@ -49,7 +49,7 @@
   mode: thumb
   params: null
   return: null
-- name: Explosion_ZebesEscape_Ai
+- name: ExplosionZebesEscape
   addr:
     U: 0x12A34
     E: 0x12AE8
@@ -71,7 +71,7 @@
   mode: thumb
   params: null
   return: null
-- name: EnemyDropGet
+- name: EnemyDropIdle
   desc: Samus and enemy drop collision handler
   addr:
     U: 0x12E98
@@ -83,7 +83,7 @@
   mode: thumb
   params: null
   return: null
-- name: EnemyDrop_Ai
+- name: EnemyDrop
   addr:
     U: 0x12FF0
     E: 0x130A4
@@ -94,7 +94,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnusedPrimarySprite_0_to_10_Ai
+- name: UnusedSprites
   addr:
     U: 0x13024
     E: 0x130D8
@@ -151,7 +151,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallOutsideAnim
+- name: MorphBallOutsideFlashAnim
   addr:
     U: 0x13234
     E: 0x132E8
@@ -162,7 +162,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBall_Ai
+- name: MorphBall
   addr:
     U: 0x13270
     E: 0x13324
@@ -173,7 +173,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBall_Outside_Ai
+- name: MorphBallOutside
   addr:
     U: 0x132A8
     E: 0x1335C
@@ -184,7 +184,7 @@
   mode: thumb
   params: null
   return: null
-- name: PowerGrip_Ai
+- name: PowerGrip
   addr:
     U: 0x132D4
     E: 0x13388
@@ -195,7 +195,7 @@
   mode: thumb
   params: null
   return: null
-- name: PowerGripGlow_Ai
+- name: PowerGripGlow
   addr:
     U: 0x13410
     E: 0x134C4
@@ -228,7 +228,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChargeBeamInitGfxAndCollision
+- name: ChargeBeamVisibleInit
   desc: Initializes the charge beam to be visible
   addr:
     U: 0x13588
@@ -240,7 +240,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChargeBeamGet
+- name: ChargeBeamIdle
   desc: Samus and charge beam collision handler
   addr:
     U: 0x135CC
@@ -287,7 +287,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChargeBeam_Ai
+- name: ChargeBeam
   addr:
     U: 0x1375C
     E: 0x13810
@@ -298,7 +298,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChargeBeamGlow_Ai
+- name: ChargeBeamGlow
   addr:
     U: 0x1382C
     E: 0x138E0
@@ -309,7 +309,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueSyncBodyPosition
+- name: ChozoStatueSyncSubSprites
   desc: Syncs the Chozo statue body sprites position with the Chozo statue main sprite
   addr:
     U: 0x13850
@@ -321,7 +321,7 @@
   mode: thumb
   params: null
   return: null
-- name: SetChozoStatueEventAndEquipmentFlags
+- name: ChozoStatueRegisterItem
   addr:
     U: 0x138D8
     E: 0x1398C
@@ -335,7 +335,7 @@
     type: u8
     enum: PrimarySpriteId
   return: null
-- name: SetChozoStatueDirection
+- name: ChozoStatueSetDirection
   addr:
     U: 0x13BE4
     E: 0x13C98
@@ -346,7 +346,7 @@
   mode: thumb
   params: null
   return: null
-- name: CheckChozoItemCollected
+- name: ChozoStatueGetBehavior
   addr:
     U: 0x13DE0
     E: 0x13E94
@@ -385,7 +385,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueRegisterItem
+- name: ChozoStatueRegisterHint
   addr:
     U: 0x14298
     E: 0x1434C
@@ -407,7 +407,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueHintEnd
+- name: ChozoStatueSittingInit
   addr:
     U: 0x143B8
     E: 0x1446C
@@ -418,7 +418,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueHintSitting
+- name: ChozoStatueSitting
   addr:
     U: 0x143F8
     E: 0x144AC
@@ -429,7 +429,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueHintSittingFinish
+- name: ChozoStatueDelayBeforeRefillAfterHint
   addr:
     U: 0x14444
     E: 0x144F8
@@ -440,7 +440,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueCheckCollectItem
+- name: ChozoStatueWaitForItemToBeCollected
   addr:
     U: 0x14468
     E: 0x1451C
@@ -451,7 +451,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueItemBeforeBanner
+- name: ChozoStatueTimerAfterItemGrabbed
   addr:
     U: 0x14494
     E: 0x14548
@@ -462,7 +462,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueSpawnRefill
+- name: ChozoStatueRefillInit
   addr:
     U: 0x144B8
     E: 0x1456C
@@ -473,7 +473,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueRefillFlashingAnim
+- name: ChozoStatueRefillSamus
   addr:
     U: 0x14500
     E: 0x145B4
@@ -484,7 +484,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueRefillEnd
+- name: ChozoStatueSleepingInit
   addr:
     U: 0x1454C
     E: 0x14600
@@ -495,7 +495,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueReplayRoomMusic
+- name: ChozoStatueSleeping
   addr:
     U: 0x1456C
     E: 0x14620
@@ -506,7 +506,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyInit
+- name: ChozoStatuePartInit
   addr:
     U: 0x145C4
     E: 0x14678
@@ -517,7 +517,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyHandRefillAnim
+- name: ChozoStatuePartGlowIdle
   desc: Handles the glow animation on the Chozo statue hand
   addr:
     U: 0x14738
@@ -529,7 +529,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyGrabSamus
+- name: ChozoStatuePartArmCheckGrabSamusHint
   addr:
     U: 0x14794
     E: 0x14848
@@ -540,7 +540,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodySyncSamusPosition
+- name: ChozoStatuePartSyncSamusPosition
   addr:
     U: 0x14834
     E: 0x148E8
@@ -551,7 +551,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodySyncSamusPositionWhileSitting
+- name: ChozoStatuePartArmSitting
   addr:
     U: 0x14864
     E: 0x14918
@@ -562,7 +562,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodySyncSamusPositionAfterSitting
+- name: ChozoStatuePartArmSeated
   addr:
     U: 0x148A8
     E: 0x1495C
@@ -573,7 +573,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyDetectSamus
+- name: ChozoStatuePartArmCheckGrabSamusRefill
   addr:
     U: 0x148E8
     E: 0x1499C
@@ -584,7 +584,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyRefill
+- name: ChozoStatuePartArmRefill
   desc: Refills Samus's energy and weapons
   addr:
     U: 0x149E4
@@ -596,7 +596,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBody_Empty
+- name: ChozoStatuePart_Empty
   desc: Empty function
   addr:
     U: 0x14B24
@@ -608,7 +608,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyEndRefill
+- name: ChozoStatuePartSleepingInit
   addr:
     U: 0x14B28
     E: 0x14BDC
@@ -619,7 +619,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyReleaseSamus
+- name: ChozoStatuePartArmSleeping
   addr:
     U: 0x14B58
     E: 0x14C0C
@@ -630,7 +630,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyInitHintGfx
+- name: ChozoStatuePartEyeOpeningInit
   addr:
     U: 0x14B90
     E: 0x14C44
@@ -641,7 +641,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyCheckEyeOpenedHint
+- name: ChozoStatuePartEyeOpening
   addr:
     U: 0x14BB0
     E: 0x14C64
@@ -652,7 +652,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueItemAfterBanner
+- name: ChozoStatuePartEyeClosingInit
   addr:
     U: 0x14BDC
     E: 0x14C90
@@ -663,7 +663,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBodyCheckEyeClosedRefill
+- name: ChozoStatuePartEyeClosing
   addr:
     U: 0x14BFC
     E: 0x14CB0
@@ -686,7 +686,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatue_Ai
+- name: ChozoStatue
   addr:
     U: 0x14C70
     E: 0x14D24
@@ -697,7 +697,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueBody_Ai
+- name: ChozoStatuePart
   addr:
     U: 0x14DB8
     E: 0x14E6C
@@ -708,7 +708,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueRefill_Ai
+- name: ChozoStatueRefill
   addr:
     U: 0x15000
     E: 0x150B4
@@ -719,7 +719,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueSyncBodyPosition
+- name: UnknownItemChozoStatueSyncSubSprites
   addr:
     U: 0x150A8
     E: 0x1515C
@@ -741,7 +741,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnkItemChozoStatue_Empty
+- name: UnknownItemChozoStatue_Empty
   addr:
     U: 0x15328
     E: 0x153DC
@@ -752,7 +752,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueRegisterItem
+- name: UnknownItemChozoStatueRegisterHint
   addr:
     U: 0x1532C
     E: 0x153E0
@@ -763,7 +763,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueHintFlashing_Unused
+- name: UnknownItemChozoStatueHintFlashing
   desc: Same code as ChozoStatueHintFlashing, unused
   addr:
     U: 0x1537C
@@ -775,7 +775,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoItemEndHint_Unused
+- name: UnknownItemChozoStatueSittingInit
   desc: Same code as ChozoStatueEndHint, unused
   addr:
     U: 0x15438
@@ -787,7 +787,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueHintSit_Unused
+- name: UnknownItemChozoStatueSitting
   desc: Same code as ChozoStatueHintSit, unused
   addr:
     U: 0x15478
@@ -799,7 +799,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueHintSitFinish_Unused
+- name: UnknownItemChozoStatueDelayBeforeRefillAfterHint
   desc: Same code as ChozoStatueHintSitFinish, unused
   addr:
     U: 0x154C4
@@ -811,7 +811,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueCheckCollectItem
+- name: UnknownItemChozoStatueWaitForItemToBeCollected
   addr:
     U: 0x154E8
     E: 0x1559C
@@ -822,7 +822,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueCheckItemBannerSpawned
+- name: UnknownItemChozoStatueTimerAfterItemGrabbed
   addr:
     U: 0x15514
     E: 0x155C8
@@ -833,7 +833,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueSpawnRefill
+- name: UnknownItemChozoStatueRefillInit
   addr:
     U: 0x15538
     E: 0x155EC
@@ -844,7 +844,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueRefillFlashingAnim
+- name: UnknownItemChozoStatueRefillSamus
   addr:
     U: 0x15580
     E: 0x15634
@@ -855,7 +855,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueRefillEnd
+- name: UnknownItemChozoStatueSleepingInit
   addr:
     U: 0x155CC
     E: 0x15680
@@ -866,7 +866,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueReplayRoomMusic
+- name: UnknownItemChozoStatueSleeping
   addr:
     U: 0x155EC
     E: 0x156A0
@@ -877,7 +877,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyInit
+- name: UnknownItemChozoStatuePartInit
   addr:
     U: 0x15644
     E: 0x156F8
@@ -888,7 +888,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyHandRefillAnim
+- name: UnknownItemChozoStatuePartGlowIdle
   desc: Handles the glow animation on the Chozo statue hand
   addr:
     U: 0x157B8
@@ -900,7 +900,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyGrabSamus
+- name: UnknownItemChozoStatuePartArmCheckGrabSamusHint
   addr:
     U: 0x15814
     E: 0x158C8
@@ -911,7 +911,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodySyncSamusPosition
+- name: UnknownItemChozoStatuePartSyncSamusPosition
   addr:
     U: 0x158B4
     E: 0x15968
@@ -922,7 +922,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodySyncSamusPositionWhileSitting
+- name: UnknownItemChozoStatuePartArmSitting
   addr:
     U: 0x158E4
     E: 0x15998
@@ -933,7 +933,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodySyncSamusPositionAfterSitting
+- name: UnknownItemChozoStatuePartArmSeated
   addr:
     U: 0x15928
     E: 0x159DC
@@ -944,7 +944,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyDetectSamus
+- name: UnknownItemChozoStatuePartArmCheckGrabSamusRefill
   addr:
     U: 0x15968
     E: 0x15A1C
@@ -955,7 +955,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyRefill
+- name: UnknownItemChozoStatuePartArmRefill
   desc: Refills Samus's energy and weapons
   addr:
     U: 0x15A64
@@ -967,7 +967,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBody_Empty
+- name: UnknownItemChozoStatuePart_Empty
   desc: Empty function
   addr:
     U: 0x15BA4
@@ -979,7 +979,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyEndRefill
+- name: UnknownItemChozoStatuePartSleepingInit
   addr:
     U: 0x15BA8
     E: 0x15C5C
@@ -990,7 +990,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyReleaseSamus
+- name: UnknownItemChozoStatuePartArmSleeping
   addr:
     U: 0x15BD8
     E: 0x15C8C
@@ -1001,7 +1001,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyInitHintGfx_Unused
+- name: UnknownItemChozoStatuePartEyeOpeningInit
   desc: Same code as ChozoStatueBodyInitHintGfx, unused
   addr:
     U: 0x15C10
@@ -1013,7 +1013,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyCheckEyeOpenedHint
+- name: UnknownItemChozoStatuePartEyeOpening
   addr:
     U: 0x15C30
     E: 0x15CE4
@@ -1024,7 +1024,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueItemAfterBanner
+- name: UnknownItemChozoStatuePartEyeClosingInit
   addr:
     U: 0x15C5C
     E: 0x15D10
@@ -1035,7 +1035,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBodyCheckEyeClosedRefill
+- name: UnknownItemChozoStatuePartEyeClosing
   addr:
     U: 0x15C7C
     E: 0x15D30
@@ -1046,7 +1046,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatue_Ai
+- name: UnknownItemChozoStatue
   addr:
     U: 0x15CF0
     E: 0x15DA4
@@ -1057,7 +1057,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueBody_Ai
+- name: UnknownItemChozoStatuePart
   addr:
     U: 0x15E38
     E: 0x15EEC
@@ -1068,7 +1068,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemChozoStatueRefill_Ai
+- name: UnknownItemChozoStatueRefill
   addr:
     U: 0x16080
     E: 0x16134
@@ -1079,7 +1079,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoStatueHintChangeClipAction
+- name: ChozoStatueStandingChangeCcaa
   desc: Changes the current clipdata affecting action and calls ProcessClipdata
   addr:
     U: 0x16128
@@ -1097,7 +1097,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: ChozoStatueSittingChangeClipAction
+- name: ChozoStatueSeatedChangeCcaa
   desc: Changes the current clipdata affecting action and calls ProcessClipdata
   addr:
     U: 0x1622C
@@ -1126,7 +1126,7 @@
     type: u8
     enum: PrimarySpriteId
   return: null
-- name: ChozoBallSetOamPtr
+- name: ChozoBallSetClosedOAM
   addr:
     U: 0x16344
     E: 0x163F8
@@ -1140,7 +1140,7 @@
     type: u8
     enum: PrimarySpriteId
   return: null
-- name: ChozoBallRevealedSetOamPtr
+- name: ChozoBallSetRevealingOAM
   addr:
     U: 0x163A8
     E: 0x1645C
@@ -1154,7 +1154,7 @@
     type: u8
     enum: PrimarySpriteId
   return: null
-- name: ChozoBallRevealingSetOamPtr
+- name: ChozoBallSetRevealedOAM
   addr:
     U: 0x1640C
     E: 0x164C0
@@ -1179,7 +1179,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoBall_Empty
+- name: ChozoBallEmpty
   desc: Empty function
   addr:
     U: 0x164E4
@@ -1191,7 +1191,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoBallRevealed
+- name: ChozoBallRevealingInit
   addr:
     U: 0x164E8
     E: 0x1659C
@@ -1202,7 +1202,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoBallRevealingAnim
+- name: ChozoBallCheckRevealingAnimEnded
   addr:
     U: 0x16558
     E: 0x1660C
@@ -1224,7 +1224,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoBallFlashAnim
+- name: ChozoBallFlashAnimation
   addr:
     U: 0x16600
     E: 0x166B4
@@ -1235,7 +1235,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoBall_Ai
+- name: ChozoBall
   addr:
     U: 0x1663C
     E: 0x166F0
@@ -1246,7 +1246,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerCheckMidair
+- name: ZoomerCheckCollidingWithAir
   addr:
     U: 0x16694
     E: 0x16748
@@ -1261,7 +1261,7 @@
     desc: Midair
     type: u8
     cat: bool
-- name: ZoomerCollisionInit
+- name: ZoomerUpdateHitbox
   addr:
     U: 0x16728
     E: 0x167DC
@@ -1272,7 +1272,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerGfxInit
+- name: ZoomerSetCrawlingOAM
   addr:
     U: 0x167A8
     E: 0x1685C
@@ -1283,7 +1283,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerNormalDirectionGfxInit
+- name: ZoomerSetFallingOAM
   desc: Used when a zoomer is falling
   addr:
     U: 0x167D8
@@ -1306,7 +1306,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerCallGfxInit
+- name: ZoomerIdleInit
   addr:
     U: 0x1691C
     E: 0x169D0
@@ -1317,7 +1317,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerMove
+- name: ZoomerCrawling
   addr:
     U: 0x16934
     E: 0x169E8
@@ -1328,7 +1328,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerGfxRotationUpdate
+- name: ZoomerTurningAroundInit
   addr:
     U: 0x16D1C
     E: 0x16DD0
@@ -1339,7 +1339,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerTurning
+- name: ZoomerTurningAround
   addr:
     U: 0x16EB0
     E: 0x16F64
@@ -1350,7 +1350,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zoomer_Unused
+- name: ZoomerLandingInit_Unused
   desc: Calls ZoomerNormalDirectionGfxInit and sets pose to 0xF, seems unused
   addr:
     U: 0x1707C
@@ -1362,7 +1362,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerBackOnGround
+- name: ZoomerLanding
   addr:
     U: 0x17094
     E: 0x17148
@@ -1373,7 +1373,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZoomerStartFalling
+- name: ZoomerFallingInit
   addr:
     U: 0x170C4
     E: 0x17178
@@ -1406,7 +1406,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zoomer_Ai
+- name: Zoomer
   addr:
     U: 0x1720C
     E: 0x172C0
@@ -1428,7 +1428,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaCheckMidair
+- name: ZeelaCheckCollidingWithAir
   addr:
     U: 0x17440
     E: 0x174F4
@@ -1443,7 +1443,7 @@
     desc: Midair
     type: u8
     cat: bool
-- name: ZeelaHitboxInit
+- name: ZeelaUpdateHitbox
   addr:
     U: 0x174F8
     E: 0x175AC
@@ -1454,7 +1454,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaGfxInit
+- name: ZeelaSetCrawlingOam
   addr:
     U: 0x17578
     E: 0x1762C
@@ -1465,7 +1465,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaNormalDirectionGfxInit
+- name: ZeelaSetFallingOam
   desc: Used when a zeela is falling
   addr:
     U: 0x175C0
@@ -1488,7 +1488,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaCallGfxInit
+- name: ZeelaIdleInit
   addr:
     U: 0x17718
     E: 0x177CC
@@ -1510,7 +1510,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaGfxRotationUpdate
+- name: ZeelaTurningAroundInit
   addr:
     U: 0x17B48
     E: 0x17BFC
@@ -1532,7 +1532,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zeela_Unused
+- name: ZeelaLandingInit_Unused
   desc: Calls ZeelaNormalDirectionGfxInit and sets pose to F, seems unused
   addr:
     U: 0x17EA8
@@ -1544,7 +1544,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaBackOnGround
+- name: ZeelaLanding
   addr:
     U: 0x17EC0
     E: 0x17F74
@@ -1555,7 +1555,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaStartFalling
+- name: ZeelaFallingInit
   addr:
     U: 0x17EF8
     E: 0x17FAC
@@ -1610,7 +1610,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaEyesGroundCollision
+- name: ZeelaEyesExplodingInit
   addr:
     U: 0x18234
     E: 0x182E8
@@ -1621,7 +1621,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaEyesCheckExplosionDone
+- name: ZeelaEyesExploding
   addr:
     U: 0x18260
     E: 0x18314
@@ -1632,7 +1632,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zeela_Ai
+- name: Zeela
   addr:
     U: 0x18284
     E: 0x18338
@@ -1643,7 +1643,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZeelaEyes_Ai
+- name: ZeelaEyes
   addr:
     U: 0x183A0
     E: 0x18454
@@ -1654,7 +1654,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthDetermineSpikePosition
+- name: KraidSyncSubSprites
   desc: Syncs the sub-sprites with Kraid
   addr:
     U: 0x183D8
@@ -1703,7 +1703,7 @@
   - name: Timer2OfCurrSprite
     type: u8
   return: null
-- name: KraidMouthUpdateArmIdleHitbox
+- name: KraidPartUpdateRightArmIdlingHitbox
   addr:
     U: 0x18C18
     E: 0x18CCC
@@ -1714,7 +1714,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthUpdateArmAttackingHitbox
+- name: KraidPartUpdateRightArmAttackingHitbox
   addr:
     U: 0x18D34
     E: 0x18DE8
@@ -1725,7 +1725,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthUpdateLeftArmIdleHitbox
+- name: KraidPartUpdateLeftArmIdlingHitbox
   addr:
     U: 0x18EB0
     E: 0x18F64
@@ -1736,7 +1736,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthUpdateLeftArmAttackingHitbox
+- name: KraidPartUpdateLeftArmAttackingHitbox
   addr:
     U: 0x19104
     E: 0x191B8
@@ -1747,7 +1747,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMoveBg2ToRight
+- name: KraidMoveBG2ToRight
   addr:
     U: 0x19330
     E: 0x193E4
@@ -1760,7 +1760,7 @@
   - name: Bg2XMovement
     type: u8
   return: null
-- name: KraidMoveBg2ToLeft
+- name: KraidMoveBG2ToLeft
   desc: Adds r0 to the BG2 horizontal movement global variable and reduces MultiSpritesXPosition with r0
   addr:
     U: 0x19350
@@ -1785,7 +1785,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidIsFullyUp
+- name: KraidMoveUp
   addr:
     U: 0x1959C
     E: 0x19650
@@ -1836,7 +1836,7 @@
     name: MovementStage
     desc: Movement stage
     type: u8
-- name: KraidStartMovingFeetSameDirectionAsPosition
+- name: KraidFirstStepInit
   addr:
     U: 0x19810
     E: 0x198C4
@@ -1847,7 +1847,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidFeetMovementSameDirectionAsPositionUpdate
+- name: KraidFirstStep
   addr:
     U: 0x19854
     E: 0x19908
@@ -1858,7 +1858,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMoveFeetToOppositeDirectionAsPosition
+- name: KraidSecondStepInit
   addr:
     U: 0x19934
     E: 0x199E8
@@ -1869,7 +1869,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidFeetMovementOppsiteDirectionAsPositionUpdate
+- name: KraidSecondStep
   addr:
     U: 0x19978
     E: 0x19A2C
@@ -1880,7 +1880,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidEndTwoSteps
+- name: KraidStandingInit
   addr:
     U: 0x19A58
     E: 0x19B0C
@@ -1891,7 +1891,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidBeforeStartMovingFeetSameDirectionAsPosition
+- name: KraidStanding
   addr:
     U: 0x19A7C
     E: 0x19B30
@@ -1902,7 +1902,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidAfterMovingFeetSameDirectionAsPosition
+- name: KraidStandingBetweenStepsInit
   addr:
     U: 0x19AB4
     E: 0x19B68
@@ -1913,7 +1913,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidBeforeStartMovingFeetOppositeDirectionAsPosition
+- name: KraidStandingBetweenSteps
   addr:
     U: 0x19AD8
     E: 0x19B8C
@@ -1936,7 +1936,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidDeath
+- name: KraidDyingInit
   desc: Sets the Kraid killed event and updates the minimap
   addr:
     U: 0x19B34
@@ -1970,7 +1970,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthInit
+- name: KraidPartInit
   addr:
     U: 0x19EC8
     E: 0x19F7C
@@ -1981,7 +1981,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthThrowNails
+- name: KraidPartThrowNails
   addr:
     U: 0x1A228
     E: 0x1A2DC
@@ -1992,7 +1992,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthCheckSamusNear
+- name: KraidPartCheckAttack
   addr:
     U: 0x1A310
     E: 0x1A3C4
@@ -2003,7 +2003,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthCallKraidCheckProjectilesCollidingWithBelly
+- name: KraidPartCallKraidCheckProjectilesCollidingWithBelly
   addr:
     U: 0x1A3E4
     E: 0x1A498
@@ -2014,7 +2014,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthCheckShouldSpawnSpikes
+- name: KraidPartCheckShouldSpawnSpikes
   addr:
     U: 0x1A3F0
     E: 0x1A4A4
@@ -2025,7 +2025,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthSpawnSpike
+- name: KraidPartSpawnSpike
   addr:
     U: 0x1A50C
     E: 0x1A5C0
@@ -2036,7 +2036,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthArmMovementDying
+- name: KraidPartDyingSinking
   addr:
     U: 0x1A648
     E: 0x1A6FC
@@ -2047,7 +2047,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouthArmMovementDyingStationary
+- name: KraidPartDyingStationary
   addr:
     U: 0x1A6C8
     E: 0x1A77C
@@ -2074,7 +2074,7 @@
   mode: thumb
   params: null
   return: null
-- name: Kraid_Ai
+- name: Kraid
   addr:
     U: 0x1AA3C
     E: 0x1AAF0
@@ -2085,7 +2085,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidMouth_Ai
+- name: KraidPart
   addr:
     U: 0x1AEB0
     E: 0x1AF64
@@ -2096,7 +2096,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidSpike_Ai
+- name: KraidSpike
   addr:
     U: 0x1B048
     E: 0x1B0FC
@@ -2107,7 +2107,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidNail_Ai
+- name: KraidNail
   addr:
     U: 0x1B4F4
     E: 0x1B5A8
@@ -2168,7 +2168,7 @@
   mode: thumb
   params: null
   return: null
-- name: ItemBannerRemoval
+- name: ItemBannerRemovalInit
   addr:
     U: 0x1BA10
     E: 0x1BAC4
@@ -2179,7 +2179,7 @@
   mode: thumb
   params: null
   return: null
-- name: ItemBannerRemovalAnim
+- name: ItemBannerRemovalAnimation
   desc: Spawns a falling Chozo pillar sprite if the item banner is for the fully powered suit
   addr:
     U: 0x1BA60
@@ -2191,7 +2191,7 @@
   mode: thumb
   params: null
   return: null
-- name: ItemBanner_Ai
+- name: ItemBanner
   addr:
     U: 0x1BB14
     E: 0x1BBC8
@@ -2202,7 +2202,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveYesNoCursor_Ai
+- name: SaveYesNoCursor
   addr:
     U: 0x1BBFC
     E: 0x1BCB0
@@ -2224,7 +2224,7 @@
   mode: thumb
   params: null
   return: null
-- name: RipperGfxInit
+- name: RipperMovingInit
   addr:
     U: 0x1BDFC
     E: 0x1BEB0
@@ -2246,7 +2246,7 @@
   mode: thumb
   params: null
   return: null
-- name: RipperTurnAroundGfxInit
+- name: RipperTurnAroundInit
   addr:
     U: 0x1BE88
     E: 0x1BF3C
@@ -2257,7 +2257,7 @@
   mode: thumb
   params: null
   return: null
-- name: RipperTurnAroundBegin
+- name: RipperTurnAroundFirstPart
   addr:
     U: 0x1BEA8
     E: 0x1BF5C
@@ -2268,7 +2268,7 @@
   mode: thumb
   params: null
   return: null
-- name: RipperCheckTurnedAround
+- name: RipperTurnAroundSecondPart
   addr:
     U: 0x1BEE0
     E: 0x1BF94
@@ -2279,7 +2279,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper_Ai
+- name: Ripper
   addr:
     U: 0x1BEFC
     E: 0x1BFB0
@@ -2301,7 +2301,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper2GfxInit
+- name: Ripper2MovingInit
   addr:
     U: 0x1C054
     E: 0x1C108
@@ -2323,7 +2323,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper2TurnAroundGfxInit
+- name: Ripper2TurnAroundInit
   addr:
     U: 0x1C0D4
     E: 0x1C188
@@ -2334,7 +2334,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper2TurnAroundBegin
+- name: Ripper2TurnAroundPart1
   addr:
     U: 0x1C10C
     E: 0x1C1C0
@@ -2345,7 +2345,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper2CheckTurnedAround
+- name: Ripper2TurnAroundPart2
   addr:
     U: 0x1C144
     E: 0x1C1F8
@@ -2356,7 +2356,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ripper2_Ai
+- name: Ripper2
   addr:
     U: 0x1C160
     E: 0x1C214
@@ -2378,7 +2378,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebGfxInit
+- name: ZebIdleInit
   addr:
     U: 0x1C298
     E: 0x1C34C
@@ -2389,7 +2389,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebCheckSpawn
+- name: ZebIdle
   addr:
     U: 0x1C2D4
     E: 0x1C388
@@ -2411,7 +2411,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebReset
+- name: ZebRespawn
   addr:
     U: 0x1C3EC
     E: 0x1C4A0
@@ -2433,7 +2433,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zeb_Ai
+- name: Zeb
   addr:
     U: 0x1C50C
     E: 0x1C5C0
@@ -2455,7 +2455,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkreeGfxInit
+- name: SkreeIdleInit
   addr:
     U: 0x1C694
     E: 0x1C748
@@ -2477,7 +2477,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkreeSpinGfxInit
+- name: SkreeSpinningInit
   addr:
     U: 0x1C700
     E: 0x1C7B4
@@ -2488,7 +2488,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkreeCheckSpinEnded
+- name: SkreeCheckSpinAnimEnded
   addr:
     U: 0x1C71C
     E: 0x1C7D0
@@ -2499,7 +2499,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkreeStartGoingDown
+- name: SkreeGoingDownInit
   addr:
     U: 0x1C738
     E: 0x1C7EC
@@ -2554,7 +2554,7 @@
   mode: thumb
   params: null
   return: null
-- name: Skree_Ai
+- name: Skree
   addr:
     U: 0x1CAE0
     E: 0x1CB94
@@ -2565,7 +2565,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkreeExplosion_Ai
+- name: SkreeExplosion
   addr:
     U: 0x1CC74
     E: 0x1CD28
@@ -2587,7 +2587,7 @@
   mode: thumb
   params: null
   return: null
-- name: ReoRng
+- name: ReoIdleInit
   desc: Writes 2 values to sprite data based on the sprite random number
   addr:
     U: 0x1CD20
@@ -2599,7 +2599,7 @@
   mode: thumb
   params: null
   return: null
-- name: ReoSamusDetection
+- name: ReoIdle
   addr:
     U: 0x1CD44
     E: 0x1CDF8
@@ -2610,7 +2610,7 @@
   mode: thumb
   params: null
   return: null
-- name: ReoSamusDetected
+- name: ReoMovingInit
   addr:
     U: 0x1CDC8
     E: 0x1CE7C
@@ -2632,7 +2632,7 @@
   mode: thumb
   params: null
   return: null
-- name: Reo_Ai
+- name: Reo
   addr:
     U: 0x1D1E4
     E: 0x1D298
@@ -2675,7 +2675,7 @@
     desc: Releasing Samus
     type: u8
     cat: bool
-- name: ZiplineGfxUpdate
+- name: ZiplineUpdateOAM
   addr:
     U: 0x1D46C
     E: 0x1D538
@@ -2708,7 +2708,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineButton_Init
+- name: ZiplineButtonInit
   addr:
     U: 0x1D770
     E: 0x1D83C
@@ -2719,7 +2719,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineButtonActivatedGfxInit
+- name: ZiplineButtonIdleInit
   addr:
     U: 0x1D808
     E: 0x1D8D4
@@ -2730,7 +2730,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineButtonSpawn
+- name: ZiplineButtonBindZipline
   addr:
     U: 0x1D828
     E: 0x1D8F4
@@ -2741,7 +2741,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineButtonCheckZiplinesActivated
+- name: ZiplineButtonOff
   addr:
     U: 0x1D874
     E: 0x1D940
@@ -2774,7 +2774,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zipline_Ai
+- name: Zipline
   addr:
     U: 0x1D92C
     E: 0x1D9F8
@@ -2785,7 +2785,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineButton_Ai
+- name: ZiplineButton
   addr:
     U: 0x1D954
     E: 0x1DA20
@@ -2796,7 +2796,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaCheckMidair
+- name: SovaCheckCollidingWithAir
   addr:
     U: 0x1DA24
     E: 0x1DAF0
@@ -2811,7 +2811,7 @@
     desc: Midair
     type: u8
     cat: bool
-- name: SovaHitboxUpdate
+- name: SovaUpdateHitbox
   addr:
     U: 0x1DADC
     E: 0x1DBA8
@@ -2822,7 +2822,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaGfxUpdate
+- name: SovaSetCrawlingOAM
   addr:
     U: 0x1DB5C
     E: 0x1DC28
@@ -2844,7 +2844,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaGfxInit
+- name: SovaIdleInit
   addr:
     U: 0x1DD24
     E: 0x1DDF0
@@ -2866,7 +2866,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaTurningAroundGfxUpdate
+- name: SovaTurningAroundInit
   addr:
     U: 0x1E1EC
     E: 0x1E2B8
@@ -2888,7 +2888,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaBackOnGround
+- name: SovaLandingInit
   addr:
     U: 0x1E570
     E: 0x1E63C
@@ -2899,7 +2899,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaCheckBackOnGroundAnimEnded
+- name: SovaLanding
   addr:
     U: 0x1E5B4
     E: 0x1E680
@@ -2910,7 +2910,7 @@
   mode: thumb
   params: null
   return: null
-- name: SovaStartFalling
+- name: SovaFallingInit
   addr:
     U: 0x1E5E4
     E: 0x1E6B0
@@ -2943,7 +2943,7 @@
   mode: thumb
   params: null
   return: null
-- name: Sova_Ai
+- name: Sova
   addr:
     U: 0x1E738
     E: 0x1E804
@@ -2976,7 +2976,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnusedMultiviola_Empty1
+- name: MultivioaUnused_Empty1
   desc: Empty function (likely related to the unused multiviola sprite)
   addr:
     U: 0x1E9CC
@@ -2988,7 +2988,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnusedMultiviola_Empty2
+- name: MultivioaUnused_Empty2
   desc: Empty function (likely related to the unused multiviola sprite)
   addr:
     U: 0x1E9D0
@@ -3000,7 +3000,7 @@
   mode: thumb
   params: null
   return: null
-- name: Multiviola_Ai
+- name: Multiviola
   addr:
     U: 0x1E9D4
     E: 0x1EAA0
@@ -3011,7 +3011,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnusedMultiviolaSprite_Ai
+- name: MultiviolaUnused
   addr:
     U: 0x1EA64
     E: 0x1EB30
@@ -3067,7 +3067,7 @@
   mode: thumb
   params: null
   return: null
-- name: GerutaGfxInit
+- name: GerutaIdleInit
   addr:
     U: 0x1EC0C
     E: 0x1ECD8
@@ -3089,7 +3089,7 @@
   mode: thumb
   params: null
   return: null
-- name: GerutaGoDownGfxInit
+- name: GerutaWarningInit
   addr:
     U: 0x1EC98
     E: 0x1ED64
@@ -3111,7 +3111,7 @@
   mode: thumb
   params: null
   return: null
-- name: GerutaCheckGoingDownAnimEnded
+- name: GerutaCheckLaunchingAnimEnded
   addr:
     U: 0x1ECF8
     E: 0x1EDC4
@@ -3155,7 +3155,7 @@
   mode: thumb
   params: null
   return: null
-- name: GerutaCheckResetAnimEnded
+- name: GerutaCheckBouncingOnCeilingAnimEnded
   addr:
     U: 0x1EE1C
     E: 0x1EEE8
@@ -3166,7 +3166,7 @@
   mode: thumb
   params: null
   return: null
-- name: Geruta_Ai
+- name: Geruta
   addr:
     U: 0x1EE38
     E: 0x1EF04
@@ -3177,7 +3177,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptGfxReset
+- name: SqueeptGoingUpInit
   addr:
     U: 0x1EFF4
     E: 0x1F0C0
@@ -3188,7 +3188,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptTurningAroundGfxInit
+- name: SqueeptTurningAroundInit
   addr:
     U: 0x1F018
     E: 0x1F0E4
@@ -3199,7 +3199,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptGoingDownGfxInit
+- name: SqueeptGoingDownInit
   addr:
     U: 0x1F03C
     E: 0x1F108
@@ -3221,7 +3221,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptReset
+- name: SqueeptIdleInit
   addr:
     U: 0x1F0A8
     E: 0x1F174
@@ -3232,7 +3232,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptDetectSamus
+- name: SqueeptIdle
   addr:
     U: 0x1F0D0
     E: 0x1F19C
@@ -3254,7 +3254,7 @@
   mode: thumb
   params: null
   return: null
-- name: SqueeptTurnAround
+- name: SqueeptTurningAround
   addr:
     U: 0x1F1DC
     E: 0x1F2A8
@@ -3276,7 +3276,7 @@
   mode: thumb
   params: null
   return: null
-- name: Squeept_Ai
+- name: Squeept
   addr:
     U: 0x1F288
     E: 0x1F354
@@ -3298,7 +3298,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationSamusDetection
+- name: MapStationIdle
   addr:
     U: 0x1F50C
     E: 0x1F5D8
@@ -3309,7 +3309,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationCheckGrabbingSamusAnimEnded
+- name: MapStationCheckSamusGrabbedAnimEnded
   addr:
     U: 0x1F5A4
     E: 0x1F670
@@ -3320,7 +3320,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationDownloadingAnim
+- name: MapStationDownloading
   addr:
     U: 0x1F5E0
     E: 0x1F6AC
@@ -3343,7 +3343,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationAfterDownload
+- name: MapStationWaitForMessage
   addr:
     U: 0x1F6E0
     E: 0x1F7AC
@@ -3354,7 +3354,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationBeforeRetraction
+- name: MapStationDelayBeforeRetracting
   addr:
     U: 0x1F718
     E: 0x1F7E4
@@ -3365,7 +3365,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationRetraction
+- name: MapStationRetracting
   addr:
     U: 0x1F73C
     E: 0x1F808
@@ -3376,7 +3376,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStation_Ai
+- name: MapStation
   addr:
     U: 0x1F770
     E: 0x1F83C
@@ -3387,7 +3387,7 @@
   mode: thumb
   params: null
   return: null
-- name: MapStationScreen_Ai
+- name: MapStationPart
   addr:
     U: 0x1F884
     E: 0x1F950
@@ -3457,7 +3457,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlaformCheckClosingAnimEnded
+- name: SavePlatformCheckClosingAnimEnded
   addr:
     U: 0x1FC14
     E: 0x1FCE0
@@ -3490,7 +3490,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformSpawnSprites
+- name: SavePlatformSavePrompt
   addr:
     U: 0x1FCB0
     E: 0x1FD7C
@@ -3501,7 +3501,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformFlashingAnim
+- name: SavePlatformSaving
   addr:
     U: 0x1FD80
     E: 0x1FE4C
@@ -3512,7 +3512,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformFlashingAnimEnd
+- name: SavePlatformOpenedOffInit
   addr:
     U: 0x1FDC0
     E: 0x1FE8C
@@ -3523,7 +3523,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTextTimer
+- name: SavePlatformSpawnSaveDoneMessage
   desc: Timer before displaying the "Save complete" banner
   addr:
     U: 0x1FE04
@@ -3546,7 +3546,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformMessageBannerDisappearingTimer
+- name: SavePlatformDelayBeforeReleasingSamus
   addr:
     U: 0x1FE80
     E: 0x1FF4C
@@ -3557,7 +3557,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopInit
+- name: SavePlatformPartInit
   addr:
     U: 0x1FEA4
     E: 0x1FF70
@@ -3568,7 +3568,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTop_Empty
+- name: SavePlatformPart_Empty
   desc: Empty function
   addr:
     U: 0x20010
@@ -3580,7 +3580,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopExtendGfxInit
+- name: SavePlatformPartExtendingInit
   addr:
     U: 0x20014
     E: 0x200E0
@@ -3591,7 +3591,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckExtendingEnded
+- name: SavePlatformPartTopExtending
   addr:
     U: 0x20030
     E: 0x200FC
@@ -3602,7 +3602,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopRetractGfxInit
+- name: SavePlatformPartTopRetractingInit
   addr:
     U: 0x2005C
     E: 0x20128
@@ -3613,7 +3613,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckRetractingEnded
+- name: SavePlatformPartTopRetracting
   addr:
     U: 0x20090
     E: 0x2015C
@@ -3624,7 +3624,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckTubeAnimSpawnEnded
+- name: SavePlatformPartTubeSpawning
   addr:
     U: 0x200BC
     E: 0x20188
@@ -3635,7 +3635,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckSpawnBigLight
+- name: SavePlatformPartSpawnRay
   addr:
     U: 0x2010C
     E: 0x201D8
@@ -3646,7 +3646,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckTubeAnimEnded
+- name: SavePlatformPartTubeIdle
   addr:
     U: 0x20160
     E: 0x2022C
@@ -3657,7 +3657,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopCheckTubeAnimDespawnEnded
+- name: SavePlatformPartTubeDespawning
   addr:
     U: 0x20190
     E: 0x2025C
@@ -3668,7 +3668,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveStationTopCheckTubeAroundAnimEnded
+- name: SavePlatformPartTubeShadowIdle
   addr:
     U: 0x201CC
     E: 0x20298
@@ -3679,7 +3679,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveStationTopTubeDownUpAnim
+- name: SavePlatformPartRayIdle
   addr:
     U: 0x201E4
     E: 0x202B0
@@ -3690,7 +3690,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatform_Ai
+- name: SavePlatform
   addr:
     U: 0x20228
     E: 0x202F4
@@ -3701,7 +3701,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTop_Ai
+- name: SavePlatformPart
   addr:
     U: 0x203D0
     E: 0x2049C
@@ -3734,7 +3734,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonGfxInit
+- name: DragonIdleInit
   addr:
     U: 0x20628
     E: 0x206F4
@@ -3756,7 +3756,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonTurningAroundGfxInit
+- name: DragonTurningAroundInit
   addr:
     U: 0x20720
     E: 0x207EC
@@ -3789,7 +3789,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonSpittingGfxInit
+- name: DragonWarningInit
   addr:
     U: 0x20798
     E: 0x20864
@@ -3800,7 +3800,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonSpittingAnim
+- name: DragonWarning
   addr:
     U: 0x207C0
     E: 0x2088C
@@ -3811,7 +3811,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonSpawnFireball
+- name: DragonSpit
   addr:
     U: 0x20800
     E: 0x208CC
@@ -3849,7 +3849,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonFireballExplodingGfxInit
+- name: DragonFireballExplodingInit
   addr:
     U: 0x20A28
     E: 0x20AF4
@@ -3871,7 +3871,7 @@
   mode: thumb
   params: null
   return: null
-- name: Dragon_Ai
+- name: Dragon
   addr:
     U: 0x20A88
     E: 0x20B54
@@ -3882,7 +3882,7 @@
   mode: thumb
   params: null
   return: null
-- name: DragonFireball_Ai
+- name: DragonFireball
   addr:
     U: 0x20C24
     E: 0x20CF0
@@ -3893,7 +3893,7 @@
   mode: thumb
   params: null
   return: null
-- name: DeoremLeftChangeClipAction
+- name: DeoremChangeLeftCcaa
   desc: Used to place solid clipdata on the left side of Deorem and remove the solid clipdata when he dies
   addr:
     U: 0x20C7C
@@ -3908,7 +3908,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: DeoremRightChangeClipAction
+- name: DeoremChangeRightCcaa
   desc: Used to place solid clipdata on the right side of Deorem and remove the solid clipdata when he dies
   addr:
     U: 0x20D00
@@ -3923,7 +3923,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: DeoremMoveDiagonaly
+- name: DeoremMoveDiagonally
   addr:
     U: 0x20D90
     E: 0x20E5C
@@ -4171,7 +4171,7 @@
   mode: thumb
   params: null
   return: null
-- name: DeoremCheckLeavingToCeilingAnimEnded
+- name: DeoremCheckLeavingCeilingAnimEnded
   addr:
     U: 0x21EAC
     E: 0x21F78
@@ -4529,7 +4529,7 @@
   mode: thumb
   params: null
   return: null
-- name: Deorem_Ai
+- name: Deorem
   addr:
     U: 0x23520
     E: 0x235EC
@@ -4540,7 +4540,7 @@
   mode: thumb
   params: null
   return: null
-- name: DeoremSegment_Ai
+- name: DeoremSegment
   addr:
     U: 0x23758
     E: 0x23824
@@ -4551,7 +4551,7 @@
   mode: thumb
   params: null
   return: null
-- name: DeoremEye_Ai
+- name: DeoremEye
   addr:
     U: 0x23A20
     E: 0x23AEC
@@ -4562,7 +4562,7 @@
   mode: thumb
   params: null
   return: null
-- name: DeoremThorn_Ai
+- name: DeoremThorn
   addr:
     U: 0x23B00
     E: 0x23BCC
@@ -4599,7 +4599,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaJumpingGfxInit
+- name: DessgeegaJumpWarningInit
   addr:
     U: 0x23C78
     E: 0x23D44
@@ -4610,7 +4610,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaBeforeJumping
+- name: DessgeegaJumpingInit
   addr:
     U: 0x23C98
     E: 0x23D64
@@ -4621,7 +4621,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaBeforeLanding
+- name: DessgeegaLandingInit
   addr:
     U: 0x23CFC
     E: 0x23DC8
@@ -4632,7 +4632,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaCheckSamusInRange
+- name: DessgeegaIdleInit
   addr:
     U: 0x23D34
     E: 0x23E00
@@ -4643,7 +4643,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaBouncingGfxInit
+- name: DessgeegaFallingInit
   addr:
     U: 0x23DA8
     E: 0x23E74
@@ -4654,7 +4654,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaCheckBouncing
+- name: DessgeegaJumpWarningGround
   addr:
     U: 0x23DCC
     E: 0x23E98
@@ -4665,7 +4665,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaCheckBeforeJumpingCeilingAnimEnded
+- name: DessgeegaJumpWarningCeiling
   addr:
     U: 0x23E28
     E: 0x23EF4
@@ -4676,7 +4676,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaMoveGround
+- name: DessgeegaJumpingGround
   addr:
     U: 0x23E3C
     E: 0x23F08
@@ -4692,7 +4692,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaMoveCeiling
+- name: DessgeegaJumpingCeiling
   addr:
     U: 0x24024
     E: 0x240F0
@@ -4719,7 +4719,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaJumpingGroundIntoBlock
+- name: DessgeegaFallingGround
   addr:
     U: 0x24234
     E: 0x24300
@@ -4730,7 +4730,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaJumpingCeilingIntoBlock
+- name: DessgeegaFallingCeiling
   addr:
     U: 0x242D8
     E: 0x243A4
@@ -4741,7 +4741,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaScreamingAnim
+- name: DessgeegaIdleGround
   addr:
     U: 0x24380
     E: 0x2444C
@@ -4752,7 +4752,7 @@
   mode: thumb
   params: null
   return: null
-- name: DessgeegaCeilingIdleAnim
+- name: DessgeegaIdleCeiling
   addr:
     U: 0x24418
     E: 0x244E4
@@ -4796,7 +4796,7 @@
   mode: thumb
   params: null
   return: null
-- name: Dessgeega_Ai
+- name: Dessgeega
   addr:
     U: 0x24660
     E: 0x2472C
@@ -4829,7 +4829,7 @@
   mode: thumb
   params: null
   return: null
-- name: Waver_Ai
+- name: Waver
   addr:
     U: 0x2498C
     E: 0x24A58
@@ -4862,7 +4862,7 @@
   mode: thumb
   params: null
   return: null
-- name: HiveCountMellow
+- name: HiveCountMellows
   addr:
     U: 0x24B60
     E: 0x24C2C
@@ -4969,7 +4969,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: MellowIdleAnim
+- name: MellowIdle
   addr:
     U: 0x24FC8
     E: 0x25094
@@ -4995,7 +4995,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: MellowSamusDetected
+- name: MellowSamusDetectedInit
   addr:
     U: 0x250D0
     E: 0x2519C
@@ -5021,7 +5021,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: Hive_Ai
+- name: Hive
   addr:
     U: 0x25534
     E: 0x25600
@@ -5032,7 +5032,7 @@
   mode: thumb
   params: null
   return: null
-- name: HiveRoots_Ai
+- name: HiveRoots
   addr:
     U: 0x255B8
     E: 0x25684
@@ -5043,7 +5043,7 @@
   mode: thumb
   params: null
   return: null
-- name: Mellow_Ai
+- name: Mellow
   addr:
     U: 0x25664
     E: 0x25730
@@ -5054,7 +5054,7 @@
   mode: thumb
   params: null
   return: null
-- name: Mellow_Swarm_Ai
+- name: MellowSwarm
   addr:
     U: 0x257B8
     E: 0x25884
@@ -5078,7 +5078,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaBellyFlashing
+- name: ImagoLarvaUpdatePalette
   addr:
     U: 0x25A24
     E: 0x25AF0
@@ -5115,7 +5115,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaHittingWallGfxInit
+- name: ImagoLarvaIdleInit
   addr:
     U: 0x25C4C
     E: 0x25D18
@@ -5128,7 +5128,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaCallBellyFlashing
+- name: ImagoLarvaIdle
   addr:
     U: 0x25C68
     E: 0x25D34
@@ -5152,7 +5152,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaAfterRetreatGfxInit
+- name: ImagoLarvaStunnedInit
   addr:
     U: 0x25D04
     E: 0x25DD0
@@ -5165,7 +5165,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaAttackAfterRetreat
+- name: ImagoLarvaStunned
   addr:
     U: 0x25D20
     E: 0x25DEC
@@ -5176,7 +5176,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaStartingToAttack
+- name: ImagoLarvaWarningInit
   addr:
     U: 0x25D48
     E: 0x25E14
@@ -5202,7 +5202,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaAttackGfxInit
+- name: ImagoLarvaAttackingInit
   addr:
     U: 0x25DA0
     E: 0x25E6C
@@ -5228,7 +5228,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoTakingDamageGfxInit
+- name: ImagoLarvaTakingDamageInit
   addr:
     U: 0x25E2C
     E: 0x25EF8
@@ -5241,7 +5241,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaCheckTakingDamageAnimEnded
+- name: ImagoLarvaTakingDamage
   addr:
     U: 0x25E64
     E: 0x25F30
@@ -5252,7 +5252,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaBeforeDying
+- name: ImagoLarvaDyingInit
   addr:
     U: 0x25E88
     E: 0x25F54
@@ -5265,7 +5265,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaCheckDyingAnimEnded
+- name: ImagoLarvaDying
   addr:
     U: 0x25EEC
     E: 0x25FB8
@@ -5276,7 +5276,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaDead
+- name: ImagoLarvaDeath
   addr:
     U: 0x25F14
     E: 0x25FE0
@@ -5287,7 +5287,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaOutsideInit
+- name: ImagoLarvaPartInit
   addr:
     U: 0x25F70
     E: 0x2603C
@@ -5298,7 +5298,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaOutsideRetracting
+- name: ImagoLarvaPartShellIdle
   addr:
     U: 0x2613C
     E: 0x26208
@@ -5311,7 +5311,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaOutsideAttacking
+- name: ImagoLarvaPartDotIdle
   addr:
     U: 0x262BC
     E: 0x26388
@@ -5324,7 +5324,7 @@
   - name: SubSpriteDataPtr
     type: struct SubSpriteData *
   return: null
-- name: ImagoLarvaOutsideRemoveOrbs
+- name: ImagoLarvaPartDotCheckDisappearingAnimEnded
   addr:
     U: 0x2631C
     E: 0x263E8
@@ -5335,7 +5335,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaOutsideAttackingAnim
+- name: ImagoLarvaPartDotCheckShouldReappear
   addr:
     U: 0x2636C
     E: 0x26438
@@ -5346,7 +5346,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaOutsideCheckAttackingAnimEnded
+- name: ImagoLarvaPartDotCheckAppearingAnimEnded
   addr:
     U: 0x263D4
     E: 0x264A0
@@ -5357,7 +5357,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarvaOutsideDead
+- name: ImagoLarvaPartDead
   addr:
     U: 0x26424
     E: 0x264F0
@@ -5368,7 +5368,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarva_Ai
+- name: ImagoLarva
   addr:
     U: 0x264F4
     E: 0x265C0
@@ -5379,7 +5379,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarva_Outside_Ai
+- name: ImagoLarvaPart
   addr:
     U: 0x267B4
     E: 0x26880
@@ -5390,7 +5390,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallLauncherChangeClipAction
+- name: MorphBallLauncherChangeCcaa
   addr:
     U: 0x268BC
     E: 0x26988
@@ -5426,7 +5426,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallLauncherBombTimer
+- name: MorphBallLauncherDelayBeforeLaunching
   desc: Timer that's as long as the bomb explosion time
   addr:
     U: 0x26A58
@@ -5438,7 +5438,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallLauncherLaunchSamusAnim
+- name: MorphBallLauncherLaunchSamus
   addr:
     U: 0x26A98
     E: 0x26B64
@@ -5449,7 +5449,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallLauncher_Ai
+- name: MorphBallLauncher
   addr:
     U: 0x26B08
     E: 0x26BD4
@@ -5460,7 +5460,7 @@
   mode: thumb
   params: null
   return: null
-- name: MorphBallLauncher_Back_Ai
+- name: MorphBallLauncherPart
   addr:
     U: 0x26B50
     E: 0x26C1C
@@ -5471,7 +5471,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonUpdatePositionAndAnim
+- name: ImagoCocoonSyncSprites
   addr:
     U: 0x26C38
     E: 0x26D04
@@ -5482,7 +5482,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonChangeOneClipAction
+- name: ImagoCocoonChangeOneCcaa
   desc: Removes the middle block of the floor when imago cocoon falls
   addr:
     U: 0x26CA0
@@ -5497,7 +5497,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: ImagoCocoonChangeTwoMiddleClipAction
+- name: ImagoCocoonChangeTwoMiddleCcaa
   desc: Removes the 2 blocks of the floor around the middle block when imago cocoon falls
   addr:
     U: 0x26CE0
@@ -5512,7 +5512,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: ImagoCocoonChangeTwoAroundClipAction
+- name: ImagoCocoonChangeTwoAroundCcaa
   desc: Removes the 2 blocks at the edges of the floor when imago cocoon falls
   addr:
     U: 0x26D50
@@ -5527,7 +5527,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: ImagoCocoonChangeTwoBlockingClipAction
+- name: ImagoCocoonChangeTwoBlockingCcaa
   desc: Removes the blocks blocking the passage after imago dies
   addr:
     U: 0x26DCC
@@ -5542,7 +5542,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: ImagoCocoonChangeOamScaling
+- name: ImagoCocoonChangeOAMScaling
   addr:
     U: 0x26E28
     E: 0x26EF4
@@ -5579,7 +5579,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonMainLoop
+- name: ImagoCocoonIdle
   addr:
     U: 0x27154
     E: 0x27220
@@ -5623,7 +5623,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonInGroundAnim
+- name: ImagoCocoonInGround
   addr:
     U: 0x2753C
     E: 0x27608
@@ -5645,7 +5645,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonVinePlaySound
+- name: ImagoCocoonVineCheckPlayDamagedSound
   addr:
     U: 0x278CC
     E: 0x27998
@@ -5678,7 +5678,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonVineHangingDeath
+- name: ImagoCocoonCeilingVineIdle
   addr:
     U: 0x27AEC
     E: 0x27BB8
@@ -5689,7 +5689,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonVineHangingDeathAnim
+- name: ImagoCocoonCeilingVineDeath
   addr:
     U: 0x27B30
     E: 0x27BFC
@@ -5722,7 +5722,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonSporeBeforeSpawning
+- name: ImagoCocoonSporeSpawning
   addr:
     U: 0x27C70
     E: 0x27D3C
@@ -5733,7 +5733,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonSporeSpawning
+- name: ImagoCocoonSporeNest
   addr:
     U: 0x27CE4
     E: 0x27DB0
@@ -5755,7 +5755,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonSporeExplodingGfxInit
+- name: ImagoCocoonSporeExplodingInit
   addr:
     U: 0x27E84
     E: 0x27F50
@@ -5804,7 +5804,7 @@
   mode: thumb
   params: null
   return: null
-- name: WingedRipperGfxInit
+- name: WingedRipperMovingInit
   addr:
     U: 0x28040
     E: 0x2810C
@@ -5842,7 +5842,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoon_Ai
+- name: ImagoCocoon
   addr:
     U: 0x282C8
     E: 0x28394
@@ -5853,7 +5853,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonVine_Ai
+- name: ImagoCocoonVine
   addr:
     U: 0x283CC
     E: 0x28498
@@ -5864,7 +5864,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonSpore_Ai
+- name: ImagoCocoonSpore
   addr:
     U: 0x2843C
     E: 0x28508
@@ -5875,7 +5875,7 @@
   mode: thumb
   params: null
   return: null
-- name: WingedRipper_Ai
+- name: WingedRipper
   addr:
     U: 0x284C8
     E: 0x28594
@@ -5886,7 +5886,7 @@
   mode: thumb
   params: null
   return: null
-- name: DefeatedImagoCocoon_Ai
+- name: DefeatedImagoCocoon
   addr:
     U: 0x28534
     E: 0x28600
@@ -5897,7 +5897,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoonRoot_Ai
+- name: ImagoCocoonCeilingVine
   addr:
     U: 0x285AC
     E: 0x28678
@@ -5908,7 +5908,7 @@
   mode: thumb
   params: null
   return: null
-- name: EventTrigger_ImagoPassage_Ai
+- name: EventTriggerDiscoveredImagoPassage
   addr:
     U: 0x28628
     E: 0x286F4
@@ -5919,7 +5919,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoCocoon_AfterFight_Ai
+- name: ImagoCocoonAfterFight
   addr:
     U: 0x286B8
     E: 0x28784
@@ -5930,7 +5930,7 @@
   mode: thumb
   params: null
   return: null
-- name: ElevatorPad_Ai
+- name: ElevatorPad
   addr:
     U: 0x2872C
     E: 0x287F8
@@ -5964,7 +5964,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpawnSpacePiratesWaiting
+- name: SpawnWaitingPirates
   addr:
     U: 0x28874
     E: 0x28940
@@ -5975,7 +5975,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateTurningAround
+- name: SpacePirateFlip
   addr:
     U: 0x289AC
     E: 0x28A78
@@ -6156,7 +6156,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateRunningTurningAround
+- name: SpacePirateWalkingInit
   addr:
     U: 0x2A804
     E: 0x2A8D0
@@ -6167,7 +6167,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateIdleAlertAnim
+- name: SpacePirateWalking
   addr:
     U: 0x2A83C
     E: 0x2A908
@@ -6392,7 +6392,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateClimbing
+- name: SpacePirateClimbingUp
   addr:
     U: 0x2B708
     E: 0x2B7D4
@@ -6704,7 +6704,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateLaserExploding
+- name: SpacePirateLaserExplodingInit
   addr:
     U: 0x2C540
     E: 0x2C60C
@@ -6737,7 +6737,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirate_Ai
+- name: SpacePirate
   addr:
     U: 0x2C6A4
     E: 0x2C770
@@ -6748,7 +6748,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateLaser_Ai
+- name: SpacePirateLaser
   addr:
     U: 0x2CB2C
     E: 0x2CBF8
@@ -6759,7 +6759,7 @@
   mode: thumb
   params: null
   return: null
-- name: BlackSpacePirateHitByProjectile
+- name: BlackSpacePirateProjectileCollision
   desc: Deals damage if the projectile is plasma
   addr:
     U: 0x2CB68
@@ -6793,7 +6793,7 @@
   mode: thumb
   params: null
   return: null
-- name: BlackSpacePirateCheckOffScreen
+- name: BlackSpacePirateCheckStartActing
   addr:
     U: 0x2CF94
     E: 0x2D060
@@ -6804,7 +6804,7 @@
   mode: thumb
   params: null
   return: null
-- name: BlackSpacePirateBeforeShootingGfxInit
+- name: BlackSpacePirateChargingLaserInit
   addr:
     U: 0x2CFB4
     E: 0x2D080
@@ -6815,7 +6815,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateShootingTimer
+- name: BlackSpacePirateChargingLaser
   addr:
     U: 0x2D004
     E: 0x2D0D0
@@ -6826,7 +6826,7 @@
   mode: thumb
   params: null
   return: null
-- name: BlackSpacePirateShootingGfxInit
+- name: BlackSpacePirateShootingInit
   addr:
     U: 0x2D048
     E: 0x2D114
@@ -6906,7 +6906,7 @@
   mode: thumb
   params: null
   return: null
-- name: BlackSpacePirate_Ai
+- name: BlackSpacePirate
   addr:
     U: 0x2D840
     E: 0x2D90C
@@ -6928,7 +6928,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeShipSpacePirateInit2
+- name: EscapeShipSpacePirateSpawn
   addr:
     U: 0x2DCD8
     E: 0x2DDA4
@@ -6939,7 +6939,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeShipSpacePirateDetectSamus
+- name: EscapeShipSpacePirateDelayBeforeJumping
   addr:
     U: 0x2DD1C
     E: 0x2DDE8
@@ -6950,7 +6950,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeShipSpacePirate_Ai
+- name: EscapeShipSpacePirate
   addr:
     U: 0x2DD98
     E: 0x2DE64
@@ -6961,7 +6961,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineGeneratorChangeClipAction
+- name: ZiplineGeneratorChangeCcaa
   addr:
     U: 0x2E1F0
     E: 0x2E2BC
@@ -7009,7 +7009,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineGenerator_Ai
+- name: ZiplineGenerator
   addr:
     U: 0x2E4EC
     E: 0x2E5B8
@@ -7020,7 +7020,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZiplineGeneratorPart_Ai
+- name: ZiplineGeneratorPart
   addr:
     U: 0x2E524
     E: 0x2E5F0
@@ -7042,7 +7042,7 @@
   mode: thumb
   params: null
   return: null
-- name: GametGfxInit
+- name: GametIdleInit
   addr:
     U: 0x2E670
     E: 0x2E73C
@@ -7053,7 +7053,7 @@
   mode: thumb
   params: null
   return: null
-- name: GametSpawn
+- name: GametIdle
   addr:
     U: 0x2E6AC
     E: 0x2E778
@@ -7075,7 +7075,7 @@
   mode: thumb
   params: null
   return: null
-- name: GametRespawning
+- name: GametRespawn
   addr:
     U: 0x2E894
     E: 0x2E960
@@ -7097,7 +7097,7 @@
   mode: thumb
   params: null
   return: null
-- name: Gamet_Ai
+- name: Gamet
   addr:
     U: 0x2E9BC
     E: 0x2EA88
@@ -7108,7 +7108,7 @@
   mode: thumb
   params: null
   return: null
-- name: SecurityGateChangeClipAction
+- name: SecurityGateChangeCcaa
   desc: Enables/disables the hitbox for the gate
   addr:
     U: 0x2EAF8
@@ -7249,7 +7249,7 @@
   mode: thumb
   params: null
   return: null
-- name: SecurityGate_Open_Ai
+- name: SecurityGateDefaultOpen
   desc: Security gate that starts open by default
   addr:
     U: 0x2EE78
@@ -7261,7 +7261,7 @@
   mode: thumb
   params: null
   return: null
-- name: SecurityGate_Closed_Ai
+- name: SecurityGateDefaultClosed
   desc: Security gate that starts closed by default
   addr:
     U: 0x2EF68
@@ -7284,7 +7284,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebboGfxInit
+- name: ZebboIdleInit
   addr:
     U: 0x2F0B0
     E: 0x2F17C
@@ -7295,7 +7295,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebboSpawn
+- name: ZebboIdle
   addr:
     U: 0x2F0EC
     E: 0x2F1B8
@@ -7317,7 +7317,7 @@
   mode: thumb
   params: null
   return: null
-- name: ZebboRespawning
+- name: ZebboRespawn
   addr:
     U: 0x2F2D0
     E: 0x2F39C
@@ -7339,7 +7339,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zebbo_Ai
+- name: Zebbo
   addr:
     U: 0x2F3FC
     E: 0x2F4C8
@@ -7350,7 +7350,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotCheckSamusTouchingFront
+- name: WorkerRobotCheckSamusInFront
   addr:
     U: 0x2F534
     E: 0x2F600
@@ -7376,7 +7376,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotGfxInit
+- name: WorkerRobotSleepingInit
   addr:
     U: 0x2F688
     E: 0x2F754
@@ -7387,7 +7387,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotSleepingDetectProjectile
+- name: WorkerRobotSleeping
   addr:
     U: 0x2F6A8
     E: 0x2F774
@@ -7398,7 +7398,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotStandingGfxInit
+- name: WorkerRobotWakingUpInit
   addr:
     U: 0x2F6E0
     E: 0x2F7AC
@@ -7409,7 +7409,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotCheckStandingAnimEnded
+- name: WorkerRobotChecWakingUpAnimEnded
   addr:
     U: 0x2F718
     E: 0x2F7E4
@@ -7431,7 +7431,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotWakingUpGfxInit
+- name: WorkerRobotStandingInit
   addr:
     U: 0x2F8D0
     E: 0x2F99C
@@ -7442,7 +7442,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotCheckProjectile
+- name: WorkerRobotStanding
   addr:
     U: 0x2F90C
     E: 0x2F9D8
@@ -7453,7 +7453,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotWalkGfxInit
+- name: WorkerRobotWalkingInit
   addr:
     U: 0x2F948
     E: 0x2FA14
@@ -7464,7 +7464,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotMove
+- name: WorkerRobotWalking
   addr:
     U: 0x2F968
     E: 0x2FA34
@@ -7475,7 +7475,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotBackToSleepGfxInit
+- name: WorkerRobotBackToSleepInit
   addr:
     U: 0x2FBC4
     E: 0x2FC90
@@ -7519,7 +7519,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobotFallingGfxInit
+- name: WorkerRobotFallingInit
   addr:
     U: 0x2FC98
     E: 0x2FD64
@@ -7541,7 +7541,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkingRobotFallingSleepGfxInit
+- name: WorkerRobotFallingSleepInit
   addr:
     U: 0x2FD40
     E: 0x2FE0C
@@ -7563,7 +7563,7 @@
   mode: thumb
   params: null
   return: null
-- name: WorkerRobot_Ai
+- name: WorkerRobot
   addr:
     U: 0x2FDD4
     E: 0x2FEA0
@@ -7574,7 +7574,7 @@
   mode: thumb
   params: null
   return: null
-- name: ParasiteCountOnSamus
+- name: ParasiteCount
   desc: Counts the number of parasites on Samus, used to check if Samus should take damage
   addr:
     U: 0x2FEF0
@@ -7603,7 +7603,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteAttachToSamus
+- name: ParasiteGrabSamus
   addr:
     U: 0x30070
     E: 0x3013C
@@ -7616,7 +7616,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteOnSamus
+- name: ParasiteSamusGrabbed
   addr:
     U: 0x30100
     E: 0x301CC
@@ -7629,7 +7629,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteTumblingGfxInit
+- name: ParasiteExpulsedInit
   addr:
     U: 0x30290
     E: 0x3035C
@@ -7642,7 +7642,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteStartTumbling
+- name: ParasiteExpulsedUp
   addr:
     U: 0x302C0
     E: 0x3038C
@@ -7660,7 +7660,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: Parasite_Multiple_Tumbling
+- name: ParasiteMultipleExpulsedUp
   desc: Used when a parasite is hit with a beam or knocked off of Samus or a geron
   addr:
     U: 0x30360
@@ -7674,7 +7674,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteTumbling
+- name: ParasiteExpulsedDown
   desc: Used when a parasite is hit with a beam or knocked off of Samus or a geron
   addr:
     U: 0x30408
@@ -7688,7 +7688,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: Parasite_Multiple_Falling
+- name: ParasiteMultipleExpulsedDown
   addr:
     U: 0x304F0
     E: 0x305BC
@@ -7714,7 +7714,7 @@
   - name: CurrentSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteJumping
+- name: ParasiteMultipleJumpingUp
   addr:
     U: 0x30684
     E: 0x30750
@@ -7745,7 +7745,7 @@
   - name: CurrentSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteJumpingSecondPart
+- name: ParasiteMultipleJumpingDown
   addr:
     U: 0x3080C
     E: 0x308D8
@@ -7758,7 +7758,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteCrouchingGfxInit
+- name: ParasiteIdleInit
   addr:
     U: 0x308CC
     E: 0x30998
@@ -7784,7 +7784,7 @@
   - name: CurrentSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteWalking
+- name: ParasiteMultipleIdle
   addr:
     U: 0x30AB4
     E: 0x30B80
@@ -7797,7 +7797,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteUncrouchingGfxInit
+- name: ParasiteTurningAroundInit
   addr:
     U: 0x30C58
     E: 0x30D24
@@ -7810,7 +7810,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteCheckTurningAroundAnimEnded
+- name: ParasiteTurningAroundFirstPart
   addr:
     U: 0x30C74
     E: 0x30D40
@@ -7823,7 +7823,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteCheckTurningAroundAnimNearEnded
+- name: ParasiteTurningAroundSecondPart
   addr:
     U: 0x30C98
     E: 0x30D64
@@ -7919,7 +7919,7 @@
   - name: CurrentSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteCheckEvent
+- name: ParasiteMultipleDying
   desc: Checks if the parasites killed event should be set
   addr:
     U: 0x30E54
@@ -7933,7 +7933,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: ParasiteAttachToGeron
+- name: ParasiteGrabGeron
   addr:
     U: 0x30EB4
     E: 0x30F80
@@ -7972,7 +7972,7 @@
   - name: CurrSpritePtr
     type: struct SpriteData *
   return: null
-- name: Parasite_Multiple_Ai
+- name: ParasiteMultiple
   addr:
     U: 0x31200
     E: 0x312CC
@@ -7983,7 +7983,7 @@
   mode: thumb
   params: null
   return: null
-- name: Parasite_Ai
+- name: Parasite
   addr:
     U: 0x3147C
     E: 0x31548
@@ -7994,7 +7994,7 @@
   mode: thumb
   params: null
   return: null
-- name: PistonChangeFourClipAction
+- name: PistonChangeFourCcaa
   desc: Enables the hitbox for the piston
   addr:
     U: 0x31708
@@ -8009,7 +8009,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: PistonChangeOneBelowClipAction
+- name: PistonChangeOneBelowCcaa
   desc: Enables/disables the hitbox of the bottom block of the piston
   addr:
     U: 0x3175C
@@ -8024,7 +8024,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: PistonChangeOneUpperClipAction
+- name: PistonChangeOneUpperCcaa
   desc: Enables the hitbox of the top block of the piston
   addr:
     U: 0x3177C
@@ -8103,7 +8103,7 @@
   mode: thumb
   params: null
   return: null
-- name: PistonMove
+- name: PistonOpen
   addr:
     U: 0x31944
     E: 0x31A10
@@ -8114,7 +8114,7 @@
   mode: thumb
   params: null
   return: null
-- name: PistonAfterMoving
+- name: PistonOpened
   addr:
     U: 0x3199C
     E: 0x31A68
@@ -8125,7 +8125,7 @@
   mode: thumb
   params: null
   return: null
-- name: Piston_Ai
+- name: Piston
   addr:
     U: 0x319D0
     E: 0x31A9C
@@ -8180,7 +8180,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyCheckDead
+- name: RidleyUpdateHealth
   addr:
     U: 0x31C58
     E: 0x31D24
@@ -8210,7 +8210,7 @@
     desc: Grabbing
     type: u32
     cat: bool
-- name: RidleySamusGrabbed
+- name: RidleyPartClawIdle
   addr:
     U: 0x31E40
     E: 0x31F0C
@@ -8264,7 +8264,7 @@
   - name: YMovement
     type: u16
   return: null
-- name: RidleySpawnFireballsStart
+- name: RidleySpawnAscendingFireball
   addr:
     U: 0x321CC
     E: 0x32298
@@ -8277,7 +8277,7 @@
   - name: OamScaling
     type: u16
   return: null
-- name: RidleyCheckSpawn
+- name: RidleyInit
   addr:
     U: 0x32224
     E: 0x322F0
@@ -8288,7 +8288,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyPlayCutscene
+- name: RidleyCheckPlayCutscene
   desc: Checks for Samus to turn left
   addr:
     U: 0x324A8
@@ -8311,7 +8311,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFlyingGfxInit
+- name: RidleyIdleInit
   addr:
     U: 0x32C40
     E: 0x32D0C
@@ -8333,7 +8333,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyTurningAroundGfxInit
+- name: RidleyTurningAroundInit
   addr:
     U: 0x332F4
     E: 0x333C0
@@ -8344,7 +8344,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyCheckTurningAroundAnimNearEnded
+- name: RidleyTurningAroundFirstPart
   addr:
     U: 0x3337C
     E: 0x33448
@@ -8355,7 +8355,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyCheckTurningAroundSecondPartAnimEnded
+- name: RidleyTurningAroundSecondPart
   addr:
     U: 0x33410
     E: 0x334DC
@@ -8445,7 +8445,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyBodyInit
+- name: RidleyPartInit
   addr:
     U: 0x33D14
     E: 0x33DE0
@@ -8636,7 +8636,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFireBallInit
+- name: RidleyFireballInit
   addr:
     U: 0x34710
     E: 0x347DC
@@ -8647,7 +8647,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFireBallSmallMove
+- name: RidleyFireballMoveDiagonalPattern
   desc: Used when Samus is grabbed
   addr:
     U: 0x3485C
@@ -8659,7 +8659,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFireBallBigMove
+- name: RidleyFireballMoveFloatingPattern
   desc: Used when Samus is grabbed
   addr:
     U: 0x348B4
@@ -8671,7 +8671,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFireBallMediumMove
+- name: RidleyFireballMoveDescendingPattern
   desc: Used at the beginning of the fight
   addr:
     U: 0x34920
@@ -8716,7 +8716,7 @@
   mode: thumb
   params: null
   return: null
-- name: Ridley_Ai
+- name: Ridley
   addr:
     U: 0x34A38
     E: 0x34B04
@@ -8727,7 +8727,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyTail_Ai
+- name: RidleyTail
   addr:
     U: 0x34D24
     E: 0x34DF0
@@ -8738,7 +8738,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyBody_Ai
+- name: RidleyPart
   addr:
     U: 0x35034
     E: 0x35100
@@ -8749,7 +8749,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyFireball_Ai
+- name: RidleyFireball
   addr:
     U: 0x3519C
     E: 0x35268
@@ -8760,7 +8760,7 @@
   mode: thumb
   params: null
   return: null
-- name: MetroidMidair
+- name: MetroidCheckAirCollision
   addr:
     U: 0x35360
     E: 0x3542C
@@ -8888,7 +8888,7 @@
   mode: thumb
   params: null
   return: null
-- name: MetroidSpawnedGfxInit
+- name: MetroidMovingInit
   addr:
     U: 0x35C74
     E: 0x35D40
@@ -8910,7 +8910,7 @@
   mode: thumb
   params: null
   return: null
-- name: MetroidGrabSamusGfxInit
+- name: MetroidSamusGrabbedInit
   addr:
     U: 0x35D28
     E: 0x35DF4
@@ -8944,7 +8944,7 @@
   mode: thumb
   params: null
   return: null
-- name: Metroid_Ai
+- name: Metroid
   addr:
     U: 0x36010
     E: 0x360DC
@@ -8955,7 +8955,7 @@
   mode: thumb
   params: null
   return: null
-- name: MetroidShell_Ai
+- name: MetroidShell
   addr:
     U: 0x36170
     E: 0x3623C
@@ -8966,7 +8966,7 @@
   mode: thumb
   params: null
   return: null
-- name: MetroidDoorLock_Ai
+- name: MetroidDoorLock
   addr:
     U: 0x36274
     E: 0x36340
@@ -8988,7 +8988,7 @@
   mode: thumb
   params: null
   return: null
-- name: RinkaGfxInit
+- name: RinkaSpawningInit
   addr:
     U: 0x363A4
     E: 0x36470
@@ -9032,7 +9032,7 @@
   mode: thumb
   params: null
   return: null
-- name: RinkaMotherBrainGfxInit
+- name: RinkaMotherBrainSpawningInit
   addr:
     U: 0x367C0
     E: 0x3688C
@@ -9076,7 +9076,7 @@
   mode: thumb
   params: null
   return: null
-- name: Rinka_Ai
+- name: Rinka
   addr:
     U: 0x36D34
     E: 0x36E00
@@ -9087,7 +9087,7 @@
   mode: thumb
   params: null
   return: null
-- name: Rinka_MotherBrain_Ai
+- name: RinkaMotherBrain
   addr:
     U: 0x36DD0
     E: 0x36E9C
@@ -9109,7 +9109,7 @@
   mode: thumb
   params: null
   return: null
-- name: PolypGfxInit
+- name: PolypIdleInit
   addr:
     U: 0x36F10
     E: 0x36FDC
@@ -9131,7 +9131,7 @@
   mode: thumb
   params: null
   return: null
-- name: PolypCheckSpittingAnimEnded
+- name: PolypCheckWarningEnded
   addr:
     U: 0x36FA8
     E: 0x37074
@@ -9164,7 +9164,7 @@
   mode: thumb
   params: null
   return: null
-- name: PolypCheckRetractingAnimNearEnded
+- name: PolypCheckRetractingAnimEnded
   addr:
     U: 0x37068
     E: 0x37134
@@ -9208,7 +9208,7 @@
   mode: thumb
   params: null
   return: null
-- name: PolypProjectileExplodingGfxInit
+- name: PolypProjectileExplodingInit
   addr:
     U: 0x37234
     E: 0x37300
@@ -9230,7 +9230,7 @@
   mode: thumb
   params: null
   return: null
-- name: Polyp_Ai
+- name: Polyp
   addr:
     U: 0x372A8
     E: 0x37374
@@ -9241,7 +9241,7 @@
   mode: thumb
   params: null
   return: null
-- name: PolypProjectile_Ai
+- name: PolypProjectile
   addr:
     U: 0x373C4
     E: 0x37490
@@ -9307,7 +9307,7 @@
   mode: thumb
   params: null
   return: null
-- name: ViolaStartFalling
+- name: ViolaFallingInit
   addr:
     U: 0x37AE0
     E: 0x37BAC
@@ -9329,7 +9329,7 @@
   mode: thumb
   params: null
   return: null
-- name: Viola_Ai
+- name: Viola
   addr:
     U: 0x37B70
     E: 0x37C3C
@@ -9351,7 +9351,7 @@
   mode: thumb
   params: null
   return: null
-- name: SecurityLaserSamusCollision
+- name: SecurityLaserIdle
   addr:
     U: 0x37ED8
     E: 0x37FA4
@@ -9396,7 +9396,7 @@
   mode: thumb
   params: null
   return: null
-- name: SecurityLaser_Ai
+- name: SecurityLaser
   addr:
     U: 0x381D0
     E: 0x3829C
@@ -9452,7 +9452,7 @@
   mode: thumb
   params: null
   return: null
-- name: HoltzGfxInit
+- name: HoltzIdleInit
   addr:
     U: 0x384DC
     E: 0x385A8
@@ -9463,7 +9463,7 @@
   mode: thumb
   params: null
   return: null
-- name: HoltzSamusDetection
+- name: HoltzIdle
   addr:
     U: 0x38518
     E: 0x385E4
@@ -9474,7 +9474,7 @@
   mode: thumb
   params: null
   return: null
-- name: HoltzWarningGfxInit
+- name: HoltzWarningInit
   addr:
     U: 0x38588
     E: 0x38654
@@ -9540,7 +9540,7 @@
   mode: thumb
   params: null
   return: null
-- name: Holtz_Ai
+- name: Holtz
   addr:
     U: 0x387D0
     E: 0x3889C
@@ -9551,7 +9551,7 @@
   mode: thumb
   params: null
   return: null
-- name: GekitaiMachine_Ai
+- name: GekitaiMachine
   addr:
     U: 0x3897C
     E: 0x38A48
@@ -9562,7 +9562,7 @@
   mode: thumb
   params: null
   return: null
-- name: CalculateDelayForRuinsTest
+- name: RuinsTestCalculateDelay
   addr:
     U: 0x38988
     E: 0x38A54
@@ -9573,7 +9573,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestChangeClipAction
+- name: RuinsTestChangeCcaa
   desc: Disables the ceiling hitbox
   addr:
     U: 0x389AC
@@ -9642,7 +9642,7 @@
     desc: Hit
     type: u8
     cat: bool
-- name: RuinsTestCheckSymbolShot
+- name: RuinsTestCheckSymbolShooted
   addr:
     U: 0x38D70
     E: 0x38E3C
@@ -9728,7 +9728,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestSpawnReflectionStart
+- name: RuinsTestTurningIntoReflection
   addr:
     U: 0x3910C
     E: 0x391D8
@@ -9783,7 +9783,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestAfterGhostSpawn
+- name: RuinsTestMovingInit
   addr:
     U: 0x392C8
     E: 0x39394
@@ -9816,7 +9816,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestMoveGhostToCenter
+- name: RuinsTestMoveToCenter
   addr:
     U: 0x39610
     E: 0x396DC
@@ -9838,7 +9838,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestReflectionEnd
+- name: RuinsTestDespawn
   desc: Plays the fully powered suit cutscene, sets the fully powered suit event, and opens the ceiling
   addr:
     U: 0x396D0
@@ -9872,7 +9872,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestGhostSyncPosition
+- name: RuinsTestGhostIdle
   addr:
     U: 0x39900
     E: 0x399CC
@@ -9905,7 +9905,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestGhostAfterFirstSymbol
+- name: RuinsTestGhostSymbolPlacing
   addr:
     U: 0x39C74
     E: 0x39D40
@@ -9916,7 +9916,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestGhostAfterFight
+- name: RuinsTestGhostSymbolSetGhostDisappearing
   addr:
     U: 0x39DF0
     E: 0x39EBC
@@ -9949,7 +9949,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTest_Ai
+- name: RuinsTest
   addr:
     U: 0x39E78
     E: 0x39F44
@@ -9960,7 +9960,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestSymbol_Ai
+- name: RuinsTestSymbol
   addr:
     U: 0x3A16C
     E: 0x3A238
@@ -9971,7 +9971,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestSamusReflection_Start_Ai
+- name: RuinsTestSamusReflectionStart
   addr:
     U: 0x3A500
     E: 0x3A5CC
@@ -9982,7 +9982,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestReflectionCover_Ai
+- name: RuinsTestReflectionCover
   addr:
     U: 0x3A6B8
     E: 0x3A784
@@ -9993,7 +9993,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestGhostOutline_Ai
+- name: RuinsTestGhostOutline
   addr:
     U: 0x3A780
     E: 0x3A84C
@@ -10004,7 +10004,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestShootableSymbol_Ai
+- name: RuinsTestShootableSymbol
   addr:
     U: 0x3A8B4
     E: 0x3A980
@@ -10015,7 +10015,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestGhost_Ai
+- name: RuinsTestGhost
   addr:
     U: 0x3AB00
     E: 0x3ABCC
@@ -10026,7 +10026,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestSamusReflection_End_Ai
+- name: RuinsTestSamusReflectionEnd
   addr:
     U: 0x3AC68
     E: 0x3AD34
@@ -10037,7 +10037,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestLightningInit
+- name: RuinsTestLightningOnGroundInit
   addr:
     U: 0x3B03C
     E: 0x3B108
@@ -10048,7 +10048,7 @@
   mode: thumb
   params: null
   return: null
-- name: RuinsTestLightning_Ai
+- name: RuinsTestLightning
   addr:
     U: 0x3B06C
     E: 0x3B138
@@ -10104,7 +10104,7 @@
   mode: thumb
   params: null
   return: null
-- name: MellaIdleGfxInit
+- name: MellaIdleInit
   addr:
     U: 0x3B52C
     E: 0x3B5F8
@@ -10115,7 +10115,7 @@
   mode: thumb
   params: null
   return: null
-- name: MellaIdleAnim
+- name: MellaIdle
   addr:
     U: 0x3B564
     E: 0x3B630
@@ -10126,7 +10126,7 @@
   mode: thumb
   params: null
   return: null
-- name: MellaGoingDownGfxInit
+- name: MellaMovingInit
   addr:
     U: 0x3B600
     E: 0x3B6CC
@@ -10137,7 +10137,7 @@
   mode: thumb
   params: null
   return: null
-- name: MellaStartGoingDown
+- name: MellaDelayBeforeGoingDown
   addr:
     U: 0x3B624
     E: 0x3B6F0
@@ -10170,7 +10170,7 @@
   mode: thumb
   params: null
   return: null
-- name: Mella_Ai
+- name: Mella
   addr:
     U: 0x3B7B0
     E: 0x3B87C
@@ -10203,7 +10203,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicShootElectricity
+- name: AtomicCheckShootElectricity
   addr:
     U: 0x3BC34
     E: 0x3BD00
@@ -10225,7 +10225,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicGfxInit
+- name: AtomicIdleInit
   addr:
     U: 0x3BD7C
     E: 0x3BE48
@@ -10236,7 +10236,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicIdleAnim
+- name: AtomicIdle
   addr:
     U: 0x3BDA8
     E: 0x3BE74
@@ -10258,7 +10258,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicMoveBackToIdle
+- name: AtomicMaybeMoveBackToIdle
   addr:
     U: 0x3BF7C
     E: 0x3C048
@@ -10291,7 +10291,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicElectricityCheckAtomicAlive
+- name: AtomicElectricityCheckAtomicDead
   addr:
     U: 0x3C150
     E: 0x3C21C
@@ -10308,7 +10308,7 @@
     desc: Not atomic or dead
     type: u8
     cat: bool
-- name: AtomicElectricityInit
+- name: AtomicElectriciytInit
   addr:
     U: 0x3C180
     E: 0x3C24C
@@ -10352,7 +10352,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicElectricityCheckGroundAnimEnded
+- name: AtomicElectricityCheckOnGroundAnimEnded
   addr:
     U: 0x3C4C4
     E: 0x3C590
@@ -10363,7 +10363,7 @@
   mode: thumb
   params: null
   return: null
-- name: Atomic_Ai
+- name: Atomic
   addr:
     U: 0x3C4DC
     E: 0x3C5A8
@@ -10374,7 +10374,7 @@
   mode: thumb
   params: null
   return: null
-- name: AtomicElectricity_Ai
+- name: AtomicElectricity
   addr:
     U: 0x3C62C
     E: 0x3C6F8
@@ -10407,7 +10407,7 @@
   mode: thumb
   params: null
   return: null
-- name: AreaBannerCheckScrollingUpAnimEnded
+- name: AreaBannerScrollingUp
   addr:
     U: 0x3C7C8
     E: 0x3C894
@@ -10440,7 +10440,7 @@
   mode: thumb
   params: null
   return: null
-- name: AreaBanner_Ai
+- name: AreaBanner
   addr:
     U: 0x3C884
     E: 0x3C950
@@ -10451,7 +10451,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainSyncSubSpritePosition
+- name: MotherBrainSyncSubSpritesPosition
   addr:
     U: 0x3C964
     E: 0x3CA30
@@ -10462,7 +10462,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainPaletteSwitching
+- name: MotherBrainUpdatePalette
   desc: Used when Mother Brain charges the beam and fires it
   addr:
     U: 0x3C9CC
@@ -10485,7 +10485,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainCheckGlassBroken
+- name: MotherBrainCheckGlassBreaked
   addr:
     U: 0x3CB90
     E: 0x3CC5C
@@ -10529,7 +10529,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEyeInit
+- name: MotherBrainPartInit
   addr:
     U: 0x3D130
     E: 0x3D1FC
@@ -10540,7 +10540,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEyeHitboxInit
+- name: MotherBrainPartHitboxInit
   addr:
     U: 0x3D288
     E: 0x3D354
@@ -10551,7 +10551,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEye_Empty
+- name: MotherBrainPart_Empty
   desc: Empty function
   addr:
     U: 0x3D32C
@@ -10563,7 +10563,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEyeSpawnBlock
+- name: MotherBrainSpawnBlock
   addr:
     U: 0x3D330
     E: 0x3D3FC
@@ -10607,7 +10607,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEyeHitTimer
+- name: MotherBrainPartISFT
   addr:
     U: 0x3D45C
     E: 0x3D528
@@ -10618,7 +10618,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEyeSpawnGlassBreaking
+- name: MotherBrainPartSpawnGlassBreaking
   addr:
     U: 0x3D46C
     E: 0x3D538
@@ -10629,7 +10629,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrain_Ai
+- name: MotherBrain
   addr:
     U: 0x3D4C0
     E: 0x3D58C
@@ -10640,7 +10640,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainEye_Ai
+- name: MotherBrainPart
   addr:
     U: 0x3D5A0
     E: 0x3D66C
@@ -10651,7 +10651,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainBeam_Ai
+- name: MotherBrainBeam
   addr:
     U: 0x3D640
     E: 0x3D70C
@@ -10662,7 +10662,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainBlock_Ai
+- name: MotherBrainBlock
   addr:
     U: 0x3D724
     E: 0x3D7F0
@@ -10673,7 +10673,7 @@
   mode: thumb
   params: null
   return: null
-- name: MotherBrainGlassBreaking_Ai
+- name: MotherBrainGlassBreaking
   addr:
     U: 0x3D7CC
     E: 0x3D898
@@ -10711,7 +10711,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormChangeTwoGroundClipAction
+- name: AcidWormChangeTwoGroundCcaa
   desc: Used to remove the 2 blocks on the ground
   addr:
     U: 0x3D9B8
@@ -10730,7 +10730,7 @@
   - name: XPosition
     type: u16
   return: null
-- name: AcidWormChangeBigBlockBottomClipAction
+- name: AcidWormChangeBigBlockDownCcaa
   desc: Used to remove the 2 bottom blocks of the big block on the ground
   addr:
     U: 0x3DA00
@@ -10745,7 +10745,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: AcidWormChangeBigBlockMiddleClipAction
+- name: AcidWormChangeBigBlockMiddleCcaa
   desc: Used to remove the 2 middle blocks of the big block on the ground
   addr:
     U: 0x3DA50
@@ -10760,7 +10760,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: AcidWormChangeBigBlockTopClipAction
+- name: AcidWormChangeBigBlockTopCcaa
   desc: Used to remove the 2 top blocks of the big block on the ground
   addr:
     U: 0x3DAA8
@@ -10775,7 +10775,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: AcidWormPlaySound
+- name: AcidWormPlayRetractingSound
   addr:
     U: 0x3DB8C
     E: 0x3DC58
@@ -10867,7 +10867,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormGfxInit
+- name: AcidWormIdleInit
   addr:
     U: 0x3E004
     E: 0x3E0D0
@@ -10889,7 +10889,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormCheckEndWarningAnim
+- name: AcidWormCheckWarningAnimEnded
   addr:
     U: 0x3E0F0
     E: 0x3E1BC
@@ -10911,7 +10911,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormHookedToBlock
+- name: AcidWormExtended
   addr:
     U: 0x3E4A8
     E: 0x3E574
@@ -11070,7 +11070,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormCheckExplodingAnimEnded
+- name: AcidWormSpitCheckExplodingAnimEnded
   addr:
     U: 0x3F2CC
     E: 0x3F398
@@ -11081,7 +11081,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormCheckExplodingOnAcidAnimEnded
+- name: AcidWormSpitCheckExplodingOnAcidAnimEnded
   addr:
     U: 0x3F2F0
     E: 0x3F3BC
@@ -11092,7 +11092,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWorm_Ai
+- name: AcidWorm
   addr:
     U: 0x3F31C
     E: 0x3F3E8
@@ -11103,7 +11103,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormBody_Ai
+- name: AcidWormBody
   addr:
     U: 0x3F580
     E: 0x3F64C
@@ -11114,7 +11114,7 @@
   mode: thumb
   params: null
   return: null
-- name: AcidWormSpit_Ai
+- name: AcidWormSpit
   addr:
     U: 0x3F624
     E: 0x3F6F0
@@ -11151,7 +11151,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperIdleGfxInit
+- name: SidehopperJumpWarningInit
   addr:
     U: 0x3F774
     E: 0x3F840
@@ -11162,7 +11162,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperJumpingGfxInit
+- name: SidehopperJumpingInit
   addr:
     U: 0x3F794
     E: 0x3F860
@@ -11173,7 +11173,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperLandingGfxInit
+- name: SidehopperLandingInit
   addr:
     U: 0x3F814
     E: 0x3F8E0
@@ -11184,7 +11184,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperAfterIdle
+- name: SidehopperIdleInit
   addr:
     U: 0x3F864
     E: 0x3F930
@@ -11206,7 +11206,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperCheckBeforeJumpingAnimEnded
+- name: SidehopperJumpWarningGround
   addr:
     U: 0x3F8FC
     E: 0x3F9C8
@@ -11260,7 +11260,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperCheckLandingCeilingAnimEnded
+- name: SidehopperCheckLandingAnimEnded
   addr:
     U: 0x3FD50
     E: 0x3FE1C
@@ -11271,7 +11271,7 @@
   mode: thumb
   params: null
   return: null
-- name: SiidehopperJumpingGroundIntoBlock
+- name: SidehopperFallingGround
   addr:
     U: 0x3FD64
     E: 0x3FE30
@@ -11282,7 +11282,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperJumpingCeilingIntoBlock
+- name: SidehopperFallingCeiling
   addr:
     U: 0x3FE08
     E: 0x3FED4
@@ -11293,7 +11293,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperGroundIdleAnim
+- name: SidehopperIdleGround
   addr:
     U: 0x3FEB0
     E: 0x3FF7C
@@ -11304,7 +11304,7 @@
   mode: thumb
   params: null
   return: null
-- name: SidehopperCeilingIdleAnim
+- name: SidehopperIdleCeiling
   addr:
     U: 0x3FF4C
     E: 0x40018
@@ -11326,7 +11326,7 @@
   mode: thumb
   params: null
   return: null
-- name: Sidehopper_Ai
+- name: Sidehopper
   addr:
     U: 0x3FFE0
     E: 0x400AC
@@ -11337,7 +11337,7 @@
   mode: thumb
   params: null
   return: null
-- name: Geron_Norfair_Ai
+- name: GeronNorfair
   addr:
     U: 0x40178
     E: 0x40244
@@ -11359,7 +11359,7 @@
   mode: thumb
   params: null
   return: null
-- name: GeegaGfxInit
+- name: GeegaIdleInit
   addr:
     U: 0x40290
     E: 0x4035C
@@ -11370,7 +11370,7 @@
   mode: thumb
   params: null
   return: null
-- name: GeegaSpawn
+- name: GeegaIdle
   addr:
     U: 0x402CC
     E: 0x40398
@@ -11414,7 +11414,7 @@
   mode: thumb
   params: null
   return: null
-- name: Geega_Ai
+- name: Geega
   addr:
     U: 0x4058C
     E: 0x40658
@@ -11425,7 +11425,7 @@
   mode: thumb
   params: null
   return: null
-- name: Zebetite_Ai
+- name: Zebetite
   addr:
     U: 0x406C8
     E: 0x40794
@@ -11459,7 +11459,7 @@
   mode: thumb
   params: null
   return: null
-- name: Cannon_Ai
+- name: Cannon
   addr:
     U: 0x40B08
     E: 0x40BD4
@@ -11470,7 +11470,7 @@
   mode: thumb
   params: null
   return: null
-- name: CannonBullet_Ai
+- name: CannonBullet
   addr:
     U: 0x41124
     E: 0x411F0
@@ -11481,7 +11481,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoLarva_Right_Ai
+- name: ImagoLarvaRightSide
   addr:
     U: 0x412A8
     E: 0x41374
@@ -11492,7 +11492,7 @@
   mode: thumb
   params: null
   return: null
-- name: GerutaTangleVineUpdateGeruta
+- name: TangleVineSyncSprites
   addr:
     U: 0x413C4
     E: 0x41490
@@ -11503,7 +11503,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Geruta_Ai
+- name: TangleVineGeruta
   addr:
     U: 0x4144C
     E: 0x41518
@@ -11514,7 +11514,7 @@
   mode: thumb
   params: null
   return: null
-- name: Geruta_TangleVine_Ai
+- name: TangleVineGerutaPart
   desc: Geurta (tangle vine) AI
   addr:
     U: 0x415EC
@@ -11526,7 +11526,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Red_Geruta_Ai
+- name: TangleVineRedGeruta
   addr:
     U: 0x4171C
     E: 0x417E8
@@ -11537,7 +11537,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Larva_Right_Ai
+- name: TangleVineLarvaRight
   addr:
     U: 0x417E8
     E: 0x418B4
@@ -11548,7 +11548,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Larva_Left_Ai
+- name: TangleVineLarvaLeft
   addr:
     U: 0x418B8
     E: 0x41984
@@ -11559,7 +11559,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Tall_Ai
+- name: TangleVineTall
   addr:
     U: 0x4198C
     E: 0x41A58
@@ -11570,7 +11570,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Medium_Ai
+- name: TangleVineMedium
   addr:
     U: 0x41ABC
     E: 0x41B88
@@ -11581,7 +11581,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Curved_Ai
+- name: TangleVineCurved
   addr:
     U: 0x41BEC
     E: 0x41CB8
@@ -11592,7 +11592,7 @@
   mode: thumb
   params: null
   return: null
-- name: TangleVine_Short_Ai
+- name: TangleVineShort
   addr:
     U: 0x41D1C
     E: 0x41DE8
@@ -11658,7 +11658,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoFadeMusic
+- name: ImagoWaitForLastEgg
   addr:
     U: 0x42328
     E: 0x423F4
@@ -11669,7 +11669,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoStartMusic
+- name: ImagoSpawn
   addr:
     U: 0x4234C
     E: 0x42418
@@ -11680,7 +11680,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoComingDown
+- name: ImagoComingDownInit
   addr:
     U: 0x42384
     E: 0x42450
@@ -11691,7 +11691,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoComingDownMove
+- name: ImagoComingDown
   addr:
     U: 0x42434
     E: 0x42500
@@ -11702,7 +11702,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoMove
+- name: ImagoMoveHorizontally
   addr:
     U: 0x424F8
     E: 0x425C4
@@ -11724,7 +11724,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoAttackingGfxInit
+- name: ImagoAttackingInit
   addr:
     U: 0x42874
     E: 0x42940
@@ -11762,7 +11762,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoSpawnDamagedStinger
+- name: ImagoDyingInit
   addr:
     U: 0x429FC
     E: 0x42AC8
@@ -11829,7 +11829,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBodySetSidesHitbox
+- name: ImagoPartSetBodySidesHitbox
   addr:
     U: 0x431B8
     E: 0x43284
@@ -11840,7 +11840,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBodyInit
+- name: ImagoPartInit
   addr:
     U: 0x431E8
     E: 0x432B4
@@ -11851,7 +11851,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBodyBeforeSpawn
+- name: ImagoPartBodySpawn
   addr:
     U: 0x43324
     E: 0x433F0
@@ -11862,7 +11862,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBodyUpdatePalette
+- name: ImagoPartUpdateBodyPalette
   addr:
     U: 0x43360
     E: 0x4342C
@@ -11873,7 +11873,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBodySyncPalette
+- name: ImagoPartSyncPalette
   addr:
     U: 0x433C4
     E: 0x43490
@@ -11884,7 +11884,7 @@
   mode: thumb
   params: null
   return: null
-- name: Imago_Ai
+- name: Imago
   addr:
     U: 0x433F8
     E: 0x434C4
@@ -11895,7 +11895,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoBody_Ai
+- name: ImagoPart
   addr:
     U: 0x43818
     E: 0x438E4
@@ -11906,7 +11906,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoNeedle_Ai
+- name: ImagoNeedle
   addr:
     U: 0x439C8
     E: 0x43A94
@@ -11917,7 +11917,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoDamagedStinger_Ai
+- name: ImagoDamagedStinger
   addr:
     U: 0x43AB4
     E: 0x43B80
@@ -11933,7 +11933,7 @@
   mode: thumb
   params: null
   return: null
-- name: ImagoEgg_Ai
+- name: ImagoEgg
   addr:
     U: 0x43C58
     E: 0x43D24
@@ -11966,7 +11966,7 @@
   mode: thumb
   params: null
   return: null
-- name: CrocomireGfxInit
+- name: CrocomireIdleInit
   addr:
     U: 0x43F10
     E: 0x43FDC
@@ -11989,7 +11989,7 @@
   mode: thumb
   params: null
   return: null
-- name: CrocomireBodyInit
+- name: CrocomirePartInit
   addr:
     U: 0x43F38
     E: 0x44004
@@ -12000,7 +12000,7 @@
   mode: thumb
   params: null
   return: null
-- name: Crocomire_Ai
+- name: Crocomire
   addr:
     U: 0x44098
     E: 0x44164
@@ -12011,7 +12011,7 @@
   mode: thumb
   params: null
   return: null
-- name: CrocomireBody_Ai
+- name: CrocomirePart
   addr:
     U: 0x440DC
     E: 0x441A8
@@ -12055,7 +12055,7 @@
   mode: thumb
   params: null
   return: null
-- name: SearchlightEyeCheckAlertedEnded
+- name: SearchlightEyeCheckAlertedAnimEnded
   addr:
     U: 0x44340
     E: 0x4440C
@@ -12121,7 +12121,7 @@
   mode: thumb
   params: null
   return: null
-- name: SearchlightEye_Ai
+- name: SearchlightEye
   addr:
     U: 0x44658
     E: 0x44724
@@ -12132,7 +12132,7 @@
   mode: thumb
   params: null
   return: null
-- name: SearchlightEyeBeam_Ai
+- name: SearchlightEyeBeam
   addr:
     U: 0x4475C
     E: 0x44828
@@ -12143,7 +12143,7 @@
   mode: thumb
   params: null
   return: null
-- name: SearchlighEyeProjectile_Ai
+- name: SearchlightEyeProjectile
   addr:
     U: 0x447B8
     E: 0x44884
@@ -12154,7 +12154,7 @@
   mode: thumb
   params: null
   return: null
-- name: Geron_Ai
+- name: Geron
   addr:
     U: 0x448E0
     E: 0x449AC
@@ -12176,7 +12176,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPortholeFlashingAnim
+- name: GunshipEntranceFlashingAnim
   addr:
     U: 0x44CA8
     E: 0x44D74
@@ -12213,7 +12213,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipGameStartMove
+- name: GunshipLanding
   addr:
     U: 0x44F9C
     E: 0x45068
@@ -12224,7 +12224,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipSamusEnter
+- name: GunshipIdle
   addr:
     U: 0x44FE4
     E: 0x450B0
@@ -12268,7 +12268,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipAfterSave
+- name: GunshipSaving
   addr:
     U: 0x452DC
     E: 0x453A8
@@ -12279,7 +12279,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipSaving
+- name: GunshipAfterSave
   addr:
     U: 0x45320
     E: 0x453EC
@@ -12323,7 +12323,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipReset
+- name: GunshipSamusReleased
   addr:
     U: 0x4548C
     E: 0x45558
@@ -12345,7 +12345,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipEscapeZebes
+- name: GunshipCheckEscapeZebes
   desc: Sets the escaped zebes event
   addr:
     U: 0x454DC
@@ -12368,7 +12368,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipSpawnFlamesEscape
+- name: GunshipStartEscaping
   addr:
     U: 0x45610
     E: 0x456DC
@@ -12412,7 +12412,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartFlamesFlyingGfxInit
+- name: GunshipPartCheckSetVerticalFlames
   addr:
     U: 0x45934
     E: 0x45A00
@@ -12445,7 +12445,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartCheckLandingEnded
+- name: GunshipPartCheckSetHorizontalFlamesBeforeLanding
   addr:
     U: 0x459E4
     E: 0x45AB0
@@ -12467,7 +12467,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartEntrySides
+- name: GunshipPartEntranceFrontIdle
   addr:
     U: 0x45A68
     E: 0x45B34
@@ -12478,7 +12478,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartEntrySidesClose
+- name: GunshipPartEntranceFrontOpenClose
   addr:
     U: 0x45B10
     E: 0x45BDC
@@ -12489,7 +12489,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartEntryTop
+- name: GunshipPartEntranceBackIdle
   addr:
     U: 0x45B6C
     E: 0x45C38
@@ -12500,7 +12500,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartEntryTopClose
+- name: GunshipPartEntranceBackOpenClose
   addr:
     U: 0x45C64
     E: 0x45D30
@@ -12511,7 +12511,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartCheckSpawnPlatform
+- name: GunshipPartCheckPlatformGoUp
   addr:
     U: 0x45CC0
     E: 0x45D8C
@@ -12522,7 +12522,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipSpawnPlatform
+- name: GunshipPartPlatformGoUp
   addr:
     U: 0x45D14
     E: 0x45DE0
@@ -12533,7 +12533,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPartDespawnPlatform
+- name: GunshipPartCheckPlatformGoDown
   addr:
     U: 0x45D64
     E: 0x45E30
@@ -12555,7 +12555,7 @@
   mode: thumb
   params: null
   return: null
-- name: Gunship_Ai
+- name: Gunship
   addr:
     U: 0x45E4C
     E: 0x45F18
@@ -12566,7 +12566,7 @@
   mode: thumb
   params: null
   return: null
-- name: GunshipPart_Ai
+- name: GunshipPart
   addr:
     U: 0x46098
     E: 0x46164
@@ -12577,7 +12577,7 @@
   mode: thumb
   params: null
   return: null
-- name: GlassTubeChangeClipAction
+- name: GlassTubeChangeCcaa
   desc: Disables the glass tube hitbox
   addr:
     U: 0x4627C
@@ -12644,7 +12644,7 @@
   mode: thumb
   params: null
   return: null
-- name: GlassTube_Ai
+- name: GlassTube
   addr:
     U: 0x46620
     E: 0x466EC
@@ -12721,7 +12721,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaChozodiaSamusDetectionOut
+- name: SavePlatformChozodiaSamusDetectionOut
   addr:
     U: 0x469D0
     E: 0x46A9C
@@ -12732,7 +12732,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveStationChozodiaCheckRefill
+- name: SavePlatformChozodiaCheckRefill
   addr:
     U: 0x46A04
     E: 0x46AD0
@@ -12743,7 +12743,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveStationChozodiaRefill
+- name: SavePlatformChozodiaRefill
   addr:
     U: 0x46AC4
     E: 0x46B90
@@ -12765,7 +12765,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaSaveInput
+- name: SavePlatformChozodiaSavePrompt
   addr:
     U: 0x46C90
     E: 0x46D5C
@@ -12776,7 +12776,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaFlashingAnim
+- name: SavePlatformChozodiaSaving
   addr:
     U: 0x46D60
     E: 0x46E2C
@@ -12787,7 +12787,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaFlashingAnimEnd
+- name: SavePlatformChozodiaOpenedOffInit
   addr:
     U: 0x46DA0
     E: 0x46E6C
@@ -12798,7 +12798,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaTextTimer
+- name: SavePlatformChozodiaSpawnSaveDoneMessage
   addr:
     U: 0x46DE4
     E: 0x46EB0
@@ -12820,7 +12820,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformChozodiaMessageBannerDisappearingTimer
+- name: SavePlatformChozodiaDelayBeforeReleasingSamus
   addr:
     U: 0x46E60
     E: 0x46F2C
@@ -12831,7 +12831,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaInit
+- name: SavePlatformChozodiaPartInit
   addr:
     U: 0x46E84
     E: 0x46F50
@@ -12842,7 +12842,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckRefillAnimEnded
+- name: SavePlatformChozodiaPartRefillLightIdle
   addr:
     U: 0x4703C
     E: 0x47108
@@ -12853,7 +12853,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodia_Empty
+- name: SavePlatformChozodiaPart_Empty
   desc: Empty function
   addr:
     U: 0x47068
@@ -12865,7 +12865,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaExtendGfxInit
+- name: SavePlatformChozodiaPartTopExtendingInit
   addr:
     U: 0x4706C
     E: 0x47138
@@ -12876,7 +12876,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckExtendingAnimEnded
+- name: SavePlatformChozodiaPartTopExtending
   addr:
     U: 0x47088
     E: 0x47154
@@ -12887,7 +12887,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformToChozodiaRetractingGfxInit
+- name: SavePlatformChozodiaPartTopRetractingInit
   addr:
     U: 0x470B4
     E: 0x47180
@@ -12898,7 +12898,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckRetractingAnimEnded
+- name: SavePlatformChozodiaPartTopRetracting
   addr:
     U: 0x470E8
     E: 0x471B4
@@ -12909,7 +12909,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckTubeAnimSpawnEnded
+- name: SavePlatformChozodiaPartTubeSpawning
   addr:
     U: 0x47114
     E: 0x471E0
@@ -12920,7 +12920,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckSpawnBigLight
+- name: SavePlatformChozodiaPartSpawnRay
   addr:
     U: 0x47164
     E: 0x47230
@@ -12931,7 +12931,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckTubeAnimEnded
+- name: SavePlatformChozodiaPartTubeIdle
   addr:
     U: 0x471B8
     E: 0x47284
@@ -12942,7 +12942,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckTubeDespawningAnimEnded
+- name: SavePlatformChozodiaPartTubeDespawning
   addr:
     U: 0x471E8
     E: 0x472B4
@@ -12953,7 +12953,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTopChozodiaCheckTubeAroundAnimEnded
+- name: SavePlatformChozodiaPartTubeShadowIdle
   addr:
     U: 0x47224
     E: 0x472F0
@@ -12964,7 +12964,7 @@
   mode: thumb
   params: null
   return: null
-- name: SaveStationTopChozodiaCheckTubeAroundAnimEnded
+- name: SavePlatformChozodiaPartRayIdle
   addr:
     U: 0x4723C
     E: 0x47308
@@ -12975,7 +12975,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatform_Chozodia_Ai
+- name: SavePlatformChozodia
   addr:
     U: 0x47280
     E: 0x4734C
@@ -12986,7 +12986,7 @@
   mode: thumb
   params: null
   return: null
-- name: SavePlatformTop_Chozodia_Ai
+- name: SavePlatformChozodiaPart
   addr:
     U: 0x47468
     E: 0x47534
@@ -12997,7 +12997,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteCheckSamusNearLeftRight
+- name: BaristuteCheckSamusInRange
   addr:
     U: 0x47600
     E: 0x476CC
@@ -13023,7 +13023,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteJumpingGfxInit
+- name: BaristuteJumpWarningInit
   addr:
     U: 0x476B0
     E: 0x4777C
@@ -13056,7 +13056,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteLandingGfxInit
+- name: BaristuteLandingInit
   addr:
     U: 0x47860
     E: 0x4792C
@@ -13078,7 +13078,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteIdleGfxInit
+- name: BaristuteIdleInit
   addr:
     U: 0x478B8
     E: 0x47984
@@ -13105,7 +13105,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteWalkingGfxInit
+- name: BaristuteWalkingInit
   addr:
     U: 0x479B4
     E: 0x47A80
@@ -13138,7 +13138,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteBouncingGfxInit
+- name: BaristuteFallingInit
   addr:
     U: 0x47B4C
     E: 0x47C18
@@ -13149,7 +13149,7 @@
   mode: thumb
   params: null
   return: null
-- name: BaristuteBouncing
+- name: BaristuteFalling
   addr:
     U: 0x47B70
     E: 0x47C3C
@@ -13171,7 +13171,7 @@
   mode: thumb
   params: null
   return: null
-- name: Baristute_Ai
+- name: Baristute
   addr:
     U: 0x47D30
     E: 0x47DFC
@@ -13182,7 +13182,7 @@
   mode: thumb
   params: null
   return: null
-- name: ElevatorStatueChangeTwoGroundClipAction
+- name: ElevatorStatueChangeTwoGroundCcaa
   desc: Enables the hitbox of the statue debris on the ground
   addr:
     U: 0x47EBC
@@ -13197,7 +13197,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: KraidElevatorStatueChangeClipAction
+- name: KraidElevatorStatueChangeCAA
   desc: Enables/disables the hitbox of the statue
   addr:
     U: 0x47F0C
@@ -13212,7 +13212,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: KraidElevatorStatueAfterFall
+- name: KraidElevatorStatueFallenInit
   addr:
     U: 0x47F70
     E: 0x4803C
@@ -13245,7 +13245,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidElevatorStatueTimerBeforeFalling
+- name: KraidElevatorStatueDelayBeforeFalling
   addr:
     U: 0x4807C
     E: 0x48148
@@ -13267,7 +13267,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyElevatorStatueChangeClipAction
+- name: RidleyElevatorStatueChangeCcaa
   desc: Enables/disables the hitbox of the statue
   addr:
     U: 0x48174
@@ -13282,7 +13282,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: RidleyElevatorStatueAfterFall
+- name: RidleyElevatorStatueFallenInit
   addr:
     U: 0x481D8
     E: 0x482A4
@@ -13293,7 +13293,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyStatueElevatorInit
+- name: RidleyElevatorStatueInit
   addr:
     U: 0x48224
     E: 0x482F0
@@ -13315,7 +13315,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyElevatorStatueTimerBeforeFalling
+- name: RidleyElevatorStatueDelayBeforeFalling
   addr:
     U: 0x482E4
     E: 0x483B0
@@ -13337,7 +13337,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidElevatorStatue_Ai
+- name: KraidElevatorStatue
   addr:
     U: 0x483F0
     E: 0x484BC
@@ -13348,7 +13348,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyElevatorStatue_Ai
+- name: RidleyElevatorStatue
   addr:
     U: 0x48438
     E: 0x48504
@@ -13359,7 +13359,7 @@
   mode: thumb
   params: null
   return: null
-- name: ElevatorStatueDebris_Ai
+- name: ElevatorStatueDebris
   addr:
     U: 0x48480
     E: 0x4854C
@@ -13458,7 +13458,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: RisingChozoPillar_Ai
+- name: RisingChozoPillar
   addr:
     U: 0x488A4
     E: 0x48970
@@ -13469,7 +13469,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoPillarPlatform_Ai
+- name: ChozoPillarPlatform
   addr:
     U: 0x48AEC
     E: 0x48BB8
@@ -13480,7 +13480,7 @@
   mode: thumb
   params: null
   return: null
-- name: ChozoPillarPlatformShadow_Ai
+- name: ChozoPillarPlatformShadow
   addr:
     U: 0x48C10
     E: 0x48CDC
@@ -13530,7 +13530,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkulteraGfxInit
+- name: SkulteraIdleInit
   addr:
     U: 0x48D78
     E: 0x48E44
@@ -13552,7 +13552,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkulteraChasingSamusGfxInit
+- name: SkulteraChasingSamusInit
   addr:
     U: 0x48E6C
     E: 0x48F38
@@ -13574,7 +13574,7 @@
   mode: thumb
   params: null
   return: null
-- name: SkulteraTurningAroundGfxInit
+- name: SkulteraTurningAroundInit
   addr:
     U: 0x48F9C
     E: 0x49068
@@ -13596,7 +13596,7 @@
   mode: thumb
   params: null
   return: null
-- name: Skultera_Ai
+- name: Skultera
   addr:
     U: 0x48FF8
     E: 0x490C4
@@ -13607,7 +13607,7 @@
   mode: thumb
   params: null
   return: null
-- name: StatueVerticalLineChangeClipAction
+- name: BossStatueVerticalLignChangeCcaa
   desc: Enables/disables the hitbox of a vertical line of 6 blocks
   addr:
     U: 0x49184
@@ -13622,7 +13622,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: StatueHorizontalLineThreeChangeClipAction
+- name: KraidStatueHorizontalLignThreeChangeCcaa
   desc: Enables/disables the hitbox of a horizontal line of 3 blocks
   addr:
     U: 0x49204
@@ -13637,7 +13637,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: StatueHorizontalLineEightChangeClipAction
+- name: KraidStatueInsideChangeCcaa
   desc: Enable/disable the hitbox of a horizontal line of 8 blocks
   addr:
     U: 0x4925C
@@ -13652,7 +13652,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: KraidStatueAfterOpen
+- name: KraidStatueOpenedInit
   addr:
     U: 0x49314
     E: 0x493E0
@@ -13696,7 +13696,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyStatueChangeThreeClipAction
+- name: RidleyStatueChangeThreeCcaa
   desc: Enables the hitbox for a horizontal line of 3 blocks
   addr:
     U: 0x4962C
@@ -13711,7 +13711,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: RidleyStatueChangeFourClipAction
+- name: RidleyStatueInsideChangeCcaa
   desc: Enables/disables the hitbox for 4 blocks
   addr:
     U: 0x49698
@@ -13726,7 +13726,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: RidleyStatueAfterOpen
+- name: RidleyStatueOpenedInit
   addr:
     U: 0x49714
     E: 0x497E0
@@ -13770,7 +13770,7 @@
   mode: thumb
   params: null
   return: null
-- name: KraidStatue_Ai
+- name: KraidStatue
   addr:
     U: 0x49A38
     E: 0x49B04
@@ -13781,7 +13781,7 @@
   mode: thumb
   params: null
   return: null
-- name: RidleyStatue_Ai
+- name: RidleyStatue
   addr:
     U: 0x49B50
     E: 0x49C1C
@@ -13792,7 +13792,7 @@
   mode: thumb
   params: null
   return: null
-- name: Searchlight_Ai
+- name: Searchlight
   addr:
     U: 0x49BD0
     E: 0x49C9C
@@ -13803,7 +13803,7 @@
   mode: thumb
   params: null
   return: null
-- name: PrimarySpriteB3_Ai
+- name: PrimarySpriteB3
   addr:
     U: 0x49DCC
     E: 0x49E98
@@ -13830,7 +13830,7 @@
   mode: thumb
   params: null
   return: null
-- name: GadoraGfxInit
+- name: GadoraIdleInit
   addr:
     U: 0x49FEC
     E: 0x4A0B8
@@ -13852,7 +13852,7 @@
   mode: thumb
   params: null
   return: null
-- name: GadoraCheckBeforeOpeningEyeAnimEnded
+- name: GadoraCheckWarningAnimEnded
   addr:
     U: 0x4A070
     E: 0x4A13C
@@ -13918,7 +13918,7 @@
   mode: thumb
   params: null
   return: null
-- name: Gadora_Ai
+- name: Gadora
   addr:
     U: 0x4A2A0
     E: 0x4A36C
@@ -13929,7 +13929,7 @@
   mode: thumb
   params: null
   return: null
-- name: GadoraEye_Ai
+- name: GadoraEye
   addr:
     U: 0x4A318
     E: 0x4A3E4
@@ -13940,7 +13940,7 @@
   mode: thumb
   params: null
   return: null
-- name: GadoraBeam_Ai
+- name: GadoraBeam
   addr:
     U: 0x4A4E8
     E: 0x4A5B4
@@ -13951,7 +13951,7 @@
   mode: thumb
   params: null
   return: null
-- name: Steam_Ai
+- name: Steam
   addr:
     U: 0x4A5E4
     E: 0x4A6B0
@@ -13962,7 +13962,7 @@
   mode: thumb
   params: null
   return: null
-- name: Steam_Diagonal_Ai
+- name: SteamDiagonal
   addr:
     U: 0x4A7EC
     E: 0x4A8B8
@@ -13973,7 +13973,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemBlockChangeClipAction
+- name: UnknownItemBlockChangeCcaa
   desc: Enables/disables the hitbox for the block
   addr:
     U: 0x4A930
@@ -13988,7 +13988,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: UnknownItemBlock_Ai
+- name: UnknownItemBlock
   addr:
     U: 0x4A9A0
     E: 0x4AA6C
@@ -14004,7 +14004,7 @@
   mode: thumb
   params: null
   return: null
-- name: UnknownItemBlockLight_Ai
+- name: UnknownItemBlockLight
   addr:
     U: 0x4ABCC
     E: 0x4AC98
@@ -14073,7 +14073,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeShip_Ai
+- name: EscapeShip
   addr:
     U: 0x4AE90
     E: 0x4AF5C
@@ -14084,7 +14084,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeShipPart_Ai
+- name: EscapeShipPart
   addr:
     U: 0x4B38C
     E: 0x4B458
@@ -14095,7 +14095,7 @@
   mode: thumb
   params: null
   return: null
-- name: SpacePirateCarryingPowerBomb_Ai
+- name: SpacePirateCarryingPowerBomb
   addr:
     U: 0x4B604
     E: 0x4B6D0
@@ -14106,7 +14106,7 @@
   mode: thumb
   params: null
   return: null
-- name: FakePowerBomb_Ai
+- name: FakePowerBomb
   addr:
     U: 0x4B784
     E: 0x4B850
@@ -14117,7 +14117,7 @@
   mode: thumb
   params: null
   return: null
-- name: FakePowerBombEventTrigger_Ai
+- name: FakePowerBombEventTrigger
   addr:
     U: 0x4B7F0
     E: 0x4B8BC
@@ -14128,7 +14128,7 @@
   mode: thumb
   params: null
   return: null
-- name: FallingChozoPillar_Ai
+- name: FallingChozoPillar
   addr:
     U: 0x4B884
     E: 0x4B950
@@ -14139,7 +14139,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleySyncSubSpritesPosition
+- name: MechaRidleySyncSubSprites
   addr:
     U: 0x4BA9C
     E: 0x4BB68
@@ -14211,7 +14211,7 @@
   - name: RamSlot
     type: u8
   return: null
-- name: MechaRidleySwingAttackInit
+- name: MechaRidleyClawAttackInit
   addr:
     U: 0x4BEB4
     E: 0x4BF80
@@ -14246,7 +14246,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyWalkingStationary
+- name: MechaRidleyDelayBeforeCrawling
   addr:
     U: 0x4C1E0
     E: 0x4C2AC
@@ -14257,7 +14257,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyWalking
+- name: MechaRidleyCrawling
   addr:
     U: 0x4C200
     E: 0x4C2CC
@@ -14279,7 +14279,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyCheckSamusOutOfAmmo
+- name: MechaRidleyCheckStartFireballAttack
   desc: Checks if Samus is out out missiles and super missiles, used to force a missile attack
   addr:
     U: 0x4C33C
@@ -14341,7 +14341,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyCheckRetractingHeadBeforeMovingBackAnimEnded
+- name: MechaRidleyRetracting
   addr:
     U: 0x4C630
     E: 0x4C6FC
@@ -14352,7 +14352,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyMovingBack
+- name: MechaRidleyCrawlingBack
   addr:
     U: 0x4C6A8
     E: 0x4C774
@@ -14363,7 +14363,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyBeforeFireballs
+- name: MechaRidleyStandingForFireballsInit
   addr:
     U: 0x4C738
     E: 0x4C804
@@ -14374,7 +14374,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyCheckExtendingHeadBeforeFireballsAnimEnded
+- name: MechaRidleyStandingForFireballs
   addr:
     U: 0x4C784
     E: 0x4C850
@@ -14418,7 +14418,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyCheckRetractingHeadAfterFireballsAnimEnded
+- name: MechaRidleyRetractingAfterFireballAttack
   addr:
     U: 0x4C8E0
     E: 0x4C9AC
@@ -14429,7 +14429,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyStartDying
+- name: MechaRidleyDyingInit
   addr:
     U: 0x4C92C
     E: 0x4C9F8
@@ -14506,7 +14506,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyPartGlows
+- name: MechaRidleyPartHeadIdle
   addr:
     U: 0x4D2E0
     E: 0x4D3AC
@@ -14577,7 +14577,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyPartUpdateFrontClawHitbox
+- name: MechaRidleyPartLeftArmIdle
   addr:
     U: 0x4D928
     E: 0x4D9F4
@@ -14609,7 +14609,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidley_Ai
+- name: MechaRidley
   addr:
     U: 0x4DD58
     E: 0x4DE24
@@ -14625,7 +14625,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyPart_Ai
+- name: MechaRidleyPart
   addr:
     U: 0x4E0DC
     E: 0x4E1A8
@@ -14636,7 +14636,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyLaser_Ai
+- name: MechaRidleyLaser
   addr:
     U: 0x4E4A0
     E: 0x4E56C
@@ -14647,7 +14647,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyMissile_Ai
+- name: MechaRidleyMissile
   addr:
     U: 0x4E5B8
     E: 0x4E684
@@ -14658,7 +14658,7 @@
   mode: thumb
   params: null
   return: null
-- name: MechaRidleyFireball_Ai
+- name: MechaRidleyFireball
   addr:
     U: 0x4E7C0
     E: 0x4E88C
@@ -14669,7 +14669,7 @@
   mode: thumb
   params: null
   return: null
-- name: EscapeGateChangeClipAction
+- name: EscapeGateChangeCcaa
   desc: Enables/disables the hitbox for the gate
   addr:
     U: 0x4E910
@@ -14684,7 +14684,7 @@
     type: u8
     enum: ClipdataAffectingAction
   return: null
-- name: EscapeGate_Ai
+- name: EscapeGate
   addr:
     U: 0x4E9C0
     E: 0x4EA8C

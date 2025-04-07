@@ -1,28 +1,28 @@
-- name: ClipdataCollisionTypes_Ram
+- name: gClipdataCollisionTypes
   type: u8
   count: 0x400
   addr: 0x2002000
   enum: ClipdataCollisionType
-- name: ClipdataCollisionTypes_400_Ram
+- name: gClipdataCollisionTypes_Tilemap
   type: u8
   count: 0x400
   addr: 0x2002400
   enum: ClipdataCollisionType
-- name: ClipdataBehaviorTypes_Ram
+- name: gClipdataBehaviorTypes
   type: u16
   count: 0x400
   addr: 0x2003000
   enum: ClipdataBehaviorType
-- name: ClipdataBehaviorTypes_400_Ram
+- name: gClipdataBehaviorTypes_Tilemap
   type: u16
   count: 0x400
   addr: 0x2003800
   enum: ClipdataBehaviorType
-- name: Tilemap_Ram
+- name: gTilemap
   type: u16
   count: 0x1000
   addr: 0x2004000
-- name: Tilemap_400_Ram
+- name: gCommonTilemap
   type: u16
   count: 0x1000
   addr: 0x2006000
@@ -34,41 +34,41 @@
   type: u8
   count: 0x800
   addr: 0x201B000
-- name: CurrCharacterGfx
+- name: gCurrentCharacterGfx
   type: u8
   count: 0x80
   cat: gfx
   addr: 0x2027700
-- name: MakeSolidBlocks
+- name: gMakeSolidBlocks
   desc: Two byte pairs of Y position and X position
   type: u16
   count: 0x40
   addr: 0x2027780
-- name: DecompClipdata
+- name: gDecompClipdataMap
   type: u16
   count: 0x1800
   addr: 0x2027800
-- name: DecompBg0Data
+- name: gDecompBg0Map
   type: u16
   count: 0x1800
   addr: 0x202A800
-- name: DecompBg1Data
+- name: gDecompBg1Map
   type: u16
   count: 0x1800
   addr: 0x202D800
-- name: DecompBg2Data
+- name: gDecompBg2Map
   type: u16
   count: 0x1800
   addr: 0x2030800
-- name: MinimapTilesWithObtainedItems
+- name: gMinimapTilesWithObtainedItems
   type: u8
   count: 0x800
   addr: 0x2033800
-- name: DecompExploredMinimap
+- name: gDecompressedMinimapVisitedTiles
   type: u8
   count: 0x800
   addr: 0x2034000
-- name: DecompMinimapData
+- name: gDecompressedMinimapData
   type: u8
   count: 0x800
   addr: 0x2034800
@@ -77,129 +77,129 @@
   count: 0x200
   cat: palette
   addr: 0x2035000
-- name: NeverReformBlocks
+- name: gNeverReformBlocks
   desc: One array per area (last is unused)
   type: u8 [0x8]
   count: 0x200
   addr: 0x2035C00
-- name: ItemsCollected
+- name: gItemsCollected
   type: struct CollectedItem [0x8]
   count: 0x40
   addr: 0x2036C00
-- name: VisitedMinimapTiles
+- name: gVisitedMinimapTiles
   type: u8
   count: 0x400
   addr: 0x2037400
-- name: HatchesOpened
+- name: gHatchesOpened
   type: u8
   count: 0x100
   addr: 0x2037C00
-- name: EventsTriggered
+- name: gEventsTriggered
   type: u8
   count: 0x20
   addr: 0x2037E00
-- name: MinimapTileGfx
+- name: gMinimapTilesGfx
   desc: Transferred to 6011F80 in VRAM
   type: u8
   count: 0x1E0
   cat: gfx
   addr: 0x2037E20
-- name: Sram
+- name: gSram
   type: struct Sram
   addr: 0x2038000
-- name: DebugFlag
+- name: gDebugFlag
   type: u8
   addr: 0x3000000
-- name: SramErrorFlag
+- name: gSramErrorFlag
   type: u8
   cat: bool
   addr: 0x3000001
-- name: FrameCounter16Bit
+- name: gFrameCounter16Bit
   type: u16
   addr: 0x3000002
-- name: StereoFlag
+- name: gStereoFlag
   type: u8
   addr: 0x3000004
-- name: SubGameModeStage
+- name: gSubGameModeStage
   type: u8
   addr: 0x3000005
-- name: WrittenToBldalpha
+- name: gWrittenToBLDALPHA
   desc: Alpha blending coefficients
   type: u16
   addr: 0x3000006
-- name: WrittenToBldcnt
+- name: gWrittenToBLDCNT_Internal
   desc: Color special effects selection
   type: u16
   addr: 0x3000008
-- name: WrittenToDispcnt
+- name: gWrittenToDISPCNT
   desc: LCD control
   type: u16
   addr: 0x300000A
-- name: WrittenToWinin_H
+- name: gWrittenToWININ_H
   desc: Inside of window 1
   type: u8
   addr: 0x300000E
-- name: WrittenToWinout_L
+- name: gWrittenToWINOUT_L
   desc: Outside of windows
   type: u8
   addr: 0x300000F
-- name: WrittenTo5000000
+- name: gBackdropColor
   desc: Transparent color
   type: u16
   addr: 0x3000010
-- name: WrittenToBldy
+- name: gWrittenToBLDY
   desc: Brightness coefficient
   type: u16
   addr: 0x3000012
-- name: FileScreenOptionsUnlocked
+- name: gFileScreenOptionsUnlocked
   type: struct FileScreenOptionsUnlocked
   addr: 0x3000014
-- name: Language
+- name: gLanguage
   type: u8
   addr: 0x3000020
   enum: Language
-- name: GameCompletion
+- name: gGameCompletion
   type: struct GameCompletion
   addr: 0x3000024
-- name: CompletedGameFlagCopy
+- name: gCompletedGameFlagCopy
   type: u8
   addr: 0x3000028
-- name: FadeBgBlackWhite
+- name: gMonochromeBgFading
   type: u8
   addr: 0x3000029
   enum: BackgroundFade
-- name: BgPositionWrittenToBg3ofs
+- name: gWhichBGPositionIsWrittenToBG3OFS
   type: u8
   addr: 0x300002A
-- name: SamusOnTopOfBgFlag
+- name: gSamusOnTopOfBackgrounds
   type: u8
   addr: 0x300002B
-- name: Difficulty
+- name: gDifficulty
   type: u8
   addr: 0x300002C
   enum: Difficulty
-- name: MothershipDoorsFlag
+- name: gUseMotherShipDoors
   type: u8
   addr: 0x300002D
-- name: TimeAttackFlag
+- name: gTimeAttackFlag
   type: u8
   addr: 0x300002E
-- name: CutsceneToSkip
+- name: gCutsceneToSkip
   type: u8
   addr: 0x300002F
-- name: MusicTrackInfo
+- name: gMusicTrackInfo
   type: struct MusicTrackInfo
   addr: 0x3000030
-- name: CurrDemo
+- name: gCurrentDemo
   type: struct CurrDemo
   addr: 0x3000038
-- name: RebootGameFlag
+- name: gResetGame
   type: u8
   addr: 0x300003C
-- name: DisableScrollingFlag
+- name: gDisableScrolling
   type: u8
   addr: 0x300003D
-- name: SlowScrollingTimer
+- name: gSlowScrollingTimer
   type: u16
   addr: 0x300003E
 - name: DisableMusicFlag
@@ -208,569 +208,569 @@
 - name: DisableCutscenes_Unused
   type: u8
   addr: 0x3000041
-- name: SkipDoorTransitionFlag
+- name: gSkipDoorTransition
   type: u8
   addr: 0x3000042
-- name: DisableSoftResetFlag
+- name: gDisableSoftreset
   type: u8
   addr: 0x3000043
-- name: CollectingTankFlag
+- name: gCollectingTank
   type: u8
   addr: 0x3000044
-- name: DisableAnimatedGfxTimer
+- name: gDisableAnimatedGraphicsTimer
   type: u8
   addr: 0x3000045
-- name: AnimatedGfxToUpdate
+- name: gAnimatedGraphicsToUpdate
   type: u16
   cat: flags
   addr: 0x3000046
-- name: DisableDoorsAndTanksFlag
+- name: gDisableDoorAndTanks
   type: u8
   addr: 0x3000048
-- name: DisablePauseFlag
+- name: gDisablePause
   type: u8
   addr: 0x3000049
-- name: HideHudFlag
+- name: gHideHud
   type: u8
   addr: 0x300004A
-- name: ShipLandingCutsceneFlag
+- name: gShipLandingFlag
   type: u8
   addr: 0x300004B
-- name: DisableClipdataChangingTransparencyFlag
+- name: gDisableClipdataChangingTransparency
   type: u8
   addr: 0x300004C
-- name: DisableAnimatedPaletteFlag
+- name: gDisableAnimatedPalette
   type: u8
   addr: 0x300004D
-- name: InGameCutscenesTriggered
+- name: gInGameCutscenesTriggered
   type: u8
   cat: flags
   addr: 0x3000050
   enum: InGameCutscene
-- name: AreaId
+- name: gCurrentArea
   type: u8
   addr: 0x3000054
   enum: AreaId
-- name: RoomId
+- name: gCurrentRoom
   type: u8
   addr: 0x3000055
-- name: PrevDoor
+- name: gLastDoorUsed
   type: u8
   addr: 0x3000056
-- name: PrevDoorProperties
+- name: gLastDoorProperties
   type: u8
   addr: 0x3000057
-- name: DoorDisplayLocationFlag
+- name: gDisplayLocationText
   desc: Bit 6 of door properties, displays location pop-up
   type: u8
   addr: 0x3000058
-- name: MinimapXPosition
+- name: gMinimapX
   type: u8
   addr: 0x3000059
-- name: MinimapYPosition
+- name: gMinimapY
   type: u8
   addr: 0x300005A
-- name: NumNeverReformBlocksBroken
+- name: gNumberOfNeverReformBlocks
   type: struct NumNeverReformBlocksBroken
   addr: 0x300005B
-- name: NumItemsCollected
+- name: gNumberOfItemsCollected
   type: struct NumItemsCollected
   addr: 0x3000063
-- name: CurrHazeValue
+- name: gCurrentHazeValue
   type: u8
   addr: 0x300006B
   enum: HazeType
-- name: RoomEffectActualYPosition
+- name: gEffectYPosition
   type: u16
   addr: 0x300006C
-- name: RoomEffectYPositionOffset
+- name: gEffectYPositionOffset
   type: u16
   addr: 0x300006E
-- name: ScreenShakeXOffset
+- name: gScreenShakeXOffset
   type: u8
   addr: 0x3000071
-- name: ScreenShakeYOffset
+- name: gScreenShakeYOffset
   type: u8
   addr: 0x3000072
-- name: DispcntBackup
+- name: gDISPCNTBackup
   type: u16
   addr: 0x3000076
-- name: SpritesetNum
+- name: gSpriteset
   type: u8
   addr: 0x3000078
-- name: CurrClipdataAffectingAction
+- name: gCurrentClipdataAffectingAction
   type: u8
   addr: 0x3000079
   enum: ClipdataAffectingAction
-- name: SpritesetEntryUsed
+- name: gSpritesetEntryUsed
   type: u8
   addr: 0x300007A
-- name: DoorUnlockTimer
+- name: gDoorUnlockTimer
   type: u8
   addr: 0x300007B
-- name: DisableDrawingSpritesFlag
+- name: gDisableDrawingSprites
   type: u8
   addr: 0x300007C
-- name: CurrCutscene
+- name: gCurrentCutscene
   type: u8
   addr: 0x300007D
-- name: TourianEscapeCutsceneStage
+- name: gTourianEscapeCutsceneStage
   type: s8
   addr: 0x300007E
-- name: FreeMovementLockCamera
+- name: gFreeMovementLockCamera
   type: u8
   cat: bool
   addr: 0x300007F
-- name: HazeVramInfo
+- name: gHazeInfo
   type: struct HazeVramInfo
   addr: 0x3000080
-- name: BackupOfIoRegisters
+- name: gIoRegistersBackup
   type: struct BackupOfIoRegisters
   addr: 0x3000088
-- name: BgPtrsAndDimensions
+- name: gBgPointersAndDimensions
   type: struct BgPtrsAndDimensions
   addr: 0x300009C
-- name: CurrRoomEntry
+- name: gCurrentRoomEntry
   type: struct CurrRoomEntry
   addr: 0x30000BC
-- name: CurrAffectingClipdata
+- name: gCurrentAffectingClipdata
   type: struct CurrAffectingClipdata
   addr: 0x30000DC
-- name: BgPositions
+- name: gBackgroundPositions
   type: struct BgPositions
   addr: 0x30000E4
-- name: WaitingSpacePiratesPosition
+- name: gWaitingSpacePiratesPosition
   type: struct RawCoordsXY
   addr: 0x30000F8
-- name: Bg2Movement
+- name: gBg2Movement
   type: struct Bg2Movement
   addr: 0x30000FC
-- name: LockScreenPosition
+- name: gLockScreen
   type: struct LockScreenPosition
   addr: 0x3000100
-- name: SuitFlashEffect
+- name: gSuitFlashEffect
   type: struct SuitFlashEffect
   addr: 0x3000108
-- name: ScreenShakeY
+- name: gScreenShakeY
   type: struct ScreenShake
   addr: 0x3000110
-- name: ScreenShakeX
+- name: gScreenShakeX
   type: struct ScreenShake
   addr: 0x3000114
-- name: CurrScrolls
+- name: gCurrentScrolls
   type: struct CurrScrolls
   addr: 0x3000118
-- name: CurrPowerBomb
+- name: gCurrentPowerBomb
   type: struct CurrPowerBomb
   addr: 0x3000130
-- name: ScreenPositionAndVelocity
+- name: gCamera
   type: struct ScreenPositionAndVelocity
   addr: 0x3000144
-- name: MaxInGameTimeFlag
+- name: gMaxInGameTimerFlag
   type: u8
   addr: 0x300014C
-- name: InGameTimer
+- name: gInGameTimer
   type: struct InGameTime
   addr: 0x3000150
-- name: BestCompletionTimes
+- name: gBestCompletionTimes
   desc: Unused
   type: struct InGameTime
   count: 0xC
   addr: 0x3000154
-- name: InGameTimeAtBosses
+- name: gInGameTimerAtBosses
   type: struct InGameTimeAtBosses
   addr: 0x3000184
-- name: LastElevatorUsed
+- name: gLastElevatorUsed
   type: struct LastElevatorUsed
   addr: 0x3000198
-- name: InGameCutscene
+- name: gInGameCutscene
   type: struct InGameCutsceneData
   addr: 0x300019C
-- name: AlarmTimer
+- name: gAlarmTimer
   type: u16
   addr: 0x30001A8
-- name: SpriteData
+- name: gSpriteData
   type: struct SpriteData
   count: 0x18
   addr: 0x30001AC
-- name: SpritesetSpriteIds
+- name: gSpritesetSpritesID
   type: u8
   count: 0xF
   addr: 0x30006EC
   enum: PrimarySpriteId
-- name: SpritesetSpriteGfxSlots
+- name: gSpritesetGfxSlots
   type: u8
   count: 0xF
   addr: 0x30006FB
-- name: SubSpriteData1
+- name: gSubSpriteData1
   type: struct SubSpriteData
   addr: 0x300070C
-- name: SubSpriteData2
+- name: gSubSpriteData2
   type: struct SubSpriteData
   addr: 0x3000720
-- name: CurrSpriteData
+- name: gCurrentSprite
   desc: Current sprite being processed
   type: struct SpriteData
   addr: 0x3000738
-- name: SpriteDebris
+- name: gSpriteDebris
   type: struct SpriteDebris
   count: 0x8
   addr: 0x3000770
-- name: PrevCenterCollisionCheck
+- name: gPreviousVerticalCollisionCheck
   type: u8
   addr: 0x30007F0
   enum: CollisionCheck
-- name: PrevLeftRightEdgeCollisionCheck
+- name: gPreviousCollisionCheck
   type: u8
   addr: 0x30007F1
   enum: CollisionCheck
-- name: IgnoreSamusAndSpriteCollision
+- name: gIgnoreSamusAndSpriteCollision
   type: u8
   cat: bool
   addr: 0x30007F2
-- name: SpriteDrawOrder
+- name: gSpriteDrawOrder
   type: u8
   count: 0x18
   addr: 0x30007F3
-- name: BossWork
+- name: gBossWork
   type: struct BossWork
   addr: 0x300080C
-- name: SpriteRandomNum
+- name: gSpriteRng
   desc: Ranges between 0-F
   type: u8
   addr: 0x300083C
-- name: ParticleEffects
+- name: gParticleEffects
   type: struct ParticleEffect
   count: 0x10
   addr: 0x3000840
-- name: MissileHighlightStatus
+- name: gMissileHighlightStatus
   type: u8
   addr: 0x3000900
-- name: PowerBombHighlightStatus
+- name: gPowerBombHighlightStatus
   type: u8
   addr: 0x3000901
-- name: SuperMissileHighlightStatus
+- name: gSuperMissileHighlightStatus
   type: u8
   addr: 0x3000902
-- name: UpdateCornerMapFlag
+- name: gUpdateMinimapFlag
   type: u8
   addr: 0x3000903
-- name: EnergyDigits
+- name: gEnergyDigits
   type: struct AmmoDigits
   addr: 0x3000904
-- name: MaxEnergyDigits
+- name: gMaxEnergyDigits
   type: struct AmmoDigits
   addr: 0x3000908
-- name: MissileDigits
+- name: gMissileDigits
   type: struct AmmoDigits
   addr: 0x300090C
-- name: PowerBombDigits
+- name: gPowerBombDigits
   type: struct AmmoDigits
   addr: 0x3000910
-- name: SuperMissileDigits
+- name: gSuperMissileDigits
   type: struct AmmoDigits
   addr: 0x3000914
-- name: CurrParticleEffectOamFramePtr
+- name: gCurrentParticleEffectOamFramePointer
   type: u16 *
   cat: oam_frame
   addr: 0x3000918
-- name: AmmoDigitGfx
+- name: gAmmoDigitsGfx
   type: u8
   count: 0x40
   cat: gfx
   addr: 0x300091C
-- name: EscapeTimerStatus
+- name: gCurrentEscapeStatus
   type: u8
   addr: 0x300095C
   enum: EscapeTimerStatus
-- name: EscapeTimerCounter
+- name: gEscapeTimerCounter
   type: u8
   addr: 0x300095D
-- name: EscapeTimerDigits
+- name: gEscapeTimerDigits
   type: struct EscapeTimerDigits
   addr: 0x300095E
-- name: ParticleEscapeOamFrames
+- name: gParticleEscapeOamFrames
   type: u16
   count: 0x19
   cat: oam_frame
   addr: 0x3000964
-- name: EnergyRefillAnim
+- name: gEnergyRefillAnimation
   type: u8
   addr: 0x3000996
-- name: MissileRefillAnim
+- name: gMissileRefillAnimation
   type: u8
   addr: 0x3000997
-- name: SuperMissileRefillAnim
+- name: gSuperMissileRefillAnimation
   type: u8
   addr: 0x3000998
-- name: PowerBombRefillAnim
+- name: gPowerBombRefillAnimation
   type: u8
   addr: 0x3000999
-- name: ParticleSamusReflectionOamFrames
+- name: gParticleSamusReflectionOamFrames
   type: u16
   count: 0x49
   cat: oam_frame
   addr: 0x300099A
-- name: ProjectileData
+- name: gProjectileData
   type: struct ProjectileData
   count: 0x10
   addr: 0x3000A2C
-- name: ArmCannonYPosition
+- name: gArmCannonY
   type: u16
   addr: 0x3000BEC
-- name: ArmCannonXPosition
+- name: gArmCannonX
   type: u16
   addr: 0x3000BEE
-- name: PauseScreenFlag
+- name: gPauseScreenFlag
   type: u8
   addr: 0x3000BF0
   enum: PauseScreenFlag
-- name: AreaOfPrevRoom
+- name: gAreaBeforeTransition
   type: u8
   addr: 0x3000BF1
   enum: AreaId
-- name: CurrItemBeingAcquired
+- name: gCurrentItemBeingAcquired
   type: s8
   addr: 0x3000BF2
-- name: FileSelectOptionsCursorIndex
+- name: gOptionsOptionSelected
   type: u8
   addr: 0x3000BF3
-- name: Bg0_Hofs_NonGameplay
+- name: gBg0HOFS_NonGameplay
   type: u16
   addr: 0x3000BF4
-- name: Bg0_Vofs_NonGameplay
+- name: gBg0VOFS_NonGameplay
   type: u16
   addr: 0x3000BF6
-- name: Bg1_Hofs_NonGameplay
+- name: gBg1HOFS_NonGameplay
   type: u16
   addr: 0x3000BF8
-- name: Bg1_Vofs_NonGameplay
+- name: gBg1VOFS_NonGameplay
   type: u16
   addr: 0x3000BFA
-- name: Bg2_Hofs_NonGameplay
+- name: gBg2HOFS_NonGameplay
   type: u16
   addr: 0x3000BFC
-- name: Bg2_Vofs_NonGameplay
+- name: gBg2VOFS_NonGameplay
   type: u16
   addr: 0x3000BFE
-- name: Bg3_Hofs_NonGameplay
+- name: gBg3HOFS_NonGameplay
   type: u16
   addr: 0x3000C00
-- name: Bg3_Vofs_NonGameplay
+- name: gBg3VOFS_NonGameplay
   type: u16
   addr: 0x3000C02
-- name: CurrSineYOffset
+- name: gCurrentOamRotation
   type: u16
   addr: 0x3000C04
-- name: CurrOamDivisor
+- name: gCurrentOamScaling
   type: u16
   addr: 0x3000C06
-- name: LastAreaConnectionVisited
+- name: gLastAreaNameVisited
   type: struct LastAreaConnectionVisited
   addr: 0x3000C08
-- name: CurrMessage
+- name: gCurrentMessage
   type: struct CurrMessage
   addr: 0x3000C0C
-- name: SramCorruptFlag
+- name: gSramCorruptFlag
   type: u8
   cat: bool
   addr: 0x3000C1C
-- name: LoadingFileFlag
+- name: gIsLoadingFile
   type: u8
   cat: bool
   addr: 0x3000C1D
-- name: MostRecentSaveFile
+- name: gMostRecentSaveFile
   type: u8
   addr: 0x3000C1E
-- name: HasSaved
+- name: gHasSaved
   type: u8
   cat: bool
   addr: 0x3000C1F
-- name: SramOperationStage
+- name: gSramOperationStage
   type: u8
   addr: 0x3000C21
-- name: SaveFilesInfo
+- name: gSaveFilesInfo
   type: struct SaveFileInfo
   count: 0x3
   addr: 0x3000C24
-- name: StartingInfo
+- name: gStartingInfo
   type: struct StartingInfo
   addr: 0x3000C6C
-- name: GameMode
+- name: gMainGameMode
   type: u16
   addr: 0x3000C70
   enum: GameMode
-- name: SubGameMode1
+- name: gGameModeSub1
   type: u16
   addr: 0x3000C72
-- name: SubGameMode2
+- name: gGameModeSub2
   type: u8
   addr: 0x3000C74
-- name: SubGameMode3
+- name: gGameModeSub3
   type: u8
   addr: 0x3000C75
-- name: VBlankActiveFlag
+- name: gVblankActive
   type: u8
   addr: 0x3000C76
-- name: FrameCounter8Bit
+- name: gFrameCounter8Bit
   type: u8
   addr: 0x3000C77
-- name: VBlankRequestFlag
+- name: gVBlankRequestFlag
   type: u16
   addr: 0x3000C78
-- name: InterruptCode
+- name: gInterruptCode
   type: u8
   count: 0x200
   addr: 0x3000C7C
-- name: OamData
+- name: gOamData
   type: u16 [0x4]
   count: 0xA0
   addr: 0x3000E7C
-- name: ButtonInput
+- name: gButtonInput
   type: u16
   addr: 0x300137C
   enum: ButtonInput
-- name: ButtonInputCopy
+- name: gPreviousButtonInput
   type: u16
   addr: 0x300137E
   enum: ButtonInput
-- name: ChangedInput
+- name: gChangedInput
   type: u16
   addr: 0x3001380
   enum: ButtonInput
-- name: NextOamSlot
+- name: gNextOamSlot
   type: u8
   addr: 0x3001382
-- name: WrittenToBg2X
+- name: gWrittenToBG2X
   desc: BG2 reference point X-coordinate
   type: u32
   addr: 0x3001394
-- name: WrittenToBg2Y
+- name: gWrittenToBG2Y
   desc: BG2 reference point Y-coordinate
   type: u32
   addr: 0x3001398
-- name: WrittenToMosaic_H
+- name: gWrittenToMOSAIC_H
   desc: Mosaic size
   type: u16
   addr: 0x300139C
-- name: WrittenToMosaic_L
+- name: gWrittenToMOSAIC_L
   desc: Mosaic size
   type: u16
   addr: 0x300139E
-- name: Bg2Scaling
+- name: gBg2Scaling
   type: u16
   addr: 0x30013A0
-- name: Bg2Rotation
+- name: gBg2Rotation
   type: u16
   addr: 0x30013A4
-- name: WrittenToBg2PA
+- name: gWrittenToBG2PA
   desc: BG2 rotation/scaling parameter A
   type: u16
   addr: 0x30013A6
-- name: WrittenToBg2PB
+- name: gWrittenToBG2PB
   desc: BG2 rotation/scaling parameter B
   type: u16
   addr: 0x30013A8
-- name: WrittenToBg2PC
+- name: gWrittenToBG2PC
   desc: BG2 rotation/scaling parameter C
   type: u16
   addr: 0x30013AA
-- name: WrittenToBg2PD
+- name: gWrittenToBG2PD
   desc: BG2 rotation/scaling parameter D
   type: u16
   addr: 0x30013AC
-- name: WrittenToBldy
+- name: gWrittenToBLDY_NonGameplay
   desc: Brightness coefficient
   type: u16
   addr: 0x30013AE
-- name: WrittenToBldalpha_L
+- name: gWrittenToBLDALPHA_L
   desc: Alpha blending coefficients
   type: u16
   addr: 0x30013B0
-- name: WrittenToBldalpha_H
+- name: gWrittenToBLDALPHA_H
   desc: Alpha blending coefficients
   type: u16
   addr: 0x30013B2
-- name: Bg0XPosition
+- name: gBg0XPosition
   type: u16
   addr: 0x30013B4
-- name: Bg0YPosition
+- name: gBg0YPosition
   type: u16
   addr: 0x30013B6
-- name: Bg1XPosition
+- name: gBg1XPosition
   type: u16
   addr: 0x30013B8
-- name: Bg1YPosition
+- name: gBg1YPosition
   type: u16
   addr: 0x30013BA
-- name: Bg2XPosition
+- name: gBg2XPosition
   type: u16
   addr: 0x30013BC
-- name: Bg2YPosition
+- name: gBg2YPosition
   type: u16
   addr: 0x30013BE
-- name: Bg3XPosition
+- name: gBg3XPosition
   type: u16
   addr: 0x30013C0
-- name: Bg3YPosition
+- name: gBg3YPosition
   type: u16
   addr: 0x30013C2
-- name: DemoState
+- name: gDemoState
   type: u8
   addr: 0x30013D2
   enum: DemoState
-- name: SamusData
+- name: gSamusData
   type: struct SamusData
   addr: 0x30013D4
-- name: SamusDataCopy
+- name: gSamusDataCopy
   desc: Samus data copy when changing pose
   type: struct SamusData
   addr: 0x30013F4
-- name: SamusWeaponInfo
+- name: gSamusWeaponInfo
   type: struct SamusWeaponInfo
   addr: 0x3001414
-- name: SamusEcho
+- name: gSamusEcho
   type: struct SamusEcho
   addr: 0x300141C
-- name: ScrewAttackSpeedBoosterAnim
+- name: gScrewSpeedAnimation
   type: struct ScrewAttackSpeedBoosterAnim
   addr: 0x3001528
-- name: Equipment
+- name: gEquipment
   type: struct Equipment
   addr: 0x3001530
-- name: SamusHazardDamage
+- name: gSamusHazardDamage
   type: struct SamusHazardDamage
   addr: 0x3001544
-- name: SamusEnvironmentEffects
+- name: gSamusEnvironmentalEffects
   type: struct SamusEnvironmentEffect
   count: 0x5
   addr: 0x300154C
-- name: SamusPhysics
+- name: gSamusPhysics
   type: struct SamusPhysics
   addr: 0x3001588
-- name: PrevXPosition
+- name: gPreviousXPosition
   type: u16
   addr: 0x3001600
-- name: PrevYPosition
+- name: gPreviousYPosition
   type: u16
   addr: 0x3001602
-- name: EndingFlags
+- name: gEndingFlags
   type: u8
   addr: 0x3001604
   enum: EndingFlags
-- name: PreventMovementTimer
+- name: gPreventMovementTimer
   type: u16
   addr: 0x3001606
-- name: DisableDrawingSamusAndScrollingFlag
+- name: gDisableDrawingSamusAndScrolling
   type: u8
   addr: 0x3001608
-- name: TimeAttackData
+- name: gTimeAttackData
   type: struct TimeAttackData
   addr: 0x300160C
-- name: ButtonAssignments
+- name: gButtonAssignments
   type: struct ButtonAssignments
   addr: 0x300168C
-- name: TimeAttackBestTimePassword
+- name: gTimeAttackRecord
   type: u8
   count: 0x14
   addr: 0x3001694
@@ -784,355 +784,355 @@
 - name: TimeAttackBest100pInGameTime
   type: struct InGameTime
   addr: 0x30016C0
-- name: NonGameplayRam
+- name: gNonGameplayRAM
   desc: Shared portion of RAM used for title, file select, pause screen, game over, and erase SRAM
   type: u8
   count: 0x628
   addr: 0x30016C4
-- name: VBlankCodePtr
+- name: gVBlankCallback
   type: void *
   cat: thumb
   addr: 0x3001CEC
-- name: HBlankCodePtr
+- name: gHBlankCallback
   type: void *
   cat: thumb
   addr: 0x3001CF0
-- name: VCountCodePtr
+- name: gVCountCallback
   type: void *
   cat: thumb
   addr: 0x3001CF4
-- name: SerialCommunicationCodePtr
+- name: gSerialCommunicationCallback
   type: void *
   cat: thumb
   addr: 0x3001CF8
-- name: Timer3OverflowCodePtr
+- name: gTimer3Callback
   type: void *
   cat: thumb
   addr: 0x3001CFC
-- name: MusicInfo
+- name: gMusicInfo
   type: struct MusicInfo
   addr: 0x3001D00
-- name: PsgSounds
+- name: gPsgSounds
   type: struct PsgSoundData
   addr: 0x3003794
-- name: SoundChannelBackup
+- name: gSoundChannelBackup
   type: struct SoundChannelBackup
   count: 0x7
   addr: 0x3003834
-- name: SoundChannelTrack2Backup
+- name: gSoundChannelTrack2Backup
   type: struct SoundChannelBackup
   addr: 0x30039BC
-- name: SoundQueue
+- name: gSoundQueue
   type: struct QueuedSound
   count: 0x9
   addr: 0x3003B44
-- name: SoundCodeAPtr
+- name: gSoundCodeAPointer
   type: void *
   cat: arm
   addr: 0x3003B8C
-- name: SoundCodeARam
+- name: gSoundCodeA
   type: u8
   count: 0x658
   addr: 0x3003B90
-- name: SoundCodeBPtr
+- name: gSoundCodeBPointer
   type: void *
   cat: arm
   addr: 0x30041E8
-- name: SoundCodeBRam
+- name: gSoundCodeB
   type: u8
   count: 0xA4
   addr: 0x30041EC
-- name: SoundCodeCPtr
+- name: gSoundCodeCPointer
   type: void *
   cat: arm
   addr: 0x3004290
-- name: SoundCodeCRam
+- name: gSoundCodeC
   type: u8
   count: 0xAC
   addr: 0x3004294
-- name: Track0Variables
+- name: gTrack0Variables
   type: struct TrackVariables
   count: 0xC
   addr: 0x3004348
-- name: Track1Variables
+- name: gTrack1Variables
   type: struct TrackVariables
   count: 0xA
   addr: 0x3004708
-- name: Track2Variables
+- name: gTrack2Variables
   type: struct TrackVariables
   count: 0x2
   addr: 0x3004A28
-- name: Track3Variables
+- name: gTrack3Variables
   type: struct TrackVariables
   count: 0x2
   addr: 0x3004AC8
-- name: Track4Variables
+- name: gTrack4Variables
   type: struct TrackVariables
   count: 0x2
   addr: 0x3004B68
-- name: Track5Variables
+- name: gTrack5Variables
   type: struct TrackVariables
   count: 0x2
   addr: 0x3004C08
-- name: Track6Variables
+- name: gTrack6Variables
   type: struct TrackVariables
   count: 0x3
   addr: 0x3004CA8
-- name: Track7Variables
+- name: gTrack7Variables
   type: struct TrackVariables
   count: 0x1
   addr: 0x3004D98
-- name: Track8Variables
+- name: gTrack8Variables
   type: struct TrackVariables
   count: 0x6
   addr: 0x3004DE8
-- name: DemoInputData
+- name: gDemoInputData
   type: u16
   count: 0x100
   addr: 0x3004FCA
   enum: ButtonInput
-- name: DemoInputDurations
+- name: gDemoInputDuration
   type: u16
   count: 0x100
   addr: 0x30051CA
-- name: DemoInputNumber
+- name: gDemoInputNumber
   type: u16
   addr: 0x30053CA
-- name: DemoInputTimer
+- name: gDemoInputTimer
   type: u16
   addr: 0x30053CC
-- name: DemoButtonInput
+- name: gDemoInput
   type: u16
   addr: 0x30053CE
   enum: ButtonInput
-- name: NotPressingUp
+- name: gNotPressingUp
   type: u8
   cat: bool
   addr: 0x30053D0
-- name: SamusPalette
+- name: gSamusPalette
   type: u16
   count: 0x20
   cat: palette
   addr: 0x30053E0
-- name: SamusPaletteSize
+- name: gSamusPaletteSize
   type: u16
   addr: 0x3005440
-- name: WrittenToWIN1H
+- name: gWrittenToWIN1H
   type: u16
   addr: 0x3005448
-- name: WrittenToWIN1V
+- name: gWrittenToWIN1V
   type: u16
   addr: 0x300544A
-- name: WrittenToBldcnt
+- name: gWrittenToBLDCNT
   type: u16
   addr: 0x300544C
-- name: TilemapAndClipdataPtrs
+- name: gTilemapAndClipPointers
   type: struct TilemapAndClipdataPtrs
   addr: 0x3005450
-- name: HatchData
+- name: gHatchData
   type: struct HatchData
   count: 0x10
   addr: 0x300545C
-- name: NumValidHatchesInCurrRoom
+- name: gNumberOfValidHatchesInRoom
   type: u8
   addr: 0x30054DC
-- name: DoorPositionStart
+- name: gDoorPositionStart
   type: struct DoorPositionStart
   addr: 0x30054E0
-- name: HatchLockingData
+- name: gHatchesState
   type: struct HatchLockingData
   addr: 0x30054E4
-- name: Bg3Movement
+- name: gBg3Movement
   type: struct Bg3Movement
   addr: 0x30054EC
-- name: Bg0Movement
+- name: gBg0Movement
   type: struct Bg0Movement
   addr: 0x30054F4
-- name: TilesetTransparentColor
+- name: gTilesetTransparentColor
   type: u16
   addr: 0x30054FC
-- name: UnusedStruct_3005504
+- name: gUnusedStruct_3005504
   type: struct Unused_3005504
   addr: 0x3005504
-- name: DoorTransitionYPositionOffset
+- name: gSamusDoorPositionOffset
   type: u16
   addr: 0x300550C
-- name: DestinationRoom
+- name: gDestinationRoom
   type: u8
   addr: 0x300550E
-- name: Bg3CntDuringDoorTransition
+- name: gBg3CntDuringDoorTransition
   type: u16
   addr: 0x3005510
-- name: Bg1CntDuringDoorTransition
+- name: gBg1CntDuringDoorTransition
   type: u16
   addr: 0x3005512
-- name: ScreenYOffset
+- name: gScreenYOffset
   type: u8
   addr: 0x3005515
-- name: ScreenXOffset
+- name: gScreenXOffset
   type: u16
   addr: 0x3005516
-- name: RainSoundEffect
+- name: gRainSoundEffect
   type: u16
   addr: 0x3005518
-- name: WaterMovement
+- name: gWaterMovement
   type: struct WaterMovement
   addr: 0x300551C
-- name: ColorFading
+- name: gColorFading
   type: struct ColorFading
   addr: 0x3005520
-- name: BreakingAndReformingBlocks
+- name: gBrokenBlocks
   type: struct BreakingOrReformingBlock
   count: 0x30
   addr: 0x3005528
-- name: LastTankCollected
+- name: gLastTankCollected
   type: struct LastTankCollected
   addr: 0x30056A8
-- name: BombChainData
+- name: gBombChains
   type: struct BombChainData
   count: 0x4
   addr: 0x30056AC
-- name: ActiveBombChainTypes
+- name: gActiveBombChainTypes
   type: u8
   cat: flags
   addr: 0x30056BC
-- name: DefaultTransparency
+- name: gDefaultTransparency
   type: struct DefaultTransparency
   addr: 0x30056C4
-- name: BldalphaRelatedData1
+- name: gBldalphaData1
   type: struct BldalphaData
   addr: 0x30056CC
-- name: BldalphaRelatedData2
+- name: gBldalphaData2
   type: struct BldalphaData
   addr: 0x30056D4
-- name: BldyData1
+- name: gBLDYData1
   type: struct BldyData
   addr: 0x30056DC
-- name: BldyData2
+- name: gBLDYData2
   type: struct BldyData
   addr: 0x30056E4
-- name: AnimatedPaletteTiming
+- name: gAnimatedPaletteTiming
   type: struct AnimatedPaletteTiming
   addr: 0x30056EC
-- name: HatchFlashingAnim
+- name: gHatchFlashingAnimation
   type: struct HatchFlashingAnim
   addr: 0x30056F0
-- name: AnimatedPaletteAndTilesetNum
+- name: gAnimatedGraphicsEntry
   type: struct AnimatedPaletteAndTilesetNum
   addr: 0x30056F4
-- name: CurrSpecialBgEffect
+- name: gBackgroundEffect
   type: struct SpecialBgEffect
   addr: 0x30056F8
-- name: ScrollCounter
+- name: gScrollCounter
   type: u8
   addr: 0x3005700
-- name: ClipdataCodePtr
+- name: gClipdataCodePointer
   type: void *
   addr: 0x3005704
-- name: CurrRoomScrollsDataPtr
+- name: gCurrentRoomScrollDataPointer
   type: u8 *
   addr: 0x3005708
-- name: ScrollingVelocityCaps
+- name: gScrollingVelocityCaps
   type: struct CameraScrollVelocityCaps
   addr: 0x3005714
-- name: HazeLoops1
+- name: gHazeLoops
   type: struct HazeLoops
   addr: 0x300571C
 - name: HazeLoops2
   type: struct HazeLoops
   addr: 0x3005724
-- name: HazeProcessCodePtr
+- name: gHazeProcessCodePointer
   type: void *
   cat: thumb
   addr: 0x300572C
-- name: AnimatedTilesetData
+- name: gAnimatedGraphicsData
   type: u8
   count: 0xC0
   addr: 0x3005730
-- name: TankAnimations
+- name: gTankAnimations
   type: struct TankAnim
   count: 0x4
   addr: 0x30057F0
-- name: MaintainedInputData
+- name: gMaintainedInputData
   type: struct MaintainedInputData
   addr: 0x3005800
-- name: OamXOffset_NonGameplay
+- name: gOamXOffset_NonGameplay
   type: s8
   addr: 0x3005806
-- name: OamYOffset_NonGameplay
+- name: gOamYOffset_NonGameplay
   type: s8
   addr: 0x3005807
-- name: IoTransferInfo
+- name: gIoTransferInfo
   type: struct IoTransferInfo
   addr: 0x3005808
-- name: MultiBootParamData
+- name: gMultiBootParamData
   type: struct MultiBootData
   addr: 0x3005820
-- name: DataSentPtr
+- name: gDataSentPointer
   type: u8 *
   addr: 0x300586C
-- name: DataSentSize
+- name: gDataSentSize
   type: u32
   addr: 0x3005870
-- name: Ime_Backup
+- name: gRegIme_Backup
   type: u16
   addr: 0x30058B2
-- name: Ie_Backup
+- name: gRegIe_Backup
   type: u16
   addr: 0x30058B4
-- name: Tm3cnt_H_Backup
+- name: gRegTm3Cnt_H_Backup
   type: u16
   addr: 0x30058B6
-- name: Siocnt_Backup
+- name: gRegSiocnt_Backup
   type: u16
   addr: 0x30058B8
-- name: Rcnt_Backup
+- name: gRegRcnt_Backup
   type: u16
   addr: 0x30058BA
-- name: ErrorFlags
+- name: gErrorFlag
   type: u32
   addr: 0x30058BC
   enum: ErrorFlags
-- name: Track8
+- name: gTrackData8
   type: u8
   count: 0x40
   addr: 0x3005910
-- name: Track3
+- name: gTrackData3
   type: u8
   count: 0x40
   addr: 0x3005950
-- name: Track1
+- name: gTrackData1
   type: u8
   count: 0x40
   addr: 0x3005990
-- name: Track6
+- name: gTrackData6
   type: u8
   count: 0x40
   addr: 0x30059D0
-- name: Track4
+- name: gTrackData4
   type: u8
   count: 0x40
   addr: 0x3005A10
-- name: Track0
+- name: gTrackData0
   type: u8
   count: 0x40
   addr: 0x3005A50
-- name: Track7
+- name: gTrackData7
   type: u8
   count: 0x40
   addr: 0x3005A90
-- name: Track2
+- name: gTrackData2
   type: u8
   count: 0x40
   addr: 0x3005AD0
-- name: Track5
+- name: gTrackData5
   type: u8
   count: 0x40
   addr: 0x3005B10
-- name: CableLinkInfo
+- name: gCableLinkInfo
   type: struct CableLinkInfo
   addr: 0x3005B60
-- name: InterruptCodePtr
+- name: intr_vector
   type: void *
   cat: arm
   addr: 0x3007FFC

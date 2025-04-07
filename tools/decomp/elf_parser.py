@@ -141,6 +141,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     entries = parse_elf_file(args.map_path)
     entry_names = get_entry_names(entries)
-    for k, v in entry_names.items():
-        print(f"{k:X}", v)
     update_info_files(args.game, args.region, entry_names)
