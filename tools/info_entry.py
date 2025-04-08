@@ -164,6 +164,12 @@ class VarEntry(InfoEntry):
     def type_str(self) -> str:
         return self.type.decl_str()
 
+    def full_decl(self) -> str:
+        type = self.type
+        if isinstance(self.arr_count, int):
+            type = ArrayType(type, self.arr_count)
+        return type.decl_str(self.name)
+
     def is_ptr(self) -> bool:
         type = self.type
         while isinstance(type, OuterType):

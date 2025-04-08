@@ -202,10 +202,10 @@
 - name: gSlowScrollingTimer
   type: u16
   addr: 0x300003E
-- name: DisableMusicFlag
+- name: gDisableMusic
   type: u8
   addr: 0x3000040
-- name: DisableCutscenes_Unused
+- name: gDisableCutscenes_Unused
   type: u8
   addr: 0x3000041
 - name: gSkipDoorTransition
@@ -593,8 +593,8 @@
   type: struct SaveFileInfo
   count: 0x3
   addr: 0x3000C24
-- name: gStartingInfo
-  type: struct StartingInfo
+- name: gSectionInfo
+  type: struct SectionInfo
   addr: 0x3000C6C
 - name: gMainGameMode
   type: u16

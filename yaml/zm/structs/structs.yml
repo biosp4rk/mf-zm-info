@@ -3489,6 +3489,23 @@
   - name: BeamReleasePaletteTimer
     type: u8
     offset: 0x6
+- name: SaveBootDebug
+  size: 0x10
+  vars:
+  - name: ZeroSaveText
+    type: u8
+    cat: ascii
+    offset: 0x0
+  - name: unk_8
+    type: u8
+    count: 0x4
+    offset: 0x8
+  - name: DebugFlag
+    type: u8
+    offset: 0xC
+  - name: SectionIndex
+    type: u8
+    offset: 0xD
 - name: SaveFileInfo
   size: 0x18
   vars:
@@ -3646,6 +3663,21 @@
   - name: CurrAnim
     type: u8
     offset: 0x2
+- name: SectionInfo
+  size: 0x4
+  vars:
+  - name: SectionIndex
+    type: u8
+    offset: 0x0
+  - name: StarIndex
+    type: u8
+    offset: 0x1
+  - name: unk_02
+    type: u8
+    offset: 0x2
+  - name: OnMapScreen
+    type: u8
+    offset: 0x3
 - name: SoundChannel
   size: 0x34
   vars:
@@ -4091,9 +4123,8 @@
   - name: DemoRam
     type: struct DemoRam
     offset: 0x7800
-  - name: unk_7F70
-    type: u8
-    count: 0x10
+  - name: SaveBootDebug
+    type: SaveBootDebug
     offset: 0x7F70
 - name: StartingHealthAmmo
   size: 0x4
@@ -4108,21 +4139,6 @@
     type: u8
     offset: 0x2
   - name: PowerBombs
-    type: u8
-    offset: 0x3
-- name: StartingInfo
-  size: 0x4
-  vars:
-  - name: StartingArea
-    type: u8
-    offset: 0x0
-  - name: unk_1
-    type: u8
-    offset: 0x1
-  - name: unk_02
-    type: u8
-    offset: 0x2
-  - name: unk_03
     type: u8
     offset: 0x3
 - name: StatusScreenData

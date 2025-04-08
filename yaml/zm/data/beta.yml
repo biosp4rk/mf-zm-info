@@ -1,121 +1,711 @@
-- name: BootDebugBgPal
+- name: sEasyHardEventActions
+  type: u8
+  count: 0x6
+  addr:
+    B: 0x4145FA
+- name: sBootDebugBgPal
   type: u16
   count: 0x80
   cat: palette
   addr:
     B: 0x417F38
-- name: BootDebugObjPal
+- name: sBootDebugObjPal
   type: u16
   count: 0x30
   cat: palette
   addr:
     B: 0x418038
-- name: BootDebugObjGfx
+- name: sBootDebugObjGfx
   type: u32
   count: 0xDE
   cat: gfx
   comp: lz
   addr:
     B: 0x418098
-- name: BootDebugBgGfx
+- name: sBootDebugBgGfx
   type: u32
   count: 0x303
   cat: gfx
   comp: lz
   addr:
     B: 0x418638
-- name: BootDebugMenuNamesText
+- name: sBootDebug_CutsceneB_EscapeShip_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419244
+- name: sBootDebug_CutsceneB_MechaRidley_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x41924C
+- name: sBootDebug_CutsceneB_PoweredSuit_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x419258
+- name: sBootDebug_CutsceneB_ChozoMural_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419264
+- name: sBootDebug_CutsceneB_Metroids_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41926C
+- name: sBootDebug_CutsceneB_RidleyFight_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419274
+- name: sBootDebug_CutsceneB_MotherShipLanding_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41927C
+- name: sBootDebug_CutsceneB_MotherShipReturning_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x419284
+- name: sBootDebug_CutsceneB_BossStatues_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419290
+- name: sBootDebug_CutsceneB_KraidFight_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419298
+- name: sBootDebug_CutsceneB_MotherBrain_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192A0
+- name: sBootDebug_CutsceneB_ShotDownMonologue2_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192AC
+- name: sBootDebug_CutsceneB_ShotDownMonologue1_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192B8
+- name: sBootDebug_CutsceneB_StartMonologue_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192C4
+- name: sBootDebug_Cutscene_Blank_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192D0
+- name: sBootDebug_CutsceneA_ShotDown_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4192DC
+- name: sBootDebugMenuNames_DebugConfig_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4192E4
+- name: sBootDebugMenuNames_Section_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4192F0
+- name: sBootDebugMenuNames_Mode_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4192F8
+- name: sBootDebugMenuNames_Save_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4192FC
+- name: sBootDebugMenuNames_Samus_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419300
+- name: sBootDebugMenuNames_Sound_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419308
+- name: sBootDebugMenuNames_Demo_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419310
+- name: sBootDebugMenuNames_Etc_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419314
+- name: sBootDebugMenuNames_Boot_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419318
+- name: sBootDebugMenuNames_Erase_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41931C
+- name: sBootDebugModeMenu_Language_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x419324
+- name: sBootDebugModeMenu_Difficulty_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x419330
+- name: sBootDebugLanguage_Japanese_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41933C
+- name: sBootDebugLanguage_Hiragana_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419344
+- name: sBootDebugLanguage_English_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41934C
+- name: sBootDebugLanguage_German_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419354
+- name: sBootDebugLanguage_French_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41935C
+- name: sBootDebugLanguage_Italian_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419364
+- name: sBootDebugLanguage_Spanish_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41936C
+- name: sBootDebugDifficulty_Easy_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419374
+- name: sBootDebugDifficulty_Normal_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41937C
+- name: sBootDebugDifficulty_Hard_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419384
+- name: sBootDebugSectionMenu_Brinstar_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41938C
+- name: sBootDebugSectionMenu_Kraid_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419394
+- name: sBootDebugSectionMenu_Norfair_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41939C
+- name: sBootDebugSectionMenu_Ridley_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193A4
+- name: sBootDebugSectionMenu_Tourian_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193AC
+- name: sBootDebugSectionMenu_Crateria_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193B4
+- name: sBootDebugSectionMenu_Chozodia_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193BC
+- name: sBootDebugSectionMenu_Blank_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193C4
+- name: sBootDebugSectionMenu_Test1_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193CC
+- name: sBootDebugSectionMenu_Test2_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193D4
+- name: sBootDebugSectionMenu_Test3_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193DC
+- name: sBootDebugSectionMenu_Title_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193E4
+- name: sBootDebugSectionMenu_SaveA_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193EC
+- name: sBootDebugSectionMenu_SaveB_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193F4
+- name: sBootDebugSectionMenu_SaveC_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4193FC
+- name: sBootDebugSectionMenu_Select_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419404
+- name: sBootDebugSamusMenu_GetMap_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41940C
+- name: sBootDebugSamusMenu_ArmWeapon_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419414
+- name: sBootDebugSamusMenu_DiagonalAim_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x41941C
+- name: sBootDebugSamusMenu_Pause_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419424
+- name: sBootDebugSamusMenu_SwapMissiles_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x41942C
+- name: sBootDebug_LButton_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419430
+- name: sBootDebug_RButton_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419438
+- name: sBootDebug_Start_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419440
+- name: sBootDebug_Select_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419448
+- name: sBootDebugSaveMenu_GalleryImages_Text
+  type: u8
+  count: 0x14
+  cat: sjis
+  addr:
+    B: 0x419450
+- name: sBootDebugSaveMenu_DifficultiesCleared_Text
+  type: u8
+  count: 0x14
+  cat: sjis
+  addr:
+    B: 0x419464
+- name: sBootDebugSaveMenu_LinkedWithFusion_Text
+  type: u8
+  count: 0x10
+  cat: sjis
+  addr:
+    B: 0x419478
+- name: sBootDebugSaveMenu_Id_Text
+  type: u8
+  count: 0x14
+  cat: sjis
+  addr:
+    B: 0x419488
+- name: sBootDebugSaveMenu_Save_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x41949C
+- name: sBootDebugSoundMenu_Bgm_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4194A0
+- name: sBootDebugSoundMenu_Test_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4194A4
+- name: sBootDebugSoundMenu_Mono_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4194A8
+- name: sBootDebugSoundMenu_Stereo_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x4194AC
+- name: sBootDebugDemoMenu_CutsceneSwitch_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4194B0
+- name: sBootDebugDemoMenu_CutsceneA_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4194B8
+- name: sBootDebugDemoMenu_CutsceneB_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4194C0
+- name: sBootDebugDemoMenu_DemoMode_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4194C8
+- name: sBootDebugDemoMenu_DemoNum_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4194D4
+- name: sBootDebugEtcMenu_Ending_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4194E0
+- name: sBootDebugEtcMenu_StaffRoll_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4194E8
+- name: sBootDebugEtcMenu_MainEndObj_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x4194F4
+- name: sBootDebugEtcMenu_DoorTransition_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x419500
+- name: sBootDebugEraseMenu_EraseSram_Text
+  type: u8
+  count: 0xC
+  cat: sjis
+  addr:
+    B: 0x419508
+- name: sBootDebug_On_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419514
+- name: sBootDebug_Off_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419518
+- name: sBootDebugEraseMenu_Yes_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x41951C
+- name: sBootDebugEraseMenu_No_Text
+  type: u8
+  count: 0x4
+  cat: sjis
+  addr:
+    B: 0x419520
+- name: sBootDebugMenuNamesText
   type: struct BootDebugText
   count: 0xA
   addr:
     B: 0x419524
-- name: BootDebugSectionMenuText
+- name: sBootDebugSectionMenuText
   type: struct BootDebugText
   count: 0x10
   addr:
     B: 0x41959C
-- name: BootDebugModeMenuText
+- name: sBootDebugModeMenuText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x41965C
-- name: BootDebugLanguageText
+- name: sBootDebugLanguageText
   type: struct BootDebugText
   count: 0x7
   addr:
     B: 0x419674
-- name: BootDebugDifficultyText
+- name: sBootDebugDifficultyText
   type: struct BootDebugText
   count: 0x3
   addr:
     B: 0x4196C8
-- name: BootDebugSaveMenuText
+- name: sBootDebugSaveMenuText
   type: struct BootDebugText
   count: 0x5
   addr:
     B: 0x4196EC
-- name: BootDebugSamusMenuText
+- name: sBootDebugSamusMenuText
   type: struct BootDebugText
   count: 0x5
   addr:
     B: 0x419728
-- name: BootDebugArmWeaponButtonText
+- name: sBootDebugArmWeaponButtonText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x419764
-- name: BootDebugDiagonalAimButtonText
+- name: sBootDebugDiagonalAimButtonText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x41977C
-- name: BootDebugPauseButtonText
+- name: sBootDebugPauseButtonText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x419794
-- name: BootDebugSwapMissilesButtonText
+- name: sBootDebugSwapMissilesButtonText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x4197AC
-- name: BootDebugSoundMenuText
+- name: sBootDebugSoundMenuText
   type: struct BootDebugText
   count: 0x4
   addr:
     B: 0x4197C4
-- name: BootDebugBgmOnOffText
+- name: sBootDebugBgmOnOffText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x4197F4
-- name: BootDebugDemoMenuText
+- name: sBootDebugDemoMenuText
   type: struct BootDebugText
   count: 0x5
   addr:
     B: 0x41980C
-- name: BootDebugDemoOnOffText
+- name: sBootDebugDemoOnOffText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x419848
-- name: BootDebugEtcMenuText
+- name: sBootDebugEtcMenuText
   type: struct BootDebugText
   count: 0x4
   addr:
     B: 0x419860
-- name: BootDebugMainEndObjOnOffText
+- name: sBootDebugMainEndObjOnOffText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x419890
-- name: BootDebugDoorTransitionOnOffText
+- name: sBootDebugDoorTransitionOnOffText
   type: struct BootDebugText
   count: 0x2
   addr:
     B: 0x4198A8
-- name: BootDebugEraseMenuText
+- name: sBootDebugEraseMenuText
   type: struct BootDebugText
   count: 0x3
   addr:
     B: 0x4198C0
+- name: sBootDebug_DemoState_RomRun_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4198E4
+- name: sBootDebug_DemoState_RamRun_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4198EC
+- name: sBootDebug_DemoState_GetKey_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4198F4
+- name: sBootDebug_DemoState_Free_Text
+  type: u8
+  count: 0x8
+  cat: sjis
+  addr:
+    B: 0x4198FC
+- name: sBootDebug_DemoState_Blank_Text
+  type: u8
+  count: 0x7
+  cat: sjis
+  addr:
+    B: 0x419904
+- name: sBootDebugSectionCursorMovement
+  type: u8 [0x4]
+  count: 0xF
+  addr:
+    B: 0x41990B
+- name: sBootDebugOam
+  type: struct OamArray
+  count: 0x6
+  addr:
+    B: 0x419948
+- name: sZeroSaveText
+  type: u8
+  count: 0x8
+  cat: ascii
+  addr:
+    B: 0x419978
+- name: sBootDebugCutsceneBTextPointers
+  type: u8 *
+  count: 0xF
+  cat: sjis
+  addr:
+    B: 0x76B528
+- name: sBootDebugCutsceneATextPointers
+  type: u8 *
+  count: 0x2
+  cat: sjis
+  addr:
+    B: 0x76B564
+- name: sBootDebugDemoStateTextPointers
+  type: u8 *
+  count: 0x5
+  cat: sjis
+  addr:
+    B: 0x76B56C
+- name: sBootDebugTextToggleColors
+  type: u8 [0x2]
+  count: 0x2
+  addr:
+    B: 0x76B580

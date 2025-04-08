@@ -1,3 +1,33 @@
+- name: CutsceneCheckSkipStage
+  addr:
+    B: 0x629E4
+  size:
+    B: 0x54
+  mode: thumb
+  params:
+  - name: param_0
+    type: u8
+  return: null
+- name: MapScreenDrawRoomInfo
+  addr:
+    B: 0x6C9F4
+  size:
+    B: 0x3C
+  mode: thumb
+  params: null
+  return: null
+- name: MapScreenDrawNumber
+  addr:
+    B: 0x6CA30
+  size:
+    B: 0x5C
+  mode: thumb
+  params:
+  - name: Value
+    type: u8
+  - name: Destination
+    type: void *
+  return: null
 - name: PauseDebugUpdateMapOverlay
   addr:
     B: 0x7081C
@@ -166,7 +196,31 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebugWriteBootDebugRam
+- name: BootDebugUpdateNonCursorOam
+  addr:
+    B: 0x78618
+  size:
+    B: 0x9C
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugUpdateMapScreenPosition
+  addr:
+    B: 0x786B4
+  size:
+    B: 0x168
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugReadSram
+  addr:
+    B: 0x7881C
+  size:
+    B: 0x74
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugWriteSram
   addr:
     B: 0x78890
   size:
@@ -220,7 +274,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SECTION_Subroutine
+- name: BootDebugSectionSubroutine
   addr:
     B: 0x793DC
   size:
@@ -228,7 +282,23 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_MODE_Subroutine
+- name: BootDebugSectionMapRoomOrDoorUpdated
+  addr:
+    B: 0x795B4
+  size:
+    B: 0x13C
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugSectionMapDrawRoomAndDoorIds
+  addr:
+    B: 0x796F0
+  size:
+    B: 0x144
+  mode: thumb
+  params: null
+  return: null
+- name: BootDebugModeSubroutine
   addr:
     B: 0x79834
   size:
@@ -236,7 +306,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SAVE_Subroutine
+- name: BootDebugSaveSubroutine
   addr:
     B: 0x79998
   size:
@@ -244,7 +314,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SAVE_UpdateText
+- name: BootDebugSaveUpdateText
   addr:
     B: 0x79B4C
   size:
@@ -252,7 +322,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SAVE_SetSaveTextColor
+- name: BootDebugSaveSetSaveTextColor
   addr:
     B: 0x79D0C
   size:
@@ -260,7 +330,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SAMUS_Subroutine
+- name: BootDebugSamusSubroutine
   addr:
     B: 0x79D64
   size:
@@ -268,7 +338,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_Sound_Subroutine
+- name: BootDebugSoundSubroutine
   addr:
     B: 0x7A024
   size:
@@ -284,7 +354,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_DEMO_Subroutine
+- name: BootDebugDemoSubroutine
   addr:
     B: 0x7A210
   size:
@@ -292,7 +362,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_etc_Subroutine
+- name: BootDebugEtcSubroutine
   addr:
     B: 0x7A404
   size:
@@ -324,7 +394,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SECTION_DrawStar
+- name: BootDebugSectionDrawStar
   addr:
     B: 0x7A85C
   size:
@@ -332,7 +402,7 @@
   mode: thumb
   params: null
   return: null
-- name: BootDebug_SECTION_SetFilesColor
+- name: BootDebugSectionSetFilesColor
   addr:
     B: 0x7A8EC
   size:

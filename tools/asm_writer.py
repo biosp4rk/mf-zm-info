@@ -217,7 +217,7 @@ class AsmWriter:
         elif instruct.format == ThumbForm.PushPop:
             args.append(self._rlist_str(instruct))
         elif instruct.format == ThumbForm.LdStM:
-            args.append(f"[r{instruct.rd}]!")
+            args.append(f"r{instruct.rd}!")
             args.append(self._rlist_str(instruct))
         elif (instruct.format == ThumbForm.CondB or
             instruct.format == ThumbForm.UncondB):
