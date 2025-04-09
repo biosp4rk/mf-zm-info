@@ -4,7 +4,7 @@ from enum import Enum, auto
 
 import argparse_utils as apu
 from constants import *
-from game_info import GameInfo, InfoSource
+from game_info import GameInfo
 from info_entry import CodeMode
 from rom import Rom
 from symbols import Symbols
@@ -250,6 +250,7 @@ if __name__ == "__main__":
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-n", "--name", type=str)
+    parser.add_argument("-d", "--decomp", action="store_true")
     parser.add_argument("-s", "--symbols", action="store_true")
     parser.add_argument("-c", "--addr_comments", action="store_true")
 
@@ -257,7 +258,7 @@ if __name__ == "__main__":
     rom = apu.get_rom(args.rom_path)
     
     # Load symbols
-    info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
+    info = GameInfo(rom.game, rom.region)
     syms = Symbols(info)
 
     # Get address
@@ -278,5 +279,6 @@ if __name__ == "__main__":
     # Print function
     func = Function(rom, addr, syms)
     from asm_writer import AsmWriter, AsmFormat
-    writer = AsmWriter.create(rom, syms, func.branches, AsmFormat.DECOMP)
+    asm_format = AsmFormat.DECOMP if args.decomp else AsmFormat.DEFAULT
+    writer = AsmWriter.create(rom, syms, func.branches, asm_format)
     print(writer.function_str(func, args.symbols, args.addr_comments))
