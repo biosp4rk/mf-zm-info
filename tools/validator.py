@@ -196,7 +196,7 @@ class Validator(object):
     def check_type(self, entry: VarEntry) -> bool:
         self.entry_loc.field_name = K_TYPE
         # Check struct
-        if (entry.data_type() == DataType.STRUCT and
+        if (entry.is_struct() and
             entry.struct_name() not in self.structs):
             self.add_error("Invalid type")
             return False
@@ -235,7 +235,7 @@ class Validator(object):
                 self.add_error("offsets should be in ascending order")
             prev = ve.offset
 
-    def check_params(self, params: list[VarEntry]):
+    def check_params(self, params: list[NamedVarEntry]):
         self.entry_loc.field_name = K_PARAMS
         if params is not None:
             for param in params:

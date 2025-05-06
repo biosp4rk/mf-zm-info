@@ -5,7 +5,7 @@ import re
 import argparse_utils as apu
 from function import all_functions
 from game_info import GameInfo, InfoSource
-from info_entry import VarEntry
+from info_entry import NamedVarEntry
 from rom import Rom, ROM_OFFSET
 
 
@@ -79,7 +79,7 @@ class FindPtrData(object):
             print(f"{addr:X}: {names}")
 
     def check_entry(self,
-        entry: VarEntry,
+        entry: NamedVarEntry,
         base_addr: int = None,
         base_name: str = None
     ):

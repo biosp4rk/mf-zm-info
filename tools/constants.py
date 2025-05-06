@@ -10,6 +10,8 @@ MAP_DATA = "data"
 MAP_ENUMS = "enums"
 MAP_RAM = "ram"
 MAP_STRUCTS = "structs"
+MAP_UNIONS = "unions"
+# TODO: Add MAP_UNIONS
 MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS)
 
 # Game names
@@ -36,6 +38,7 @@ K_COMP = "comp"
 K_COUNT = "count"
 K_DESC = "desc"
 K_ENUM = "enum"
+K_LOC = "loc"
 K_MODE = "mode"
 K_NAME = "name"
 K_OFFSET = "offset"

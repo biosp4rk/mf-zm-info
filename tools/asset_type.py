@@ -7,31 +7,32 @@ import re
 # -------- AST --------
 
 
-class DataType(Enum):
+class TypeSpecKind(Enum):
 
-    VOID = auto()
-    U8 = auto()
-    S8 = auto()
-    U16 = auto()
-    S16 = auto()
-    U32 = auto()
-    S32 = auto()
+    BUILT_IN = auto()
+    TYPEDEF = auto()
     ENUM = auto()
     STRUCT = auto()
     UNION = auto()
 
     def is_tag(self) -> bool:
         return (
-            self == DataType.ENUM or
-            self == DataType.STRUCT or
-            self == DataType.UNION
+            self == TypeSpecKind.ENUM or
+            self == TypeSpecKind.STRUCT or
+            self == TypeSpecKind.UNION
         )
+
+
+class TypeQual(Enum):
+
+    CONST = auto()
+    VOLATILE = auto()
 
 
 class AssetType(ABC):
 
     @abstractmethod
-    def base_type(self) -> DataType:
+    def spec_kind(self) -> TypeSpecKind:
         pass
 
     @abstractmethod
@@ -45,49 +46,31 @@ class AssetType(ABC):
 
 class SpecifierType(AssetType):
 
-    def __init__(self, data_type: DataType):
-        self.data_type = data_type
+    def __init__(self, names: list[str], kind: TypeSpecKind, quals: list[TypeQual]):
+        self.names = names
+        self.kind = kind
+        self.quals = quals
 
-    def base_type(self) -> DataType:
-        return self.data_type
-
-
-class PrimitiveType(SpecifierType):
-
-    def __init__(self, data_type: DataType):
-        assert not data_type.is_tag()
-        super().__init__(data_type)
+    def spec_kind(self) -> TypeSpecKind:
+        return self.kind
 
     def spec_name(self) -> str:
-        return self.data_type.name.lower()
+        return " ".join(self.names)
 
     def decl_str(self, decl: str = "") -> str:
+        parts = list(self.quals)
+        if self.kind.is_tag():
+            parts.append(self.kind.name.lower())
+        parts.append(self.spec_name())
         if decl:
-            return f"{self.spec_name()} {decl}"
-        return self.spec_name()
+            parts.append(decl)
+        return " ".join(parts)
 
     def __str__(self) -> str:
-        return self.spec_name()
-
-
-class TaggedType(SpecifierType):
-
-    def __init__(self, data_type: DataType, name: str):
-        assert data_type.is_tag()
-        super().__init__(data_type)
-        self.name = name
-
-    def spec_name(self) -> str:
-        return self.name
-
-    def decl_str(self, decl: str = "") -> str:
-        tag_str = f"{self.data_type.name.lower()} {self.name}"
-        if decl:
-            return f"{tag_str} {decl}"
-        return tag_str
-
-    def __str__(self) -> str:
-        return f"{self.data_type.name.lower()} {self.name}"
+        name = self.spec_name()
+        if self.kind.is_tag():
+            name = f"{self.kind.name.lower()} {name}"
+        return name
 
 
 class OuterType(AssetType):
@@ -95,8 +78,8 @@ class OuterType(AssetType):
     def __init__(self, inner_type: AssetType):
         self.inner_type = inner_type
 
-    def base_type(self) -> DataType:
-        return self.inner_type.base_type()
+    def spec_kind(self) -> TypeSpecKind:
+        return self.inner_type.spec_kind()
 
     def spec_name(self) -> str:
         return self.inner_type.spec_name()
@@ -104,14 +87,17 @@ class OuterType(AssetType):
 
 class PointerType(OuterType):
 
-    def __init__(self, inner_type: AssetType):
+    def __init__(self, inner_type: AssetType, quals = list[TypeQual]):
         super().__init__(inner_type)
+        self.quals = quals
 
     def decl_str(self, decl: str = "") -> str:
+        parts = list(self.quals)
         ptr_str = "*" + decl
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"
-        return self.inner_type.decl_str(ptr_str)
+        parts.append(ptr_str)
+        return self.inner_type.decl_str(" ".join(parts))
 
     def __str__(self) -> str:
         return f"pointer to {self.inner_type}"
@@ -154,7 +140,7 @@ class FunctionType(OuterType):
 
 # -------- Tokenizer --------
 
-
+# TODO: Add TokenName for built-in types
 class TokenName(Enum):
 
     EOS = auto()
@@ -169,9 +155,9 @@ class TokenName(Enum):
     STAR = auto()           # *
     COMMA = auto()          # ,
     # Specifiers and qualifiers
-    TYPE_SPEC = auto()      # Ex: u8
-    # TYPE_QUAL = auto()    # Ex: const
-    # STORE_SPEC = auto()   # Ex: static
+    SPEC_TAG = auto()       # Ex: struct
+    TYPE_QUAL = auto()      # Ex: const
+    STORE_SPEC = auto()     # Ex: static
 
 
 class Token:
@@ -194,25 +180,18 @@ SINGLE_CHAR_TOKENS = {
 }
 
 KEYWORDS = {
-    # Type specifieres
-    "void": TokenName.TYPE_SPEC,
-    "u8": TokenName.TYPE_SPEC,
-    "u16": TokenName.TYPE_SPEC,
-    "u32": TokenName.TYPE_SPEC,
-    "s8": TokenName.TYPE_SPEC,
-    "s16": TokenName.TYPE_SPEC,
-    "s32": TokenName.TYPE_SPEC,
-    "enum": TokenName.TYPE_SPEC,
-    "struct": TokenName.TYPE_SPEC,
-    "union": TokenName.TYPE_SPEC,
-    # # Type qualifiers
-    # "const": TokenName.TYPE_QUAL,
-    # "volatile": TokenName.TYPE_QUAL,
-    # # Storage qualifiers
-    # "extern": TokenName.STORAGE,
-    # "static": TokenName.STORAGE,
-    # "auto": TokenName.STORAGE,
-    # "register": TokenName.STORAGE
+    # Specifier tags
+    "enum": TokenName.SPEC_TAG,
+    "struct": TokenName.SPEC_TAG,
+    "union": TokenName.SPEC_TAG,
+    # Type qualifiers
+    "const": TokenName.TYPE_QUAL,
+    "volatile": TokenName.TYPE_QUAL,
+    # Storage qualifiers
+    "extern": TokenName.STORE_SPEC,
+    "static": TokenName.STORE_SPEC,
+    "auto": TokenName.STORE_SPEC,
+    "register": TokenName.STORE_SPEC
 }
 
 class TypeTokenizer:
@@ -269,17 +248,14 @@ class TypeTokenizer:
 # -------- Parser --------
 
 
-DATA_TYPE_STRS = {
-    "void": DataType.VOID,
-    "u8": DataType.U8,
-    "u16": DataType.U16,
-    "u32": DataType.U32,
-    "s8": DataType.S8,
-    "s16": DataType.S16,
-    "s32": DataType.S32,
-    "enum": DataType.ENUM,
-    "struct": DataType.STRUCT,
-    "union": DataType.UNION
+TAG_TYPES = {
+    "enum": TypeSpecKind.ENUM,
+    "struct": TypeSpecKind.STRUCT,
+    "union": TypeSpecKind.UNION
+}
+
+BUILT_IN_TYPES = {
+    "void", "char", "short", "int", "long", "float", "double"
 }
 
 
@@ -326,7 +302,7 @@ class TypeParser:
                 outer.inner_type = new_type
             outer = new_type
         in_param = start > 0
-        # First token must be type spec
+        # First tokens must be type spec
         spec = self._parse_type_spec()
         # Update left end index
         start = self.index - 1
@@ -338,12 +314,14 @@ class TypeParser:
         outer: OuterType = None
         while True:
             if self._accept(TokenName.L_BRACK):
+                # Array
                 self._expect(TokenName.INT)
                 size = int(self.prev_token.text[2:], 16)
                 self._expect(TokenName.R_BRACK)
                 arr_type = ArrayType(spec, size)
                 update_parent_types(arr_type)
             elif self._accept(TokenName.L_PAREN):
+                # Function
                 params: list[AssetType] = []
                 if not self._accept(TokenName.R_PAREN):
                     while True:
@@ -361,7 +339,8 @@ class TypeParser:
                     name = self.tokens[left].name
                     left -= 1
                     if name == TokenName.STAR:
-                        ptr_type = PointerType(spec)
+                        quals, left = self._parse_quals_reverse(start, left)
+                        ptr_type = PointerType(spec, quals)
                         update_parent_types(ptr_type)
                     elif name == TokenName.L_PAREN:
                         self._next_token()
@@ -376,7 +355,8 @@ class TypeParser:
                     name = self.tokens[left].name
                     left -= 1
                     if name == TokenName.STAR:
-                        ptr_type = PointerType(spec)
+                        quals, left = self._parse_quals_reverse(start, left)
+                        ptr_type = PointerType(spec, quals)
                         update_parent_types(ptr_type)
                     elif name == TokenName.L_PAREN:
                         tn = self.curr_token.name.name
@@ -387,22 +367,46 @@ class TypeParser:
                 raise ValueError(f"Unexpected token {tn}")
         return root
 
+    def _parse_quals_reverse(self, start: int, left: int) -> tuple[list[TypeQual], int]:
+        quals: list[TypeQual] = []
+        while left > start and self.tokens[left].name == TokenName.TYPE_QUAL:
+            text = self.tokens[left].text.upper()
+            quals.append(TypeQual[text])
+            left -= 1
+        quals.reverse()
+        return quals, left
+
     def _parse_type_spec(self) -> AssetType:
-        self._expect(TokenName.TYPE_SPEC)
-        data_type = DATA_TYPE_STRS[self.prev_token.text]
-        if data_type.is_tag():
+        quals = []
+        while self._accept(TokenName.TYPE_QUAL):
+            text = self.prev_token.text.upper()
+            quals.append(TypeQual[text])
+        if self._accept(TokenName.SPEC_TAG):
+            kind = TAG_TYPES[self.prev_token.text]
             self._expect(TokenName.IDENT)
-            return TaggedType(data_type, self.prev_token.text)
+            names = [self.prev_token.text]
         else:
-            return PrimitiveType(data_type)
+            self._expect(TokenName.IDENT)
+            names = [self.prev_token.text]
+            if names[0] in BUILT_IN_TYPES:
+                kind = TypeSpecKind.BUILT_IN
+                while self._accept(TokenName.IDENT):
+                    name = self.prev_token.text
+                    if name not in BUILT_IN_TYPES:
+                        raise ValueError(f"Expected built-in type but got {name}")
+                    names.append(name)
+            else:
+                # typedefs should only have one name
+                kind = TypeSpecKind.TYPEDEF
+        return SpecifierType(names, kind, quals)
 
     def _find_decl_middle(self) -> None:
         while True:
-            if self._accept(TokenName.STAR):
+            if self._accept(TokenName.TYPE_QUAL) or self._accept(TokenName.STAR):
                 continue
             if self.curr_token.name == TokenName.L_PAREN:
                 next_token = self.tokens[self.index + 1].name
-                if next_token != TokenName.R_PAREN and next_token != TokenName.TYPE_SPEC:
+                if next_token != TokenName.R_PAREN and next_token != TokenName.IDENT:
                     self._next_token()
                     continue
             break
