@@ -1,5 +1,5 @@
 import argparse
-from enum import Enum
+from enum import Enum, auto
 import heapq
 
 import argparse_utils as apu
@@ -13,8 +13,9 @@ MAX_WINDOW_SIZE = (1 << 12) - 1 + MIN_WINDOW_SIZE
 
 class LzCompMethod(Enum):
 
-    FAST = 0
-    OPTIMAL = 1
+    MATCHING = auto()
+    GREEDY = auto()
+    OPTIMAL = auto()
 
 
 def decomp_rle(input: bytes, idx: int) -> tuple[bytes, int]:
@@ -164,19 +165,20 @@ def is_lz77(input: bytes, idx: int) -> int:
             cflag <<= 1
 
 
-def comp_lz77(input: bytes, method: LzCompMethod = LzCompMethod.FAST) -> bytes:
-    if method == LzCompMethod.FAST:
-        return _comp_lz77_fast(input)
+def comp_lz77(input: bytes, method: LzCompMethod = LzCompMethod.GREEDY) -> bytes:
+    if method == LzCompMethod.MATCHING or method == LzCompMethod.GREEDY:
+        matching = method == LzCompMethod.MATCHING
+        return _comp_lz77_greedy(input, matching)
     elif method == LzCompMethod.OPTIMAL:
         return _comp_lz77_optimal(input)
 
 
-def _comp_lz77_fast(input: bytes) -> bytes:
+def _comp_lz77_greedy(input: bytes, matching: bool) -> bytes:
     """LZ77 compresses data by greedily selecting the longest match at each step."""
     # Assumes input stream starts at 0
     length = len(input)
     idx = 0
-    longest_matches = _find_longest_matches(input)
+    longest_matches = _find_longest_matches(input, matching)
 
     # Write start of data
     output = bytearray()
@@ -192,10 +194,10 @@ def _comp_lz77_fast(input: bytes) -> bytes:
 
         for i in range(8):
             # Find longest match at current position
-            _match = longest_matches.get(idx)
-            if _match is not None:
+            m = longest_matches.get(idx)
+            if m is not None:
                 # Compressed
-                match_idx, match_len = _match
+                match_idx, match_len = m
                 match_offset = idx - match_idx - MIN_WINDOW_SIZE
                 output.append(((match_len - MIN_MATCH_SIZE) << 4) | (match_offset >> 8))
                 output.append(match_offset & 0xFF)
@@ -221,7 +223,7 @@ def _comp_lz77_optimal(input: bytes) -> bytes:
     flag_counter = 8
     flag_idx = -1
 
-    longest_matches = _find_longest_matches(input)
+    longest_matches = _find_longest_matches(input, False)
     path = _find_best_path(length, longest_matches)
 
     # Write start of data
@@ -259,10 +261,12 @@ def _comp_lz77_optimal(input: bytes) -> bytes:
     return bytes(output)
 
 
-def _find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
+def _find_longest_matches(input: bytes, matching: bool) -> dict[int, tuple[int, int]]:
     length = len(input)
     triplets: dict[int, list[int]] = {}
     longest_matches: dict[int, tuple[int, int]] = {}
+    
+    min_window_size = 4 if matching else 2
     triplet = (input[0] << 8) | (input[1] << 16)
 
     for i in range(length - 2):
@@ -280,9 +284,12 @@ def _find_longest_matches(input: bytes) -> dict[int, tuple[int, int]]:
         longest_len = 0
         longest_idx = -1
 
-        # Skip first index if one byte behind current position
+        # Matches must be at least 2 bytes before the current position, because
+        # the GBA decompression code reads 2 bytes at a time when copying
+        # values. To produce matching compression, matches must be at least 4
+        # bytes before the current position
         j = len(indexes) - 1
-        if indexes[j] >= i - 1:
+        while j >= 0 and indexes[j] > i - min_window_size:
             j -= 1
 
         # Try each index to find the longest match
@@ -368,7 +375,7 @@ def _construct_path(came_from: dict[int, int], idx: int) -> list[int]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", type=str, choices=["rle", "lz", "is-lz"])
+    parser.add_argument("action", type=str, choices=["rle", "lz", "is_lz"])
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
     apu.add_arg(parser, apu.ArgType.ADDR)
 
@@ -382,6 +389,6 @@ if __name__ == "__main__":
     elif args.action == "lz":
         raw, size = decomp_lz77(rom.data, addr)
         print(f"{len(raw):X}\t{size:X}")
-    if args.action == "is-lz":
+    elif args.action == "is_lz":
         size = is_lz77(rom.data, addr)
         print(f"{size:X}")
