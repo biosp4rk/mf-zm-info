@@ -13,6 +13,12 @@ DW = ".dw"
 WORD = ".word"
 
 
+class LocalFormat(Enum):
+
+    ORDERED = auto()
+    ADDRESS = auto()
+
+
 class AsmFormat(Enum):
 
     DEFAULT = auto()
@@ -22,6 +28,7 @@ class AsmFormat(Enum):
 @dataclass(frozen=True)
 class FormatOptions:
 
+    local_format: LocalFormat
     prefixed_local: bool
     prefixed_immed: bool
     braced_reg_list: bool
@@ -31,12 +38,14 @@ class FormatOptions:
 
 FORMAT_OPTIONS = {
     AsmFormat.DEFAULT: FormatOptions(
+        local_format=LocalFormat.ORDERED,
         prefixed_local=True,
         prefixed_immed=False,
         braced_reg_list=False,
         dx_directive=True
     ),
     AsmFormat.DECOMP: FormatOptions(
+        local_format=LocalFormat.ADDRESS,
         prefixed_local=False,
         prefixed_immed=True,
         braced_reg_list=True,
@@ -290,10 +299,32 @@ class AsmWriter:
         return syms
 
     def _get_local(self, addr: int) -> str:
-        return self.symbols.get_local(addr, self.format_opts.prefixed_local)
-    
-    def _get_label(self, addr: int, type: LabelType) -> str:
-        return self.symbols.get_label(addr, self.format_opts.prefixed_local, type)
+        if self.format_opts.local_format == LocalFormat.ORDERED:
+            idx = self.symbols.local_indexes[addr]
+            prefix = "@@" if self.format_opts.prefixed_local else ""
+            return f"{prefix}_{idx:03X}"
+        else:
+            return f"lbl_{addr + ROM_OFFSET:08x}"
+
+    def _get_label(self, addr: int, type: LabelType = LabelType.Undef) -> str:
+        # Check for existing label
+        if addr in self.symbols.globals:
+            return self.symbols.globals[addr]
+        # Check for code
+        if addr % 4 == 1 and addr in self.symbols.thumb_code:
+            return self.symbols.globals[addr - 1] + "+1"
+        pa = addr - ROM_OFFSET
+        if pa in self.symbols.locals:
+            return self._get_local(pa)
+        # Create label using addr
+        label = f"{addr:X}"
+        if type == LabelType.Imm:
+            label = "0x" + label
+        elif type == LabelType.Data:
+            label = "unk_" + label
+        elif type == LabelType.Code:
+            label = "sub_" + label
+        return label
 
     def _imm_str(self, instruct: ThumbInstruct) -> str:
         val = None
