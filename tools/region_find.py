@@ -1,46 +1,88 @@
 import argparse
 from collections import defaultdict
+from enum import Enum, auto
 
 import argparse_utils as apu
 from rom import Rom, ROM_OFFSET
 
 
-def replace_ptrs(rom: Rom):
+ADDR_WINDOW = 0x10000
+"""Range around the source data address to search in the target ROM."""
+MAX_MATCH_SIZE = 0x1000
+"""Max number of bytes to match (since checking more is wasteful)."""
+
+
+class PtrReplacement(Enum):
+
+    NONE = auto()
+    """Don't replace any pointers."""
+    COUNT = auto()
+    """Replace pointers with the count of pointers before it."""
+    VALUE = auto()
+    """Replace pointers with the value they point to."""
+
+
+def replace_ptrs_count(rom: Rom):
     start = rom.code_start()
     end = rom.data_end()
     rom_start = start + ROM_OFFSET
     rom_end = end + ROM_OFFSET
     data = bytearray(rom.data)
+    ptr_count = 0
     for i in range(start, end, 4):
         val = rom.read_32(i)
         if val >= rom_start and val < rom_end:
-            # Replace pointer with "find"
-            data[i] = 0x66
-            data[i + 1] = 0x69
-            data[i + 2] = 0x6E
-            data[i + 3] = 0x64
-    rom.data = bytes(data)
+            # Replace pointer with "ptr" and count
+            data[i] = 0x70
+            data[i + 1] = 0x74
+            data[i + 2] = 0x72
+            data[i + 3] = ptr_count & 0xFF
+            ptr_count += 1
+        else:
+            ptr_count = 0
+    rom.data = data
+
+
+def replace_ptrs_value(rom: Rom):
+    start = rom.code_start()
+    end = rom.data_end()
+    rom_start = start + ROM_OFFSET
+    rom_end = end + ROM_OFFSET
+    for i in range(start, end, 4):
+        addr = i
+        val = rom.read_32(i)
+        while val >= rom_start and val < rom_end:
+            addr = val - ROM_OFFSET
+            val = rom.read_32(addr)
+        if addr != i:
+            rom.write_32(i, val)
 
 
 class Finder(object):
 
-    def __init__(self, src_rom: Rom, target_rom: Rom):
-        replace_ptrs(src_rom)
-        replace_ptrs(target_rom)
+    def __init__(self,
+        src_rom: Rom,
+        target_rom: Rom,
+        ptr_replacement: PtrReplacement = PtrReplacement.COUNT
+    ):
+        if ptr_replacement == PtrReplacement.COUNT:
+            replace_ptrs_count(src_rom)
+            replace_ptrs_count(target_rom)
+        elif ptr_replacement == PtrReplacement.VALUE:
+            replace_ptrs_value(src_rom)
+            replace_ptrs_value(target_rom)
         self.src_rom = src_rom
         self.target_rom = target_rom
 
-    def find(self, addrs: list[int], t_start: int = None, t_end: int = None):
+    def find(self, addrs: list[int], t_start: int = None, t_end: int = None) -> list[tuple[int, int]]:
         # Get start and end address of target
         s_end = self.src_rom.data_end()
-        if t_start is None or t_end is None:
-            if addrs[0] < self.src_rom.code_end():
-                t_start = self.target_rom.code_start()
-                t_end = self.target_rom.code_end()
-            else:
-                t_start = self.target_rom.data_start()
-                t_end = self.target_rom.data_end()
+        if t_start is None:
+            t_start = 0
+        if t_end is None:
+            t_end = len(self.target_rom.data) - 4
         # Get hash for each address
+        addrs.sort()
         hashes = defaultdict(list)
         for addr in addrs:
             val = self.src_rom.read_32(addr)
@@ -53,10 +95,19 @@ class Finder(object):
             val = self.target_rom.read_32(i)
             if val not in hashes:
                 continue
-            for addr in hashes[val]:
+            hash_addrs = hashes[val]
+            for addr in hash_addrs:
+                if addr < i - ADDR_WINDOW:
+                    continue
+                if addr > i + ADDR_WINDOW:
+                    break
                 sa = addr
                 ta = i
-                while sa < s_end and ta < t_end and src[sa] == target[ta]:
+                while (
+                    sa < s_end and ta < t_end and
+                    src[sa] == target[ta] and
+                    sa - addr < MAX_MATCH_SIZE
+                ):
                     sa += 1
                     ta += 1
                 size = sa - addr
