@@ -1,12 +1,89 @@
 import argparse
+from constants import *
 from enum import Enum
+import os
 
 import argparse_utils as apu
-from game_info import GameInfo
 from rom import Rom
 
 
-INDENT = " " * 4
+INDENT = "\t"
+BYTE = ".byte"
+WORD = ".word"
+ALIGN_2 = ".align 2"
+
+NUM_SOUNDS = {
+    GAME_ZM: 708
+}
+SOUNDS_ADDR = {
+    GAME_ZM:
+    {
+        REGION_U: 0x8F2C0,
+        REGION_BETA: 0x94B50
+    }
+}
+TRACK_0_ADDR = {
+    GAME_ZM:
+    {
+        REGION_U: 0x908E0,
+        REGION_BETA: 0x96170
+    }
+}
+
+VOICE_GROUPS = {
+    GAME_ZM: {
+        REGION_U: [
+            0x8CF70,
+            0x8D444,
+            0x8D720,
+            0x8D8F4,
+            0x8DBAC,
+            0x8DDEC,
+            0x8DF24,
+            0x8DFC0,
+            0x8E038,
+            0x8E098,
+            0x8E164,
+            0x8E26C,
+            0x8E320,
+            0x8E3A4,
+            0x8E4AC,
+            0x8E59C,
+            0x8E5D8,
+            0x8E698,
+            0x8E77C,
+            0x8E920,
+            0x8EAE8,
+            0x8F004,
+            0x8F070
+        ],
+        REGION_BETA: [
+            0x92800,
+            0x92CD4,
+            0x92FB0,
+            0x93184,
+            0x9343C,
+            0x9367C,
+            0x937B4,
+            0x93850,
+            0x938C8,
+            0x93928,
+            0x939F4,
+            0x93AFC,
+            0x93BB0,
+            0x93C34,
+            0x93D3C,
+            0x93E2C,
+            0x93E68,
+            0x93F28,
+            0x9400C,
+            0x941B0,
+            0x94378,
+            0x94894,
+            0x94900
+        ]
+    }
+}
 
 NOTE_KEY = [
     "CnM2", # 0x00
@@ -299,7 +376,7 @@ CODE_CMD = [
     ("TIE",    ParamType.TIE,  True)    # 0xCF
 ]
 
-REPEATABLE = {"VOL", "PAN", "BEND", }
+REPEATABLE = {"VOL", "PAN", "BEND"}
 
 CENTER_VALUE = 0x40
 
@@ -338,33 +415,30 @@ class TrackDumper:
         self.prev_repeatable_cmd: int = None
         self.prev_key: int = None
         self.prev_vel: int = None
-        self.name: str = None
-        self.lines: list[str] = None
+        self.cmd_addr: int = None
+        self.jumps: set[int] = None
+        self.label: str = None
+        self.cmd_text: list[tuple[str, int]] = None
 
     def _parse_command(self, value: int, repeated: bool) -> None:
         if WAIT_FIRST <= value <= WAIT_LAST:
             # Wait command
             assert not repeated
             wait = WAIT_CMD[value - WAIT_FIRST]
-            self.lines.append(f"{INDENT}.db {wait}")
+            self._add_cmd_text(f"{INDENT}{BYTE} {wait}")
         elif CODE_CMD_FIRST <= value <= CODE_CMD_LAST:
             # Code command
             cmd, param_type, repeatable = CODE_CMD[value - CODE_CMD_FIRST]
             if repeatable:
                 self.prev_repeatable_cmd = value
-            line = f"{INDENT}.db "
             params = self._get_command_params(param_type, cmd, repeated)
-            if param_type == ParamType.PTR:
-                ptr = int(params.split("lbl_")[1], 16)
-                self.lines = [line.replace(f"0x{ptr:X}", f"{ptr:X}") for line in self.lines]
-            self.lines.append(line + params)
+            self._add_cmd_text(f"{INDENT}{BYTE} {params}")
         elif value >= NOTE_LEN_FIRST:
             # Note command
             self.prev_repeatable_cmd = value
             note = NOTE_LEN[value - NOTE_LEN_FIRST]
-            line = f"{INDENT}.db "
-            line += self._get_command_params(ParamType.NOTE, note, repeated)
-            self.lines.append(line)
+            params = self._get_command_params(ParamType.NOTE, note, repeated)
+            self._add_cmd_text(f"{INDENT}{BYTE} {params}")
         else:
             raise ValueError("Expected command value")
 
@@ -394,12 +468,12 @@ class TrackDumper:
                         if value < CMD_FIRST:
                             params.append(f"{value}")
                         else:
-                            self.rom.seek(rom.tell() - 1)
+                            self.rom.seek(self.rom.tell() - 1)
                 else:
                     if self.prev_vel is None:
                         raise ValueError("No previous note velocity")
                     comment.append(f"v{self.prev_vel:03}")
-                    self.rom.seek(rom.tell() - 1)
+                    self.rom.seek(self.rom.tell() - 1)
             else:
                 if self.prev_key is None:
                     raise ValueError("No previous note key")
@@ -407,7 +481,7 @@ class TrackDumper:
                     raise ValueError("No previous note velocity")
                 comment.append(NOTE_KEY[self.prev_key])
                 comment.append(f"v{self.prev_vel:03}")
-                self.rom.seek(rom.tell() - 1)
+                self.rom.seek(self.rom.tell() - 1)
         elif type == ParamType.BYTE:
             value = self.rom.read_next_8()
             params.append(f"{value}")
@@ -420,8 +494,9 @@ class TrackDumper:
                 c_v += "-" + str(CENTER_VALUE - value)
             params.append(c_v)
         elif type == ParamType.PTR:
-            ptr = rom.read_next_ptr()
-            return f"{cmd}\n{INDENT*2}.word {self.name}{ptr:X}"
+            ptr = self.rom.read_next_ptr()
+            self.jumps.add(ptr)
+            return f"{cmd}\n{INDENT*2}{WORD} {self.label}{ptr:x}"
         elif type == ParamType.MEM:
             value = self.rom.read_next_8()
             params.append(MEM_PARAM[value])
@@ -441,15 +516,19 @@ class TrackDumper:
             result += " ; " + ", ".join(comment)
         return result
 
-    def dump_track(self, addr: int) -> None:
+    def _add_cmd_text(self, text: str) -> None:
+        self.cmd_text.append((text, self.cmd_addr))
+
+    def dump_track(self, addr: int, sound_id: int) -> str:
         self.prev_repeatable_cmd = None
         self.prev_key = None
         self.prev_vel = None
-        self.name = f"track_{addr:X}_lbl_"
-        self.lines = []
-        rom = self.rom
-        rom.seek(addr)
-        value = rom.read_next_8()
+        self.cmd_addr = addr
+        self.jumps = set()
+        self.label = f"track_{sound_id}_lbl_"
+        self.cmd_text = []
+        self.rom.seek(addr)
+        value = self.rom.read_next_8()
 
         while value != 0xB1 and value != 0xB6:
             if value >= CMD_FIRST:
@@ -458,26 +537,88 @@ class TrackDumper:
                 # Repeat previous command
                 if self.prev_repeatable_cmd is None:
                     raise ValueError("No previous command to repeat")
-                rom.seek(rom.tell() - 1)
+                self.rom.seek(self.rom.tell() - 1)
                 self._parse_command(self.prev_repeatable_cmd, True)
-            # Add label
-            #lines.append("")
-            #lines.append(f"{name}{rom.tell():X}:")
-            value = rom.read_next_8()
+            self.cmd_addr = self.rom.tell()
+            value = self.rom.read_next_8()
 
         end = "FINE" if value == 0xB1 else "0xB6"
-        self.lines.append(f"{INDENT}.db {end}")
-        return "\n".join(self.lines)
+        self._add_cmd_text(f"{INDENT}{BYTE} {end}")
+
+        # Add labels
+        lines = []
+        for text, cmd_addr in self.cmd_text:
+            if cmd_addr in self.jumps:
+                lines.append(f"{self.label}{cmd_addr:x}:")
+                self.jumps.remove(cmd_addr)
+            lines.append(text)
+        if len(self.jumps) > 0:
+            raise ValueError("Invalid jump address")
+
+        return "\n".join(lines)
+
+
+def dump_sound(
+    dumper: TrackDumper,
+    rom: Rom,
+    output_path: str,
+    addr: int,
+    sound_id: int
+) -> None:
+    name = f"track_{sound_id}"
+    output_path = os.path.join(output_path, name + ".s")
+    with open(output_path, "w") as f:
+        f.write(f"{ALIGN_2}\n\n.global {name}\n\n")
+
+        num_tracks = rom.read_8(addr)
+        unk_1 = rom.read_8(addr + 1)
+        prio = rom.read_8(addr + 2)
+        echo = rom.read_8(addr + 3)
+        voice = rom.read_ptr(addr + 4)
+        for t in range(num_tracks):
+            track_addr = rom.read_ptr(addr + 8 + (t * 4))
+            f.write(f"{name}_{t}:\n")
+            f.write(dumper.dump_track(track_addr, sound_id))
+            f.write("\n\n")
+        
+        f.write(f"{ALIGN_2}\n\n")
+        f.write(f"{name}:\n")
+        f.write(f"{INDENT}{BYTE} {num_tracks}\n")
+        f.write(f"{INDENT}{BYTE} {unk_1}\n")
+        f.write(f"{INDENT}{BYTE} {prio}\n")
+        f.write(f"{INDENT}{BYTE} {echo}\n")
+
+        try:
+            vg = VOICE_GROUPS[rom.game][rom.region].index(voice)
+        except:
+            raise ValueError(f"No voice group at {voice:X} (sound {sound_id})")
+        f.write(f"{INDENT}{WORD} voice_group{vg}\n")
+
+        for t in range(num_tracks):
+            f.write(f"{INDENT}{WORD} {name}_{t}\n")
+        
+        f.write(f"\n{ALIGN_2}\n")
+
+
+def dump_all_sounds(rom: Rom, output_path: str) -> None:
+    if not os.path.exists(output_path):
+        os.makedirs(output_path, exist_ok=True)
+
+    sound_addr = SOUNDS_ADDR[rom.game][rom.region]
+    track_0_addr = TRACK_0_ADDR[rom.game][rom.region]
+    dumper = TrackDumper(rom)
+    for i in range(NUM_SOUNDS[rom.game]):
+        addr = rom.read_ptr(sound_addr)
+        if addr != track_0_addr:
+            dump_sound(dumper, rom, output_path, addr, i)
+        sound_addr += 8
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    parser.add_argument("output_path", type=str)
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    addr = apu.get_hex(args.addr)
-    dumper = TrackDumper(rom)
-    s = dumper.dump_track(addr)
-    print(s)
+    dump_all_sounds(rom, args.output_path)
