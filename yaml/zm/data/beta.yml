@@ -1,5 +1,5 @@
 - name: sPauseDebugEventListBgPalette
-  type: u8
+  type: u16
   count: 0x20
   cat: palette
   addr:
@@ -515,8 +515,8 @@
   cat: ascii
   addr:
     B: 0x414578
-- name: sPauseDebugAreaRoomDoorGfxOffsets
-  type: u16
+- name: sPauseDebugAreaRoomDoorPositions
+  type: u8 [0x2]
   count: 0x3
   addr:
     B: 0x414580
@@ -535,29 +535,20 @@
   count: 0x2
   addr:
     B: 0x41458A
-- name: sPauseDebugBeamListStartEndY
-  type: u8
-  count: 0x2
+- name: sPauseDebugGroupsPositions
+  desc: 0 = Y start, 1 = Y end, 2 = X start, 3 = X end, 4 = Group
+  type: u8 [0x5]
+  count: 0x16
   addr:
     B: 0x41458C
-- name: sPauseDebugBeamListStartEndX
-  type: u8
-  count: 0x2
-  addr:
-    B: 0x41458E
-- name: sPauseDebugRegionPositions
-  type: u8 [0x2]
-  count: 0x35
-  addr:
-    B: 0x414590
 - name: sEasyHardEventActions
-  type: u8
-  count: 0x6
+  type: u8 [0x2]
+  count: 0x3
   addr:
     B: 0x4145FA
-- name: sPauseDebugHealthAmmoDrawInfo
-  type: u8
-  count: 0x20
+- name: sPauseDebugHealthAmmoInfo
+  type: u8 [0x4]
+  count: 0x8
   addr:
     B: 0x414600
 - name: sBootDebugBgPal
@@ -1388,7 +1379,7 @@
   addr:
     B: 0x5E4114
 - name: sPauseDebugEventNamePointers
-  type: u8 **
+  type: u8 *
   count: 0x4F
   cat: sjis
   addr:
