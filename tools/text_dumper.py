@@ -1,10 +1,18 @@
 import argparse
+from enum import Enum, auto
 import os
+import re
 
 import argparse_utils as apu
 from constants import *
 from info_file_utils import load_yaml_file
 from rom import Rom
+
+
+class TextFormat(Enum):
+
+    MAGE = auto()
+    DECOMP = auto()
 
 
 def get_char_map(game: str, region: str) -> dict[int, str]:
@@ -17,93 +25,124 @@ def get_char_map(game: str, region: str) -> dict[int, str]:
     return char_map
 
 
-def get_control_char_mf(val: int) -> str:
+def get_formatted_control_char(text: str, arg_val: int, fmt: TextFormat) -> str:
+    if text is None:
+        return None
+    if arg_val is not None:
+        if fmt == TextFormat.MAGE:
+            text = f"{text}={arg_val:X}"
+        else:
+            text = f"{text}({arg_val})"
+    if fmt == TextFormat.MAGE:
+        return "[" + text + "]"
+    else:
+        return "{" + text + "}"
+
+
+def get_control_char_mf(val: int, fmt: TextFormat) -> str:
     if val < 0x8000:
         return None
+    text = None
+    arg_val = None
     msn = val >> 12
     if msn == 8:
         msb = val >> 8
-        lsb = val & 0xFF
+        arg_val = val & 0xFF
         if msb == 0x80:
-            return f"[SPACE={lsb:X}]"
+            text = "SPACE"
         elif msb == 0x81:
-            return f"[COLOR={lsb:X}]"
+            text = "COLOR"
         elif msb == 0x82:
-            return f"[SPEED={lsb:X}]"
+            text = "SPEED"
         elif msb == 0x83:
-            return f"[INDENT={lsb:X}]"
+            text = "INDENT"
     elif msn == 9:
-        return f"[PLAY_SOUND={val & 0xFFF:X}]"
+        text = "PLAY_SOUND"
+        arg_val = val & 0xFFF
     elif msn == 0xA:
-        return f"[STOP_SOUND={val & 0xFFF:X}]"
+        text = "STOP_SOUND"
+        arg_val = val & 0xFFF
     elif msn == 0xB:
         if val == 0xB001:
-            return "[SAMUS_FACE]"
+            text = "SAMUS_FACE"
         elif val == 0xB002:
-            return "[SA-X_FACE]"
+            text = "SA-X_FACE"
         elif val == 0xB003:
-            return "[GAME_START]"
+            text = "GAME_START"
     elif msn == 0xC:
         # TODO: Investigate more
-        return "[END_CONVO]"
+        return "END_CONVO"
     elif msn == 0xE:
         msb = val >> 8
         if msb == 0xE0:
             if val == 0xE000:
-                return "[TARGET]"
+                text = "TARGET"
             # TODO: 0xE001
         elif msb == 0xE1:
-            return f"[WAIT={val & 0xFF:X}]"
+            text = "WAIT"
+            arg_val = val & 0xFF
         elif msb == 0xE2:
             if val == 0xE200:
-                return "[ADAM]"
+                text = "ADAM"
             elif val == 0xE201:
-                return "[SAMUS]"
+                text = "SAMUS"
             elif val == 0xE202:
-                return "[FEDERATION]"
+                text = "FEDERATION"
         elif msb == 0xE3:
             if val == 0xE300:
-                return "[POPUP_OPEN]"
+                text = "POPUP_OPEN"
             elif val == 0xE301:
-                return "[POPUP_CLOSE]"
+                text = "POPUP_CLOSE"
     elif msn == 0xF:
         if val == 0xFB00:
-            return "[OBJECTIVE]\n"
+            text = "OBJECTIVE" # TODO: Allow adding newline
         elif val == 0xFC00:
-            return "[AWAIT_INPUT]\n"
+            text = "AWAIT_INPUT" # TODO: Allow adding newline
         elif val == 0xFD00:
-            return "[NEW_PAGE]\n"
+            text = "NEW_PAGE" # TODO: Allow adding newline
         elif val == 0xFE00:
-            return "\n"
+            if fmt == TextFormat.MAGE:
+                return "\n"
+            else:
+                return "\\n"
         elif val == 0xFF00:
-            return "[END]"
-    return None
+            text = "END"
+    return get_formatted_control_char(text, arg_val, fmt)
 
 
-def get_control_char_zm(val: int) -> str:
+def get_control_char_zm(val: int, fmt: TextFormat) -> str:
     if val < 0x8000:
         return None
+    text = None
+    arg_val = None
     msb = val >> 8
     if msb == 0x80:
-        return f"[SPACE={val & 0xFF:X}]"
+        text = "SPACE"
+        arg_val = val & 0xFF
     elif msb == 0x81:
-        return f"[COLOR={val & 0xFF:X}]"
+        text = "COLOR"
+        arg_val = val & 0xFF
     elif msb == 0x83:
-        return f"[INDENT={val & 0xFF:X}]"
+        text = "INDENT"
+        arg_val = val & 0xFF
     elif msb == 0xE1:
-        return f"[WAIT={val & 0xFF:X}]"
+        text = "WAIT"
+        arg_val = val & 0xFF
     elif msb == 0xFC:
-        return "[AWAIT_INPUT]\n"
+        text = "AWAIT_INPUT" # TODO: Allow adding newline
     elif msb == 0xFD:
-        return "[NEW_PAGE]\n"
+        text = "NEW_PAGE" # TODO: Allow adding newline
     elif msb == 0xFE:
-        return "\n"
+        if fmt == TextFormat.MAGE:
+            return "\n"
+        else:
+            return "\\n"
     elif msb == 0xFF:
         return "[END]"
-    return None
+    return get_formatted_control_char(text, arg_val, fmt)
 
 
-def get_text(char_map: dict[int, str], rom: Rom, addr: int) -> str:
+def get_text(char_map: dict[int, str], rom: Rom, addr: int, fmt: TextFormat) -> str:
     assert addr % 2 == 0
     if rom.game == GAME_MF:
         get_control_char = get_control_char_mf
@@ -117,9 +156,12 @@ def get_text(char_map: dict[int, str], rom: Rom, addr: int) -> str:
             return text
         ch = char_map.get(val)
         if ch is None:
-            ch = get_control_char(val)
+            ch = get_control_char(val, fmt)
             if ch is None:
                 ch = f"[\\x{val:04X}]"
+        else:
+            if fmt != TextFormat.MAGE:
+                ch = re.sub(r"^\[(.+)\]$", r"{\1}", ch)
         text += ch
 
 
@@ -132,6 +174,9 @@ if __name__ == "__main__":
     rom = apu.get_rom(args.rom_path)
     addr = apu.get_hex(args.addr)
 
-    char_map = get_char_map(rom.game, rom.region)
-    text = get_text(char_map, rom, addr)
+    region = rom.region
+    if region == REGION_BETA:
+        region = REGION_U
+    char_map = get_char_map(rom.game, region)
+    text = get_text(char_map, rom, addr, TextFormat.DECOMP)
     print(text)
