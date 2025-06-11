@@ -83,7 +83,7 @@ class Finder(object):
             t_end = len(self.target_rom.data) - 4
         # Get hash for each address
         addrs.sort()
-        hashes = defaultdict(list)
+        hashes: defaultdict[int, list[int]] = defaultdict(list)
         for addr in addrs:
             val = self.src_rom.read_32(addr)
             hashes[val].append(addr)
