@@ -422,6 +422,7 @@ class StructVarEntry(NamedVarEntry):
         type: str,
         arr_count: RegionInt,
         offset: RegionInt,
+        bits: int = None,
         cat: Category = None,
         comp: Compression = None,
         enum: str = None
@@ -430,6 +431,7 @@ class StructVarEntry(NamedVarEntry):
             name, desc, type, arr_count, cat, comp, enum
         )
         self.offset = offset
+        self.bits = bits
 
     def __str__(self) -> str:
         return f"{self.offset:X} {self.name}"
@@ -463,6 +465,7 @@ class StructVarEntry(NamedVarEntry):
             obj[K_TYPE],
             obj.get(K_COUNT),
             obj[K_OFFSET],
+            obj.get(K_BITS),
             cat,
             comp,
             obj.get(K_ENUM)
@@ -481,6 +484,8 @@ class StructVarEntry(NamedVarEntry):
         if entry.comp:
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         obj.append((K_OFFSET, entry.offset))
+        if entry.bits:
+            obj.append((K_BITS, entry.bits))
         if entry.enum:
             obj.append((K_ENUM, entry.enum))
         return dict(obj)
@@ -658,7 +663,7 @@ class CodeEntry(InfoEntry):
     @staticmethod
     def to_obj(entry: "CodeEntry") -> Any:
         params = [NamedVarEntry.to_obj(p) for p in entry.params] if entry.params else None
-        ret = VarEntry.to_obj(entry.ret, True) if entry.ret else None
+        ret = VarEntry.to_obj(entry.ret) if entry.ret else None
         obj = [(K_NAME, entry.name)]
         if entry.desc:
             obj.append((K_DESC, entry.desc))

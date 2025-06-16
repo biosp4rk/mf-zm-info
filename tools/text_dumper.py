@@ -175,7 +175,7 @@ if __name__ == "__main__":
     addr = apu.get_hex(args.addr)
 
     region = rom.region
-    if region == REGION_BETA:
+    if rom.game == GAME_ZM and region == REGION_BETA:
         region = REGION_U
     char_map = get_char_map(rom.game, region)
     text = get_text(char_map, rom, addr, TextFormat.DECOMP)

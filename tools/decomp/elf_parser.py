@@ -87,7 +87,11 @@ def parse_elf_line(line: str) -> ElfSym:
     return ElfSym(value, size, kind, bind, ndx, name)
 
 
-def print_entries(entries: list[ElfSym], exclude_ram: bool = False) -> None:
+def filter_entries(
+    entries: list[ElfSym],
+    virt: bool = True,
+    include_ram: bool = True
+) -> list[ElfSym]:
     # Remove entries that don't represent RAM, code, or data
     entries = [
         e for e in entries
@@ -96,7 +100,7 @@ def print_entries(entries: list[ElfSym], exclude_ram: bool = False) -> None:
     # Sort by address
     entries.sort(key=lambda x: x.value)
     # Remove RAM entries
-    if exclude_ram:
+    if not include_ram:
         entries = [
             e for e in entries
             if e.value >= ROM_OFFSET
@@ -105,8 +109,27 @@ def print_entries(entries: list[ElfSym], exclude_ram: bool = False) -> None:
     for entry in entries:
         if entry.kind == ElfType.FUNC and entry.value % 2 != 0:
             entry.value -= 1
+    # Fix ROM addresses if not virtual
+    if not virt:
+        for entry in entries:
+            if entry.value >= ROM_OFFSET:
+                entry.value -= ROM_OFFSET
+    return entries
+
+
+def print_entries(
+    entries: list[ElfSym],
+    virt: bool = True,
+    include_ram: bool = True
+) -> None:
+    entries = filter_entries(entries, virt, include_ram)
     for entry in entries:
         print(f"{entry.value:X}\t{entry.size:X}\t{entry.name}")
+
+
+def get_entry_names(entries: list[ElfSym]) -> dict[int, str]:
+    entries = filter_entries(entries, False, True)
+    return {e.value: e.name for e in entries}
 
 
 # def update_info_files(game: str, region: str, entry_names: dict[int, str]) -> None:

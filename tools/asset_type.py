@@ -58,7 +58,7 @@ class SpecifierType(AssetType):
         return " ".join(self.names)
 
     def decl_str(self, decl: str = "") -> str:
-        parts = list(self.quals)
+        parts = [q.name.lower() for q in self.quals]
         if self.kind.is_tag():
             parts.append(self.kind.name.lower())
         parts.append(self.spec_name())
@@ -87,12 +87,12 @@ class OuterType(AssetType):
 
 class PointerType(OuterType):
 
-    def __init__(self, inner_type: AssetType, quals = list[TypeQual]):
+    def __init__(self, inner_type: AssetType, quals: list[TypeQual]):
         super().__init__(inner_type)
         self.quals = quals
 
     def decl_str(self, decl: str = "") -> str:
-        parts = list(self.quals)
+        parts = [q.name.lower() for q in self.quals]
         ptr_str = "*" + decl
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"
@@ -259,6 +259,27 @@ BUILT_IN_TYPES = {
 }
 
 
+class ParseInfo:
+
+    def __init__(self,
+        spec: AssetType,
+        start: int,
+        left: int
+    ):
+        self.spec = spec
+        self.root = spec
+        self.outer = None
+        self.start = start
+        self.left = left
+    
+    def update_parent_types(self, new_type: OuterType) -> None:
+        if self.outer is None:
+            self.root = new_type
+        else:
+            self.outer.inner_type = new_type
+        self.outer = new_type
+
+
 class TypeParser:
 
     def __init__(self):
@@ -293,14 +314,6 @@ class TypeParser:
             raise ValueError(f"Expected {name.name} but got {self.curr_token.name}")
 
     def _parse_decl(self, start: int) -> AssetType:
-        def update_parent_types(new_type: OuterType):
-            nonlocal root
-            nonlocal outer
-            if outer is None:
-                root = new_type
-            else:
-                outer.inner_type = new_type
-            outer = new_type
         in_param = start > 0
         # First tokens must be type spec
         spec = self._parse_type_spec()
@@ -310,8 +323,7 @@ class TypeParser:
         self._find_decl_middle()
         left = self.index - 1
         # Parse from middle outwards
-        root: AssetType = spec
-        outer: OuterType = None
+        info = ParseInfo(spec, start, left)
         while True:
             if self._accept(TokenName.L_BRACK):
                 # Array
@@ -319,7 +331,7 @@ class TypeParser:
                 size = int(self.prev_token.text[2:], 16)
                 self._expect(TokenName.R_BRACK)
                 arr_type = ArrayType(spec, size)
-                update_parent_types(arr_type)
+                info.update_parent_types(arr_type)
             elif self._accept(TokenName.L_PAREN):
                 # Function
                 params: list[AssetType] = []
@@ -333,48 +345,23 @@ class TypeParser:
                             break
                         self._expect(TokenName.COMMA)
                 func_type = FunctionType(spec, params)
-                update_parent_types(func_type)
+                info.update_parent_types(func_type)
             elif self.curr_token.name == TokenName.R_PAREN:
-                while left > start:
-                    name = self.tokens[left].name
-                    left -= 1
-                    if name == TokenName.STAR:
-                        quals, left = self._parse_quals_reverse(start, left)
-                        ptr_type = PointerType(spec, quals)
-                        update_parent_types(ptr_type)
-                    elif name == TokenName.L_PAREN:
-                        self._next_token()
-                        break
-                if in_param and left == start:
+                # End of parentheses
+                self._parse_left(info, False)
+                if in_param and info.left == start:
                     break
             elif (
                 self.curr_token.name == TokenName.EOS or
                 self.curr_token.name == TokenName.COMMA
             ):
-                while left > start:
-                    name = self.tokens[left].name
-                    left -= 1
-                    if name == TokenName.STAR:
-                        quals, left = self._parse_quals_reverse(start, left)
-                        ptr_type = PointerType(spec, quals)
-                        update_parent_types(ptr_type)
-                    elif name == TokenName.L_PAREN:
-                        tn = self.curr_token.name.name
-                        raise ValueError(f"Unexpected token {tn}")
+                # End of declaration (or param)
+                self._parse_left(info, True)
                 break
             else:
                 tn = self.curr_token.name.name
                 raise ValueError(f"Unexpected token {tn}")
-        return root
-
-    def _parse_quals_reverse(self, start: int, left: int) -> tuple[list[TypeQual], int]:
-        quals: list[TypeQual] = []
-        while left > start and self.tokens[left].name == TokenName.TYPE_QUAL:
-            text = self.tokens[left].text.upper()
-            quals.append(TypeQual[text])
-            left -= 1
-        quals.reverse()
-        return quals, left
+        return info.root
 
     def _parse_type_spec(self) -> AssetType:
         quals = []
@@ -410,6 +397,31 @@ class TypeParser:
                     self._next_token()
                     continue
             break
+
+    def _parse_left(self, info: ParseInfo, decl_end: bool) -> None:
+        while info.left > info.start:
+            name = self.tokens[info.left].name
+            info.left -= 1
+            if name == TokenName.STAR:
+                # Get type qualifiers
+                quals: list[TypeQual] = []
+                while (
+                    info.left > info.start and
+                    self.tokens[info.left].name == TokenName.TYPE_QUAL
+                ):
+                    text = self.tokens[info.left].text.upper()
+                    quals.append(TypeQual[text])
+                    info.left -= 1
+                quals.reverse()
+                ptr_type = PointerType(info.spec, quals)
+                info.update_parent_types(ptr_type)
+            elif name == TokenName.L_PAREN:
+                if decl_end:
+                    tn = self.curr_token.name.name
+                    raise ValueError(f"Unexpected token {tn}")
+                else:
+                    self._next_token()
+                    break
 
 
 if __name__ == "__main__":

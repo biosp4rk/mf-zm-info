@@ -11,8 +11,7 @@ MAP_ENUMS = "enums"
 MAP_RAM = "ram"
 MAP_STRUCTS = "structs"
 MAP_UNIONS = "unions"
-# TODO: Add MAP_UNIONS
-MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS)
+MAP_TYPES = (MAP_CODE, MAP_DATA, MAP_ENUMS, MAP_RAM, MAP_STRUCTS, MAP_UNIONS)
 
 # Game names
 GAME_MF = "mf"
@@ -33,6 +32,7 @@ ASM_MODES = (MODE_THUMB, MODE_ARM)
 
 # Entry field keys
 K_ADDR = "addr"
+K_BITS = "bits"
 K_CAT = "cat"
 K_COMP = "comp"
 K_COUNT = "count"
