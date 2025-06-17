@@ -85,8 +85,12 @@ def parse_obj_list(ylist: Any, map_type: str) -> InfoFile:
         return [DataEntry.from_obj(d) for d in ylist]
     elif map_type == MAP_STRUCTS:
         return [StructEntry.from_obj(d) for d in ylist]
+    elif map_type == MAP_UNIONS:
+        return [UnionEntry.from_obj(d) for d in ylist]
     elif map_type == MAP_ENUMS:
         return [EnumEntry.from_obj(d) for d in ylist]
+    elif map_type == MAP_TYPEDEFS:
+        return [TypedefEntry.from_obj(d) for d in ylist]
     raise ValueError(map_type)
 
 
@@ -154,8 +158,12 @@ def info_file_to_obj(map_type: str, data: InfoFile) -> list[Any]:
         return [DataEntry.to_obj(d) for d in data]
     elif map_type == MAP_STRUCTS:
         return [StructEntry.to_obj(d) for d in data]
+    elif map_type == MAP_UNIONS:
+        return [UnionEntry.to_obj(d) for d in data]
     elif map_type == MAP_ENUMS:
         return [EnumEntry.to_obj(d) for d in data]
+    elif map_type == MAP_TYPEDEFS:
+        return [TypedefEntry.to_obj(d) for d in data]
     else:
         raise ValueError()
 

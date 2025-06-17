@@ -89,14 +89,19 @@ class Extractor:
         elf_names = ep.get_entry_names(ep.parse_elf_file(elf_path))
         elf_addrs = {v: k for k, v in elf_names.items()}
         # Update yaml files
-        print("Updating yaml files...")
+        print("Loading existing entries...")
         info = GameInfo(game, source=InfoSource.YAML_UNK)
+        print("Updating yaml files...")
         for map_type in MAP_TYPES:
             self._write_entries(map_type, region, info, elf_names, elf_addrs)
+        # Log errors
+        if self.warnings:
+            with open("_log.txt", "w") as f:
+                for msg in self.warnings:
+                    f.write(msg + "\n\n")
 
     def _add_warning(self, msg: str) -> None:
         self.warnings.append(msg)
-        print(msg)
 
     # -------- Process files --------
 
@@ -152,8 +157,6 @@ class Extractor:
             if isinstance(nt, c_ast.FuncDecl):
                 name = node.name
                 self.funcs[name] = nt
-                print(nt)
-                input()
             elif isinstance(nt, c_ast.Enum):
                 name = nt.name
                 if name:
@@ -387,11 +390,21 @@ class Extractor:
             tn = f"struct {nt.name}"
         elif isinstance(nt, c_ast.Union):
             tn = f"union {nt.name}"
+        elif isinstance(nt, c_ast.PtrDecl):
+            # Can occur in func params
+            return self._ptr_decl_str(nt, decl)
+        elif isinstance(nt, c_ast.ArrayDecl):
+            # Can occur in func params
+            return self._array_decl_str(nt, decl)
+        elif isinstance(nt, c_ast.TypeDecl):
+            # Can occur in func params
+            return self._type_decl_str(nt, decl)
         else:
             raise ValueError(type(nt))
         parts = list(node.quals)
         parts.append(tn)
-        parts.append(decl)
+        if decl:
+            parts.append(decl)
         return " ".join(parts)
 
     def _ptr_decl_str(self, node: c_ast.PtrDecl, decl: str) -> str:
@@ -417,12 +430,19 @@ class Extractor:
         param_str = "(" + param_str + ")"
         return self._sub_decl_str(node.type, decl + param_str)
 
+    def _typename_str(self, node: c_ast.Typename, decl: str) -> str:
+        # Assume this is a void param
+        assert decl == "" and node.name is None
+        return "void"
+
     DECL_STR_FUNCS = {
+        c_ast.Typedef: _type_decl_str,
         c_ast.Decl: _type_decl_str,
         c_ast.TypeDecl: _type_decl_str,
         c_ast.PtrDecl: _ptr_decl_str,
         c_ast.ArrayDecl: _array_decl_str,
-        c_ast.FuncDecl: _func_decl_str
+        c_ast.FuncDecl: _func_decl_str,
+        c_ast.Typename: _typename_str,
     }
 
     def _sub_decl_str(self, node: c_ast.Node, decl: str) -> str:
@@ -489,6 +509,9 @@ class Extractor:
         elif map_type == MAP_UNIONS:
             existing = []
             decomp_entries = self.unions
+        elif map_type == MAP_TYPEDEFS:
+            existing = []
+            decomp_entries = self.typedefs
         entries: defaultdict[str, list[DataEntry]] = defaultdict(list)
         remaining_decomp = set(decomp_entries.keys())
         existing_missing_from_elf: set[str] = set()
@@ -602,12 +625,25 @@ class Extractor:
                 size = self.sizes[name]
                 vars = self._create_union_vars(node, None)
                 new_entry = UnionEntry(name, brief, size, vars, loc)
+            elif map_type == MAP_TYPEDEFS:
+                decl = self._decl_str(node)
+                new_entry = TypedefEntry(name, None, decl)
             entries[map_type].append(new_entry)
         # Write entries to yaml files
-        map_dir = os.path.join(YAML_PATH, info.game, map_type)
+        map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
         for filename, data in entries.items():
             path = os.path.join(map_dir, "_" + filename + "2.yml")
             ifu.write_info_file(path, map_type, data)
+        # Log warnings
+        if existing_missing_from_elf:
+            items = ", ".join(existing_missing_from_elf)
+            self._add_warning(f"existing {map_type} entries missing from elf:\n{items}")
+        if decomp_missing_from_elf:
+            items = ", ".join(decomp_missing_from_elf)
+            self._add_warning(f"decomp {map_type} entries missing from elf:\n{items}")
+        if existing_missing_from_decomp:
+            items = ", ".join(existing_missing_from_decomp)
+            self._add_warning(f"existing {map_type} entries missing from decomp:\n{items}")
 
     def _create_params_and_ret(self,
         node: c_ast.FuncDecl,
@@ -636,11 +672,9 @@ class Extractor:
                 params.append(pe)
         # Create ret
         ret: VarEntry = None
-        nt: c_ast.TypeDecl = node.type
         # Check if not void
-        rt: c_ast.IdentifierType = nt.type
-        if rt.names[0] != "void":
-            ds, count = self._decl_str_and_count(nt)
+        ds, count = self._decl_str_and_count(node.type)
+        if ds != "void":
             ret = VarEntry(ret_doc, ds, count)
             if entry and entry.ret:
                 ret.cat = entry.ret.cat
@@ -671,7 +705,8 @@ class Extractor:
         for decl in decls:
             offset = bits // 8
             ds, count = self._decl_str_and_count(decl.type)
-            new_ve = StructVarEntry(decl.name, None, ds, count, offset, decl.bitsize)
+            bitsize = self._const_value(decl.bitsize) if decl.bitsize else None
+            new_ve = StructVarEntry(decl.name, None, ds, count, offset, bitsize)
             if existing and bits in existing:
                 ve = existing[bits]
                 new_ve.cat = ve.cat
@@ -679,14 +714,14 @@ class Extractor:
                 new_ve.enum = ve.enum
             vars.append(new_ve)
             # Update bits offset
-            if decl.bitsize is None:
+            if bitsize is None:
                 ds, da = self._type_size(decl)
                 remain = bits % (da * 8)
                 if remain != 0:
                     bits += (da * 8) - remain
                 bits += ds * 8
             else:
-                bits += self._const_value(decl.bitsize)
+                bits += bitsize
         return vars
 
     def _create_union_vars(self,

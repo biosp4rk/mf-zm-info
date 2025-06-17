@@ -13,6 +13,9 @@ from constants import *
 RegionInt = Union[int, dict[str, int]]
 StructDict = dict[str, "StructEntry"]
 
+TOKENIZER = TypeTokenizer()
+PARSER = TypeParser()
+
 
 class Category(Enum):
 
@@ -116,10 +119,36 @@ class InfoEntry(ABC):
         return avg1 < avg2
 
 
-class VarEntry(InfoEntry):
+class TypedefEntry(InfoEntry):
 
-    TOKENIZER = TypeTokenizer()
-    PARSER = TypeParser()
+    def __init__(self,
+        name: str,
+        desc: str,
+        type: str
+    ):
+        super().__init__(desc)
+        self.name = name
+        tokens = TOKENIZER.tokenize(type)
+        self.type = PARSER.parse(tokens)
+
+    @staticmethod
+    def from_obj(obj: Any) -> "TypedefEntry":
+        return TypedefEntry(
+            obj[K_NAME],
+            obj.get(K_DESC),
+            obj[K_TYPE]
+        )
+
+    @staticmethod
+    def to_obj(entry: "TypedefEntry") -> Any:
+        obj = [(K_NAME, entry.name)]
+        if entry.desc:
+            obj.append((K_DESC, entry.desc))
+        obj.append((K_TYPE, entry.type.decl_str()))
+        return dict(obj)
+
+
+class VarEntry(InfoEntry):
 
     def __init__(self,
         desc: str,
@@ -132,8 +161,8 @@ class VarEntry(InfoEntry):
         enum: str = None
     ):
         super().__init__(desc)
-        tokens = self.TOKENIZER.tokenize(type)
-        self.type = self.PARSER.parse(tokens)
+        tokens = TOKENIZER.tokenize(type)
+        self.type = PARSER.parse(tokens)
         self.arr_count = arr_count
         self.cat = cat
         self.comp = comp

@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
 from constants import *
-from info_entry import InfoEntry, EnumEntry, StructEntry, DataEntry, CodeEntry, Category
+from info_entry import *
 from info_file_utils import get_info_file_from_json, get_info_file_from_yaml
 
 
@@ -21,26 +21,26 @@ class GameInfo(object):
         self.game = game
         self.region = region
         if source == InfoSource.JSON:
-            self.ram: list[DataEntry] = get_info_file_from_json(
-                game, MAP_RAM, region)
-            self.code: list[CodeEntry] = get_info_file_from_json(
-                game, MAP_CODE, region)
-            self.data: list[DataEntry] = get_info_file_from_json(
-                game, MAP_DATA, region)
+            self.ram: list[DataEntry] = get_info_file_from_json(game, MAP_RAM, region)
+            self.code: list[CodeEntry] = get_info_file_from_json(game, MAP_CODE, region)
+            self.data: list[DataEntry] = get_info_file_from_json(game, MAP_DATA, region)
             struct_list = get_info_file_from_json(game, MAP_STRUCTS, region)
+            #union_list = get_info_file_from_json(game, MAP_UNIONS, region)
             enum_list = get_info_file_from_json(game, MAP_ENUMS, region)
+            #typedef_list = get_info_file_from_json(game, MAP_TYPEDEFS, region)
         else:
             include_unk = source == InfoSource.YAML_UNK
-            self.ram: list[DataEntry] = get_info_file_from_yaml(
-                game, MAP_RAM, region, include_unk)
-            self.code: list[CodeEntry] = get_info_file_from_yaml(
-                game, MAP_CODE, region, include_unk)
-            self.data: list[DataEntry] = get_info_file_from_yaml(
-                game, MAP_DATA, region, include_unk)
+            self.ram: list[DataEntry] = get_info_file_from_yaml(game, MAP_RAM, region, include_unk)
+            self.code: list[CodeEntry] = get_info_file_from_yaml(game, MAP_CODE, region, include_unk)
+            self.data: list[DataEntry] = get_info_file_from_yaml(game, MAP_DATA, region, include_unk)
             struct_list = get_info_file_from_yaml(game, MAP_STRUCTS, region, include_unk)
+            #union_list = get_info_file_from_yaml(game, MAP_UNIONS, region, include_unk)
             enum_list = get_info_file_from_yaml(game, MAP_ENUMS, region, include_unk)
+            #typedef_list = get_info_file_from_yaml(game, MAP_TYPEDEFS, region, include_unk)
         self.structs: dict[str, StructEntry] = {e.name: e for e in struct_list}
+        #self.unions: dict[str, UnionEntry] = {e.name: e for e in struct_list}
         self.enums: dict[str, EnumEntry] = {e.name: e for e in enum_list}
+        #self.typedefs: dict[str, TypedefEntry] = {e.name: e for e in typedef_list}
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]

@@ -255,7 +255,8 @@ TAG_TYPES = {
 }
 
 BUILT_IN_TYPES = {
-    "void", "char", "short", "int", "long", "float", "double"
+    "void", "char", "short", "int", "long",
+    "float", "double", "signed", "unsigned"
 }
 
 
