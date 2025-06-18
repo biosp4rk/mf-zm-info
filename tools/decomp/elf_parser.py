@@ -1,10 +1,11 @@
 import argparse
 from enum import Enum
-import os
 
 from constants import *
-import info_file_utils as ifu
 from rom import ROM_OFFSET
+
+
+EXCLUDE = {"sTransferRom_After"}
 
 
 class ElfType(Enum):
@@ -95,7 +96,10 @@ def filter_entries(
     # Remove entries that don't represent RAM, code, or data
     entries = [
         e for e in entries
-        if e.kind != ElfType.FILE and e.kind != ElfType.SECTION and e.ndx >= 1
+        if (
+            e.kind != ElfType.FILE and e.kind != ElfType.SECTION and
+            e.ndx >= 1 and e.name not in EXCLUDE
+        )
     ]
     # Sort by address
     entries.sort(key=lambda x: x.value)
@@ -159,8 +163,6 @@ def get_entry_names(entries: list[ElfSym]) -> dict[int, str]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("elf_path", type=str, help="Path to elf file")
-    # parser.add_argument("game", type=str, choices=GAMES, help="Game abbreviation")
-    # parser.add_argument("region", type=str, choices=REGIONS, help="Region abbreviation")
     
     args = parser.parse_args()
     entries = parse_elf_file(args.elf_path)

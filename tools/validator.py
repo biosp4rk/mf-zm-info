@@ -65,7 +65,7 @@ class Validator(object):
         # Go through yaml files of each type
         for map_type in MAP_TYPES:
             self.entry_loc.map_type = map_type
-            name = "data" if map_type == "ram" else map_type
+            name = MAP_DATA if map_type == MAP_RAM else map_type
             with open(os.path.join(SCHEMA_PATH, name + JSON_EXT)) as f:
                 map_schema = json.load(f)
             validator = Draft7Validator(map_schema, registry=registry)
@@ -90,6 +90,8 @@ class Validator(object):
             self.enums = info.enums
             self.structs = info.structs
 
+            # TODO: Check typedefs
+
             # Check enums
             self.entry_loc.map_type = MAP_ENUMS
             for entry in info.enums.values():
@@ -101,6 +103,8 @@ class Validator(object):
             for entry in info.structs.values():
                 self.entry_loc.entry_name = entry.name
                 self.check_vars(entry.vars)
+            
+            # TODO: Check unions
 
             # Check code
             self.entry_loc.map_type = MAP_CODE

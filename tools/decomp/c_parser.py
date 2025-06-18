@@ -94,7 +94,7 @@ class Extractor:
         print("Updating yaml files...")
         for map_type in MAP_TYPES:
             self._write_entries(map_type, region, info, elf_names, elf_addrs)
-        # Log errors
+        # Log warnings
         if self.warnings:
             with open("_log.txt", "w") as f:
                 for msg in self.warnings:
@@ -207,7 +207,8 @@ class Extractor:
                 name = node.name
                 # Don't overwrite var decl with definition (only the decl is needed)
                 if name not in self.locations:
-                    self._add_warning(f"var def without decl\n{loc}")
+                    if "static" not in node.storage:
+                        self._add_warning(f"var def without decl\n{loc}")
                     self.variables[name] = nt
             self.locations[name] = loc
             return True
@@ -632,6 +633,7 @@ class Extractor:
         # Write entries to yaml files
         map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
         for filename, data in entries.items():
+            data.sort()
             path = os.path.join(map_dir, "_" + filename + "2.yml")
             ifu.write_info_file(path, map_type, data)
         # Log warnings

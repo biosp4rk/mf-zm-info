@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "$ref": "urn:definitions#/definitions/Name"
+            },
+            "desc": {
+                "$ref": "urn:definitions#/definitions/Description"
+            },
+            "size": {
+                "type": "integer"
+            },
+            "vars": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "urn:definitions#/definitions/Name"
+                        },
+                        "desc": {
+                            "$ref": "urn:definitions#/definitions/Description"
+                        },
+                        "type": {
+                            "$ref": "urn:definitions#/definitions/Type"
+                        },
+                        "count": {
+                            "$ref": "urn:definitions#/definitions/RegionInt"
+                        },
+                        "cat": {
+                            "$ref": "urn:definitions#/definitions/Category"
+                        },
+                        "comp": {
+                            "$ref": "urn:definitions#/definitions/Compression"
+                        },
+                        "enum": {
+                            "$ref": "urn:definitions#/definitions/Name"
+                        }
+                    },
+                    "required": ["name", "type"],
+                    "additionalProperties": false
+                },
+                "minItems": 1
+            }
+        },
+        "required": ["name", "size", "vars"],
+        "additionalProperties": false
+    }
+}

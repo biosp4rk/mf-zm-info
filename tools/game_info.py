@@ -41,6 +41,8 @@ class GameInfo(object):
         #self.unions: dict[str, UnionEntry] = {e.name: e for e in struct_list}
         self.enums: dict[str, EnumEntry] = {e.name: e for e in enum_list}
         #self.typedefs: dict[str, TypedefEntry] = {e.name: e for e in typedef_list}
+        # TODO: Compute typedef sizes
+        #self.typedef_sizes = {e.name: e for e in typedef_list}
 
     def get_enum(self, key: str) -> EnumEntry:
         return self.enums[key]

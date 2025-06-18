@@ -12,6 +12,7 @@ from constants import *
 # Type for numbers that can vary by region (addr, size)
 RegionInt = Union[int, dict[str, int]]
 StructDict = dict[str, "StructEntry"]
+TypedefSizes = dict[str, int]
 
 TOKENIZER = TypeTokenizer()
 PARSER = TypeParser()
@@ -208,7 +209,7 @@ class VarEntry(InfoEntry):
         return False
 
     def get_count(self) -> int:
-        """Gets the count of the outermost array"""
+        """Gets the count of the outermost array."""
         if self.arr_count is None:
             return 1
         if isinstance(self.arr_count, dict):
@@ -233,12 +234,12 @@ class VarEntry(InfoEntry):
         return count
 
     def get_size(self, structs: StructDict) -> int:
-        """Gets the total size of the entry"""
+        """Gets the total size of the entry."""
         spec_size = 4 if self.is_ptr() else self.get_spec_size(structs)
         return spec_size * self.get_total_count()
 
     def get_spec_size(self, structs: StructDict) -> int:
-        """Gets the size of a single item of this type"""
+        """Gets the size of a single item of this type."""
         sk = self.spec_kind()
         if sk == TypeSpecKind.BUILT_IN:
             sn = self.spec_name()
