@@ -188,7 +188,8 @@ class Extractor:
         elif isinstance(node, c_ast.Decl):
             nt = node.type
             if isinstance(nt, c_ast.FuncDecl):
-                self._add_warning(f"func decl in src file\n{loc}")
+                if "static" not in node.storage:
+                    self._add_warning(f"func decl in src file\n{loc}")
                 name = node.name
                 self.funcs[name] = nt
             elif isinstance(nt, c_ast.Enum):
@@ -631,10 +632,10 @@ class Extractor:
                 new_entry = TypedefEntry(name, None, decl)
             entries[map_type].append(new_entry)
         # Write entries to yaml files
-        map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
+        map_dir = os.path.join(YAML_PATH, info.game.lower() + "2", map_type)
         for filename, data in entries.items():
             data.sort()
-            path = os.path.join(map_dir, "_" + filename + "2.yml")
+            path = os.path.join(map_dir, filename + ".yml")
             ifu.write_info_file(path, map_type, data)
         # Log warnings
         if existing_missing_from_elf:

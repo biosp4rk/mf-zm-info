@@ -132,6 +132,12 @@ class TypedefEntry(InfoEntry):
         tokens = TOKENIZER.tokenize(type)
         self.type = PARSER.parse(tokens)
 
+    def __str__(self) -> str:
+        return f"{self.name}"
+
+    def __lt__(self, other: "TypedefEntry") -> bool:
+        return self.name < other.name
+
     @staticmethod
     def from_obj(obj: Any) -> "TypedefEntry":
         return TypedefEntry(

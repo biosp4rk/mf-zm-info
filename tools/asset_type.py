@@ -67,10 +67,7 @@ class SpecifierType(AssetType):
         return " ".join(parts)
 
     def __str__(self) -> str:
-        name = self.spec_name()
-        if self.kind.is_tag():
-            name = f"{self.kind.name.lower()} {name}"
-        return name
+        return self.decl_str()
 
 
 class OuterType(AssetType):
@@ -92,15 +89,18 @@ class PointerType(OuterType):
         self.quals = quals
 
     def decl_str(self, decl: str = "") -> str:
-        parts = [q.name.lower() for q in self.quals]
-        ptr_str = "*" + decl
+        parts = ["*"]
+        parts += [q.name.lower() for q in self.quals]
+        parts.append(decl)
+        ptr_str = " ".join(parts)
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"
-        parts.append(ptr_str)
-        return self.inner_type.decl_str(" ".join(parts))
+        return self.inner_type.decl_str(ptr_str)
 
     def __str__(self) -> str:
-        return f"pointer to {self.inner_type}"
+        parts = [q.name.lower() for q in self.quals]
+        parts.append(f"pointer to {self.inner_type}")
+        return " ".join(parts)
 
 
 class ArrayType(OuterType):
@@ -329,7 +329,7 @@ class TypeParser:
             if self._accept(TokenName.L_BRACK):
                 # Array
                 self._expect(TokenName.INT)
-                size = int(self.prev_token.text[2:], 16)
+                size = int(self.prev_token.text, 0)
                 self._expect(TokenName.R_BRACK)
                 arr_type = ArrayType(spec, size)
                 info.update_parent_types(arr_type)
@@ -400,23 +400,20 @@ class TypeParser:
             break
 
     def _parse_left(self, info: ParseInfo, decl_end: bool) -> None:
+        quals: list[TypeQual] = []
         while info.left > info.start:
-            name = self.tokens[info.left].name
+            token = self.tokens[info.left]
             info.left -= 1
-            if name == TokenName.STAR:
+            if token.name == TokenName.STAR:
                 # Get type qualifiers
-                quals: list[TypeQual] = []
-                while (
-                    info.left > info.start and
-                    self.tokens[info.left].name == TokenName.TYPE_QUAL
-                ):
-                    text = self.tokens[info.left].text.upper()
-                    quals.append(TypeQual[text])
-                    info.left -= 1
                 quals.reverse()
                 ptr_type = PointerType(info.spec, quals)
                 info.update_parent_types(ptr_type)
-            elif name == TokenName.L_PAREN:
+                quals = []
+            elif token.name == TokenName.TYPE_QUAL:
+                text = token.text.upper()
+                quals.append(TypeQual[text])
+            elif token.name == TokenName.L_PAREN:
                 if decl_end:
                     tn = self.curr_token.name.name
                     raise ValueError(f"Unexpected token {tn}")
@@ -436,4 +433,5 @@ if __name__ == "__main__":
 
     tokens = tokenizer.tokenize(args.text)
     node = parser.parse(tokens)
+    print(node.decl_str())
     print(node)
