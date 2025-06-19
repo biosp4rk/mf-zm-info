@@ -91,7 +91,8 @@ class PointerType(OuterType):
     def decl_str(self, decl: str = "") -> str:
         parts = ["*"]
         parts += [q.name.lower() for q in self.quals]
-        parts.append(decl)
+        if decl:
+            parts.append(decl)
         ptr_str = " ".join(parts)
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"

@@ -1,3 +1,12 @@
+# - Find defs in .h files (typedefs, vars, funcs, enums, structs, unions)
+#   - names, types, fields, (partial) sizes, locations
+# - Prefer locations from .c files (for funcs and rom data)
+# - Extract docstrings above each location, if any (prefer .c files)
+# - Compute sizes of structs and vars, using typedefs and evaluating statements
+# - Parse elf file to get addresses and sizes
+# - Load existing info entries
+# - Update entry fields (except for cat, comp, enum, and refs)
+
 import argparse
 from collections import defaultdict
 import os
@@ -11,15 +20,6 @@ from game_info import GameInfo, InfoSource
 from info_entry import *
 import info_file_utils as ifu
 
-
-# - Find defs in .h files (typedefs, vars, funcs, enums, structs, unions)
-#   - names, types, fields, (partial) sizes, locations
-# - Prefer locations from .c files (for funcs and rom data)
-# - Extract docstrings above each location, if any (prefer .c files)
-# - Compute sizes of structs and vars, using typedefs and evaluating statements
-# - Parse elf file to get addresses and sizes
-# - Load existing info entries
-# - Update entry fields (except for cat, comp, enum, and refs)
 
 BUILT_INT_TYPES = {
     "void", "char", "short", "int", "long",
@@ -75,15 +75,8 @@ class Extractor:
     def extract(self, game: str, region: str, cpp_path: str, elf_path: str) -> None:
         self._find_and_process_files(cpp_path)
         self._compute_enum_vals()
-        # Compute sizes of variables, structs, and unions
-        print("Computing sizes...")
-        dicts: list[dict[str, c_ast.Node]] = [self.variables, self.structs, self.unions]
-        for d in dicts:
-            for name, node in d.items():
-                try:
-                    self.sizes[name] = self._type_size(node)[0]
-                except ValueError as e:
-                    print(e)
+        self._find_unnamed_structs_and_unions()
+        self._compute_sizes()
         # Parse elf file
         print("Parsing elf file...")
         elf_names = ep.get_entry_names(ep.parse_elf_file(elf_path))
@@ -94,7 +87,9 @@ class Extractor:
         print("Updating yaml files...")
         for map_type in MAP_TYPES:
             self._write_entries(map_type, region, info, elf_names, elf_addrs)
-        # Log warnings
+        self._log_warnings()
+    
+    def _log_warnings(self) -> None:
         if self.warnings:
             with open("_log.txt", "w") as f:
                 for msg in self.warnings:
@@ -146,6 +141,7 @@ class Extractor:
                     if process_file(node):
                         self._try_get_doc_str(node, lines)
 
+    # TODO: Combine this with process c file
     def _process_h_file(self, node: c_ast.Node) -> bool:
         """Extracts AST nodes from header files."""
         loc = self._get_node_loc(node.coord)
@@ -243,7 +239,65 @@ class Extractor:
         rel = os.path.relpath(coord.file, self.decomp_path)
         return rel + ":" + str(coord.line)
 
+    def _find_unnamed_structs_and_unions(self) -> None:
+        """Finds structs/unions with unnamed structs/unions defined within them."""
+        # Create a copy of the values, since the dictionaries will be modified in-place
+        structs_and_unions = list(self.structs.values()) + list(self.unions.values())
+        for su in structs_and_unions:
+            self._find_unnamed_structs_and_unions_helper(su, [])
+
+    def _find_unnamed_structs_and_unions_helper(self,
+        node: Union[c_ast.Struct, c_ast.Union],
+        names: list[str]
+    ) -> None:
+        """Recursive helper function to find unnamed structs/unions."""
+        names.append(node.name)
+        decls: list[c_ast.Decl] = node.decls
+        for decl in decls:
+            dt = decl.type
+            while isinstance(dt, (c_ast.ArrayDecl, c_ast.PtrDecl)):
+                dt = dt.type
+            if not isinstance(dt, c_ast.TypeDecl):
+                continue
+            dtt = dt.type
+            if isinstance(dtt, (c_ast.Struct, c_ast.Union)) and dtt.name is None:
+                new_names = list(names)
+                new_names.append(decl.name)
+                name = "__".join(new_names)
+                dtt.name = name
+                self.locations[name] = self._get_node_loc(dtt.coord)
+                if isinstance(dtt, c_ast.Struct):
+                    self.structs[name] = dtt
+                else:
+                    self.unions[name] = dtt
+                self._find_unnamed_structs_and_unions_helper(dtt, new_names)
+
     # -------- Computing values --------
+
+    def _compute_sizes(self) -> None:
+        """Computes the sizes of variables, structs, and unions."""
+        print("Computing sizes...")
+        dicts: list[dict[str, c_ast.Node]] = [self.variables, self.structs, self.unions]
+        for d in dicts:
+            for name, node in d.items():
+                try:
+                    self.sizes[name] = self._type_size(node)[0]
+                except ValueError as e:
+                    print(e)
+
+    def _compute_enum_vals(self) -> None:
+        """Computes the values of all items in every enum."""
+        print("Computing enum values...")
+        self.enum_vals = {}
+        for enum in self.enums.values():
+            val = 0
+            vals: c_ast.EnumeratorList = enum.values
+            nums: list[c_ast.Enumerator] = vals.enumerators
+            for num in nums:
+                if num.value is not None:
+                    val = self._const_value(num.value)
+                self.enum_vals[num.name] = val
+                val += 1
 
     def _const_value(self, node: c_ast.Node) -> int:
         """Recursively computes the value for an AST node that is a constant integer."""
@@ -289,19 +343,6 @@ class Extractor:
             return self._const_value(node.expr)
         else:
             raise ValueError(type(node))
-
-    def _compute_enum_vals(self) -> None:
-        print("Computing enum values...")
-        self.enum_vals = {}
-        for enum in self.enums.values():
-            val = 0
-            vals: c_ast.EnumeratorList = enum.values
-            nums: list[c_ast.Enumerator] = vals.enumerators
-            for num in nums:
-                if num.value is not None:
-                    val = self._const_value(num.value)
-                self.enum_vals[num.name] = val
-                val += 1
 
     def _type_size(self, node: c_ast.Node) -> tuple[int, int]:
         """Computes the size and alignment of the type of an AST node."""
@@ -637,7 +678,7 @@ class Extractor:
             data.sort()
             path = os.path.join(map_dir, filename + ".yml")
             ifu.write_info_file(path, map_type, data)
-        # Log warnings
+        # Add warnings
         if existing_missing_from_elf:
             items = ", ".join(existing_missing_from_elf)
             self._add_warning(f"existing {map_type} entries missing from elf:\n{items}")
