@@ -1,16 +1,6 @@
-- name: ChozoStatueHintFlashingPaletteRows
-  type: u16
-  count: 0x40
-  cat: palette
-  addr:
-    U: 0x2B3BD4
-    E: 0x2B4860
-    J: 0x2B3C30
-    C: 0x2CD3C0
-    B: 0x2B9468
 - name: sImagoLarvaPaletteRows
-  type: u16
-  count: 0x40
+  type: const u8
+  count: 0x4
   cat: palette
   addr:
     U: 0x2DB248
@@ -18,8 +8,9 @@
     J: 0x2DB2A4
     C: 0x2F4A34
     B: 0x2E0ADC
+  loc: src/data/sprites/imago_larva.c:1439
 - name: sMetroidPal_SamusGrabbed
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
@@ -27,8 +18,9 @@
     E: 0x2EE614
     J: 0x2ED9E4
     C: 0x307174
+  loc: src/data/sprites/metroid.c:21
 - name: sCommonSpritesPal
-  type: u16
+  type: const u16
   count: 0x60
   cat: palette
   addr:
@@ -37,50 +29,57 @@
     J: 0x32BA64
     C: 0x3451F4
     B: 0x33129C
+  loc: src/data/hud_data.c:6
 - name: sMotherBrainCloseUpPal
-  type: u16
+  type: const u16
   count: 0x60
   cat: palette
   addr:
     U: 0x376084
     B: 0x37B938
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:369
 - name: sMotherBrainCloseUpBackgroundPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
     U: 0x376144
     B: 0x37B9F8
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:370
 - name: sMotherBrainCloseUpSamusPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
     U: 0x3761E4
     B: 0x37BA98
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:371
 - name: sMotherBrainCloseUpSamusVariaPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
     U: 0x376284
     B: 0x37BB38
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:372
 - name: sMotherBrainCloseUpEyePal
-  type: u16
+  type: const u16
   count: 0x20
   cat: palette
   addr:
     U: 0x376324
     B: 0x37BBD8
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:373
 - name: sMotherBrainCloseUpBigEyePal
-  type: u16
+  type: const u16
   count: 0x20
   cat: palette
   addr:
     U: 0x376364
     B: 0x37BC18
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:374
 - name: sMotherBrainCloseUpTankViewPal
-  type: u16
+  type: const u16
   count: 0x80
   cat: palette
   addr:
@@ -88,78 +87,89 @@
     E: 0x387AEC
     J: 0x386EBC
     C: 0x3A064C
+  loc: src/data/cutscenes/mother_brain_close_up_data.c:389
 - name: sRidleySpawnSamusPal
-  type: u16
+  type: const u16
   count: 0x30
   cat: palette
   addr:
     U: 0x3B5E14
     B: 0x3BB6C8
+  loc: src/data/cutscenes/ridley_spawn_data.c:140
 - name: sRidleySpawnSamusVariaPal
-  type: u16
+  type: const u16
   count: 0x30
   cat: palette
   addr:
     U: 0x3B5E74
     B: 0x3BB728
+  loc: src/data/cutscenes/ridley_spawn_data.c:141
 - name: sRidleySpawnBackgroundPal
-  type: u16
+  type: const u16
   count: 0xD0
   cat: palette
   addr:
     U: 0x3B5ED4
     B: 0x3BB788
+  loc: src/data/cutscenes/ridley_spawn_data.c:142
 - name: sRidleySpawnRidleyScreamingPal
-  type: u16
+  type: const u16
   count: 0x10
   cat: palette
   addr:
     U: 0x3B6074
     B: 0x3BB928
+  loc: src/data/cutscenes/ridley_spawn_data.c:143
 - name: sMechaSeesSamusPal
-  type: u16
+  type: const u16
   count: 0xA0
   cat: palette
   addr:
     U: 0x3C5CF0
     B: 0x3CB5A4
+  loc: src/data/cutscenes/mecha_sees_samus_data.c:278
 - name: sGettingFullyPoweredSuitPal
-  type: u16
+  type: const u16
   count: 0x130
   cat: palette
   addr:
     U: 0x3C66A0
     B: 0x3CBF54
+  loc: src/data/cutscenes/getting_fully_powered_suit_data.c:347
 - name: sGettingFullyPoweredSuitRingPal
-  type: u16
+  type: const u16
   count: 0x70
   cat: palette
   addr:
     U: 0x3CE38C
     B: 0x3D3C40
+  loc: src/data/cutscenes/getting_fully_powered_suit_data.c:353
 - name: sBeforeCharlieChozoWallSidesPal
-  type: u16
+  type: const u16
   count: 0xA0
   cat: palette
   addr:
     U: 0x3CE4B4
     B: 0x3D3D68
+  loc: src/data/cutscenes/before_charlie_data.c:71
 - name: sBeforeCharlieChozoWallPal
-  type: u16
+  type: const u16
   count: 0x80
   cat: palette
   addr:
     U: 0x3CE5F4
     B: 0x3D3EA8
+  loc: src/data/cutscenes/before_charlie_data.c:72
 - name: sBeforeCharlieSamusCloseUpPal
-  type: u16
+  type: const u16
   count: 0x100
   cat: palette
   addr:
     U: 0x3CE6F4
     B: 0x3D3FA8
+  loc: src/data/cutscenes/before_charlie_data.c:73
 - name: sMinimapTilesPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
@@ -168,121 +178,148 @@
     J: 0x4113BC
     C: 0x433EFC
     B: 0x417C70
+  loc: src/data/menus/pause_screen_map_data.c:8
 - name: sTourianEscapeExplodingPal
-  type: u16
+  type: const u16
   count: 0x90
   cat: palette
   addr:
     U: 0x479400
     B: 0x484214
+  loc: src/data/tourian_escape_data.c:3
 - name: sMotherShipBlowingUpExplosionsPal
-  type: u16
+  type: const u16
   count: 0x60
   cat: palette
   addr:
     U: 0x479520
     B: 0x484334
+  loc: src/data/tourian_escape_data.c:4
 - name: sTourianEscapeSamusInHerShipPowerSuitPal
-  type: u16
+  type: const u16
   count: 0x70
   cat: palette
   addr:
     U: 0x4795E0
     B: 0x4843F4
+  loc: src/data/tourian_escape_data.c:6
 - name: sTourianEscapeSamusInHerShipVariaSuitPal
-  type: u16
+  type: const u16
   count: 0x70
   cat: palette
   addr:
     U: 0x4796C0
     B: 0x4844D4
+  loc: src/data/tourian_escape_data.c:7
 - name: sTourianEscapeSamusInHerShipSuitlessPal
-  type: u16
+  type: const u16
   count: 0x80
   cat: palette
   addr:
     U: 0x4797A0
     B: 0x4845B4
+  loc: src/data/tourian_escape_data.c:8
 - name: sTourianEscapeSamusLookingAroundPal
-  type: u16
+  type: const u16
   count: 0x70
   cat: palette
   addr:
     U: 0x4798A0
     B: 0x4846B4
+  loc: src/data/tourian_escape_data.c:10
 - name: sTourianEscapeSamusChasedBackgroundPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
     U: 0x479980
     B: 0x484794
+  loc: src/data/tourian_escape_data.c:11
 - name: sTourianEscapeSamusGettingShotPal
-  type: u16
+  type: const u16
   count: 0x50
   cat: palette
   addr:
     U: 0x479A20
     B: 0x484834
+  loc: src/data/tourian_escape_data.c:12
 - name: sTourianEscapeSamusSurroundedPal
-  type: u16
+  type: const u16
   count: 0x100
   cat: palette
   addr:
     U: 0x479AC0
     B: 0x4848D4
+  loc: src/data/tourian_escape_data.c:13
 - name: sTourianEscapeSamusChasedShipsPal
-  type: u16
+  type: const u16
   count: 0x60
   cat: palette
   addr:
     U: 0x479CC0
     B: 0x484AD4
+  loc: src/data/tourian_escape_data.c:14
 - name: sTourianEscapeSamusChasedByPiratesFiringPal
-  type: u16
+  type: const u16
   count: 0x40
   cat: palette
   addr:
     U: 0x479D80
     B: 0x484B94
+  loc: src/data/tourian_escape_data.c:15
 - name: sTourianEscapeSamusGoingToCrashPal
-  type: u16
+  type: const u16
   count: 0x70
   cat: palette
   addr:
     U: 0x479E00
     B: 0x484C14
+  loc: src/data/tourian_escape_data.c:16
 - name: sTourianEscapeSamusCrashingForegroundPal
-  type: u16
+  type: const u16
   count: 0x30
   cat: palette
   addr:
     U: 0x479F20
     B: 0x484D34
+  loc: src/data/tourian_escape_data.c:19
 - name: sTourianEscapeShipCrashingBackgroundAndShipPal
-  type: u16
+  type: const u16
   count: 0x100
   cat: palette
   addr:
     U: 0x47A060
     B: 0x484E74
+  loc: src/data/tourian_escape_data.c:21
 - name: sTourianEscapeSamusLookingAtSkyPal
-  type: u16
+  type: const u16
   count: 0xA0
   cat: palette
   addr:
     U: 0x47A260
     B: 0x485074
+  loc: src/data/tourian_escape_data.c:22
 - name: sTourianEscapeSamusLookingAtMotherShipPal
-  type: u16
+  type: const u16
   count: 0xA0
   cat: palette
   addr:
     U: 0x47A3A0
     B: 0x4851B4
-- name: CommonBgPalette
-  type: u16
-  count: 0xA0
+  loc: src/data/tourian_escape_data.c:23
+- name: sEndingImagesPalPointers
+  type: const u16 *
+  count: 0x8
+  cat: palette
+  addr:
+    U: 0x54C0EC
+    E: 0x55A3CC
+    J: 0x54C148
+    C: 0x56EAF4
+  loc: src/data/ending_and_gallery_data.c:1090
+- name: sCommonTilesPal
+  type: const u16
+  count: 0x10
   cat: palette
   addr:
     U: 0x5DFE20
@@ -290,3 +327,14 @@
     J: 0x5DFF30
     C: 0x607028
     B: 0x5EADCC
+  loc: src/data/common_pals.c:5
+- name: sSpritesPalettePointers
+  type: const u16 *
+  count: 0xBE
+  cat: palette
+  addr:
+    U: 0x75EEF0
+    E: 0x772D90
+    J: 0x75F000
+    C: 0x79E0E8
+  loc: src/data/samus_sprites_pointers.c:639

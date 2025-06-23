@@ -1,0 +1,59 @@
+- name: EwramData
+  size: 0xD800
+  vars:
+  - name: pauseScreen
+    type: struct PauseScreenEwramData
+  - name: fileSelect
+    type: struct FileSelectEwramData
+  - name: kraidRising
+    type: struct KraidRisingEwramData
+  - name: beforeCharlie
+    type: struct BeforeCharlieEwramData
+  loc: include/temp_globals.h:40
+- name: NonGameplayRAM
+  size: 0x628
+  vars:
+  - name: cutscene
+    type: struct CutsceneData
+  - name: intro
+    type: struct IntroData
+  - name: gameOver
+    type: struct GameOverData
+  - name: ending
+    type: struct EndingData
+  - name: pauseScreen
+    type: struct PauseScreenData
+  - name: titleScreen
+    type: struct TitleScreenData
+  - name: eraseSram
+    type: struct EraseSramData
+  - name: fileSelect
+    type: struct FileSelectData
+  - name: fusionGallery
+    type: struct FusionGalleryData
+  - name: chozodiaEscape
+    type: struct ChozodiaEscapeData
+  - name: tourianEscape
+    type: struct TourianEscapeData
+  - name: bootDebug
+    type: struct BootDebugData
+  - name: inGame
+    type: u8
+    count: 0x628
+  loc: include/temp_globals.h:24
+- name: OamData
+  size: 0x8
+  vars:
+  - name: split
+    type: struct OamData__split
+  - name: all
+    type: struct OamData__all
+  loc: include/oam.h:77
+- name: TileData
+  size: 0x4
+  vars:
+  - name: split
+    type: struct TileData__split
+  - name: all
+    type: u16
+  loc: include/globals.h:19
