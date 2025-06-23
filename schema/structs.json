@@ -33,6 +33,10 @@
                         "offset": {
                             "$ref": "urn:definitions#/definitions/RegionInt"
                         },
+                        "bits": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
                         "cat": {
                             "$ref": "urn:definitions#/definitions/Category"
                         },
@@ -47,9 +51,12 @@
                     "additionalProperties": false
                 },
                 "minItems": 1
+            },
+            "loc": {
+                "$ref": "urn:definitions#/definitions/Location"
             }
         },
-        "required": ["name", "size", "vars"],
+        "required": ["name", "size", "vars", "loc"],
         "additionalProperties": false
     }
 }

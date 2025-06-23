@@ -16,37 +16,15 @@
             "vars": {
                 "type": "array",
                 "items": {
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "$ref": "urn:definitions#/definitions/Name"
-                        },
-                        "desc": {
-                            "$ref": "urn:definitions#/definitions/Description"
-                        },
-                        "type": {
-                            "$ref": "urn:definitions#/definitions/Type"
-                        },
-                        "count": {
-                            "$ref": "urn:definitions#/definitions/RegionInt"
-                        },
-                        "cat": {
-                            "$ref": "urn:definitions#/definitions/Category"
-                        },
-                        "comp": {
-                            "$ref": "urn:definitions#/definitions/Compression"
-                        },
-                        "enum": {
-                            "$ref": "urn:definitions#/definitions/Name"
-                        }
-                    },
-                    "required": ["name", "type"],
-                    "additionalProperties": false
+                    "$ref": "urn:definitions#/definitions/NamedVar"
                 },
                 "minItems": 1
+            },
+            "loc": {
+                "$ref": "urn:definitions#/definitions/Location"
             }
         },
-        "required": ["name", "size", "vars"],
+        "required": ["name", "size", "vars", "loc"],
         "additionalProperties": false
     }
 }

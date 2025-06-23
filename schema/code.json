@@ -28,7 +28,7 @@
                     {
                         "type": "array",
                         "items": {
-                            "$ref": "#/$defs/CodeVar"
+                            "$ref": "urn:definitions#/definitions/NamedVar"
                         }
                     }
                 ]
@@ -39,12 +39,15 @@
                         "type": "null"
                     },
                     {
-                        "$ref": "#/$defs/CodeVar"
+                        "$ref": "urn:definitions#/definitions/Var"
                     }
                 ]
+            },
+            "loc": {
+                "$ref": "urn:definitions#/definitions/Location"
             }
         },
-        "required": ["name", "addr", "size", "mode", "params", "return"],
+        "required": ["name", "addr", "size", "mode", "params", "return", "loc"],
         "additionalProperties": false
     },
     "$defs": {

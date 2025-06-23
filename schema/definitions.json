@@ -54,6 +54,63 @@
         "Compression": {
             "type": "string",
             "enum": ["rle", "lz"]
+        },
+        "Location": {
+            "type": "string",
+            "pattern": "[A-Za-z0-9_]+\\.[A-Za-z]+:[0-9]+$"
+        },
+        "Var": {
+            "type": "object",
+            "properties": {
+                "desc": {
+                    "$ref": "#/definitions/Description"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "count": {
+                    "$ref": "#/definitions/RegionInt"
+                },
+                "cat": {
+                    "$ref": "#/definitions/Category"
+                },
+                "comp": {
+                    "$ref": "#/definitions/Compression"
+                },
+                "enum": {
+                    "$ref": "#/definitions/Name"
+                }
+            },
+            "required": ["type"],
+            "additionalProperties": false
+        },
+        "NamedVar": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/Name"
+                },
+                "desc": {
+                    "$ref": "#/definitions/Description"
+                },
+                "type": {
+                    "$ref": "#/definitions/Type"
+                },
+                "count": {
+                    "$ref": "#/definitions/RegionInt"
+                },
+                "cat": {
+                    "$ref": "#/definitions/Category"
+                },
+                "comp": {
+                    "$ref": "#/definitions/Compression"
+                },
+                "enum": {
+                    "$ref": "#/definitions/Name"
+                }
+            },
+            "required": ["name", "type"],
+            "additionalProperties": false
         }
     }
 }
