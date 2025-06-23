@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import sys
+from typing import Union
 
 from jsonschema import Draft7Validator
 from referencing import Registry, Resource
@@ -13,6 +14,8 @@ from info_entry import *
 import info_file_utils as ifu
 
 
+# TODO: Remove this when fusion is supported
+GAMES = [GAME_ZM]
 SCHEMA_PATH = "../schema"
 
 
@@ -46,8 +49,7 @@ class Validator(object):
 
     def __init__(self):
         self.entry_loc: EntryLoc = EntryLoc()
-        self.structs: dict[str, StructEntry] = None
-        self.enums: dict[str, EnumEntry] = None
+        self.info: GameInfo = None
         self.errors: list[tuple[str, EntryLoc]] = []
 
     def validate(self):
@@ -86,30 +88,35 @@ class Validator(object):
             # TODO: Some errors can happen when creating GameInfo;
             # consider manually creating each info entry instead
             # (would need to sort and check for overlap at the end)
-            info = GameInfo(game, source=InfoSource.YAML_UNK)
-            self.enums = info.enums
-            self.structs = info.structs
+            self.info = GameInfo(game, source=InfoSource.YAML_UNK)
 
-            # TODO: Check typedefs
+            # Check typedefs
+            self.entry_loc.map_type = MAP_TYPEDEFS
+            for entry in self.info.typedefs.values():
+                self.check_type(entry.type)
 
             # Check enums
             self.entry_loc.map_type = MAP_ENUMS
-            for entry in info.enums.values():
+            for entry in self.info.enums.values():
                 self.entry_loc.entry_name = entry.name
-                self.check_vals(entry.vals)
+                self.check_enum_vals(entry.vals)
 
             # Check structs
             self.entry_loc.map_type = MAP_STRUCTS
-            for entry in info.structs.values():
+            for entry in self.info.structs.values():
                 self.entry_loc.entry_name = entry.name
-                self.check_vars(entry.vars)
+                self.check_struct_vars(entry.vars)
             
-            # TODO: Check unions
+            # Check unions
+            self.entry_loc.map_type = MAP_UNIONS
+            for entry in self.info.unions.values():
+                self.entry_loc.entry_name = entry.name
+                self.check_union_vars(entry.vars)
 
             # Check code
             self.entry_loc.map_type = MAP_CODE
             prev: CodeEntry = None
-            for entry in info.code:
+            for entry in self.info.code:
                 self.entry_loc.entry_name = entry.name
                 self.check_region_int(K_ADDR, entry.addr, 4)
                 self.check_region_int(K_SIZE, entry.size, 2)
@@ -119,18 +126,17 @@ class Validator(object):
                 prev = entry
 
             # Check data and ram
-            data_and_ram = (
-                (MAP_DATA, info.data),
-                (MAP_RAM, info.ram)
-            )
+            data_and_ram: list[tuple[str, list[DataEntry]]] = [
+                (MAP_DATA, self.info.data), (MAP_RAM, self.info.ram)
+            ]
             for map_type, entries in data_and_ram:
                 self.entry_loc.map_type = map_type
                 prev: DataEntry = None
                 for entry in entries:
                     self.entry_loc.entry_name = entry.name
-                    valid_type = self.check_type(entry)
+                    valid_type = self.check_type(entry.type)
                     self.entry_loc.field_name = K_ADDR
-                    align = entry.get_alignment(self.structs)
+                    align = entry.get_alignment(self.info.sizes)
                     self.check_region_int(K_ADDR, entry.addr, align)
                     self.check_enum(entry.enum)
                     if valid_type:
@@ -155,8 +161,8 @@ class Validator(object):
         self.errors.append((message, loc))
 
     def check_entries_overlap(self,
-        entry: InfoEntry,
-        prev: InfoEntry,
+        entry: Union[DataEntry, CodeEntry],
+        prev: Union[DataEntry, CodeEntry],
         map_type: str
     ) -> None:
         self.entry_loc.field_name = K_ADDR
@@ -174,7 +180,7 @@ class Validator(object):
         if map_type == MAP_CODE:
             prev_len = prev.size
         else:
-            prev_len = prev.get_size(self.structs)
+            prev_len = prev.get_size(self.info.sizes)
         if isinstance(prev_len, int):
             prev_len = {r: prev_len for r in REGIONS}
         prev_end = {
@@ -197,15 +203,21 @@ class Validator(object):
             if num % align != 0:
                 self.add_error(f"Number must be {align} byte aligned")
 
-    def check_type(self, entry: VarEntry) -> bool:
+    def check_type(self, type: AssetType) -> bool:
         self.entry_loc.field_name = K_TYPE
-        # Check struct
-        if (entry.is_struct() and
-            entry.struct_name() not in self.structs):
-            self.add_error("Invalid type")
+        # Check struct, union, or typedef
+        tk = type.spec_kind()
+        entry_dict: dict[str, Any] = None
+        if tk == TypeSpecKind.STRUCT:
+            entry_dict = self.info.structs
+        elif tk == TypeSpecKind.UNION:
+            entry_dict = self.info.unions
+        elif tk == TypeSpecKind.TYPEDEF:
+            entry_dict = self.info.typedefs
+        if entry_dict is not None and type.spec_name() not in entry_dict:
+            self.add_error(f"Invalid {tk.name.lower()} type {type.spec_name()}")
             return False
         # Check for non-pointer functions
-        type = entry.type
         prev_type: AssetType = None
         while isinstance(type, OuterType):
             if (
@@ -218,45 +230,54 @@ class Validator(object):
             type = type.inner_type
         return True
 
-    def check_vals(self, vals: list[EnumValEntry]) -> None:
+    def check_enum_vals(self, vals: list[EnumValEntry]) -> None:
         self.entry_loc.field_name = K_VALS
         prev = -1
         for ve in vals:
-            if prev >= ve.val:
+            if prev > ve.val:
                 self.add_error("vals should be in ascending order")
             prev = ve.val
 
-    def check_vars(self, vars: list[StructVarEntry]):
+    def check_struct_vars(self, vars: list[StructVarEntry]):
         self.entry_loc.field_name = K_VARS
         prev = -1
         for ve in vars:
-            self.check_type(ve)
+            self.check_type(ve.type)
             self.check_enum(ve.enum)
-            align = ve.get_alignment(self.structs)        
+            if ve.bits is None:
+                align = ve.get_alignment(self.info.sizes)
+            else:
+                align = 1
             self.check_region_int(K_OFFSET, ve.offset, align)
             # TODO: Check for overlap
-            if prev >= ve.offset:
+            if prev > ve.offset:
                 self.add_error("offsets should be in ascending order")
             prev = ve.offset
+
+    def check_union_vars(self, vars: list[NamedVarEntry]):
+        self.entry_loc.field_name = K_VARS
+        for ve in vars:
+            self.check_type(ve.type)
+            self.check_enum(ve.enum)
 
     def check_params(self, params: list[NamedVarEntry]):
         self.entry_loc.field_name = K_PARAMS
         if params is not None:
             for param in params:
-                self.check_type(param)
+                self.check_type(param.type)
                 self.check_enum(param.enum)
 
     def check_return(self, ret: VarEntry):
         self.entry_loc.field_name = K_RETURN
         if ret is not None:
-            self.check_type(ret)
+            self.check_type(ret.type)
             self.check_enum(ret.enum)
 
     def check_enum(self, enm: str):
         if enm is None:
             return
         self.entry_loc.field_name = K_ENUM
-        if enm not in self.enums:
+        if enm not in self.info.enums:
             self.add_error("Invalid enum")
 
 

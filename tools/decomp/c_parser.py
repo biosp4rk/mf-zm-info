@@ -14,25 +14,12 @@ import re
 
 from pycparser import c_ast, parse_file, plyparser
 
+from asset_type import BUILT_IN_TYPES, BUILT_IN_SIZES
 from constants import *
 import decomp.elf_parser as ep
 from game_info import GameInfo, InfoSource
 from info_entry import *
 import info_file_utils as ifu
-
-
-BUILT_INT_TYPES = {
-    "void", "char", "short", "int", "long",
-    "float", "double", "signed", "unsigned"
-}
-
-BUILT_IN_SIZES = {
-    "char": 1,
-    "short": 2,
-    "int": 4,
-    "float": 4,
-    "double": 8
-}
 
 
 DOC_STR_BRIEF = re.compile(r"@brief\s+(.+)")
@@ -350,7 +337,7 @@ class Extractor:
             return self._type_size(node.type)
         elif isinstance(node, c_ast.IdentifierType):
             name = node.names[-1]
-            if name in BUILT_INT_TYPES:
+            if name in BUILT_IN_TYPES:
                 if "long" in node.names:
                     return 8, 4
                 size = BUILT_IN_SIZES.get(name)
@@ -403,6 +390,7 @@ class Extractor:
                 bits += ds * 8
             else:
                 bits += self._const_value(decl.bitsize)
+        # Align to 4 bytes (32 bits)
         remain = bits % 32
         if remain != 0:
             bits += 32 - remain
@@ -474,9 +462,9 @@ class Extractor:
         return self._sub_decl_str(node.type, decl + param_str)
 
     def _typename_str(self, node: c_ast.Typename, decl: str) -> str:
-        # Assume this is a void param
+        # Assume this is a param
         assert decl == "" and node.name is None
-        return "void"
+        return self._sub_decl_str(node.type, "")
 
     DECL_STR_FUNCS = {
         c_ast.Typedef: _type_decl_str,
@@ -670,7 +658,7 @@ class Extractor:
                 new_entry = UnionEntry(name, brief, size, vars, loc)
             elif map_type == MAP_TYPEDEFS:
                 decl = self._decl_str(node)
-                new_entry = TypedefEntry(name, None, decl)
+                new_entry = TypedefEntry(name, None, decl, loc)
             entries[map_type].append(new_entry)
         # Write entries to yaml files
         map_dir = os.path.join(YAML_PATH, info.game.lower() + "2", map_type)
@@ -747,9 +735,18 @@ class Extractor:
         bits = 0
         vars: list[StructVarEntry] = []
         for decl in decls:
-            offset = bits // 8
             ds, count = self._decl_str_and_count(decl.type)
             bitsize = self._const_value(decl.bitsize) if decl.bitsize else None
+            # Update bits offset
+            if bitsize is None:
+                ts, ta = self._type_size(decl)
+                remain = bits % (ta * 8)
+                if remain != 0:
+                    bits += (ta * 8) - remain
+                new_bits = bits + (ts * 8)
+            else:
+                new_bits = bits + bitsize
+            offset = bits // 8
             new_ve = StructVarEntry(decl.name, None, ds, count, offset, bitsize)
             if existing and bits in existing:
                 ve = existing[bits]
@@ -757,15 +754,7 @@ class Extractor:
                 new_ve.comp = ve.comp
                 new_ve.enum = ve.enum
             vars.append(new_ve)
-            # Update bits offset
-            if bitsize is None:
-                ds, da = self._type_size(decl)
-                remain = bits % (da * 8)
-                if remain != 0:
-                    bits += (da * 8) - remain
-                bits += ds * 8
-            else:
-                bits += bitsize
+            bits = new_bits
         return vars
 
     def _create_union_vars(self,

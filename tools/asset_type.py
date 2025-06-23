@@ -4,6 +4,20 @@ from enum import Enum, auto
 import re
 
 
+BUILT_IN_TYPES = {
+    "void", "char", "short", "int", "long",
+    "float", "double", "signed", "unsigned"
+}
+
+BUILT_IN_SIZES = {
+    "char": 1,
+    "short": 2,
+    "int": 4,
+    "float": 4,
+    "double": 8
+}
+
+
 # -------- AST --------
 
 
@@ -36,6 +50,10 @@ class AssetType(ABC):
         pass
 
     @abstractmethod
+    def spec_names(self) -> list[str]:
+        pass
+
+    @abstractmethod
     def spec_name(self) -> str:
         pass
 
@@ -54,14 +72,17 @@ class SpecifierType(AssetType):
     def spec_kind(self) -> TypeSpecKind:
         return self.kind
 
+    def spec_names(self) -> list[str]:
+        return self.names
+
     def spec_name(self) -> str:
-        return " ".join(self.names)
+        return self.names[-1]
 
     def decl_str(self, decl: str = "") -> str:
         parts = [q.name.lower() for q in self.quals]
         if self.kind.is_tag():
             parts.append(self.kind.name.lower())
-        parts.append(self.spec_name())
+        parts.append(" ".join(self.spec_names()))
         if decl:
             parts.append(decl)
         return " ".join(parts)
@@ -77,6 +98,9 @@ class OuterType(AssetType):
 
     def spec_kind(self) -> TypeSpecKind:
         return self.inner_type.spec_kind()
+
+    def spec_names(self) -> list[str]:
+        return self.inner_type.spec_names()
 
     def spec_name(self) -> str:
         return self.inner_type.spec_name()
@@ -140,6 +164,7 @@ class FunctionType(OuterType):
 
 
 # -------- Tokenizer --------
+
 
 # TODO: Add TokenName for built-in types
 class TokenName(Enum):
@@ -253,11 +278,6 @@ TAG_TYPES = {
     "enum": TypeSpecKind.ENUM,
     "struct": TypeSpecKind.STRUCT,
     "union": TypeSpecKind.UNION
-}
-
-BUILT_IN_TYPES = {
-    "void", "char", "short", "int", "long",
-    "float", "double", "signed", "unsigned"
 }
 
 

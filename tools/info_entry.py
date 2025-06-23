@@ -3,16 +3,14 @@ from enum import Enum, auto
 from typing import Any, Union
 
 from asset_type import (
-    TypeSpecKind, OuterType, PointerType, ArrayType,
-    FunctionType, TypeTokenizer, TypeParser
+    BUILT_IN_SIZES, TypeSpecKind, OuterType, PointerType,
+    ArrayType, FunctionType, TypeTokenizer, TypeParser
 )
 from constants import *
 
 
 # Type for numbers that can vary by region (addr, size)
 RegionInt = Union[int, dict[str, int]]
-StructDict = dict[str, "StructEntry"]
-TypedefSizes = dict[str, int]
 
 TOKENIZER = TypeTokenizer()
 PARSER = TypeParser()
@@ -125,12 +123,14 @@ class TypedefEntry(InfoEntry):
     def __init__(self,
         name: str,
         desc: str,
-        type: str
+        type: str,
+        loc: str
     ):
         super().__init__(desc)
         self.name = name
         tokens = TOKENIZER.tokenize(type)
         self.type = PARSER.parse(tokens)
+        self.loc = loc
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -143,7 +143,8 @@ class TypedefEntry(InfoEntry):
         return TypedefEntry(
             obj[K_NAME],
             obj.get(K_DESC),
-            obj[K_TYPE]
+            obj[K_TYPE],
+            obj[K_LOC]
         )
 
     @staticmethod
@@ -152,6 +153,7 @@ class TypedefEntry(InfoEntry):
         if entry.desc:
             obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type.decl_str()))
+        obj.append((K_LOC, entry.loc))
         return dict(obj)
 
 
@@ -181,19 +183,13 @@ class VarEntry(InfoEntry):
     def spec_kind(self) -> TypeSpecKind:
         return self.type.spec_kind()
 
+    def spec_names(self) -> list[str]:
+        """Returns the base type names (without pointers and arrays)."""
+        return self.type.spec_names()
+
     def spec_name(self) -> str:
-        """
-        Returns the base type name (without pointers and arrays).
-        """
+        """Returns the last base type name (without pointers and arrays)."""
         return self.type.spec_name()
-
-    def is_struct(self) -> bool:
-        return self.type.spec_kind() == TypeSpecKind.STRUCT
-
-    def struct_name(self) -> str:
-        if not self.is_struct():
-            return None
-        return self.spec_name()
 
     def type_str(self) -> str:
         return self.type.decl_str()
@@ -205,12 +201,20 @@ class VarEntry(InfoEntry):
                 return True
             type = type.inner_type
 
-    def has_ptr(self, structs: StructDict) -> bool:
+    def has_ptr(self,
+        structs: dict[str, "StructEntry"],
+        unions: dict[str, "UnionEntry"]
+    ) -> bool:
         if self.is_ptr():
             return True
-        if self.is_struct():
-            se = structs[self.struct_name()]
-            if any(v.has_ptr(structs) for v in se.vars):
+        tk = self.spec_kind()
+        if tk == TypeSpecKind.STRUCT:
+            se = structs[self.spec_name()]
+            if any(v.has_ptr(structs, unions) for v in se.vars):
+                return True
+        elif tk == TypeSpecKind.UNION:
+            ue = unions[self.spec_name()]
+            if any(v.has_ptr(structs, unions) for v in ue.vars):
                 return True
         return False
 
@@ -239,53 +243,41 @@ class VarEntry(InfoEntry):
             type = type.inner_type
         return count
 
-    def get_size(self, structs: StructDict) -> int:
+    def get_size(self, sizes: dict[str, int]) -> int:
         """Gets the total size of the entry."""
-        spec_size = 4 if self.is_ptr() else self.get_spec_size(structs)
+        spec_size = 4 if self.is_ptr() else self.get_spec_size(sizes)
         return spec_size * self.get_total_count()
 
-    def get_spec_size(self, structs: StructDict) -> int:
+    def get_spec_size(self, sizes: dict[str, int]) -> int:
         """Gets the size of a single item of this type."""
         sk = self.spec_kind()
         if sk == TypeSpecKind.BUILT_IN:
-            sn = self.spec_name()
-            if sn == "void":
-                raise RuntimeError()
-            elif sn == "char":
-                return 1
-            elif sn == "short":
-                return 2
-            elif sn == "int" or sn == "float":
-                return 4
-            elif sn == "double":
+            sn = self.spec_names()
+            if "long" in sn:
                 return 8
-        elif sk == TypeSpecKind.TYPEDEF:
-            sn = self.spec_name()
-            if sn == "u8" or sn == "s8":
-                return 1
-            elif sn == "u16" or sn == "s16":
-                return 2
-            elif sn == "u32" or sn == "s32":
-                return 4
-            else:
-                raise NotImplementedError()
-        elif sk == TypeSpecKind.STRUCT:
-            se = structs.get(self.struct_name())
-            if se is not None:
-                return se.size
-            raise ValueError(f"Invalid struct name {self.struct_name()}")
-        elif sk == TypeSpecKind.ENUM or sk == TypeSpecKind.UNION:
-            raise NotImplementedError()
+            size = BUILT_IN_SIZES.get(sn[-1])
+            if size is not None:
+                return size
+            return 4 # int by default
+        elif sk == TypeSpecKind.TYPEDEF or sk == TypeSpecKind.STRUCT or sk == TypeSpecKind.UNION:
+            size = sizes.get(self.spec_name())
+            if size is not None:
+                return size
+            ks = sk.name.lower()
+            raise ValueError(f"Invalid {ks} name {self.spec_name()}")
+        elif sk == TypeSpecKind.ENUM:
+            raise ValueError("Can't compute size of enum")
         else:
             raise RuntimeError()
 
-    def get_alignment(self, structs: StructDict) -> int:
+    def get_alignment(self, sizes: dict[str, int]) -> int:
         if self.is_ptr():
             return 4
-        if self.is_struct():
-            se = structs[self.struct_name()]
-            return max(v.get_alignment(structs) for v in se.vars)
-        return self.get_spec_size(structs)
+        tk = self.type.spec_kind()
+        # TODO: Determine if unions always have 4 byte alignment
+        if tk == TypeSpecKind.STRUCT or tk == TypeSpecKind.UNION:
+            return 4
+        return self.get_spec_size(sizes)
 
     @staticmethod
     def from_obj(obj: Any) -> "VarEntry":
@@ -310,7 +302,7 @@ class VarEntry(InfoEntry):
         if entry.desc:
             obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
-        if entry.arr_count:
+        if entry.arr_count is not None:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
@@ -361,7 +353,7 @@ class NamedVarEntry(VarEntry):
         if entry.desc:
             obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
-        if entry.arr_count:
+        if entry.arr_count is not None:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
@@ -422,8 +414,7 @@ class DataEntry(NamedVarEntry):
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
-                #obj[K_LOC],
-                None,
+                obj[K_LOC],
                 cat,
                 comp,
                 obj.get(K_ENUM)
@@ -437,7 +428,7 @@ class DataEntry(NamedVarEntry):
         if entry.desc:
             obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
-        if entry.arr_count:
+        if entry.arr_count is not None:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
@@ -513,7 +504,7 @@ class StructVarEntry(NamedVarEntry):
         if entry.desc:
             obj.append((K_DESC, entry.desc))
         obj.append((K_TYPE, entry.type_str()))
-        if entry.arr_count:
+        if entry.arr_count is not None:
             obj.append((K_COUNT, entry.arr_count))
         if entry.cat:
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
@@ -563,8 +554,7 @@ class StructEntry(InfoEntry):
                 obj.get(K_DESC),
                 obj[K_SIZE],
                 vars,
-                #obj[K_LOC]
-                None
+                obj[K_LOC]
             )
         except:
             raise Exception(f"Error parsing struct entry: {obj}")
@@ -617,8 +607,7 @@ class UnionEntry(InfoEntry):
                 obj.get(K_DESC),
                 obj[K_SIZE],
                 vars,
-                #obj[K_LOC]
-                None
+                obj[K_LOC]
             )
         except:
             raise Exception(f"Error parsing union entry: {obj}")
@@ -690,8 +679,7 @@ class CodeEntry(InfoEntry):
                 STR_TO_MODE[obj[K_MODE]],
                 params,
                 ret,
-                #obj[K_LOC]
-                None
+                obj[K_LOC]
             )
         except:
             raise Exception(f"Error parsing code entry: {obj}")
@@ -775,8 +763,7 @@ class EnumEntry(InfoEntry):
                 obj[K_NAME],
                 obj.get(K_DESC),
                 vals,
-                #obj[K_LOC]
-                None
+                obj[K_LOC]
             )
         except:
             raise Exception(f"Error parsing enum entry: {obj}")
