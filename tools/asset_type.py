@@ -115,9 +115,12 @@ class PointerType(OuterType):
     def decl_str(self, decl: str = "") -> str:
         parts = ["*"]
         parts += [q.name.lower() for q in self.quals]
-        if decl:
-            parts.append(decl)
         ptr_str = " ".join(parts)
+        if decl:
+            if ptr_str[-1] == "*" and (decl[0] == "*" or decl[0] == "["):
+                ptr_str += decl
+            else:
+                ptr_str = f"{ptr_str} {decl}"
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"
         return self.inner_type.decl_str(ptr_str)
@@ -339,6 +342,9 @@ class TypeParser:
         in_param = start > 0
         # First tokens must be type spec
         spec = self._parse_type_spec()
+        # Check if already at end
+        if self.curr_token.name == TokenName.EOS:
+            return spec
         # Update left end index
         start = self.index - 1
         # Find middle of declaration
@@ -426,7 +432,6 @@ class TypeParser:
             token = self.tokens[info.left]
             info.left -= 1
             if token.name == TokenName.STAR:
-                # Get type qualifiers
                 quals.reverse()
                 ptr_type = PointerType(info.spec, quals)
                 info.update_parent_types(ptr_type)
