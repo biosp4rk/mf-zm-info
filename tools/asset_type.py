@@ -82,10 +82,11 @@ class SpecifierType(AssetType):
         parts = [q.name.lower() for q in self.quals]
         if self.kind.is_tag():
             parts.append(self.kind.name.lower())
-        parts.append(" ".join(self.spec_names()))
+        parts += self.spec_names()
+        spec_str = " ".join(parts)
         if decl:
-            parts.append(decl)
-        return " ".join(parts)
+            spec_str += decl if decl[0] == "*" else " " + decl
+        return spec_str
 
     def __str__(self) -> str:
         return self.decl_str()
@@ -117,10 +118,10 @@ class PointerType(OuterType):
         parts += [q.name.lower() for q in self.quals]
         ptr_str = " ".join(parts)
         if decl:
-            if ptr_str[-1] == "*" and (decl[0] == "*" or decl[0] == "["):
+            if ptr_str[-1] == "*" and decl[0] == "*":
                 ptr_str += decl
             else:
-                ptr_str = f"{ptr_str} {decl}"
+                ptr_str += " " + decl
         if isinstance(self.inner_type, (ArrayType, FunctionType)):
             ptr_str = f"({ptr_str})"
         return self.inner_type.decl_str(ptr_str)
@@ -408,7 +409,7 @@ class TypeParser:
                 while self._accept(TokenName.IDENT):
                     name = self.prev_token.text
                     if name not in BUILT_IN_TYPES:
-                        raise ValueError(f"Expected built-in type but got {name}")
+                        raise ValueError(f"Expected built-in type but got '{name}'")
                     names.append(name)
             else:
                 # typedefs should only have one name
@@ -446,6 +447,9 @@ class TypeParser:
                 else:
                     self._next_token()
                     break
+        if quals:
+            qs = " ".join([q.name.lower() for q in quals])
+            raise ValueError(f"Unexpected type qualifier {qs}")
 
 
 if __name__ == "__main__":
