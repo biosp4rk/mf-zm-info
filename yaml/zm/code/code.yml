@@ -153,20 +153,6 @@
   params: null
   return: null
   loc: src/syscall_wrappers.c:34
-- name: unk_fbc
-  desc: To document
-  addr:
-    U: 0xFBC
-  size: 0x0
-  mode: thumb
-  params:
-  - name: param_1
-    desc: To document
-    type: u8
-  return:
-    desc: u32 To document
-    type: u32
-  loc: src/sram_misc.c:163
 - name: UpdateInput
   desc: Updates the input
   addr:
@@ -473,239 +459,29 @@
     desc: u8* Pointer to difference
     type: u8 *
   loc: src/sram_misc.c:33
+- name: unk_fbc
+  desc: To document
+  addr:
+    U: 0xFBC
+  size: 0x108
+  mode: thumb
+  params:
+  - name: param_1
+    desc: To document
+    type: u8
+  return:
+    desc: u32 To document
+    type: u32
+  loc: src/sram_misc.c:163
 - name: UpdateMusic
   desc: To document
   addr:
     U: 0x10C4
-  size: 0x0
+  size: 0x394
   mode: thumb
   params: null
   return: null
   loc: src/audio.c:15
-- name: unk_1bf0
-  desc: To document
-  addr:
-    U: 0x1BF0
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:894
-- name: unk_1c18
-  desc: To document
-  addr:
-    U: 0x1C18
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:910
-- name: unk_1c3c
-  desc: To document
-  addr:
-    U: 0x1C3C
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:931
-- name: unk_1ccc
-  desc: To document
-  addr:
-    U: 0x1CCC
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  - name: param_2
-    desc: To document
-    type: s16
-  return: null
-  loc: src/audio.c:984
-- name: unk_1d5c
-  desc: To document
-  addr:
-    U: 0x1D5C
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1025
-- name: unk_1d78
-  desc: To document
-  addr:
-    U: 0x1D78
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1038
-- name: unk_1ddc
-  desc: To document
-  addr:
-    U: 0x1DDC
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1073
-- name: unk_1de8
-  desc: To document
-  addr:
-    U: 0x1DE8
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1083
-- name: unk_1e2c
-  desc: To document
-  addr:
-    U: 0x1E2C
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pTrack
-    desc: Track data pointer
-    type: struct TrackData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1106
-- name: unk_1f3c
-  desc: To document
-  addr:
-    U: 0x1F3C
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pTrack
-    desc: Track data pointer
-    type: struct TrackData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1197
-- name: unk_1f90
-  desc: To document
-  addr:
-    U: 0x1F90
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pTrack
-    desc: Track data pointer
-    type: struct TrackData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1217
-- name: unk_1fe0
-  desc: To document
-  addr:
-    U: 0x1FE0
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pTrack
-    desc: Track data pointer
-    type: struct TrackData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1243
-- name: unk_2030
-  desc: To document
-  addr:
-    U: 0x2030
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pSound
-    desc: PSG sound pointer
-    type: struct PSGSoundData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  - name: param_3
-    desc: To document
-    type: u32
-  return: null
-  loc: src/audio.c:1270
-- name: unk_20a4
-  desc: To document
-  addr:
-    U: 0x20A4
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pChannel
-    desc: Sound channel pointer
-    type: struct SoundChannel *
-  return: null
-  loc: src/audio.c:1306
-- name: GetNoteDelay
-  desc: Gets the delay for a note (probably)
-  addr:
-    U: 0x20D4
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  - name: param_2
-    desc: Note?
-    type: u8
-  - name: param_3
-    desc: To document
-    type: u8
-  return:
-    desc: u16 Delay
-    type: u16
-  loc: src/audio.c:1331
-- name: unk_21b0
-  desc: To document
-  addr:
-    U: 0x21B0
-  size: 0x0
-  mode: thumb
-  params:
-  - name: pTrack
-    desc: Track data pointer
-    type: struct TrackData *
-  - name: pVariables
-    desc: Track variables pointer
-    type: struct TrackVariables *
-  return: null
-  loc: src/audio.c:1405
 - name: UpdatePsgSounds
   desc: To document
   addr:
@@ -735,6 +511,215 @@
     type: struct TrackData *
   return: null
   loc: src/audio.c:644
+- name: unk_1bf0
+  desc: To document
+  addr:
+    U: 0x1BF0
+  size: 0x28
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:894
+- name: unk_1c18
+  desc: To document
+  addr:
+    U: 0x1C18
+  size: 0x24
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:910
+- name: unk_1c3c
+  desc: To document
+  addr:
+    U: 0x1C3C
+  size: 0x90
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:931
+- name: unk_1ccc
+  desc: To document
+  addr:
+    U: 0x1CCC
+  size: 0x90
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  - name: param_2
+    desc: To document
+    type: s16
+  return: null
+  loc: src/audio.c:984
+- name: unk_1d5c
+  desc: To document
+  addr:
+    U: 0x1D5C
+  size: 0x1C
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1025
+- name: unk_1d78
+  desc: To document
+  addr:
+    U: 0x1D78
+  size: 0x64
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1038
+- name: unk_1ddc
+  desc: To document
+  addr:
+    U: 0x1DDC
+  size: 0xC
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1073
+- name: unk_1de8
+  desc: To document
+  addr:
+    U: 0x1DE8
+  size: 0x44
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1083
+- name: unk_1e2c
+  desc: To document
+  addr:
+    U: 0x1E2C
+  size: 0x110
+  mode: thumb
+  params:
+  - name: pTrack
+    desc: Track data pointer
+    type: struct TrackData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1106
+- name: unk_1f3c
+  desc: To document
+  addr:
+    U: 0x1F3C
+  size: 0x54
+  mode: thumb
+  params:
+  - name: pTrack
+    desc: Track data pointer
+    type: struct TrackData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1197
+- name: unk_1f90
+  desc: To document
+  addr:
+    U: 0x1F90
+  size: 0x50
+  mode: thumb
+  params:
+  - name: pTrack
+    desc: Track data pointer
+    type: struct TrackData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1217
+- name: unk_1fe0
+  desc: To document
+  addr:
+    U: 0x1FE0
+  size: 0x50
+  mode: thumb
+  params:
+  - name: pTrack
+    desc: Track data pointer
+    type: struct TrackData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1243
+- name: unk_2030
+  desc: To document
+  addr:
+    U: 0x2030
+  size: 0x74
+  mode: thumb
+  params:
+  - name: pSound
+    desc: PSG sound pointer
+    type: struct PSGSoundData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  - name: param_3
+    desc: To document
+    type: u32
+  return: null
+  loc: src/audio.c:1270
+- name: unk_20a4
+  desc: To document
+  addr:
+    U: 0x20A4
+  size: 0x30
+  mode: thumb
+  params:
+  - name: pChannel
+    desc: Sound channel pointer
+    type: struct SoundChannel *
+  return: null
+  loc: src/audio.c:1306
+- name: GetNoteDelay
+  desc: Gets the delay for a note (probably)
+  addr:
+    U: 0x20D4
+  size: 0x6C
+  mode: thumb
+  params:
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  - name: param_2
+    desc: Note?
+    type: u8
+  - name: param_3
+    desc: To document
+    type: u8
+  return:
+    desc: u16 Delay
+    type: u16
+  loc: src/audio.c:1331
 - name: AudioCommand_Fine
   desc: Processes the audio command FINE
   addr:
@@ -754,6 +739,21 @@
     type: struct TrackVariables *
   return: null
   loc: src/audio.c:1362
+- name: unk_21b0
+  desc: To document
+  addr:
+    U: 0x21B0
+  size: 0x7C
+  mode: thumb
+  params:
+  - name: pTrack
+    desc: Track data pointer
+    type: struct TrackData *
+  - name: pVariables
+    desc: Track variables pointer
+    type: struct TrackVariables *
+  return: null
+  loc: src/audio.c:1405
 - name: AudioCommand_PatternEnd
   desc: Processes the audio command PEND
   addr:
@@ -1145,7 +1145,7 @@
   desc: To document
   addr:
     U: 0x2A38
-  size: 0x0
+  size: 0x20
   mode: thumb
   params:
   - name: pTrack
@@ -1170,7 +1170,7 @@
   desc: To document
   addr:
     U: 0x2A8C
-  size: 0x0
+  size: 0x40
   mode: thumb
   params: null
   return: null
@@ -1211,7 +1211,7 @@
   desc: To document
   addr:
     U: 0x2B64
-  size: 0x0
+  size: 0x70
   mode: thumb
   params:
   - name: sound
@@ -1223,7 +1223,7 @@
   desc: To document
   addr:
     U: 0x2BD4
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params:
   - name: sound
@@ -1235,7 +1235,7 @@
   desc: To document
   addr:
     U: 0x2C10
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params:
   - name: pTrack
@@ -1247,7 +1247,7 @@
   desc: To document
   addr:
     U: 0x2C4C
-  size: 0x0
+  size: 0x34
   mode: thumb
   params: null
   return: null
@@ -1313,7 +1313,7 @@
   desc: To document
   addr:
     U: 0x2D2C
-  size: 0x0
+  size: 0xBC
   mode: thumb
   params:
   - name: pTrack
@@ -1366,7 +1366,7 @@
   desc: To document
   addr:
     U: 0x2E34
-  size: 0x0
+  size: 0x38
   mode: thumb
   params:
   - name: pTrack
@@ -1381,7 +1381,7 @@
   desc: To document
   addr:
     U: 0x2E6C
-  size: 0x0
+  size: 0x94
   mode: thumb
   params:
   - name: pTrack
@@ -1393,7 +1393,7 @@
   desc: To document
   addr:
     U: 0x2F00
-  size: 0x0
+  size: 0x128
   mode: thumb
   params:
   - name: musicTrack1
@@ -1411,7 +1411,7 @@
   desc: To document
   addr:
     U: 0x3028
-  size: 0x0
+  size: 0x30
   mode: thumb
   params:
   - name: pTrack
@@ -1426,7 +1426,7 @@
   desc: To document
   addr:
     U: 0x3058
-  size: 0x0
+  size: 0x5C
   mode: thumb
   params:
   - name: pTrack
@@ -1444,7 +1444,7 @@
   desc: To document
   addr:
     U: 0x30B4
-  size: 0x0
+  size: 0x5C
   mode: thumb
   params:
   - name: pTrack
@@ -1462,7 +1462,7 @@
   desc: To document
   addr:
     U: 0x3110
-  size: 0x0
+  size: 0x4C
   mode: thumb
   params:
   - name: pTrack
@@ -1480,7 +1480,7 @@
   desc: To document
   addr:
     U: 0x315C
-  size: 0x0
+  size: 0x44
   mode: thumb
   params:
   - name: pTrack
@@ -1498,7 +1498,7 @@
   desc: To document
   addr:
     U: 0x31A0
-  size: 0x0
+  size: 0x44
   mode: thumb
   params:
   - name: pTrack
@@ -1577,7 +1577,7 @@
   desc: To document
   addr:
     U: 0x34AC
-  size: 0x0
+  size: 0x124
   mode: thumb
   params:
   - name: param_1
@@ -1588,7 +1588,7 @@
   desc: To document
   addr:
     U: 0x35D0
-  size: 0x0
+  size: 0x100
   mode: thumb
   params:
   - name: param_1
@@ -1645,7 +1645,7 @@
   desc: To document
   addr:
     U: 0x38D8
-  size: 0x0
+  size: 0x58
   mode: thumb
   params: null
   return: null
@@ -1667,7 +1667,7 @@
   desc: Determines a new music track based on something?
   addr:
     U: 0x3980
-  size: 0x0
+  size: 0x48
   mode: thumb
   params:
   - name: musicTrack
@@ -2198,7 +2198,7 @@
 - name: unk_4cfc
   addr:
     U: 0x4CFC
-  size: 0x0
+  size: 0x20
   mode: thumb
   params:
   - name: pTrack
@@ -2209,7 +2209,7 @@
 - name: unk_4d1c
   addr:
     U: 0x4D1C
-  size: 0x0
+  size: 0x2C
   mode: thumb
   params:
   - name: pTrack
@@ -2233,7 +2233,7 @@
 - name: unk_4e10
   addr:
     U: 0x4E10
-  size: 0x0
+  size: 0xA4
   mode: thumb
   params:
   - name: pVariables
@@ -2243,7 +2243,7 @@
 - name: unk_4eb4
   addr:
     U: 0x4EB4
-  size: 0x0
+  size: 0x5C
   mode: thumb
   params:
   - name: pVariables
@@ -2253,7 +2253,7 @@
 - name: unk_4f10
   addr:
     U: 0x4F10
-  size: 0x0
+  size: 0x7C
   mode: thumb
   params:
   - name: pVariables
@@ -2263,7 +2263,7 @@
 - name: unk_4f8c
   addr:
     U: 0x4F8C
-  size: 0x0
+  size: 0xA4
   mode: thumb
   params:
   - name: pChannel
@@ -2319,7 +2319,7 @@
 - name: unk_5104
   addr:
     U: 0x5104
-  size: 0x0
+  size: 0x8C
   mode: thumb
   params:
   - name: pSound
@@ -5128,15 +5128,6 @@
   params: null
   return: null
   loc: src/in_game.c:210
-- name: TransferSamusAndBgGraphics
-  desc: Transfer Samus and background graphics to VRAM
-  addr:
-    U: 0xC9EC
-  size: 0x0
-  mode: thumb
-  params: null
-  return: null
-  loc: src/in_game.c:330
 - name: TransferSamusGraphics
   desc: Transfers Samus's graphics/palette to VRAM
   addr:
@@ -5174,6 +5165,15 @@
   params: null
   return: null
   loc: src/in_game.c:269
+- name: TransferSamusAndBgGraphics
+  desc: Transfer Samus and background graphics to VRAM
+  addr:
+    U: 0xC9EC
+  size: 0x80
+  mode: thumb
+  params: null
+  return: null
+  loc: src/in_game.c:330
 - name: VBlankCodeInGame
   desc: V-blank code when in game
   addr:
@@ -5273,7 +5273,7 @@
   desc: Call draw sprite function, difference with the other is unknown
   addr:
     U: 0xD36C
-  size: 0x0
+  size: 0xC4
   mode: thumb
   params: null
   return: null
@@ -5923,7 +5923,7 @@
   desc: To document
   addr:
     U: 0xF978
-  size: 0x0
+  size: 0x6C
   mode: thumb
   params:
   - name: movement
@@ -5935,7 +5935,7 @@
   desc: To document
   addr:
     U: 0xF9E4
-  size: 0x0
+  size: 0x94
   mode: thumb
   params:
   - name: movement
@@ -10905,7 +10905,7 @@
   desc: To document
   addr:
     U: 0x58EC4
-  size: 0x0
+  size: 0x50
   mode: thumb
   params: null
   return: null
@@ -11709,7 +11709,7 @@
   desc: Transfers palette RAM to color data 2 RAM
   addr:
     U: 0x5B24C
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params: null
   return: null
@@ -11718,7 +11718,7 @@
   desc: Transfers palette RAM to color data 1 RAM
   addr:
     U: 0x5B288
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params: null
   return: null
@@ -11727,7 +11727,7 @@
   desc: Transfers color data 2 RAM to color data 1 RAM
   addr:
     U: 0x5B2C4
-  size: 0x0
+  size: 0x40
   mode: thumb
   params: null
   return: null
@@ -11736,7 +11736,7 @@
   desc: Transfers palette RAM to color data 3 RAM
   addr:
     U: 0x5B304
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params: null
   return: null
@@ -11960,10 +11960,10 @@
     type: u8
   - name: ppSrc
     desc: Source address pointer
-    type: u16 * *
+    type: u16 **
   - name: ppDst
     desc: Destination address pointer
-    type: u16 * *
+    type: u16 **
   - name: mask
     desc: Palette rows mask
     type: u16
@@ -11973,7 +11973,7 @@
   desc: Applies a fade effect on a color, unused
   addr:
     U: 0x5BBE4
-  size: 0x0
+  size: 0xCC
   mode: thumb
   params:
   - name: type
@@ -12008,7 +12008,7 @@
   desc: To document
   addr:
     U: 0x5BD58
-  size: 0x0
+  size: 0x70
   mode: thumb
   params:
   - name: stage
@@ -12025,7 +12025,7 @@
   desc: To document
   addr:
     U: 0x5BDC8
-  size: 0x0
+  size: 0xB4
   mode: thumb
   params:
   - name: stage
@@ -12042,7 +12042,7 @@
   desc: To document
   addr:
     U: 0x5BE7C
-  size: 0x0
+  size: 0x4C
   mode: thumb
   params:
   - name: stage
@@ -12153,7 +12153,7 @@
   desc: Starts a default fade
   addr:
     U: 0x5C190
-  size: 0x0
+  size: 0x90
   mode: thumb
   params: null
   return: null
@@ -12175,7 +12175,7 @@
   desc: Handles fading for BG2 and BG3 gradient except on delay frames
   addr:
     U: 0x5C27C
-  size: 0x0
+  size: 0x70
   mode: thumb
   params:
   - name: delay
@@ -12187,7 +12187,7 @@
   desc: Finishes a door fade and sets up door transition drawing
   addr:
     U: 0x5C2EC
-  size: 0x0
+  size: 0xC0
   mode: thumb
   params: null
   return: null
@@ -13480,7 +13480,7 @@
   desc: To document
   addr:
     U: 0x60CBC
-  size: 0x0
+  size: 0x7C
   mode: thumb
   params:
   - name: param_1
@@ -13973,7 +13973,7 @@
   desc: Update palette with fade and update cutscene fading
   addr:
     U: 0x61F44
-  size: 0x0
+  size: 0x1C
   mode: thumb
   params: null
   return:
@@ -13997,7 +13997,7 @@
   desc: Starts a cutscene background fading
   addr:
     U: 0x61FA0
-  size: 0x0
+  size: 0x230
   mode: thumb
   params:
   - name: type
@@ -15814,7 +15814,7 @@
   desc: Determine if the category header should be drawn
   addr:
     U: 0x68A58
-  size: 0x0
+  size: 0xA0
   mode: thumb
   params:
   - name: samusWireframeDataIndex
@@ -15828,7 +15828,7 @@
   desc: Draws samus on the status screen
   addr:
     U: 0x68AF8
-  size: 0x0
+  size: 0x2C4
   mode: thumb
   params:
   - name: param_1
@@ -15842,7 +15842,7 @@
   desc: Updates the samus wireframe object
   addr:
     U: 0x68DBC
-  size: 0x0
+  size: 0x104
   mode: thumb
   params:
   - name: updateWireframeOption
@@ -15854,7 +15854,7 @@
   desc: Handle suit transition fade
   addr:
     U: 0x68EC0
-  size: 0x0
+  size: 0x110
   mode: thumb
   params: null
   return: null
@@ -16095,7 +16095,7 @@
 - name: PauseScreenUpdateBottomVisorOverlay
   addr:
     U: 0x6B00C
-  size: 0x0
+  size: 0xEC
   mode: thumb
   params:
   - name: param_1
@@ -16979,7 +16979,7 @@
     type: u8
   - name: ppText
     desc: Pointer to text pointer
-    type: const u16 * *
+    type: const u16 **
   return: null
   loc: src/text.c:569
 - name: TextDrawlocation
@@ -17254,7 +17254,7 @@
   desc: Gets the status slot for a new item
   addr:
     U: 0x70020
-  size: 0x0
+  size: 0x160
   mode: thumb
   params:
   - name: param_1
@@ -17406,7 +17406,7 @@
   desc: Updates the tilemap of a status screen row
   addr:
     U: 0x70E1C
-  size: 0x0
+  size: 0xA4
   mode: thumb
   params:
   - name: group
@@ -17494,7 +17494,7 @@
   desc: Navigates the current status slot until it finds an unknown item
   addr:
     U: 0x711D0
-  size: 0x0
+  size: 0xC0
   mode: thumb
   params:
   - name: wantUnknownItem
@@ -17508,7 +17508,7 @@
   desc: Updates the unknown items animated palette
   addr:
     U: 0x71290
-  size: 0x0
+  size: 0x19C
   mode: thumb
   params:
   - name: stage
@@ -17766,7 +17766,7 @@
   desc: Determines the chozo statue path
   addr:
     U: 0x72BB8
-  size: 0x0
+  size: 0x498
   mode: thumb
   params:
   - name: param_1
@@ -22157,7 +22157,7 @@
   desc: Handles sending multiboot and fusion gallery transfer roms
   addr:
     U: 0x88EA0
-  size: 0x0
+  size: 0x270
   mode: thumb
   params: null
   return:
@@ -22168,7 +22168,7 @@
   desc: Draws an error string to the provided tilemap
   addr:
     U: 0x89110
-  size: 0x0
+  size: 0x54
   mode: thumb
   params:
   - name: str
@@ -22186,7 +22186,7 @@
   desc: Initialize multiboot data and set serial communication to multiplayer
   addr:
     U: 0x89164
-  size: 0x0
+  size: 0x3C
   mode: thumb
   params:
   - name: pMultiBoot
@@ -22216,7 +22216,7 @@
   desc: Send data
   addr:
     U: 0x89590
-  size: 0x0
+  size: 0x4C
   mode: thumb
   params:
   - name: pMultiBoot
@@ -22317,7 +22317,7 @@
 - name: MultiBootWaitCycles
   addr:
     U: 0x897B8
-  size: 0x0
+  size: 0x18
   mode: thumb
   params:
   - name: cycles
@@ -22480,7 +22480,7 @@
   desc: Initialize timer 3 for transfer
   addr:
     U: 0x89BA0
-  size: 0x0
+  size: 0x34
   mode: thumb
   params: null
   return: null
@@ -22489,7 +22489,7 @@
   desc: Reload timer 3 and start serial transfer
   addr:
     U: 0x89BD4
-  size: 0x0
+  size: 0x10
   mode: thumb
   params: null
   return: null
@@ -22524,7 +22524,7 @@
   desc: Stop and reload timer 3
   addr:
     U: 0x89D74
-  size: 0x0
+  size: 0x24
   mode: thumb
   params: null
   return: null
@@ -22753,7 +22753,7 @@
   desc: Reload timer 3 and start serial transfer
   addr:
     U: 0x8A7A0
-  size: 0x0
+  size: 0x10
   mode: thumb
   params: null
   return: null
@@ -22762,7 +22762,7 @@
   desc: Establish a connection and send data
   addr:
     U: 0x8A7B0
-  size: 0x0
+  size: 0x90
   mode: thumb
   params: null
   return: null
