@@ -434,18 +434,24 @@ class Extractor:
             raise ValueError(type(nt))
         parts = list(node.quals)
         parts.append(tn)
+        spec_str = " ".join(parts)
         if decl:
-            parts.append(decl)
-        return " ".join(parts)
+            spec_str += decl if decl[0] == "*" else " " + decl
+        return spec_str
 
     def _ptr_decl_str(self, node: c_ast.PtrDecl, decl: str) -> str:
-        parts = list(node.quals)
-        ptr_str = "*" + decl
+        parts = ["*"]
+        parts += node.quals
+        ptr_str = " ".join(parts)
+        if decl:
+            if ptr_str[-1] == "*" and decl[0] == "*":
+                ptr_str += decl
+            else:
+                ptr_str += " " + decl
         nt = node.type
         if isinstance(nt, (c_ast.ArrayDecl, c_ast.FuncDecl)):
             ptr_str = "(" + ptr_str + ")"
-        parts.append(ptr_str)
-        return self._sub_decl_str(nt, " ".join(parts))
+        return self._sub_decl_str(nt, ptr_str)
 
     def _array_decl_str(self, node: c_ast.ArrayDecl, decl: str) -> str:
         dim_str = ""
@@ -661,7 +667,7 @@ class Extractor:
                 new_entry = TypedefEntry(name, None, decl, loc)
             entries[map_type].append(new_entry)
         # Write entries to yaml files
-        map_dir = os.path.join(YAML_PATH, info.game.lower() + "2", map_type)
+        map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
         for filename, data in entries.items():
             data.sort()
             path = os.path.join(map_dir, filename + ".yml")
