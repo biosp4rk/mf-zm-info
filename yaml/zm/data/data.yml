@@ -22,6 +22,24 @@
   addr:
     U: 0x8CAD0
   loc: src/data/audio.c:10
+- name: gClockTable
+  type: const u8
+  count: 0x31
+  addr:
+    U: 0x8CBD0
+  loc: src/data/audio.c:21
+- name: gNoiseTable
+  type: const u8
+  count: 0x3C
+  addr:
+    U: 0x8CC01
+  loc: src/data/audio.c:28
+- name: gCgb3Vol
+  type: const u8
+  count: 0x10
+  addr:
+    U: 0x8CC3D
+  loc: src/data/audio.c:34
 - name: sUnk_808cc4d
   type: const u8
   count: 0x13
@@ -40,6 +58,12 @@
   addr:
     U: 0x8CC94
   loc: src/data/audio.c:57
+- name: gPcmSamplesPerVBlankTable
+  type: const u16
+  count: 0xD
+  addr:
+    U: 0x8CCC8
+  loc: src/data/audio.c:65
 - name: sArray_808cce2
   type: const u8
   count: 0x200
@@ -53,7 +77,7 @@
     U: 0x8CEE2
   loc: src/data/audio.c:108
 - name: sDma1ControlPointer
-  type: void*
+  type: void* const
   addr:
     U: 0x8CEEC
   loc: src/data/audio.c:112
@@ -7347,247 +7371,247 @@
     U: 0x238B68
   loc: src/data/samus/samus_animation_pointers.c:10
 - name: sSamusAnimPointers_PowerSuit
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x43
   addr:
     U: 0x238B74
   loc: src/data/samus/samus_animation_pointers.c:22
 - name: sSamusAnimPointers_PowerSuit_Running
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238D8C
   loc: src/data/samus/samus_animation_pointers.c:294
 - name: sSamusAnimPointers_PowerSuit_Running_Speedboosting
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238DAC
   loc: src/data/samus/samus_animation_pointers.c:313
 - name: sSamusAnimPointers_PowerSuit_Standing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238DCC
   loc: src/data/samus/samus_animation_pointers.c:332
 - name: sSamusAnimPointers_PowerSuit_TurningAround
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238DEC
   loc: src/data/samus/samus_animation_pointers.c:351
 - name: sSamusAnimPointers_PowerSuit_Shooting
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238E0C
   loc: src/data/samus/samus_animation_pointers.c:370
 - name: sSamusAnimPointers_PowerSuit_Crouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x238E2C
   loc: src/data/samus/samus_animation_pointers.c:389
 - name: sSamusAnimPointers_PowerSuit_TurningAroundAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x238E44
   loc: src/data/samus/samus_animation_pointers.c:404
 - name: sSamusAnimPointers_PowerSuit_ShootingAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x238E5C
   loc: src/data/samus/samus_animation_pointers.c:419
 - name: sSamusAnimPointers_PowerSuit_Skidding
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x238E74
   loc: src/data/samus/samus_animation_pointers.c:434
 - name: sSamusAnimPointers_PowerSuit_MidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238E84
   loc: src/data/samus/samus_animation_pointers.c:445
 - name: sSamusAnimPointers_PowerSuit_TurningAroundMidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238EAC
   loc: src/data/samus/samus_animation_pointers.c:468
 - name: sSamusAnimPointers_PowerSuit_Landing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x238ED4
   loc: src/data/samus/samus_animation_pointers.c:491
 - name: sSamusAnimPointers_PowerSuit_ScrewAttacking
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x238EF4
   loc: src/data/samus/samus_animation_pointers.c:510
 - name: sSamusAnimPointers_PowerSuit_AimingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238F04
   loc: src/data/samus/samus_animation_pointers.c:521
 - name: sSamusAnimPointers_PowerSuit_ShootingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238F2C
   loc: src/data/samus/samus_animation_pointers.c:544
 - name: sSamusAnimPointers_PowerSuit_UsingAnElevator
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x238F54
   loc: src/data/samus/samus_animation_pointers.c:567
 - name: sSamusAnimPointers_PowerSuit_Shinesparking
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x238F64
   loc: src/data/samus/samus_animation_pointers.c:578
 - name: sSamusAnimPointers_PowerSuit_OnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238F7C
   loc: src/data/samus/samus_animation_pointers.c:593
 - name: sSamusAnimPointers_PowerSuit_ShootingOnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238FA4
   loc: src/data/samus/samus_animation_pointers.c:616
 - name: sSamusAnimPointers_PowerSuit_TurningOnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x238FCC
   loc: src/data/samus/samus_animation_pointers.c:639
 - name: sArmCannonAnimPointers_Suit_All
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x43
   addr:
     U: 0x238FF4
   loc: src/data/samus/samus_animation_pointers.c:663
 - name: sArmCannonAnimPointers_Suit_Running
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23920C
   loc: src/data/samus/samus_animation_pointers.c:934
 - name: sArmCannonAnimPointers_Suit_Running_Speedboosting
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23922C
   loc: src/data/samus/samus_animation_pointers.c:953
 - name: sArmCannonAnimPointers_Suit_Standing
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23924C
   loc: src/data/samus/samus_animation_pointers.c:972
 - name: sArmCannonAnimPointers_Suit_TurningAround
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23926C
   loc: src/data/samus/samus_animation_pointers.c:991
 - name: sArmCannonAnimPointers_Suit_Shooting
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23928C
   loc: src/data/samus/samus_animation_pointers.c:1010
 - name: sArmCannonAnimPointers_Suit_Crouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x2392AC
   loc: src/data/samus/samus_animation_pointers.c:1029
 - name: sArmCannonAnimPointers_Suit_TurningAroundAndCrouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x2392C4
   loc: src/data/samus/samus_animation_pointers.c:1044
 - name: sArmCannonAnimPointers_Suit_ShootingAndCrouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x2392DC
   loc: src/data/samus/samus_animation_pointers.c:1059
 - name: sArmCannonAnimPointers_Suit_Skidding
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x2392F4
   loc: src/data/samus/samus_animation_pointers.c:1074
 - name: sArmCannonAnimPointers_Suit_MidAir
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239304
   loc: src/data/samus/samus_animation_pointers.c:1085
 - name: sArmCannonAnimPointers_Suit_TurningAroundMidAir
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23932C
   loc: src/data/samus/samus_animation_pointers.c:1108
 - name: sArmCannonAnimPointers_Suit_Landing
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239354
   loc: src/data/samus/samus_animation_pointers.c:1131
 - name: sArmCannonAnimPointers_Suit_AimingWhileHanging
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239374
   loc: src/data/samus/samus_animation_pointers.c:1150
 - name: sArmCannonAnimPointers_Suit_ShootingWhileHanging
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23939C
   loc: src/data/samus/samus_animation_pointers.c:1173
 - name: sArmCannonAnimPointers_Suit_UsingAnElevator
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x2393C4
   loc: src/data/samus/samus_animation_pointers.c:1196
 - name: sArmCannonAnimPointers_Suit_Shinesparking
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x2393D4
   loc: src/data/samus/samus_animation_pointers.c:1207
 - name: sArmCannonAnimPointers_Suit_OnZipline
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x2393EC
   loc: src/data/samus/samus_animation_pointers.c:1222
 - name: sArmCannonAnimPointers_Suit_ShootingOnZipline
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239414
   loc: src/data/samus/samus_animation_pointers.c:1245
 - name: sArmCannonAnimPointers_Suit_TurningOnZipline
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23943C
@@ -7602,541 +7626,541 @@
     C: 0x252C50
   loc: src/data/samus/samus_animation_pointers.c:1292
 - name: sSamusAnimPointers_FullSuit
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x43
   addr:
     U: 0x239530
   loc: src/data/samus/samus_animation_pointers.c:1500
 - name: sSamusAnimPointers_FullSuit_Running
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239748
   loc: src/data/samus/samus_animation_pointers.c:1773
 - name: sSamusAnimPointers_FullSuit_Running_Speedboosting
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239768
   loc: src/data/samus/samus_animation_pointers.c:1792
 - name: sSamusAnimPointers_FullSuit_Standing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239788
   loc: src/data/samus/samus_animation_pointers.c:1811
 - name: sSamusAnimPointers_FullSuit_TurningAround
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x2397A8
   loc: src/data/samus/samus_animation_pointers.c:1830
 - name: sSamusAnimPointers_FullSuit_Shooting
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x2397C8
   loc: src/data/samus/samus_animation_pointers.c:1849
 - name: sSamusAnimPointers_FullSuit_Crouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x2397E8
   loc: src/data/samus/samus_animation_pointers.c:1868
 - name: sSamusAnimPointers_FullSuit_TurningAroundAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239800
   loc: src/data/samus/samus_animation_pointers.c:1883
 - name: sSamusAnimPointers_FullSuit_ShootingAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239818
   loc: src/data/samus/samus_animation_pointers.c:1898
 - name: sSamusAnimPointers_FullSuit_Skidding
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x239830
   loc: src/data/samus/samus_animation_pointers.c:1913
 - name: sSamusAnimPointers_FullSuit_MidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239840
   loc: src/data/samus/samus_animation_pointers.c:1924
 - name: sSamusAnimPointers_FullSuit_TurningAroundMidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239868
   loc: src/data/samus/samus_animation_pointers.c:1947
 - name: sSamusAnimPointers_FullSuit_Landing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239890
   loc: src/data/samus/samus_animation_pointers.c:1970
 - name: sSamusAnimPointers_FullSuit_ScrewAttacking
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x2398B0
   loc: src/data/samus/samus_animation_pointers.c:1989
 - name: sSamusAnimPointers_FullSuit_AimingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x2398C0
   loc: src/data/samus/samus_animation_pointers.c:2000
 - name: sSamusAnimPointers_FullSuit_ShootingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x2398E8
   loc: src/data/samus/samus_animation_pointers.c:2023
 - name: sSamusAnimPointers_FullSuit_UsingAnElevator
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x2
   addr:
     U: 0x239910
   loc: src/data/samus/samus_animation_pointers.c:2046
 - name: sSamusAnimPointers_FullSuit_Shinesparking
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239920
   loc: src/data/samus/samus_animation_pointers.c:2057
 - name: sSamusAnimPointers_FullSuit_OnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239938
   loc: src/data/samus/samus_animation_pointers.c:2072
 - name: sSamusAnimPointers_FullSuit_ShootingOnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239960
   loc: src/data/samus/samus_animation_pointers.c:2095
 - name: sSamusAnimPointers_FullSuit_TurningOnZipline
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239988
   loc: src/data/samus/samus_animation_pointers.c:2118
 - name: sSamusAnimPointers_Suitless
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x43
   addr:
     U: 0x2399B0
   loc: src/data/samus/samus_animation_pointers.c:2146
 - name: sSamusAnimPointers_Suitless_Running
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239BC8
   loc: src/data/samus/samus_animation_pointers.c:2418
 - name: sSamusAnimPointers_Suitless_Standing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239BE8
   loc: src/data/samus/samus_animation_pointers.c:2437
 - name: sSamusAnimPointers_Suitless_TurningAround
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239C08
   loc: src/data/samus/samus_animation_pointers.c:2456
 - name: sSamusAnimPointers_Suitless_Shooting
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239C28
   loc: src/data/samus/samus_animation_pointers.c:2475
 - name: sSamusAnimPointers_Suitless_Crouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239C48
   loc: src/data/samus/samus_animation_pointers.c:2494
 - name: sSamusAnimPointers_Suitless_TurningAroundAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239C60
   loc: src/data/samus/samus_animation_pointers.c:2509
 - name: sSamusAnimPointers_Suitless_ShootingAndCrouching
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239C78
   loc: src/data/samus/samus_animation_pointers.c:2524
 - name: sSamusAnimPointers_Suitless_MidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239C90
   loc: src/data/samus/samus_animation_pointers.c:2539
 - name: sSamusAnimPointers_Suitless_TurningAroundMidAir
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239CB8
   loc: src/data/samus/samus_animation_pointers.c:2562
 - name: sSamusAnimPointers_Suitless_Landing
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239CE0
   loc: src/data/samus/samus_animation_pointers.c:2585
 - name: sSamusAnimPointers_Suitless_AimingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239D00
   loc: src/data/samus/samus_animation_pointers.c:2604
 - name: sSamusAnimPointers_Suitless_ShootingWhileHanging
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x239D28
   loc: src/data/samus/samus_animation_pointers.c:2627
 - name: sSamusAnimPointers_Suitless_UncrouchingSuitless
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239D50
   loc: src/data/samus/samus_animation_pointers.c:2650
 - name: sSamusAnimPointers_Suitless_CrouchingSuitless
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239D70
   loc: src/data/samus/samus_animation_pointers.c:2669
 - name: sSamusAnimPointers_Suitless_CrawlingStopped
-  type: const struct SamusAnimationData* [0x2]
+  type: const struct SamusAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x239D88
   loc: src/data/samus/samus_animation_pointers.c:2684
 - name: sArmCannonAnimPointers_Suitless_All
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x43
   addr:
     U: 0x239DA0
   loc: src/data/samus/samus_animation_pointers.c:2700
 - name: sArmCannonAnimPointers_Suitless_Running
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239FB8
   loc: src/data/samus/samus_animation_pointers.c:2971
 - name: sArmCannonAnimPointers_Suitless_Standing
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239FD8
   loc: src/data/samus/samus_animation_pointers.c:2990
 - name: sArmCannonAnimPointers_Suitless_TurningAround
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x239FF8
   loc: src/data/samus/samus_animation_pointers.c:3009
 - name: sArmCannonAnimPointers_Suitless_Shooting
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23A018
   loc: src/data/samus/samus_animation_pointers.c:3028
 - name: sArmCannonAnimPointers_Suitless_Crouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A038
   loc: src/data/samus/samus_animation_pointers.c:3047
 - name: sArmCannonAnimPointers_Suitless_TurningAroundAndCrouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A050
   loc: src/data/samus/samus_animation_pointers.c:3062
 - name: sArmCannonAnimPointers_Suitless_ShootingAndCrouching
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A068
   loc: src/data/samus/samus_animation_pointers.c:3077
 - name: sArmCannonAnimPointers_Suitless_MidAir
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23A080
   loc: src/data/samus/samus_animation_pointers.c:3092
 - name: sArmCannonAnimPointers_Suitless_TurningAroundMidAir
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23A0A8
   loc: src/data/samus/samus_animation_pointers.c:3115
 - name: sArmCannonAnimPointers_Suitless_Landing
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23A0D0
   loc: src/data/samus/samus_animation_pointers.c:3138
 - name: sArmCannonAnimPointers_Suitless_AimingWhileHanging
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23A0F0
   loc: src/data/samus/samus_animation_pointers.c:3157
 - name: sArmCannonAnimPointers_Suitless_ShootingWhileHanging
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23A118
   loc: src/data/samus/samus_animation_pointers.c:3180
 - name: sArmCannonAnimPointers_Suitless_UncrouchingSuitless
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x4
   addr:
     U: 0x23A140
   loc: src/data/samus/samus_animation_pointers.c:3203
 - name: sArmCannonAnimPointers_Suitless_CrouchingSuitless
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x5
   addr:
     U: 0x23A160
   loc: src/data/samus/samus_animation_pointers.c:3222
 - name: sArmCannonAnimPointers_Suitless_CrawlingStopped
-  type: const struct ArmCannonAnimationData* [0x2]
+  type: const struct ArmCannonAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A188
   loc: src/data/samus/samus_animation_pointers.c:3245
 - name: sSamusPal_PowerSuit_SavingPointers
-  type: const u16*
+  type: const u16* const
   count: 0xB
   addr:
     U: 0x23A1A0
   loc: src/data/samus/samus_animation_pointers.c:3263
 - name: sSamusPal_VariaSuit_SavingPointers
-  type: const u16*
+  type: const u16* const
   count: 0xB
   addr:
     U: 0x23A1CC
   loc: src/data/samus/samus_animation_pointers.c:3277
 - name: sSamusPal_FullSuit_SavingPointers
-  type: const u16*
+  type: const u16* const
   count: 0xB
   addr:
     U: 0x23A1F8
   loc: src/data/samus/samus_animation_pointers.c:3291
 - name: sSamusPal_GravitySuit_SavingPointers
-  type: const u16*
+  type: const u16* const
   count: 0xB
   addr:
     U: 0x23A224
   loc: src/data/samus/samus_animation_pointers.c:3305
 - name: sSamusPal_Suitless_SavingPointers
-  type: const u16*
+  type: const u16* const
   count: 0xB
   addr:
     U: 0x23A250
   loc: src/data/samus/samus_animation_pointers.c:3319
 - name: sSamusPal_PowerSuit_DownloadingMapPointers
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x23A27C
   loc: src/data/samus/samus_animation_pointers.c:3334
 - name: sSamusPal_VariaSuit_DownloadingMapPointers
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x23A29C
   loc: src/data/samus/samus_animation_pointers.c:3345
 - name: sSamusPal_FullSuit_DownloadingMapPointers
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x23A2BC
   loc: src/data/samus/samus_animation_pointers.c:3356
 - name: sSamusPal_GravitySuit_DownloadingMapPointers
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x23A2DC
   loc: src/data/samus/samus_animation_pointers.c:3367
 - name: sSamusPal_Suitless_DownloadingMapPointers
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x23A2FC
   loc: src/data/samus/samus_animation_pointers.c:3378
 - name: sArmCannonGfxPointers_Upper_Standing
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A31C
   loc: src/data/samus/samus_animation_pointers.c:3392
 - name: sArmCannonGfxPointers_Lower_Standing
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A330
   loc: src/data/samus/samus_animation_pointers.c:3400
 - name: sArmCannonGfxPointers_Upper_Armed_Standing
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A344
   loc: src/data/samus/samus_animation_pointers.c:3408
 - name: sArmCannonGfxPointers_Lower_Armed_Standing
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A358
   loc: src/data/samus/samus_animation_pointers.c:3416
 - name: sArmCannonGfxPointers_Upper_Right_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A36C
   loc: src/data/samus/samus_animation_pointers.c:3425
 - name: sArmCannonGfxPointers_Lower_Right_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A380
   loc: src/data/samus/samus_animation_pointers.c:3433
 - name: sArmCannonGfxPointers_Upper_Left_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A394
   loc: src/data/samus/samus_animation_pointers.c:3441
 - name: sArmCannonGfxPointers_Lower_Left_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A3A8
   loc: src/data/samus/samus_animation_pointers.c:3449
 - name: sArmCannonGfxPointers_Upper_Right_Armed_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A3BC
   loc: src/data/samus/samus_animation_pointers.c:3458
 - name: sArmCannonGfxPointers_Lower_Right_Armed_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A3D0
   loc: src/data/samus/samus_animation_pointers.c:3466
 - name: sArmCannonGfxPointers_Upper_Left_Armed_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A3E4
   loc: src/data/samus/samus_animation_pointers.c:3474
 - name: sArmCannonGfxPointers_Lower_Left_Armed_Default
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A3F8
   loc: src/data/samus/samus_animation_pointers.c:3482
 - name: sArmCannonGfxPointers_Upper_Left_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A40C
   loc: src/data/samus/samus_animation_pointers.c:3491
 - name: sArmCannonGfxPointers_Lower_Left_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A420
   loc: src/data/samus/samus_animation_pointers.c:3499
 - name: sArmCannonGfxPointers_Upper_Right_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A434
   loc: src/data/samus/samus_animation_pointers.c:3507
 - name: sArmCannonGfxPointers_Lower_Right_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A448
   loc: src/data/samus/samus_animation_pointers.c:3515
 - name: sArmCannonGfxPointers_Upper_Left_Armed_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A45C
   loc: src/data/samus/samus_animation_pointers.c:3524
 - name: sArmCannonGfxPointers_Lower_Left_Armed_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A470
   loc: src/data/samus/samus_animation_pointers.c:3532
 - name: sArmCannonGfxPointers_Upper_Right_Armed_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A484
   loc: src/data/samus/samus_animation_pointers.c:3540
 - name: sArmCannonGfxPointers_Lower_Right_Armed_Hanging
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A498
   loc: src/data/samus/samus_animation_pointers.c:3548
 - name: sArmCannonGfxPointers_Upper_Right_OnZipline
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A4AC
   loc: src/data/samus/samus_animation_pointers.c:3557
 - name: sArmCannonGfxPointers_Lower_Right_OnZipline
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A4C0
   loc: src/data/samus/samus_animation_pointers.c:3565
 - name: sArmCannonGfxPointers_Upper_Right_Armed_OnZipline
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A4D4
   loc: src/data/samus/samus_animation_pointers.c:3573
 - name: sArmCannonGfxPointers_Lower_Right_Armed_OnZipline
-  type: const u8*
+  type: const u8* const
   count: 0x5
   addr:
     U: 0x23A4E8
   loc: src/data/samus/samus_animation_pointers.c:3581
 - name: sSamusEffectAnimPointers_Speedboosting
-  type: const struct SamusEffectAnimationData* [0x2]
+  type: const struct SamusEffectAnimationData* const [0x2]
   count: 0x1
   addr:
     U: 0x23A4FC
   loc: src/data/samus/samus_animation_pointers.c:3592
 - name: sSamusEffectAnimPointers_Shinesparking
-  type: const struct SamusEffectAnimationData* [0x2]
+  type: const struct SamusEffectAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A504
   loc: src/data/samus/samus_animation_pointers.c:3599
 - name: sSamusEffectAnimPointers_Ballsparking
-  type: const struct SamusEffectAnimationData* [0x2]
+  type: const struct SamusEffectAnimationData* const [0x2]
   count: 0x3
   addr:
     U: 0x23A51C
@@ -8166,7 +8190,7 @@
     U: 0x23A566
   loc: src/data/samus/samus_animation_pointers.c:3663
 - name: sSamusEnvEffectsFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x12
   addr:
     U: 0x23A56C
@@ -59803,7 +59827,7 @@
     U: 0x35F06C
   loc: src/data/haze_data.c:5668
 - name: sHaze_PowerBomb_WindowValuesPointers
-  type: const s16*
+  type: const s16* const
   count: 0xA1
   addr:
     U: 0x35F570
@@ -64740,7 +64764,7 @@
     U: 0x40D74C
   loc: src/data/menus/pause_screen_data.c:3975
 - name: sPauseScreen_IgtAndTanksVramAddresses
-  type: u8*
+  type: u8* const
   count: 0x5
   addr:
     U: 0x40D79C
@@ -70558,13 +70582,13 @@
     U: 0x47CDF8
   loc: src/data/tourian_escape_data.c:2813
 - name: sTourianEscape_47ce00
-  type: const u16*
+  type: const u16* const
   count: 0x4
   addr:
     U: 0x47CE00
   loc: src/data/tourian_escape_data.c:2818
 - name: sTourianEscape_47ce10
-  type: const u16*
+  type: const u16* const
   count: 0x4
   addr:
     U: 0x47CE10
@@ -70594,13 +70618,13 @@
     U: 0x47CE90
   loc: src/data/tourian_escape_data.c:2929
 - name: sTourianEscape_47cea0
-  type: const u16*
+  type: const u16* const
   count: 0x8
   addr:
     U: 0x47CEA0
   loc: src/data/tourian_escape_data.c:2940
 - name: sTourianEscape_47cec0
-  type: const u16*
+  type: const u16* const
   count: 0x4
   addr:
     U: 0x47CEC0
@@ -70636,13 +70660,13 @@
     U: 0x47CF50
   loc: src/data/tourian_escape_data.c:3098
 - name: sTourianEscape_47cf70
-  type: const u16*
+  type: const u16* const
   count: 0x6
   addr:
     U: 0x47CF70
   loc: src/data/tourian_escape_data.c:3133
 - name: sTourianEscape_47cf88
-  type: const u16*
+  type: const u16* const
   count: 0x7
   addr:
     U: 0x47CF88
@@ -70672,7 +70696,7 @@
     U: 0x47CFD4
   loc: src/data/tourian_escape_data.c:3167
 - name: sTourianEscape_47cfe4
-  type: const u16*
+  type: const u16* const
   count: 0x4
   addr:
     U: 0x47CFE4
@@ -71623,7 +71647,7 @@
     U: 0x54C10C
   loc: src/data/ending_and_gallery_data.c:2088
 - name: sEndingWhitePalPointers
-  type: const u16*
+  type: const u16* const
   count: 0x4
   addr:
     U: 0x54E2CC
@@ -72205,7 +72229,7 @@
     U: 0x5CA0BC
   loc: src/data/chozodia_escape_data.c:318
 - name: sChozodiaEscape_5ca0c4
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x5
   addr:
     U: 0x5CA0C4
@@ -79155,7 +79179,7 @@
     U: 0x7566C4
   loc: src/data/cable_link_data.c:5
 - name: sSpritesetPointers
-  type: const u8*
+  type: const u8* const
   count: 0x72
   addr:
     U: 0x75F31C
@@ -79164,37 +79188,37 @@
     C: 0x79E514
   loc: src/data/samus_sprites_pointers.c:912
 - name: sChozoStatueFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x10
   addr:
     U: 0x75F4E4
   loc: src/data/frame_data_pointers.c:3
 - name: sUnknownItemChozoStatueFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x10
   addr:
     U: 0x75F524
   loc: src/data/frame_data_pointers.c:22
 - name: sKraidFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x26
   addr:
     U: 0x75F564
   loc: src/data/frame_data_pointers.c:41
 - name: sImagoLarvaFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x17
   addr:
     U: 0x75F5FC
   loc: src/data/frame_data_pointers.c:82
 - name: sImagoCocoonFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x15
   addr:
     U: 0x75F658
   loc: src/data/frame_data_pointers.c:108
 - name: sRidleyFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x21
   addr:
     U: 0x75F6AC
@@ -79206,37 +79230,37 @@
     U: 0x75F730
   loc: src/data/frame_data_pointers.c:169
 - name: sMotheBrainFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0xA
   addr:
     U: 0x75F774
   loc: src/data/frame_data_pointers.c:207
 - name: sTangleVineFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0xD
   addr:
     U: 0x75F79C
   loc: src/data/frame_data_pointers.c:220
 - name: sImagoFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x11
   addr:
     U: 0x75F7D0
   loc: src/data/frame_data_pointers.c:236
 - name: sCrocomireFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x19
   addr:
     U: 0x75F814
   loc: src/data/frame_data_pointers.c:256
 - name: sMechaRidleyFrameDataPointers
-  type: const struct FrameData*
+  type: const struct FrameData* const
   count: 0x3F
   addr:
     U: 0x75F878
   loc: src/data/frame_data_pointers.c:284
 - name: sAreaDoorsPointers
-  type: const struct Door*
+  type: const struct Door* const
   count: 0x7
   addr:
     U: 0x75FAA8
@@ -79246,7 +79270,7 @@
     B: 0x76AA54
   loc: src/data/engine_pointers.c:111
 - name: sAreaRoomEntryPointers
-  type: const struct RoomEntryROM*
+  type: const struct RoomEntryROM* const
   count: 0x7
   addr:
     U: 0x75FAC4
@@ -79256,7 +79280,7 @@
     B: 0x76AA80
   loc: src/data/engine_pointers.c:127
 - name: sScrollPointer_Empty
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FAE0
@@ -79265,49 +79289,49 @@
     C: 0x79ECD8
   loc: src/data/engine_pointers.c:143
 - name: sBrinstarScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FAE4
   loc: src/data/engine_pointers.c:147
 - name: sKraidScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FB34
   loc: src/data/engine_pointers.c:170
 - name: sNorfairScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FB64
   loc: src/data/engine_pointers.c:185
 - name: sRidleyScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FBAC
   loc: src/data/engine_pointers.c:206
 - name: sTourianScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FBE8
   loc: src/data/engine_pointers.c:224
 - name: sCrateriaScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FC04
   loc: src/data/engine_pointers.c:234
 - name: sChozodiaScrolls
-  type: const u8*
+  type: const u8* const
   count: 0x0
   addr:
     U: 0x75FC34
   loc: src/data/engine_pointers.c:249
 - name: sAreaScrollPointers
-  type: const u8* const *
+  type: const u8* const * const
   count: 0xB
   addr:
     U: 0x75FD28
@@ -79338,7 +79362,7 @@
     C: 0x79EF80
   loc: src/data/engine_pointers.c:377
 - name: sBackgroundEffectBehaviorPointers
-  type: const BackgroundEffectBehaviorEntry_T*
+  type: const BackgroundEffectBehaviorEntry_T* const
   count: 0x9
   addr:
     U: 0x75FDBC
@@ -79347,7 +79371,7 @@
     C: 0x79EFB4
   loc: src/data/engine_pointers.c:419
 - name: sHatchLockEventsPointers
-  type: const struct HatchLockEvent*
+  type: const struct HatchLockEvent* const
   count: 0x7
   addr:
     U: 0x75FDE0
@@ -79356,7 +79380,7 @@
     C: 0x79EFD8
   loc: src/data/engine_pointers.c:431
 - name: sDemoRamDataPointers
-  type: const struct SaveDemo*
+  type: const struct SaveDemo* const
   count: 0x10
   addr:
     U: 0x75FDFC
@@ -79377,7 +79401,7 @@
     U: 0x75FE44
   loc: src/data/engine_pointers.c:465
 - name: sCutsceneScreenShakeOffsetSetPointers
-  type: const s8*
+  type: const s8* const
   count: 0x4
   addr:
     U: 0x75FE48
@@ -79542,31 +79566,31 @@
     U: 0x7600F8
   loc: src/data/menus/internal_pause_screen_data.c:11
 - name: sMapScreenAreaNamesGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x760104
   loc: src/data/menus/internal_pause_screen_data.c:20
 - name: sMapScreenChozoStatueAreaNamesGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x760120
   loc: src/data/menus/internal_pause_screen_data.c:30
 - name: sMapScreenUnknownItemsNamesGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x76013C
   loc: src/data/menus/internal_pause_screen_data.c:40
 - name: sMapScreenEquipmentNamesGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x760158
   loc: src/data/menus/internal_pause_screen_data.c:57
 - name: sMapScreenMenuNamesGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x760174
@@ -79584,7 +79608,7 @@
     U: 0x7601CC
   loc: src/data/menus/internal_pause_screen_data.c:120
 - name: sStatusScreenFlagsOrderPointers
-  type: const u8*
+  type: const u8* const
   count: 0x4
   addr:
     U: 0x7601DC
@@ -79679,7 +79703,7 @@
     U: 0x7603EA
   loc: src/data/menus/internal_status_screen_data.c:125
 - name: sChozoStatueTargetPathPointers
-  type: const s8*
+  type: const s8* const
   count: 0x6
   addr:
     U: 0x7603F0
@@ -79693,7 +79717,7 @@
     U: 0x760408
   loc: src/data/internal_save_file_data.c:6
 - name: sEraseSramTextGfxPointers
-  type: const u32* [0x2]
+  type: const u32* const [0x2]
   count: 0x7
   addr:
     U: 0x760420
@@ -79705,7 +79729,7 @@
     U: 0x760AA0
   loc: src/data/menus/internal_title_screen_data.c:6
 - name: sRomInfoStringPointers
-  type: const u8*
+  type: const u8* const
   count: 0x4
   addr:
     U: 0x760AC0
@@ -79735,7 +79759,7 @@
     U: 0x760AE8
   loc: src/data/menus/internal_title_screen_data.c:57
 - name: sGameOverTextPromptGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x7
   addr:
     U: 0x760AF0
@@ -79759,7 +79783,7 @@
     U: 0x760B18
   loc: src/data/menus/internal_file_select_data.c:10
 - name: sFileSelectTextGfxPointers
-  type: const u32*
+  type: const u32* const
   count: 0x5
   addr:
     U: 0x760B24
@@ -79809,7 +79833,7 @@
     C: 0x79FDA0
   loc: src/data/menus/internal_file_select_data.c:193
 - name: sFileSelect_760bdc
-  type: u32*
+  type: u32* const
   count: 0x4
   addr:
     U: 0x760BDC
@@ -79875,7 +79899,7 @@
     U: 0x760D14
   loc: src/data/internal_chozodia_escape_data.c:5
 - name: sPlayerNumbersStringPointers
-  type: const u8*
+  type: const u8* const
   count: 0x4
   addr:
     U: 0x760D28

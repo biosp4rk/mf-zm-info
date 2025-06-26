@@ -18078,7 +18078,7 @@
     cat: ascii
   - name: src
     desc: Source pointer
-    type: const u8*
+    type: const u8* const
     cat: ascii
   - name: length
     desc: String length
@@ -18642,7 +18642,7 @@
   params:
   - name: pPageData
     desc: Title screen page data pointer
-    type: const struct TitleScreenPageData*
+    type: const struct TitleScreenPageData* const
   return: null
   loc: src/menus/title_screen.c:29
 - name: TitleScreenLoadPageData
@@ -18658,7 +18658,7 @@
   params:
   - name: pPageData
     desc: Title screen page data pointer
-    type: const struct TitleScreenPageData*
+    type: const struct TitleScreenPageData* const
     cat: gfx
     comp: lz
   return: null
@@ -18676,7 +18676,7 @@
   params:
   - name: pPageData
     desc: Title screen page data pointer
-    type: const struct TitleScreenPageData*
+    type: const struct TitleScreenPageData* const
     cat: gfx
     comp: lz
   return: null

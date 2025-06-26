@@ -736,7 +736,6 @@ class Extractor:
                     extra_bits = 0
                 existing[v.offset * 8 + extra_bits] = v
                 extra_bits += v.bits or 0
-            existing = {v.offset: v for v in entry.vars}
         decls: list[c_ast.Decl] = node.decls
         bits = 0
         vars: list[StructVarEntry] = []

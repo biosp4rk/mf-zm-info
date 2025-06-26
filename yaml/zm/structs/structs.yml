@@ -11,7 +11,7 @@
     type: u8
     offset: 0x2
   - name: pGraphics
-    type: const u8*
+    type: const u8* const
     offset: 0x4
   loc: include/structs/animated_graphics.h:43
 - name: AnimatedGraphicsEntry
@@ -92,10 +92,10 @@
   size: 0x8
   vars:
   - name: pOffset
-    type: const struct ArmCannonOffset*
+    type: const struct ArmCannonOffset* const
     offset: 0x0
   - name: pOam
-    type: const u16*
+    type: const u16* const
     offset: 0x4
   loc: include/structs/samus.h:165
 - name: ArmCannonOffset
@@ -875,7 +875,7 @@
   size: 0x8
   vars:
   - name: colorArray
-    type: const u8*
+    type: const u8* const
     offset: 0x0
   - name: size
     type: u8
@@ -1422,13 +1422,13 @@
   size: 0x10
   vars:
   - name: pInputs
-    type: const u16*
+    type: const u16* const
     offset: 0x0
   - name: inputsSize
     type: u16
     offset: 0x4
   - name: pDuration
-    type: const u16*
+    type: const u16* const
     offset: 0x8
   - name: durationSize
     type: u16
@@ -1646,7 +1646,7 @@
     type: u16
     offset: 0x6
   - name: pFrame
-    type: const u16*
+    type: const u16* const
     offset: 0x8
   loc: include/structs/ending_and_gallery.h:8
 - name: Envelope
@@ -2287,19 +2287,19 @@
   size: 0x14
   vars:
   - name: pTopGfx
-    type: const u32*
+    type: const u32* const
     offset: 0x0
   - name: pBottomGfx
-    type: const u32*
+    type: const u32* const
     offset: 0x4
   - name: pTopTileTable
-    type: const u32*
+    type: const u32* const
     offset: 0x8
   - name: pBottomTileTable
-    type: const u32*
+    type: const u32* const
     offset: 0xC
   - name: pPalette
-    type: const u16*
+    type: const u16* const
     offset: 0x10
   loc: include/structs/fusion_gallery.h:14
 - name: GameCompletion
@@ -3344,7 +3344,7 @@
   size: 0x8
   vars:
   - name: pOam
-    type: const struct FrameData*
+    type: const struct FrameData* const
     offset: 0x0
   - name: preAction
     type: u8
@@ -4333,13 +4333,13 @@
   size: 0x10
   vars:
   - name: pTopGfx
-    type: const u8*
+    type: const u8* const
     offset: 0x0
   - name: pBottomGfx
-    type: const u8*
+    type: const u8* const
     offset: 0x4
   - name: pOam
-    type: const u16*
+    type: const u16* const
     offset: 0x8
   - name: timer
     type: u8
@@ -4451,10 +4451,10 @@
   size: 0xC
   vars:
   - name: pGraphics
-    type: const u8*
+    type: const u8* const
     offset: 0x0
   - name: pOam
-    type: const u16*
+    type: const u16* const
     offset: 0x4
   - name: timer
     type: u8
@@ -5888,7 +5888,7 @@
     type: u16
     offset: 0x6
   - name: tiletablePointer
-    type: const u32*
+    type: const u32* const
     offset: 0x8
   loc: include/structs/menus/title_screen.h:21
 - name: TitleScrenOamTiming
