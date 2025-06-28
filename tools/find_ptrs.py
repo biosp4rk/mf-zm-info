@@ -5,8 +5,8 @@ from typing import Union
 import argparse_utils as apu
 from constants import *
 from function import all_functions
-from game_info import GameInfo, InfoSource
-from info_entry import DataType, DataEntry, StructEntry, StructVarEntry, CodeEntry
+from info.game_info import GameInfo, InfoSource
+from info.info_entry import DataEntry, StructEntry, StructVarEntry, CodeEntry
 from rom import Rom, ROM_OFFSET
 
 

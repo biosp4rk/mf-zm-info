@@ -4,8 +4,8 @@ import math
 import os
 
 import argparse_utils as apu
-from info_entry import Category
-from game_info import GameInfo, InfoSource
+from info.game_info import GameInfo, InfoSource
+from info.info_entry import Category
 from rom import Rom
 
 

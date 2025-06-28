@@ -3,7 +3,7 @@ import argparse
 import argparse_utils as apu
 from constants import *
 from function import Function
-from game_info import GameInfo
+from info.game_info import GameInfo
 from rom import Rom
 from symbols import Symbols
 from thumb import ThumbForm

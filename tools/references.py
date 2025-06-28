@@ -6,8 +6,8 @@ import yaml
 
 import argparse_utils as apu
 from function import all_functions
-from game_info import GameInfo, InfoSource
-from info_entry import InfoEntry, CodeEntry, DataEntry
+from info.game_info import GameInfo, InfoSource
+from info.info_entry import InfoEntry, CodeEntry, DataEntry
 from rom import Rom, SIZE_32MB, ROM_OFFSET, ROM_END
 from thumb import ThumbForm, ThumbInstruct
 

@@ -3,8 +3,8 @@ from enum import Enum, auto
 from typing import Any, Union
 
 from asset_type import (
-    BUILT_IN_SIZES, TypeSpecKind, AssetType, OuterType,
-    PointerType, ArrayType, FunctionType, TypeTokenizer, TypeParser
+    BUILT_IN_SIZES, TypeSpecKind, OuterType, PointerType,
+    ArrayType, FunctionType, TypeTokenizer, TypeParser
 )
 from constants import *
 

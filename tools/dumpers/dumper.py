@@ -1,12 +1,9 @@
 import argparse
-from collections import defaultdict
-import re
 
 import argparse_utils as apu
 from function import all_functions
-from game_info import GameInfo, InfoSource
-from info_entry import NamedVarEntry
-from rom import Rom, ROM_OFFSET
+from info.game_info import GameInfo
+from rom import Rom
 
 
 def dump_bytes(
@@ -61,60 +58,6 @@ def coverage(rom: Rom):
     print(f"Total:\t{(code_cov + data_cov) / rom_size:.2%}")
 
 
-class FindPtrData(object):
-
-    def __init__(self, rom: Rom):
-        self.rom = rom
-        self.data_start = rom.data_start()
-        self.data_end = rom.data_end()
-        self.info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
-        self.data_set = {d.addr for d in self.info.data}
-        self.results = defaultdict(list)
-
-    def find(self):
-        for entry in self.info.data:
-            self.check_entry(entry)
-        for addr in sorted(self.results):
-            names = ", ".join(self.results[addr])
-            print(f"{addr:X}: {names}")
-
-    def check_entry(self,
-        entry: NamedVarEntry,
-        base_addr: int = None,
-        base_name: str = None
-    ):
-        if base_addr is None:
-            base_addr = entry.addr
-            base_name = entry.name
-        else:
-            base_addr = base_addr + entry.offset
-            base_name = base_name + "_" + entry.name
-        count = entry.get_count()
-        if entry.is_ptr():
-            base_name = re.sub("Ptrs?$", "", base_name)
-            for i in range(count):
-                addr = rom.read_32(base_addr + i * 4)
-                if addr < ROM_OFFSET:
-                    continue
-                addr -= ROM_OFFSET
-                if (addr >= self.data_start and
-                    addr < self.data_end and
-                    addr not in self.data_set):
-                    name = base_name
-                    if count > 1:
-                        name += f"_{i:02X}"
-                    self.results[addr].append(name)
-        elif entry.struct_name() is not None:
-            struct = self.info.get_struct(entry.struct_name())
-            for i in range(count):
-                addr = base_addr + i * struct.size
-                name = base_name
-                if count > 1:
-                    name += f"_{i:02X}"
-                for var in struct.vars:
-                    self.check_entry(var, addr, name)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
@@ -133,9 +76,6 @@ if __name__ == "__main__":
     # coverage command
     subparser = subparsers.add_parser("coverage",
         help="Computes the percent of ROM code and data with labeled entries")
-    # ptr_data command
-    subparser = subparsers.add_parser("ptr_data",
-        help="Follows pointers to find unlabeled data")
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
@@ -150,8 +90,5 @@ if __name__ == "__main__":
             print(f"{addr:X}\t{size:X}")
     elif args.command == "coverage":
         coverage(rom)
-    elif args.command == "ptr_data":
-        fpd = FindPtrData(rom)
-        fpd.find()
     else:
         parser.print_help()

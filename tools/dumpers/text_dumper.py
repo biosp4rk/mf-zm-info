@@ -5,7 +5,7 @@ import re
 
 import argparse_utils as apu
 from constants import *
-from info_file_utils import load_yaml_file
+from info.info_file_utils import load_yaml_file
 from rom import Rom
 
 

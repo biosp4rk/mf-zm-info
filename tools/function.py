@@ -4,8 +4,8 @@ from enum import Enum, auto
 
 import argparse_utils as apu
 from constants import *
-from game_info import GameInfo
-from info_entry import CodeMode
+from info.game_info import GameInfo
+from info.info_entry import CodeMode
 from rom import Rom
 from symbols import Symbols
 from thumb import *

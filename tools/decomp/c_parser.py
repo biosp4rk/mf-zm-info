@@ -14,12 +14,12 @@ import re
 
 from pycparser import c_ast, parse_file, plyparser
 
-from asset_type import BUILT_IN_TYPES, BUILT_IN_SIZES
 from constants import *
 import decomp.elf_parser as ep
-from game_info import GameInfo, InfoSource
-from info_entry import *
-import info_file_utils as ifu
+from info.asset_type import BUILT_IN_TYPES, BUILT_IN_SIZES
+from info.game_info import GameInfo, InfoSource
+from info.info_entry import *
+import info.info_file_utils as ifu
 
 
 DOC_STR_BRIEF = re.compile(r"@brief\s+(.+)")

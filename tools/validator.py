@@ -7,11 +7,11 @@ from typing import Union
 from jsonschema import Draft7Validator
 from referencing import Registry, Resource
 
-from asset_type import AssetType, OuterType, PointerType, FunctionType
 from constants import *
-from game_info import GameInfo, InfoSource
-from info_entry import *
-import info_file_utils as ifu
+from info.asset_type import AssetType, OuterType, PointerType, FunctionType
+from info.game_info import GameInfo, InfoSource
+from info.info_entry import *
+import info.info_file_utils as ifu
 
 
 # TODO: Remove this when fusion is supported
