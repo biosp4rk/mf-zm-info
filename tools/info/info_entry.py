@@ -2,15 +2,15 @@ from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import Any, Union
 
-from asset_type import (
+from constants import *
+from info.asset_type import (
     BUILT_IN_SIZES, TypeSpecKind, OuterType, PointerType,
     ArrayType, FunctionType, TypeTokenizer, TypeParser
 )
-from constants import *
 
 
-# Type for numbers that can vary by region (addr, size)
 RegionInt = Union[int, dict[str, int]]
+"""Type for numbers that can vary by region (addr, size)"""
 
 TOKENIZER = TypeTokenizer()
 PARSER = TypeParser()
@@ -777,3 +777,6 @@ class EnumEntry(InfoEntry):
         obj.append((K_VALS, vals))
         obj.append((K_LOC, entry.loc))
         return dict(obj)
+
+
+NamedEntry = Union[NamedVarEntry, TypedefEntry, StructEntry, UnionEntry, EnumEntry]

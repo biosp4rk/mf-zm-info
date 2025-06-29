@@ -6,7 +6,7 @@ import os
 import yaml
 
 from constants import *
-from info_entry import *
+from info.info_entry import *
 from typing import Any
 
 

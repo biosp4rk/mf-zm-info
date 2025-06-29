@@ -1,12 +1,12 @@
 from enum import Enum, auto
 
-from asset_type import (
+from constants import *
+from info.asset_type import (
     BUILT_IN_SIZES, TypeSpecKind, AssetType,
     SpecifierType, PointerType, ArrayType, FunctionType
 )
-from constants import *
-from info_entry import *
-from info_file_utils import get_info_file_from_json, get_info_file_from_yaml
+from info.info_entry import *
+from info.info_file_utils import get_info_file_from_json, get_info_file_from_yaml
 
 
 class InfoSource(Enum):
