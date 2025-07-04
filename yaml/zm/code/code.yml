@@ -1512,6 +1512,25 @@
     type: u8
   return: null
   loc: src/audio_wrappers.c:894
+- name: DmaTransfer
+  addr:
+    U: 0x31E4
+    E: 0x3238
+  size: 0xD0
+  mode: thumb
+  params:
+  - name: channel
+    type: u8
+  - name: src
+    type: const void*
+  - name: dst
+    type: void*
+  - name: len
+    type: u32
+  - name: bitSize
+    type: u8
+  return: null
+  loc: null
 - name: BitFill
   addr:
     U: 0x32B4
