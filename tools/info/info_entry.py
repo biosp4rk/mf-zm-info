@@ -144,7 +144,7 @@ class TypedefEntry(InfoEntry):
             obj[K_NAME],
             obj.get(K_DESC),
             obj[K_TYPE],
-            obj[K_LOC]
+            obj.get(K_LOC)
         )
 
     @staticmethod
@@ -414,7 +414,7 @@ class DataEntry(NamedVarEntry):
                 obj[K_TYPE],
                 obj.get(K_COUNT),
                 obj[K_ADDR],
-                obj[K_LOC],
+                obj.get(K_LOC),
                 cat,
                 comp,
                 obj.get(K_ENUM)
@@ -554,7 +554,7 @@ class StructEntry(InfoEntry):
                 obj.get(K_DESC),
                 obj[K_SIZE],
                 vars,
-                obj[K_LOC]
+                obj.get(K_LOC)
             )
         except:
             raise Exception(f"Error parsing struct entry: {obj}")
@@ -607,7 +607,7 @@ class UnionEntry(InfoEntry):
                 obj.get(K_DESC),
                 obj[K_SIZE],
                 vars,
-                obj[K_LOC]
+                obj.get(K_LOC)
             )
         except:
             raise Exception(f"Error parsing union entry: {obj}")
@@ -679,7 +679,7 @@ class CodeEntry(InfoEntry):
                 STR_TO_MODE[obj[K_MODE]],
                 params,
                 ret,
-                obj[K_LOC]
+                obj.get(K_LOC)
             )
         except:
             raise Exception(f"Error parsing code entry: {obj}")
@@ -763,7 +763,7 @@ class EnumEntry(InfoEntry):
                 obj[K_NAME],
                 obj.get(K_DESC),
                 vals,
-                obj[K_LOC]
+                obj.get(K_LOC)
             )
         except:
             raise Exception(f"Error parsing enum entry: {obj}")

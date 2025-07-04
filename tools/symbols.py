@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
 from constants import *
-from game_info import GameInfo
+from info.game_info import GameInfo
 from rom import ROM_OFFSET
 
 
