@@ -93,8 +93,8 @@ class Extractor:
         # Find all .h and .c files
         include_path = os.path.join(decomp_path, "include")
         src_path = os.path.join(decomp_path, "src")
-        h_files = get_files_with_ext(include_path, ".h", "libgcc")
-        c_files = get_files_with_ext(src_path, ".c", "libgcc")
+        h_files = get_files_with_ext(include_path, ".h")
+        c_files = get_files_with_ext(src_path, ".c")
         # h_files = ["decomp/test.h"]
         # c_files = ["decomp/test.c"]
         # Find declarations in all files
@@ -197,7 +197,10 @@ class Extractor:
             self.locations[name] = loc
             return True
         elif isinstance(node, c_ast.FuncDef):
-            self.locations[node.decl.name] = loc
+            name = node.decl.name
+            if name not in self.funcs:
+                self.funcs[name] = node.decl.type
+            self.locations[name] = loc
             return True
         else:
             return False
@@ -286,10 +289,17 @@ class Extractor:
                 self.enum_vals[num.name] = val
                 val += 1
 
-    def _const_value(self, node: c_ast.Node) -> int:
+    def _const_int_value(self, node: c_ast.Node) -> int:
+        return int(self._const_value(node))
+
+    def _const_value(self, node: c_ast.Node) -> Union[int, float]:
         """Recursively computes the value for an AST node that is a constant integer."""
         if isinstance(node, c_ast.Constant):
-            return int(node.value, 0)
+            if "." in node.value:
+                s: str = node.value
+                return float(node.value.rstrip("f"))
+            else:
+                return int(node.value, 0)
         elif isinstance(node, c_ast.ID):
             return self.enum_vals[node.name]
         elif isinstance(node, c_ast.BinaryOp):
@@ -305,6 +315,8 @@ class Extractor:
                 return left // right
             elif node.op == "<<":
                 return left << right
+            elif node.op == "|":
+                return left | right
             else:
                 raise ValueError(node.op)
         elif isinstance(node, c_ast.UnaryOp):
@@ -352,7 +364,7 @@ class Extractor:
         elif isinstance(node, c_ast.ArrayDecl):
             if node.dim is None:
                 return 0, 0 # treat 0 as unknown
-            count = self._const_value(node.dim)
+            count = self._const_int_value(node.dim)
             size, align = self._type_size(node.type)
             return count * size, align
         elif isinstance(node, c_ast.PtrDecl):
@@ -403,7 +415,7 @@ class Extractor:
         if isinstance(node, c_ast.ArrayDecl):
             # TODO: Proper handling for arrays without a length
             if node.dim is not None:
-                count = self._const_value(node.dim)
+                count = self._const_int_value(node.dim)
             else:
                 count = 0
             node = node.type
@@ -456,7 +468,7 @@ class Extractor:
     def _array_decl_str(self, node: c_ast.ArrayDecl, decl: str) -> str:
         dim_str = ""
         if node.dim is not None:
-            dim_str = f"0x{self._const_value(node.dim):X}"
+            dim_str = f"0x{self._const_int_value(node.dim):X}"
         arr_str = "[" + dim_str + "]"
         return self._sub_decl_str(node.type, decl + arr_str)
 
