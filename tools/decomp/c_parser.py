@@ -542,10 +542,10 @@ class Extractor:
         # Get the existing info entries (list) and decomp entries (dict)
         if map_type == MAP_RAM:
             existing = info.ram
-            decomp_entries = {k: v for k, v in self.variables.items() if k.startswith("g")}
+            decomp_entries = {k: v for k, v in self.variables.items() if k[0] == "g" and k[1].isupper()}
         elif map_type == MAP_DATA:
             existing = info.data
-            decomp_entries = {k: v for k, v in self.variables.items() if k.startswith("s")}
+            decomp_entries = {k: v for k, v in self.variables.items() if k[0] == "s"}
         elif map_type == MAP_CODE:
             existing = info.code
             decomp_entries = self.funcs
@@ -677,7 +677,7 @@ class Extractor:
             elif map_type == MAP_TYPEDEFS:
                 decl = self._decl_str(node)
                 new_entry = TypedefEntry(name, None, decl, loc)
-            entries[map_type].append(new_entry)
+            entries[filename].append(new_entry)
         # Write entries to yaml files
         map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
         for filename, data in entries.items():
