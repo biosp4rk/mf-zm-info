@@ -7,9 +7,9 @@
     E: 0x8D728
     J: 0x8CAF8
     C: 0x90814
-  loc: src/data/generic_data.c:82
+  loc: src/data/generic_data.c:351
 - name: sSamusPoseFunctionPointers
-  type: const SamusFunc_T
+  type: SamusFunc_T
   count: 0x43
   cat: thumb
   addr:
@@ -17,9 +17,9 @@
     E: 0x772548
     J: 0x75E7B8
     C: 0x79D8A0
-  loc: src/data/samus_sprites_pointers.c:97
+  loc: src/samus.c:27
 - name: sSamusPoseGfxFunctionPointers
-  type: const SamusFunc_T
+  type: SamusFunc_T
   count: 0x43
   cat: thumb
   addr:
@@ -27,9 +27,9 @@
     E: 0x772654
     J: 0x75E8C4
     C: 0x79D9AC
-  loc: src/data/samus_sprites_pointers.c:167
+  loc: src/samus.c:97
 - name: sPrimarySpritesAIPointers
-  type: const Func_T
+  type: Func_T
   count: 0xCE
   cat: thumb
   addr:
@@ -37,9 +37,9 @@
     E: 0x772760
     J: 0x75E9D0
     C: 0x79DAB8
-  loc: src/data/samus_sprites_pointers.c:237
+  loc: src/sprite.c:106
 - name: sSecondarySpritesAIPointers
-  type: const Func_T
+  type: Func_T
   count: 0x4D
   cat: thumb
   addr:
@@ -47,9 +47,9 @@
     E: 0x773088
     J: 0x75F2F8
     C: 0x79E3E0
-  loc: src/data/samus_sprites_pointers.c:832
+  loc: src/sprite.c:701
 - name: sProcessProjectileFunctionPointers
-  type: const ProjFunc_T
+  type: ProjFunc_T
   count: 0x10
   cat: thumb
   addr:
@@ -57,9 +57,9 @@
     E: 0x773814
     J: 0x75FA84
     C: 0x79EB6C
-  loc: src/data/engine_pointers.c:28
+  loc: src/projectile_util.c:27
 - name: sProcessParticleFunctionPointers
-  type: const ParticleFunc_T
+  type: ParticleFunc_T
   count: 0x3D
   cat: thumb
   addr:
@@ -67,9 +67,9 @@
     E: 0x773854
     J: 0x75FAC4
     C: 0x79EBAC
-  loc: src/data/engine_pointers.c:47
+  loc: src/particle.c:26
 - name: sNonReformDestroyFunctionPointers
-  type: const BlockFunc_T
+  type: BlockFunc_T
   count: 0x5
   cat: thumb
   addr:
@@ -77,9 +77,9 @@
     E: 0x773C04
     J: 0x75FE74
     C: 0x79EF5C
-  loc: src/data/engine_pointers.c:354
+  loc: src/block.c:19
 - name: sTimeAttackSeedShuffleFunctionPointers
-  type: const TimeAttackFunc_T
+  type: TimeAttackFunc_T
   count: 0x10
   cat: thumb
   addr:
@@ -87,4 +87,4 @@
     E: 0x775344
     J: 0x760D78
     C: 0x79FE68
-  loc: src/data/time_attack_data.c:4
+  loc: src/time_attack.c:12

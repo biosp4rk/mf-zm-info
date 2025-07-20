@@ -158,7 +158,18 @@
   - name: ANIMATED_PALETTE_TYPE_REVERSE
     val: 0x3
   loc: include/constants/animated_graphics.h:35
-- name: Area
+- name: AreaConnectionField
+  vals:
+  - name: AREA_CONNECTION_FIELD_SOURCE_AREA
+    val: 0x0
+  - name: AREA_CONNECTION_FIELD_SOURCE_DOOR
+    val: 0x1
+  - name: AREA_CONNECTION_FIELD_DESTINATION_AREA
+    val: 0x2
+  - name: AREA_CONNECTION_FIELD_COUNT
+    val: 0x3
+  loc: include/structs/connection.h:90
+- name: Area_
   vals:
   - name: AREA_BRINSTAR
     val: 0x0
@@ -186,19 +197,8 @@
     val: 0xA
   - name: AREA_COUNT
     val: 0xB
-  loc: include/constants/connection.h:4
-- name: AreaConnectionField
-  vals:
-  - name: AREA_CONNECTION_FIELD_SOURCE_AREA
-    val: 0x0
-  - name: AREA_CONNECTION_FIELD_SOURCE_DOOR
-    val: 0x1
-  - name: AREA_CONNECTION_FIELD_DESTINATION_AREA
-    val: 0x2
-  - name: AREA_CONNECTION_FIELD_COUNT
-    val: 0x3
-  loc: include/structs/connection.h:94
-- name: ArmCannonDirection
+  loc: include/constants/connection.h:7
+- name: ArmCannonDirection_
   vals:
   - name: ACD_FORWARD
     val: 0x0
@@ -214,7 +214,7 @@
     val: 0x5
   - name: ACD_END
     val: 0x6
-  loc: include/constants/samus.h:136
+  loc: include/constants/samus.h:144
 - name: ArrowCopyPose
   vals:
   - name: ARROW_COPY_POSE_DEFAULT
@@ -225,7 +225,7 @@
     val: 0x2
   - name: ARROW_COPY_POSE_KILL
     val: 0x3
-  loc: include/constants/menus/file_select.h:242
+  loc: include/constants/menus/file_select.h:255
 - name: AtomicElectricityDirection
   vals:
   - name: ATOMIC_DIRECTION_DIAGONAL
@@ -234,7 +234,7 @@
     val: 0x1
   - name: ATOMIC_DIRECTION_VERTICAL
     val: 0x2
-  loc: src/sprites_AI/atomic.c:33
+  loc: src/sprites_AI/atomic.c:32
 - name: BackgroundEffectBehaviorField
   vals:
   - name: BACKGROUND_EFFECT_BEHAVIOR_FIELD_CMD_TYPE
@@ -245,7 +245,7 @@
     val: 0x2
   - name: BACKGROUND_EFFECT_BEHAVIOR_FIELD_END
     val: 0x3
-  loc: include/structs/animated_graphics.h:57
+  loc: include/structs/animated_graphics.h:60
 - name: BackgroundEffectCommand
   vals:
   - name: BACKGROUND_EFFECT_CMD_WAIT_FOR_TIMER
@@ -294,7 +294,7 @@
   - name: BACKGROUND_EFFECT_END
     val: 0x9
   loc: include/constants/animated_graphics.h:4
-- name: BackgroundFlash
+- name: BackgroundFlash_
   vals:
   - name: BG_FLASH_SLIGHT_YELLOW
     val: 0x0
@@ -304,18 +304,24 @@
     val: 0x2
   - name: BG_FLASH_QUICK_YELLOW
     val: 0x3
-  loc: include/constants/in_game_cutscene.h:16
-- name: Bg3ScrollingType
+  loc: include/constants/in_game_cutscene.h:20
+- name: BeamBombFlags_
   vals:
-  - name: BG3_SCROLLING_TYPE_NONE
+  - name: BBF_NONE
     val: 0x0
-  - name: BG3_SCROLLING_TYPE_NORMAL
+  - name: BBF_LONG_BEAM
     val: 0x1
-  - name: BG3_SCROLLING_TYPE_HALVED
+  - name: BBF_ICE_BEAM
     val: 0x2
-  - name: BG3_SCROLLING_TYPE_QUARTERED
-    val: 0x3
-  loc: include/structs/scroll.h:45
+  - name: BBF_WAVE_BEAM
+    val: 0x4
+  - name: BBF_PLASMA_BEAM
+    val: 0x8
+  - name: BBF_CHARGE_BEAM
+    val: 0x10
+  - name: BBF_BOMBS
+    val: 0x80
+  loc: include/constants/samus.h:6
 - name: BlockLifeType
   vals:
   - name: BLOCK_LIFE_TYPE_NONE
@@ -328,7 +334,7 @@
     val: 0x3
   - name: BLOCK_LIFE_TYPE_TANK
     val: 0x4
-  loc: include/constants/block.h:51
+  loc: include/constants/block.h:56
 - name: BlockSubType
   vals:
   - name: BLOCK_SUB_TYPE_REFORM
@@ -341,7 +347,7 @@
     val: 0x3
   - name: BLOCK_SUB_TYPE_BOMB_CHAIN
     val: 0x4
-  loc: include/constants/block.h:59
+  loc: include/constants/block.h:64
 - name: BlockType
   vals:
   - name: BLOCK_TYPE_NONE
@@ -411,7 +417,7 @@
     val: 0x7
   - name: BOMB_CHAIN_TYPE_END
     val: 0x8
-  loc: include/constants/block.h:67
+  loc: include/constants/block.h:72
 - name: BootDebugColor
   vals:
   - name: BOOT_DEBUG_COLOR_AZURE_WHITE
@@ -615,6 +621,43 @@
   - name: BOSS_ICON_OAM_ID_END
     val: 0x5
   loc: include/constants/menus/pause_screen.h:202
+- name: CannonAim
+  vals:
+  - name: CANNON_AIM_LEFT
+    val: 0x0
+  - name: CANNON_AIM_LEFT_TO_DOWN_LEFT_TRANSITION
+    val: 0x1
+  - name: CANNON_AIM_DOWN_LEFT
+    val: 0x2
+  - name: CANNON_AIM_DOWN_LEFT_TO_DOWN_TRANSITION
+    val: 0x3
+  - name: CANNON_AIM_DOWN
+    val: 0x4
+  - name: CANNON_AIM_DOWN_TO_DOWN_RIGHT_TRANSITION
+    val: 0x5
+  - name: CANNON_AIM_DOWN_RIGHT
+    val: 0x6
+  - name: CANNON_AIM_DOWN_RIGHT_TO_RIGHT_TRANSITION
+    val: 0x7
+  - name: CANNON_AIM_RIGHT
+    val: 0x8
+  loc: src/sprites_AI/zebetite_and_cannon.c:27
+- name: CannonView
+  vals:
+  - name: CANNON_VIEW_EVERWHERE
+    val: 0x0
+  - name: CANNON_VIEW_RIGHT
+    val: 0x1
+  - name: CANNON_VIEW_LEFT
+    val: 0x2
+  loc: src/sprites_AI/zebetite_and_cannon.c:39
+- name: ChozoPillarPlatformPart
+  vals:
+  - name: CHOZO_PILLAR_PLATFORM_NO_SHADOW
+    val: 0x0
+  - name: CHOZO_PILLAR_PLATFORM_SHADOW
+    val: 0x1
+  loc: src/sprites_AI/rising_chozo_pillar.c:28
 - name: ChozoStatueBehavior
   vals:
   - name: CHOZO_STATUE_BEHAVIOR_ITEM
@@ -731,7 +774,7 @@
     val: 0x4
   - name: CHOZO_STATUE_PART_END
     val: 0x5
-  loc: src/sprites_AI/chozo_statue.c:1236
+  loc: src/sprites_AI/chozo_statue.c:1254
 - name: ChozoStatueTargetLocation
   vals:
   - name: TARGET_LONG_BEAM
@@ -845,6 +888,16 @@
     val: 0x2D
   - name: CLIP_BEHAVIOR_SLOW_CRUMBLE_BLOCK
     val: 0x2E
+  - name: CLIP_BEHAVIOR_BLOCK_UNUSED_1
+    val: 0x2F
+  - name: CLIP_BEHAVIOR_BLOCK_UNUSED_2
+    val: 0x30
+  - name: CLIP_BEHAVIOR_BLOCK_UNUSED_3
+    val: 0x31
+  - name: CLIP_BEHAVIOR_BLOCK_UNUSED_4
+    val: 0x32
+  - name: CLIP_BEHAVIOR_BLOCK_UNUSED_5
+    val: 0x33
   - name: CLIP_BEHAVIOR_HIDDEN_ENERGY_TANK
     val: 0x34
   - name: CLIP_BEHAVIOR_HIDDEN_MISSILE_TANK
@@ -869,6 +922,14 @@
     val: 0x3E
   - name: CLIP_BEHAVIOR_UNDERWATER_POWER_BOMB_TANK
     val: 0x3F
+  - name: CLIP_BEHAVIOR_BLOCK_START
+    val: 0x10
+  - name: CLIP_BEHAVIOR_BLOCK_END
+    val: 0x3F
+  - name: CLIP_BEHAVIOR_TANK_START
+    val: 0x34
+  - name: CLIP_BEHAVIOR_TANK_END
+    val: 0x3F
   - name: CLIP_BEHAVIOR_WATER
     val: 0x40
   - name: CLIP_BEHAVIOR_STRONG_LAVA
@@ -876,6 +937,10 @@
   - name: CLIP_BEHAVIOR_WEAK_LAVA
     val: 0x42
   - name: CLIP_BEHAVIOR_ACID
+    val: 0x43
+  - name: CLIP_BEHAVIOR_HAZARD_START
+    val: 0x40
+  - name: CLIP_BEHAVIOR_HAZARD_END
     val: 0x43
   - name: CLIP_BEHAVIOR_BG0_TRIGGER_OPAQUE
     val: 0x44
@@ -899,6 +964,10 @@
     val: 0x4D
   - name: CLIP_BEHAVIOR_BG0_TRIGGER_BRIGHTER_LEVEL4
     val: 0x4E
+  - name: CLIP_BEHAVIOR_BLDALPHA_START
+    val: 0x44
+  - name: CLIP_BEHAVIOR_BLDALPHA_END
+    val: 0x4E
   - name: CLIP_BEHAVIOR_BG0_TRIGGER_DEFAULT_TRANSPARENCY
     val: 0x4F
   - name: CLIP_BEHAVIOR_WET_GROUND
@@ -917,6 +986,10 @@
     val: 0x56
   - name: CLIP_BEHAVIOR_GROUND_EFFECT_UNUSED3
     val: 0x57
+  - name: CLIP_BEHAVIOR_GROUND_EFFECT_START
+    val: 0x50
+  - name: CLIP_BEHAVIOR_GROUND_EFFECT_END
+    val: 0x57
   - name: CLIP_BEHAVIOR_NO_DOOR
     val: 0x7F
   - name: CLIP_BEHAVIOR_GRAY_DOOR
@@ -929,7 +1002,11 @@
     val: 0x83
   - name: CLIP_BEHAVIOR_POWER_BOMB_DOOR
     val: 0x84
-  loc: include/constants/clipdata.h:88
+  - name: CLIP_BEHAVIOR_DOOR_START
+    val: 0x7F
+  - name: CLIP_BEHAVIOR_DOOR_END
+    val: 0x84
+  loc: include/constants/clipdata.h:116
 - name: Clipdata
   vals:
   - name: CLIPDATA_AIR
@@ -1126,7 +1203,16 @@
     val: 0xA2
   - name: CLIPDATA_END
     val: 0xB0
-  loc: include/constants/clipdata.h:177
+  loc: include/constants/clipdata.h:218
+- name: ClipdataActor
+  vals:
+  - name: CLIPDATA_ACTOR_SAMUS
+    val: 0x0
+  - name: CLIPDATA_ACTOR_NON_SPRITE
+    val: 0x1
+  - name: CLIPDATA_ACTOR_SPRITE
+    val: 0x2
+  loc: include/constants/clipdata.h:66
 - name: ClipdataAffectingAction
   vals:
   - name: CAA_NONE
@@ -1335,7 +1421,7 @@
     val: 0x9B
   - name: CLIPDATA_TEST_END
     val: 0xA0
-  loc: include/constants/clipdata.h:404
+  loc: include/constants/clipdata.h:445
 - name: ClipdataTilemap
   vals:
   - name: CLIPDATA_TILEMAP_AIR
@@ -1528,7 +1614,9 @@
     val: 0xCB
   - name: CLIPDATA_TILEMAP_END
     val: 0xD0
-  loc: include/constants/clipdata.h:294
+  - name: CLIPDATA_TILEMAP_FLAG
+    val: 0x400
+  loc: include/constants/clipdata.h:333
 - name: ClipdataType
   vals:
   - name: CLIPDATA_TYPE_AIR
@@ -1557,7 +1645,9 @@
     val: 0xB
   - name: CLIPDATA_TYPE_PASS_THROUGH_BOTTOM
     val: 0xC
-  loc: include/constants/clipdata.h:70
+  - name: CLIPDATA_TYPE_SOLID_FLAG
+    val: 0x1000000
+  loc: include/constants/clipdata.h:72
 - name: ColorFadingEffect
   vals:
   - name: COLOR_FADING_FLASH
@@ -1785,7 +1875,7 @@
     val: 0x5
   - name: CROCOMIRE_PART_END
     val: 0x6
-  loc: src/sprites_AI/crocomire.c:225
+  loc: src/sprites_AI/crocomire.c:252
 - name: CursorCopyPose
   vals:
   - name: CURSOR_COPY_POSE_DEFAULT
@@ -1796,7 +1886,7 @@
     val: 0x2
   - name: CURSOR_COPY_POSE_COPIED
     val: 0x3
-  loc: include/constants/menus/file_select.h:235
+  loc: include/constants/menus/file_select.h:248
 - name: CursorErasePose
   vals:
   - name: CURSOR_ERASE_POSE_DEFAULT
@@ -1807,7 +1897,7 @@
     val: 0x2
   - name: CURSOR_ERASE_POSE_ERASED
     val: 0x3
-  loc: include/constants/menus/file_select.h:249
+  loc: include/constants/menus/file_select.h:262
 - name: CursorOptionsPose
   vals:
   - name: CURSOR_OPTIONS_POSE_MOVING
@@ -1818,7 +1908,7 @@
     val: 0x2
   - name: CURSOR_OPTIONS_POSE_DESELECTING
     val: 0x3
-  loc: include/constants/menus/file_select.h:256
+  loc: include/constants/menus/file_select.h:269
 - name: CursorPose
   vals:
   - name: CURSOR_POSE_DEFAULT
@@ -1833,8 +1923,32 @@
     val: 0x6
   - name: CURSOR_POSE_STARTING_GAME
     val: 0x7
-  loc: include/constants/menus/file_select.h:225
-- name: Cutscene
+  loc: include/constants/menus/file_select.h:238
+- name: CutsceneStage
+  vals:
+  - name: CUTSCENE_STAGE_STARTING
+    val: 0x0
+  - name: CUTSCENE_STAGE_FADING_IN
+    val: 0x1
+  - name: CUTSCENE_STAGE_INIT
+    val: 0x2
+  - name: CUTSCENE_STAGE_ONGOING
+    val: 0x3
+  - name: CUTSCENE_STAGE_ENDING
+    val: 0x4
+  loc: include/constants/cutscene.h:29
+- name: CutsceneType_
+  vals:
+  - name: CUTSCENE_TYPE_NON_GAMEPLAY
+    val: 0x0
+  - name: CUTSCENE_TYPE_BETWEEN_GAMEPLAY
+    val: 0x1
+  - name: CUTSCENE_TYPE_IN_GAMEPLAY
+    val: 0x2
+  - name: CUTSCENE_TYPE_END
+    val: 0x3
+  loc: include/constants/cutscene.h:37
+- name: Cutscene_
   vals:
   - name: CUTSCENE_NONE
     val: 0x0
@@ -1868,32 +1982,8 @@
     val: 0xE
   - name: CUTSCENE_END
     val: 0xF
-  loc: include/constants/cutscene.h:6
-- name: CutsceneStage
-  vals:
-  - name: CUTSCENE_STAGE_STARTING
-    val: 0x0
-  - name: CUTSCENE_STAGE_FADING_IN
-    val: 0x1
-  - name: CUTSCENE_STAGE_INIT
-    val: 0x2
-  - name: CUTSCENE_STAGE_ONGOING
-    val: 0x3
-  - name: CUTSCENE_STAGE_ENDING
-    val: 0x4
-  loc: include/constants/cutscene.h:26
-- name: CutsceneType
-  vals:
-  - name: CUTSCENE_TYPE_NON_GAMEPLAY
-    val: 0x0
-  - name: CUTSCENE_TYPE_BETWEEN_GAMEPLAY
-    val: 0x1
-  - name: CUTSCENE_TYPE_IN_GAMEPLAY
-    val: 0x2
-  - name: CUTSCENE_TYPE_END
-    val: 0x3
-  loc: include/constants/cutscene.h:34
-- name: DamageContactType
+  loc: include/constants/cutscene.h:9
+- name: DamageContactType_
   vals:
   - name: DCT_NONE
     val: 0x0
@@ -1903,12 +1993,10 @@
     val: 0x2
   - name: DCT_SCREW_ATTACK
     val: 0x3
-  - name: DCT_SUDO_SCREW
+  - name: DCT_PSEUDO_SCREW
     val: 0x4
-  - name: DCT_END
-    val: 0x5
-  loc: include/constants/sprite_util.h:16
-- name: DemoState
+  loc: include/constants/sprite_util.h:25
+- name: DemoState_
   vals:
   - name: DEMO_STATE_NONE
     val: 0x0
@@ -1918,8 +2006,52 @@
     val: 0x2
   - name: DEMO_STATE_STARTING
     val: 0x3
-  loc: include/constants/demo.h:4
-- name: DescriptionTextId
+  loc: include/constants/demo.h:7
+- name: DeoremSegment
+  desc: Deorem segment AI
+  vals:
+  - name: DEOREM_SEGMENT_DOWN_JUNCTION
+    val: 0x0
+  - name: DEOREM_SEGMENT_DOWN_1
+    val: 0x1
+  - name: DEOREM_SEGMENT_DOWN_2
+    val: 0x2
+  - name: DEOREM_SEGMENT_DOWN_3
+    val: 0x3
+  - name: DEOREM_SEGMENT_DOWN_4
+    val: 0x4
+  - name: DEOREM_SEGMENT_DOWN_5
+    val: 0x5
+  - name: DEOREM_SEGMENT_UP_JUNCTION
+    val: 0x6
+  - name: DEOREM_SEGMENT_UP_1
+    val: 0x7
+  - name: DEOREM_SEGMENT_UP_2
+    val: 0x8
+  - name: DEOREM_SEGMENT_UP_3
+    val: 0x9
+  - name: DEOREM_SEGMENT_UP_4
+    val: 0xA
+  - name: DEOREM_SEGMENT_UP_5
+    val: 0xB
+  - name: DEOREM_SEGMENT_NECK_JUNCTION
+    val: 0xC
+  - name: DEOREM_SEGMENT_NECK_1
+    val: 0xD
+  - name: DEOREM_SEGMENT_NECK_2
+    val: 0xE
+  - name: DEOREM_SEGMENT_LEAVING_1
+    val: 0xF
+  - name: DEOREM_SEGMENT_LEAVING_2
+    val: 0x10
+  - name: DEOREM_SEGMENT_LEAVING_3
+    val: 0x11
+  - name: DEOREM_SEGMENT_TAIL
+    val: 0x12
+  - name: DEOREM_SEGMENT_19
+    val: 0x13
+  loc: src/sprites_AI/deorem.c:2860
+- name: DescriptionTextId_
   vals:
   - name: DESCRIPTION_TEXT_LONG_BEAM
     val: 0x0
@@ -1959,10 +2091,10 @@
     val: 0x11
   - name: DESCRIPTION_TEXT_PISTOL
     val: 0x12
-  - name: DESCRIPTION_TEXT_END
+  - name: DESCRIPTION_TEXT_COUNT
     val: 0x13
-  loc: include/constants/text.h:142
-- name: DestructingAction
+  loc: include/constants/text.h:144
+- name: DestructingAction_
   vals:
   - name: DESTRUCTING_ACTION_NONE
     val: 0x0
@@ -1974,8 +2106,17 @@
     val: 0x3
   - name: DESTRUCTING_ACTION_SPEED_ON_GROUND
     val: 0x4
-  loc: include/constants/samus.h:198
-- name: Difficulty
+  loc: include/constants/samus.h:210
+- name: DiagonalAim_
+  vals:
+  - name: DIAG_AIM_NONE
+    val: 0x0
+  - name: DIAG_AIM_UP
+    val: 0x1
+  - name: DIAG_AIM_DOWN
+    val: 0x2
+  loc: include/constants/samus.h:38
+- name: Difficulty_
   vals:
   - name: DIFF_EASY
     val: 0x0
@@ -1985,8 +2126,8 @@
     val: 0x2
   - name: DIFF_END
     val: 0x3
-  loc: include/constants/game_state.h:24
-- name: DoorType
+  loc: include/constants/game_state.h:27
+- name: DoorType_
   vals:
   - name: DOOR_TYPE_NONE
     val: 0x0
@@ -2010,7 +2151,7 @@
     val: 0x20
   - name: DOOR_TYPE_DISPLAYS_ROOM_LOCATION
     val: 0x40
-  loc: include/constants/connection.h:31
+  loc: include/constants/connection.h:34
 - name: EasySleepMenuStage
   vals:
   - name: EASY_SLEEP_MENU_STAGE_NO_OPTION
@@ -2045,7 +2186,14 @@
   - name: EFFECT_CUTSCENE_SAMUS_IN_BLUE_SHIP
     val: 0x8
   loc: include/constants/color_fading.h:12
-- name: ElevatorRoute
+- name: ElevatorDirection_
+  vals:
+  - name: ELEVATOR_DIRECTION_DOWN
+    val: 0x1
+  - name: ELEVATOR_DIRECTION_UP
+    val: !!int '0x-1'
+  loc: include/constants/connection.h:109
+- name: ElevatorRoute_
   vals:
   - name: ELEVATOR_ROUTE_NONE
     val: 0x0
@@ -2067,7 +2215,7 @@
     val: 0x8
   - name: ELEVATOR_ROUTE_COUNT
     val: 0x9
-  loc: include/constants/connection.h:92
+  loc: include/constants/connection.h:95
 - name: EndingImage
   vals:
   - name: ENDING_IMAGE_ZERO
@@ -2106,7 +2254,7 @@
   - name: ENDING_IMAGE_LINE_END
     val: 0x6
   loc: include/constants/ending_and_gallery.h:14
-- name: EnvEffect
+- name: EnvEffect_
   vals:
   - name: ENV_EFFECT_NONE
     val: 0x0
@@ -2146,9 +2294,9 @@
     val: 0x11
   - name: ENV_EFFECT_BREATHING_BUBBLES
     val: 0x12
-  - name: ENV_EFFECT_END
+  - name: ENV_EFFECT_COUNT
     val: 0x13
-  loc: include/constants/samus.h:159
+  loc: include/constants/samus.h:171
 - name: EraseSramOamId
   vals:
   - name: ERASE_SRAM_OAM_ID_CURSOR_IDLE
@@ -2192,15 +2340,6 @@
   - name: ERASE_SRAM_SOUND_END
     val: 0x5
   loc: include/constants/menus/erase_sram.h:30
-- name: Escape
-  vals:
-  - name: ESCAPE_NONE
-    val: 0x0
-  - name: ESCAPE_MOTHER_BRAIN
-    val: 0x1
-  - name: ESCAPE_MECHA_RIDLEY
-    val: 0x2
-  loc: include/constants/escape.h:4
 - name: EscapeShipPart
   desc: Escape ship part AI
   vals:
@@ -2213,7 +2352,7 @@
   - name: ESCAPE_SHIP_PART_FLAMES
     val: 0x3
   loc: src/sprites_AI/escape_ship.c:483
-- name: EscapeStatus
+- name: EscapeStatus_
   vals:
   - name: ESCAPE_STATUS_NONE
     val: 0x0
@@ -2221,8 +2360,41 @@
     val: 0x1
   - name: ESCAPE_STATUS_FAILED
     val: 0x2
-  loc: include/constants/escape.h:10
-- name: Event
+  loc: include/constants/escape.h:13
+- name: Escape_
+  vals:
+  - name: ESCAPE_NONE
+    val: 0x0
+  - name: ESCAPE_MOTHER_BRAIN
+    val: 0x1
+  - name: ESCAPE_MECHA_RIDLEY
+    val: 0x2
+  loc: include/constants/escape.h:7
+- name: EventAction_
+  vals:
+  - name: EVENT_ACTION_CLEARING
+    val: 0x0
+  - name: EVENT_ACTION_SETTING
+    val: 0x1
+  - name: EVENT_ACTION_TOGGLING
+    val: 0x2
+  - name: EVENT_ACTION_CHECKING
+    val: 0x3
+  loc: include/constants/event.h:94
+- name: EventBasedConnectionField
+  vals:
+  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_AREA
+    val: 0x0
+  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_DOOR
+    val: 0x1
+  - name: EVENT_BASED_CONNECTION_FIELD_EVENT
+    val: 0x2
+  - name: EVENT_BASED_CONNECTION_FIELD_DESTINATION_DOOR
+    val: 0x3
+  - name: EVENT_BASED_CONNECTION_FIELD_COUNT
+    val: 0x4
+  loc: include/structs/connection.h:98
+- name: Event_
   vals:
   - name: EVENT_NONE
     val: 0x0
@@ -2384,32 +2556,25 @@
     val: 0x4E
   - name: EVENT_COUNT
     val: 0x4F
-  loc: include/constants/event.h:4
-- name: EventAction
+  loc: include/constants/event.h:10
+- name: EyeState
   vals:
-  - name: EVENT_ACTION_CLEARING
+  - name: EYE_STATE_IDLE
     val: 0x0
-  - name: EVENT_ACTION_SETTING
+  - name: EYE_STATE_BLINKING_INIT
     val: 0x1
-  - name: EVENT_ACTION_TOGGLING
+  - name: EYE_STATE_LASER_ATTACK_INIT
     val: 0x2
-  - name: EVENT_ACTION_CHECKING
+  - name: EYE_STATE_LASER_ATTACK
     val: 0x3
-  loc: include/constants/event.h:88
-- name: EventBasedConnectionField
-  vals:
-  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_AREA
-    val: 0x0
-  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_DOOR
-    val: 0x1
-  - name: EVENT_BASED_CONNECTION_FIELD_EVENT
-    val: 0x2
-  - name: EVENT_BASED_CONNECTION_FIELD_DESTINATION_DOOR
-    val: 0x3
-  - name: EVENT_BASED_CONNECTION_FIELD_COUNT
+  - name: EYE_STATE_LASER_SET_IDLE
     val: 0x4
-  loc: include/structs/connection.h:102
-- name: FileScreenMessageInfoId
+  - name: EYE_STATE_LASER_SET_INACTIVE
+    val: 0x5
+  - name: EYE_STATE_LASER_SET_DYING
+    val: 0x6
+  loc: src/sprites_AI/mecha_ridley.c:67
+- name: FileScreenMessageInfoId_
   vals:
   - name: FILE_SCREEN_MESSAGE_INFO_ID_START_GAME
     val: 0x0
@@ -2477,9 +2642,9 @@
     val: 0x1F
   - name: FILE_SCREEN_MESSAGE_INFO_ID_ID_PASSWORD2
     val: 0x20
-  - name: FILE_SCREEN_MESSAGE_INFO_ID_END
+  - name: FILE_SCREEN_MESSAGE_INFO_ID_COUNT
     val: 0x21
-  loc: include/constants/text.h:103
+  loc: include/constants/text.h:106
 - name: FileScreenProcessTextStage
   vals:
   - name: FILE_SCREEN_PROCESS_TEXT_STAGE_NONE
@@ -2497,7 +2662,7 @@
   - name: FILE_SCREEN_PROCESS_TEXT_STAGE_UPDATE_QUEUE
     val: 0x6
   loc: include/constants/menus/file_select.h:22
-- name: FileScreenTextId
+- name: FileScreenTextId_
   vals:
   - name: FILE_SCREEN_TEXT_START_GAME
     val: 0x0
@@ -2575,7 +2740,7 @@
     val: 0x24
   - name: FILE_SCREEN_TEXT_END
     val: 0x25
-  loc: include/constants/text.h:61
+  loc: include/constants/text.h:64
 - name: FileSelectCursorPosition
   vals:
   - name: FILE_SELECT_CURSOR_POSITION_FILE_A
@@ -2592,7 +2757,7 @@
     val: 0x5
   - name: FILE_SELECT_CURSOR_POSITION_END
     val: 0x6
-  loc: include/constants/menus/file_select.h:269
+  loc: include/constants/menus/file_select.h:282
 - name: FileSelectEraseFileSubroutineStage
   vals:
   - name: FILE_SELECT_ERASE_FILE_SUBROUTINE_STAGE_INIT
@@ -2619,7 +2784,7 @@
     val: 0xA
   - name: FILE_SELECT_ERASE_FILE_SUBROUTINE_STAGE_EXIT
     val: 0xB
-  loc: include/constants/menus/file_select.h:32
+  loc: include/constants/menus/file_select.h:36
 - name: FileSelectFadingStage
   vals:
   - name: FILE_SELECT_FADING_STAGE_FADE_IN
@@ -2657,7 +2822,7 @@
     val: 0xE
   - name: FILE_SELECT_OAM_END
     val: 0xF
-  loc: include/constants/menus/file_select.h:68
+  loc: include/constants/menus/file_select.h:72
 - name: FileSelectOamId
   vals:
   - name: FILE_SELECT_OAM_ID_SAMUS_HEAD_TURNING_ON
@@ -2730,8 +2895,15 @@
     val: 0x26
   - name: FILE_SELECT_OAM_ID_END
     val: 0x28
-  loc: include/constants/menus/file_select.h:113
-- name: ForcedMovementShinespark
+  loc: include/constants/menus/file_select.h:126
+- name: FireballType
+  vals:
+  - name: FIREBALL_LOW
+    val: 0x0
+  - name: FIREBALL_HIGH
+    val: 0x1
+  loc: src/sprites_AI/mecha_ridley.c:89
+- name: ForcedMovement_
   vals:
   - name: FORCED_MOVEMENT_UPWARDS_SHINESPARK
     val: 0x0
@@ -2739,9 +2911,37 @@
     val: 0x1
   - name: FORCED_MOVEMENT_DIAGONAL_SHINESPARK
     val: 0x2
-  - name: FORCED_MOVEMENT_SHINESPARK_END
+  - name: FORCED_MOVEMENT_SHINESPARK_COUNT
     val: 0x3
-  loc: include/constants/samus.h:222
+  - name: FORCED_MOVEMENT_CRAWLING_ARM_CANNON_DOWN
+    val: 0x0
+  - name: FORCED_MOVEMENT_CRAWLING_ARM_CANNON_UP
+    val: 0x1
+  - name: FORCED_MOVEMENT_BOMB_JUMP
+    val: 0x0
+  - name: FORCED_MOVEMENT_BOMB_JUMP_RIGHT
+    val: 0xA
+  - name: FORCED_MOVEMENT_BOMB_JUMP_UP
+    val: 0xB
+  - name: FORCED_MOVEMENT_BOMB_JUMP_LEFT
+    val: 0xC
+  - name: FORCED_MOVEMENT_MORPH_BALL_BOUNCE_BEFORE_JUMP
+    val: 0x14
+  - name: FORCED_MOVEMENT_BOMB_JUMP_ABOVE
+    val: 0x80
+  - name: FORCED_MOVEMENT_LAUNCHED_BY_CANNON
+    val: 0xF0
+  - name: FORCED_MOVEMENT_MORPH_BALL_BOUNCE_AFTER_FALL
+    val: 0x1
+  - name: FORCED_MOVEMENT_MID_AIR_FALL
+    val: 0x0
+  - name: FORCED_MOVEMENT_MID_AIR_JUMP
+    val: 0x1
+  - name: FORCED_MOVEMENT_MID_AIR_CARRY
+    val: 0x2
+  - name: FORCED_MOVEMENT_DAMAGED_BY_RUINS_TEST
+    val: 0xFF
+  loc: include/constants/samus.h:236
 - name: FullyPoweredItems
   vals:
   - name: FULLY_POWERED_ITEMS_CHECK_ENABLE_SUIT
@@ -2769,9 +2969,9 @@
   - name: FULLY_POWERED_ITEMS_END
     val: 0xB
   loc: include/constants/menus/status_screen.h:41
-- name: GameMode
+- name: GameMode_
   vals:
-  - name: GM_SOFTRESET
+  - name: GM_SOFT_RESET
     val: 0x0
   - name: GM_INTRO
     val: 0x1
@@ -2799,14 +2999,14 @@
     val: 0xC
   - name: GM_FUSION_GALLERY
     val: 0xD
-  - name: GM_START_SOFTRESET
+  - name: GM_START_SOFT_RESET
     val: 0xE
   - name: GM_ERASE_SRAM
     val: 0xF
   - name: GM_DEBUG_MENU
     val: 0x10
-  loc: include/constants/game_state.h:4
-- name: GameOverCursorAction
+  loc: include/constants/game_state.h:7
+- name: GameOverCursorAction_
   vals:
   - name: SAMUS_CURSOR_ACTION_LOADING
     val: 0x0
@@ -2816,8 +3016,8 @@
     val: 0x2
   - name: SAMUS_CURSOR_ACTION_END
     val: 0x3
-  loc: include/constants/game_over.h:4
-- name: GameOverOamId
+  loc: include/constants/game_over.h:7
+- name: GameOverOamId_
   vals:
   - name: GAME_OVER_OAM_ID_SUIT_MOVING
     val: 0x1
@@ -2833,7 +3033,18 @@
     val: 0x8
   - name: GAME_OVER_OAM_ID_END
     val: 0x9
-  loc: include/constants/game_over.h:12
+  loc: include/constants/game_over.h:15
+- name: GameRegion
+  vals:
+  - name: GAME_REGION_JPN
+    val: 0x0
+  - name: GAME_REGION_EUR
+    val: 0x1
+  - name: GAME_REGION_USA
+    val: 0x2
+  - name: GAME_REGION_END
+    val: 0x3
+  loc: include/constants/game_region.h:4
 - name: GettingFullyPoweredSuitOamId
   vals:
   - name: GETTING_FULLY_POWERED_SUIT_OAM_ID_SPARKLE_GOING_UP
@@ -2867,6 +3078,8 @@
 - name: GunshipPart
   desc: Gunship part AI
   vals:
+  - name: GUNSHIP_PART_MAIN
+    val: 0x0
   - name: GUNSHIP_PART_ENTRANCE_FRONT
     val: 0x1
   - name: GUNSHIP_PART_ENTRANCE_BACK
@@ -2877,8 +3090,8 @@
     val: 0x4
   - name: GUNSHIP_PART_FLAMES_VERTICAL
     val: 0x5
-  loc: src/sprites_AI/gunship.c:1310
-- name: HatchAction
+  loc: src/sprites_AI/gunship.c:1403
+- name: HatchAction_
   vals:
   - name: HATCH_ACTION_CHECKING_OPENED
     val: 0x0
@@ -2886,8 +3099,8 @@
     val: 0x1
   - name: HATCH_ACTION_SETTING_SOURCE
     val: 0x2
-  loc: include/constants/connection.h:73
-- name: HatchLockEventType
+  loc: include/constants/connection.h:76
+- name: HatchLockEventType_
   vals:
   - name: HATCH_LOCK_EVENT_TYPE_AFTER
     val: 0x0
@@ -2897,8 +3110,8 @@
     val: 0x2
   - name: HATCH_LOCK_EVENT_TYPE_BEFORE_UNLOCKEABLE
     val: 0x3
-  loc: include/constants/connection.h:85
-- name: HatchLockState
+  loc: include/constants/connection.h:88
+- name: HatchLockState_
   vals:
   - name: HATCH_LOCK_STATE_UNLOCKED
     val: 0x0
@@ -2906,7 +3119,7 @@
     val: 0x1
   - name: HATCH_LOCK_STATE_PERMA_LOCKED
     val: 0x2
-  loc: include/constants/connection.h:67
+  loc: include/constants/connection.h:70
 - name: HatchOpeningAction
   vals:
   - name: HATCH_OPENING_ACTION_NOT_OPENING
@@ -2915,8 +3128,8 @@
     val: 0x1
   - name: HATCH_OPENING_ACTION_LOCKED
     val: 0x2
-  loc: include/constants/connection.h:79
-- name: HatchState
+  loc: include/constants/connection.h:82
+- name: HatchState_
   vals:
   - name: HATCH_STATE_CLOSED
     val: 0x0
@@ -2926,8 +3139,8 @@
     val: 0x2
   - name: HATCH_STATE_CLOSING
     val: 0x3
-  loc: include/constants/connection.h:60
-- name: HatchType
+  loc: include/constants/connection.h:63
+- name: HatchType_
   vals:
   - name: HATCH_NONE
     val: 0x0
@@ -2947,7 +3160,7 @@
     val: 0x7
   - name: HATCH_COUNT
     val: 0x8
-  loc: include/constants/connection.h:47
+  loc: include/constants/connection.h:50
 - name: HazardType
   vals:
   - name: HAZARD_TYPE_NONE
@@ -2992,7 +3205,31 @@
   - name: HAZE_VALUE_COLD
     val: 0xA
   loc: include/constants/haze.h:9
-- name: HudHighlightStatus
+- name: HealthThreshold
+  vals:
+  - name: HEALTH_THRESHOLD_FULL
+    val: 0x0
+  - name: HEALTH_THRESHOLD_COVER_DAMAGED
+    val: 0x1
+  - name: HEALTH_THRESHOLD_COVER_BROKEN
+    val: 0x2
+  - name: HEALTH_THRESHOLD_THREE_QUARTERS
+    val: 0x3
+  - name: HEALTH_THRESHOLD_HALF
+    val: 0x4
+  - name: HEALTH_THRESHOLD_QUARTER
+    val: 0x5
+  loc: src/sprites_AI/mecha_ridley.c:108
+- name: HorizontalMovingDir_
+  vals:
+  - name: HDMOVING_NONE
+    val: 0x0
+  - name: HDMOVING_LEFT
+    val: 0x1
+  - name: HDMOVING_RIGHT
+    val: 0x2
+  loc: include/constants/samus.h:159
+- name: HudHighlightStatus_
   vals:
   - name: HIGHLIGHT_STATUS_NOT_HIGHLIGHTED
     val: 0x0
@@ -3000,7 +3237,7 @@
     val: 0x1
   - name: HIGHLIGHT_STATUS_HIGHLIGHTED
     val: 0x2
-  loc: include/hud.h:8
+  loc: include/structs/hud.h:9
 - name: IgtAndTanksVramAddress
   vals:
   - name: IGT_AND_TANKS_VRAM_ADDRESS_ENERGY_TANKS
@@ -3089,7 +3326,7 @@
     val: 0x9
   - name: IMAGO_COCOON_PART_END
     val: 0xA
-  loc: include/sprites_AI/imago_cocoon.h:12
+  loc: include/sprites_AI/imago_cocoon.h:6
 - name: ImagoLarvaOam
   vals:
   - name: IMAGO_LARVA_OAM_SHELL_ATTACKING
@@ -3158,7 +3395,16 @@
     val: 0x5
   - name: IMAGO_LARVA_PART_END
     val: 0x6
-  loc: src/sprites_AI/imago_larva.c:970
+  loc: src/sprites_AI/imago_larva.c:1027
+- name: ImagoMovementStage
+  vals:
+  - name: IMAGO_MOVEMENT_STAGE_MOVING_HORIZONTALLY
+    val: 0x0
+  - name: IMAGO_MOVEMENT_STAGE_MOVING_VERTICALLY
+    val: 0x1
+  - name: IMAGO_MOVEMENT_STAGE_GO_UP
+    val: 0x2
+  loc: src/sprites_AI/imago.c:20
 - name: ImagoOam
   vals:
   - name: IMAGO_OAM_BODY_IDLE
@@ -3217,8 +3463,8 @@
     val: 0x6
   - name: IMAGO_PART_END
     val: 0x7
-  loc: src/sprites_AI/imago.c:1384
-- name: InGameCutsceneScene
+  loc: src/sprites_AI/imago.c:1491
+- name: InGameCutsceneScene_
   vals:
   - name: IGC_CLOSE_UP
     val: 0x4
@@ -3230,7 +3476,9 @@
     val: 0xA
   - name: IGC_END
     val: 0x20
-  loc: include/constants/in_game_cutscene.h:4
+  - name: IGC_STARTED_FLAG
+    val: 0x80
+  loc: include/constants/in_game_cutscene.h:7
 - name: IntroTextAction
   vals:
   - name: INTRO_TEXT_ACTION_NONE
@@ -3285,6 +3533,28 @@
   - name: ITEM_ACQUISITION_END
     val: 0x16
   loc: include/constants/menus/pause_screen.h:38
+- name: ItemType
+  vals:
+  - name: ITEM_TYPE_NONE
+    val: 0x0
+  - name: ITEM_TYPE_MISSILE
+    val: 0x1
+  - name: ITEM_TYPE_ENERGY
+    val: 0x2
+  - name: ITEM_TYPE_SUPER_MISSILE
+    val: 0x3
+  - name: ITEM_TYPE_POWER_BOMB
+    val: 0x4
+  - name: ITEM_TYPE_ABILITY
+    val: 0x80
+  loc: include/constants/block.h:31
+- name: KraidNailType
+  vals:
+  - name: KRAID_NAIL_TYPE_SLOW_ROTATION
+    val: 0x0
+  - name: KRAID_NAIL_TYPE_FAST_ROTATION
+    val: 0x1
+  loc: src/sprites_AI/kraid.c:67
 - name: KraidOam
   vals:
   - name: KRAID_OAM_MOUTH_CLOSED
@@ -3395,7 +3665,7 @@
     val: 0xB
   - name: KRAID_PART_END
     val: 0xC
-  loc: src/sprites_AI/kraid.c:2545
+  loc: src/sprites_AI/kraid.c:2675
 - name: KraidRisingOamId
   vals:
   - name: KRAID_RISING_OAM_ID_SAMUS
@@ -3418,7 +3688,7 @@
   - name: LAG_CHILD
     val: 0x2
   loc: include/structs/link.h:79
-- name: Language
+- name: Language_
   vals:
   - name: LANGUAGE_JAPANESE
     val: 0x0
@@ -3436,7 +3706,20 @@
     val: 0x6
   - name: LANGUAGE_END
     val: 0x7
-  loc: include/constants/game_state.h:32
+  loc: include/constants/game_state.h:35
+- name: LaserDirection
+  vals:
+  - name: LASER_DIRECTION_FORWARD
+    val: 0x0
+  - name: LASER_DIRECTION_SLIGHTLY_DOWN
+    val: 0x1
+  - name: LASER_DIRECTION_DOWN
+    val: 0x2
+  - name: LASER_DIRECTION_SLIGHTLY_UP
+    val: 0x3
+  - name: LASER_DIRECTION_UP
+    val: 0x4
+  loc: src/sprites_AI/mecha_ridley.c:96
 - name: LinkStage
   vals:
   - name: LINK_STAGE_INIT
@@ -3465,7 +3748,7 @@
   - name: LINK_STATE_CONN_ESTABLISHED
     val: 0x4
   loc: include/structs/link.h:65
-- name: LocationTextId
+- name: LocationTextId_
   vals:
   - name: LT_BRINSTAR
     val: 0x0
@@ -3519,11 +3802,37 @@
     val: 0x18
   - name: LT_UNUSED_18
     val: 0x19
-  - name: LT_END
+  - name: LT_COUNT
     val: 0x1A
   - name: LT_INVALID
     val: 0xFF
-  loc: include/location_text.h:11
+  loc: include/location_text.h:7
+- name: LockScreenType
+  vals:
+  - name: LOCK_SCREEN_TYPE_NONE
+    val: 0x0
+  - name: LOCK_SCREEN_TYPE_POSITION
+    val: 0x1
+  - name: LOCK_SCREEN_TYPE_MIDDLE
+    val: 0x2
+  loc: include/structs/scroll.h:29
+- name: MaintainedInputSpeed
+  vals:
+  - name: MAINTAINED_INPUT_SPEED_FAST
+    val: 0x0
+  - name: MAINTAINED_INPUT_SPEED_SLOW
+    val: 0x1
+  - name: MAINTAINED_INPUT_SPEED_COUNT
+    val: 0x2
+  loc: include/constants/menus/pause_screen.h:317
+- name: MapStationPart
+  desc: Map station part AI
+  vals:
+  - name: MAP_STATION_PART_BACK_SCREEN
+    val: 0x0
+  - name: MAP_STATION_PART_FRONT_SCREEN
+    val: 0x1
+  loc: src/sprites_AI/map_station.c:320
 - name: MechaRidleyOam
   vals:
   - name: MECHA_RIDLEY_OAM_TAIL
@@ -3682,7 +3991,16 @@
     val: 0xA
   - name: MECHA_RIDLEY_PART_END
     val: 0xB
-  loc: src/sprites_AI/mecha_ridley.c:2516
+  loc: src/sprites_AI/mecha_ridley.c:2694
+- name: MechaRidleySamusPosition
+  vals:
+  - name: MECHA_RIDLEY_SAMUS_POSITION_LOW
+    val: 0x0
+  - name: MECHA_RIDLEY_SAMUS_POSITION_MIDDLE
+    val: 0x1
+  - name: MECHA_RIDLEY_SAMUS_POSITION_HIGH
+    val: 0x2
+  loc: src/sprites_AI/mecha_ridley.c:46
 - name: MenuSoundRequest
   vals:
   - name: MENU_SOUND_REQUEST_SUB_MENU_CURSOR
@@ -3713,8 +4031,8 @@
     val: 0xC
   - name: MENU_SOUND_REQUEST_END
     val: 0xD
-  loc: include/constants/menus/file_select.h:297
-- name: MessageId
+  loc: include/constants/menus/file_select.h:310
+- name: MessageId_
   vals:
   - name: MESSAGE_DUMMY
     val: 0x0
@@ -3794,11 +4112,11 @@
     val: 0x25
   - name: MESSAGE_EASY_SLEEP_PROMPT
     val: 0x26
-  - name: MESSAGE_END
+  - name: MESSAGE_COUNT
     val: 0x27
   - name: MESSAGE_NONE
-    val: 0xFF
-  loc: include/constants/text.h:15
+    val: !!int '0x-1'
+  loc: include/constants/text.h:18
 - name: MinimapUpdate
   desc: Updates the minimap
   vals:
@@ -3812,7 +4130,7 @@
     val: 0x3
   - name: MINIMAP_UPDATE_FLAG_END
     val: 0x4
-  loc: src/minimap.c:72
+  loc: src/minimap.c:84
 - name: MiscOamId
   vals:
   - name: MISC_OAM_ID_SAMUS_ICON_SUIT
@@ -3904,6 +4222,27 @@
   - name: MISC_OAM_ID_END
     val: 0x38
   loc: include/constants/menus/pause_screen.h:93
+- name: MissileLauncherState
+  vals:
+  - name: MISSILE_LAUNCHER_STATE_IDLE
+    val: 0x0
+  - name: MISSILE_LAUNCHER_STATE_MISSILE_ATTACK_INIT
+    val: 0x1
+  - name: MISSILE_LAUNCHER_STATE_OPENING
+    val: 0x2
+  - name: MISSILE_LAUNCHER_STATE_OPENED
+    val: 0x3
+  - name: MISSILE_LAUNCHER_STATE_CLOSING
+    val: 0x4
+  loc: src/sprites_AI/mecha_ridley.c:79
+- name: MorphBallLauncherPart
+  desc: Morph ball launcher part AI
+  vals:
+  - name: MORPH_BALL_LAUNCHER_PART_BACK
+    val: 0x0
+  - name: MORPH_BALL_LAUNCHER_PART_ENERGY
+    val: 0x1
+  loc: src/sprites_AI/morph_ball_launcher.c:221
 - name: MotherBrainCloseUpOamId
   vals:
   - name: MOTHER_BRAIN_CLOSE_UP_OAM_ID_BUBBLE
@@ -3920,7 +4259,18 @@
     val: 0x6
   - name: MOTHER_BRAIN_CLOSE_UP_OAM_ID_END
     val: 0x7
-  loc: include/cutscenes/mother_brain_close_up.h:7
+  loc: include/cutscenes/mother_brain_close_up.h:6
+- name: MotherBrainFightStage
+  vals:
+  - name: MB_FIGHT_STAGE_IN_GLASS
+    val: 0x0
+  - name: MB_FIGHT_STAGE_ACTIVE
+    val: 0x1
+  - name: MB_FIGHT_STAGE_DYING
+    val: 0x2
+  - name: MB_FIGHT_STAGE_DEAD
+    val: 0x3
+  loc: src/sprites_AI/mother_brain.c:46
 - name: MotherBrainOam
   vals:
   - name: MOTHER_BRAIN_OAM_IDLE
@@ -3959,7 +4309,7 @@
     val: 0x3
   - name: MOTHER_BRAIN_PART_END
     val: 0x4
-  loc: src/sprites_AI/mother_brain.c:719
+  loc: src/sprites_AI/mother_brain.c:793
 - name: MultiSpriteDataElements
   vals:
   - name: MULTI_SPRITE_DATA_ELEMENT_OAM_INDEX
@@ -3970,8 +4320,35 @@
     val: 0x2
   - name: MULTI_SPRITE_DATA_ELEMENT_END
     val: 0x3
-  loc: include/structs/sprite.h:11
-- name: OamArrayPreAction
+  loc: include/structs/sprite.h:13
+- name: NearAboveBelow_
+  vals:
+  - name: NSAB_OUT_OF_RANGE
+    val: 0x0
+  - name: NSAB_ABOVE
+    val: 0x1
+  - name: NSAB_BELOW
+    val: 0x2
+  loc: include/constants/sprite_util.h:13
+- name: NearFrontBack_
+  vals:
+  - name: NSFB_OUT_OF_RANGE
+    val: 0x0
+  - name: NSFB_IN_FRONT
+    val: 0x3
+  - name: NSFB_BEHIND
+    val: 0xC
+  loc: include/constants/sprite_util.h:19
+- name: NearLeftRight_
+  vals:
+  - name: NSLR_OUT_OF_RANGE
+    val: 0x0
+  - name: NSLR_LEFT
+    val: 0x4
+  - name: NSLR_RIGHT
+    val: 0x8
+  loc: include/constants/sprite_util.h:7
+- name: OamArrayPreAction_
   vals:
   - name: OAM_ARRAY_PRE_ACTION_NONE
     val: 0x0
@@ -3991,7 +4368,7 @@
     val: 0x8
   - name: OAM_ARRAY_PRE_ACTION_DECREMENT_ID_AT_BEGINNING
     val: 0x9
-  loc: include/structs/cutscene.h:12
+  loc: include/structs/cutscene.h:11
 - name: OptionId
   vals:
   - name: OPTION_NONE
@@ -4012,7 +4389,7 @@
     val: 0x7
   - name: OPTION_END
     val: 0x8
-  loc: include/constants/menus/file_select.h:282
+  loc: include/constants/menus/file_select.h:295
 - name: OptionsOam
   vals:
   - name: OPTIONS_OAM_FUSION_LINK_GBAS
@@ -4039,7 +4416,7 @@
     val: 0xA
   - name: OPTIONS_OAM_END
     val: 0xB
-  loc: include/constants/menus/file_select.h:91
+  loc: include/constants/menus/file_select.h:95
 - name: OptionsOamId
   vals:
   - name: OPTIONS_OAM_ID_CURSOR
@@ -4078,7 +4455,7 @@
     val: 0x14
   - name: OPTIONS_OAM_ID_END
     val: 0x16
-  loc: include/constants/menus/file_select.h:165
+  loc: include/constants/menus/file_select.h:178
 - name: OptionsTimeAttackStage
   vals:
   - name: OPTIONS_TIME_ATTACK_STAGE_0
@@ -4107,7 +4484,7 @@
     val: 0xB
   - name: OPTIONS_TIME_ATTACK_STAGE_12
     val: 0xC
-  loc: include/constants/menus/file_select.h:47
+  loc: include/constants/menus/file_select.h:51
 - name: OverlayOamId
   vals:
   - name: OVERLAY_OAM_ID_BRINSTAR
@@ -4177,7 +4554,7 @@
   - name: OVERLAY_OAM_ID_END
     val: 0x21
   loc: include/constants/menus/pause_screen.h:149
-- name: ParticleEffectId
+- name: ParticleEffectId_
   vals:
   - name: PE_SPRITE_SPLASH_WATER_SMALL
     val: 0x0
@@ -4253,7 +4630,7 @@
     val: 0x23
   - name: PE_SHINESPARK_DESTROYED
     val: 0x24
-  - name: PE_SUDO_SCREW_DESTROYED
+  - name: PE_PSEUDO_SCREW_DESTROYED
     val: 0x25
   - name: PE_SPEEDBOOSTER_DESTROYED
     val: 0x26
@@ -4303,7 +4680,28 @@
     val: 0x3C
   - name: PE_END
     val: 0x3D
-  loc: include/constants/particle.h:4
+  loc: include/constants/particle.h:7
+- name: ParticleStatus_
+  vals:
+  - name: PARTICLE_STATUS_NONE
+    val: 0x0
+  - name: PARTICLE_STATUS_EXISTS
+    val: 0x1
+  - name: PARTICLE_STATUS_ONSCREEN
+    val: 0x2
+  - name: PARTICLE_STATUS_EXPLOSION
+    val: 0x4
+  - name: PARTICLE_STATUS_NOT_DRAWN
+    val: 0x8
+  - name: PARTICLE_STATUS_LIVE_OFF_SCREEN
+    val: 0x10
+  - name: PARTICLE_STATUS_LOW_PRIORITY
+    val: 0x20
+  - name: PARTICLE_STATUS_ABSOLUTE_POSITION
+    val: 0x40
+  - name: PARTICLE_STATUS_X_FLIP
+    val: 0x80
+  loc: include/constants/particle.h:73
 - name: PauseScreenFading
   vals:
   - name: PAUSE_SCREEN_FADING_IN_INIT
@@ -4315,7 +4713,7 @@
   - name: PAUSE_SCREEN_FADING_OUT
     val: 0x5
   loc: include/constants/menus/pause_screen.h:62
-- name: PauseScreenFlag
+- name: PauseScreenFlag_
   vals:
   - name: PAUSE_SCREEN_NONE
     val: 0x0
@@ -4337,7 +4735,7 @@
     val: 0x8
   - name: PAUSE_SCREEN_UNKNOWN_9
     val: 0x9
-  loc: include/constants/game_state.h:50
+  loc: include/constants/game_state.h:59
 - name: PauseScreenSubroutine
   desc: Main subroutine for the pause screen
   vals:
@@ -4369,7 +4767,7 @@
     val: 0x13
   - name: PAUSE_SCREEN_SUBROUTINE_FULLY_POWERED_ITEMS_INIT
     val: 0x14
-  loc: src/menus/pause_screen.c:1920
+  loc: src/menus/pause_screen.c:2062
 - name: PauseScreenTargetOamId
   vals:
   - name: TARGET_OAM_ID_TARGET
@@ -4408,7 +4806,7 @@
   - name: PB_STATE_ENDING
     val: 0x5
   loc: include/constants/power_bomb_explosion.h:4
-- name: PrimarySprite
+- name: PrimarySprite_
   vals:
   - name: PSPRITE_UNUSED0
     val: 0x0
@@ -4542,7 +4940,7 @@
     val: 0x40
   - name: PSPRITE_GUNSHIP
     val: 0x41
-  - name: PSPRITE_DEOREM
+  - name: PSPRITE_DEOREM_FIRST_LOCATION
     val: 0x42
   - name: PSPRITE_DEOREM_SECOND_LOCATION
     val: 0x43
@@ -4822,9 +5220,9 @@
     val: 0xCC
   - name: PSPRITE_RINKA_MOTHER_BRAIN6
     val: 0xCD
-  - name: PSPRITE_END
+  - name: PSPRITE_COUNT
     val: 0xCE
-  loc: include/constants/sprite.h:30
+  loc: include/constants/sprite.h:37
 - name: ProjectileBombStage
   vals:
   - name: BOMB_STAGE_INIT
@@ -4845,8 +5243,8 @@
     val: 0x7
   - name: BOMB_STAGE_END
     val: 0x8
-  loc: include/constants/projectile.h:115
-- name: ProjectileCategory
+  loc: include/constants/projectile.h:120
+- name: ProjectileCategory_
   vals:
   - name: PROJECTILE_CATEGORY_NONE
     val: 0x0
@@ -4862,9 +5260,9 @@
     val: 0x5
   - name: PROJECTILE_CATEGORY_CHARGED_BEAM
     val: 0x6
-  - name: PROJECTILE_CATEGORY_END
+  - name: PROJECTILE_CATEGORY_COUNT
     val: 0x7
-  loc: include/constants/projectile.h:14
+  loc: include/constants/projectile.h:19
 - name: ProjectilePowerBombStage
   vals:
   - name: POWER_BOMB_STAGE_INIT
@@ -4875,7 +5273,7 @@
     val: 0x2
   - name: POWER_BOMB_STAGE_END
     val: 0x3
-  loc: include/constants/projectile.h:134
+  loc: include/constants/projectile.h:139
 - name: ProjectileStage
   vals:
   - name: PROJECTILE_STAGE_INIT
@@ -4886,8 +5284,29 @@
     val: 0x2
   - name: PROJECTILE_STAGE_TUMBLING
     val: 0x7
-  loc: include/constants/projectile.h:166
-- name: ProjectileType
+  loc: include/constants/projectile.h:171
+- name: ProjectileStatus_
+  vals:
+  - name: PROJ_STATUS_NONE
+    val: 0x0
+  - name: PROJ_STATUS_EXISTS
+    val: 0x1
+  - name: PROJ_STATUS_ON_SCREEN
+    val: 0x2
+  - name: PROJ_STATUS_NOT_DRAWN
+    val: 0x4
+  - name: PROJ_STATUS_HIGH_PRIORITY
+    val: 0x8
+  - name: PROJ_STATUS_CAN_AFFECT_ENVIRONMENT
+    val: 0x10
+  - name: PROJ_STATUS_Y_FLIP
+    val: 0x20
+  - name: PROJ_STATUS_X_FLIP
+    val: 0x40
+  - name: PROJ_STATUS_UNKNOWN_80
+    val: 0x80
+  loc: include/constants/projectile.h:7
+- name: ProjectileType_
   vals:
   - name: PROJ_TYPE_BEAM
     val: 0x0
@@ -4921,9 +5340,9 @@
     val: 0xE
   - name: PROJ_TYPE_POWER_BOMB
     val: 0xF
-  - name: PROJ_TYPE_END
+  - name: PROJ_TYPE_COUNT
     val: 0x10
-  loc: include/constants/projectile.h:26
+  loc: include/constants/projectile.h:31
 - name: QueueFull
   vals:
   - name: QUEUE_FULL_NONE
@@ -4933,6 +5352,23 @@
   - name: QUEUE_FULL_RECV
     val: 0x2
   loc: include/structs/link.h:73
+- name: RidleyFireballType
+  vals:
+  - name: RIDLEY_FIREBALL_TYPE_TOP
+    val: 0x0
+  - name: RIDLEY_FIREBALL_TYPE_MIDDLE_TOP
+    val: 0x1
+  - name: RIDLEY_FIREBALL_TYPE_MIDDLE
+    val: 0x2
+  - name: RIDLEY_FIREBALL_TYPE_MIDDLE_BOTTOM
+    val: 0x3
+  - name: RIDLEY_FIREBALL_TYPE_BOTTOM
+    val: 0x4
+  - name: RIDLEY_FIREBALL_TYPE_FLOATING_PATTERN
+    val: 0x80
+  - name: RIDLEY_FIREBALL_TYPE_SAMUS_GRABBED
+    val: 0x88
+  loc: src/sprites_AI/ridley.c:109
 - name: RidleyInSpaceOamId
   vals:
   - name: RIDLEY_IN_SPACE_OAM_ID_LEFT_BLUE_SHIP
@@ -4955,7 +5391,7 @@
     val: 0xA
   - name: RIDLEY_IN_SPACE_OAM_ID_END
     val: 0xB
-  loc: include/cutscenes/ridley_in_space.h:7
+  loc: include/cutscenes/ridley_in_space.h:6
 - name: RidleyInSpaceShipSlot
   vals:
   - name: RIDLEY_IN_SPACE_LEFT_SHIP_SLOT
@@ -4966,7 +5402,7 @@
     val: 0x2
   - name: RIDLEY_INSPACE_SHIP_SLOT_END
     val: 0x3
-  loc: include/cutscenes/ridley_in_space.h:26
+  loc: include/cutscenes/ridley_in_space.h:25
 - name: RidleyLandingOamId
   vals:
   - name: RIDLEY_LANDING_OAM_ID_MOTHER_SHIP_IN_SPACE
@@ -4989,7 +5425,7 @@
     val: 0xA
   - name: RIDLEY_LANDING_OAM_ID_END
     val: 0xB
-  loc: include/cutscenes/ridley_landing.h:7
+  loc: include/cutscenes/ridley_landing.h:6
 - name: RidleyOam
   vals:
   - name: RIDLEY_OAM_IDLE
@@ -5078,7 +5514,45 @@
     val: 0x5
   - name: RIDLEY_PART_END
     val: 0x6
-  loc: src/sprites_AI/ridley.c:2937
+  loc: src/sprites_AI/ridley.c:3133
+- name: RidleySamusGrabbedAction
+  vals:
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_NONE
+    val: 0x0
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_CARRYING_SAMUS
+    val: 0x1
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_LIFTING_SAMUS
+    val: 0x2
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_SAMUS_LIFTED
+    val: 0x3
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_OPENING_MOUTH
+    val: 0x4
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_SPITTING_FIREBALLS
+    val: 0x5
+  - name: RIDLEY_SAMUS_GRABBED_ACTION_RELEASING_SAMUS
+    val: 0x6
+  loc: src/sprites_AI/ridley.c:60
+- name: RidleySmallFireballsAttackAction
+  vals:
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_GOING_DOWN
+    val: 0x0
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_DELAY_BEFORE_OPENING_MOUTH
+    val: 0x1
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_OPENING_MOUTH
+    val: 0x2
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_SPITTING_FIREBALLS
+    val: 0x3
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_CLOSING_MOUTH
+    val: 0x4
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_5
+    val: 0x5
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_6
+    val: 0x6
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_7
+    val: 0x7
+  - name: RIDLEY_SMALL_FIREBALLS_ATTACK_ACTION_TAKING_OFF
+    val: 0x8
+  loc: src/sprites_AI/ridley.c:72
 - name: RidleySpawnOamId
   vals:
   - name: RIDLEY_SPAWN_OAM_ID_RIDLEY_FLYING_REFLECTION
@@ -5091,7 +5565,30 @@
     val: 0x4
   - name: RIDLEY_SPAWN_OAM_ID_END
     val: 0x5
-  loc: include/cutscenes/ridley_spawn.h:7
+  loc: include/cutscenes/ridley_spawn.h:6
+- name: RidleySpawningAction
+  vals:
+  - name: RIDLEY_SPAWNING_ACTION_GOING_DOWN
+    val: 0x0
+  - name: RIDLEY_SPAWNING_ACTION_DELAY_BEFORE_OPENING_MOUTH
+    val: 0x1
+  - name: RIDLEY_SPAWNING_ACTION_OPENING_MOUTH
+    val: 0x2
+  - name: RIDLEY_SPAWNING_ACTION_SPITTING_FIREBALLS
+    val: 0x3
+  - name: RIDLEY_SPAWNING_ACTION_CLOSING_MOUTH
+    val: 0x4
+  - name: RIDLEY_SPAWNING_ACTION_TURNING_AROUND_INIT
+    val: 0x5
+  - name: RIDLEY_SPAWNING_ACTION_TURNING_AROUND_FIRST_PART
+    val: 0x6
+  - name: RIDLEY_SPAWNING_ACTION_TURNING_AROUND_SECOND_PART
+    val: 0x7
+  - name: RIDLEY_SPAWNING_ACTION_TAKING_OFF
+    val: 0x8
+  - name: RIDLEY_SPAWNING_ACTION_UNKNOWN
+    val: 0x9
+  loc: src/sprites_AI/ridley.c:46
 - name: RidleyTailPart
   vals:
   - name: RIDLEY_TAIL_PART_BODY_ATTACHMENT
@@ -5112,7 +5609,7 @@
     val: 0x7
   - name: RIDLEY_TAIL_PART_END
     val: 0x8
-  loc: include/sprites_AI/ridley.h:68
+  loc: include/sprites_AI/ridley.h:17
 - name: RoomEffect
   vals:
   - name: EFFECT_NONE
@@ -5146,18 +5643,90 @@
   - name: EFFECT_HAZE_END
     val: 0xD
   loc: include/constants/room.h:7
-- name: SamusHitbox
+- name: RuinsTestFightStage
   vals:
-  - name: SAMUS_HITBOX_LEFT
+  - name: RUINS_TEST_FIGHT_STAGE_ON_GOING
     val: 0x0
-  - name: SAMUS_HITBOX_RIGHT
+  - name: RUINS_TEST_FIGHT_STAGE_LAST_SYMBOL_HIT
     val: 0x1
-  - name: SAMUS_HITBOX_TOP
+  - name: RUINS_TEST_FIGHT_STAGE_GHOST_AT_CENTER
     val: 0x2
-  - name: SAMUS_HITBOX_END
+  - name: RUINS_TEST_FIGHT_STAGE_GHOST_FADING_BACK
     val: 0x3
-  loc: include/constants/samus.h:264
-- name: SamusHitboxType
+  - name: RUINS_TEST_FIGHT_STAGE_GHOST_STARTING_TO_DISAPPEAR
+    val: 0x4
+  - name: RUINS_TEST_FIGHT_STAGE_STARTING_CUTSCENE_FADE
+    val: 0x5
+  - name: RUINS_TEST_FIGHT_STAGE_STARTING_CUTSCENE
+    val: 0x6
+  - name: RUINS_TEST_FIGHT_STAGE_STARTING_SUIT_ANIM
+    val: 0x7
+  - name: RUINS_TEST_FIGHT_STAGE_SUIT_ANIM_ENDED
+    val: 0x8
+  loc: include/sprites_AI/ruins_test.h:6
+- name: RuinsTestGhostOutlinePart
+  vals:
+  - name: RUINS_TEST_GHOST_OUTLINE_PART_OUTLINE
+    val: 0x0
+  - name: RUINS_TEST_GHOST_OUTLINE_PART_SHOOTING_GROUND_LIGHTNING
+    val: 0x1
+  - name: RUINS_TEST_GHOST_OUTLINE_PART_SHOOTING_LIGHTNING
+    val: 0x2
+  loc: src/sprites_AI/ruins_test.c:83
+- name: RuinsTestGhostPart
+  vals:
+  - name: RUINS_TEST_GHOST_PART_GHOST
+    val: 0x0
+  - name: RUINS_TEST_GHOST_PART_FIRST_SYMBOL
+    val: 0x1
+  - name: RUINS_TEST_GHOST_PART_SECOND_SYMBOL
+    val: 0x2
+  - name: RUINS_TEST_GHOST_PART_THIRD_SYMBOL
+    val: 0x3
+  - name: RUINS_TEST_GHOST_PART_FOURTH_SYMBOL
+    val: 0x4
+  loc: src/sprites_AI/ruins_test.c:45
+- name: RuinsTestLightningPart
+  vals:
+  - name: RUINS_TEST_LIGHTNING_PART_GROUND_RIGHT
+    val: 0x0
+  - name: RUINS_TEST_LIGHTNING_PART_GROUND
+    val: 0x1
+  - name: RUINS_TEST_LIGHTNING_PART_STATIC
+    val: 0x2
+  loc: src/sprites_AI/ruins_test.c:105
+- name: SamusAnimState_
+  vals:
+  - name: SAMUS_ANIM_STATE_NONE
+    val: 0x0
+  - name: SAMUS_ANIM_STATE_SUB_ENDED
+    val: 0x1
+  - name: SAMUS_ANIM_STATE_ENDED
+    val: 0x2
+  loc: include/constants/samus.h:218
+- name: SamusBlockHitbox_
+  vals:
+  - name: SAMUS_BLOCK_HITBOX_LEFT
+    val: 0x0
+  - name: SAMUS_BLOCK_HITBOX_RIGHT
+    val: 0x1
+  - name: SAMUS_BLOCK_HITBOX_TOP
+    val: 0x2
+  - name: SAMUS_BLOCK_HITBOX_COUNT
+    val: 0x3
+  loc: include/constants/samus.h:278
+- name: SamusCollisionDataFields_
+  vals:
+  - name: SCDF_HITBOX
+    val: 0x0
+  - name: SCDF_BLOCK_HITBOX
+    val: 0x1
+  - name: SCDF_STANDING_STATUS
+    val: 0x2
+  - name: SCDF_COUNT
+    val: 0x3
+  loc: include/constants/samus.h:295
+- name: SamusHitboxType_
   vals:
   - name: SAMUS_HITBOX_TYPE_STANDING
     val: 0x0
@@ -5165,13 +5734,26 @@
     val: 0x1
   - name: SAMUS_HITBOX_TYPE_MORPHED
     val: 0x2
-  - name: SAMUS_HITBOX_TYPE_NORMAL_END
+  - name: SAMUS_HITBOX_TYPE_NORMAL_COUNT
     val: 0x3
   - name: SAMUS_HITBOX_TYPE_ZIPLINE
     val: 0x3
-  - name: SAMUS_HITBOX_TYPE_END
+  - name: SAMUS_HITBOX_TYPE_COUNT
     val: 0x4
-  loc: include/constants/samus.h:252
+  loc: include/constants/samus.h:266
+- name: SamusHitbox_
+  vals:
+  - name: SAMUS_HITBOX_LEFT
+    val: 0x0
+  - name: SAMUS_HITBOX_TOP
+    val: 0x1
+  - name: SAMUS_HITBOX_RIGHT
+    val: 0x2
+  - name: SAMUS_HITBOX_BOTTOM
+    val: 0x3
+  - name: SAMUS_HITBOX_COUNT
+    val: 0x4
+  loc: include/constants/samus.h:286
 - name: SamusIconOamId
   vals:
   - name: SAMUS_ICON_OAM_ID_SUIT
@@ -5181,7 +5763,7 @@
   - name: SAMUS_ICON_OAM_ID_END
     val: 0x3
   loc: include/constants/menus/pause_screen.h:195
-- name: SamusPose
+- name: SamusPose_
   vals:
   - name: SPOSE_RUNNING
     val: 0x0
@@ -5333,8 +5915,8 @@
     val: 0xFE
   - name: SPOSE_NONE
     val: 0xFF
-  loc: include/constants/samus.h:43
-- name: SamusSpriteCollision
+  loc: include/constants/samus.h:51
+- name: SamusSpriteCollision_
   vals:
   - name: SSC_NONE
     val: 0x0
@@ -5410,10 +5992,10 @@
     val: 0x23
   - name: SSC_MULTIPLE_LARGE_ENERGY_DROP
     val: 0x24
-  - name: SSC_END
+  - name: SSC_COUNT
     val: 0x25
-  loc: include/constants/sprite.h:323
-- name: SamusStandingOnSpriteStatus
+  loc: include/constants/sprite.h:330
+- name: SamusStandingOnSpriteStatus_
   vals:
   - name: SAMUS_STANDING_ON_SPRITE_OFF
     val: 0x0
@@ -5423,8 +6005,8 @@
     val: 0x2
   - name: SAMUS_STANDING_ON_SPRITE_END
     val: 0x3
-  loc: include/constants/sprite.h:365
-- name: SamusStandingStatus
+  loc: include/constants/sprite.h:372
+- name: SamusStandingStatus_
   vals:
   - name: STANDING_GROUND
     val: 0x0
@@ -5440,18 +6022,7 @@
     val: 0x5
   - name: STANDING_INVALID
     val: 0xFF
-  loc: include/constants/samus.h:125
-- name: SamusSuit
-  vals:
-  - name: SUIT_NORMAL
-    val: 0x0
-  - name: SUIT_FULLY_POWERED
-    val: 0x1
-  - name: SUIT_SUITLESS
-    val: 0x2
-  - name: SUIT_END
-    val: 0x3
-  loc: include/constants/samus.h:26
+  loc: include/constants/samus.h:133
 - name: SamusWireframeDataId
   vals:
   - name: SAMUS_WIREFRAME_DATA_ENERGY
@@ -5471,6 +6042,41 @@
   - name: SAMUS_WIREFRAME_DATA_END
     val: 0x7
   loc: include/constants/menus/pause_screen.h:249
+- name: SavePlatformChozodiaPart
+  desc: Save platform (Chozodia) part AI
+  vals:
+  - name: SAVE_PLATFORM_CHOZODIA_PART_TUBE
+    val: 0x0
+  - name: SAVE_PLATFORM_CHOZODIA_PART_TUBE_SHADOW
+    val: 0x1
+  - name: SAVE_PLATFORM_CHOZODIA_PART_RAY
+    val: 0x2
+  - name: SAVE_PLATFORM_CHOZODIA_PART_TOP
+    val: 0x3
+  - name: SAVE_PLATFORM_CHOZODIA_PART_REFILL_LIGHT
+    val: 0x4
+  loc: src/sprites_AI/save_platform_chozodia.c:899
+- name: SavePlatformPart
+  desc: Save platform part AI
+  vals:
+  - name: SAVE_PLATFORM_PART_TUBE
+    val: 0x0
+  - name: SAVE_PLATFORM_PART_TUBE_SHADOW
+    val: 0x1
+  - name: SAVE_PLATFORM_PART_RAY
+    val: 0x2
+  - name: SAVE_PLATFORM_PART_TOP
+    val: 0x3
+  loc: src/sprites_AI/save_platform.c:680
+- name: ScrewSpeedFlag_
+  vals:
+  - name: SCREW_SPEED_FLAG_NONE
+    val: 0x0
+  - name: SCREW_SPEED_FLAG_ACTIVE
+    val: 0x1
+  - name: SCREW_SPEED_FLAG_STORING_SHINESPARK
+    val: 0x8
+  loc: include/constants/samus.h:303
 - name: ScrollSubData
   vals:
   - name: SCROLL_SUB_DATA_X_START
@@ -5502,8 +6108,8 @@
     val: 0x2
   - name: SCROLL_VELOCITY_CAP_END
     val: 0x3
-  loc: include/structs/scroll.h:37
-- name: SecondarySprite
+  loc: include/structs/scroll.h:38
+- name: SecondarySprite_
   vals:
   - name: SSPRITE_CHOZO_BALL
     val: 0x0
@@ -5659,10 +6265,41 @@
     val: 0x4B
   - name: SSPRITE_MOTHER_BRAIN_GLASS_BREAKING
     val: 0x4C
-  - name: SSPRITE_END
+  - name: SSPRITE_COUNT
     val: 0x4D
-  loc: include/constants/sprite.h:241
-- name: Sound
+  loc: include/constants/sprite.h:248
+- name: SoundModeFrequency
+  vals:
+  - name: SOUND_MODE_FREQ_NONE
+    val: 0x0
+  - name: SOUND_MODE_FREQ_05734
+    val: 0x1
+  - name: SOUND_MODE_FREQ_07884
+    val: 0x2
+  - name: SOUND_MODE_FREQ_10512
+    val: 0x3
+  - name: SOUND_MODE_FREQ_13379
+    val: 0x4
+  - name: SOUND_MODE_FREQ_15768
+    val: 0x5
+  - name: SOUND_MODE_FREQ_18157
+    val: 0x6
+  - name: SOUND_MODE_FREQ_21024
+    val: 0x7
+  - name: SOUND_MODE_FREQ_26758
+    val: 0x8
+  - name: SOUND_MODE_FREQ_31536
+    val: 0x9
+  - name: SOUND_MODE_FREQ_36314
+    val: 0xA
+  - name: SOUND_MODE_FREQ_40137
+    val: 0xB
+  - name: SOUND_MODE_FREQ_42048
+    val: 0xC
+  - name: SOUND_MODE_FREQ_END
+    val: 0xD
+  loc: include/constants/audio.h:837
+- name: Sound_
   vals:
   - name: MUSIC_NONE
     val: 0x0
@@ -6276,7 +6913,7 @@
     val: 0x130
   - name: SOUND_SHINESPARK_DESTROYED
     val: 0x131
-  - name: SOUND_SUDO_SCREW_DESTROYED
+  - name: SOUND_PSEUDO_SCREW_DESTROYED
     val: 0x132
   - name: SOUND_SPEEDBOOSTER_DESTROYED
     val: 0x133
@@ -7082,39 +7719,54 @@
     val: 0x2C3
   - name: SOUND_END
     val: 0x2C4
-  loc: include/constants/audio.h:4
-- name: SoundModeFrequency
+  loc: include/constants/audio.h:7
+- name: SovaTurningDirection
   vals:
-  - name: SOUND_MODE_FREQ_NONE
+  - name: SOVA_TURNING_DIRECTION_BOTTOM_LEFT_CORNER
     val: 0x0
-  - name: SOUND_MODE_FREQ_05734
+  - name: SOVA_TURNING_DIRECTION_TOP_RIGHT_EDGE
     val: 0x1
-  - name: SOUND_MODE_FREQ_07884
+  - name: SOVA_TURNING_DIRECTION_BOTTOM_RIGHT_EDGE
     val: 0x2
-  - name: SOUND_MODE_FREQ_10512
+  - name: SOVA_TURNING_DIRECTION_TOP_RIGHT_CORNER
     val: 0x3
-  - name: SOUND_MODE_FREQ_13379
+  - name: SOVA_TURNING_DIRECTION_TOP_LEFT_EDGE
     val: 0x4
-  - name: SOUND_MODE_FREQ_15768
+  - name: SOVA_TURNING_DIRECTION_BOTTOM_RIGHT_CORNER
     val: 0x5
-  - name: SOUND_MODE_FREQ_18157
+  - name: SOVA_TURNING_DIRECTION_TOP_LEFT_CORNER
     val: 0x6
-  - name: SOUND_MODE_FREQ_21024
+  - name: SOVA_TURNING_DIRECTION_BOTTOM_LEFT_EDGE
     val: 0x7
-  - name: SOUND_MODE_FREQ_26758
-    val: 0x8
-  - name: SOUND_MODE_FREQ_31536
-    val: 0x9
-  - name: SOUND_MODE_FREQ_36314
-    val: 0xA
-  - name: SOUND_MODE_FREQ_40137
-    val: 0xB
-  - name: SOUND_MODE_FREQ_42048
-    val: 0xC
-  - name: SOUND_MODE_FREQ_END
-    val: 0xD
-  loc: include/constants/audio.h:834
-- name: SplashSize
+  loc: src/sprites_AI/sova.c:16
+- name: SpacePirateAim
+  vals:
+  - name: SPACE_PIRATE_AIM_FORWARD
+    val: 0x0
+  - name: SPACE_PIRATE_AIM_DIAGONALLY_UP
+    val: 0x1
+  - name: SPACE_PIRATE_AIM_DIAGONALLY_DOWN
+    val: 0x2
+  loc: include/sprites_AI/space_pirate.h:68
+- name: SpacePirateClimingDirection
+  vals:
+  - name: SPACE_PIRATE_CLIMBING_DIRECTION_UP
+    val: 0x0
+  - name: SPACE_PIRATE_CLIMBING_DIRECTION_DOWN
+    val: 0x1
+  loc: src/sprites_AI/space_pirate.c:28
+- name: SpacePirateLaserDirection
+  vals:
+  - name: SPACE_PIRATE_LASER_FORWARD
+    val: 0x0
+  - name: SPACE_PIRATE_LASER_DIAGONALLY_UP
+    val: 0x1
+  - name: SPACE_PIRATE_LASER_DIAGONALLY_DOWN
+    val: 0x2
+  - name: SPACE_PIRATE_LASER_FROM_DOOR
+    val: 0x80
+  loc: src/sprites_AI/space_pirate.c:58
+- name: SplashSize_
   vals:
   - name: SPLASH_NONE
     val: 0x0
@@ -7124,7 +7776,89 @@
     val: 0x2
   - name: SPLASH_HUGE
     val: 0x3
-  loc: include/constants/sprite_util.h:30
+  loc: include/constants/sprite_util.h:39
+- name: SpriteDeathType_
+  vals:
+  - name: DEATH_NORMAL
+    val: 0x0
+  - name: DEATH_RESPAWNING
+    val: 0x1
+  - name: DEATH_NO_DEATH_OR_RESPAWNING_ALREADY_HAS_DROP
+    val: 0x2
+  loc: include/constants/sprite_util.h:33
+- name: SpritePropery_
+  vals:
+  - name: SP_ALWAYS_ACTIVE
+    val: 0x1
+  - name: SP_DAMAGED
+    val: 0x2
+  - name: SP_KILL_OFF_SCREEN
+    val: 0x4
+  - name: SP_SOLID_FOR_PROJECTILES
+    val: 0x8
+  - name: SP_DESTROYED
+    val: 0x10
+  - name: SP_ABSOLUTE_POSITION
+    val: 0x20
+  - name: SP_IMMUNE_TO_PROJECTILES
+    val: 0x40
+  - name: SP_SECONDARY_SPRITE
+    val: 0x80
+  loc: include/constants/sprite.h:26
+- name: SpriteStatus_
+  vals:
+  - name: SPRITE_STATUS_EXISTS
+    val: 0x1
+  - name: SPRITE_STATUS_ONSCREEN
+    val: 0x2
+  - name: SPRITE_STATUS_NOT_DRAWN
+    val: 0x4
+  - name: SPRITE_STATUS_ROTATION_SCALING
+    val: 0x8
+  - name: SPRITE_STATUS_UNKNOWN_10
+    val: 0x10
+  - name: SPRITE_STATUS_MOSAIC
+    val: 0x20
+  - name: SPRITE_STATUS_X_FLIP
+    val: 0x40
+  - name: SPRITE_STATUS_UNKNOWN_80
+    val: 0x80
+  - name: SPRITE_STATUS_Y_FLIP
+    val: 0x100
+  - name: SPRITE_STATUS_FACING_RIGHT
+    val: 0x200
+  - name: SPRITE_STATUS_FACING_DOWN
+    val: 0x400
+  - name: SPRITE_STATUS_SAMUS_COLLIDING
+    val: 0x800
+  - name: SPRITE_STATUS_SAMUS_ON_TOP
+    val: 0x1000
+  - name: SPRITE_STATUS_ALPHA_BLENDING
+    val: 0x2000
+  - name: SPRITE_STATUS_DOUBLE_SIZE
+    val: 0x4000
+  - name: SPRITE_STATUS_IGNORE_PROJECTILES
+    val: 0x8000
+  loc: include/constants/sprite.h:7
+- name: SpriteWeakness_
+  vals:
+  - name: WEAKNESS_NONE
+    val: 0x0
+  - name: WEAKNESS_CHARGE_BEAM_PISTOL
+    val: 0x1
+  - name: WEAKNESS_BEAM_BOMBS
+    val: 0x2
+  - name: WEAKNESS_SUPER_MISSILES
+    val: 0x4
+  - name: WEAKNESS_MISSILES
+    val: 0x8
+  - name: WEAKNESS_POWER_BOMB
+    val: 0x10
+  - name: WEAKNESS_SPEEDBOOSTER_SCREW_ATTACK
+    val: 0x20
+  - name: WEAKNESS_CAN_BE_FROZEN
+    val: 0x40
+  loc: include/constants/sprite.h:380
 - name: SramOperation
   vals:
   - name: SRAM_OPERATION_WRITE_FILE_SCREEN_OPTIONS
@@ -7174,7 +7908,7 @@
     val: 0x8
   - name: STATUE_OPENING_OAM_ID_END
     val: 0x9
-  loc: include/cutscenes/statue_opening.h:7
+  loc: include/cutscenes/statue_opening.h:6
 - name: StatusScreenBeamAbilityOffset
   vals:
   - name: STATUS_SCREEN_BEAM_OFFSET_LONG
@@ -7285,7 +8019,7 @@
   - name: STATUS_SLOT_END
     val: 0x12
   loc: include/constants/menus/status_screen.h:56
-- name: StoryTextId
+- name: StoryTextId_
   vals:
   - name: STORY_TEXT_PLANET_ZEBES
     val: 0x0
@@ -7299,9 +8033,9 @@
     val: 0x4
   - name: STORY_TEXT_DEFEAT
     val: 0x5
-  - name: STORY_TEXT_END
+  - name: STORY_TEXT_COUNT
     val: 0x6
-  loc: include/constants/text.h:4
+  loc: include/constants/text.h:7
 - name: SubBombChainRequest
   vals:
   - name: SUB_BOMB_CHAIN_REQUEST_HORIZONTAL_WHEN_GOING_UP
@@ -7314,7 +8048,7 @@
     val: 0x3
   - name: SUB_BOMB_CHAIN_REQUEST_END
     val: 0x4
-  loc: include/constants/block.h:80
+  loc: include/constants/block.h:85
 - name: SubGameMode
   vals:
   - name: SUB_GAME_MODE_DOOR_TRANSITION
@@ -7327,7 +8061,39 @@
     val: 0x5
   - name: SUB_GAME_MODE_NO_CLIP
     val: 0x6
-  loc: include/constants/game_state.h:64
+  loc: include/constants/game_state.h:73
+- name: SuitMiscFlags_
+  vals:
+  - name: SMF_NONE
+    val: 0x0
+  - name: SMF_HIGH_JUMP
+    val: 0x1
+  - name: SMF_SPEEDBOOSTER
+    val: 0x2
+  - name: SMF_SPACE_JUMP
+    val: 0x4
+  - name: SMF_SCREW_ATTACK
+    val: 0x8
+  - name: SMF_VARIA_SUIT
+    val: 0x10
+  - name: SMF_GRAVITY_SUIT
+    val: 0x20
+  - name: SMF_MORPH_BALL
+    val: 0x40
+  - name: SMF_POWER_GRIP
+    val: 0x80
+  loc: include/constants/samus.h:16
+- name: SuitType_
+  vals:
+  - name: SUIT_NORMAL
+    val: 0x0
+  - name: SUIT_FULLY_POWERED
+    val: 0x1
+  - name: SUIT_SUITLESS
+    val: 0x2
+  - name: SUIT_END
+    val: 0x3
+  loc: include/constants/samus.h:30
 - name: TangleVineGerutaPart
   desc: Tangle vine (geruta) part AI
   vals:
@@ -7339,7 +8105,16 @@
     val: 0x2
   - name: TANGLE_VINE_GERUTA_PART_END
     val: 0x3
-  loc: src/sprites_AI/tangle_vine.c:145
+  loc: src/sprites_AI/tangle_vine.c:174
+- name: TangleVineGerutaStatus
+  vals:
+  - name: TANGLE_VINE_GERUTA_STATUS_VINE_DEAD
+    val: 0x0
+  - name: TANGLE_VINE_GERUTA_STATUS_GERUTA_DEAD
+    val: 0x1
+  - name: TANGLE_VINE_GERUTA_STATUS_FULL
+    val: 0x2
+  loc: src/sprites_AI/tangle_vine.c:18
 - name: TangleVineOam
   vals:
   - name: TANGLE_VINE_OAM_TALL_ON_GROUND
@@ -7371,6 +8146,21 @@
   - name: TANGLE_VINE_OAM_END
     val: 0xD
   loc: include/data/sprites/tangle_vine.h:9
+- name: TextState_
+  vals:
+  - name: TEXT_STATE_NONE
+    val: !!int '0x-1'
+  - name: TEXT_STATE_NOTHING
+    val: 0x0
+  - name: TEXT_STATE_NEW_LINE
+    val: 0x1
+  - name: TEXT_STATE_ENDED
+    val: 0x2
+  - name: TEXT_STATE_UNK_3
+    val: 0x3
+  - name: TEXT_STATE_NEW_PAGE
+    val: 0x4
+  loc: include/constants/text.h:277
 - name: TilemapRequest
   vals:
   - name: TILEMAP_REQUEST_START_GAME_INIT
@@ -7421,7 +8211,7 @@
     val: 0x1A
   - name: TILEMAP_REQUEST_COPY_DESTINATION_SPAWN
     val: 0x1B
-  loc: include/constants/menus/file_select.h:193
+  loc: include/constants/menus/file_select.h:206
 - name: TitleScreenCopyrightSymbol
   vals:
   - name: TITLE_SCREEN_COPYRIGHT_SYMBOL_NONE
@@ -7431,6 +8221,13 @@
   - name: TITLE_SCREEN_COPYRIGHT_SYMBOL_TRADEMARK
     val: 0x2
   loc: include/constants/menus/title_screen.h:36
+- name: TitleScreenMenuOption
+  vals:
+  - name: TITLE_SCREEN_MENU_OPTION_START_GAME
+    val: 0x0
+  - name: TITLE_SCREEN_MENU_OPTION_LANGUAGE
+    val: 0x1
+  loc: include/constants/menus/title_screen.h:42
 - name: TitleScreenOamId
   vals:
   - name: TITLE_SCREEN_OAM_ID_COMET_SPAWNING
@@ -7532,8 +8329,17 @@
     val: 0x4
   - name: UNKNOWN_ITEM_CHOZO_STATUE_PART_END
     val: 0x5
-  loc: src/sprites_AI/unknown_item_chozo_statue.c:939
-- name: WantingEffect
+  loc: src/sprites_AI/unknown_item_chozo_statue.c:1030
+- name: VerticalMovingDir_
+  vals:
+  - name: VDMOVING_NONE
+    val: 0x0
+  - name: VDMOVING_UP
+    val: 0x1
+  - name: VDMOVING_DOWN
+    val: 0x2
+  loc: include/constants/samus.h:165
+- name: WantingEffect_
   vals:
   - name: WANTING_RUNNING_EFFECT
     val: 0x0
@@ -7551,7 +8357,18 @@
     val: 0x6
   - name: WANTING_RUNNING_ON_WET_GROUND
     val: 0x7
-  loc: include/constants/samus.h:187
+  loc: include/constants/samus.h:195
+- name: WeaponHightlighted_
+  vals:
+  - name: WH_NONE
+    val: 0x0
+  - name: WH_MISSILE
+    val: 0x1
+  - name: WH_SUPER_MISSILE
+    val: 0x2
+  - name: WH_POWER_BOMB
+    val: 0x4
+  loc: include/constants/samus.h:44
 - name: WorldMapOamId
   vals:
   - name: WORLD_MAP_OAM_ID_NAME_BRINSTAR
@@ -7591,3 +8408,52 @@
   - name: WORLD_MAP_OAM_ID_END
     val: 0x12
   loc: include/constants/menus/pause_screen.h:227
+- name: ZeelaEyesPart
+  vals:
+  - name: ZEELA_EYES_PART_0
+    val: 0x0
+  - name: ZEELA_EYES_PART_1
+    val: 0x1
+  - name: ZEELA_EYES_PART_2
+    val: 0x2
+  loc: src/sprites_AI/zeela.c:38
+- name: ZiplineGeneratorPart
+  desc: Zipline generator part AI
+  vals:
+  - name: ZIPLINE_GENERATOR_PART_CONDUCTOR
+    val: 0x0
+  - name: ZIPLINE_GENERATOR_PART_MORPH_SYMBOL
+    val: 0x1
+  - name: ZIPLINE_GENERATOR_PART_ELECTRICITY
+    val: 0x2
+  loc: src/sprites_AI/zipline_generator.c:253
+- name: ZoomerTurningDirection
+  vals:
+  - name: ZOOMER_TURNING_DIRECTION_BOTTOM_LEFT_CORNER
+    val: 0x0
+  - name: ZOOMER_TURNING_DIRECTION_TOP_RIGHT_EDGE
+    val: 0x1
+  - name: ZOOMER_TURNING_DIRECTION_BOTTOM_RIGHT_EDGE
+    val: 0x2
+  - name: ZOOMER_TURNING_DIRECTION_TOP_RIGHT_CORNER
+    val: 0x3
+  - name: ZOOMER_TURNING_DIRECTION_TOP_LEFT_EDGE
+    val: 0x4
+  - name: ZOOMER_TURNING_DIRECTION_BOTTOM_RIGHT_CORNER
+    val: 0x5
+  - name: ZOOMER_TURNING_DIRECTION_TOP_LEFT_CORNER
+    val: 0x6
+  - name: ZOOMER_TURNING_DIRECTION_BOTTOM_LEFT_EDGE
+    val: 0x7
+  loc: src/sprites_AI/zoomer.c:16
+- name: bg3ScrollingType
+  vals:
+  - name: BG3_SCROLLING_TYPE_NONE
+    val: 0x0
+  - name: BG3_SCROLLING_TYPE_NORMAL
+    val: 0x1
+  - name: BG3_SCROLLING_TYPE_HALVED
+    val: 0x2
+  - name: BG3_SCROLLING_TYPE_QUARTERED
+    val: 0x3
+  loc: include/structs/scroll.h:46
