@@ -779,4 +779,4 @@ class EnumEntry(InfoEntry):
         return dict(obj)
 
 
-NamedEntry = Union[NamedVarEntry, TypedefEntry, StructEntry, UnionEntry, EnumEntry]
+NamedEntry = Union[NamedVarEntry, TypedefEntry, StructEntry, UnionEntry, EnumEntry, EnumValEntry]
