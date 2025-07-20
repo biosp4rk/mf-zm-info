@@ -6,7 +6,7 @@ import argparse_utils as apu
 from rom import Rom, ROM_OFFSET
 
 
-ADDR_WINDOW = 0x10000
+ADDR_WINDOW = 0x18000
 """Range around the source data address to search in the target ROM."""
 MAX_MATCH_SIZE = 0x1000
 """Max number of bytes to match (since checking more is wasteful)."""

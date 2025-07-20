@@ -49,7 +49,7 @@ def get_control_char_mf(val: int, fmt: TextFormat) -> str:
         msb = val >> 8
         arg_val = val & 0xFF
         if msb == 0x80:
-            text = "SPACE"
+            text = "GAP"
         elif msb == 0x81:
             text = "COLOR"
         elif msb == 0x82:
@@ -117,7 +117,7 @@ def get_control_char_zm(val: int, fmt: TextFormat) -> str:
     arg_val = None
     msb = val >> 8
     if msb == 0x80:
-        text = "SPACE"
+        text = "GAP"
         arg_val = val & 0xFF
     elif msb == 0x81:
         text = "COLOR"
