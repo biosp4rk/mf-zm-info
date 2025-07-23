@@ -103,11 +103,11 @@ class InfoEntry(ABC):
         addr1 = ri1
         addr2 = ri2
         if isinstance(ri1, int):
-            addr1 = {r: ri1 for r in REGIONS}
+            addr1 = {r: ri1 for r in ALL_REGIONS}
         if isinstance(ri2, int):
-            addr2 = {r: ri2 for r in REGIONS}
+            addr2 = {r: ri2 for r in ALL_REGIONS}
         # Compare by first region containing both
-        for r in REGIONS:
+        for r in ALL_REGIONS:
             if r in addr1 and r in addr2:
                 return addr1[r] < addr2[r]
         # Entries are unique to each region,
@@ -223,7 +223,7 @@ class VarEntry(InfoEntry):
         if self.arr_count is None:
             return 1
         if isinstance(self.arr_count, dict):
-            for r in REGIONS:
+            for r in ALL_REGIONS:
                 if r in self.arr_count:
                     return self.arr_count[r]
             raise RuntimeError()

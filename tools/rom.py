@@ -19,9 +19,6 @@ class Rom(object):
         # Read file
         with open(path, "rb") as f:
             self.data = bytearray(f.read())
-        # Check length
-        if len(self.data) != SIZE_8MB:
-            raise ValueError("ROM should be 8MB")
         # Check title and code
         title = self.read_ascii(0xA0, 0x10)
         if title == "METROID4USA\0AMTE":
@@ -38,15 +35,16 @@ class Rom(object):
             self.region = REGION_C
         elif title == "METROIDAGBJ\0METJ":
             self.game = GAME_MF
-            self.region = REGION_BETA
+            self.region = REGION_MF_E_09_11
         elif title == "ZEROMISSIONEBMXE":
             self.game = GAME_ZM
             # Check if beta
             beta = self.read_8(0x238) == 0x2C
-            self.region = REGION_BETA if beta else REGION_U
+            self.region = REGION_ZM_U_12_02 if beta else REGION_U
         elif title == "ZEROMISSIONPBMXP":
             self.game = GAME_ZM
-            self.region = REGION_E
+            beta = self.read_8(0x238) == 0xF0
+            self.region = REGION_ZM_E_01_14 if beta else REGION_E
         elif title == "ZEROMISSIONJBMXJ":
             self.game = GAME_ZM
             self.region = REGION_J
@@ -170,7 +168,7 @@ class Rom(object):
             elif self.region == REGION_C:
                 addr = 0xA72D4
                 # C also has code ending at 0x7FD6E8
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_MF_E_09_11:
                 addr = 0xA56CC
         elif self.game == GAME_ZM:
             if self.region == REGION_U:
@@ -181,8 +179,10 @@ class Rom(object):
                 addr = 0x8C778
             elif self.region == REGION_C:
                 addr = 0x90294
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_ZM_U_12_02:
                 addr = 0x91FAC
+            elif self.region == REGION_ZM_E_01_14:
+                addr = 0x92E70
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -202,7 +202,7 @@ class Rom(object):
             elif self.region == REGION_C:
                 addr = 0x77ECC8
                 # C also has data ending at 0x8000000
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_MF_E_09_11:
                 addr = 0x7A0FC0
         elif self.game == GAME_ZM:
             if self.region == REGION_U:
@@ -213,8 +213,10 @@ class Rom(object):
                 addr = 0x760E48
             elif self.region == REGION_C:
                 addr = 0x79FF38
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_ZM_U_12_02:
                 addr = 0x76C014
+            elif self.region == REGION_ZM_E_01_14:
+                addr = 0x77DEF8
         if virt:
             addr += ROM_OFFSET
         return addr
@@ -253,7 +255,7 @@ class Rom(object):
                     0x457C: 0x4594,
                     0x4598: 0x460C
                 }
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_MF_E_09_11:
                 return {
                     0x3E18: 0x3EAC,
                     0x3EBC: 0x3F5C,
@@ -294,13 +296,21 @@ class Rom(object):
                     0x7474: 0x748C,
                     0x7490: 0x7504
                 }
-            elif self.region == REGION_BETA:
+            elif self.region == REGION_ZM_U_12_02:
                 return {
                     0x44B0: 0x4544,
                     0x4554: 0x45F4,
                     0x4604: 0x4C4C,
                     0x4C50: 0x4C68,
                     0x4C6C: 0x4CE0
+                }
+            elif self.region == REGION_ZM_E_01_14:
+                return {
+                    0x4530: 0x45C4,
+                    0x45D4: 0x4674,
+                    0x4684: 0x4CCC,
+                    0x4CD0: 0x4CE8,
+                    0x4CEC: 0x4D60
                 }
 
     def find_bytes(self, pat: BytesLike, start: int = 0) -> int:

@@ -24,8 +24,22 @@ REGION_U = "U"
 REGION_E = "E"
 REGION_J = "J"
 REGION_C = "C"
-REGION_BETA = "B"
-REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, REGION_BETA)
+# MF
+REGION_MF_E_09_11 = "EB"
+REGION_MF_E_09_16 = "EB" # Virtually identical to 09/11
+MF_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, REGION_MF_E_09_11)
+# ZM
+REGION_ZM_U_12_02 = "UB"
+REGION_ZM_E_01_14 = "EB"
+ZM_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, REGION_ZM_U_12_02, REGION_ZM_E_01_14)
+
+ALL_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, "UB", "EB")
+
+def game_regions(game: str) -> str:
+    if game == GAME_MF:
+        return MF_REGIONS
+    elif game == GAME_ZM:
+        return ZM_REGIONS
 
 MODE_THUMB = "thumb"
 MODE_ARM = "arm"

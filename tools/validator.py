@@ -171,18 +171,18 @@ class Validator(object):
         # Get current address
         curr_addr = entry.addr
         if isinstance(curr_addr, int):
-            curr_addr = {r: curr_addr for r in REGIONS}
+            curr_addr = {r: curr_addr for r in ALL_REGIONS}
         # Get end of previous
         prev_addr = prev.addr
         if isinstance(prev_addr, int):
-            prev_addr = {r: prev_addr for r in REGIONS}
+            prev_addr = {r: prev_addr for r in ALL_REGIONS}
         prev_len = None
         if map_type == MAP_CODE:
             prev_len = prev.size
         else:
             prev_len = prev.get_size(self.info.sizes)
         if isinstance(prev_len, int):
-            prev_len = {r: prev_len for r in REGIONS}
+            prev_len = {r: prev_len for r in ALL_REGIONS}
         prev_end = {
             r: paddr + prev_len[r] - 1
             for r, paddr in prev_addr.items()
