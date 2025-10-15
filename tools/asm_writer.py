@@ -13,7 +13,7 @@ DW = ".dw"
 WORD = ".word"
 
 
-class LocalFormat(Enum):
+class BranchFormat(Enum):
 
     ORDERED = auto()
     ADDRESS = auto()
@@ -28,7 +28,7 @@ class AsmFormat(Enum):
 @dataclass(frozen=True)
 class FormatOptions:
 
-    local_format: LocalFormat
+    branch_format: BranchFormat
     prefixed_local: bool
     prefixed_immed: bool
     braced_reg_list: bool
@@ -38,14 +38,14 @@ class FormatOptions:
 
 FORMAT_OPTIONS = {
     AsmFormat.DEFAULT: FormatOptions(
-        local_format=LocalFormat.ORDERED,
+        branch_format=BranchFormat.ORDERED,
         prefixed_local=True,
         prefixed_immed=False,
         braced_reg_list=False,
         dx_directive=True
     ),
     AsmFormat.DECOMP: FormatOptions(
-        local_format=LocalFormat.ADDRESS,
+        branch_format=BranchFormat.ADDRESS,
         prefixed_local=False,
         prefixed_immed=True,
         braced_reg_list=True,
@@ -299,7 +299,7 @@ class AsmWriter:
         return syms
 
     def _get_local(self, addr: int) -> str:
-        if self.format_opts.local_format == LocalFormat.ORDERED:
+        if self.format_opts.branch_format == BranchFormat.ORDERED:
             idx = self.symbols.local_indexes[addr]
             prefix = "@@" if self.format_opts.prefixed_local else ""
             return f"{prefix}_{idx:03X}"
@@ -321,9 +321,9 @@ class AsmWriter:
         if type == LabelType.Imm:
             label = "0x" + label
         elif type == LabelType.Data:
-            label = "unk_" + label
+            label = f"sUnk_{pa:x}"
         elif type == LabelType.Code:
-            label = "sub_" + label
+            label = f"unk_{pa:x}"
         return label
 
     def _imm_str(self, instruct: ThumbInstruct) -> str:
