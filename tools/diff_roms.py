@@ -47,7 +47,7 @@ def diff_roms(rom_base: Rom, rom_new: Rom, options: DiffOpt) -> None:
             print(f"{addr:X}\t{str_base}\t{str_new}")
             if code_start <= addr < code_end:
                 # Print instruction difference
-                print_inst_diff(rom_base, rom_new, addr)
+                print_inst_diff(writer_base, writer_new, addr)
             input()
     print("Done")
 
@@ -57,7 +57,7 @@ def print_inst_diff(writer_base: AsmWriter, writer_new: AsmWriter, addr: int) ->
         inst = ThumbInstruct(writer_base.rom, addr + i)
         str_base = writer_base.instruct_str(inst)
         inst = ThumbInstruct(writer_new.rom, addr + i)
-        str_new = writer_base.instruct_str(inst)
+        str_new = writer_new.instruct_str(inst)
         if str_base != str_new:
             print(f"{addr:X}\t{str_base}\t{str_new}")
 
