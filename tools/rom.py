@@ -5,11 +5,11 @@ from constants import *
 
 BytesLike = Union[bytes, bytearray]
 
-SIZE_8MB = 0x800000
+SIZE_8MB = 0x80_0000
 SIZE_16MB = SIZE_8MB * 2
 SIZE_32MB = SIZE_16MB * 2
 
-ROM_OFFSET = 0x8000000
+ROM_OFFSET = 0x800_0000
 ROM_END = ROM_OFFSET + SIZE_32MB
 
 

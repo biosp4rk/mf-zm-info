@@ -55,7 +55,7 @@ class Validator(object):
         self.validate_info_entries()
 
     def validate_files(self) -> None:
-        print("Validating files")
+        print("Validating files...")
         # Load schema with shared definitions
         with open(os.path.join(SCHEMA_PATH, "definitions.json")) as f:
             defs_schema = json.load(f)
@@ -80,7 +80,7 @@ class Validator(object):
 
 
     def validate_info_entries(self) -> None:
-        print("Validating info entries")
+        print("Validating info entries...")
         for game in GAMES:
             self.entry_loc.game = game
             # TODO: Some errors can happen when creating GameInfo;

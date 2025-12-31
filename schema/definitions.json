@@ -56,8 +56,15 @@
             "enum": ["rle", "lz"]
         },
         "Location": {
-            "type": "string",
-            "pattern": "[A-Za-z0-9_]+\\.[A-Za-z]+:[0-9]+$"
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "string",
+                    "pattern": "[A-Za-z0-9_]+\\.[A-Za-z]+:[0-9]+$"
+                }
+            ]
         },
         "Var": {
             "type": "object",
