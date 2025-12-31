@@ -4,12 +4,15 @@
   - name: beamStatus
     type: u8
     offset: 0x0
+    enum: BeamStatus
   - name: weaponStatus
     type: u8
     offset: 0x1
+    enum: MissileBombStatus
   - name: suitStatus
     type: u8
     offset: 0x2
+    enum: SuitMiscStatus
   - name: isSuit
     type: u8
     offset: 0x3
@@ -19,70 +22,8 @@
   - name: soundEvent
     type: u16
     offset: 0x6
+    enum: SoundEvent
   loc: include/structs/event.h:6
-- name: AbilityRamValues
-  size: 0x8
-  vars:
-  - name: BeamStatusFlag
-    type: u8
-    cat: flags
-    offset: 0x0
-    enum: BeamStatus
-  - name: MissileBombStatusFlag
-    type: u8
-    cat: flags
-    offset: 0x1
-    enum: MissileBombStatus
-  - name: SuitMiscStatusFlag
-    type: u8
-    cat: flags
-    offset: 0x2
-    enum: SuitMiscStatus
-  - name: IsSuitFlag
-    type: u8
-    offset: 0x3
-  - name: MessageNum
-    type: u8
-    offset: 0x4
-  - name: SubEventNum
-    type: u16
-    offset: 0x6
-  loc: null
-- name: ActiveScroll
-  size: 0xC
-  vars:
-  - name: SamusWithinScrollFlag
-    type: u8
-    offset: 0x0
-  - name: XEnd
-    type: u16
-    offset: 0x2
-  - name: XStart
-    type: u16
-    offset: 0x4
-  - name: YStart
-    type: u16
-    offset: 0x6
-  - name: YEnd
-    type: u16
-    offset: 0x8
-  loc: null
-- name: AmmoDigits
-  size: 0x4
-  vars:
-  - name: OnesPlace
-    type: u8
-    offset: 0x0
-  - name: TensPlace
-    type: u8
-    offset: 0x1
-  - name: HundredsPlace
-    type: u8
-    offset: 0x2
-  - name: ThousandsPlace
-    type: u8
-    offset: 0x3
-  loc: null
 - name: AnimatedGraphicsEntry
   size: 0x8
   vars:
@@ -151,14 +92,14 @@
   - name: SourceArea
     type: u8
     offset: 0x0
-    enum: AreaId
+    enum: Area
   - name: SourceDoor
     type: u8
     offset: 0x1
   - name: DestinationArea
     type: u8
     offset: 0x2
-    enum: AreaId
+    enum: Area
   loc: null
 - name: ArmCannonAnimData
   size: 0x8
@@ -321,46 +262,6 @@
   - name: DoorTransitionYPosition
     type: u16
     offset: 0x12
-  loc: null
-- name: BgPtrsAndDimensions
-  size: 0x20
-  vars:
-  - name: DecompressedBg0Ptr
-    type: u16*
-    offset: 0x0
-  - name: WidthOfBg0InBlocks
-    type: u16
-    offset: 0x4
-  - name: HeightOfBg0InBlocks
-    type: u16
-    offset: 0x6
-  - name: DecompressedBg1Ptr
-    type: u16*
-    offset: 0x8
-  - name: WidthOfBg1InBlocks
-    type: u16
-    offset: 0xC
-  - name: HeightOfBg1InBlocks
-    type: u16
-    offset: 0xE
-  - name: DecompressedBg2Ptr
-    type: u16*
-    offset: 0x10
-  - name: WidthOfBg2InBlocks
-    type: u16
-    offset: 0x14
-  - name: HeightOfBg2InBlocks
-    type: u16
-    offset: 0x16
-  - name: DecompressedClipdataPtr
-    type: u16*
-    offset: 0x18
-  - name: WidthOfClipdataInBlocks
-    type: u16
-    offset: 0x1C
-  - name: HeightOfClipdataInBlocks
-    type: u16
-    offset: 0x1E
   loc: null
 - name: BossPartOamData
   size: 0x6
@@ -661,10 +562,10 @@
   size: 0x18
   vars:
   - name: FirstScroll
-    type: struct ActiveScroll
+    type: struct Scroll
     offset: 0x0
   - name: SecondScroll
-    type: struct ActiveScroll
+    type: struct Scroll
     offset: 0xC
   loc: null
 - name: CurrentAffectingClipdata
@@ -676,7 +577,7 @@
   - name: hazard
     type: u16
     offset: 0x2
-    enum: HazardAffectingSamus
+    enum: Hazard
   loc: include/structs/clipdata.h:26
 - name: DebugMenuOptions
   size: 0xC
@@ -731,29 +632,13 @@
     type: u16
     offset: 0xC
   loc: include/structs/demo.h:6
-- name: DemoInputData
-  size: 0x10
-  vars:
-  - name: InputsPtr
-    type: u16*
-    offset: 0x0
-  - name: NumOfInputs
-    type: u16
-    offset: 0x4
-  - name: DurationsPtr
-    type: u16*
-    offset: 0x8
-  - name: NumOfDurations
-    type: u16
-    offset: 0xC
-  loc: null
 - name: DemoRam
   size: 0x1C
   vars:
   - name: area
     type: u8
     offset: 0x0
-    enum: AreaId
+    enum: Area
   - name: lastDoorUsed
     type: u8
     offset: 0x1
@@ -864,38 +749,6 @@
     type: s8
     offset: 0x8
   loc: include/structs/connection.h:19
-- name: DoorEntry
-  size: 0xC
-  vars:
-  - name: Type
-    type: u8
-    offset: 0x0
-    enum: DoorType
-  - name: SourceRoom
-    type: u8
-    offset: 0x1
-  - name: XStart
-    type: u8
-    offset: 0x2
-  - name: XEnd
-    type: u8
-    offset: 0x3
-  - name: YStart
-    type: u8
-    offset: 0x4
-  - name: YEnd
-    type: u8
-    offset: 0x5
-  - name: DestinationDoor
-    type: u8
-    offset: 0x6
-  - name: XExitDistance
-    type: s8
-    offset: 0x7
-  - name: YExitDistance
-    type: s8
-    offset: 0x8
-  loc: null
 - name: DoorPositionStart
   size: 0x4
   vars:
@@ -926,14 +779,14 @@
   - name: area1
     type: u8
     offset: 0x0
-    enum: AreaId
+    enum: Area
   - name: room1
     type: u8
     offset: 0x1
   - name: area2
     type: u8
     offset: 0x2
-    enum: AreaId
+    enum: Area
   - name: room2
     type: u8
     offset: 0x3
@@ -1049,35 +902,13 @@
     type: u8
     offset: 0x5
   loc: include/structs/escape.h:7
-- name: EscapeTimerDigits
-  size: 0x6
-  vars:
-  - name: HundredthsOfASecond
-    type: u8
-    offset: 0x0
-  - name: TenthsOfASecond
-    type: u8
-    offset: 0x1
-  - name: SecondsOnesPlace
-    type: u8
-    offset: 0x2
-  - name: SecondsTensPlace
-    type: u8
-    offset: 0x3
-  - name: MinutesOnesPlace
-    type: u8
-    offset: 0x4
-  - name: MinutesTensPlace
-    type: u8
-    offset: 0x5
-  loc: null
 - name: EventBasedConnection
   size: 0x4
   vars:
   - name: SourceArea
     type: u8
     offset: 0x0
-    enum: AreaId
+    enum: Area
   - name: SourceDoor
     type: u8
     offset: 0x1
@@ -1088,40 +919,6 @@
   - name: DestinationDoor
     type: u8
     offset: 0x3
-  loc: null
-- name: EventLocationAndNavInfo
-  size: 0xC
-  vars:
-  - name: AreaId
-    type: u8
-    offset: 0x0
-    enum: AreaId
-  - name: RoomId_Plus1
-    type: u8
-    offset: 0x1
-  - name: XStart
-    type: u8
-    offset: 0x2
-  - name: YStart
-    type: u8
-    offset: 0x3
-  - name: XEnd
-    type: u8
-    offset: 0x4
-  - name: YEnd
-    type: u8
-    offset: 0x5
-  - name: NavConversationNum
-    type: u8
-    offset: 0x6
-  - name: NavRoomLocationNum
-    type: u8
-    offset: 0x7
-    enum: NavRoom
-  - name: EventType
-    desc: 0 = normal, 1 = data download, 2 = skippable
-    type: u8
-    offset: 0x8
   loc: null
 - name: EventLocationAndNavigationInfo
   size: 0xC
@@ -1249,22 +1046,6 @@
     type: u8
     offset: 0x3
   loc: include/structs/connection.h:7
-- name: HatchData
-  size: 0x4
-  vars:
-  - name: Status
-    type: u8
-    offset: 0x0
-  - name: Anim
-    type: u8
-    offset: 0x1
-  - name: XPosition
-    type: u8
-    offset: 0x2
-  - name: YPosition
-    type: u8
-    offset: 0x3
-  loc: null
 - name: HatchLockEvent
   size: 0x4
   vars:
@@ -1272,10 +1053,10 @@
     type: u8
     offset: 0x0
     enum: Event
-  - name: AreaId
+  - name: Area
     type: u8
     offset: 0x1
-    enum: AreaId
+    enum: Area
   - name: RoomId_Plus1
     type: u8
     offset: 0x2
@@ -1573,15 +1354,16 @@
     type: u8
     offset: 0x24
   loc: include/structs/audio.h:6
-- name: NavConversationSubEvent
+- name: NavConversationSoundEvent
   size: 0x4
   vars:
   - name: NavConversationNum
     type: u8
     offset: 0x0
-  - name: SubEvent
+  - name: SoundEvent
     type: u16
     offset: 0x2
+    enum: SoundEvent
   loc: null
 - name: NavRoomHatchLockEvent
   size: 0x4
@@ -1606,10 +1388,10 @@
 - name: NavRoomLocation
   size: 0x2
   vars:
-  - name: AreaId
+  - name: Area
     type: u8
     offset: 0x0
-    enum: AreaId
+    enum: Area
   - name: RoomId_Plus1
     type: u8
     offset: 0x1
@@ -1620,10 +1402,10 @@
   - name: NavConversationNum
     type: u8
     offset: 0x0
-  - name: TargetArea
+  - name: TargetLocation
     type: u8
     offset: 0x1
-    enum: NavTargetArea
+    enum: NavigationTargetLocation
   - name: TargetXPosition
     type: u8
     offset: 0x2
@@ -1772,17 +1554,6 @@
     type: u8
     offset: 0x2
   loc: null
-- name: Oam
-  size: 0x8
-  vars:
-  - name: OamFramePtr
-    type: u16*
-    cat: oam_frame
-    offset: 0x0
-  - name: Duration
-    type: u8
-    offset: 0x4
-  loc: null
 - name: OamData__all
   size: 0x8
   vars:
@@ -1884,7 +1655,7 @@
   - name: effect
     type: u8
     offset: 0x2
-    enum: ParticleEffect
+    enum: ParticleId
   - name: stage
     type: u8
     offset: 0x3
@@ -2635,16 +2406,6 @@
     type: u16
     offset: 0x2
   loc: include/types.h:91
-- name: RawCoordsXY
-  size: 0x4
-  vars:
-  - name: X
-    type: u16
-    offset: 0x0
-  - name: Y
-    type: u16
-    offset: 0x2
-  loc: null
 - name: RawCoordsY
   size: 0x4
   vars:
@@ -2655,16 +2416,6 @@
     type: u16
     offset: 0x2
   loc: include/types.h:96
-- name: RawCoordsYX
-  size: 0x4
-  vars:
-  - name: Y
-    type: u16
-    offset: 0x0
-  - name: X
-    type: u16
-    offset: 0x2
-  loc: null
 - name: RoomEntry
   size: 0x1C
   vars:
@@ -2954,25 +2705,6 @@
     type: u8
     offset: 0xC
   loc: null
-- name: SamusAnimInfo
-  size: 0xC
-  vars:
-  - name: LoadingSaveFlag
-    type: u8
-    offset: 0x0
-  - name: PaletteAnimCounter
-    type: u8
-    offset: 0x1
-  - name: CurrPaletteRow
-    type: u8
-    offset: 0x2
-  - name: SpaceJumpSpinCounter
-    type: u8
-    offset: 0x3
-  - name: ShinesparkTimer
-    type: u8
-    offset: 0x4
-  loc: null
 - name: SamusAnimationInfo
   size: 0x8
   vars:
@@ -3254,22 +2986,6 @@
     type: s16
     offset: 0xE
   loc: include/structs/samus.h:93
-- name: SamusTimersAndCounters
-  size: 0x20
-  vars:
-  - name: AbsorbXPaletteTimer
-    type: u8
-    offset: 0x3
-  - name: DiffusionMissileChargeCounter
-    type: u8
-    offset: 0x13
-  - name: ConstantDamageDecrementTimer
-    type: u8
-    offset: 0x14
-  - name: ConstantDamageSoundTimer
-    type: u8
-    offset: 0x15
-  loc: null
 - name: SaveFileRam
   size: 0x1200
   vars:
@@ -3290,10 +3006,10 @@
   - name: unk_1C
     type: u8
     offset: 0x1C
-  - name: AreaId
+  - name: Area
     type: u8
     offset: 0x1D
-    enum: AreaId
+    enum: Area
   - name: RoomId
     type: u8
     offset: 0x1E
@@ -3375,8 +3091,8 @@
   - name: SamusEcho
     type: struct SamusEcho
     offset: 0x98
-  - name: SamusTimersAndCounters
-    type: struct SamusTimersAndCounters
+  - name: SamusEnvironmentalEffect
+    type: struct SamusEnvironmentalEffect
     offset: 0xA4
   - name: Equipment
     type: struct Equipment
@@ -3456,152 +3172,6 @@
     type: struct CollectedTank
     count: 0xA0
     offset: 0xF80
-  loc: null
-- name: SaxAnimData
-  size: 0xC
-  vars:
-  - name: GfxPtr
-    type: u8*
-    cat: gfx
-    offset: 0x0
-  - name: OamFramePtr
-    type: u16*
-    cat: oam_frame
-    offset: 0x4
-  - name: Timer
-    type: u8
-    offset: 0x8
-  loc: null
-- name: SaxData
-  size: 0x24
-  vars:
-  - name: OnScreenFlag
-    type: u8
-    cat: bool
-    offset: 0x0
-    enum: SaxOnScreenFlag
-  - name: Pose
-    type: u8
-    offset: 0x1
-    enum: SaxPose
-  - name: TurningFlag
-    type: u8
-    cat: bool
-    offset: 0x2
-  - name: DiagonalAim
-    type: u8
-    offset: 0x3
-  - name: MissilesArmedFlag
-    type: u8
-    cat: bool
-    offset: 0x4
-  - name: FrozenGfxFlag
-    type: u8
-    offset: 0x5
-  - name: MosaicFlag
-    type: u8
-    cat: bool
-    offset: 0x6
-  - name: Direction
-    type: u16
-    offset: 0x8
-    enum: HorizontalDirection
-  - name: XPosition
-    type: u16
-    offset: 0xA
-  - name: YPosition
-    type: u16
-    offset: 0xC
-  - name: XVelocity
-    type: s16
-    offset: 0xE
-  - name: YVelocity
-    type: s16
-    offset: 0x10
-  - name: AnimTimer
-    type: u8
-    offset: 0x12
-  - name: AnimState
-    type: u8
-    offset: 0x13
-  - name: TopGfxPtr
-    type: u8*
-    cat: gfx
-    offset: 0x14
-  - name: BottomGfxPtr
-    type: u8*
-    cat: gfx
-    offset: 0x18
-  - name: TopGfxLength
-    type: u16
-    offset: 0x1C
-  - name: BottomGfxLength
-    type: u16
-    offset: 0x1E
-  - name: OamFramePtr
-    type: u16*
-    cat: oam_frame
-    offset: 0x20
-  loc: null
-- name: SaxElevatorData
-  size: 0x8
-  vars:
-  - name: unk_00
-    type: u8
-    offset: 0x0
-  - name: unk_01
-    type: u8
-    offset: 0x1
-  - name: Stage
-    type: u8
-    offset: 0x2
-  - name: unk_03
-    type: u8
-    offset: 0x3
-  - name: unk_04
-    type: u8
-    offset: 0x4
-  - name: unk_05
-    type: u8
-    offset: 0x5
-  - name: Timer
-    type: u16
-    offset: 0x6
-  loc: null
-- name: SaxElevatorSprite
-  size: 0x14
-  vars:
-  - name: unk_00
-    type: u8
-    offset: 0x0
-  - name: Type
-    type: u8
-    offset: 0x1
-  - name: unk_02
-    type: u8
-    offset: 0x2
-  - name: XPosition
-    type: u16
-    offset: 0x4
-  - name: YPosition
-    type: u16
-    offset: 0x6
-  - name: XVelocity
-    type: s16
-    offset: 0x8
-  - name: YVelocity
-    type: s16
-    offset: 0xA
-  - name: AnimDurationCounter
-    type: u8
-    offset: 0xC
-  - name: CurrAnimFrame
-    type: u8
-    offset: 0xD
-  - name: OamFrame
-    type: u16*
-    cat: oam_frame
-    offset: 0x10
   loc: null
 - name: ScreenPositionAndVelocity
   size: 0x14
@@ -3694,7 +3264,7 @@
   - name: area
     type: u8
     offset: 0x1
-    enum: AreaId
+    enum: Area
   - name: previousEvent
     type: u8
     offset: 0x2
@@ -4065,20 +3635,6 @@
     type: const u16*
     offset: 0x8
   loc: include/structs/clipdata.h:20
-- name: TilemapAndClipdataPtrs
-  size: 0xC
-  vars:
-  - name: TilemapPtr
-    type: u16*
-    cat: tilemap
-    offset: 0x0
-  - name: ClipdataCollisionTypesPtr
-    type: u8*
-    offset: 0x4
-  - name: ClipdataBehaviorTypesPtr
-    type: u16*
-    offset: 0x8
-  loc: null
 - name: TilesetEntry
   size: 0x14
   vars:
