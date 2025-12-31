@@ -1,0 +1,21 @@
+- name: NonGameplayRam
+  size: 0x540
+  vars:
+  - name: pauseScreen
+    type: struct PauseScreenData
+  - name: inGame
+    type: struct InGameData
+  - name: titleScreen
+    type: struct TitleScreenData
+  - name: size
+    type: u8
+    count: 0x540
+  loc: include/globals.h:12
+- name: OamData
+  size: 0x8
+  vars:
+  - name: split
+    type: struct OamData__split
+  - name: all
+    type: struct OamData__all
+  loc: include/oam.h:109

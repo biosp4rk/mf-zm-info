@@ -1,41 +1,75 @@
 - name: AbilityCount
   vals:
-  - name: Missiles
+  - name: ABILITY_COUNT_NONE
+    val: 0x0
+  - name: ABILITY_COUNT_MISSILES
     val: 0x1
-  - name: MorphBall
+  - name: ABILITY_COUNT_MORPH_BALL
     val: 0x2
-  - name: ChargeBeam
+  - name: ABILITY_COUNT_CHARGE_BEAM
     val: 0x3
-  - name: Bombs
+  - name: ABILITY_COUNT_BOMBS
     val: 0x4
-  - name: HiJump
+  - name: ABILITY_COUNT_HIGH_JUMP
     val: 0x5
-  - name: SpeedBooster
+  - name: ABILITY_COUNT_SPEED_BOOSTER
     val: 0x6
-  - name: SuperMissiles
+  - name: ABILITY_COUNT_SUPER_MISSILES
     val: 0x7
-  - name: VariaSuit
+  - name: ABILITY_COUNT_VARIA_SUIT
     val: 0x8
-  - name: IceMissiles
+  - name: ABILITY_COUNT_ICE_MISSILES
     val: 0x9
-  - name: WideBeam
+  - name: ABILITY_COUNT_WIDE_BEAM
     val: 0xA
-  - name: PowerBombs
+  - name: ABILITY_COUNT_POWER_BOMBS
     val: 0xB
-  - name: SpaceJump
+  - name: ABILITY_COUNT_SPACE_JUMP
     val: 0xC
-  - name: PlasmaBeam
+  - name: ABILITY_COUNT_PLASMA_BEAM
     val: 0xD
-  - name: GravitySuit
+  - name: ABILITY_COUNT_GRAVITY_SUIT
     val: 0xE
-  - name: DiffusionMissiles
+  - name: ABILITY_COUNT_DIFFUSION_MISSILES
     val: 0xF
-  - name: WaveBeam
+  - name: ABILITY_COUNT_WAVE_BEAM
     val: 0x10
-  - name: ScrewAttack
+  - name: ABILITY_COUNT_SCREW_ATTACK
     val: 0x11
-  - name: IceBeam
+  - name: ABILITY_COUNT_ICE_BEAM
     val: 0x12
+  - name: ABILITY_COUNT_END
+    val: 0x13
+  loc: include/constants/event.h:396
+- name: Area
+  vals:
+  - name: AREA_MAIN_DECK
+    val: 0x0
+  - name: AREA_SECTOR_1
+    val: 0x1
+  - name: AREA_SECTOR_2
+    val: 0x2
+  - name: AREA_SECTOR_3
+    val: 0x3
+  - name: AREA_SECTOR_4
+    val: 0x4
+  - name: AREA_SECTOR_5
+    val: 0x5
+  - name: AREA_SECTOR_6
+    val: 0x6
+  - name: AREA_NORMAL_LAST
+    val: 0x6
+  - name: AREA_NORMAL_COUNT
+    val: 0x7
+  - name: AREA_TEST_1
+    val: 0x7
+  - name: AREA_TEST_2
+    val: 0x8
+  - name: AREA_TEST_3
+    val: 0x9
+  - name: AREA_END
+    val: 0xA
+  loc: include/constants/connection.h:4
 - name: AreaBitFlags
   vals:
   - name: MainDeck
@@ -52,6 +86,18 @@
     val: 0x20
   - name: Sector6
     val: 0x40
+  loc: null
+- name: AreaConnectionField
+  vals:
+  - name: AREA_CONNECTION_FIELD_SOURCE_AREA
+    val: 0x0
+  - name: AREA_CONNECTION_FIELD_SOURCE_DOOR
+    val: 0x1
+  - name: AREA_CONNECTION_FIELD_DESTINATION_AREA
+    val: 0x2
+  - name: AREA_CONNECTION_FIELD_COUNT
+    val: 0x3
+  loc: include/structs/connection.h:44
 - name: AreaId
   vals:
   - name: MainDeck
@@ -74,20 +120,24 @@
     val: 0x8
   - name: Debug3
     val: 0x9
+  loc: null
 - name: ArmCannonDirection
   vals:
-  - name: None
+  - name: ACD_NONE
     val: 0x0
-  - name: Forward
+  - name: ACD_FORWARD
     val: 0x1
-  - name: DiagonallyUp
+  - name: ACD_DIAGONALLY_UP
     val: 0x2
-  - name: DiagonallyDown
+  - name: ACD_DIAGONALLY_DOWN
     val: 0x3
-  - name: Up
+  - name: ACD_UP
     val: 0x4
-  - name: Down
+  - name: ACD_DOWN
     val: 0x5
+  - name: ACD_END
+    val: 0x6
+  loc: include/constants/samus.h:106
 - name: BackgroundFade
   vals:
   - name: Nothing
@@ -96,6 +146,7 @@
     val: 0x1
   - name: FadeToWhite
     val: 0x2
+  loc: null
 - name: BeamStatus
   vals:
   - name: ChargeBeam
@@ -108,6 +159,18 @@
     val: 0x8
   - name: IceBeam
     val: 0x10
+  loc: null
+- name: Bg3ScrollingType
+  vals:
+  - name: BG3_SCROLLING_TYPE_NONE
+    val: 0x0
+  - name: BG3_SCROLLING_TYPE_NORMAL
+    val: 0x1
+  - name: BG3_SCROLLING_TYPE_HALVED
+    val: 0x2
+  - name: BG3_SCROLLING_TYPE_QUARTERED
+    val: 0x3
+  loc: include/structs/scroll.h:46
 - name: BgProperty
   vals:
   - name: None
@@ -140,6 +203,7 @@
     val: 0x49
   - name: OmegaMetroidRoom
     val: 0x4A
+  loc: null
 - name: ButtonInput
   vals:
   - name: A
@@ -162,32 +226,580 @@
     val: 0x100
   - name: L
     val: 0x200
+  loc: null
+- name: ClipBehavior
+  vals:
+  - name: CLIP_BEHAVIOR_NONE
+    val: 0x0
+  - name: CLIP_BEHAVIOR_ELEVATOR_DOWN
+    val: 0x1
+  - name: CLIP_BEHAVIOR_ELEVATOR_UP
+    val: 0x2
+  - name: CLIP_BEHAVIOR_DOOR_TRANSITION
+    val: 0x3
+  - name: CLIP_BEHAVIOR_VERTICAL_UP_TRANSITION
+    val: 0x4
+  - name: CLIP_BEHAVIOR_VERTICAL_DOWN_TRANSITION
+    val: 0x5
+  - name: CLIP_BEHAVIOR_6
+    val: 0x6
+  - name: CLIP_BEHAVIOR_PREVENTS_CLIMBING_INTO_FROM_LADDER
+    val: 0x7
+  - name: CLIP_BEHAVIOR_WALL_LADDER
+    val: 0x8
+  - name: CLIP_BEHAVIOR_CEILING_LADDER
+    val: 0x9
+  - name: CLIP_BEHAVIOR_10
+    val: 0xA
+  - name: CLIP_BEHAVIOR_11
+    val: 0xB
+  - name: CLIP_BEHAVIOR_12
+    val: 0xC
+  - name: CLIP_BEHAVIOR_13
+    val: 0xD
+  - name: CLIP_BEHAVIOR_14
+    val: 0xE
+  - name: CLIP_BEHAVIOR_15
+    val: 0xF
+  - name: CLIP_BEHAVIOR_SHOT_BLOCK_NEVER_REFORM
+    val: 0x10
+  - name: CLIP_BEHAVIOR_TOP_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x11
+  - name: CLIP_BEHAVIOR_TOP_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x12
+  - name: CLIP_BEHAVIOR_BOTTOM_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x13
+  - name: CLIP_BEHAVIOR_BOTTOM_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x14
+  - name: CLIP_BEHAVIOR_SHOT_BLOCK_REFORM
+    val: 0x15
+  - name: CLIP_BEHAVIOR_MISSILE_BLOCK_NEVER_REFORM
+    val: 0x16
+  - name: CLIP_BEHAVIOR_BOMB_BLOCK_NEVER_REFORM
+    val: 0x17
+  - name: CLIP_BEHAVIOR_BOMB_BLOCK_REFORM
+    val: 0x18
+  - name: CLIP_BEHAVIOR_POWER_BOMB_BLOCK_NEVER_REFORM
+    val: 0x19
+  - name: CLIP_BEHAVIOR_MISSILE_BLOCK_NO_REFORM
+    val: 0x1A
+  - name: CLIP_BEHAVIOR_SHOT_BLOCK_NO_REFORM
+    val: 0x1B
+  - name: CLIP_BEHAVIOR_TOP_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x1C
+  - name: CLIP_BEHAVIOR_TOP_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x1D
+  - name: CLIP_BEHAVIOR_BOTTOM_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x1E
+  - name: CLIP_BEHAVIOR_BOTTOM_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x1F
+  - name: CLIP_BEHAVIOR_SPEED_BOOST_BLOCK_NO_REFORM
+    val: 0x20
+  - name: CLIP_BEHAVIOR_SPEED_BOOST_BLOCK_REFORM
+    val: 0x21
+  - name: CLIP_BEHAVIOR_SCREW_ATTACK_BLOCK_NO_REFORM
+    val: 0x22
+  - name: CLIP_BEHAVIOR_CRUMBLE_BLOCK
+    val: 0x23
+  - name: CLIP_BEHAVIOR_ENERGY_TANK
+    val: 0x24
+  - name: CLIP_BEHAVIOR_MISSILE_TANK
+    val: 0x25
+  - name: CLIP_BEHAVIOR_POWER_BOMB_TANK
+    val: 0x26
+  - name: CLIP_BEHAVIOR_HIDDEN_ENERGY_TANK
+    val: 0x27
+  - name: CLIP_BEHAVIOR_HIDDEN_MISSILE_TANK
+    val: 0x28
+  - name: CLIP_BEHAVIOR_HIDDEN_POWER_BOMB_TANK
+    val: 0x29
+  - name: CLIP_BEHAVIOR_UNDERWATER_ENERGY_TANK
+    val: 0x2A
+  - name: CLIP_BEHAVIOR_UNDERWATER_MISSILE_TANK
+    val: 0x2B
+  - name: CLIP_BEHAVIOR_UNDERWATER_POWER_BOMB_TANK
+    val: 0x2C
+  - name: CLIP_BEHAVIOR_VERTICAL_BOMB_CHAIN_1
+    val: 0x2D
+  - name: CLIP_BEHAVIOR_VERTICAL_BOMB_CHAIN_2
+    val: 0x2E
+  - name: CLIP_BEHAVIOR_VERTICAL_BOMB_CHAIN_3
+    val: 0x2F
+  - name: CLIP_BEHAVIOR_VERTICAL_BOMB_CHAIN_4
+    val: 0x30
+  - name: CLIP_BEHAVIOR_HORIZONTAL_BOMB_CHAIN_1
+    val: 0x31
+  - name: CLIP_BEHAVIOR_HORIZONTAL_BOMB_CHAIN_2
+    val: 0x32
+  - name: CLIP_BEHAVIOR_HORIZONTAL_BOMB_CHAIN_3
+    val: 0x33
+  - name: CLIP_BEHAVIOR_HORIZONTAL_BOMB_CHAIN_4
+    val: 0x34
+  - name: CLIP_BEHAVIOR_53
+    val: 0x35
+  - name: CLIP_BEHAVIOR_54
+    val: 0x36
+  - name: CLIP_BEHAVIOR_55
+    val: 0x37
+  - name: CLIP_BEHAVIOR_56
+    val: 0x38
+  - name: CLIP_BEHAVIOR_57
+    val: 0x39
+  - name: CLIP_BEHAVIOR_58
+    val: 0x3A
+  - name: CLIP_BEHAVIOR_59
+    val: 0x3B
+  - name: CLIP_BEHAVIOR_60
+    val: 0x3C
+  - name: CLIP_BEHAVIOR_61
+    val: 0x3D
+  - name: CLIP_BEHAVIOR_62
+    val: 0x3E
+  - name: CLIP_BEHAVIOR_63
+    val: 0x3F
+  - name: CLIP_BEHAVIOR_WATER
+    val: 0x40
+  - name: CLIP_BEHAVIOR_65
+    val: 0x41
+  - name: CLIP_BEHAVIOR_66
+    val: 0x42
+  - name: CLIP_BEHAVIOR_67
+    val: 0x43
+  - name: CLIP_BEHAVIOR_68
+    val: 0x44
+  - name: CLIP_BEHAVIOR_69
+    val: 0x45
+  - name: CLIP_BEHAVIOR_70
+    val: 0x46
+  - name: CLIP_BEHAVIOR_71
+    val: 0x47
+  - name: CLIP_BEHAVIOR_72
+    val: 0x48
+  - name: CLIP_BEHAVIOR_73
+    val: 0x49
+  - name: CLIP_BEHAVIOR_74
+    val: 0x4A
+  - name: CLIP_BEHAVIOR_75
+    val: 0x4B
+  - name: CLIP_BEHAVIOR_76
+    val: 0x4C
+  - name: CLIP_BEHAVIOR_77
+    val: 0x4D
+  - name: CLIP_BEHAVIOR_78
+    val: 0x4E
+  - name: CLIP_BEHAVIOR_79
+    val: 0x4F
+  - name: CLIP_BEHAVIOR_WET_GROUND
+    val: 0x50
+  - name: CLIP_BEHAVIOR_DUSTY_GROUND
+    val: 0x51
+  - name: CLIP_BEHAVIOR_82
+    val: 0x52
+  - name: CLIP_BEHAVIOR_BUBBLY_GROUND
+    val: 0x53
+  - name: CLIP_BEHAVIOR_VERY_DUSTY_GROUND
+    val: 0x54
+  - name: CLIP_BEHAVIOR_85
+    val: 0x55
+  - name: CLIP_BEHAVIOR_86
+    val: 0x56
+  - name: CLIP_BEHAVIOR_87
+    val: 0x57
+  - name: CLIP_BEHAVIOR_88
+    val: 0x58
+  - name: CLIP_BEHAVIOR_89
+    val: 0x59
+  - name: CLIP_BEHAVIOR_90
+    val: 0x5A
+  - name: CLIP_BEHAVIOR_91
+    val: 0x5B
+  - name: CLIP_BEHAVIOR_92
+    val: 0x5C
+  - name: CLIP_BEHAVIOR_93
+    val: 0x5D
+  - name: CLIP_BEHAVIOR_94
+    val: 0x5E
+  - name: CLIP_BEHAVIOR_95
+    val: 0x5F
+  - name: CLIP_BEHAVIOR_96
+    val: 0x60
+  - name: CLIP_BEHAVIOR_97
+    val: 0x61
+  - name: CLIP_BEHAVIOR_98
+    val: 0x62
+  - name: CLIP_BEHAVIOR_99
+    val: 0x63
+  - name: CLIP_BEHAVIOR_100
+    val: 0x64
+  - name: CLIP_BEHAVIOR_101
+    val: 0x65
+  - name: CLIP_BEHAVIOR_102
+    val: 0x66
+  - name: CLIP_BEHAVIOR_103
+    val: 0x67
+  - name: CLIP_BEHAVIOR_104
+    val: 0x68
+  - name: CLIP_BEHAVIOR_105
+    val: 0x69
+  - name: CLIP_BEHAVIOR_106
+    val: 0x6A
+  - name: CLIP_BEHAVIOR_107
+    val: 0x6B
+  - name: CLIP_BEHAVIOR_108
+    val: 0x6C
+  - name: CLIP_BEHAVIOR_109
+    val: 0x6D
+  - name: CLIP_BEHAVIOR_110
+    val: 0x6E
+  - name: CLIP_BEHAVIOR_111
+    val: 0x6F
+  - name: CLIP_BEHAVIOR_112
+    val: 0x70
+  - name: CLIP_BEHAVIOR_113
+    val: 0x71
+  - name: CLIP_BEHAVIOR_114
+    val: 0x72
+  - name: CLIP_BEHAVIOR_115
+    val: 0x73
+  - name: CLIP_BEHAVIOR_116
+    val: 0x74
+  - name: CLIP_BEHAVIOR_117
+    val: 0x75
+  - name: CLIP_BEHAVIOR_118
+    val: 0x76
+  - name: CLIP_BEHAVIOR_119
+    val: 0x77
+  - name: CLIP_BEHAVIOR_120
+    val: 0x78
+  - name: CLIP_BEHAVIOR_121
+    val: 0x79
+  - name: CLIP_BEHAVIOR_122
+    val: 0x7A
+  - name: CLIP_BEHAVIOR_123
+    val: 0x7B
+  - name: CLIP_BEHAVIOR_124
+    val: 0x7C
+  - name: CLIP_BEHAVIOR_125
+    val: 0x7D
+  - name: CLIP_BEHAVIOR_126
+    val: 0x7E
+  - name: CLIP_BEHAVIOR_GRAY_DOOR
+    val: 0x7F
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_0
+    val: 0x80
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_1
+    val: 0x81
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_2
+    val: 0x82
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_3
+    val: 0x83
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_4
+    val: 0x84
+  - name: CLIP_BEHAVIOR_WHITE_DOOR_SLOT_5
+    val: 0x85
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_0
+    val: 0x86
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_1
+    val: 0x87
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_2
+    val: 0x88
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_3
+    val: 0x89
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_4
+    val: 0x8A
+  - name: CLIP_BEHAVIOR_BLUE_DOOR_SLOT_5
+    val: 0x8B
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_0
+    val: 0x8C
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_1
+    val: 0x8D
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_2
+    val: 0x8E
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_3
+    val: 0x8F
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_4
+    val: 0x90
+  - name: CLIP_BEHAVIOR_GREEN_DOOR_SLOT_5
+    val: 0x91
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_0
+    val: 0x92
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_1
+    val: 0x93
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_2
+    val: 0x94
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_3
+    val: 0x95
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_4
+    val: 0x96
+  - name: CLIP_BEHAVIOR_YELLOW_DOOR_SLOT_5
+    val: 0x97
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_0
+    val: 0x98
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_1
+    val: 0x99
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_2
+    val: 0x9A
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_3
+    val: 0x9B
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_4
+    val: 0x9C
+  - name: CLIP_BEHAVIOR_RED_DOOR_SLOT_5
+    val: 0x9D
+  - name: CLIP_BEHAVIOR_END
+    val: 0x9E
+  loc: include/constants/clipdata.h:96
+- name: Clipdata
+  vals:
+  - name: CLIPDATA_AIR
+    val: 0x0
+  - name: CLIPDATA_PASS_THROUGH_BOTTOM
+    val: 0x1
+  - name: CLIPDATA_PREVENT_CLIMBING_INTO
+    val: 0x9
+  - name: CLIPDATA_SOLID
+    val: 0x10
+  - name: CLIPDATA_RIGHT_STEEP_FLOOR_SLOPE
+    val: 0x11
+  - name: CLIPDATA_LEFT_STEEP_FLOOR_SLOPE
+    val: 0x12
+  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x13
+  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x14
+  - name: CLIPDATA_LEFT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x15
+  - name: CLIPDATA_LEFT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x16
+  - name: CLIPDATA_STOP_ENEMY
+    val: 0x17
+  - name: CLIPDATA_CEILING_RUNGS
+    val: 0x18
+  - name: CLIPDATA_RIGHT_WALL_RUNGS
+    val: 0x19
+  - name: CLIPDATA_LEFT_WALL_RUNGS
+    val: 0x1A
+  - name: CLIPDATA_WATER
+    val: 0x1B
+  - name: CLIPDATA_WET_GROUND
+    val: 0x1C
+  - name: CLIPDATA_DUSTY_GROUND
+    val: 0x1D
+  - name: CLIPDATA_UNUSED_SOLID_1E
+    val: 0x1E
+  - name: CLIPDATA_UNUSED_SOLID_1F
+    val: 0x1F
+  - name: CLIPDATA_DOOR_TRANSITION
+    val: 0x20
+  - name: CLIPDATA_LEFT_STEEP_CEILING_SLOPE
+    val: 0x21
+  - name: CLIPDATA_RIGHT_STEEP_CEILING_SLOPE
+    val: 0x22
+  - name: CLIPDATA_LEFT_UPPER_SLIGHT_CEILING_SLOPE
+    val: 0x23
+  - name: CLIPDATA_LEFT_LOWER_SLIGHT_CEILING_SLOPE
+    val: 0x24
+  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_CEILING_SLOPE
+    val: 0x25
+  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_CEILING_SLOPE
+    val: 0x26
+  - name: CLIPDATA_VERTICAL_UP_TRANSITION
+    val: 0x27
+  - name: CLIPDATA_VERTICAL_DOWN_TRANSITION
+    val: 0x28
+  - name: CLIPDATA_ELEVATOR_UP
+    val: 0x29
+  - name: CLIPDATA_ELEVATOR_DOWN
+    val: 0x2A
+  - name: CLIPDATA_UNUSED_AIR_2B
+    val: 0x2B
+  - name: CLIPDATA_BUBBLY_GROUND
+    val: 0x2C
+  - name: CLIPDATA_VERY_DUSTY_GROUND
+    val: 0x2D
+  - name: CLIPDATA_UNUSED_AIR_2E
+    val: 0x2E
+  - name: CLIPDATA_UNUSED_AIR_2F
+    val: 0x2F
+  - name: CLIPDATA_WHITE_DOOR_SLOT_0
+    val: 0x30
+  - name: CLIPDATA_WHITE_DOOR_SLOT_1
+    val: 0x31
+  - name: CLIPDATA_WHITE_DOOR_SLOT_2
+    val: 0x32
+  - name: CLIPDATA_WHITE_DOOR_SLOT_3
+    val: 0x33
+  - name: CLIPDATA_WHITE_DOOR_SLOT_4
+    val: 0x34
+  - name: CLIPDATA_WHITE_DOOR_SLOT_5
+    val: 0x35
+  - name: CLIPDATA_BLUE_DOOR_SLOT_0
+    val: 0x36
+  - name: CLIPDATA_BLUE_DOOR_SLOT_1
+    val: 0x37
+  - name: CLIPDATA_BLUE_DOOR_SLOT_2
+    val: 0x38
+  - name: CLIPDATA_BLUE_DOOR_SLOT_3
+    val: 0x39
+  - name: CLIPDATA_BLUE_DOOR_SLOT_4
+    val: 0x3A
+  - name: CLIPDATA_BLUE_DOOR_SLOT_5
+    val: 0x3B
+  - name: CLIPDATA_RED_DOOR_SLOT_0
+    val: 0x3C
+  - name: CLIPDATA_RED_DOOR_SLOT_1
+    val: 0x3D
+  - name: CLIPDATA_RED_DOOR_SLOT_2
+    val: 0x3E
+  - name: CLIPDATA_GRAY_DOOR
+    val: 0x3F
+  - name: CLIPDATA_GREEN_DOOR_SLOT_0
+    val: 0x40
+  - name: CLIPDATA_GREEN_DOOR_SLOT_1
+    val: 0x41
+  - name: CLIPDATA_GREEN_DOOR_SLOT_2
+    val: 0x42
+  - name: CLIPDATA_GREEN_DOOR_SLOT_3
+    val: 0x43
+  - name: CLIPDATA_GREEN_DOOR_SLOT_4
+    val: 0x44
+  - name: CLIPDATA_GREEN_DOOR_SLOT_5
+    val: 0x45
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_0
+    val: 0x46
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_1
+    val: 0x47
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_2
+    val: 0x48
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_3
+    val: 0x49
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_4
+    val: 0x4A
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_5
+    val: 0x4B
+  - name: CLIPDATA_RED_DOOR_SLOT_3
+    val: 0x4C
+  - name: CLIPDATA_RED_DOOR_SLOT_4
+    val: 0x4D
+  - name: CLIPDATA_RED_DOOR_SLOT_5
+    val: 0x4E
+  - name: CLIPDATA_UNUSED_AIR_4F
+    val: 0x4F
+  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x50
+  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x51
+  - name: CLIPDATA_SHOT_BLOCK_NEVER_REFORM
+    val: 0x52
+  - name: CLIPDATA_SHOT_BLOCK_REFORM
+    val: 0x53
+  - name: CLIPDATA_MISSILE_BLOCK_NEVER_REFORM
+    val: 0x54
+  - name: CLIPDATA_BOMB_BLOCK_NEVER_REFORM
+    val: 0x55
+  - name: CLIPDATA_BOMB_BLOCK_REFORM
+    val: 0x56
+  - name: CLIPDATA_POWER_BOMB_BLOCK_NEVER_REFORM
+    val: 0x57
+  - name: CLIPDATA_SPEEDBOOST_BLOCK_NO_REFORM
+    val: 0x58
+  - name: CLIPDATA_SCREW_ATTACK_NO_REFORM
+    val: 0x59
+  - name: CLIPDATA_CRUMBLE
+    val: 0x5A
+  - name: CLIPDATA_SHOT_BLOCK_NO_REFORM
+    val: 0x5B
+  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x5C
+  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x5D
+  - name: CLIPDATA_MISSILE_BLOCK_NO_REFORM
+    val: 0x5E
+  - name: CLIPDATA_UNUSED_AIR_5F
+    val: 0x5F
+  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x60
+  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x61
+  - name: CLIPDATA_MISSILE_TANK
+    val: 0x62
+  - name: CLIPDATA_ENERGY_TANK
+    val: 0x63
+  - name: CLIPDATA_HIDDEN_MISSILE_TANK
+    val: 0x64
+  - name: CLIPDATA_HIDDEN_ENERGY_TANK
+    val: 0x65
+  - name: CLIPDATA_UNDERWATER_MISSILE_TANK
+    val: 0x66
+  - name: CLIPDATA_UNDERWATER_ENERGY_TANK
+    val: 0x67
+  - name: CLIPDATA_POWER_BOMB_TANK
+    val: 0x68
+  - name: CLIPDATA_HIDDEN_POWER_BOMB_TANK
+    val: 0x69
+  - name: CLIPDATA_UNDERWATER_POWER_BOMB_TANK
+    val: 0x6A
+  - name: CLIPDATA_SPEEDBOOST_BLOCK_REFORM
+    val: 0x6B
+  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x6C
+  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x6D
+  - name: CLIPDATA_UNUSED_AIR_6E
+    val: 0x6E
+  - name: CLIPDATA_UNUSED_AIR_6F
+    val: 0x6F
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_1
+    val: 0x70
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_2
+    val: 0x71
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_3
+    val: 0x72
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_4
+    val: 0x73
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_1
+    val: 0x74
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_2
+    val: 0x75
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_3
+    val: 0x76
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_4
+    val: 0x77
+  - name: CLIPDATA_END
+    val: 0xB0
+  loc: include/constants/clipdata.h:269
 - name: ClipdataAffectingAction
   vals:
-  - name: RemoveSolid
+  - name: CAA_NONE
+    val: 0x0
+  - name: CAA_REMOVE_SOLID
     val: 0x1
-  - name: MakeSolid
+  - name: CAA_MAKE_SOLID
     val: 0x2
-  - name: MakeStopEnemyBlock
+  - name: CAA_MAKE_SOLID_STOP_ENEMY
     val: 0x3
-  - name: SciserZeelaGadoraProjectile
+  - name: CAA_4
+    val: 0x4
+  - name: CAA_ENEMY_PROJECTILE
     val: 0x5
-  - name: Beam
+  - name: CAA_BEAM
     val: 0x6
-  - name: Bomb
+  - name: CAA_BOMB
     val: 0x7
-  - name: Missile
+  - name: CAA_MISSILE
     val: 0x8
-  - name: PowerBomb
+  - name: CAA_POWER_BOMB
     val: 0x9
-  - name: SpeedBoost
+  - name: CAA_SPEED_BOOST
     val: 0xA
-  - name: SpeedBoost_Ground
+  - name: CAA_SPEED_BOOST_GROUND
     val: 0xB
-  - name: ScrewAttack
+  - name: CAA_SCREW_ATTACK
     val: 0xC
-  - name: BombChain
+  - name: CAA_BOMB_CHAIN
     val: 0xD
+  - name: CAA_END
+    val: 0xE
+  loc: include/constants/clipdata.h:4
 - name: ClipdataBehaviorType
   vals:
   - name: AirOrSolid
@@ -356,6 +968,7 @@
     val: 0x9C
   - name: RedDoorSlot6
     val: 0x9D
+  loc: null
 - name: ClipdataCollisionType
   vals:
   - name: Air
@@ -384,6 +997,1003 @@
     val: 0xB
   - name: PassThroughBottom
     val: 0xC
+  loc: null
+- name: ClipdataMovement
+  vals:
+  - name: CLIPDATA_MOVEMENT_NONE
+    val: 0x0
+  - name: CLIPDATA_MOVEMENT_ELEVATOR_DOWN
+    val: 0x1
+  - name: CLIPDATA_MOVEMENT_ELEVATOR_UP
+    val: 0x2
+  - name: CLIPDATA_MOVEMENT_WALL_LADDER
+    val: 0x3
+  - name: CLIPDATA_MOVEMENT_PREVENTS_CLIMBING_INTO_FROM_LADDER
+    val: 0x4
+  - name: CLIPDATA_MOVEMENT_CEILING_LADDER
+    val: 0x5
+  - name: CLIPDATA_MOVEMENT_BEHAVIOR_10
+    val: 0x6
+  - name: CLIPDATA_MOVEMENT_BEHAVIOR_11
+    val: 0x7
+  - name: CLIPDATA_MOVEMENT_BEHAVIOR_96
+    val: 0x8
+  - name: CLIPDATA_MOVEMENT_END
+    val: 0x9
+  loc: include/constants/clipdata.h:70
+- name: ClipdataTilemap
+  vals:
+  - name: CLIPDATA_TILEMAP_0
+    val: 0x0
+  - name: CLIPDATA_TILEMAP_1
+    val: 0x1
+  - name: CLIPDATA_TILEMAP_2
+    val: 0x2
+  - name: CLIPDATA_TILEMAP_3
+    val: 0x3
+  - name: CLIPDATA_TILEMAP_4
+    val: 0x4
+  - name: CLIPDATA_TILEMAP_BOMB_BLOCK_REFORM
+    val: 0x5
+  - name: CLIPDATA_TILEMAP_MISSILE_BLOCK_NEVER_REFORM
+    val: 0x6
+  - name: CLIPDATA_TILEMAP_POWER_BOMB_BLOCK_NEVER_REFORM
+    val: 0x7
+  - name: CLIPDATA_TILEMAP_SPEED_BOOST_BLOCK_NO_REFORM
+    val: 0x8
+  - name: CLIPDATA_TILEMAP_SPEED_BOOST_BLOCK_REFORM
+    val: 0x9
+  - name: CLIPDATA_TILEMAP_SCREW_ATTACK_BLOCK_NO_REFORM
+    val: 0xA
+  - name: CLIPDATA_TILEMAP_CRUMBLE_BLOCK
+    val: 0xB
+  - name: CLIPDATA_TILEMAP_SHOT_BLOCK_REFORM
+    val: 0xC
+  - name: CLIPDATA_TILEMAP_MISSILE_BLOCK_NO_REFORM
+    val: 0xD
+  - name: CLIPDATA_TILEMAP_STOP_ENEMY
+    val: 0xE
+  - name: CLIPDATA_TILEMAP_SOLID_SPRITE
+    val: 0xF
+  - name: CLIPDATA_TILEMAP_16
+    val: 0x10
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_TOP_SLIGHTLY_OPEN
+    val: 0x11
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_TOP_HALF_OPEN
+    val: 0x12
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_TOP_MOSTLY_OPEN
+    val: 0x13
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_TOP_OPEN
+    val: 0x14
+  - name: CLIPDATA_TILEMAP_21
+    val: 0x15
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_TOP_SLIGHTLY_OPEN
+    val: 0x16
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_TOP_HALF_OPEN
+    val: 0x17
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_TOP_MOSTLY_OPEN
+    val: 0x18
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_TOP_OPEN
+    val: 0x19
+  - name: CLIPDATA_TILEMAP_26
+    val: 0x1A
+  - name: CLIPDATA_TILEMAP_27
+    val: 0x1B
+  - name: CLIPDATA_TILEMAP_MISSILE_TANK
+    val: 0x1C
+  - name: CLIPDATA_TILEMAP_ENERGY_TANK
+    val: 0x1D
+  - name: CLIPDATA_TILEMAP_POWER_BOMB_TANK
+    val: 0x1E
+  - name: CLIPDATA_TILEMAP_31
+    val: 0x1F
+  - name: CLIPDATA_TILEMAP_32
+    val: 0x20
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_TOP_SLIGHTLY_OPEN
+    val: 0x21
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_TOP_HALF_OPEN
+    val: 0x22
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_TOP_MOSTLY_OPEN
+    val: 0x23
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_TOP_OPEN
+    val: 0x24
+  - name: CLIPDATA_TILEMAP_37
+    val: 0x25
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_TOP_SLIGHTLY_OPEN
+    val: 0x26
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_TOP_HALF_OPEN
+    val: 0x27
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_TOP_MOSTLY_OPEN
+    val: 0x28
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_TOP_OPEN
+    val: 0x29
+  - name: CLIPDATA_TILEMAP_42
+    val: 0x2A
+  - name: CLIPDATA_TILEMAP_43
+    val: 0x2B
+  - name: CLIPDATA_TILEMAP_WATER
+    val: 0x2C
+  - name: CLIPDATA_TILEMAP_45
+    val: 0x2D
+  - name: CLIPDATA_TILEMAP_46
+    val: 0x2E
+  - name: CLIPDATA_TILEMAP_47
+    val: 0x2F
+  - name: CLIPDATA_TILEMAP_48
+    val: 0x30
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_BOTTOM_SLIGHTLY_OPEN
+    val: 0x31
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_BOTTOM_HALF_OPEN
+    val: 0x32
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_BOTTOM_MOSTLY_OPEN
+    val: 0x33
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_MIDDLE_BOTTOM_OPEN
+    val: 0x34
+  - name: CLIPDATA_TILEMAP_53
+    val: 0x35
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_BOTTOM_SLIGHTLY_OPEN
+    val: 0x36
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_BOTTOM_HALF_OPEN
+    val: 0x37
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_BOTTOM_MOSTLY_OPEN
+    val: 0x38
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_MIDDLE_BOTTOM_OPEN
+    val: 0x39
+  - name: CLIPDATA_TILEMAP_58
+    val: 0x3A
+  - name: CLIPDATA_TILEMAP_59
+    val: 0x3B
+  - name: CLIPDATA_TILEMAP_60
+    val: 0x3C
+  - name: CLIPDATA_TILEMAP_61
+    val: 0x3D
+  - name: CLIPDATA_TILEMAP_62
+    val: 0x3E
+  - name: CLIPDATA_TILEMAP_63
+    val: 0x3F
+  - name: CLIPDATA_TILEMAP_64
+    val: 0x40
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_BOTTOM_SLIGHTLY_OPEN
+    val: 0x41
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_BOTTOM_HALF_OPEN
+    val: 0x42
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_BOTTOM_MOSTLY_OPEN
+    val: 0x43
+  - name: CLIPDATA_TILEMAP_DOOR_RIGHT_BOTTOM_OPEN
+    val: 0x44
+  - name: CLIPDATA_TILEMAP_69
+    val: 0x45
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_BOTTOM_SLIGHTLY_OPEN
+    val: 0x46
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_BOTTOM_HALF_OPEN
+    val: 0x47
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_BOTTOM_MOSTLY_OPEN
+    val: 0x48
+  - name: CLIPDATA_TILEMAP_DOOR_LEFT_BOTTOM_OPEN
+    val: 0x49
+  - name: CLIPDATA_TILEMAP_74
+    val: 0x4A
+  - name: CLIPDATA_TILEMAP_75
+    val: 0x4B
+  - name: CLIPDATA_TILEMAP_76
+    val: 0x4C
+  - name: CLIPDATA_TILEMAP_77
+    val: 0x4D
+  - name: CLIPDATA_TILEMAP_78
+    val: 0x4E
+  - name: CLIPDATA_TILEMAP_79
+    val: 0x4F
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_0
+    val: 0x50
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_1
+    val: 0x51
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_2
+    val: 0x52
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_3
+    val: 0x53
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_4
+    val: 0x54
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_TOP_SLOT_5
+    val: 0x55
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_0
+    val: 0x56
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_1
+    val: 0x57
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_2
+    val: 0x58
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_3
+    val: 0x59
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_4
+    val: 0x5A
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_TOP_SLOT_5
+    val: 0x5B
+  - name: CLIPDATA_TILEMAP_92
+    val: 0x5C
+  - name: CLIPDATA_TILEMAP_93
+    val: 0x5D
+  - name: CLIPDATA_TILEMAP_94
+    val: 0x5E
+  - name: CLIPDATA_TILEMAP_95
+    val: 0x5F
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_0
+    val: 0x60
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_1
+    val: 0x61
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_2
+    val: 0x62
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_3
+    val: 0x63
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_4
+    val: 0x64
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_TOP_SLOT_5
+    val: 0x65
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_0
+    val: 0x66
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_1
+    val: 0x67
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_2
+    val: 0x68
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_3
+    val: 0x69
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_4
+    val: 0x6A
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_TOP_SLOT_5
+    val: 0x6B
+  - name: CLIPDATA_TILEMAP_108
+    val: 0x6C
+  - name: CLIPDATA_TILEMAP_109
+    val: 0x6D
+  - name: CLIPDATA_TILEMAP_110
+    val: 0x6E
+  - name: CLIPDATA_TILEMAP_111
+    val: 0x6F
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_0
+    val: 0x70
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_1
+    val: 0x71
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_2
+    val: 0x72
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_3
+    val: 0x73
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_4
+    val: 0x74
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_MIDDLE_BOTTOM_SLOT_5
+    val: 0x75
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_0
+    val: 0x76
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_1
+    val: 0x77
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_2
+    val: 0x78
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_3
+    val: 0x79
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_4
+    val: 0x7A
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_MIDDLE_BOTTOM_SLOT_5
+    val: 0x7B
+  - name: CLIPDATA_TILEMAP_124
+    val: 0x7C
+  - name: CLIPDATA_TILEMAP_125
+    val: 0x7D
+  - name: CLIPDATA_TILEMAP_126
+    val: 0x7E
+  - name: CLIPDATA_TILEMAP_127
+    val: 0x7F
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_0
+    val: 0x80
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_1
+    val: 0x81
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_2
+    val: 0x82
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_3
+    val: 0x83
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_4
+    val: 0x84
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_RIGHT_BOTTOM_SLOT_5
+    val: 0x85
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_0
+    val: 0x86
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_1
+    val: 0x87
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_2
+    val: 0x88
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_3
+    val: 0x89
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_4
+    val: 0x8A
+  - name: CLIPDATA_TILEMAP_WHITE_DOOR_LEFT_BOTTOM_SLOT_5
+    val: 0x8B
+  - name: CLIPDATA_TILEMAP_140
+    val: 0x8C
+  - name: CLIPDATA_TILEMAP_141
+    val: 0x8D
+  - name: CLIPDATA_TILEMAP_142
+    val: 0x8E
+  - name: CLIPDATA_TILEMAP_143
+    val: 0x8F
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_0
+    val: 0x90
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_1
+    val: 0x91
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_2
+    val: 0x92
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_3
+    val: 0x93
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_4
+    val: 0x94
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_TOP_SLOT_5
+    val: 0x95
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_0
+    val: 0x96
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_1
+    val: 0x97
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_2
+    val: 0x98
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_3
+    val: 0x99
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_4
+    val: 0x9A
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_TOP_SLOT_5
+    val: 0x9B
+  - name: CLIPDATA_TILEMAP_156
+    val: 0x9C
+  - name: CLIPDATA_TILEMAP_157
+    val: 0x9D
+  - name: CLIPDATA_TILEMAP_158
+    val: 0x9E
+  - name: CLIPDATA_TILEMAP_159
+    val: 0x9F
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_0
+    val: 0xA0
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_1
+    val: 0xA1
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_2
+    val: 0xA2
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_3
+    val: 0xA3
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_4
+    val: 0xA4
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_MIDDLE_TOP_SLOT_5
+    val: 0xA5
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_0
+    val: 0xA6
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_1
+    val: 0xA7
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_2
+    val: 0xA8
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_3
+    val: 0xA9
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_4
+    val: 0xAA
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_MIDDLE_TOP_SLOT_5
+    val: 0xAB
+  - name: CLIPDATA_TILEMAP_172
+    val: 0xAC
+  - name: CLIPDATA_TILEMAP_173
+    val: 0xAD
+  - name: CLIPDATA_TILEMAP_174
+    val: 0xAE
+  - name: CLIPDATA_TILEMAP_175
+    val: 0xAF
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_0
+    val: 0xB0
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_1
+    val: 0xB1
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_2
+    val: 0xB2
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_3
+    val: 0xB3
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_4
+    val: 0xB4
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_5
+    val: 0xB5
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_0
+    val: 0xB6
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_1
+    val: 0xB7
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_2
+    val: 0xB8
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_3
+    val: 0xB9
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_4
+    val: 0xBA
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_5
+    val: 0xBB
+  - name: CLIPDATA_TILEMAP_188
+    val: 0xBC
+  - name: CLIPDATA_TILEMAP_189
+    val: 0xBD
+  - name: CLIPDATA_TILEMAP_190
+    val: 0xBE
+  - name: CLIPDATA_TILEMAP_191
+    val: 0xBF
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_0
+    val: 0xC0
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_1
+    val: 0xC1
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_2
+    val: 0xC2
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_3
+    val: 0xC3
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_4
+    val: 0xC4
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_RIGHT_BOTTOM_SLOT_5
+    val: 0xC5
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_0
+    val: 0xC6
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_1
+    val: 0xC7
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_2
+    val: 0xC8
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_3
+    val: 0xC9
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_4
+    val: 0xCA
+  - name: CLIPDATA_TILEMAP_BLUE_DOOR_LEFT_BOTTOM_SLOT_5
+    val: 0xCB
+  - name: CLIPDATA_TILEMAP_204
+    val: 0xCC
+  - name: CLIPDATA_TILEMAP_205
+    val: 0xCD
+  - name: CLIPDATA_TILEMAP_206
+    val: 0xCE
+  - name: CLIPDATA_TILEMAP_207
+    val: 0xCF
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_0
+    val: 0xD0
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_1
+    val: 0xD1
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_2
+    val: 0xD2
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_3
+    val: 0xD3
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_4
+    val: 0xD4
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_TOP_SLOT_5
+    val: 0xD5
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_0
+    val: 0xD6
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_1
+    val: 0xD7
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_2
+    val: 0xD8
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_3
+    val: 0xD9
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_4
+    val: 0xDA
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_TOP_SLOT_5
+    val: 0xDB
+  - name: CLIPDATA_TILEMAP_220
+    val: 0xDC
+  - name: CLIPDATA_TILEMAP_221
+    val: 0xDD
+  - name: CLIPDATA_TILEMAP_222
+    val: 0xDE
+  - name: CLIPDATA_TILEMAP_223
+    val: 0xDF
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_0
+    val: 0xE0
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_1
+    val: 0xE1
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_2
+    val: 0xE2
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_3
+    val: 0xE3
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_4
+    val: 0xE4
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_MIDDLE_TOP_SLOT_5
+    val: 0xE5
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_0
+    val: 0xE6
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_1
+    val: 0xE7
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_2
+    val: 0xE8
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_3
+    val: 0xE9
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_4
+    val: 0xEA
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_MIDDLE_TOP_SLOT_5
+    val: 0xEB
+  - name: CLIPDATA_TILEMAP_236
+    val: 0xEC
+  - name: CLIPDATA_TILEMAP_237
+    val: 0xED
+  - name: CLIPDATA_TILEMAP_238
+    val: 0xEE
+  - name: CLIPDATA_TILEMAP_239
+    val: 0xEF
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_0
+    val: 0xF0
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_1
+    val: 0xF1
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_2
+    val: 0xF2
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_3
+    val: 0xF3
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_4
+    val: 0xF4
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_5
+    val: 0xF5
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_0
+    val: 0xF6
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_1
+    val: 0xF7
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_2
+    val: 0xF8
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_3
+    val: 0xF9
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_4
+    val: 0xFA
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_5
+    val: 0xFB
+  - name: CLIPDATA_TILEMAP_252
+    val: 0xFC
+  - name: CLIPDATA_TILEMAP_253
+    val: 0xFD
+  - name: CLIPDATA_TILEMAP_254
+    val: 0xFE
+  - name: CLIPDATA_TILEMAP_255
+    val: 0xFF
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_0
+    val: 0x100
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_1
+    val: 0x101
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_2
+    val: 0x102
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_3
+    val: 0x103
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_4
+    val: 0x104
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_RIGHT_BOTTOM_SLOT_5
+    val: 0x105
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_0
+    val: 0x106
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_1
+    val: 0x107
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_2
+    val: 0x108
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_3
+    val: 0x109
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_4
+    val: 0x10A
+  - name: CLIPDATA_TILEMAP_GREEN_DOOR_LEFT_BOTTOM_SLOT_5
+    val: 0x10B
+  - name: CLIPDATA_TILEMAP_268
+    val: 0x10C
+  - name: CLIPDATA_TILEMAP_269
+    val: 0x10D
+  - name: CLIPDATA_TILEMAP_270
+    val: 0x10E
+  - name: CLIPDATA_TILEMAP_271
+    val: 0x10F
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_0
+    val: 0x110
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_1
+    val: 0x111
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_2
+    val: 0x112
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_3
+    val: 0x113
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_4
+    val: 0x114
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_SLOT_5
+    val: 0x115
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_0
+    val: 0x116
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_1
+    val: 0x117
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_2
+    val: 0x118
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_3
+    val: 0x119
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_4
+    val: 0x11A
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_SLOT_5
+    val: 0x11B
+  - name: CLIPDATA_TILEMAP_284
+    val: 0x11C
+  - name: CLIPDATA_TILEMAP_285
+    val: 0x11D
+  - name: CLIPDATA_TILEMAP_286
+    val: 0x11E
+  - name: CLIPDATA_TILEMAP_287
+    val: 0x11F
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_0
+    val: 0x120
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_1
+    val: 0x121
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_2
+    val: 0x122
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_3
+    val: 0x123
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_4
+    val: 0x124
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_TOP_MIDDLE_SLOT_5
+    val: 0x125
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_0
+    val: 0x126
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_1
+    val: 0x127
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_2
+    val: 0x128
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_3
+    val: 0x129
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_4
+    val: 0x12A
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_TOP_MIDDLE_SLOT_5
+    val: 0x12B
+  - name: CLIPDATA_TILEMAP_300
+    val: 0x12C
+  - name: CLIPDATA_TILEMAP_301
+    val: 0x12D
+  - name: CLIPDATA_TILEMAP_302
+    val: 0x12E
+  - name: CLIPDATA_TILEMAP_303
+    val: 0x12F
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_0
+    val: 0x130
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_1
+    val: 0x131
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_2
+    val: 0x132
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_3
+    val: 0x133
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_4
+    val: 0x134
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_5
+    val: 0x135
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_0
+    val: 0x136
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_1
+    val: 0x137
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_2
+    val: 0x138
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_3
+    val: 0x139
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_4
+    val: 0x13A
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_5
+    val: 0x13B
+  - name: CLIPDATA_TILEMAP_316
+    val: 0x13C
+  - name: CLIPDATA_TILEMAP_317
+    val: 0x13D
+  - name: CLIPDATA_TILEMAP_318
+    val: 0x13E
+  - name: CLIPDATA_TILEMAP_319
+    val: 0x13F
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_0
+    val: 0x140
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_1
+    val: 0x141
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_2
+    val: 0x142
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_3
+    val: 0x143
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_4
+    val: 0x144
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_RIGHT_BOTTOM_SLOT_5
+    val: 0x145
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_0
+    val: 0x146
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_1
+    val: 0x147
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_2
+    val: 0x148
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_3
+    val: 0x149
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_4
+    val: 0x14A
+  - name: CLIPDATA_TILEMAP_YELLOW_DOOR_LEFT_BOTTOM_SLOT_5
+    val: 0x14B
+  - name: CLIPDATA_TILEMAP_332
+    val: 0x14C
+  - name: CLIPDATA_TILEMAP_333
+    val: 0x14D
+  - name: CLIPDATA_TILEMAP_334
+    val: 0x14E
+  - name: CLIPDATA_TILEMAP_335
+    val: 0x14F
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_0
+    val: 0x150
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_1
+    val: 0x151
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_2
+    val: 0x152
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_3
+    val: 0x153
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_4
+    val: 0x154
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_SLOT_5
+    val: 0x155
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_0
+    val: 0x156
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_1
+    val: 0x157
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_2
+    val: 0x158
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_3
+    val: 0x159
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_4
+    val: 0x15A
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_SLOT_5
+    val: 0x15B
+  - name: CLIPDATA_TILEMAP_348
+    val: 0x15C
+  - name: CLIPDATA_TILEMAP_349
+    val: 0x15D
+  - name: CLIPDATA_TILEMAP_350
+    val: 0x15E
+  - name: CLIPDATA_TILEMAP_351
+    val: 0x15F
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_0
+    val: 0x160
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_1
+    val: 0x161
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_2
+    val: 0x162
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_3
+    val: 0x163
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_4
+    val: 0x164
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_TOP_MIDDLE_SLOT_5
+    val: 0x165
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_0
+    val: 0x166
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_1
+    val: 0x167
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_2
+    val: 0x168
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_3
+    val: 0x169
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_4
+    val: 0x16A
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_TOP_MIDDLE_SLOT_5
+    val: 0x16B
+  - name: CLIPDATA_TILEMAP_364
+    val: 0x16C
+  - name: CLIPDATA_TILEMAP_365
+    val: 0x16D
+  - name: CLIPDATA_TILEMAP_366
+    val: 0x16E
+  - name: CLIPDATA_TILEMAP_367
+    val: 0x16F
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_0
+    val: 0x170
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_1
+    val: 0x171
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_2
+    val: 0x172
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_3
+    val: 0x173
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_4
+    val: 0x174
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_MIDDLE_SLOT_5
+    val: 0x175
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_0
+    val: 0x176
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_1
+    val: 0x177
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_2
+    val: 0x178
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_3
+    val: 0x179
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_4
+    val: 0x17A
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_MIDDLE_SLOT_5
+    val: 0x17B
+  - name: CLIPDATA_TILEMAP_380
+    val: 0x17C
+  - name: CLIPDATA_TILEMAP_381
+    val: 0x17D
+  - name: CLIPDATA_TILEMAP_382
+    val: 0x17E
+  - name: CLIPDATA_TILEMAP_383
+    val: 0x17F
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_0
+    val: 0x180
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_1
+    val: 0x181
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_2
+    val: 0x182
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_3
+    val: 0x183
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_4
+    val: 0x184
+  - name: CLIPDATA_TILEMAP_RED_DOOR_RIGHT_BOTTOM_SLOT_5
+    val: 0x185
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_0
+    val: 0x186
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_1
+    val: 0x187
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_2
+    val: 0x188
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_3
+    val: 0x189
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_4
+    val: 0x18A
+  - name: CLIPDATA_TILEMAP_RED_DOOR_LEFT_BOTTOM_SLOT_5
+    val: 0x18B
+  - name: CLIPDATA_TILEMAP_396
+    val: 0x18C
+  - name: CLIPDATA_TILEMAP_397
+    val: 0x18D
+  - name: CLIPDATA_TILEMAP_398
+    val: 0x18E
+  - name: CLIPDATA_TILEMAP_399
+    val: 0x18F
+  - name: CLIPDATA_TILEMAP_400
+    val: 0x190
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_TOP_SLIGHTLY_OPEN
+    val: 0x191
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_TOP_HALF_OPEN
+    val: 0x192
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_TOP_MOSTLY_OPEN
+    val: 0x193
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_TOP_OPEN
+    val: 0x194
+  - name: CLIPDATA_TILEMAP_405
+    val: 0x195
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_TOP_SLIGHTLY_OPEN
+    val: 0x196
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_TOP_HALF_OPEN
+    val: 0x197
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_TOP_MOSTLY_OPEN
+    val: 0x198
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_TOP_OPEN
+    val: 0x199
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_TOP_CLOSED
+    val: 0x19A
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_TOP_CLOSED
+    val: 0x19B
+  - name: CLIPDATA_TILEMAP_412
+    val: 0x19C
+  - name: CLIPDATA_TILEMAP_413
+    val: 0x19D
+  - name: CLIPDATA_TILEMAP_414
+    val: 0x19E
+  - name: CLIPDATA_TILEMAP_415
+    val: 0x19F
+  - name: CLIPDATA_TILEMAP_416
+    val: 0x1A0
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_TOP_SLIGHTLY_OPEN
+    val: 0x1A1
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_TOP_HALF_OPEN
+    val: 0x1A2
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_TOP_MOSTLY_OPEN
+    val: 0x1A3
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_TOP_OPEN
+    val: 0x1A4
+  - name: CLIPDATA_TILEMAP_421
+    val: 0x1A5
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_TOP_SLIGHTLY_OPEN
+    val: 0x1A6
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_TOP_HALF_OPEN
+    val: 0x1A7
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_TOP_MOSTLY_OPEN
+    val: 0x1A8
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_TOP_OPEN
+    val: 0x1A9
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_TOP_CLOSED
+    val: 0x1AA
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_TOP_CLOSED
+    val: 0x1AB
+  - name: CLIPDATA_TILEMAP_428
+    val: 0x1AC
+  - name: CLIPDATA_TILEMAP_429
+    val: 0x1AD
+  - name: CLIPDATA_TILEMAP_430
+    val: 0x1AE
+  - name: CLIPDATA_TILEMAP_431
+    val: 0x1AF
+  - name: CLIPDATA_TILEMAP_432
+    val: 0x1B0
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_BOTTOM_SLIGHTLY_OPEN
+    val: 0x1B1
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_BOTTOM_HALF_OPEN
+    val: 0x1B2
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_BOTTOM_MOSTLY_OPEN
+    val: 0x1B3
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_BOTTOM_OPEN
+    val: 0x1B4
+  - name: CLIPDATA_TILEMAP_437
+    val: 0x1B5
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_BOTTOM_SLIGHTLY_OPEN
+    val: 0x1B6
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_BOTTOM_HALF_OPEN
+    val: 0x1B7
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_BOTTOM_MOSTLY_OPEN
+    val: 0x1B8
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_BOTTOM_OPEN
+    val: 0x1B9
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_MIDDLE_BOTTOM_CLOSED
+    val: 0x1BA
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_MIDDLE_BOTTOM_CLOSED
+    val: 0x1BB
+  - name: CLIPDATA_TILEMAP_444
+    val: 0x1BC
+  - name: CLIPDATA_TILEMAP_445
+    val: 0x1BD
+  - name: CLIPDATA_TILEMAP_446
+    val: 0x1BE
+  - name: CLIPDATA_TILEMAP_447
+    val: 0x1BF
+  - name: CLIPDATA_TILEMAP_448
+    val: 0x1C0
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_BOTTOM_SLIGHTLY_OPEN
+    val: 0x1C1
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_BOTTOM_HALF_OPEN
+    val: 0x1C2
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_BOTTOM_MOSTLY_OPEN
+    val: 0x1C3
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_BOTTOM_OPEN
+    val: 0x1C4
+  - name: CLIPDATA_TILEMAP_453
+    val: 0x1C5
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_BOTTOM_SLIGHTLY_OPEN
+    val: 0x1C6
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_BOTTOM_HALF_OPEN
+    val: 0x1C7
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_BOTTOM_MOSTLY_OPEN
+    val: 0x1C8
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_BOTTOM_OPEN
+    val: 0x1C9
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_RIGHT_BOTTOM_CLOSED
+    val: 0x1CA
+  - name: CLIPDATA_TILEMAP_LOCKED_DOOR_LEFT_BOTTOM_CLOSED
+    val: 0x1CB
+  - name: CLIPDATA_TILEMAP_460
+    val: 0x1CC
+  - name: CLIPDATA_TILEMAP_461
+    val: 0x1CD
+  - name: CLIPDATA_TILEMAP_462
+    val: 0x1CE
+  - name: CLIPDATA_TILEMAP_463
+    val: 0x1CF
+  - name: CLIPDATA_TILEMAP_COUNT
+    val: 0x1D0
+  loc: include/constants/clipdata.h:389
+- name: ClipdataType
+  vals:
+  - name: CLIPDATA_TYPE_AIR
+    val: 0x0
+  - name: CLIPDATA_TYPE_SOLID
+    val: 0x1
+  - name: CLIPDATA_TYPE_LEFT_STEEP_FLOOR_SLOPE
+    val: 0x2
+  - name: CLIPDATA_TYPE_RIGHT_STEEP_FLOOR_SLOPE
+    val: 0x3
+  - name: CLIPDATA_TYPE_LEFT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x4
+  - name: CLIPDATA_TYPE_LEFT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x5
+  - name: CLIPDATA_TYPE_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x6
+  - name: CLIPDATA_TYPE_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x7
+  - name: CLIPDATA_TYPE_ENEMY_ONLY
+    val: 0x8
+  - name: CLIPDATA_TYPE_STOP_ENEMY
+    val: 0x9
+  - name: CLIPDATA_TYPE_TANK
+    val: 0xA
+  - name: CLIPDATA_TYPE_DOOR
+    val: 0xB
+  - name: CLIPDATA_TYPE_PASS_THROUGH_BOTTOM
+    val: 0xC
+  - name: CLIPDATA_TYPE_END
+    val: 0xD
+  loc: include/constants/clipdata.h:50
+- name: CollisionActor
+  vals:
+  - name: COLLISION_ACTOR_SAMUS
+    val: 0x0
+  - name: COLLISION_ACTOR_NON_SPRITE
+    val: 0x1
+  - name: COLLISION_ACTOR_SPRITE
+    val: 0x2
+  loc: include/constants/clipdata.h:23
 - name: CollisionCheck
   vals:
   - name: AirOrNoCollision
@@ -400,38 +2010,43 @@
     val: 0x10
   - name: SolidOrCollision
     val: 0x11
+  loc: null
 - name: Cutscene
   vals:
-  - name: None
+  - name: CUTSCENE_NONE
     val: 0x0
-  - name: SamusMonologueDuringIntro
+  - name: CUTSCENE_MONOLOGUE_INTRO
     val: 0x1
-  - name: ElevatorMonologueBeforeMissiles
+  - name: CUTSCENE_ELEVATOR_MONOLOGUE_REMIND
     val: 0x2
-  - name: ElevatorMonologueAfterChargeBeam
+  - name: CUTSCENE_ELEVATOR_MONOLOGUE_TRUST
     val: 0x3
-  - name: ElevatorMonologueAfterHiJump
+  - name: CUTSCENE_ELEVATOR_MONOLOGUE_SA_X
     val: 0x4
-  - name: ElevatorMonologueAfterHabitationDeck
+  - name: CUTSCENE_ELEVATOR_MONOLOGUE_ANIMALS
     val: 0x5
-  - name: ElevatorMonologueAfterRestrictedLab
+  - name: CUTSCENE_ELEVATOR_MONOLOGUE_INCIDENT
     val: 0x6
-  - name: SamusMonologueInNavRoom
+  - name: CUTSCENE_MONOLOGUE_FEDERATION
     val: 0x7
-  - name: SamusMonologueBeforeCredits
+  - name: CUTSCENE_MONOLOGUE_END
     val: 0x8
-  - name: NavRoomIncomingDispatch
+  - name: CUTSCENE_SECRET_CONVERSATION
     val: 0x9
-  - name: RestrictedLabExploding
+  - name: CUTSCENE_RESTRICTED_LAB_DETACHING
     val: 0xA
-  - name: RestrictedLabExploding_GameOver
+  - name: CUTSCENE_RESTRICTED_LAB_DETACHING_DYING
     val: 0xB
-  - name: BSLExplodingFromBoilerMeltDown
+  - name: CUTSCENE_BSL_EXPLODING
     val: 0xC
+  - name: CUTSCENE_END
+    val: 0xD
+  loc: include/globals.h:115
 - name: DebrisCloudType
   vals:
   - name: TODO
     val: 0x0
+  loc: null
 - name: Demo
   vals:
   - name: Sector2_BombJumping
@@ -458,24 +2073,60 @@
     val: 0xA
   - name: Sector1_ScrewAttack
     val: 0xB
+  loc: null
+- name: DemoId
+  vals:
+  - name: DEMO_ID_SECTOR_2
+    val: 0x0
+  - name: DEMO_ID_SECTOR_5
+    val: 0x1
+  - name: DEMO_ID_SECTOR_4
+    val: 0x2
+  - name: DEMO_ID_MAIN_DECK
+    val: 0x3
+  - name: DEMO_ID_WALL_JUMP
+    val: 0x4
+  - name: DEMO_ID_SHINESPARK
+    val: 0x5
+  - name: DEMO_ID_LADDERS
+    val: 0x6
+  - name: DEMO_ID_POWER_BOMBS
+    val: 0x7
+  - name: DEMO_ID_SECTOR_3
+    val: 0x8
+  - name: DEMO_ID_SECTOR_6
+    val: 0x9
+  - name: DEMO_ID_ARACHNUS
+    val: 0xA
+  - name: DEMO_ID_SCREW_ATTACK
+    val: 0xB
+  - name: DEMO_ID_END
+    val: 0xC
+  - name: DEMO_ID_HALF_LOADED_FLAG
+    val: 0x80
+  loc: include/constants/demo.h:11
 - name: DemoState
   vals:
-  - name: None
+  - name: DEMO_STATE_NONE
     val: 0x0
-  - name: Recording
+  - name: DEMO_STATE_RECORDING
     val: 0x1
-  - name: Playing
+  - name: DEMO_STATE_PLAYING
     val: 0x2
-  - name: Loading
+  - name: DEMO_STATE_LOADING
     val: 0x3
+  loc: include/constants/demo.h:4
 - name: DiagonalAim
   vals:
-  - name: None
+  - name: DIAG_AIM_NONE
     val: 0x0
-  - name: DiagonallyUp
+  - name: DIAG_AIM_UP
     val: 0x1
-  - name: DiagonallyDown
+  - name: DIAG_AIM_DOWN
     val: 0x2
+  - name: DIAG_AIM_END
+    val: 0x3
+  loc: include/constants/samus.h:117
 - name: Difficulty
   vals:
   - name: Easy
@@ -484,92 +2135,345 @@
     val: 0x1
   - name: Hard
     val: 0x2
+  loc: null
 - name: DoorType
   vals:
-  - name: AreaConnection
+  - name: DOOR_TYPE_NONE
+    val: 0x0
+  - name: DOOR_TYPE_AREA_CONNECTION
     val: 0x1
-  - name: NoHatch
+  - name: DOOR_TYPE_NO_HATCH
     val: 0x2
-  - name: OpenHatch
+  - name: DOOR_TYPE_OPEN_HATCH
     val: 0x3
-  - name: Hatch_CanLock
+  - name: DOOR_TYPE_HATCH_CAN_LOCK
     val: 0x4
-  - name: LoadsEventBasedRoom
+  - name: DOOR_TYPE_END
+    val: 0x5
+  - name: DOOR_TYPE_NO_FLAGS
+    val: 0xF
+  - name: DOOR_TYPE_LOAD_EVENT_BASED_ROOM
     val: 0x20
-  - name: DisplaysLocationName
+  - name: DOOR_TYPE_DISPLAY_LOCATION_NAME
     val: 0x40
+  loc: include/constants/connection.h:40
 - name: Elevator
   vals:
-  - name: MainDeckToOperationsDeck
+  - name: ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK
     val: 0x0
-  - name: MainDeckLongElevator
+  - name: ELEVATOR_MAIN_DECK_TO_LOBBY
     val: 0x1
-  - name: MainDeckToSector1
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_1
     val: 0x2
-  - name: MainDeckToSector2
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_2
     val: 0x3
-  - name: MainDeckToSector4
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_4
     val: 0x4
-  - name: MainDeckToSector5
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_5
     val: 0x5
-  - name: MainDeckToSector6
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_6
     val: 0x6
-  - name: MainDeckToSector3
+  - name: ELEVATOR_MAIN_DECK_TO_SECTOR_3
     val: 0x7
-  - name: MainDeckLongElevator_PowerOutage
+  - name: ELEVATOR_MAIN_DECK_TO_LOBBY_POWER_OUTAGE
     val: 0x8
-  - name: MainDeckToHabitationDeck
+  - name: ELEVATOR_MAIN_DECK_TO_HABITATIONS_DECK
     val: 0x9
-  - name: RestrictedZoneToSector1
+  - name: ELEVATOR_RESTRICTED_ZONE_TO_SECTOR_1
     val: 0xA
+  - name: ELEVATOR_END
+    val: 0xB
+  loc: include/constants/connection.h:55
 - name: EscapeStatus
   vals:
-  - name: None
+  - name: ESCAPE_STATUS_NONE
     val: 0x0
-  - name: Happening
+  - name: ESCAPE_STATUS_HAPPENNING
     val: 0x1
-  - name: Failed
+  - name: ESCAPE_STATUS_FAILED
     val: 0x2
+  loc: include/structs/escape.h:16
+- name: Event
+  vals:
+  - name: EVENT_NONE
+    val: 0x0
+  - name: EVENT_NAVIGATION_ROOM_BEFORE_QUARANTINE_BAY
+    val: 0x1
+  - name: EVENT_QUARANTINE_BAY_HORNOAD_DEAD
+    val: 0x2
+  - name: EVENT_NAVIGATION_ROOM_AFTER_QUARANTINE_BAY
+    val: 0x3
+  - name: EVENT_NAVIGATION_ROOM_BEFORE_ELEVATOR
+    val: 0x4
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_1
+    val: 0x5
+  - name: EVENT_ENTERED_MISSILE_DATA_ROOM
+    val: 0x6
+  - name: EVENT_MISSILE_DATA_DOWNLOADED
+    val: 0x7
+  - name: EVENT_ENTERED_NAVIGATION_ROOM_POWER_OUTAGE
+    val: 0x8
+  - name: EVENT_NAVIGATION_ROOM_AFTER_MISSILES
+    val: 0x9
+  - name: EVENT_MORPH_BALL_ABILITY_RECOVERED
+    val: 0xA
+  - name: EVENT_NAVIGATION_ROOM_AFTER_MORPH_BALL
+    val: 0xB
+  - name: EVENT_ENTERED_ELEVATOR_ROOM
+    val: 0xC
+  - name: EVENT_SA_X_ELEVATOR_CUTSCENE_ENDS
+    val: 0xD
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_SRX
+    val: 0xE
+  - name: EVENT_CHARGE_BEAM_ABILITY_RECOVERED
+    val: 0xF
+  - name: EVENT_ALL_STABILIZERS_ONLINE
+    val: 0x10
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_SRX
+    val: 0x11
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_TRO
+    val: 0x12
+  - name: EVENT_SECURITY_LEVEL_1_UNLOCKED
+    val: 0x13
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_2
+    val: 0x14
+  - name: EVENT_ENTERING_BOMB_DATA_ROOM
+    val: 0x15
+  - name: EVENT_BOMB_DATA_DOWNLOADED
+    val: 0x16
+  - name: EVENT_SA_X_QUAKE
+    val: 0x17
+  - name: EVENT_LEFT_SA_X_QUAKE_ROOM
+    val: 0x18
+  - name: EVENT_HIGH_JUMP_ABILITY_RECOVERED
+    val: 0x19
+  - name: EVENT_ESCAPED_TRO_1_SA_X
+    val: 0x1A
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_TRO
+    val: 0x1B
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_AQA
+    val: 0x1C
+  - name: EVENT_SPEED_BOOSTER_ABILITY_RECOVERED
+    val: 0x1D
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_3
+    val: 0x1E
+  - name: EVENT_ENTERED_PUMP_CONTROL_UNIT
+    val: 0x1F
+  - name: EVENT_WATER_LEVEL_LOWERED
+    val: 0x20
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_AQA
+    val: 0x21
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_PYR
+    val: 0x22
+  - name: EVENT_SECURITY_LEVEL_2_UNLOCKED
+    val: 0x23
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_4
+    val: 0x24
+  - name: EVENT_ENTERED_SUPER_MISSILE_DATA_ROOM
+    val: 0x25
+  - name: EVENT_SUPER_MISSILE_DATA_DOWNLOADED
+    val: 0x26
+  - name: EVENT_TRIGGERED_BOX_RUMBLE
+    val: 0x27
+  - name: EVENT_BOX_DEFEATED
+    val: 0x28
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_PYR
+    val: 0x29
+  - name: EVENT_LEFT_NAVIGATION_ROOM
+    val: 0x2A
+  - name: EVENT_SECRET_CONVERSATION
+    val: 0x2B
+  - name: EVENT_SECRET_CONVERSATION_OVER
+    val: 0x2C
+  - name: EVENT_SKIPPED_BY_USING_NOC_NAVIGATION_ROOM
+    val: 0x2D
+  - name: EVENT_ENTERED_NOC_NAVIGATION_ROOM
+    val: 0x2E
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_NOC
+    val: 0x2F
+  - name: EVENT_NOC_SA_X_ENCOUNTER
+    val: 0x30
+  - name: EVENT_ESCAPED_NOC_SA_X
+    val: 0x31
+  - name: EVENT_NOC_DATA_ROOM_DESTROYED
+    val: 0x32
+  - name: EVENT_VARIA_SUIT_ABILITY_RECOVERED
+    val: 0x33
+  - name: EVENT_REACHED_TOP_OF_ROOM_AFTER_VARIA
+    val: 0x34
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_NOC
+    val: 0x35
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_ARC
+    val: 0x36
+  - name: EVENT_SECURITY_LEVEL_3_UNLOCKED
+    val: 0x37
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_5
+    val: 0x38
+  - name: EVENT_ENTERED_ICE_MISSILE_DATA_ROOM
+    val: 0x39
+  - name: EVENT_ICE_MISSILE_DATA_DOWNLOADED
+    val: 0x3A
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_ARC
+    val: 0x3B
+  - name: EVENT_WIDE_BEAM_ABILITY_RECOVERED
+    val: 0x3C
+  - name: EVENT_COOLING_UNIT_OPERATIONAL
+    val: 0x3D
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_PYR_2
+    val: 0x3E
+  - name: EVENT_ANIMALS_RELEASED
+    val: 0x3F
+  - name: EVENT_NAVIGATION_ROOM_AFTER_ANIMALS
+    val: 0x40
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_ARC_2
+    val: 0x41
+  - name: EVENT_POWER_BOMB_DATA_DOWNLOADED
+    val: 0x42
+  - name: EVENT_ARC_SA_X_ENCOUNTER
+    val: 0x43
+  - name: EVENT_ESCAPED_ARC_SA_X
+    val: 0x44
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_ARC_2
+    val: 0x45
+  - name: EVENT_POWER_OUTAGE
+    val: 0x46
+  - name: EVENT_ENTERED_SHIP
+    val: 0x47
+  - name: EVENT_ENTERED_YAKUZA_ROOM
+    val: 0x48
+  - name: EVENT_SPACE_JUMP_ABILITY_RECOVERED
+    val: 0x49
+  - name: EVENT_AUXILARY_POWER_ENGAGED
+    val: 0x4A
+  - name: EVENT_NAVIGATION_ROOM_AFTER_YAKUZA
+    val: 0x4B
+  - name: EVENT_ENGAGED_TRO_2_SA_X
+    val: 0x4C
+  - name: EVENT_ESCAPED_TRO_2_SA_X
+    val: 0x4D
+  - name: EVENT_PLASMA_BEAM_ABILITY_RECOVERED
+    val: 0x4E
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_TRO_2
+    val: 0x4F
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_ARC_3
+    val: 0x50
+  - name: EVENT_GRAVITY_SUIT_ABILITY_RECOVERED
+    val: 0x51
+  - name: EVENT_ENTERED_LEVEL_4_SECURITY_ROOM
+    val: 0x52
+  - name: EVENT_SECURITY_LEVEL_4_UNLOCKED
+    val: 0x53
+  - name: EVENT_SECRET_MESSAGE_2
+    val: 0x54
+  - name: EVENT_ENTERED_DIFFUSION_MISSILE_DATA_ROOM
+    val: 0x55
+  - name: EVENT_DIFFUSION_MISSILE_DATA_DOWNLOADED
+    val: 0x56
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_AQA_2
+    val: 0x57
+  - name: EVENT_NAVIGATION_ROOM_ENTERING_NOC_2
+    val: 0x58
+  - name: EVENT_RESTRICTED_ZONE_WARNING
+    val: 0x59
+  - name: EVENT_TRIGGERED_BOX_2_RUMBLE
+    val: 0x5A
+  - name: EVENT_WAVE_BEAM_ABILITY_RECOVERED
+    val: 0x5B
+  - name: EVENT_RESTRICTED_LABORATORY_EXPLOSION
+    val: 0x5C
+  - name: EVENT_60_SECONDS_TO_DETACHMENT
+    val: 0x5D
+  - name: EVENT_ESCAPED_RESTRICTED_LABORATORY
+    val: 0x5E
+  - name: EVENT_NAVIGATION_ROOM_AFTER_RESTRICTED_LABORATORY
+    val: 0x5F
+  - name: EVENT_SCREW_ATTACK_ABILITY_RECOVERED
+    val: 0x60
+  - name: EVENT_NAVIGATION_ROOM_LEAVING_SRX_2
+    val: 0x61
+  - name: EVENT_END_OF_FIRST_CONVERSATION
+    val: 0x62
+  - name: EVENT_SECOND_CONVERSATION
+    val: 0x63
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_6
+    val: 0x64
+  - name: EVENT_ENTERED_OPERATION_DECK
+    val: 0x65
+  - name: EVENT_SA_X_DEFEATED
+    val: 0x66
+  - name: EVENT_ORBIT_CHANGE_IMPLEMENTED
+    val: 0x67
+  - name: EVENT_SKIPPED_BY_NOT_TALKING_TO_COMPUTER_7
+    val: 0x68
+  - name: EVENT_ENTERED_SHIP_ROOM
+    val: 0x69
+  - name: EVENT_SA_X_KILLED_BY_OMEGA_METROID
+    val: 0x6A
+  - name: EVENT_ICE_BEAM_ABILITY_RECOVERED
+    val: 0x6B
+  - name: EVENT_OMEGA_METROID_DEFEATED
+    val: 0x6C
+  - name: EVENT_ESCAPED_ON_SHIP
+    val: 0x6D
+  - name: EVENT_END
+    val: 0x6E
+  loc: include/constants/event.h:6
+- name: EventBasedConnectionField
+  vals:
+  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_AREA
+    val: 0x0
+  - name: EVENT_BASED_CONNECTION_FIELD_SOURCE_DOOR
+    val: 0x1
+  - name: EVENT_BASED_CONNECTION_FIELD_EVENT
+    val: 0x2
+  - name: EVENT_BASED_CONNECTION_FIELD_DESTINATION_DOOR
+    val: 0x3
+  - name: EVENT_BASED_CONNECTION_FIELD_COUNT
+    val: 0x4
+  loc: include/structs/connection.h:52
 - name: EventBasedEffect
   vals:
-  - name: AtmosphericStabilizerRoom
+  - name: EVENT_EFFECT_NONE
+    val: 0x0
+  - name: EVENT_EFFECT_ATMOSPHERIC_STABILIZER
     val: 0x1
-  - name: Box2Room
+  - name: EVENT_EFFECT_BOX2_ROOM
+    val: 0x2
+  - name: EVENT_EFFECT_SECTOR1_NON_STABILIZER
     val: 0x3
-  - name: Sector1NonStabilizerRoom
+  - name: EVENT_EFFECT_ELECTRIFIED_WATER
     val: 0x4
-  - name: ElectrifiedWaterRoom
+  - name: EVENT_EFFECT_MELTDOWN
     val: 0x5
-  - name: Meltdown
+  - name: EVENT_EFFECT_AUX_POWER_INACTIVE
     val: 0x6
-  - name: AuxiliaryPowerStationRoom_Inactive
+  - name: EVENT_EFFECT_SAX_ELEVATOR_EXPLOSION
     val: 0x7
-  - name: ExplosionAfterSaxElevatorCutscene
+  - name: EVENT_EFFECT_SAX_ELEVATOR_POWER
     val: 0x8
-  - name: PowerOutageAfterSaxElevatorCutscene
+  - name: EVENT_EFFECT_MAIN_BOILER_ROOM
     val: 0x9
-  - name: MainBoilerRoom
+  - name: EVENT_EFFECT_REACTOR_CORE_ACTIVE
     val: 0xA
-  - name: CentralReactorCore_Active
+  - name: EVENT_EFFECT_YAKUZA_ROOM
     val: 0xB
-  - name: YakuzaRoom
+  - name: EVENT_EFFECT_RESTRICTED_LAB
+    val: 0xC
+  - name: EVENT_EFFECT_NIGHTMARE_SHADOW
     val: 0xD
-  - name: RestrictedLab_BeforeSax
+  - name: EVENT_EFFECT_NIGHTMARE_ROOM
     val: 0xE
-  - name: NightmareSilhouetteRoom
+  - name: EVENT_EFFECT_OPERATIONS_ROOM
     val: 0xF
-  - name: NightmareRoom
+  - name: EVENT_EFFECT_OMEGA_METROID_ROOM
     val: 0x10
-  - name: OperationsRoom
+  - name: EVENT_EFFECT_POWER_OUTAGE_MISSILES
     val: 0x11
-  - name: OmegaMetroidRoom
+  - name: EVENT_EFFECT_POWER_OUTAGE_YAKUZA
     val: 0x12
-  - name: PowerOutage_AfterMissiles
+  - name: EVENT_EFFECT_RECOVERING_SUIT
     val: 0x13
-  - name: PowerOutage_BeforeYakuza
-    val: 0x14
-  - name: RecoveringSuit
-    val: 0x16
+  loc: include/constants/event.h:373
 - name: FloatingPointClass
   vals:
   - name: SignalingNan
@@ -582,6 +2486,7 @@
     val: 0x3
   - name: Infinity
     val: 0x4
+  loc: null
 - name: ForcedMovement
   vals:
   - name: NoneOrSparkingUpwards
@@ -598,6 +2503,7 @@
     val: 0x15
   - name: HoldingJumpWhenBouncing_Frame3
     val: 0x16
+  loc: null
 - name: ForegroundEffect
   vals:
   - name: Nothing
@@ -618,6 +2524,7 @@
     val: 0x8
   - name: PowerBombImploding
     val: 0x9
+  loc: null
 - name: GameMode
   vals:
   - name: Title
@@ -650,6 +2557,20 @@
     val: 0xD
   - name: DebugMenu_BetaOnly
     val: 0xE
+  loc: null
+- name: GateType
+  vals:
+  - name: GATE_TYPE_LEFT_THIN
+    val: 0x1
+  - name: GATE_TYPE_RIGHT_THIN
+    val: 0x2
+  - name: GATE_TYPE_LEFT_WIDE
+    val: 0x3
+  - name: GATE_TYPE_RIGHT_WIDE
+    val: 0x4
+  - name: GATE_TYPE_HABITATION
+    val: 0x5
+  loc: src/sprites_AI/gate.c:18
 - name: GraphicsAnimType
   vals:
   - name: NotAnimated
@@ -658,6 +2579,24 @@
     val: 0x1
   - name: Alternate
     val: 0x4
+  loc: null
+- name: GroudEffect
+  vals:
+  - name: GROUND_EFFECT_NONE
+    val: 0x0
+  - name: GROUND_EFFECT_WET_GROUND
+    val: 0x1
+  - name: GROUND_EFFECT_DUSTY_GROUND
+    val: 0x2
+  - name: GROUND_EFFECT_VERY_DUSTY_GROUND
+    val: 0x3
+  - name: GROUND_EFFECT_4
+    val: 0x4
+  - name: GROUND_EFFECT_BUBBLY_GROUND
+    val: 0x5
+  - name: GROUND_EFFECT_END
+    val: 0x6
+  loc: include/constants/clipdata.h:29
 - name: GroundTypeUnderSamus
   vals:
   - name: Normal
@@ -673,6 +2612,26 @@
     val: 0x4
   - name: BubblyGround
     val: 0x5
+  loc: null
+- name: Hazard
+  vals:
+  - name: HAZARD_NONE
+    val: 0x0
+  - name: HAZARD_WATER
+    val: 0x1
+  - name: HAZARD_LAVA
+    val: 0x2
+  - name: HAZARD_ACID
+    val: 0x3
+  - name: HAZARD_HEAT
+    val: 0x4
+  - name: HAZARD_COLD_KNOCKBACK
+    val: 0x5
+  - name: HAZARD_COLD
+    val: 0x6
+  - name: HAZARD_END
+    val: 0x7
+  loc: include/constants/clipdata.h:84
 - name: HazardAffectingSamus
   vals:
   - name: None
@@ -689,12 +2648,23 @@
     val: 0x5
   - name: ColdDamage
     val: 0x6
+  loc: null
 - name: HorizontalDirection
   vals:
   - name: Right
     val: 0x10
   - name: Left
     val: 0x20
+  loc: null
+- name: HornoadRangeAction
+  vals:
+  - name: HRANGE_NONE
+    val: 0x0
+  - name: HRANGE_JUMP
+    val: 0x1
+  - name: HRANGE_TURN
+    val: 0x2
+  loc: src/sprites_AI/hornoad.c:15
 - name: InstrumentType
   vals:
   - name: Sample
@@ -728,6 +2698,16 @@
     val: 0x40
   - name: EveryKeySplit
     val: 0x80
+  loc: null
+- name: KihunterGroundRange
+  vals:
+  - name: KIHUNTER_GROUND_OUT_OF_RANGE
+    val: 0x0
+  - name: KIHUNTER_GROUND_SAMUS_IN_FRONT
+    val: 0x1
+  - name: KIHUNTER_GROUND_SAMUS_BEHIND
+    val: 0x2
+  loc: src/sprites_AI/kihunter.c:18
 - name: Language
   vals:
   - name: Japanese_Kanji
@@ -744,6 +2724,73 @@
     val: 0x5
   - name: Spanish
     val: 0x6
+  loc: null
+- name: LocationText
+  vals:
+  - name: LT_MAIN_DECK
+    val: 0x0
+  - name: LT_SECTOR_1
+    val: 0x1
+  - name: LT_SECTOR_2
+    val: 0x2
+  - name: LT_SECTOR_3
+    val: 0x3
+  - name: LT_SECTOR_4
+    val: 0x4
+  - name: LT_SECTOR_5
+    val: 0x5
+  - name: LT_SECTOR_6
+    val: 0x6
+  - name: LT_REACTOR_SILO
+    val: 0x7
+  - name: LT_RESTRICTED_ZONE
+    val: 0x8
+  - name: LT_OPERATIONS_DECK
+    val: 0x9
+  - name: LT_HABITATIONS_DECK
+    val: 0xA
+  - name: LT_DOCKING_BAY
+    val: 0xB
+  - name: LT_NAVIGATION_ROOM
+    val: 0xC
+  - name: LT_DATA_ROOM
+    val: 0xD
+  - name: LT_SECURITY_ROOM
+    val: 0xE
+  - name: LT_RECHARGE_ROOM
+    val: 0xF
+  - name: LT_SAVE_ROOM
+    val: 0x10
+  - name: LT_OPERATIONS_ROOM
+    val: 0x11
+  - name: LT_QUARANTINE_BAY
+    val: 0x12
+  - name: LT_SUB_ZERO_CONTAINMENT
+    val: 0x13
+  - name: LT_CENTRAL_REACTOR_CORE
+    val: 0x14
+  - name: LT_AUXILARY_POWER_STATION
+    val: 0x15
+  - name: LT_RESTRICTED_LABORATORY
+    val: 0x16
+  - name: LT_PUMP_CONTROL_UNIT
+    val: 0x17
+  - name: LT_MAIN_BOILER
+    val: 0x18
+  - name: LT_MAIN_BOILER_CONTROL_ROOM
+    val: 0x19
+  - name: LT_END
+    val: 0x1A
+  loc: include/location_text.h:6
+- name: LockScreenType
+  vals:
+  - name: LOCK_SCREEN_TYPE_NONE
+    val: 0x0
+  - name: LOCK_SCREEN_TYPE_POSITION
+    val: 0x1
+  - name: LOCK_SCREEN_TYPE_MIDDLE
+    val: 0x2
+  loc: include/structs/scroll.h:29
 - name: Lz77BackgroundSize
   vals:
   - name: Size_256_256
@@ -752,6 +2799,16 @@
     val: 0x1
   - name: Size_256_512
     val: 0x2
+  loc: null
+- name: MeltdownState
+  vals:
+  - name: MELTDOWN_NONE
+    val: 0x0
+  - name: MELTDOWN_DURING
+    val: 0x1
+  - name: MELTDOWN_CAN_BE_STOPPED
+    val: 0x2
+  loc: include/constants/event.h:426
 - name: MissileBombStatus
   vals:
   - name: Missiles
@@ -766,6 +2823,7 @@
     val: 0x10
   - name: PowerBombs
     val: 0x20
+  loc: null
 - name: NavRoom
   vals:
   - name: None
@@ -792,6 +2850,7 @@
     val: 0xA
   - name: MainDeckRoom42
     val: 0xB
+  loc: null
 - name: NavTargetArea
   vals:
   - name: None
@@ -820,6 +2879,7 @@
     val: 0xB
   - name: Sector6
     val: 0xC
+  loc: null
 - name: NavTargetTextDirection
   vals:
   - name: Top
@@ -830,6 +2890,219 @@
     val: 0x2
   - name: Right
     val: 0x3
+  loc: null
+- name: NavigationConversation
+  vals:
+  - name: NAV_CONVO_NONE
+    val: 0x0
+  - name: NAV_CONVO_GO_TO_QUARANTINE_BAY
+    val: 0x1
+  - name: NAV_CONVO_QUARANTINE_BAY_IS_AHEAD
+    val: 0x2
+  - name: NAV_CONVO_3
+    val: 0x3
+  - name: NAV_CONVO_UNLOCKED_LEVEL_0_HATCHES
+    val: 0x4
+  - name: NAV_CONVO_GO_TO_MISSILES_DATA_ROOM
+    val: 0x5
+  - name: NAV_CONVO_MISSILES_DATA_ROOM_JUST_AHEAD
+    val: 0x6
+  - name: NAV_CONVO_7
+    val: 0x7
+  - name: NAV_CONVO_FIND_WAY_TO_ARACHNUS
+    val: 0x8
+  - name: NAV_CONVO_9
+    val: 0x9
+  - name: NAV_CONVO_GO_TO_SRX1
+    val: 0xA
+  - name: NAV_CONVO_CLEAR_ATMOSPHERIC_STABILIZERS
+    val: 0xB
+  - name: NAV_CONVO_STILL_ONE_ATMOSPHERIC_STABILIZER_LEFT
+    val: 0xC
+  - name: NAV_CONVO_GO_TO_TRO1
+    val: 0xD
+  - name: NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_BOMBS
+    val: 0xE
+  - name: NAV_CONVO_LEVEL_1_UNLOCKED_GO_DOWNLOAD_BOMBS
+    val: 0xF
+  - name: NAV_CONVO_16
+    val: 0x10
+  - name: NAV_CONVO_GO_TO_AQA1
+    val: 0x11
+  - name: NAV_CONVO_GO_DEFEAT_SERRIS
+    val: 0x12
+  - name: NAV_CONVO_19
+    val: 0x13
+  - name: NAV_CONVO_EMPTY
+    val: 0x14
+  - name: NAV_CONVO_GO_TO_PYR1
+    val: 0x15
+  - name: NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_SUPER_MISSILES
+    val: 0x16
+  - name: NAV_CONVO_LEVEL_2_UNLOCKED_GO_DOWNLOAD_SUPER_MISSILES
+    val: 0x17
+  - name: NAV_CONVO_24
+    val: 0x18
+  - name: NAV_CONVO_GO_TO_NOC1
+    val: 0x19
+  - name: NAV_CONVO_FEDERATION_MONITOR_SAMUS
+    val: 0x1A
+  - name: NAV_CONVO_GO_TO_NOC1_AFTER_FEDERATION
+    val: 0x1B
+  - name: NAV_CONVO_GO_DOWNLOAD_VARIA_SUIT
+    val: 0x1C
+  - name: NAV_CONVO_29
+    val: 0x1D
+  - name: NAV_CONVO_GO_TO_ARC1
+    val: 0x1E
+  - name: NAV_CONVO_FIND_SECURITY_ROOM_AND_DOWNLOAD_ICE_MISSILES
+    val: 0x1F
+  - name: NAV_CONVO_LEVEL_3_UNLOCKED_GO_DOWNLOAD_ICE_MISSILES
+    val: 0x20
+  - name: NAV_CONVO_33
+    val: 0x21
+  - name: NAV_CONVO_GO_TO_THE_MAIN_BOILER
+    val: 0x22
+  - name: NAV_CONVO_35
+    val: 0x23
+  - name: NAV_CONVO_GO_TO_THE_HABITATION_DECK
+    val: 0x24
+  - name: NAV_CONVO_37
+    val: 0x25
+  - name: NAV_CONVO_GO_TO_ARC2
+    val: 0x26
+  - name: NAV_CONVO_GO_DOWNLOAD_POWER_BOMBS
+    val: 0x27
+  - name: NAV_CONVO_40
+    val: 0x28
+  - name: NAV_CONVO_RETURN_TO_YOUR_SHIP
+    val: 0x29
+  - name: NAV_CONVO_REACTIVATE_THE_AUXILIARY_POWER_SYSTEM
+    val: 0x2A
+  - name: NAV_CONVO_43
+    val: 0x2B
+  - name: NAV_CONVO_FIND_SOURCE_OF_VEGETATION
+    val: 0x2C
+  - name: NAV_CONVO_GO_TO_ARC3
+    val: 0x2D
+  - name: NAV_CONVO_DEFEAT_NIGHTMARE
+    val: 0x2E
+  - name: NAV_CONVO_47
+    val: 0x2F
+  - name: NAV_CONVO_SECRET_MESSAGE
+    val: 0x30
+  - name: NAV_CONVO_GO_TO_NOC2
+    val: 0x31
+  - name: NAV_CONVO_DEFEAT_BOX_2
+    val: 0x32
+  - name: NAV_CONVO_METROID_BREEDING_PROGRAM
+    val: 0x33
+  - name: NAV_CONVO_FEDERATION_ON_THEIR_WAY
+    val: 0x34
+  - name: NAV_CONVO_GO_TO_OPERATIONS_ROOM
+    val: 0x35
+  - name: NAV_CONVO_GO_TO_OPERATIONS_ROOM_2
+    val: 0x36
+  - name: NAV_CONVO_55
+    val: 0x37
+  - name: NAV_CONVO_GET_OUT_BEFORE_IMPACT_UNUSED
+    val: 0x38
+  - name: NAV_CONVO_THEY_LENT_ME_A_HAND
+    val: 0x39
+  - name: NAV_CONVO_END
+    val: 0x3A
+  - name: NAV_CONVO_FEDERATION_CUTSCENE_START
+    val: 0xFE
+  loc: include/constants/event.h:308
+- name: NavigationRoom
+  vals:
+  - name: NAV_ROOM_MAIN_DECK_ROOM_0
+    val: 0x0
+  - name: NAV_ROOM_MAIN_DECK_ROOM_16
+    val: 0x1
+  - name: NAV_ROOM_MAIN_DECK_ROOM_9
+    val: 0x2
+  - name: NAV_ROOM_MAIN_DECK_ROOM_32
+    val: 0x3
+  - name: NAV_ROOM_SECTOR_1_ROOM_2
+    val: 0x4
+  - name: NAV_ROOM_SECTOR_2_ROOM_2
+    val: 0x5
+  - name: NAV_ROOM_SECTOR_3_ROOM_2
+    val: 0x6
+  - name: NAV_ROOM_SECTOR_4_ROOM_2
+    val: 0x7
+  - name: NAV_ROOM_SECTOR_5_ROOM_2
+    val: 0x8
+  - name: NAV_ROOM_SECTOR_6_ROOM_2
+    val: 0x9
+  - name: NAV_ROOM_MAIN_DECK_ROOM_56
+    val: 0xA
+  - name: NAV_ROOM_MAIN_DECK_ROOM_66
+    val: 0xB
+  - name: NAV_ROOM_END
+    val: 0xC
+  loc: include/constants/connection.h:23
+- name: NavigationTargetLocation
+  vals:
+  - name: NAV_TARGET_LOC_NONE
+    val: 0x0
+  - name: NAV_TARGET_LOC_OPERATIONS_DECK
+    val: 0x1
+  - name: NAV_TARGET_LOC_DOCKING_BAYS
+    val: 0x2
+  - name: NAV_TARGET_LOC_HABITATION_DECK
+    val: 0x3
+  - name: NAV_TARGET_LOC_MAIN_DECK
+    val: 0x4
+  - name: NAV_TARGET_LOC_REACTOR_SILO
+    val: 0x5
+  - name: NAV_TARGET_LOC_RESTRICTED_LAB
+    val: 0x6
+  - name: NAV_TARGET_LOC_SECTOR_1
+    val: 0x7
+  - name: NAV_TARGET_LOC_SECTOR_2
+    val: 0x8
+  - name: NAV_TARGET_LOC_SECTOR_3
+    val: 0x9
+  - name: NAV_TARGET_LOC_SECTOR_4
+    val: 0xA
+  - name: NAV_TARGET_LOC_SECTOR_5
+    val: 0xB
+  - name: NAV_TARGET_LOC_SECTOR_6
+    val: 0xC
+  - name: NAV_TARGET_LOC_END
+    val: 0xD
+  loc: include/constants/connection.h:72
+- name: NettoriPart
+  desc: Nettori part AI
+  vals:
+  - name: NETTORI_PART_HEAD
+    val: 0x0
+  - name: NETTORI_PART_LEG
+    val: 0x1
+  - name: NETTORI_PART_RIGHT_ARM
+    val: 0x2
+  - name: NETTORI_PART_LEFT_ARM
+    val: 0x3
+  - name: NETTORI_PART_HEAD_VINES
+    val: 0x4
+  - name: NETTORI_PART_BODY_VINES
+    val: 0x5
+  - name: NETTORI_PART_PLASMA_SHOOTER
+    val: 0x6
+  - name: NETTORI_PART_END
+    val: 0x7
+  loc: src/sprites_AI/nettori.c:1470
+- name: NettoriShootingPosition
+  vals:
+  - name: NETTORI_SHOOTING_POSITION_NONE
+    val: 0x0
+  - name: NETTORI_SHOOTING_POSITION_HIGH
+    val: 0x1
+  - name: NETTORI_SHOOTING_POSITION_LOW
+    val: 0x2
+  loc: src/sprites_AI/nettori.c:21
 - name: NewProjectileType
   vals:
   - name: None
@@ -846,6 +3119,7 @@
     val: 0x5
   - name: PowerBomb
     val: 0x6
+  loc: null
 - name: NonGameplayFlag
   vals:
   - name: FirstNavConversation
@@ -860,6 +3134,7 @@
     val: 0x5
   - name: SaxFaceCloseUp
     val: 0x6
+  loc: null
 - name: PaletteAnimType
   vals:
   - name: NotAnimated
@@ -868,6 +3143,7 @@
     val: 0x1
   - name: Alternate
     val: 0x2
+  loc: null
 - name: ParticleEffect
   vals:
   - name: None
@@ -1004,6 +3280,710 @@
     val: 0x41
   - name: GetSuit
     val: 0x42
+  loc: null
+- name: ParticleId
+  vals:
+  - name: PE_NONE
+    val: 0x0
+  - name: PE_BOMB
+    val: 0x1
+  - name: PE_FLARE_HIT
+    val: 0x2
+  - name: PE_NORMAL_BEAM_HIT
+    val: 0x3
+  - name: PE_CHARGE_BEAM_HIT
+    val: 0x4
+  - name: PE_WIDE_BEAM_HIT
+    val: 0x5
+  - name: PE_PLASMA_BEAM_HIT
+    val: 0x6
+  - name: PE_INVINCIBLE_HIT
+    val: 0x7
+  - name: PE_MISSILE_EXPLOSION
+    val: 0x8
+  - name: PE_SUPER_MISSILE_EXPLOSION
+    val: 0x9
+  - name: PE_ICE_MISSILE_EXPLOSION
+    val: 0xA
+  - name: PE_DIFFUSION_MISSILE_EXPLOSION
+    val: 0xB
+  - name: PE_CHARGED_DIFFUSION_MISSILE_EXPLOSION
+    val: 0xC
+  - name: PE_0xD
+    val: 0xD
+  - name: PE_ICE_BEAM_TRAIL
+    val: 0xE
+  - name: PE_CHARGED_NORMAL_BEAM_TRAIL
+    val: 0xF
+  - name: PE_CHARGED_CHARGE_BEAM_TRAIL
+    val: 0x10
+  - name: PE_CHARGED_WIDE_BEAM_TRAIL
+    val: 0x11
+  - name: PE_CHARGED_PLASMA_BEAM_TRAIL
+    val: 0x12
+  - name: PE_CHARGED_WAVE_BEAM_TRAIL
+    val: 0x13
+  - name: PE_CHARGED_ICE_BEAM_TRAIL
+    val: 0x14
+  - name: PE_MISSILE_TRAIL
+    val: 0x15
+  - name: PE_SUPER_MISSILE_TRAIL
+    val: 0x16
+  - name: PE_ICE_MISSILE_TRAIL
+    val: 0x17
+  - name: PE_DIFFUSION_MISSILE_TRAIL
+    val: 0x18
+  - name: PE_CHARGED_DIFFUSION_MISSILE_TRAIL
+    val: 0x19
+  - name: PE_ABSORB_HEALTH_X
+    val: 0x1A
+  - name: PE_ABSORB_MISSILE_X
+    val: 0x1B
+  - name: PE_ABSORB_RED_X
+    val: 0x1C
+  - name: PE_ABSORB_CORE_X
+    val: 0x1D
+  - name: PE_ABSORB_ICE_X_PRE_VARIA
+    val: 0x1E
+  - name: PE_ICE_X_TRAIL
+    val: 0x1F
+  - name: PE_DIFFUSION_FLAKE_TRAIL
+    val: 0x20
+  - name: PE_0x21
+    val: 0x21
+  - name: PE_0x22
+    val: 0x22
+  - name: PE_0x23
+    val: 0x23
+  - name: PE_0x24
+    val: 0x24
+  - name: PE_0x25
+    val: 0x25
+  - name: PE_0x26
+    val: 0x26
+  - name: PE_HEAVY_DUST_1
+    val: 0x27
+  - name: PE_HEAVY_DUST_2
+    val: 0x28
+  - name: PE_DUST_1
+    val: 0x29
+  - name: PE_DUST_2
+    val: 0x2A
+  - name: PE_FIRE_BEAM
+    val: 0x2B
+  - name: PE_ABSORBING_SUIT
+    val: 0x2C
+  - name: PE_EXPLOSION_SMOKE
+    val: 0x2D
+  - name: PE_TAIL_EXPLOSION_SMOKE
+    val: 0x2E
+  - name: PE_0x2F
+    val: 0x2F
+  - name: PE_0x30
+    val: 0x30
+  - name: PE_SMOKE
+    val: 0x31
+  - name: PE_0x32
+    val: 0x32
+  - name: PE_0x33
+    val: 0x33
+  - name: PE_TAIL_EXPLOSION
+    val: 0x34
+  - name: PE_0x35
+    val: 0x35
+  - name: PE_ENTER_OR_EXIT_WATER
+    val: 0x36
+  - name: PE_ENTER_OR_EXIT_WATER_BIG
+    val: 0x37
+  - name: PE_SPRITE_ENTER_OR_EXIT_WATER
+    val: 0x38
+  - name: PE_0x39
+    val: 0x39
+  - name: PE_0x3A
+    val: 0x3A
+  - name: PE_OUTWARD_ICE_EXPLOSION
+    val: 0x3B
+  - name: PE_OUTWARD_SMOKE
+    val: 0x3C
+  - name: PE_SCREW_ATTACK_KILLED
+    val: 0x3D
+  - name: PE_SPEEDBOOSTER_KILLED
+    val: 0x3E
+  - name: PE_SHINESPARK_KILLED
+    val: 0x3F
+  - name: PE_PSEUDO_SCREW_KILLED
+    val: 0x40
+  - name: PE_GETTING_SUIT_BEAMS
+    val: 0x41
+  - name: PE_GETTING_SUIT
+    val: 0x42
+  - name: PE_CHARGING_BEAM
+    val: 0x43
+  - name: PE_CHARGING_BEAM_SPARKS
+    val: 0x44
+  - name: PE_CHARGING_MISSILE
+    val: 0x45
+  - name: PE_ESCAPE
+    val: 0x46
+  - name: PE_END
+    val: 0x47
+  loc: include/constants/particle.h:4
+- name: PauseDebugAmmoType
+  vals:
+  - name: PAUSE_DEBUG_AMMO_TYPE_HEALTH
+    val: 0x0
+  - name: PAUSE_DEBUG_AMMO_TYPE_MISSILES
+    val: 0x1
+  - name: PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS
+    val: 0x2
+  loc: include/constants/menus/pause_debug.h:41
+- name: PauseDebugEditFlag
+  vals:
+  - name: PAUSE_DEBUG_EDIT_NONE
+    val: 0x0
+  - name: PAUSE_DEBUG_EDIT_REDRAW_SECTION
+    val: 0x1
+  - name: PAUSE_DEBUG_EDIT_REDRAW_NUMBERED_SECTION
+    val: 0x2
+  - name: PAUSE_DEBUG_EDIT_REDRAW_ALL
+    val: 0x3
+  loc: include/constants/menus/pause_debug.h:34
+- name: PauseDebugSection
+  vals:
+  - name: PAUSE_DEBUG_SECTION_BEAM
+    val: 0x0
+  - name: PAUSE_DEBUG_SECTION_MISSILE
+    val: 0x1
+  - name: PAUSE_DEBUG_SECTION_BOMB
+    val: 0x2
+  - name: PAUSE_DEBUG_SECTION_SUIT
+    val: 0x3
+  - name: PAUSE_DEBUG_SECTION_MISC
+    val: 0x4
+  - name: PAUSE_DEBUG_SECTION_ENERGY_CURRENT
+    val: 0x5
+  - name: PAUSE_DEBUG_SECTION_ENERGY_MAX
+    val: 0x6
+  - name: PAUSE_DEBUG_SECTION_SUPPLY
+    val: 0x7
+  - name: PAUSE_DEBUG_SECTION_MISSILE_CURRENT
+    val: 0x8
+  - name: PAUSE_DEBUG_SECTION_MISSILE_MAX
+    val: 0x9
+  - name: PAUSE_DEBUG_SECTION_POWER_BOMB_CURRENT
+    val: 0xA
+  - name: PAUSE_DEBUG_SECTION_POWER_BOMB_MAX
+    val: 0xB
+  - name: PAUSE_DEBUG_SECTION_ABILITY_COUNT
+    val: 0xC
+  - name: PAUSE_DEBUG_SECTION_SECURITY
+    val: 0xD
+  - name: PAUSE_DEBUG_SECTION_MAP
+    val: 0xE
+  - name: PAUSE_DEBUG_SECTION_EVENT
+    val: 0xF
+  - name: PAUSE_DEBUG_SECTION_SOUND_EVENT
+    val: 0x10
+  - name: PAUSE_DEBUG_SECTION_IN_GAME_TIME
+    val: 0x11
+  - name: PAUSE_DEBUG_SECTION_QUICK_SAVE
+    val: 0x12
+  - name: PAUSE_DEBUG_SECTION_END
+    val: 0x13
+  - name: PAUSE_DEBUG_SECTION_ALL
+    val: 0xFF
+  loc: include/constants/menus/pause_debug.h:8
+- name: PowerOutageState
+  vals:
+  - name: POWER_OUTAGE_BEFORE
+    val: 0x0
+  - name: POWER_OUTAGE_DURING
+    val: 0x1
+  - name: POWER_OUTAGE_AFTER
+    val: 0x2
+  loc: include/constants/event.h:420
+- name: PrimarySpriteId
+  vals:
+  - name: PSPRITE_TARGET_CIRCLES
+    val: 0x0
+  - name: PSPRITE_TARGET_DIAGONAL
+    val: 0x1
+  - name: PSPRITE_TARGET_SIDEWAYS
+    val: 0x2
+  - name: PSPRITE_UNUSED_3
+    val: 0x3
+  - name: PSPRITE_UNUSED_4
+    val: 0x4
+  - name: PSPRITE_UNUSED_5
+    val: 0x5
+  - name: PSPRITE_UNUSED_6
+    val: 0x6
+  - name: PSPRITE_UNUSED_7
+    val: 0x7
+  - name: PSPRITE_UNUSED_8
+    val: 0x8
+  - name: PSPRITE_UNUSED_9
+    val: 0x9
+  - name: PSPRITE_UNUSED_10
+    val: 0xA
+  - name: PSPRITE_UNUSED_11
+    val: 0xB
+  - name: PSPRITE_UNUSED_12
+    val: 0xC
+  - name: PSPRITE_UNUSED_13
+    val: 0xD
+  - name: PSPRITE_CORE_X_TARGET
+    val: 0xE
+  - name: PSPRITE_UNUSED_15
+    val: 0xF
+  - name: PSPRITE_UNUSED_16
+    val: 0x10
+  - name: PSPRITE_SA_X_ELEVATOR
+    val: 0x11
+  - name: PSPRITE_HORNOAD
+    val: 0x12
+  - name: PSPRITE_HALZYN
+    val: 0x13
+  - name: PSPRITE_ZEBESIAN_WALL
+    val: 0x14
+  - name: PSPRITE_HORNOAD_SPAWNER
+    val: 0x15
+  - name: PSPRITE_GATE
+    val: 0x16
+  - name: PSPRITE_MOVABLE_PLATFORM_1
+    val: 0x17
+  - name: PSPRITE_MOTO
+    val: 0x18
+  - name: PSPRITE_NAVIGATION_PAD
+    val: 0x19
+  - name: PSPRITE_GUNSHIP
+    val: 0x1A
+  - name: PSPRITE_YAMEBA
+    val: 0x1B
+  - name: PSPRITE_SECURITY_PAD
+    val: 0x1C
+  - name: PSPRITE_AREA_BANNER
+    val: 0x1D
+  - name: PSPRITE_DATA_PAD
+    val: 0x1E
+  - name: PSPRITE_SAVE_PAD
+    val: 0x1F
+  - name: PSPRITE_PRE_BOX_CEILING_DEBRIS
+    val: 0x20
+  - name: PSPRITE_MESSAGE_BANNER
+    val: 0x21
+  - name: PSPRITE_KAGO
+    val: 0x22
+  - name: PSPRITE_ELECTRIC_WATER_DAMAGE
+    val: 0x23
+  - name: PSPRITE_ELECTRIC_WATER
+    val: 0x24
+  - name: PSPRITE_WIRE
+    val: 0x25
+  - name: PSPRITE_SAMUS_EATER_BUD
+    val: 0x26
+  - name: PSPRITE_SAMUS_EATER
+    val: 0x27
+  - name: PSPRITE_ENERGY_RECHARGE_PAD
+    val: 0x28
+  - name: PSPRITE_AMMO_RECHARGE_PAD
+    val: 0x29
+  - name: PSPRITE_ENERGY_AMMO_RECHARGE_PAD
+    val: 0x2A
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_PARASITE
+    val: 0x2B
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_1
+    val: 0x2C
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_2
+    val: 0x2D
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_3
+    val: 0x2E
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_4
+    val: 0x2F
+  - name: PSPRITE_ATMOSPHERIC_STABILIZER_5
+    val: 0x30
+  - name: PSPRITE_ZEELA
+    val: 0x31
+  - name: PSPRITE_X_PARASITE_CORE_X_OR_PARASITE
+    val: 0x32
+  - name: PSPRITE_SKREE
+    val: 0x33
+  - name: PSPRITE_X_PARASITE_IN_ROOM
+    val: 0x34
+  - name: PSPRITE_TOXIC_GAS
+    val: 0x35
+  - name: PSPRITE_X_PARASITE_IN_ROOM_PROXIMITY
+    val: 0x36
+  - name: PSPRITE_ZOMBIE
+    val: 0x37
+  - name: PSPRITE_X_PARASITE
+    val: 0x38
+  - name: PSPRITE_GEEMER
+    val: 0x39
+  - name: PSPRITE_ARACHNUS
+    val: 0x3A
+  - name: PSPRITE_WAVER
+    val: 0x3B
+  - name: PSPRITE_SCISER
+    val: 0x3C
+  - name: PSPRITE_SIDEHOPPER
+    val: 0x3D
+  - name: PSPRITE_DESSGEEGA
+    val: 0x3E
+  - name: PSPRITE_MORPH_BALL_ABILITY
+    val: 0x3F
+  - name: PSPRITE_X_PARASITE_CORE_X_FORMATION
+    val: 0x40
+  - name: PSPRITE_GERON_MISSILE_1
+    val: 0x41
+  - name: PSPRITE_GERON_MISSILE_2
+    val: 0x42
+  - name: PSPRITE_GERON_MISSILE_3
+    val: 0x43
+  - name: PSPRITE_HIGH_JUMP_ABILITY
+    val: 0x44
+  - name: PSPRITE_SPEEDBOOSTER_ABILITY
+    val: 0x45
+  - name: PSPRITE_VARIA_SUIT_ABILITY
+    val: 0x46
+  - name: PSPRITE_SPACE_JUMP_ABILITY
+    val: 0x47
+  - name: PSPRITE_GRAVITY_SUIT_ABILITY
+    val: 0x48
+  - name: PSPRITE_SCREW_ATTACK_ABILITY
+    val: 0x49
+  - name: PSPRITE_MOVABLE_PLATFORM_2
+    val: 0x4A
+  - name: PSPRITE_ZAZABI
+    val: 0x4B
+  - name: PSPRITE_OMEGA_METROID_HUSK
+    val: 0x4C
+  - name: PSPRITE_ICE_BEAM_ABILITY
+    val: 0x4D
+  - name: PSPRITE_MOVABLE_PLATFORM_3
+    val: 0x4E
+  - name: PSPRITE_MOVABLE_PLATFORM_4
+    val: 0x4F
+  - name: PSPRITE_MOVABLE_PLATFORM_5
+    val: 0x50
+  - name: PSPRITE_YAKUZA
+    val: 0x51
+  - name: PSPRITE_CHOZO_STATUE
+    val: 0x52
+  - name: PSPRITE_SCIENTIST
+    val: 0x53
+  - name: PSPRITE_NETTORI
+    val: 0x54
+  - name: PSPRITE_BOX_2
+    val: 0x55
+  - name: PSPRITE_CHARGE_BEAM_CORE_X
+    val: 0x56
+  - name: PSPRITE_WIDE_BEAM_CORE_X
+    val: 0x57
+  - name: PSPRITE_PLASMA_BEAM_CORE_X
+    val: 0x58
+  - name: PSPRITE_WAVE_BEAM_CORE_X
+    val: 0x59
+  - name: PSPRITE_ZORO
+    val: 0x5A
+  - name: PSPRITE_KIHUNTER_FLYING
+    val: 0x5B
+  - name: PSPRITE_KIHUNTER_GROUND
+    val: 0x5C
+  - name: PSPRITE_KIHUNTER_HIVE
+    val: 0x5D
+  - name: PSPRITE_REO
+    val: 0x5E
+  - name: PSPRITE_LAVA_PLUME
+    val: 0x5F
+  - name: PSPRITE_NAHIME
+    val: 0x60
+  - name: PSPRITE_FUNE
+    val: 0x61
+  - name: PSPRITE_BOX
+    val: 0x62
+  - name: PSPRITE_BLUE_ZORO
+    val: 0x63
+  - name: PSPRITE_GERUDA
+    val: 0x64
+  - name: PSPRITE_PUMP_CONTROL_PAD
+    val: 0x65
+  - name: PSPRITE_BOILER_CONTROL_PAD
+    val: 0x66
+  - name: PSPRITE_AUXILARY_POWER_PAD
+    val: 0x67
+  - name: PSPRITE_HABITAION_PAD
+    val: 0x68
+  - name: PSPRITE_OPERATIONS_ROOM_PAD
+    val: 0x69
+  - name: PSPRITE_SKULTERA_LARGE
+    val: 0x6A
+  - name: PSPRITE_SKULTERA_SMALL_1
+    val: 0x6B
+  - name: PSPRITE_SOVA
+    val: 0x6C
+  - name: PSPRITE_YARD
+    val: 0x6D
+  - name: PSPRITE_EVIR
+    val: 0x6E
+  - name: PSPRITE_BULL
+    val: 0x6F
+  - name: PSPRITE_MEMU
+    val: 0x70
+  - name: PSPRITE_GERUBOSS
+    val: 0x71
+  - name: PSPRITE_CHOOT
+    val: 0x72
+  - name: PSPRITE_ZEBESIAN_GROUND
+    val: 0x73
+  - name: PSPRITE_BLUE_X
+    val: 0x74
+  - name: PSPRITE_MISSILE_HATCH
+    val: 0x75
+  - name: PSPRITE_QUARANTINE_BAY_HORNOAD
+    val: 0x76
+  - name: PSPRITE_BOX_DEBRIS
+    val: 0x77
+  - name: PSPRITE_GERON_SUPER_MISSILE_1
+    val: 0x78
+  - name: PSPRITE_GERON_SUPER_MISSILE_2
+    val: 0x79
+  - name: PSPRITE_GERON_SUPER_MISSILE_3
+    val: 0x7A
+  - name: PSPRITE_GERON_SUPER_MISSILE_4
+    val: 0x7B
+  - name: PSPRITE_GERON_SUPER_MISSILE_5
+    val: 0x7C
+  - name: PSPRITE_GERON_SUPER_MISSILE_6
+    val: 0x7D
+  - name: PSPRITE_GERON_SUPER_MISSILE_7
+    val: 0x7E
+  - name: PSPRITE_GERON_SUPER_MISSILE_8
+    val: 0x7F
+  - name: PSPRITE_GERON_POWER_BOMB_1
+    val: 0x80
+  - name: PSPRITE_GERON_POWER_BOMB_2
+    val: 0x81
+  - name: PSPRITE_GERON_POWER_BOMB_3
+    val: 0x82
+  - name: PSPRITE_GERON_POWER_BOMB_4
+    val: 0x83
+  - name: PSPRITE_GERON_POWER_BOMB_5
+    val: 0x84
+  - name: PSPRITE_GERON_POWER_BOMB_6
+    val: 0x85
+  - name: PSPRITE_GERON_POWER_BOMB_7
+    val: 0x86
+  - name: PSPRITE_GERON_POWER_BOMB_8
+    val: 0x87
+  - name: PSPRITE_RIPPER
+    val: 0x88
+  - name: PSPRITE_ZORO_COCOON
+    val: 0x89
+  - name: PSPRITE_ZORO_HUSK
+    val: 0x8A
+  - name: PSPRITE_GOLD_SCISER
+    val: 0x8B
+  - name: PSPRITE_SA_X_TRO_1
+    val: 0x8C
+  - name: PSPRITE_SA_X_NOC
+    val: 0x8D
+  - name: PSPRITE_PRE_DESTROYED_DATA_PAD
+    val: 0x8E
+  - name: PSPRITE_GADORA_ARACHNUS
+    val: 0x8F
+  - name: PSPRITE_GADORA_CHARGE_BEAM
+    val: 0x90
+  - name: PSPRITE_GADORA_ZAZABI
+    val: 0x91
+  - name: PSPRITE_GADORA_SERRIS
+    val: 0x92
+  - name: PSPRITE_GADORA_VARIA_CORE
+    val: 0x93
+  - name: PSPRITE_GADORA_WIDE_BEAM
+    val: 0x94
+  - name: PSPRITE_GADORA_NIGHTMARE
+    val: 0x95
+  - name: PSPRITE_GADORA_RIDLEY
+    val: 0x96
+  - name: PSPRITE_GADORA_NETTORI
+    val: 0x97
+  - name: PSPRITE_GADORA_YAKUZA
+    val: 0x98
+  - name: PSPRITE_GADORA_1
+    val: 0x99
+  - name: PSPRITE_GADORA_2
+    val: 0x9A
+  - name: PSPRITE_GADORA_3
+    val: 0x9B
+  - name: PSPRITE_GADORA_4
+    val: 0x9C
+  - name: PSPRITE_GADORA_5
+    val: 0x9D
+  - name: PSPRITE_GADORA_6
+    val: 0x9E
+  - name: PSPRITE_SHAKE_TRIGGER
+    val: 0x9F
+  - name: PSPRITE_SA_X_ARC
+    val: 0xA0
+  - name: PSPRITE_ELEVATOR_PAD
+    val: 0xA1
+  - name: PSPRITE_GOLD_ZEBESIAN
+    val: 0xA2
+  - name: PSPRITE_RED_ZEELA
+    val: 0xA3
+  - name: PSPRITE_OWTCH
+    val: 0xA4
+  - name: PSPRITE_GEEGA
+    val: 0xA5
+  - name: PSPRITE_SERRIS
+    val: 0xA6
+  - name: PSPRITE_PILLAR
+    val: 0xA7
+  - name: PSPRITE_GENESIS
+    val: 0xA8
+  - name: PSPRITE_PUYO
+    val: 0xA9
+  - name: PSPRITE_BUBBLES_1
+    val: 0xAA
+  - name: PSPRITE_BUBBLES_2
+    val: 0xAB
+  - name: PSPRITE_WATER_DROP
+    val: 0xAC
+  - name: PSPRITE_FAKE_ENERGY_TANK
+    val: 0xAD
+  - name: PSPRITE_FAKE_MISSILE_TANK
+    val: 0xAE
+  - name: PSPRITE_CORE_X_ABILITY_BEFORE_VARIA_CORE
+    val: 0xAF
+  - name: PSPRITE_BIG_FLASHING_NUMBER
+    val: 0xB0
+  - name: PSPRITE_FLASHING_NUMBER
+    val: 0xB1
+  - name: PSPRITE_DESTROYED_DATA_PAD
+    val: 0xB2
+  - name: PSPRITE_ZEBESIAN_AQUA
+    val: 0xB3
+  - name: PSPRITE_ZEBESIAN_PRE_AQUA
+    val: 0xB4
+  - name: PSPRITE_SKULTERA_SMALL_2
+    val: 0xB5
+  - name: PSPRITE_ETECOON
+    val: 0xB6
+  - name: PSPRITE_TIRE_SWING
+    val: 0xB7
+  - name: PSPRITE_DACHORA
+    val: 0xB8
+  - name: PSPRITE_X_PARASITE_AQUA_ZEBESIAN
+    val: 0xB9
+  - name: PSPRITE_METROID
+    val: 0xBA
+  - name: PSPRITE_LAB_DEBRIS
+    val: 0xBB
+  - name: PSPRITE_SA_X_LAB
+    val: 0xBC
+  - name: PSPRITE_POWAMP
+    val: 0xBD
+  - name: PSPRITE_ZOZORO
+    val: 0xBE
+  - name: PSPRITE_CONTINUAL_X_SPAWNER
+    val: 0xBF
+  - name: PSPRITE_SA_X_BOSS
+    val: 0xC0
+  - name: PSPRITE_SA_X_MONSTER
+    val: 0xC1
+  - name: PSPRITE_ICE_BEAM_CORE_X
+    val: 0xC2
+  - name: PSPRITE_OMEGA_METROID
+    val: 0xC3
+  - name: PSPRITE_GUNSHIP_END
+    val: 0xC4
+  - name: PSPRITE_ELECTRIC_WATER_DAMAGE_BOX_2
+    val: 0xC5
+  - name: PSPRITE_FROZEN_RIDLEY
+    val: 0xC6
+  - name: PSPRITE_GOLD_SCISER_DOOR_LOCK
+    val: 0xC7
+  - name: PSPRITE_GOLD_ZEBESIAN_DOOR_LOCK
+    val: 0xC8
+  - name: PSPRITE_SA_X_OMEGA_CUTSCENE
+    val: 0xC9
+  - name: PSPRITE_METROID_HUSK
+    val: 0xCA
+  - name: PSPRITE_RIDLEY
+    val: 0xCB
+  - name: PSPRITE_PRE_SPAWN
+    val: 0xCC
+  - name: PSPRITE_SA_X_TRO_2
+    val: 0xCD
+  - name: PSPRITE_NIGHTMARE
+    val: 0xCE
+  - name: PSPRITE_END
+    val: 0xCF
+  loc: include/constants/sprite.h:57
+- name: ProjectileBombStage
+  vals:
+  - name: BOMB_STAGE_INIT
+    val: 0x0
+  - name: BOMB_STAGE_FIRST_SPIN
+    val: 0x1
+  - name: BOMB_STAGE_FAST_SPIN
+    val: 0x2
+  - name: BOMB_STAGE_EXPLODING
+    val: 0x3
+  loc: include/constants/projectile.h:132
+- name: ProjectileCategory
+  vals:
+  - name: PROJECTILE_CATEGORY_NONE
+    val: 0x0
+  - name: PROJECTILE_CATEGORY_UNCHARGED_BEAM
+    val: 0x1
+  - name: PROJECTILE_CATEGORY_MISSILE
+    val: 0x2
+  - name: PROJECTILE_CATEGORY_SUPER_MISSILE
+    val: 0x3
+  - name: PROJECTILE_CATEGORY_BOMB
+    val: 0x4
+  - name: PROJECTILE_CATEGORY_CHARGED_BEAM
+    val: 0x5
+  - name: PROJECTILE_CATEGORY_POWER_BOMB
+    val: 0x6
+  - name: PROJECTILE_CATEGORY_END
+    val: 0x7
+  loc: include/constants/projectile.h:18
+- name: ProjectileChargeBeamStage
+  vals:
+  - name: CHARGE_BEAM_STAGE_INIT
+    val: 0x0
+  - name: CHARGE_BEAM_STAGE_SPAWNING
+    val: 0x1
+  - name: CHARGE_BEAM_STAGE_MOVING_FIRST_FRAME
+    val: 0x2
+  - name: CHARGE_BEAM_STAGE_MOVING_SUBSEQUENT_FRAMES
+    val: 0x3
+  - name: CHARGE_BEAM_STAGE_SINGLE_INIT
+    val: 0x4
+  loc: include/constants/projectile.h:77
+- name: ProjectilePowerBombStage
+  vals:
+  - name: POWER_BOMB_STAGE_INIT
+    val: 0x0
+  - name: POWER_BOMB_STAGE_FIRST_SPIN
+    val: 0x1
+  - name: POWER_BOMB_STAGE_FAST_SPIN
+    val: 0x2
+  loc: include/constants/projectile.h:143
+- name: ProjectileStage
+  vals:
+  - name: PROJECTILE_STAGE_INIT
+    val: 0x0
+  - name: PROJECTILE_STAGE_SPAWNING
+    val: 0x1
+  - name: PROJECTILE_STAGE_MOVING
+    val: 0x2
+  - name: PROJECTILE_STAGE_TUMBLING
+    val: 0x7
+  loc: include/constants/projectile.h:163
 - name: ProjectileStatus
   vals:
   - name: Exists
@@ -1022,46 +4002,50 @@
     val: 0x40
   - name: DrawUnderSprites
     val: 0x80
+  loc: null
 - name: ProjectileType
   vals:
-  - name: NormalBeam
+  - name: PROJ_TYPE_NORMAL_BEAM
     val: 0x0
-  - name: ChargeBeam
+  - name: PROJ_TYPE_CHARGE_BEAM
     val: 0x1
-  - name: WideBeam
+  - name: PROJ_TYPE_WIDE_BEAM
     val: 0x2
-  - name: PlasmaBeam
+  - name: PROJ_TYPE_PLASMA_BEAM
     val: 0x3
-  - name: WaveBeam
+  - name: PROJ_TYPE_WAVE_BEAM
     val: 0x4
-  - name: ChargedNormalBeam
+  - name: PROJ_TYPE_CHARGED_NORMAL_BEAM
     val: 0x5
-  - name: ChargedChargeBeam
+  - name: PROJ_TYPE_CHARGED_CHARGE_BEAM
     val: 0x6
-  - name: ChargedWideBeam
+  - name: PROJ_TYPE_CHARGED_WIDE_BEAM
     val: 0x7
-  - name: ChargedPlasmaBeam
+  - name: PROJ_TYPE_CHARGED_PLASMA_BEAM
     val: 0x8
-  - name: ChargedWaveBeam
+  - name: PROJ_TYPE_CHARGED_WAVE_BEAM
     val: 0x9
-  - name: NormalMissile
+  - name: PROJ_TYPE_NORMAL_MISSILE
     val: 0xA
-  - name: SuperMissile
+  - name: PROJ_TYPE_SUPER_MISSILE
     val: 0xB
-  - name: IceMissile
+  - name: PROJ_TYPE_ICE_MISSILE
     val: 0xC
-  - name: DiffusionMissile
+  - name: PROJ_TYPE_DIFFUSION_MISSILE
     val: 0xD
-  - name: ChargedDiffusionMissile
+  - name: PROJ_TYPE_CHARGED_DIFFUSION_MISSILE
     val: 0xE
-  - name: Flare
+  - name: PROJ_TYPE_FLARE
     val: 0xF
-  - name: Bomb
+  - name: PROJ_TYPE_BOMB
     val: 0x10
-  - name: PowerBomb
+  - name: PROJ_TYPE_POWER_BOMB
     val: 0x11
-  - name: DiffusionFlake
+  - name: PROJ_TYPE_DIFFUSION_FLAKE
     val: 0x12
+  - name: PROJ_TYPE_END
+    val: 0x13
+  loc: include/constants/projectile.h:30
 - name: RoomEffect
   vals:
   - name: None
@@ -1088,152 +4072,257 @@
     val: 0xA
   - name: NightmaresRoom
     val: 0xB
+  loc: null
+- name: SaXPose
+  vals:
+  - name: SA_X_POSE_RUNNING
+    val: 0x0
+  - name: SA_X_POSE_WALKING
+    val: 0x1
+  - name: SA_X_POSE_STANDING
+    val: 0x2
+  - name: SA_X_POSE_SHOOTING
+    val: 0x3
+  - name: SA_X_POSE_TURNING
+    val: 0x4
+  - name: SA_X_POSE_MID_AIR
+    val: 0x5
+  - name: SA_X_POSE_LANDING
+    val: 0x6
+  - name: SA_X_POSE_FALLING
+    val: 0x7
+  - name: SA_X_POSE_GETTING_HURT
+    val: 0x8
+  - name: SA_X_POSE_SHOOTING_RESTRICTED_LABORATORY
+    val: 0x9
+  - name: SA_X_POSE_COVERED_BY_METROIDS
+    val: 0xA
+  - name: SA_X_POSE_KNEELING
+    val: 0xB
+  - name: SA_X_POSE_TRANSFORMING_INTO_MONSTER
+    val: 0xC
+  - name: SA_X_POSE_MORPHING
+    val: 0xD
+  - name: SA_X_POSE_UNMORPHING
+    val: 0xE
+  - name: SA_X_POSE_MORPH_BALL
+    val: 0xF
+  - name: SA_X_POSE_ROLLING
+    val: 0x10
+  - name: SA_X_POSE_SWAG_WALK
+    val: 0x11
+  - name: SA_X_POSE_TURNING_TOWARDS_CAMERA
+    val: 0x12
+  - name: SA_X_POSE_TURNING_AWAY_FROM_CAMERA
+    val: 0x13
+  - name: SA_X_POSE_END
+    val: 0x14
+  - name: SA_X_POSE_NONE
+    val: 0xFF
+  loc: include/constants/sa_x.h:6
+- name: SaXScreenFlag
+  vals:
+  - name: SA_X_SCREEN_FLAG_NOT_PRESENT
+    val: 0x0
+  - name: SA_X_SCREEN_FLAG_OFF_SCREEN
+    val: 0x1
+  - name: SA_X_SCREEN_FLAG_ON_SCREEN
+    val: 0x2
+  loc: include/constants/sa_x.h:33
+- name: SamusCollisionDataFields
+  vals:
+  - name: SCDF_HITBOX
+    val: 0x0
+  - name: SCDF_UNK_1
+    val: 0x1
+  - name: SCDF_UNK_2
+    val: 0x2
+  - name: SCDF_UNK_3
+    val: 0x3
+  - name: SCDF_STANDING_STATUS
+    val: 0x4
+  - name: SCDF_COUNT
+    val: 0x5
+  loc: include/constants/samus.h:137
+- name: SamusEaterSporePart
+  vals:
+  - name: SAMUS_EATER_SPORE_PART_FLOATING
+    val: 0x0
+  - name: SAMUS_EATER_SPORE_PART_MOVING
+    val: 0x1
+  loc: include/sprites_AI/nettori.h:18
 - name: SamusHitboxType
   vals:
-  - name: Standing
+  - name: SAMUS_HITBOX_TYPE_STANDING
     val: 0x0
-  - name: Midair
+  - name: SAMUS_HITBOX_TYPE_MID_AIR
     val: 0x1
-  - name: Crouching
+  - name: SAMUS_HITBOX_TYPE_CROUCHED
     val: 0x2
-  - name: Spinning
+  - name: SAMUS_HITBOX_TYPE_UNK_3
+    val: 0x3
+  - name: SAMUS_HITBOX_TYPE_MORPHED
     val: 0x4
-  - name: Morphed
+  - name: SAMUS_HITBOX_TYPE_SPINNING
     val: 0x5
-  - name: MorphedMidair
+  - name: SAMUS_HITBOX_TYPE_HANGING
     val: 0x6
+  - name: SAMUS_HITBOX_TYPE_COUNT
+    val: 0x7
+  loc: include/constants/samus.h:125
 - name: SamusPose
   vals:
-  - name: Standing
+  - name: SPOSE_STANDING
     val: 0x0
-  - name: TurningAround
+  - name: SPOSE_TURNING_AROUND
     val: 0x1
-  - name: Shooting
+  - name: SPOSE_SHOOTING
     val: 0x2
-  - name: Running
+  - name: SPOSE_RUNNING
     val: 0x3
-  - name: JumpingOrFalling
+  - name: SPOSE_MID_AIR
     val: 0x4
-  - name: TurningAroundAndJumpingOrFalling
+  - name: SPOSE_TURNING_AROUND_MID_AIR
     val: 0x5
-  - name: Landing
+  - name: SPOSE_LANDING
     val: 0x6
-  - name: Crouching
+  - name: SPOSE_CROUCHING
     val: 0x7
-  - name: TurningAroundAndCrouching
+  - name: SPOSE_TURNING_AROUND_AND_CROUCHING
     val: 0x8
-  - name: ShootingAndCrouching
+  - name: SPOSE_SHOOTING_AND_CROUCHING
     val: 0x9
-  - name: StartingSpinJump
+  - name: SPOSE_STARTING_SPIN_JUMP
     val: 0xA
-  - name: Spinning
+  - name: SPOSE_SPINNING
     val: 0xB
-  - name: Morphing
+  - name: SPOSE_MORPHING
     val: 0xC
-  - name: Morphball
+  - name: SPOSE_MORPH_BALL
     val: 0xD
-  - name: Rolling
+  - name: SPOSE_ROLLING
     val: 0xE
-  - name: Unmorphing
+  - name: SPOSE_UNMORPHING
     val: 0xF
-  - name: JumpingOrFallingInMorphball
+  - name: SPOSE_MORPH_BALL_MID_AIR
     val: 0x10
-  - name: GettingHurt
+  - name: SPOSE_GETTING_HURT
     val: 0x11
-  - name: GettingHurtInMorphball
+  - name: SPOSE_GETTING_HURT_IN_MORPH_BALL
     val: 0x12
-  - name: GettingKnockedBack
+  - name: SPOSE_GETTING_KNOCKED_BACK
     val: 0x13
-  - name: GettingKnockedBackInMorphball
+  - name: SPOSE_GETTING_KNOCKED_BACK_IN_MORPH_BALL
     val: 0x14
-  - name: StartingWallJump
+  - name: SPOSE_STARTING_WALL_JUMP
     val: 0x15
-  - name: WallJumping
+  - name: SPOSE_WALL_JUMPING
     val: 0x16
-  - name: UsingAnElevator
+  - name: SPOSE_USING_AN_ELEVATOR
     val: 0x17
-  - name: HangingOnLedge
+  - name: SPOSE_HANGING_ON_LEDGE
     val: 0x18
-  - name: PullingSelfUpFromHanging
+  - name: SPOSE_PULLING_YOURSELF_UP_FROM_HANGING
     val: 0x19
-  - name: PullingSelfForwardFromHanging
+  - name: SPOSE_PULLING_YOURSELF_FORWARD_FROM_HANGING
     val: 0x1A
-  - name: PullingSelfIntoMorphballTunnel
+  - name: SPOSE_PULLING_YOURSELF_INTO_MORPH_BALL_TUNNEL
     val: 0x1B
-  - name: UnusedPullingSelfDownToStartHanging
+  - name: SPOSE_PULLING_YOURSELF_DOWN_TO_START_HANGING
     val: 0x1C
-  - name: SpaceJumping
+  - name: SPOSE_SPACE_JUMPING
     val: 0x1D
-  - name: ScrewAttacking
+  - name: SPOSE_SCREW_ATTACKING
     val: 0x1E
-  - name: Skidding
+  - name: SPOSE_SKIDDING
     val: 0x1F
-  - name: OnSavePad
+  - name: SPOSE_ON_SAVE_PAD
     val: 0x20
-  - name: OnRechargeSecurityPad
+  - name: SPOSE_ON_RECHARGE_OR_SECURITY_PAD
     val: 0x21
-  - name: TurningAroundToBeRecharged
+  - name: SPOSE_TURNING_AROUND_TO_RECHARGE_OR_UNLOCK_DOORS
     val: 0x22
-  - name: DelayBeforeShinesparking
+  - name: SPOSE_DELAY_BEFORE_SHINESPARKING
     val: 0x23
-  - name: Shinesparking
+  - name: SPOSE_SHINESPARKING
     val: 0x24
-  - name: DelayAfterShinesparking
+  - name: SPOSE_DELAY_AFTER_SHINESPARKING
     val: 0x25
-  - name: HangingFromVerticalLadder
+  - name: SPOSE_HANGING_FROM_VERTICAL_LADDER
     val: 0x26
-  - name: StartingToHoldArmCannonOutOnVerticalLadder
+  - name: SPOSE_STARTING_TO_HOLD_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
     val: 0x27
-  - name: HoldingArmCannonOutOnVerticalLadder
+  - name: SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
     val: 0x28
-  - name: ShootingOnVerticalLadder
+  - name: SPOSE_SHOOTING_ON_VERTICAL_LADDER
     val: 0x29
-  - name: StartingToPutAwayArmCannonOnVerticalLadder
+  - name: SPOSE_STARTING_TO_PUT_AWAY_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
     val: 0x2A
-  - name: HangingOnHorizontalLadder
+  - name: SPOSE_HANGING_ON_HORIZONTAL_LADDER
     val: 0x2B
-  - name: MovingOnHorizontalLadder
+  - name: SPOSE_MOVING_ON_HORIZONTAL_LADDER
     val: 0x2C
-  - name: TurningAroundOnHorizontalLadder
+  - name: SPOSE_TURNING_AROUND_ON_HORIZONTAL_LADDER
     val: 0x2D
-  - name: DelayAfterShootingOnHorizontalLadder
+  - name: SPOSE_DELAY_AFTER_SHOOTING_ON_HORIZONTAL_LADDER
     val: 0x2E
-  - name: ShootingOnHorizontalLadder
+  - name: SPOSE_SHOOTING_ON_HORIZONTAL_LADDER
     val: 0x2F
-  - name: Frozen
+  - name: SPOSE_FROZEN
     val: 0x30
-  - name: FrozenAndFalling
+  - name: SPOSE_FROZEN_AND_FALLING
     val: 0x31
-  - name: FrozenInMorphball
+  - name: SPOSE_FROZEN_IN_MORPH_BALL
     val: 0x32
-  - name: FrozenInMorphballAndFalling
+  - name: SPOSE_FROZEN_IN_MORPH_BALL_AND_FALLING
     val: 0x33
-  - name: UnlockingSecurity
+  - name: SPOSE_UNLOCKING_SECURITY
     val: 0x34
-  - name: SavingGame
+  - name: SPOSE_SAVING
     val: 0x35
-  - name: OnNavPad
+  - name: SPOSE_ON_NAVIGATION_PAD
     val: 0x36
-  - name: DownloadingAnAbility
+  - name: SPOSE_DOWNLOADING_ABILITY
     val: 0x37
-  - name: BeingRecharged
+  - name: SPOSE_BEING_RECHARGED
     val: 0x38
-  - name: FacingTheForeground
+  - name: SPOSE_FACING_FOREGROUND
     val: 0x39
-  - name: FacingTheBg
+  - name: SPOSE_FACING_BACKGROUND
     val: 0x3A
-  - name: UnlockingTheHabitationsDeck
+  - name: SPOSE_UNLOCKING_HABITATIONS_DECK
     val: 0x3B
-  - name: GrabbedByZazabi
+  - name: SPOSE_GRABBED_BY_ZAZABI
     val: 0x3C
-  - name: LoadingSave
+  - name: SPOSE_LOADING_SAVE
     val: 0x3D
-  - name: Dying
+  - name: SPOSE_DYING
     val: 0x3E
-  - name: HitByOmegaMetroid
+  - name: SPOSE_HIT_BY_OMEGA_METROID
     val: 0x3F
-  - name: GrabbedByYakuza
+  - name: SPOSE_GRABBED_BY_YAKUZA
     val: 0x40
+  - name: SPOSE_END
+    val: 0x41
+  - name: SPOSE_F7
+    val: 0xF7
+  - name: SPOSE_F8
+    val: 0xF8
+  - name: SPOSE_KNOCKBACK_REQUEST
+    val: 0xF9
+  - name: SPOSE_HURT_REQUEST
+    val: 0xFA
+  - name: SPOSE_FROZEN_REQUEST
+    val: 0xFB
+  - name: SPOSE_FC
+    val: 0xFC
+  - name: SPOSE_LANDING_REQUEST
+    val: 0xFD
+  - name: SPOSE_MID_AIR_REQUEST
+    val: 0xFE
+  - name: SPOSE_NONE
+    val: 0xFF
+  loc: include/constants/samus.h:6
 - name: SamusSlopeType
   vals:
   - name: Steep
@@ -1248,16 +4337,81 @@
   - name: Left
     desc: Fills the bottom left of a block
     val: 0x20
+  loc: null
+- name: SamusSpriteCollision
+  vals:
+  - name: SSC_NONE
+    val: 0x0
+  - name: SSC_SOLID
+    val: 0x1
+  - name: SSC_HURTS_SAMUS
+    val: 0x2
+  - name: SSC_HURTS_SAMUS_DOUBLE_DAMAGE
+    val: 0x3
+  - name: SSC_HURTS_SAMUS_DIES_WHEN_HIT
+    val: 0x4
+  - name: SSC_KNOCKS_BACK_SAMUS
+    val: 0x5
+  - name: SSC_KNOCKS_BACK_SAMUS_DIES_WHEN_HIT
+    val: 0x6
+  - name: SSC_SA_X_ICE_BEAM
+    val: 0x7
+  - name: SSC_SA_X_SUPER_MISSILE
+    val: 0x8
+  - name: SSC_SA_X_POWER_BOMB
+    val: 0x9
+  - name: SSC_SAVE_PLATFORM
+    val: 0xA
+  - name: SSC_YAMEBA
+    val: 0xB
+  - name: SSC_CORE_X_ABILITY
+    val: 0xC
+  - name: SSC_HURTS_SAMUS_SOLID
+    val: 0xD
+  - name: SSC_E
+    val: 0xE
+  - name: SSC_YELLOW_X_PARASITE_SPAWN_ON_ROOM_LOAD
+    val: 0xF
+  - name: SSC_GREEN_X_PARASITE
+    val: 0x10
+  - name: SSC_RED_X_PARASITE
+    val: 0x11
+  - name: SSC_YELLOW_X_PARASITE
+    val: 0x12
+  - name: SSC_BLUE_X_PARASITE
+    val: 0x13
+  - name: SSC_ZAZABI_CAN_GRAB
+    val: 0x14
+  - name: SSC_OMEGA_METROID_SWIPING
+    val: 0x15
+  - name: SSC_OMEGA_METROID_BODY
+    val: 0x16
+  - name: SSC_17
+    val: 0x17
+  - name: SSC_RIDLEY_TAIL_SERRIS_SEGMENT
+    val: 0x18
+  - name: SSC_RIDLEY_TAIL_TIP_STRIKING
+    val: 0x19
+  - name: SSC_RIDLEY_CLAW_CAN_GRAB
+    val: 0x1A
+  - name: SSC_RIDLEY_CLAW_GRABBED
+    val: 0x1B
+  - name: SSC_YAKUZA_CAN_GRAB
+    val: 0x1C
+  - name: SSC_1D
+    val: 0x1D
+  loc: include/constants/sprite.h:404
 - name: SamusStandingStatus
   vals:
-  - name: StandingOnGround
+  - name: STANDING_GROUND
     val: 0x0
-  - name: StandingOnEnemy
+  - name: STANDING_ENEMY
     val: 0x1
-  - name: Midair
+  - name: STANDING_MID_AIR
     val: 0x2
-  - name: NotInControlOfSamus
+  - name: STANDING_NOT_IN_CONTROL
     val: 0x3
+  loc: include/constants/samus.h:87
 - name: SaxOnScreenFlag
   vals:
   - name: NotPresent
@@ -1266,6 +4420,7 @@
     val: 0x1
   - name: OnScreen
     val: 0x2
+  loc: null
 - name: SaxPose
   vals:
   - name: Running
@@ -1308,30 +4463,2254 @@
     val: 0x12
   - name: TurningAwayFromCamera
     val: 0x13
+  loc: null
+- name: ScrollSubData
+  vals:
+  - name: SCROLL_SUB_DATA_X_START
+    val: 0x0
+  - name: SCROLL_SUB_DATA_X_END
+    val: 0x1
+  - name: SCROLL_SUB_DATA_Y_START
+    val: 0x2
+  - name: SCROLL_SUB_DATA_Y_END
+    val: 0x3
+  - name: SCROLL_SUB_DATA_BREAKABLE_X
+    val: 0x4
+  - name: SCROLL_SUB_DATA_BREAKABLE_Y
+    val: 0x5
+  - name: SCROLL_SUB_DATA_EXTENDED_DIRECTION
+    val: 0x6
+  - name: SCROLL_SUB_DATA_EXTENDED_VALUE
+    val: 0x7
+  - name: SCROLL_SUB_DATA_END
+    val: 0x8
+  loc: include/structs/scroll.h:7
+- name: ScrollVelocityCap
+  vals:
+  - name: SCROLL_VELOCITY_CAP_SET_DEFAULT
+    val: 0x0
+  - name: SCROLL_VELOCITY_CAP_SET_SLOW
+    val: 0x1
+  - name: SCROLL_VELOCITY_CAP_SET_FAST
+    val: 0x2
+  - name: SCROLL_VELOCITY_CAP_END
+    val: 0x3
+  loc: include/structs/scroll.h:38
 - name: ScrollsFlag
   vals:
   - name: NoScrolls
     val: 0x2
   - name: RoomHasScrolls
     val: 0x3
+  loc: null
+- name: SecondarySpriteId
+  vals:
+  - name: SSPRITE_SA_X_ICE_BEAM
+    val: 0x0
+  - name: SSPRITE_SA_X_SUPER_MISSILE
+    val: 0x1
+  - name: SSPRITE_HORNOAD_SPIT
+    val: 0x2
+  - name: SSPRITE_HALZYN_WING
+    val: 0x3
+  - name: SSPRITE_SCISER_PROJECTILE
+    val: 0x4
+  - name: SSPRITE_ZEBESIAN_BEAM
+    val: 0x5
+  - name: SSPRITE_GUNSHIP_PART
+    val: 0x6
+  - name: SSPRITE_NAVIGATION_CONSOLE
+    val: 0x7
+  - name: SSPRITE_NAVIGATION_CONSOLE_SCREEN
+    val: 0x8
+  - name: SSPRITE_NAVIGATION_SCREEN
+    val: 0x9
+  - name: SSPRITE_SAVE_PLATFORM
+    val: 0xA
+  - name: SSPRITE_MOTO_FRONT
+    val: 0xB
+  - name: SSPRITE_GEEMER_FLASHING_LIGHT
+    val: 0xC
+  - name: SSPRITE_GUNSHIP_BEAM
+    val: 0xD
+  - name: SSPRITE_E
+    val: 0xE
+  - name: SSPRITE_GATE_SWITCH
+    val: 0xF
+  - name: SSPRITE_KIHUNTER_WINGS
+    val: 0x10
+  - name: SSPRITE_KIHUNTER_SPIT
+    val: 0x11
+  - name: SSPRITE_12
+    val: 0x12
+  - name: SSPRITE_ATMOSPHERIC_STABILIZER_COVER_DOWN
+    val: 0x13
+  - name: SSPRITE_14
+    val: 0x14
+  - name: SSPRITE_ARACHNUS_SHELL
+    val: 0x15
+  - name: SSPRITE_ARACHNUS_BEAM
+    val: 0x16
+  - name: SSPRITE_ARACHNUS_HEAD
+    val: 0x17
+  - name: SSPRITE_ARACHNUS_LEFT_ARM
+    val: 0x18
+  - name: SSPRITE_ARACHNUS_RIGHT_ARM
+    val: 0x19
+  - name: SSPRITE_ARACHNUS_FIRE_BALL
+    val: 0x1A
+  - name: SSPRITE_CORE_X_SHELL_MORPH_BALL
+    val: 0x1B
+  - name: SSPRITE_ABILITY_AURA
+    val: 0x1C
+  - name: SSPRITE_GERON_MISSILE_STEM
+    val: 0x1D
+  - name: SSPRITE_DATA_PAD_CENTER
+    val: 0x1E
+  - name: SSPRITE_DATA_PAD_SIDES
+    val: 0x1F
+  - name: SSPRITE_ARACHNUS_BEAM_TRAIL
+    val: 0x20
+  - name: SSPRITE_RECHARGE_PAD_MONITOR
+    val: 0x21
+  - name: SSPRITE_RECHARGE_PAD_SCREEN
+    val: 0x22
+  - name: SSPRITE_ATMOSPHERIC_STABILIZER_COVER_RIGHT
+    val: 0x23
+  - name: SSPRITE_ATMOSPHERIC_STABILIZER_COVER_LEFT
+    val: 0x24
+  - name: SSPRITE_SECURITY_PAD_MONITOR
+    val: 0x25
+  - name: SSPRITE_SAVE_YES_NO_CURSOR
+    val: 0x26
+  - name: SSPRITE_FAKE_CHOZO_BALL
+    val: 0x27
+  - name: SSPRITE_CHARGE_BEAM_CORE_X_SHELL
+    val: 0x28
+  - name: SSPRITE_CHARGE_BEAM_CORE_X_EYE
+    val: 0x29
+  - name: SSPRITE_TOXIC_GAS_EXPLOSION
+    val: 0x2A
+  - name: SSPRITE_KIHUNTER_BUG
+    val: 0x2B
+  - name: SSPRITE_REO_WING
+    val: 0x2C
+  - name: SSPRITE_LAVA_PLUME_WARNING
+    val: 0x2D
+  - name: SSPRITE_NAMIHE_SPIT
+    val: 0x2E
+  - name: SSPRITE_FUNE_SPIT
+    val: 0x2F
+  - name: SSPRITE_SAVE_PAD_HOLOGRAM
+    val: 0x30
+  - name: SSPRITE_BOX_PART
+    val: 0x31
+  - name: SSPRITE_DESSGEEGA_SPIKE
+    val: 0x32
+  - name: SSPRITE_33
+    val: 0x33
+  - name: SSPRITE_OPERATIONS_ROOM_PAD_CONSOLE
+    val: 0x34
+  - name: SSPRITE_OPERATIONS_ROOM_PAD_CONSOLE_SCREEN
+    val: 0x35
+  - name: SSPRITE_OPERATIONS_ROOM_PAD_SCREEN
+    val: 0x36
+  - name: SSPRITE_WAVER_DEBRIS
+    val: 0x37
+  - name: SSPRITE_ZEELA_PROJECTILE
+    val: 0x38
+  - name: SSPRITE_SOVA_FIRE
+    val: 0x39
+  - name: SSPRITE_YARD_PROJECTILE
+    val: 0x3A
+  - name: SSPRITE_EVIR_COLLISION
+    val: 0x3B
+  - name: SSPRITE_EVIR_PROJECTILE
+    val: 0x3C
+  - name: SSPRITE_BULL_SMOKE
+    val: 0x3D
+  - name: SSPRITE_CHOOT_SPIT
+    val: 0x3E
+  - name: SSPRITE_ZEBESIAN_GROUND_BEAM
+    val: 0x3F
+  - name: SSPRITE_BLUE_X_ABSORPTION
+    val: 0x40
+  - name: SSPRITE_41
+    val: 0x41
+  - name: SSPRITE_GERON_SUPER_MISSILE_STEM
+    val: 0x42
+  - name: SSPRITE_GERON_POWER_BOMB_STEM
+    val: 0x43
+  - name: SSPRITE_SA_X_POWER_BOMB
+    val: 0x44
+  - name: SSPRITE_GADORA_ROOTS
+    val: 0x45
+  - name: SSPRITE_GADORA_BEAM
+    val: 0x46
+  - name: SSPRITE_GADORA_EYE
+    val: 0x47
+  - name: SSPRITE_48
+    val: 0x48
+  - name: SSPRITE_NIGHTMARE_FALLING_ARM
+    val: 0x49
+  - name: SSPRITE_MEGA_X_SHIELD
+    val: 0x4A
+  - name: SSPRITE_BOX_FALLING_DEBRIS
+    val: 0x4B
+  - name: SSPRITE_NETTORI_PART
+    val: 0x4C
+  - name: SSPRITE_4D
+    val: 0x4D
+  - name: SSPRITE_BEAM_CORE_X_CHARGE_BEAM
+    val: 0x4E
+  - name: SSPRITE_BEAM_CORE_X_WIDE_BEAM
+    val: 0x4F
+  - name: SSPRITE_BEAM_CORE_X_PLASMA_BEAM
+    val: 0x50
+  - name: SSPRITE_BEAM_CORE_X_WAVE_BEAM
+    val: 0x51
+  - name: SSPRITE_SAMUS_EATER_SPORE
+    val: 0x52
+  - name: SSPRITE_NETTORI_PLASMA_BEAM
+    val: 0x53
+  - name: SSPRITE_WIDE_BEAM_CORE_X_SHELL
+    val: 0x54
+  - name: SSPRITE_WIDE_BEAM_CORE_X_EYE
+    val: 0x55
+  - name: SSPRITE_PLASMA_BEAM_CORE_X_SHELL
+    val: 0x56
+  - name: SSPRITE_PLASMA_BEAM_CORE_X_EYE
+    val: 0x57
+  - name: SSPRITE_WAVE_BEAM_CORE_X_SHELL
+    val: 0x58
+  - name: SSPRITE_WAVE_BEAM_CORE_X_EYE
+    val: 0x59
+  - name: SSPRITE_ZAZABI_PART
+    val: 0x5A
+  - name: SSPRITE_SERRIS_PART
+    val: 0x5B
+  - name: SSPRITE_CORE_X_STATIC_BEFORE_VARIA_CORE
+    val: 0x5C
+  - name: SSPRITE_CORE_X_SHELL_BEFORE_VARIA_CORE
+    val: 0x5D
+  - name: SSPRITE_CORE_X_SHELL_HIGH_JUMP
+    val: 0x5E
+  - name: SSPRITE_CORE_X_SHELL_SPEEDBOOSTER
+    val: 0x5F
+  - name: SSPRITE_CORE_X_SHELL_VARIA
+    val: 0x60
+  - name: SSPRITE_CORE_X_SHELL_SPACE_JUMP
+    val: 0x61
+  - name: SSPRITE_CORE_X_SHELL_GRAVITY
+    val: 0x62
+  - name: SSPRITE_CORE_X_SHELL_SCREW_ATTACK
+    val: 0x63
+  - name: SSPRITE_YAKUZA_PART
+    val: 0x64
+  - name: SSPRITE_GENESIS_SPIT
+    val: 0x65
+  - name: SSPRITE_ZEBESIAN_AQUA_PROJECTILE
+    val: 0x66
+  - name: SSPRITE_67
+    val: 0x67
+  - name: SSPRITE_68
+    val: 0x68
+  - name: SSPRITE_BABY_DACHORA
+    val: 0x69
+  - name: SSPRITE_SA_X_SHOOTING_AT_LAB_EXPLOSION
+    val: 0x6A
+  - name: SSPRITE_SA_X_MONSTER_PART
+    val: 0x6B
+  - name: SSPRITE_BOX_2_PART
+    val: 0x6C
+  - name: SSPRITE_BOX_2_MISSILE
+    val: 0x6D
+  - name: SSPRITE_BOX_2_BRAIN_TOP
+    val: 0x6E
+  - name: SSPRITE_BOX_2_BRAIN_BOTTOM
+    val: 0x6F
+  - name: SSPRITE_OMEGA_METROID_PART
+    val: 0x70
+  - name: SSPRITE_BOX_BOMB
+    val: 0x71
+  - name: SSPRITE_BOX_FIRE
+    val: 0x72
+  - name: SSPRITE_FROZEN_RIDLEY_X
+    val: 0x73
+  - name: SSPRITE_BEAM_CORE_X_ICE_BEAM
+    val: 0x74
+  - name: SSPRITE_ICE_BEAM_CORE_X_SHELL
+    val: 0x75
+  - name: SSPRITE_ICE_BEAM_CORE_X_EYE
+    val: 0x76
+  - name: SSPRITE_SERRIS_BLOCK
+    val: 0x77
+  - name: SSPRITE_MEGA_X
+    val: 0x78
+  - name: SSPRITE_GUNSHIP_END_BEAM
+    val: 0x79
+  - name: SSPRITE_7A
+    val: 0x7A
+  - name: SSPRITE_RIDLEY_PART
+    val: 0x7B
+  - name: SSPRITE_RIDLEY_TAIL_PART
+    val: 0x7C
+  - name: SSPRITE_RIDLEY_FIRE
+    val: 0x7D
+  - name: SSPRITE_YAKUZA_PROJECTILE
+    val: 0x7E
+  - name: SSPRITE_YAKUZA_FALLING_LEG
+    val: 0x7F
+  - name: SSPRITE_NIGHTMARE_PART
+    val: 0x80
+  - name: SSPRITE_NIGHTMARE_BEAM
+    val: 0x81
+  - name: SSPRITE_END
+    val: 0x82
+  loc: include/constants/sprite.h:269
 - name: SecurityLevel
   vals:
-  - name: WhiteHatches
+  - name: SECURITY_LEVEL_0
     val: 0x0
-  - name: Level1_BlueHatches
+  - name: SECURITY_LEVEL_1
     val: 0x1
-  - name: Level2_GreenHatches
+  - name: SECURITY_LEVEL_2
     val: 0x2
-  - name: Level3_YellowHatches
+  - name: SECURITY_LEVEL_3
     val: 0x3
-  - name: Level4_RedHatches
+  - name: SECURITY_LEVEL_4
     val: 0x4
-  - name: NoHatches
+  - name: SECURITY_LEVEL_END
+    val: 0x5
+  - name: SECURITY_LEVEL_NO_HATCHES
     val: 0xFF
+  loc: include/constants/samus.h:94
+- name: SerrisPart
+  desc: serris part AI
+  vals:
+  - name: SERRIS_PART_HEAD_JOINT
+    val: 0x0
+  - name: SERRIS_PART_SECTION_1
+    val: 0x1
+  - name: SERRIS_PART_SECTION_2
+    val: 0x2
+  - name: SERRIS_PART_SECTION_3
+    val: 0x3
+  - name: SERRIS_PART_SECTION_4
+    val: 0x4
+  - name: SERRIS_PART_SECTION_5
+    val: 0x5
+  - name: SERRIS_PART_SECTION_6
+    val: 0x6
+  - name: SERRIS_PART_MIDDLE_END
+    val: 0x7
+  - name: SERRIS_PART_TAIL_JOINT
+    val: 0x8
+  - name: SERRIS_PART_TAIL
+    val: 0x9
+  - name: SERRIS_PART_END
+    val: 0xA
+  loc: src/sprites_AI/serris.c:2265
+- name: ShakeTrigger
+  vals:
+  - name: SHAKE_TRIGGER_SUPER_MISSILE_DOWNLOADED
+    val: 0x0
+  - name: SHAKE_TRIGGER_SA_X_QUAKE
+    val: 0x1
+  - name: SHAKE_TRIGGER_RESTRICTED_LAB_EXPLOSION_FIRST
+    val: 0x2
+  - name: SHAKE_TRIGGER_RESTRICTED_LAB_EXPLOSION_SECOND
+    val: 0x3
+  - name: SHAKE_TRIGGER_BOX_2_RUMBLE
+    val: 0x4
+  loc: src/sprites_AI/shake_trigger.c:95
+- name: Sound
+  vals:
+  - name: MUSIC_NONE
+    val: 0x0
+  - name: MUSIC_1
+    val: 0x1
+  - name: MUSIC_2
+    val: 0x2
+  - name: MUSIC_3
+    val: 0x3
+  - name: MUSIC_SECTOR_1
+    val: 0x4
+  - name: MUSIC_5
+    val: 0x5
+  - name: MUSIC_SECTOR_2
+    val: 0x6
+  - name: MUSIC_SECTOR_3
+    val: 0x7
+  - name: MUSIC_SECTOR_5
+    val: 0x8
+  - name: MUSIC_SECTOR_4
+    val: 0x9
+  - name: MUSIC_SECTOR_6
+    val: 0xA
+  - name: MUSIC_NAVIGATION_ROOM
+    val: 0xB
+  - name: MUSIC_C
+    val: 0xC
+  - name: MUSIC_D
+    val: 0xD
+  - name: MUSIC_E
+    val: 0xE
+  - name: MUSIC_F
+    val: 0xF
+  - name: MUSIC_ITEM_FANFARE
+    val: 0x10
+  - name: MUSIC_11
+    val: 0x11
+  - name: MUSIC_12
+    val: 0x12
+  - name: MUSIC_13
+    val: 0x13
+  - name: SOUND_MESSAGE_POPUP
+    val: 0x14
+  - name: MUSIC_15
+    val: 0x15
+  - name: MUSIC_16
+    val: 0x16
+  - name: MUSIC_SA_X_CHASE
+    val: 0x17
+  - name: MUSIC_BOSS_TENSION
+    val: 0x18
+  - name: MUSIC_ARACHNUS_BATTLE
+    val: 0x19
+  - name: MUSIC_ZAZABI_BATTLE
+    val: 0x1A
+  - name: MUSIC_BOX_BATTLE
+    val: 0x1B
+  - name: MUSIC_1C
+    val: 0x1C
+  - name: MUSIC_1D
+    val: 0x1D
+  - name: MUSIC_1E
+    val: 0x1E
+  - name: MUSIC_1F
+    val: 0x1F
+  - name: MUSIC_20
+    val: 0x20
+  - name: MUSIC_21
+    val: 0x21
+  - name: MUSIC_22
+    val: 0x22
+  - name: MUSIC_23
+    val: 0x23
+  - name: MUSIC_24
+    val: 0x24
+  - name: MUSIC_25
+    val: 0x25
+  - name: MUSIC_26
+    val: 0x26
+  - name: MUSIC_27
+    val: 0x27
+  - name: MUSIC_28
+    val: 0x28
+  - name: MUSIC_29
+    val: 0x29
+  - name: MUSIC_2A
+    val: 0x2A
+  - name: MUSIC_2B
+    val: 0x2B
+  - name: MUSIC_2C
+    val: 0x2C
+  - name: MUSIC_2D
+    val: 0x2D
+  - name: MUSIC_2E
+    val: 0x2E
+  - name: MUSIC_2F
+    val: 0x2F
+  - name: MUSIC_30
+    val: 0x30
+  - name: MUSIC_31
+    val: 0x31
+  - name: MUSIC_32
+    val: 0x32
+  - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE
+    val: 0x33
+  - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE_AMBIENCE
+    val: 0x34
+  - name: MUSIC_MAIN_BOILER_COOLDOWN_MISSION
+    val: 0x35
+  - name: MUSIC_36
+    val: 0x36
+  - name: MUSIC_37
+    val: 0x37
+  - name: MUSIC_ORBIT_CHANGE
+    val: 0x38
+  - name: MUSIC_39
+    val: 0x39
+  - name: MUSIC_3A
+    val: 0x3A
+  - name: MUSIC_OBJECTIVE_COMPLETE
+    val: 0x3B
+  - name: MUSIC_3C
+    val: 0x3C
+  - name: MUSIC_3D
+    val: 0x3D
+  - name: MUSIC_3E
+    val: 0x3E
+  - name: MUSIC_SERRIS_YAKUZA_BATTLE
+    val: 0x3F
+  - name: MUSIC_VARIA_CORE_X_BATTLE
+    val: 0x40
+  - name: MUSIC_NIGHTMARE_BATTLE
+    val: 0x41
+  - name: MUSIC_NEO_RIDLEY_BATTLE
+    val: 0x42
+  - name: MUSIC_CHOZO_STATUE_CORE_X_BATTLE
+    val: 0x43
+  - name: MUSIC_NETTORI_BATTLE
+    val: 0x44
+  - name: MUSIC_45
+    val: 0x45
+  - name: MUSIC_46
+    val: 0x46
+  - name: MUSIC_47
+    val: 0x47
+  - name: MUSIC_48
+    val: 0x48
+  - name: MUSIC_49
+    val: 0x49
+  - name: MUSIC_TITLE
+    val: 0x4A
+  - name: MUSIC_4B
+    val: 0x4B
+  - name: MUSIC_4C
+    val: 0x4C
+  - name: MUSIC_4D
+    val: 0x4D
+  - name: MUSIC_4E
+    val: 0x4E
+  - name: MUSIC_4F
+    val: 0x4F
+  - name: MUSIC_50
+    val: 0x50
+  - name: MUSIC_SA_X_BATTLE
+    val: 0x51
+  - name: MUSIC_52
+    val: 0x52
+  - name: MUSIC_53
+    val: 0x53
+  - name: MUSIC_54
+    val: 0x54
+  - name: MUSIC_55
+    val: 0x55
+  - name: MUSIC_56
+    val: 0x56
+  - name: MUSIC_57
+    val: 0x57
+  - name: MUSIC_58
+    val: 0x58
+  - name: MUSIC_59
+    val: 0x59
+  - name: MUSIC_5A
+    val: 0x5A
+  - name: MUSIC_5B
+    val: 0x5B
+  - name: MUSIC_5C
+    val: 0x5C
+  - name: MUSIC_5D
+    val: 0x5D
+  - name: MUSIC_5E
+    val: 0x5E
+  - name: MUSIC_5F
+    val: 0x5F
+  - name: MUSIC_60
+    val: 0x60
+  - name: MUSIC_61
+    val: 0x61
+  - name: MUSIC_62
+    val: 0x62
+  - name: MUSIC_63
+    val: 0x63
+  - name: SOUND_64
+    val: 0x64
+  - name: SOUND_65
+    val: 0x65
+  - name: SOUND_66
+    val: 0x66
+  - name: SOUND_67
+    val: 0x67
+  - name: SOUND_68
+    val: 0x68
+  - name: SOUND_69
+    val: 0x69
+  - name: SOUND_6A
+    val: 0x6A
+  - name: SOUND_6B
+    val: 0x6B
+  - name: SOUND_6C
+    val: 0x6C
+  - name: SOUND_6D
+    val: 0x6D
+  - name: SOUND_6E
+    val: 0x6E
+  - name: SOUND_6F
+    val: 0x6F
+  - name: SOUND_70
+    val: 0x70
+  - name: SOUND_71
+    val: 0x71
+  - name: SOUND_72
+    val: 0x72
+  - name: SOUND_73
+    val: 0x73
+  - name: SOUND_74
+    val: 0x74
+  - name: SOUND_75
+    val: 0x75
+  - name: SOUND_76
+    val: 0x76
+  - name: SOUND_77
+    val: 0x77
+  - name: SOUND_78
+    val: 0x78
+  - name: SOUND_79
+    val: 0x79
+  - name: SOUND_7A
+    val: 0x7A
+  - name: SOUND_7B
+    val: 0x7B
+  - name: SOUND_7C
+    val: 0x7C
+  - name: SOUND_7D
+    val: 0x7D
+  - name: SOUND_7E
+    val: 0x7E
+  - name: SOUND_7F
+    val: 0x7F
+  - name: SOUND_80
+    val: 0x80
+  - name: SOUND_81
+    val: 0x81
+  - name: SOUND_82
+    val: 0x82
+  - name: SOUND_83
+    val: 0x83
+  - name: SOUND_84
+    val: 0x84
+  - name: SOUND_85
+    val: 0x85
+  - name: SOUND_86
+    val: 0x86
+  - name: SOUND_87
+    val: 0x87
+  - name: SOUND_SAMUS_HURT
+    val: 0x88
+  - name: SOUND_SAMUS_CONSTANT_DAMAGE
+    val: 0x89
+  - name: SOUND_SAMUS_ELECTRIC_WATER_DAMAGE
+    val: 0x8A
+  - name: SOUND_8B
+    val: 0x8B
+  - name: SOUND_8C
+    val: 0x8C
+  - name: SOUND_8D
+    val: 0x8D
+  - name: SOUND_8E
+    val: 0x8E
+  - name: SOUND_8F
+    val: 0x8F
+  - name: SOUND_90
+    val: 0x90
+  - name: SOUND_91
+    val: 0x91
+  - name: SOUND_X_PARASITE_GETTING_ABSORBED
+    val: 0x92
+  - name: SOUND_93
+    val: 0x93
+  - name: SOUND_94
+    val: 0x94
+  - name: SOUND_95
+    val: 0x95
+  - name: SOUND_96
+    val: 0x96
+  - name: SOUND_97
+    val: 0x97
+  - name: SOUND_98
+    val: 0x98
+  - name: SOUND_99
+    val: 0x99
+  - name: SOUND_9A
+    val: 0x9A
+  - name: SOUND_9B
+    val: 0x9B
+  - name: SOUND_9C
+    val: 0x9C
+  - name: SOUND_9D
+    val: 0x9D
+  - name: SOUND_9E
+    val: 0x9E
+  - name: SOUND_9F
+    val: 0x9F
+  - name: SOUND_A0
+    val: 0xA0
+  - name: SOUND_A1
+    val: 0xA1
+  - name: SOUND_A2
+    val: 0xA2
+  - name: SOUND_A3
+    val: 0xA3
+  - name: SOUND_A4
+    val: 0xA4
+  - name: SOUND_A5
+    val: 0xA5
+  - name: SOUND_A6
+    val: 0xA6
+  - name: SOUND_A7
+    val: 0xA7
+  - name: SOUND_A8
+    val: 0xA8
+  - name: SOUND_A9
+    val: 0xA9
+  - name: SOUND_AA
+    val: 0xAA
+  - name: SOUND_AB
+    val: 0xAB
+  - name: SOUND_AC
+    val: 0xAC
+  - name: SOUND_AD
+    val: 0xAD
+  - name: SOUND_AE
+    val: 0xAE
+  - name: SOUND_AF
+    val: 0xAF
+  - name: SOUND_B0
+    val: 0xB0
+  - name: SOUND_B1
+    val: 0xB1
+  - name: SOUND_B2
+    val: 0xB2
+  - name: SOUND_B3
+    val: 0xB3
+  - name: SOUND_ARACHNUS_CURL
+    val: 0xB4
+  - name: SOUND_ARACHNUS_UNCURL
+    val: 0xB5
+  - name: SOUND_ARACHNUS_ROLLING
+    val: 0xB6
+  - name: SOUND_ARACHNUS_BONK
+    val: 0xB7
+  - name: SOUND_ARACHNUS_WALK
+    val: 0xB8
+  - name: SOUND_ARACHNUS_SLASH
+    val: 0xB9
+  - name: SOUND_ARACHNUS_SLASH_WARNING
+    val: 0xBA
+  - name: SOUND_ARACHNUS_SCREAM
+    val: 0xBB
+  - name: SOUND_ARACHNUS_SHOOT_FIRE
+    val: 0xBC
+  - name: SOUND_ARACHNUS_FIRE_BURNING
+    val: 0xBD
+  - name: SOUND_ARACHNUS_DYING
+    val: 0xBE
+  - name: SOUND_ARACHNUS_SLASH_HIT_WALL
+    val: 0xBF
+  - name: SOUND_CORE_X_MOVING
+    val: 0xC0
+  - name: SOUND_CORE_X_SHELL_BURST
+    val: 0xC1
+  - name: SOUND_CORE_X_HURT
+    val: 0xC2
+  - name: SOUND_CORE_X_AURA
+    val: 0xC3
+  - name: SOUND_CORE_X_MOVING_TO_SPAWN_POINT
+    val: 0xC4
+  - name: SOUND_C5
+    val: 0xC5
+  - name: SOUND_C6
+    val: 0xC6
+  - name: SOUND_C7
+    val: 0xC7
+  - name: SOUND_NORMAL_BEAM_FIRE
+    val: 0xC8
+  - name: SOUND_WIDE_BEAM_FIRE
+    val: 0xC9
+  - name: SOUND_CHARGE_BEAM_FIRE
+    val: 0xCA
+  - name: SOUND_PLASMA_BEAM_FIRE
+    val: 0xCB
+  - name: SOUND_WAVE_BEAM_FIRE
+    val: 0xCC
+  - name: SOUND_ICE_BEAM_FIRE
+    val: 0xCD
+  - name: SOUND_NORMAL_MISSILE_FIRE
+    val: 0xCE
+  - name: SOUND_NORMAL_MISSILE_THRUST
+    val: 0xCF
+  - name: SOUND_NORMAL_MISSILE_EXPLODE
+    val: 0xD0
+  - name: SOUND_SUPER_MISSILE_FIRE
+    val: 0xD1
+  - name: SOUND_SUPER_MISSILE_THRUST
+    val: 0xD2
+  - name: SOUND_SUPER_MISSILE_EXPLODE
+    val: 0xD3
+  - name: SOUND_ICE_MISSILE_FIRE
+    val: 0xD4
+  - name: SOUND_ICE_MISSILE_THRUST
+    val: 0xD5
+  - name: SOUND_ICE_MISSILE_EXPLODE
+    val: 0xD6
+  - name: SOUND_DIFFUSION_MISSILE_FIRE
+    val: 0xD7
+  - name: SOUND_DIFFUSION_MISSILE_THRUST
+    val: 0xD8
+  - name: SOUND_DIFFUSION_MISSILE_EXPLODE
+    val: 0xD9
+  - name: SOUND_CHARGED_DIFFUSION_MISSILE_FIRE
+    val: 0xDA
+  - name: SOUND_CHARGED_DIFFUSION_MISSILE_THRUST
+    val: 0xDB
+  - name: SOUND_CHARGED_DIFFUSION_MISSILE_EXPLODE
+    val: 0xDC
+  - name: SOUND_BOMB_SET
+    val: 0xDD
+  - name: SOUND_BOMB_EXPLODE
+    val: 0xDE
+  - name: SOUND_POWER_BOMB_SET
+    val: 0xDF
+  - name: SOUND_POWER_BOMB_EXPLODE
+    val: 0xE0
+  - name: SOUND_CHARGE_BEAM_CHARGING
+    val: 0xE1
+  - name: SOUND_CHARGE_BEAM_CHARGED
+    val: 0xE2
+  - name: SOUND_WIDE_BEAM_CHARGING
+    val: 0xE3
+  - name: SOUND_WIDE_BEAM_CHARGED
+    val: 0xE4
+  - name: SOUND_PLASMA_BEAM_CHARGING
+    val: 0xE5
+  - name: SOUND_PLASMA_BEAM_CHARGED
+    val: 0xE6
+  - name: SOUND_WAVE_BEAM_CHARGING
+    val: 0xE7
+  - name: SOUND_WAVE_BEAM_CHARGED
+    val: 0xE8
+  - name: SOUND_ICE_BEAM_CHARGING
+    val: 0xE9
+  - name: SOUND_ICE_BEAM_CHARGED
+    val: 0xEA
+  - name: SOUND_DIFFUSION_MISSILE_CHARGING
+    val: 0xEB
+  - name: SOUND_DIFFUSION_MISSILE_CHARGED
+    val: 0xEC
+  - name: SOUND_CHARGED_CHARGE_BEAM_FIRE
+    val: 0xED
+  - name: SOUND_CHARGED_WIDE_BEAM_FIRE
+    val: 0xEE
+  - name: SOUND_CHARGED_PLASMA_BEAM_FIRE
+    val: 0xEF
+  - name: SOUND_CHARGED_WAVE_BEAM_FIRE
+    val: 0xF0
+  - name: SOUND_CHARGED_ICE_BEAM_FIRE
+    val: 0xF1
+  - name: SOUND_NORMAL_BEAM_HIT
+    val: 0xF2
+  - name: SOUND_CHARGE_BEAM_HIT
+    val: 0xF3
+  - name: SOUND_WIDE_BEAM_HIT
+    val: 0xF4
+  - name: SOUND_PLASMA_BEAM_HIT
+    val: 0xF5
+  - name: SOUND_FLARE_FIRE
+    val: 0xF6
+  - name: SOUND_FLARE_HIT
+    val: 0xF7
+  - name: SOUND_INVINCIBLE_HIT
+    val: 0xF8
+  - name: SOUND_F9
+    val: 0xF9
+  - name: SOUND_FA
+    val: 0xFA
+  - name: SOUND_FB
+    val: 0xFB
+  - name: SOUND_FC
+    val: 0xFC
+  - name: SOUND_FD
+    val: 0xFD
+  - name: SOUND_FE
+    val: 0xFE
+  - name: SOUND_FF
+    val: 0xFF
+  - name: SOUND_100
+    val: 0x100
+  - name: SOUND_101
+    val: 0x101
+  - name: SOUND_102
+    val: 0x102
+  - name: SOUND_103
+    val: 0x103
+  - name: SOUND_104
+    val: 0x104
+  - name: SOUND_105
+    val: 0x105
+  - name: SOUND_106
+    val: 0x106
+  - name: SOUND_107
+    val: 0x107
+  - name: SOUND_108
+    val: 0x108
+  - name: SOUND_109
+    val: 0x109
+  - name: SOUND_10A
+    val: 0x10A
+  - name: SOUND_10B
+    val: 0x10B
+  - name: SOUND_10C
+    val: 0x10C
+  - name: SOUND_10D
+    val: 0x10D
+  - name: SOUND_10E
+    val: 0x10E
+  - name: SOUND_10F
+    val: 0x10F
+  - name: SOUND_110
+    val: 0x110
+  - name: SOUND_111
+    val: 0x111
+  - name: SOUND_112
+    val: 0x112
+  - name: SOUND_113
+    val: 0x113
+  - name: SOUND_114
+    val: 0x114
+  - name: SOUND_115
+    val: 0x115
+  - name: SOUND_ELECTRIC_WATER
+    val: 0x116
+  - name: SOUND_ELECTRIC_WIRE
+    val: 0x117
+  - name: SOUND_KIHUNTER_HIVE_BUZZING
+    val: 0x118
+  - name: SOUND_119
+    val: 0x119
+  - name: SOUND_11A
+    val: 0x11A
+  - name: SOUND_11B
+    val: 0x11B
+  - name: SOUND_11C
+    val: 0x11C
+  - name: SOUND_11D
+    val: 0x11D
+  - name: SOUND_11E
+    val: 0x11E
+  - name: SOUND_11F
+    val: 0x11F
+  - name: SOUND_120
+    val: 0x120
+  - name: SOUND_121
+    val: 0x121
+  - name: SOUND_122
+    val: 0x122
+  - name: SOUND_123
+    val: 0x123
+  - name: SOUND_124
+    val: 0x124
+  - name: SOUND_125
+    val: 0x125
+  - name: SOUND_126
+    val: 0x126
+  - name: SOUND_127
+    val: 0x127
+  - name: SOUND_128
+    val: 0x128
+  - name: SOUND_129
+    val: 0x129
+  - name: SOUND_12A
+    val: 0x12A
+  - name: SOUND_12B
+    val: 0x12B
+  - name: SOUND_12C
+    val: 0x12C
+  - name: SOUND_12D
+    val: 0x12D
+  - name: SOUND_12E
+    val: 0x12E
+  - name: SOUND_12F
+    val: 0x12F
+  - name: SOUND_130
+    val: 0x130
+  - name: SOUND_131
+    val: 0x131
+  - name: SOUND_132
+    val: 0x132
+  - name: SOUND_133
+    val: 0x133
+  - name: SOUND_134
+    val: 0x134
+  - name: SOUND_135
+    val: 0x135
+  - name: SOUND_136
+    val: 0x136
+  - name: SOUND_137
+    val: 0x137
+  - name: SOUND_138
+    val: 0x138
+  - name: SOUND_139
+    val: 0x139
+  - name: SOUND_13A
+    val: 0x13A
+  - name: SOUND_13B
+    val: 0x13B
+  - name: SOUND_13C
+    val: 0x13C
+  - name: SOUND_13D
+    val: 0x13D
+  - name: SOUND_13E
+    val: 0x13E
+  - name: SOUND_13F
+    val: 0x13F
+  - name: SOUND_140
+    val: 0x140
+  - name: SOUND_X_PARASITE_MOVING
+    val: 0x141
+  - name: SOUND_SPRITE_TRANSFORMING_INTO_X
+    val: 0x142
+  - name: SOUND_X_PARASITE_FORMING
+    val: 0x143
+  - name: SOUND_SPRITE_EXPLODE_144
+    val: 0x144
+  - name: SOUND_SPRITE_EXPLODE_145
+    val: 0x145
+  - name: SOUND_FREEZE_SPRITE
+    val: 0x146
+  - name: SOUND_PSEUDO_SCREW_KILLED
+    val: 0x147
+  - name: SOUND_SHINESPARK_SCREW_ATTACK_KILLED
+    val: 0x148
+  - name: SOUND_SPEEDBOOSTER_KILLED
+    val: 0x149
+  - name: SOUND_HORNOAD_HURT
+    val: 0x14A
+  - name: SOUND_HORNOAD_SPIT
+    val: 0x14B
+  - name: SOUND_HORNOAD_JUMP
+    val: 0x14C
+  - name: SOUND_ZOMBIE_FORMING
+    val: 0x14D
+  - name: SOUND_ZOMBIE_HURT
+    val: 0x14E
+  - name: SOUND_ZOMBIE_LUNGE
+    val: 0x14F
+  - name: SOUND_HALZYN_HURT
+    val: 0x150
+  - name: SOUND_HALZYN_LUNGE
+    val: 0x151
+  - name: SOUND_HALZYN_LAND
+    val: 0x152
+  - name: SOUND_HALZYN_FLAP
+    val: 0x153
+  - name: SOUND_MOTO_HURT
+    val: 0x154
+  - name: SOUND_MOTO_WALK_FASTER_0
+    val: 0x155
+  - name: SOUND_MOTO_WALK_FASTER_1
+    val: 0x156
+  - name: SOUND_MOTO_WALK_FASTER_2
+    val: 0x157
+  - name: SOUND_MOTO_CHARGE
+    val: 0x158
+  - name: SOUND_MOTO_WALK_SLOWER
+    val: 0x159
+  - name: SOUND_TOXIC_GAS_EXPLODE
+    val: 0x15A
+  - name: SOUND_ZEBESIAN_WALL_JUMP
+    val: 0x15B
+  - name: SOUND_ZEBESIAN_GRAB_LEDGE_UNUSED
+    val: 0x15C
+  - name: SOUND_ZEBESIAN_BEAM
+    val: 0x15D
+  - name: SOUND_ZEBESIAN_HURT
+    val: 0x15E
+  - name: SOUND_YAMEBA_HURT
+    val: 0x15F
+  - name: SOUND_GERON_HURT
+    val: 0x160
+  - name: SOUND_SCISER_PREPARING_TO_SHOOT
+    val: 0x161
+  - name: SOUND_SCISER_SHOOTING
+    val: 0x162
+  - name: SOUND_SCISER_HURT
+    val: 0x163
+  - name: SOUND_GEEMER_HURT
+    val: 0x164
+  - name: SOUND_GEEMER_HIDE
+    val: 0x165
+  - name: SOUND_GEEMER_UNCOVER
+    val: 0x166
+  - name: SOUND_RED_ZORO_HURT
+    val: 0x167
+  - name: SOUND_ZORO_CRAWLING_1
+    val: 0x168
+  - name: SOUND_ZORO_CRAWLING_2
+    val: 0x169
+  - name: SOUND_KAGO_HIT_SHORT
+    val: 0x16A
+  - name: SOUND_KAGO_IDLE_SHORT
+    val: 0x16B
+  - name: SOUND_KAGO_MUTATING
+    val: 0x16C
+  - name: SOUND_KAGO_IDLE_TALL_4
+    val: 0x16D
+  - name: SOUND_KAGO_IDLE_TALL_3
+    val: 0x16E
+  - name: SOUND_KAGO_IDLE_TALL_2
+    val: 0x16F
+  - name: SOUND_KAGO_IDLE_TALL_1
+    val: 0x170
+  - name: SOUND_KAGO_IDLE_TALL_0
+    val: 0x171
+  - name: SOUND_KAGO_INSECT_EXPLODING
+    val: 0x172
+  - name: SOUND_KAGO_INSECT_JUMPING
+    val: 0x173
+  - name: SOUND_KIHUNTER_HURT
+    val: 0x174
+  - name: SOUND_KIHUNTER_JUMPING
+    val: 0x175
+  - name: SOUND_KIHUNTER_SWIPING
+    val: 0x176
+  - name: SOUND_KIHUNTER_LUNGING_WITH_STINGER
+    val: 0x177
+  - name: SOUND_KIHUNTER_SPITTING
+    val: 0x178
+  - name: SOUND_KIHUNTER_SWOOPING
+    val: 0x179
+  - name: SOUND_SIDEHOPPER_JUMPING
+    val: 0x17A
+  - name: SOUND_SIDEHOPPER_LANDING
+    val: 0x17B
+  - name: SOUND_SIDEHOPPER_SHAKING_HEAD
+    val: 0x17C
+  - name: SOUND_SIDEHOPPER_HURT
+    val: 0x17D
+  - name: SOUND_DESSGEEGA_JUMPING
+    val: 0x17E
+  - name: SOUND_DESSGEEGA_LANDING
+    val: 0x17F
+  - name: SOUND_DESSGEEGA_SHAKING_HEAD
+    val: 0x180
+  - name: SOUND_DESSGEEGA_HURT
+    val: 0x181
+  - name: SOUND_REO_MOVING
+    val: 0x182
+  - name: SOUND_REO_HURT
+    val: 0x183
+  - name: SOUND_LAVA_PLUME_GOING_UP
+    val: 0x184
+  - name: SOUND_LAVA_PLUME_STOPPING
+    val: 0x185
+  - name: SOUND_FUNE_SPIT
+    val: 0x186
+  - name: SOUND_FUNE_LUNGING
+    val: 0x187
+  - name: SOUND_FUNE_HURT
+    val: 0x188
+  - name: SOUND_NAMIHE_SPIT
+    val: 0x189
+  - name: SOUND_NAMIHE_LUNGING
+    val: 0x18A
+  - name: SOUND_NAMIHE_HURT
+    val: 0x18B
+  - name: SOUND_GERUDA_SWIPING
+    val: 0x18C
+  - name: SOUND_GERUDA_HURT
+    val: 0x18D
+  - name: SOUND_SOVA_DROPPING_FLAME
+    val: 0x18E
+  - name: SOUND_SOVA_FALLING_FLAME_EXPLODING
+    val: 0x18F
+  - name: SOUND_SOVA_HURT
+    val: 0x190
+  - name: SOUND_SKULTERA_SMALL_TURNING
+    val: 0x191
+  - name: SOUND_SKULTERA_SMALL_HURT
+    val: 0x192
+  - name: SOUND_SKULTERA_LARGE_TURNING
+    val: 0x193
+  - name: SOUND_SKULTERA_LARGE_HURT
+    val: 0x194
+  - name: SOUND_YARD_CHARGING
+    val: 0x195
+  - name: SOUND_YARD_SHOOTING
+    val: 0x196
+  - name: SOUND_YARD_HURT
+    val: 0x197
+  - name: SOUND_YARD_ROLLING
+    val: 0x198
+  - name: SOUND_BULL_BOUNCING
+    val: 0x199
+  - name: SOUND_BULL_RELEASING_SMOKE
+    val: 0x19A
+  - name: SOUND_MEMU_CHASING
+    val: 0x19B
+  - name: SOUND_MEMU_HURT
+    val: 0x19C
+  - name: SOUND_GERUBOSS_CHARGE
+    val: 0x19D
+  - name: SOUND_GERUBOSS_START_MOVING
+    val: 0x19E
+  - name: SOUND_GERUBOSS_MOVING
+    val: 0x19F
+  - name: SOUND_GERUBOSS_STALL
+    val: 0x1A0
+  - name: SOUND_GERUBOSS_HURT
+    val: 0x1A1
+  - name: SOUND_CHOOT_JUMP
+    val: 0x1A2
+  - name: SOUND_CHOOT_SPIT
+    val: 0x1A3
+  - name: SOUND_CHOOT_HURT
+    val: 0x1A4
+  - name: SOUND_BLUE_ZORO_HURT
+    val: 0x1A5
+  - name: SOUND_WAVER_CHARGING
+    val: 0x1A6
+  - name: SOUND_WAVER_CRASHING
+    val: 0x1A7
+  - name: SOUND_WAVER_HURT
+    val: 0x1A8
+  - name: SOUND_EVIR_IDLE
+    val: 0x1A9
+  - name: SOUND_EVIR_SHOOTING
+    val: 0x1AA
+  - name: SOUND_1AB
+    val: 0x1AB
+  - name: SOUND_EVIR_HURT
+    val: 0x1AC
+  - name: SOUND_ZEBESIAN_GROUND_JUMP
+    val: 0x1AD
+  - name: SOUND_ZEBESIAN_GROUND_LANDING
+    val: 0x1AE
+  - name: SOUND_ZEBESIAN_GROUND_FOOTSTEPS
+    val: 0x1AF
+  - name: SOUND_POWER_BOMB_GERON_IDLE
+    val: 0x1B0
+  - name: SOUND_GOLD_SCISER_HURT
+    val: 0x1B1
+  - name: SOUND_1B2
+    val: 0x1B2
+  - name: SOUND_1B3
+    val: 0x1B3
+  - name: SOUND_1B4
+    val: 0x1B4
+  - name: SOUND_1B5
+    val: 0x1B5
+  - name: SOUND_1B6
+    val: 0x1B6
+  - name: SOUND_1B7
+    val: 0x1B7
+  - name: SOUND_1B8
+    val: 0x1B8
+  - name: SOUND_BLUE_X_MOVING
+    val: 0x1B9
+  - name: SOUND_BLUE_X_ABSORBED_NO_VARIA
+    val: 0x1BA
+  - name: SOUND_BLUE_X_ABSORBED_VARIA
+    val: 0x1BB
+  - name: SOUND_1BC
+    val: 0x1BC
+  - name: SOUND_1BD
+    val: 0x1BD
+  - name: SOUND_MEGA_X_HURT
+    val: 0x1BE
+  - name: SOUND_RANDOM_SPRITE_DEBRIS
+    val: 0x1BF
+  - name: SOUND_1C0
+    val: 0x1C0
+  - name: SOUND_1C1
+    val: 0x1C1
+  - name: SOUND_PILLAR_EXTENDING
+    val: 0x1C2
+  - name: SOUND_PUYO_IDLE
+    val: 0x1C3
+  - name: SOUND_PUYO_JUMP
+    val: 0x1C4
+  - name: SOUND_PUYO_LAND
+    val: 0x1C5
+  - name: SOUND_PUYO_HURT
+    val: 0x1C6
+  - name: SOUND_GENESIS_FOOTSTEPS
+    val: 0x1C7
+  - name: SOUND_GENESIS_SPITTING
+    val: 0x1C8
+  - name: SOUND_GENESIS_SPIT_SPLASHING
+    val: 0x1C9
+  - name: SOUND_GENESIS_HURT
+    val: 0x1CA
+  - name: SOUND_ZEELA_SHOOTING
+    val: 0x1CB
+  - name: SOUND_ZEELA_HURT
+    val: 0x1CC
+  - name: SOUND_1CD
+    val: 0x1CD
+  - name: SOUND_1CE
+    val: 0x1CE
+  - name: SOUND_1CF
+    val: 0x1CF
+  - name: SOUND_1D0
+    val: 0x1D0
+  - name: SOUND_1D1
+    val: 0x1D1
+  - name: SOUND_ZORO_COCOON_TRANSFORMED_IDLE
+    val: 0x1D2
+  - name: SOUND_RIPPER_HURT
+    val: 0x1D3
+  - name: SOUND_OWTCH_HURT
+    val: 0x1D4
+  - name: SOUND_1D5
+    val: 0x1D5
+  - name: SOUND_1D6
+    val: 0x1D6
+  - name: SOUND_1D7
+    val: 0x1D7
+  - name: SOUND_1D8
+    val: 0x1D8
+  - name: SOUND_1D9
+    val: 0x1D9
+  - name: SOUND_1DA
+    val: 0x1DA
+  - name: SOUND_1DB
+    val: 0x1DB
+  - name: SOUND_1DC
+    val: 0x1DC
+  - name: SOUND_1DD
+    val: 0x1DD
+  - name: SOUND_1DE
+    val: 0x1DE
+  - name: SOUND_1DF
+    val: 0x1DF
+  - name: SOUND_1E0
+    val: 0x1E0
+  - name: SOUND_1E1
+    val: 0x1E1
+  - name: SOUND_1E2
+    val: 0x1E2
+  - name: SOUND_1E3
+    val: 0x1E3
+  - name: SOUND_1E4
+    val: 0x1E4
+  - name: SOUND_1E5
+    val: 0x1E5
+  - name: SOUND_1E6
+    val: 0x1E6
+  - name: SOUND_1E7
+    val: 0x1E7
+  - name: SOUND_1E8
+    val: 0x1E8
+  - name: SOUND_1E9
+    val: 0x1E9
+  - name: SOUND_1EA
+    val: 0x1EA
+  - name: SOUND_1EB
+    val: 0x1EB
+  - name: SOUND_1EC
+    val: 0x1EC
+  - name: SOUND_1ED
+    val: 0x1ED
+  - name: SOUND_1EE
+    val: 0x1EE
+  - name: SOUND_1EF
+    val: 0x1EF
+  - name: SOUND_1F0
+    val: 0x1F0
+  - name: SOUND_1F1
+    val: 0x1F1
+  - name: SOUND_1F2
+    val: 0x1F2
+  - name: SOUND_1F3
+    val: 0x1F3
+  - name: SOUND_1F4
+    val: 0x1F4
+  - name: SOUND_1F5
+    val: 0x1F5
+  - name: SOUND_1F6
+    val: 0x1F6
+  - name: SOUND_1F7
+    val: 0x1F7
+  - name: SOUND_1F8
+    val: 0x1F8
+  - name: SOUND_1F9
+    val: 0x1F9
+  - name: SOUND_1FA
+    val: 0x1FA
+  - name: SOUND_1FB
+    val: 0x1FB
+  - name: SOUND_1FC
+    val: 0x1FC
+  - name: SOUND_1FD
+    val: 0x1FD
+  - name: SOUND_1FE
+    val: 0x1FE
+  - name: SOUND_1FF
+    val: 0x1FF
+  - name: SOUND_200
+    val: 0x200
+  - name: SOUND_201
+    val: 0x201
+  - name: SOUND_202
+    val: 0x202
+  - name: SOUND_203
+    val: 0x203
+  - name: SOUND_204
+    val: 0x204
+  - name: SOUND_205
+    val: 0x205
+  - name: SOUND_206
+    val: 0x206
+  - name: SOUND_207
+    val: 0x207
+  - name: SOUND_208
+    val: 0x208
+  - name: SOUND_209
+    val: 0x209
+  - name: SOUND_20A
+    val: 0x20A
+  - name: SOUND_20B
+    val: 0x20B
+  - name: SOUND_20C
+    val: 0x20C
+  - name: SOUND_20D
+    val: 0x20D
+  - name: SOUND_20E
+    val: 0x20E
+  - name: SOUND_20F
+    val: 0x20F
+  - name: SOUND_210
+    val: 0x210
+  - name: SOUND_211
+    val: 0x211
+  - name: SOUND_212
+    val: 0x212
+  - name: SOUND_213
+    val: 0x213
+  - name: SOUND_214
+    val: 0x214
+  - name: SOUND_215
+    val: 0x215
+  - name: SOUND_216
+    val: 0x216
+  - name: SOUND_217
+    val: 0x217
+  - name: SOUND_218
+    val: 0x218
+  - name: SOUND_219
+    val: 0x219
+  - name: SOUND_21A
+    val: 0x21A
+  - name: SOUND_21B
+    val: 0x21B
+  - name: SOUND_21C
+    val: 0x21C
+  - name: SOUND_21D
+    val: 0x21D
+  - name: SOUND_21E
+    val: 0x21E
+  - name: SOUND_21F
+    val: 0x21F
+  - name: SOUND_220
+    val: 0x220
+  - name: SOUND_221
+    val: 0x221
+  - name: SOUND_222
+    val: 0x222
+  - name: SOUND_223
+    val: 0x223
+  - name: SOUND_224
+    val: 0x224
+  - name: SOUND_225
+    val: 0x225
+  - name: SOUND_226
+    val: 0x226
+  - name: SOUND_227
+    val: 0x227
+  - name: SOUND_228
+    val: 0x228
+  - name: SOUND_229
+    val: 0x229
+  - name: SOUND_22A
+    val: 0x22A
+  - name: SOUND_22B
+    val: 0x22B
+  - name: SOUND_22C
+    val: 0x22C
+  - name: SOUND_22D
+    val: 0x22D
+  - name: SOUND_22E
+    val: 0x22E
+  - name: SOUND_22F
+    val: 0x22F
+  - name: SOUND_BOX_DEBRIS_FALLING
+    val: 0x230
+  - name: SOUND_231
+    val: 0x231
+  - name: SOUND_232
+    val: 0x232
+  - name: SOUND_233
+    val: 0x233
+  - name: SOUND_234
+    val: 0x234
+  - name: SOUND_235
+    val: 0x235
+  - name: SOUND_236
+    val: 0x236
+  - name: SOUND_237
+    val: 0x237
+  - name: SOUND_238
+    val: 0x238
+  - name: SOUND_239
+    val: 0x239
+  - name: SOUND_23A
+    val: 0x23A
+  - name: SOUND_23B
+    val: 0x23B
+  - name: SOUND_23C
+    val: 0x23C
+  - name: SOUND_23D
+    val: 0x23D
+  - name: SOUND_23E
+    val: 0x23E
+  - name: SOUND_23F
+    val: 0x23F
+  - name: SOUND_240
+    val: 0x240
+  - name: SOUND_241
+    val: 0x241
+  - name: SOUND_242
+    val: 0x242
+  - name: SOUND_243
+    val: 0x243
+  - name: SOUND_244
+    val: 0x244
+  - name: SOUND_245
+    val: 0x245
+  - name: SOUND_246
+    val: 0x246
+  - name: SOUND_247
+    val: 0x247
+  - name: SOUND_248
+    val: 0x248
+  - name: SOUND_249
+    val: 0x249
+  - name: SOUND_24A
+    val: 0x24A
+  - name: SOUND_24B
+    val: 0x24B
+  - name: SOUND_24C
+    val: 0x24C
+  - name: SOUND_24D
+    val: 0x24D
+  - name: SOUND_24E
+    val: 0x24E
+  - name: SOUND_24F
+    val: 0x24F
+  - name: SOUND_250
+    val: 0x250
+  - name: SOUND_251
+    val: 0x251
+  - name: SOUND_252
+    val: 0x252
+  - name: SOUND_253
+    val: 0x253
+  - name: SOUND_254
+    val: 0x254
+  - name: SOUND_255
+    val: 0x255
+  - name: SOUND_256
+    val: 0x256
+  - name: SOUND_257
+    val: 0x257
+  - name: SOUND_SA_X_WALK_FOOTSTEP
+    val: 0x258
+  - name: SOUND_SA_X_RUN_FOOTSTEP
+    val: 0x259
+  - name: SOUND_SA_X_LAND
+    val: 0x25A
+  - name: SOUND_SA_X_SCREW_ATTACK
+    val: 0x25B
+  - name: SOUND_SA_X_ICE_BEAM_FIRE
+    val: 0x25C
+  - name: SOUND_SA_X_SUPER_MISSILE_FIRE
+    val: 0x25D
+  - name: SOUND_SA_X_SUPER_MISSILE_EXPLODE
+    val: 0x25E
+  - name: SOUND_SA_X_MORPH
+    val: 0x25F
+  - name: SOUND_SA_X_POWER_BOMB_SET
+    val: 0x260
+  - name: SOUND_SA_X_POWER_BOMB_EXPLODE
+    val: 0x261
+  - name: SOUND_BOX_FOOTSTEP
+    val: 0x262
+  - name: SOUND_BOX_SKID
+    val: 0x263
+  - name: SOUND_BOX_FINISH_CRAWLING
+    val: 0x264
+  - name: SOUND_BOX_JUMP
+    val: 0x265
+  - name: SOUND_BOX_LAND
+    val: 0x266
+  - name: SOUND_BOX_BONK
+    val: 0x267
+  - name: SOUND_BOX_LOWER_TO_FIRE_BOMB
+    val: 0x268
+  - name: SOUND_BOX_DONE_FIRING_BOMB
+    val: 0x269
+  - name: SOUND_BOX_WAIT_TO_RUN
+    val: 0x26A
+  - name: SOUND_BOX_MISSILE_LAUNCH
+    val: 0x26B
+  - name: SOUND_BOX_MISSILE_EXPLODE
+    val: 0x26C
+  - name: SOUND_BOX_WAITING_TO_EMERGE
+    val: 0x26D
+  - name: SOUND_26E
+    val: 0x26E
+  - name: SOUND_26F
+    val: 0x26F
+  - name: SOUND_BOX_BOMB_LAUNCH
+    val: 0x270
+  - name: SOUND_BOX_BOMB_BOUNCE
+    val: 0x271
+  - name: SOUND_BOX_BOMB_EXPLODE
+    val: 0x272
+  - name: SOUND_BOX_BOMB_DESTROYED
+    val: 0x273
+  - name: SOUND_BOX_FIRE_TRANSITION_TO_HIGH
+    val: 0x274
+  - name: SOUND_BOX_FIRE_TRANSITION_TO_LOW
+    val: 0x275
+  - name: SOUND_BOX_PREPARE_FOR_FINAL_JUMP
+    val: 0x276
+  - name: SOUND_BOX_FINAL_JUMP
+    val: 0x277
+  - name: SOUND_BOX_DAMAGED
+    val: 0x278
+  - name: SOUND_279
+    val: 0x279
+  - name: SOUND_27A
+    val: 0x27A
+  - name: SOUND_ZAZABI_CRAWL
+    val: 0x27B
+  - name: SOUND_ZAZABI_JUMP
+    val: 0x27C
+  - name: SOUND_ZAZABI_LAND
+    val: 0x27D
+  - name: SOUND_ZAZABI_OPEN_MOUTH
+    val: 0x27E
+  - name: SOUND_ZAZABI_LAND_MOUTH_OPEN
+    val: 0x27F
+  - name: SOUND_ZAZABI_LAND_EATING_SAMUS
+    val: 0x280
+  - name: SOUND_ZAZABI_SWALLOW_SAMUS
+    val: 0x281
+  - name: SOUND_ZAZABI_EATING_SAMUS
+    val: 0x282
+  - name: SOUND_ZAZABI_SPIT_SAMUS
+    val: 0x283
+  - name: SOUND_ZAZABI_SEGMENT_DESTROYED
+    val: 0x284
+  - name: SOUND_ZAZABI_HURT
+    val: 0x285
+  - name: SOUND_ZAZABI_DYING
+    val: 0x286
+  - name: SOUND_ZAZABI_BLINK_EYE
+    val: 0x287
+  - name: SOUND_288
+    val: 0x288
+  - name: SOUND_289
+    val: 0x289
+  - name: SOUND_28A
+    val: 0x28A
+  - name: SOUND_28B
+    val: 0x28B
+  - name: SOUND_28C
+    val: 0x28C
+  - name: SOUND_28D
+    val: 0x28D
+  - name: SOUND_28E
+    val: 0x28E
+  - name: SOUND_28F
+    val: 0x28F
+  - name: SOUND_290
+    val: 0x290
+  - name: SOUND_291
+    val: 0x291
+  - name: SOUND_292
+    val: 0x292
+  - name: SOUND_293
+    val: 0x293
+  - name: SOUND_294
+    val: 0x294
+  - name: SOUND_295
+    val: 0x295
+  - name: SOUND_296
+    val: 0x296
+  - name: SOUND_297
+    val: 0x297
+  - name: SOUND_298
+    val: 0x298
+  - name: SOUND_299
+    val: 0x299
+  - name: SOUND_29A
+    val: 0x29A
+  - name: SOUND_29B
+    val: 0x29B
+  - name: SOUND_29C
+    val: 0x29C
+  - name: SOUND_29D
+    val: 0x29D
+  - name: SOUND_29E
+    val: 0x29E
+  - name: SOUND_29F
+    val: 0x29F
+  - name: SOUND_NIGHTMARE_APPEARING
+    val: 0x2A0
+  - name: SOUND_NIGHTMARE_IDLE
+    val: 0x2A1
+  - name: SOUND_NIGHTMARE_BEAM
+    val: 0x2A2
+  - name: SOUND_NIGHTMARE_SHADOW_MOVING
+    val: 0x2A3
+  - name: SOUND_NIGHTMARE_DYING
+    val: 0x2A4
+  - name: SOUND_NIGHTMARE_GENERATOR_ON
+    val: 0x2A5
+  - name: SOUND_NIGHTMARE_CHANGING_DIRECTION
+    val: 0x2A6
+  - name: SOUND_NIGHTMARE_HIT_EXPLOSION
+    val: 0x2A7
+  - name: SOUND_NIGHTMARE_GENERATOR_DESTROYED
+    val: 0x2A8
+  - name: SOUND_NIGHTMARE_MASK_DESTROYED
+    val: 0x2A9
+  - name: SOUND_NIGHTMARE_HURT
+    val: 0x2AA
+  - name: SOUND_NIGHTMARE_EYE_SLUDGE
+    val: 0x2AB
+  - name: SOUND_NIGHTMARE_GROAN
+    val: 0x2AC
+  - name: SOUND_NIGHTMARE_FACE_SAGGING
+    val: 0x2AD
+  - name: SOUND_2AE
+    val: 0x2AE
+  - name: SOUND_OMEGA_METROID_SWIPED_SAMUS
+    val: 0x2AF
+  - name: SOUND_2B0
+    val: 0x2B0
+  - name: SOUND_2B1
+    val: 0x2B1
+  - name: SOUND_2B2
+    val: 0x2B2
+  - name: SOUND_2B3
+    val: 0x2B3
+  - name: SOUND_2B4
+    val: 0x2B4
+  - name: SOUND_2B5
+    val: 0x2B5
+  - name: SOUND_2B6
+    val: 0x2B6
+  - name: SOUND_2B7
+    val: 0x2B7
+  - name: SOUND_2B8
+    val: 0x2B8
+  - name: SOUND_2B9
+    val: 0x2B9
+  - name: SOUND_2BA
+    val: 0x2BA
+  - name: SOUND_2BB
+    val: 0x2BB
+  - name: SOUND_VOICE_TEN
+    val: 0x2BC
+  - name: SOUND_VOICE_NINE
+    val: 0x2BD
+  - name: SOUND_VOICE_EIGHT
+    val: 0x2BE
+  - name: SOUND_VOICE_SEVEN
+    val: 0x2BF
+  - name: SOUND_VOICE_SIX
+    val: 0x2C0
+  - name: SOUND_VOICE_FIVE
+    val: 0x2C1
+  - name: SOUND_VOICE_FOUR
+    val: 0x2C2
+  - name: SOUND_VOICE_THREE
+    val: 0x2C3
+  - name: SOUND_VOICE_TWO
+    val: 0x2C4
+  - name: SOUND_VOICE_ONE
+    val: 0x2C5
+  - name: SOUND_VOICE_ZERO
+    val: 0x2C6
+  - name: SOUND_VOICE_UNAUTHORIZED_ENTRY
+    val: 0x2C7
+  - name: SOUND_VOICE_WARNING_NO_ENTRY_WITHOUT_AUTHORIZATION
+    val: 0x2C8
+  - name: SOUND_VOICE_FIRE_ALERT_THIS_SECTOR_WILL_SOON_BE_LOCKED_DOWN
+    val: 0x2C9
+  - name: SOUND_VOICE_SIXTY_SECONDS_TO_ISOLATION_LOCKDOWN
+    val: 0x2CA
+  - name: SOUND_VOICE_FIFTY_SECONDS_TO_ISOLATION_LOCKDOWN
+    val: 0x2CB
+  - name: SOUND_VOICE_FOURTY_SECONDS_TO_ISOLATION_LOCKDOWN
+    val: 0x2CC
+  - name: SOUND_VOICE_THIRTY_SECONDS_TO_ISOLATION_LOCKDOWN
+    val: 0x2CD
+  - name: SOUND_VOICE_TWENTY_SECONDS_TO_ISOLATION_LOCKDOWN
+    val: 0x2CE
+  - name: SOUND_VOICE_EMERGENCY_IN_SECTOR_3
+    val: 0x2CF
+  - name: SOUND_VOICE_SIX_MINUTES_TO_MAIN_BOILER_EXPLOSION
+    val: 0x2D0
+  - name: SOUND_VOICE_FIVE_MINUTES_TO_MAIN_BOILER_EXPLOSION
+    val: 0x2D1
+  - name: SOUND_VOICE_FOUR_MINUTES_TO_MAIN_BOILER_EXPLOSION
+    val: 0x2D2
+  - name: SOUND_VOICE_THREE_MINUTES_TO_MAIN_BOILER_EXPLOSION
+    val: 0x2D3
+  - name: SOUND_VOICE_TWO_MINUTES_TO_MAIN_BOILER_EXPLOSION
+    val: 0x2D4
+  - name: SOUND_VOICE_SIXTY_SECONDS_TO_EXPLOSION
+    val: 0x2D5
+  - name: SOUND_VOICE_FIFTY_SECONDS_TO_EXPLOSION
+    val: 0x2D6
+  - name: SOUND_VOICE_FOURTY_SECONDS_TO_EXPLOSION
+    val: 0x2D7
+  - name: SOUND_VOICE_THIRTY_SECONDS_TO_EXPLOSION
+    val: 0x2D8
+  - name: SOUND_VOICE_TWENTY_SECONDS_TO_EXPLOSION
+    val: 0x2D9
+  - name: SOUND_VOICE_PROPULSION_SEQUENCE_ACTIVATED_DESTINATION_PLANET_SR388
+    val: 0x2DA
+  - name: SOUND_VOICE_TEN_MINUTES_TO_DESTINATION
+    val: 0x2DB
+  - name: SOUND_VOICE_NINE_MINUTES_TO_DESTINATION
+    val: 0x2DC
+  - name: SOUND_VOICE_EIGHT_MINUTES_TO_DESTINATION
+    val: 0x2DD
+  - name: SOUND_VOICE_SEVEN_MINUTES_TO_DESTINATION
+    val: 0x2DE
+  - name: SOUND_VOICE_SIX_MINUTES_TO_DESTINATION
+    val: 0x2DF
+  - name: SOUND_VOICE_FIVE_MINUTES_TO_DESTINATION
+    val: 0x2E0
+  - name: SOUND_VOICE_FOUR_MINUTES_TO_DESTINATION
+    val: 0x2E1
+  - name: SOUND_VOICE_THREE_MINUTES_TO_DESTINATION
+    val: 0x2E2
+  - name: SOUND_VOICE_TWO_MINUTES_TO_DESTINATION
+    val: 0x2E3
+  - name: SOUND_VOICE_SIXTY_SECONDS_TO_IMPACT
+    val: 0x2E4
+  - name: SOUND_VOICE_FIFTY_SECONDS_TO_IMPACT
+    val: 0x2E5
+  - name: SOUND_VOICE_FOURTY_SECONDS_TO_IMPACT
+    val: 0x2E6
+  - name: SOUND_VOICE_THIRTY_SECONDS_TO_IMPACT
+    val: 0x2E7
+  - name: SOUND_VOICE_TWENTY_SECONDS_TO_IMPACT
+    val: 0x2E8
+  - name: SOUND_COUNT
+    val: 0x2E9
+  loc: include/constants/audio.h:4
+- name: SoundEvent
+  vals:
+  - name: SOUND_EVENT_FIRST_CONVERSATION_STARTED
+    val: 0x0
+  - name: SOUND_EVENT_FIRST_CONVERSATION_LEAVING_SHIP_STARTED
+    val: 0x1
+  - name: SOUND_EVENT_ENTERED_ROOM_AFTER_FIRST_NAV_ROOM
+    val: 0x2
+  - name: SOUND_EVENT_CONVERSATION_AFTER_QUARANTINE_BAY_ENDED
+    val: 0x3
+  - name: SOUND_EVENT_LEFT_NAV_ROOM_AFTER_QUARANTINE_BAY
+    val: 0x4
+  - name: SOUND_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_STARTED
+    val: 0x5
+  - name: SOUND_EVENT_OPERATIONS_DECK_ELEVATOR_MONOLOGUE_ENDED
+    val: 0x6
+  - name: SOUND_EVENT_OPERATIONS_DECK_ELEVATOR_ENDED
+    val: 0x7
+  - name: SOUND_EVENT_ENTERED_OPERATIONS_DECK_LOBBY
+    val: 0x8
+  - name: SOUND_EVENT_9
+    val: 0x9
+  - name: SOUND_EVENT_DOWNLOADED_MISSILES
+    val: 0xA
+  - name: SOUND_EVENT_ENTERED_NAV_ROOM_AFTER_MISSILES
+    val: 0xB
+  - name: SOUND_EVENT_ENTERED_DARK_VERTICAL_SHAFT_AFTER_MISSILES
+    val: 0xC
+  - name: SOUND_EVENT_ENTERED_ARACHNUS_ROOM
+    val: 0xD
+  - name: SOUND_EVENT_MORPH_BALL_ABILITY_RECOVERED
+    val: 0xE
+  - name: SOUND_EVENT_LEFT_ARACHNUS_ROOM
+    val: 0xF
+  - name: SOUND_EVENT_POST_ARACHNUS_CONVERSATION_ENDED
+    val: 0x10
+  - name: SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_STARTED
+    val: 0x11
+  - name: SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_EXPLOSION
+    val: 0x12
+  - name: SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_DOOR_SHOT
+    val: 0x13
+  - name: SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_RUMBLE_1
+    val: 0x14
+  - name: SOUND_EVENT_SA_X_ELEVATOR_CUTSCENE_RUMBLE_2
+    val: 0x15
+  - name: SOUND_EVENT_ENTERED_SRX1_NAV_ROOM
+    val: 0x16
+  - name: SOUND_EVENT_ENTERING_SRX1_CONVERSATION_ENDED
+    val: 0x17
+  - name: SOUND_EVENT_ENTERED_CHARGE_BEAM_ROOM
+    val: 0x18
+  - name: SOUND_EVENT_CHARGE_BEAM_ABILITY_RECOVERED
+    val: 0x19
+  - name: SOUND_EVENT_LEFT_CHARGE_BEAM_ROOM
+    val: 0x1A
+  - name: SOUND_EVENT_ENTERED_NAV_ROOM_LEAVING_SRX1
+    val: 0x1B
+  - name: SOUND_EVENT_28
+    val: 0x1C
+  - name: SOUND_EVENT_LEAVING_SRX1_CONVERSATION_ENDED
+    val: 0x1D
+  - name: SOUND_EVENT_STARTED_ELEVATOR_TO_TRO1
+    val: 0x1E
+  - name: SOUND_EVENT_ELEVATOR_ENTERED_TRO1
+    val: 0x1F
+  - name: SOUND_EVENT_ENTERED_TRO1_NAV_ROOM
+    val: 0x20
+  - name: SOUND_EVENT_ENTERING_TRO1_CONVERSATION_ENDED
+    val: 0x21
+  - name: SOUND_EVENT_ENTERED_TRO1_FIRST_ROOM
+    val: 0x22
+  - name: SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_1
+    val: 0x23
+  - name: SOUND_EVENT_DOWNLOADED_BOMBS
+    val: 0x24
+  - name: SOUND_EVENT_ENTERED_ZAZABI_ROOM
+    val: 0x25
+  - name: SOUND_EVENT_HI_JUMP_ABILITY_RECOVERED
+    val: 0x26
+  - name: SOUND_EVENT_LEFT_ZAZABI_ROOM
+    val: 0x27
+  - name: SOUND_EVENT_ENTERED_SA_X_TRO_1_ROOM
+    val: 0x28
+  - name: SOUND_EVENT_LEFT_SA_X_TRO_1_ROOM
+    val: 0x29
+  - name: SOUND_EVENT_LEAVING_TRO1_CONVERSATION_ENDED
+    val: 0x2A
+  - name: SOUND_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_STARTED
+    val: 0x2B
+  - name: SOUND_EVENT_LEAVING_TRO1_ELEVATOR_MONOLOGUE_ENDED
+    val: 0x2C
+  - name: SOUND_EVENT_LEAVING_TRO1_ELEVATOR_ENDED
+    val: 0x2D
+  - name: SOUND_EVENT_ENTERED_AQA1_NAV_ROOM
+    val: 0x2E
+  - name: SOUND_EVENT_ENTERING_AQA1_CONVERSATION_ENDED
+    val: 0x2F
+  - name: SOUND_EVENT_ENTERED_FIRST_ROOM_IN_AQA1
+    val: 0x30
+  - name: SOUND_EVENT_ENTERED_SERRIS_TANK_ROOM
+    val: 0x31
+  - name: SOUND_EVENT_ENTERED_SERRIS_ROOM
+    val: 0x32
+  - name: SOUND_EVENT_SPEED_BOOSTER_ABILITY_RECOVERED
+    val: 0x33
+  - name: SOUND_EVENT_LEFT_SERRIS_ROOM
+    val: 0x34
+  - name: SOUND_EVENT_LEAVING_AQA1_CONVERSATION_ENDED
+    val: 0x35
+  - name: SOUND_EVENT_ENTERED_PYR1_SECURITY_ROOM
+    val: 0x36
+  - name: SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_2
+    val: 0x37
+  - name: SOUND_EVENT_LEFT_PYR1_SECURITY_ROOM
+    val: 0x38
+  - name: SOUND_EVENT_ENTERED_PYR1_DATA_ROOM
+    val: 0x39
+  - name: SOUND_EVENT_DOWNLOADED_SUPER_MISSILES
+    val: 0x3A
+  - name: SOUND_EVENT_LEFT_PYR1_DATA_ROOM
+    val: 0x3B
+  - name: SOUND_EVENT_ENTERED_BOX_ROOM
+    val: 0x3C
+  - name: SOUND_EVENT_LEFT_BOX_ROOM
+    val: 0x3D
+  - name: SOUND_EVENT_LEAVING_PYR1_CONVERSATION_ENDED
+    val: 0x3E
+  - name: SOUND_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_STARTED
+    val: 0x3F
+  - name: SOUND_EVENT_LEAVING_PYR1_FEDERATION_CONVERSATION_ENDED
+    val: 0x40
+  - name: SOUND_EVENT_ENTERED_NOC1_NAV_ROOM
+    val: 0x41
+  - name: SOUND_EVENT_ENTERING_NOC1_CONVERSATION_ENDED
+    val: 0x42
+  - name: SOUND_EVENT_ENTERED_NOC1_FIRST_ROOM
+    val: 0x43
+  - name: SOUND_EVENT_SA_X_NOC_ENTERED_ROOM
+    val: 0x44
+  - name: SOUND_EVENT_SA_X_NOC_ENCOUNTER_ENDED
+    val: 0x45
+  - name: SOUND_EVENT_ENTERED_GADORA_ROOM_BEFORE_MEGA_X
+    val: 0x46
+  - name: SOUND_EVENT_VARIA_SUIT_RECOVERED
+    val: 0x47
+  - name: SOUND_EVENT_LEFT_MEGA_X_ROOM
+    val: 0x48
+  - name: SOUND_EVENT_ENTERING_ARC1_CONVERSATION_ENDED
+    val: 0x49
+  - name: SOUND_EVENT_ENTERED_ARC1_FIRST_COLD_ROOM
+    val: 0x4A
+  - name: SOUND_EVENT_UNLOCKED_LEVEL_3_SECURITY
+    val: 0x4B
+  - name: SOUND_EVENT_DOWNLOADED_ICE_MISSILES
+    val: 0x4C
+  - name: SOUND_EVENT_EMERGENCY_IN_SECTOR_3_ALARM
+    val: 0x4D
+  - name: SOUND_EVENT_LEAVING_ARC1_CONVERSATION_STARTED
+    val: 0x4E
+  - name: SOUND_EVENT_LEAVING_ARC1_CONVERSATION_ENDED
+    val: 0x4F
+  - name: SOUND_EVENT_WIDE_BEAM_ABILITY_RECOVERED
+    val: 0x50
+  - name: SOUND_EVENT_COOLING_UNIT_OPERATIONAL
+    val: 0x51
+  - name: SOUND_EVENT_LEFT_MAIN_BOILER_CONTROL_ROOM
+    val: 0x52
+  - name: SOUND_EVENT_LEAVING_PYR2_CONVERSATION_ENDED
+    val: 0x53
+  - name: SOUND_EVENT_84
+    val: 0x54
+  - name: SOUND_EVENT_85
+    val: 0x55
+  - name: SOUND_EVENT_LEAVING_HABITATION_DECK_MONOLOGUE_STARTED
+    val: 0x56
+  - name: SOUND_EVENT_87
+    val: 0x57
+  - name: SOUND_EVENT_ENTERING_ARC2_CONVERSATION_ENDED
+    val: 0x58
+  - name: SOUND_EVENT_ENTERED_ARC2_FIRST_COLD_ROOM
+    val: 0x59
+  - name: SOUND_EVENT_DOWNLOADED_POWER_BOMBS
+    val: 0x5A
+  - name: SOUND_EVENT_ENTERED_SA_X_ARC_ROOM
+    val: 0x5B
+  - name: SOUND_EVENT_SA_X_ARC_ENTERED_ROOM
+    val: 0x5C
+  - name: SOUND_EVENT_LEFT_SA_X_ARC_ROOM
+    val: 0x5D
+  - name: SOUND_EVENT_LEAVING_ARC2_CONVERSATION_ENDED
+    val: 0x5E
+  - name: SOUND_EVENT_ELEVATOR_POWER_OUTAGE
+    val: 0x5F
+  - name: SOUND_EVENT_ENTERED_ELEVATOR_TUNNEL
+    val: 0x60
+  - name: SOUND_EVENT_POWER_OUTAGE_SHIP_CONVERSATION_STARTED
+    val: 0x61
+  - name: SOUND_EVENT_POWER_OUTAGE_SHIP_CONVERSATION_ENDED
+    val: 0x62
+  - name: SOUND_EVENT_POWER_OUTAGE_LEAVING_SHIP_STARTED
+    val: 0x63
+  - name: SOUND_EVENT_POWER_OUTAGE_LEAVING_SHIP_ENDED
+    val: 0x64
+  - name: SOUND_EVENT_ENTERED_CENTRAL_REACTOR_CORE
+    val: 0x65
+  - name: SOUND_EVENT_ENTERED_YAKUZA_ROOM
+    val: 0x66
+  - name: SOUND_EVENT_SPACE_JUMP_ABILITY_RECOVERED
+    val: 0x67
+  - name: SOUND_EVENT_LEAVING_YAKUZA_ROOM
+    val: 0x68
+  - name: SOUND_EVENT_LEFT_YAKUZA_ROOM
+    val: 0x69
+  - name: SOUND_EVENT_AUXILIARY_POWER_MESSAGE_STARTED
+    val: 0x6A
+  - name: SOUND_EVENT_AUXILIARY_POWER_MESSAGE_ENDED
+    val: 0x6B
+  - name: SOUND_EVENT_ENTERED_NAV_ROOM_AFTER_AUXILIARY_POWER
+    val: 0x6C
+  - name: SOUND_EVENT_AFTER_AUXILIARY_POWER_CONVERSATION_ENDED
+    val: 0x6D
+  - name: SOUND_EVENT_ENTERED_SA_X_TRO_2_1ST_ROOM
+    val: 0x6E
+  - name: SOUND_EVENT_111
+    val: 0x6F
+  - name: SOUND_EVENT_112
+    val: 0x70
+  - name: SOUND_EVENT_APPROACHED_SA_X_TRO_2_1ST_ROOM_DOOR
+    val: 0x71
+  - name: SOUND_EVENT_LEAVING_SA_X_TRO_2_2ND_ROOM
+    val: 0x72
+  - name: SOUND_EVENT_LEFT_SA_X_TRO_2_2ND_ROOM
+    val: 0x73
+  - name: SOUND_EVENT_ENTERED_NETTORI_ROOM
+    val: 0x74
+  - name: SOUND_EVENT_PLASMA_BEAM_ABILITY_RECOVERED
+    val: 0x75
+  - name: SOUND_EVENT_LEFT_NETTORI_ROOM
+    val: 0x76
+  - name: SOUND_EVENT_ENTERING_ARC3_CONVERSATION_ENDED
+    val: 0x77
+  - name: SOUND_EVENT_ENTERED_ARC3_FIRST_ROOM
+    val: 0x78
+  - name: SOUND_EVENT_ENTERED_NIGHTMARE_ROOM
+    val: 0x79
+  - name: SOUND_EVENT_GRAVITY_SUIT_RECOVERED
+    val: 0x7A
+  - name: SOUND_EVENT_LEFT_NIGHTMARE_ROOM
+    val: 0x7B
+  - name: SOUND_EVENT_ENTERED_LOWER_AQA
+    val: 0x7C
+  - name: SOUND_EVENT_UNLOCKED_SECURITY_LEVEL_4
+    val: 0x7D
+  - name: SOUND_EVENT_DOWNLOADED_DIFFUSION_MISSILES
+    val: 0x7E
+  - name: SOUND_EVENT_LEAVING_AQA2_CONVERSATION_ENDED
+    val: 0x7F
+  - name: SOUND_EVENT_LEAVING_AQA2_ELEVATOR
+    val: 0x80
+  - name: SOUND_EVENT_LEAVING_AQA2_ELEVATOR_ENDED
+    val: 0x81
+  - name: SOUND_EVENT_ENTERED_NOC2_NAV_ROOM
+    val: 0x82
+  - name: SOUND_EVENT_ENTERING_NOC2_CONVERSATION_ENDED
+    val: 0x83
+  - name: SOUND_EVENT_ENTERED_NOC2_FIRST_ROOM
+    val: 0x84
+  - name: SOUND_EVENT_RESTRICTED_LAB_NO_ENTRY_ALARM
+    val: 0x85
+  - name: SOUND_EVENT_BOX_2_RUMBLE
+    val: 0x86
+  - name: SOUND_EVENT_ENTERED_BOX_2_ROOM
+    val: 0x87
+  - name: SOUND_EVENT_WAVE_BEAM_ABILITY_RECOVERED
+    val: 0x88
+  - name: SOUND_EVENT_LEFT_BOX_2_ROOM
+    val: 0x89
+  - name: SOUND_EVENT_ENTERED_RESTRICTED_LAB
+    val: 0x8A
+  - name: SOUND_EVENT_SA_X_LAB_RUMBLE
+    val: 0x8B
+  - name: SOUND_EVENT_ENTERED_SA_X_LAB_ROOM
+    val: 0x8C
+  - name: SOUND_EVENT_ESCAPED_RESTRICTED_LAB
+    val: 0x8D
+  - name: SOUND_EVENT_RESTRICTED_LAB_CUTSCENE_ENDED
+    val: 0x8E
+  - name: SOUND_EVENT_RESTRICTED_LAB_CONVERSATION_ENDED
+    val: 0x8F
+  - name: SOUND_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_STARTED
+    val: 0x90
+  - name: SOUND_EVENT_RESTRICTED_LAB_ELEVATOR_MONOLOGUE_ENDED
+    val: 0x91
+  - name: SOUND_EVENT_RESTRICTED_LAB_ELEVATOR_ENDED
+    val: 0x92
+  - name: SOUND_EVENT_ENTERED_ROOM_AFTER_RESTRICTED_LAB_ELEVATOR
+    val: 0x93
+  - name: SOUND_EVENT_ENTERED_RIDLEY_ROOM
+    val: 0x94
+  - name: SOUND_EVENT_SCREW_ATTACK_ABILITY_RECOVERED
+    val: 0x95
+  - name: SOUND_EVENT_LEFT_RIDLEY_ROOM
+    val: 0x96
+  - name: SOUND_EVENT_ENTERED_NAV_ROOM_AFTER_RIDLEY
+    val: 0x97
+  - name: SOUND_EVENT_SELF_DESTRUCT_CONVERSATION_ENDED
+    val: 0x98
+  - name: SOUND_EVENT_ENTERED_SA_X_BOSS_ROOM
+    val: 0x99
+  - name: SOUND_EVENT_ORBIT_CHANGE_IMPLEMENTED
+    val: 0x9A
+  - name: SOUND_EVENT_ENTERED_OMEGA_METROID_ROOM
+    val: 0x9B
+  - name: SOUND_EVENT_END
+    val: 0x9C
+  loc: include/constants/event.h:121
+- name: SoundEventTriggerType
+  vals:
+  - name: SEVENT_TTYPE_NONE
+    val: 0x0
+  - name: SEVENT_TTYPE_STARTING_ROOM_LOAD
+    val: 0x2
+  - name: SEVENT_TTYPE_LEAVING_SHIP
+    val: 0x3
+  - name: SEVENT_TTYPE_CUTSCENE_START
+    val: 0x4
+  - name: SEVENT_TTYPE_CUTSCENE_END
+    val: 0x5
+  - name: SEVENT_TTYPE_STARTING_NAVIGATION_CONVERSATION
+    val: 0x6
+  - name: SEVENT_TTYPE_ENDING_NAVIGATION_CONVERSATION
+    val: 0x7
+  - name: SEVENT_TTYPE_SA_X_ENCOUNTER
+    val: 0x8
+  - name: SEVENT_TTYPE_GETTING_ITEM
+    val: 0x9
+  - name: SEVENT_TTYPE_UNLOCKING_SECURITY
+    val: 0xA
+  - name: SEVENT_TTYPE_ROOM_EVENT
+    val: 0xB
+  - name: SEVENT_TTYPE_32
+    val: 0x20
+  - name: SEVENT_TTYPE_LEAVING_ROOM
+    val: 0x21
+  - name: SEVENT_TTYPE_ENTERING_ROOM
+    val: 0x22
+  - name: SEVENT_TTYPE_STARTING_ELEVATOR_RIDE_UP
+    val: 0x40
+  - name: SEVENT_TTYPE_STARTING_ELEVATOR_RIDE_DOWN
+    val: 0x41
+  - name: SEVENT_TTYPE_ENDING_ELEVATOR_RIDE_UP
+    val: 0x42
+  - name: SEVENT_TTYPE_ENDING_ELEVATOR_RIDE_DOWN
+    val: 0x43
+  - name: SEVENT_TTYPE_128
+    val: 0x80
+  loc: include/constants/event.h:282
+- name: SpriteDebrisCloudType
+  vals:
+  - name: DEBRIS_CLOUD_TYPE_NONE
+    val: 0x0
+  - name: DEBRIS_CLOUD_TYPE_NORMAL
+    val: 0x1
+  - name: DEBRIS_CLOUD_TYPE_ICE
+    val: 0x2
+  loc: include/constants/sprite_debris.h:20
 - name: SpriteDebrisType
   vals:
-  - name: Todo
+  - name: DEBRIS_TYPE_NONE
     val: 0x0
+  - name: DEBRIS_TYPE_HOPPING_SLOW_LEFT
+    val: 0x1
+  - name: DEBRIS_TYPE_HOPPING_SLOW_RIGHT
+    val: 0x2
+  - name: DEBRIS_TYPE_HOPPING_FAST_RIGHT
+    val: 0x3
+  - name: DEBRIS_TYPE_HOPPING_FAST_LEFT
+    val: 0x4
+  - name: DEBRIS_TYPE_LIGHT_SLOW_LEFT
+    val: 0x5
+  - name: DEBRIS_TYPE_HEAVY_SLOW_RIGHT
+    val: 0x6
+  - name: DEBRIS_TYPE_LIGHT_SLOW_RIGHT
+    val: 0x7
+  - name: DEBRIS_TYPE_HEAVY_SLOW_LEFT
+    val: 0x8
+  - name: DEBRIS_TYPE_FALLING
+    val: 0x10
+  - name: DEBRIS_TYPE_BOUNCING
+    val: 0x80
+  loc: include/constants/sprite_debris.h:4
 - name: SpriteProperties
   vals:
   - name: NoCollision
@@ -1350,6 +6729,7 @@
     val: 0x40
   - name: SecondarySprite
     val: 0x80
+  loc: null
 - name: SpriteSamusCollision
   vals:
   - name: Solid
@@ -1392,6 +6772,7 @@
     val: 0x1A
   - name: RidleyClaw_WhileGrabbed
     val: 0x1B
+  loc: null
 - name: SpriteStatus
   vals:
   - name: Exists
@@ -1424,6 +6805,7 @@
     val: 0x2000
   - name: IgnoreProjectiles
     val: 0x8000
+  loc: null
 - name: SpriteWeakness
   vals:
   - name: ChargeBeam_NoNormalBeam
@@ -1440,6 +6822,322 @@
     val: 0x20
   - name: CanBeFrozen
     val: 0x40
+  loc: null
+- name: SubEvent
+  vals:
+  - name: None
+    val: 0x0
+  - name: FirstComputerConversationStarted
+    val: 0x1
+  - name: FirstConversationEnded
+    val: 0x2
+  - name: EnteredRoomAfterFirstNavRoom
+    val: 0x3
+  - name: ConversationAfterQuarantineBayEnded
+    val: 0x4
+  - name: LeftNavRoomAfterQuarantineBay
+    val: 0x5
+  - name: ElevatorMonologueStarted
+    val: 0x6
+  - name: MonologueEnded
+    val: 0x7
+  - name: ElevatorEnded
+    val: 0x8
+  - name: EnteredBigOperationsDeckRoom
+    val: 0x9
+  - name: Unused
+    val: 0xA
+  - name: DownloadedMissiles
+    val: 0xB
+  - name: EnteredNavRoomAfterMissiles_PowerOutage
+    val: 0xC
+  - name: EnteredDarkVerticalShaft
+    val: 0xD
+  - name: EnteredArachnusRoom
+    val: 0xE
+  - name: MorphBallAbilityRecovered
+    val: 0xF
+  - name: LeftArachnusRoom
+    val: 0x10
+  - name: ConversationEnded
+    val: 0x11
+  - name: SaxCutsceneStarted
+    val: 0x12
+  - name: Explosion
+    val: 0x13
+  - name: DoorShot
+    val: 0x14
+  - name: Rumble
+    val: 0x15
+  - name: Rumble
+    val: 0x16
+  - name: EnteredNavRoom
+    val: 0x17
+  - name: ConversationEnded
+    val: 0x18
+  - name: EnteredChargeBeamRoom
+    val: 0x19
+  - name: ChargeBeamAbilityRecovered
+    val: 0x1A
+  - name: LeftChargeBeamRoom
+    val: 0x1B
+  - name: EnteredNavRoomBeforeLeavingSrx
+    val: 0x1C
+  - name: Unused
+    val: 0x1D
+  - name: ConversationEnded
+    val: 0x1E
+  - name: StartedElevatorToTro
+    val: 0x1F
+  - name: EnteredTro
+    val: 0x20
+  - name: EnteredNavRoom
+    val: 0x21
+  - name: ConversationEnded
+    val: 0x22
+  - name: EnteredFirstBigRoom
+    val: 0x23
+  - name: UnlockedSecurityLevel1
+    val: 0x24
+  - name: DownloadedBombs
+    val: 0x25
+  - name: EnteredZazabiRoom
+    val: 0x26
+  - name: HiJumpAbilityRecovered
+    val: 0x27
+  - name: LeftZazabiRoom
+    val: 0x28
+  - name: EnteredSaxRoom
+    val: 0x29
+  - name: LeftSaxRoom
+    val: 0x2A
+  - name: ConversationBeforeLeavingTroEnded
+    val: 0x2B
+  - name: ElevatorMonologueStarted
+    val: 0x2C
+  - name: MonologueEnded
+    val: 0x2D
+  - name: ElevatorEnded
+    val: 0x2E
+  - name: EnteredAqaNavRoom
+    val: 0x2F
+  - name: ConversationEnded
+    val: 0x30
+  - name: EnteredFirstBigRoom
+    val: 0x31
+  - name: EnteredSerrisTankRoom
+    val: 0x32
+  - name: EnteredSerrisRoom
+    val: 0x33
+  - name: SpeedBoosterPowerRegained
+    val: 0x34
+  - name: LeftSerrisRoom
+    val: 0x35
+  - name: ConversationBeforeLeavingAqaEnded
+    val: 0x36
+  - name: EnteredPyrSecurityRoom
+    val: 0x37
+  - name: UnlockedSecurityLevel2
+    val: 0x38
+  - name: LeftSecurityRoom
+    val: 0x39
+  - name: EnteredDataRoom
+    val: 0x3A
+  - name: DownloadedSuperMissiles
+    val: 0x3B
+  - name: LeftDataRoom
+    val: 0x3C
+  - name: EnteredBoxRoom
+    val: 0x3D
+  - name: LeftBoxRoom
+    val: 0x3E
+  - name: ConversationBeforeLeavingPyrEnded
+    val: 0x3F
+  - name: SecretConversationStarted
+    val: 0x40
+  - name: SecretConversationEnded
+    val: 0x41
+  - name: EnteredNocNavRoom
+    val: 0x42
+  - name: unk_43
+    val: 0x43
+  - name: unk_44
+    val: 0x44
+  - name: unk_45
+    val: 0x45
+  - name: unk_46
+    val: 0x46
+  - name: unk_47
+    val: 0x47
+  - name: unk_48
+    val: 0x48
+  - name: unk_49
+    val: 0x49
+  - name: unk_4A
+    val: 0x4A
+  - name: unk_4B
+    val: 0x4B
+  - name: unk_4C
+    val: 0x4C
+  - name: unk_4D
+    val: 0x4D
+  - name: unk_4E
+    val: 0x4E
+  - name: unk_4F
+    val: 0x4F
+  - name: unk_50
+    val: 0x50
+  - name: unk_51
+    val: 0x51
+  - name: unk_52
+    val: 0x52
+  - name: unk_53
+    val: 0x53
+  - name: unk_54
+    val: 0x54
+  - name: unk_55
+    val: 0x55
+  - name: unk_56
+    val: 0x56
+  - name: unk_57
+    val: 0x57
+  - name: unk_58
+    val: 0x58
+  - name: unk_59
+    val: 0x59
+  - name: unk_5A
+    val: 0x5A
+  - name: unk_5B
+    val: 0x5B
+  - name: unk_5C
+    val: 0x5C
+  - name: unk_5D
+    val: 0x5D
+  - name: unk_5E
+    val: 0x5E
+  - name: unk_5F
+    val: 0x5F
+  - name: unk_60
+    val: 0x60
+  - name: unk_61
+    val: 0x61
+  - name: unk_62
+    val: 0x62
+  - name: unk_63
+    val: 0x63
+  - name: unk_64
+    val: 0x64
+  - name: unk_65
+    val: 0x65
+  - name: unk_66
+    val: 0x66
+  - name: unk_67
+    val: 0x67
+  - name: unk_68
+    val: 0x68
+  - name: unk_69
+    val: 0x69
+  - name: unk_6A
+    val: 0x6A
+  - name: unk_6B
+    val: 0x6B
+  - name: unk_6C
+    val: 0x6C
+  - name: unk_6D
+    val: 0x6D
+  - name: unk_6E
+    val: 0x6E
+  - name: unk_6F
+    val: 0x6F
+  - name: unk_70
+    val: 0x70
+  - name: unk_71
+    val: 0x71
+  - name: unk_72
+    val: 0x72
+  - name: unk_73
+    val: 0x73
+  - name: unk_74
+    val: 0x74
+  - name: unk_75
+    val: 0x75
+  - name: unk_76
+    val: 0x76
+  - name: unk_77
+    val: 0x77
+  - name: unk_78
+    val: 0x78
+  - name: unk_79
+    val: 0x79
+  - name: unk_7A
+    val: 0x7A
+  - name: unk_7B
+    val: 0x7B
+  - name: unk_7C
+    val: 0x7C
+  - name: unk_7D
+    val: 0x7D
+  - name: unk_7E
+    val: 0x7E
+  - name: unk_7F
+    val: 0x7F
+  - name: unk_80
+    val: 0x80
+  - name: unk_81
+    val: 0x81
+  - name: unk_82
+    val: 0x82
+  - name: unk_83
+    val: 0x83
+  - name: unk_84
+    val: 0x84
+  - name: unk_85
+    val: 0x85
+  - name: unk_86
+    val: 0x86
+  - name: unk_87
+    val: 0x87
+  - name: unk_88
+    val: 0x88
+  - name: unk_89
+    val: 0x89
+  - name: unk_8A
+    val: 0x8A
+  - name: unk_8B
+    val: 0x8B
+  - name: unk_8C
+    val: 0x8C
+  - name: unk_8D
+    val: 0x8D
+  - name: unk_8E
+    val: 0x8E
+  - name: unk_8F
+    val: 0x8F
+  - name: unk_90
+    val: 0x90
+  - name: unk_91
+    val: 0x91
+  - name: unk_92
+    val: 0x92
+  - name: unk_93
+    val: 0x93
+  - name: unk_94
+    val: 0x94
+  - name: unk_95
+    val: 0x95
+  - name: unk_96
+    val: 0x96
+  - name: unk_97
+    val: 0x97
+  - name: unk_98
+    val: 0x98
+  - name: unk_99
+    val: 0x99
+  - name: unk_9A
+    val: 0x9A
+  - name: unk_9B
+    val: 0x9B
+  loc: null
 - name: SubEventTrigger
   vals:
   - name: StartingRoomLoad
@@ -1476,18 +7174,33 @@
     val: 0x42
   - name: EndingElevatorRideDown
     val: 0x43
+  loc: null
 - name: SuitDamageReduction
   vals:
-  - name: Reduce_30_10
+  - name: SDR_POWER_SUIT
     val: 0x0
-  - name: Reduce_60_30
+  - name: SDR_VARIA_SUIT
     val: 0x1
-  - name: Reduce_80_10
+  - name: SDR_GRAVITY_SUIT
     val: 0x2
-  - name: Reduce_90_80
+  - name: SDR_END
     val: 0x3
-  - name: CanCreateDebris
+  loc: include/constants/sprite.h:448
+- name: SuitDamageReductionType
+  vals:
+  - name: SDRT_30_10
+    val: 0x0
+  - name: SDRT_60_30
+    val: 0x1
+  - name: SDRT_80_10
+    val: 0x2
+  - name: SDRT_90_80
+    val: 0x3
+  - name: SDRT_END
+    val: 0x4
+  - name: SDRT_CAN_CREATE_DEBRIS
     val: 0x10
+  loc: include/constants/sprite.h:437
 - name: SuitMiscStatus
   vals:
   - name: HiJump
@@ -1506,17 +7219,92 @@
     val: 0x40
   - name: SaxSuit
     val: 0x80
+  loc: null
 - name: TankType
   vals:
-  - name: MissileTank
+  - name: TANK_ENERGY
+    val: 0x0
+  - name: TANK_MISSILE
     val: 0x1
-  - name: EnergyTank
+  - name: TANK_POWER_BOMB
     val: 0x2
-  - name: PowerBombTank
+  - name: TANK_COUNT
     val: 0x3
+  loc: include/constants/event.h:440
+- name: TimerEvent
+  vals:
+  - name: ESCAPE_NONE
+    val: 0x0
+  - name: ESCAPE_MELTDOWN
+    val: 0x1
+  - name: ESCAPE_RESTRICTED_LAB
+    val: 0x2
+  - name: ESCAPE_ORBIT_CHANGE
+    val: 0x3
+  loc: include/constants/event.h:432
+- name: TitleScreenSection
+  vals:
+  - name: TITLE_SCREEN_SECTION_NONE
+    val: 0x0
+  - name: TITLE_SCREEN_SECTION_COPYRIGHT
+    val: 0x1
+  - name: TITLE_SCREEN_SECTION_PRESS_START
+    val: 0x2
+  - name: TITLE_SCREEN_SECTION_LANGUAGE
+    val: 0x3
+  - name: TITLE_SCREEN_SECTION_4
+    val: 0x4
+  - name: TITLE_SCREEN_SECTION_GALLERY
+    val: 0x5
+  - name: TITLE_SCREEN_SECTION_END
+    val: 0x6
+  loc: include/constants/menus/title_screen.h:6
 - name: VerticalDirection
   vals:
   - name: Up
     val: 0x40
   - name: Down
     val: 0x80
+  loc: null
+- name: XParasiteFlyingStage
+  vals:
+  - name: X_PARASITE_FLYING_STAGE_FREE_FLOATING
+    val: 0x0
+  - name: X_PARASITE_FLYING_STAGE_FLYING_TO_SPRITE
+    val: 0x1
+  - name: X_PARASITE_FLYING_STAGE_TOUCHED_SPRITE
+    val: 0x2
+  loc: include/x_parasite_util.h:12
+- name: XParasiteType
+  vals:
+  - name: X_PARASITE_TYPE_IN_ROOM
+    val: 0x0
+  - name: X_PARASITE_TYPE_FROM_SPRITE
+    val: 0x1
+  - name: X_PARASITE_TYPE_FROM_CORE_X
+    val: 0x2
+  loc: include/x_parasite_util.h:6
+- name: ZazabiPart
+  desc: Zazabi part AI
+  vals:
+  - name: ZAZABI_PART_0
+    val: 0x0
+  - name: ZAZABI_PART_MOUTH
+    val: 0x1
+  - name: ZAZABI_PART_HAIR
+    val: 0x2
+  - name: ZAZABI_PART_EYE_SHELL
+    val: 0x3
+  - name: ZAZABI_PART_PUPIL
+    val: 0x4
+  - name: ZAZABI_PART_EYE
+    val: 0x5
+  - name: ZAZABI_PART_UPPER_SHELL
+    val: 0x6
+  - name: ZAZABI_PART_MIDDLE_SHELL
+    val: 0x7
+  - name: ZAZABI_PART_LOWER_SHELL
+    val: 0x8
+  - name: ZAZABI_PART_END
+    val: 0x9
+  loc: src/sprites_AI/zazabi.c:2061

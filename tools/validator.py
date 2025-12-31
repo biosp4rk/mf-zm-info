@@ -14,8 +14,6 @@ from info.info_entry import *
 import info.info_file_utils as ifu
 
 
-# TODO: Remove this when fusion is supported
-GAMES = [GAME_ZM]
 SCHEMA_PATH = "../schema"
 
 

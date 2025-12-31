@@ -6,6 +6,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_DisplayBootScreens
   desc: Jumps to normal InterruptSetup at end
   addr:
@@ -15,6 +16,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_SetupLogoScreen
   addr:
     C: 0x7FD480
@@ -23,6 +25,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_DisplayLogoScreen
   addr:
     C: 0x7FD580
@@ -31,6 +34,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_SetupInfoScreen
   addr:
     C: 0x7FD5FC
@@ -39,6 +43,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_DisplayInfoScreen
   desc: Waits on the screen for 100 frames
   addr:
@@ -48,6 +53,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_CpuSet
   desc: Calls software interrupt 0xB
   addr:
@@ -57,12 +63,13 @@
   mode: thumb
   params:
   - name: SourceAddress
-    type: u8 *
+    type: u8*
   - name: DestinationAddress
-    type: u8 *
+    type: u8*
   - name: Length
     type: u32
   return: null
+  loc: null
 - name: iQue_Lz77UnCompReadNormalWrite16bit
   desc: Calls software interrupt 0x12
   addr:
@@ -72,10 +79,11 @@
   mode: thumb
   params:
   - name: SourceAddress
-    type: u16 *
+    type: u16*
   - name: DestinationAddress
-    type: u16 *
+    type: u16*
   return: null
+  loc: null
 - name: iQue_RegisterRamReset
   desc: Calls software interrupt 0x1
   addr:
@@ -88,6 +96,7 @@
     type: u8
     cat: flags
   return: null
+  loc: null
 - name: iQue_bx_r0
   addr:
     C: 0x7FD6AC
@@ -96,6 +105,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r1
   addr:
     C: 0x7FD6B0
@@ -104,6 +114,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r2
   addr:
     C: 0x7FD6B4
@@ -112,6 +123,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r3
   addr:
     C: 0x7FD6B8
@@ -120,6 +132,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r4
   addr:
     C: 0x7FD6BC
@@ -128,6 +141,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r5
   addr:
     C: 0x7FD6C0
@@ -136,6 +150,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r6
   addr:
     C: 0x7FD6C4
@@ -144,6 +159,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r7
   addr:
     C: 0x7FD6C8
@@ -152,6 +168,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r8
   addr:
     C: 0x7FD6CC
@@ -160,6 +177,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r9
   addr:
     C: 0x7FD6D0
@@ -168,6 +186,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r10
   addr:
     C: 0x7FD6D4
@@ -176,6 +195,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r11
   addr:
     C: 0x7FD6D8
@@ -184,6 +204,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r12
   addr:
     C: 0x7FD6DC
@@ -192,6 +213,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r13
   addr:
     C: 0x7FD6E0
@@ -200,6 +222,7 @@
   mode: thumb
   params: null
   return: null
+  loc: null
 - name: iQue_bx_r14
   addr:
     C: 0x7FD6E4
@@ -208,3 +231,4 @@
   mode: thumb
   params: null
   return: null
+  loc: null
