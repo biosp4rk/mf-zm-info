@@ -1,3 +1,4 @@
+# Overview:
 # - Find defs in .h files (typedefs, vars, funcs, enums, structs, unions)
 #   - names, types, fields, (partial) sizes, locations
 # - Prefer locations from .c files (for funcs and rom data)
@@ -7,10 +8,15 @@
 # - Load existing info entries
 # - Update entry fields (except for cat, comp, enum, and refs)
 
+# Elf file command:
+# readelf <game>.elf -s -W > <output>
+
 import argparse
 from collections import defaultdict
 import os
+from pathlib import Path
 import re
+import sys
 
 from pycparser import c_ast, parse_file, plyparser
 
@@ -45,8 +51,10 @@ def get_files_with_ext(dir: str, ext: str, exclude: str = None) -> list[str]:
 
 class Extractor:
 
-    def __init__(self, decomp_path: str):
+    def __init__(self, decomp_path: str, output_path: str, keep_existing: bool):
         self.decomp_path = decomp_path
+        self.output_path = output_path
+        self.keep_existing = keep_existing
         self.warnings: list[str] = []
         self.typedefs: dict[str, c_ast.Typedef] = {}
         self.variables: dict[str, c_ast.Node] = {}
@@ -97,22 +105,20 @@ class Extractor:
         c_files = get_files_with_ext(src_path, ".c")
         # h_files = ["decomp/test.h"]
         # c_files = ["decomp/test.c"]
+        all_files = [
+            (h_files, ".h", self._process_h_file),
+            (c_files, ".c", self._process_c_file),
+        ]
         # Find declarations in all files
-        for files in [h_files, c_files]:
-            if files[0].endswith(".h"):
-                print("Processing .h files...")
-                process_file = self._process_h_file
-            elif files[0].endswith(".c"):
-                print("Processing .c files...")
-                process_file = self._process_c_file
-            else:
-                raise ValueError()
-            for path in files:
+        for files, ext, process_file in all_files:
+            file_count = len(files)
+            print(f"Processing {ext} files... 0/{file_count}", end="\r")
+            for i, path in enumerate(files):
                 # Try parsing the file
                 try:
                     ast: c_ast.FileAST = parse_file(
                         path, True, cpp_path,
-                        ["-E", f"-I{include_path}", "-D__attribute__(x)=", "-D__inline__="]
+                        ["-E", f"-I{include_path}", "-D__attribute__(x)=", "-D__inline__=", "-Dasm(x)="]
                     )
                 except Exception as ex:
                     print(f"Could not parse {path}\n{ex}")
@@ -127,6 +133,9 @@ class Extractor:
                         continue
                     if process_file(node):
                         self._try_get_doc_str(node, lines)
+                print(f"Processing {ext} files... {i+1}/{file_count}", end="\r")
+                sys.stdout.flush()
+            print()
 
     # TODO: Combine this with process c file
     def _process_h_file(self, node: c_ast.Node) -> bool:
@@ -572,7 +581,7 @@ class Extractor:
             filename = map_type
             if map_type == MAP_DATA:
                 if entry.cat is not None:
-                    filename  = CAT_TO_STR[entry.cat]
+                    filename = CAT_TO_STR[entry.cat]
             elif map_type == MAP_CODE:
                 if entry.loc and "sprites_AI" in entry.loc:
                     filename = "sprite_ai"
@@ -593,11 +602,15 @@ class Extractor:
                 name = elf_names.get(r_addr)
                 if name is None:
                     existing_missing_from_elf.add(entry.name)
+                    if self.keep_existing:
+                        entries[filename].append(entry)
                     continue
             # Get AST node
             node = decomp_entries.get(name)
             if node is None:
                 existing_missing_from_decomp.add(name)
+                if self.keep_existing:
+                    entries[filename].append(entry)
                 continue
             # Get docstrings (if any) and location
             brief, param_docs, ret_doc = self._parse_doc_str(name)
@@ -679,10 +692,16 @@ class Extractor:
                 new_entry = TypedefEntry(name, None, decl, loc)
             entries[filename].append(new_entry)
         # Write entries to yaml files
-        map_dir = os.path.join(YAML_PATH, info.game.lower(), map_type)
+        if self.output_path is None:
+            # Overwrite existing
+            map_dir = os.path.join(YAML_PATH, info.game, map_type)
+        else:
+            # Use provided path (create directories if necessary)
+            map_dir = os.path.join(self.output_path, map_type)
+            Path(map_dir).mkdir(parents=True, exist_ok=True)
         for filename, data in entries.items():
             data.sort()
-            path = os.path.join(map_dir, filename + ".yml")
+            path = os.path.join(map_dir, filename + YAML_EXT)
             ifu.write_info_file(path, map_type, data)
         # Add warnings
         if existing_missing_from_elf:
@@ -805,20 +824,26 @@ class Extractor:
 
 
 if __name__ == "__main__":
-    argparser = argparse.ArgumentParser("Dump AST")
-    argparser.add_argument("game", type=str)
-    argparser.add_argument("region", type=str)
-    argparser.add_argument("decomp_path", type=str,
+    parser = argparse.ArgumentParser("Dump AST")
+    parser.add_argument("game", type=str)
+    parser.add_argument("region", type=str)
+    parser.add_argument("decomp_path", type=str,
         help="Path to root directory of decomp (mf or mzm)")
-    argparser.add_argument("elf_path", type=str)
-    argparser.add_argument("-cpp", "--cpp_path", type=str, default="gcc")
-    
-    args = argparser.parse_args()
-    game = args.game.upper()
+    parser.add_argument("elf_path", type=str)
+    parser.add_argument("-cpp", "--cpp_path", type=str, default="gcc")
+    parser.add_argument("-o", "--output_path", type=str, default=None,
+        help="Output directory for yaml files (omitting this will overwrite existing yaml files)")
+    parser.add_argument("-k", "--keep_existing", action="store_true",
+        help="Keeps existing entries that aren't found in the decomp")
+
+    args = parser.parse_args()
+    game = args.game.lower()
     region = args.region.upper()
     decomp_path = args.decomp_path
     elf_path = args.elf_path
     cpp_path = args.cpp_path
+    output_path = args.output_path
+    keep_existing = args.keep_existing
     
-    extractor = Extractor(decomp_path)
+    extractor = Extractor(decomp_path, output_path, keep_existing)
     extractor.extract(game, region, cpp_path, elf_path)
