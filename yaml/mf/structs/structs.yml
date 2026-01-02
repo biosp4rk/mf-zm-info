@@ -27,17 +27,17 @@
 - name: AnimatedGraphicsEntry
   size: 0x8
   vars:
-  - name: AnimType
+  - name: animType
     type: u8
     offset: 0x0
     enum: GraphicsAnimType
-  - name: FramesPerState
+  - name: framesPerState
     type: u8
     offset: 0x1
-  - name: NumOfStates
+  - name: numOfStates
     type: u8
     offset: 0x2
-  - name: GfxPtr
+  - name: pGfx
     type: u8*
     cat: gfx
     offset: 0x4
@@ -45,27 +45,27 @@
 - name: AnimatedPaletteAndTilesetNum
   size: 0x2
   vars:
-  - name: AnimatedPaletteNum
+  - name: animatedPaletteNum
     type: u8
     offset: 0x0
-  - name: AnimatedTilesetNum
+  - name: animatedTilesetNum
     type: u8
     offset: 0x1
   loc: null
 - name: AnimatedPaletteEntry
   size: 0x8
   vars:
-  - name: AnimType
+  - name: animType
     type: u8
     offset: 0x0
     enum: PaletteAnimType
-  - name: FramesPerState
+  - name: framesPerState
     type: u8
     offset: 0x1
-  - name: NumOfStates
+  - name: numOfStates
     type: u8
     offset: 0x2
-  - name: PalettePtr
+  - name: pPalette
     type: u16*
     cat: palette
     offset: 0x4
@@ -73,30 +73,30 @@
 - name: AnimatedPaletteTiming
   size: 0x3
   vars:
-  - name: Counter
+  - name: counter
     type: u8
     offset: 0x0
-  - name: State
+  - name: state
     type: u8
     offset: 0x1
-  - name: Counter_OmegaRoom
+  - name: counter_OmegaRoom
     type: u8
     offset: 0x2
-  - name: PaletteRow_OmegaRoom
+  - name: paletteRow_OmegaRoom
     type: u8
     offset: 0x3
   loc: null
 - name: AreaConnection
   size: 0x3
   vars:
-  - name: SourceArea
+  - name: sourceArea
     type: u8
     offset: 0x0
     enum: Area
-  - name: SourceDoor
+  - name: sourceDoor
     type: u8
     offset: 0x1
-  - name: DestinationArea
+  - name: destinationArea
     type: u8
     offset: 0x2
     enum: Area
@@ -104,10 +104,10 @@
 - name: ArmCannonAnimData
   size: 0x8
   vars:
-  - name: OpeningOffsetsPtr
+  - name: pOpeningOffsets
     type: struct ArmCannonOpeningOffsets*
     offset: 0x0
-  - name: OamFramePtr
+  - name: pOamFrame
     type: u16*
     cat: oam_frame
     offset: 0x4
@@ -115,16 +115,16 @@
 - name: ArmCannonOpeningOffsets
   size: 0x8
   vars:
-  - name: ChargingYOffset
+  - name: chargingYOffset
     type: u16
     offset: 0x0
-  - name: ChargingXOffset
+  - name: chargingXOffset
     type: u16
     offset: 0x2
-  - name: NewProjectileYOffset
+  - name: newProjectileYOffset
     type: u16
     offset: 0x4
-  - name: NewProjectileXOffset
+  - name: newProjectileXOffset
     type: u16
     offset: 0x6
   loc: null
@@ -172,43 +172,43 @@
 - name: BackupOfIoRegisters
   size: 0x12
   vars:
-  - name: BackupOfDispcnt_NonGameplay
+  - name: backupOfDispcnt_NonGameplay
     desc: LCD control
     type: u16
     offset: 0x0
-  - name: BackupOfBldcnt_NonGameplay
+  - name: backupOfBldcnt_NonGameplay
     desc: Color special effects selection
     type: u16
     offset: 0x2
-  - name: BackupOfBldalpha_NonGameplay
+  - name: backupOfBldalpha_NonGameplay
     desc: Alpha blending coefficients
     type: u16
     offset: 0x4
-  - name: BackupOfWININ_H_NonGameplay
+  - name: backupOfWININ_H_NonGameplay
     desc: Inside of window 1
     type: u8
     offset: 0x6
-  - name: BackupOfWINOUT_L_NonGameplay
+  - name: backupOfWINOUT_L_NonGameplay
     desc: Outside of windows
     type: u8
     offset: 0x7
-  - name: BackupOfBg0CNT_WriteOnly
+  - name: backupOfBg0CNT_WriteOnly
     desc: BG0 control
     type: u16
     offset: 0x8
-  - name: BackupOfBg1CNT
+  - name: backupOfBg1CNT
     desc: BG1 control
     type: u16
     offset: 0xA
-  - name: BackupOfBg2CNT
+  - name: backupOfBg2CNT
     desc: BG2 control
     type: u16
     offset: 0xC
-  - name: BackupOfBg3CNT
+  - name: backupOfBg3CNT
     desc: BG3 control
     type: u16
     offset: 0xE
-  - name: BackupOfBg0CNT
+  - name: backupOfBg0CNT
     desc: BG0 control
     type: u16
     offset: 0x10
@@ -216,79 +216,79 @@
 - name: Bg3Movement
   size: 0x6
   vars:
-  - name: Direction
+  - name: direction
     type: u8
     offset: 0x0
-  - name: Counter
+  - name: counter
     type: u8
     offset: 0x1
-  - name: MoveLeftToRightStage
+  - name: moveLeftToRightStage
     type: u8
     offset: 0x2
-  - name: XPositionOffset
+  - name: xPositionOffset
     type: u16
     offset: 0x4
   loc: null
 - name: BgPositions
   size: 0x14
   vars:
-  - name: Bg0XPosition
+  - name: bg0XPosition
     type: u16
     offset: 0x0
-  - name: Bg0YPosition
+  - name: bg0YPosition
     type: u16
     offset: 0x2
-  - name: Bg1XPosition
+  - name: bg1XPosition
     type: u16
     offset: 0x4
-  - name: Bg1YPosition
+  - name: bg1YPosition
     type: u16
     offset: 0x6
-  - name: Bg2XPosition
+  - name: bg2XPosition
     type: u16
     offset: 0x8
-  - name: Bg2YPosition
+  - name: bg2YPosition
     type: u16
     offset: 0xA
-  - name: Bg3XPosition
+  - name: bg3XPosition
     type: u16
     offset: 0xC
-  - name: Bg3YPosition
+  - name: bg3YPosition
     type: u16
     offset: 0xE
-  - name: DoorTransitionXPosition
+  - name: doorTransitionXPosition
     type: u16
     offset: 0x10
-  - name: DoorTransitionYPosition
+  - name: doorTransitionYPosition
     type: u16
     offset: 0x12
   loc: null
 - name: BossPartOamData
   size: 0x6
   vars:
-  - name: OamTableIndex
+  - name: oamTableIndex
     type: u16
     offset: 0x0
-  - name: YOffset
+  - name: yOffset
     type: s16
     offset: 0x2
-  - name: XOffset
+  - name: xOffset
     type: s16
     offset: 0x4
   loc: null
 - name: BrokenReformBlock
   size: 0x4
   vars:
-  - name: Stage
+  - name: stage
     type: u8
     offset: 0x0
-  - name: Timer
+  - name: timer
     type: u8
     offset: 0x1
-  - name: XPosition
+  - name: xPosition
     type: u8
     offset: 0x2
-  - name: YPosition
+  - name: yPosition
     type: u8
     offset: 0x3
   loc: null
@@ -347,46 +347,46 @@
 - name: ClipdataBlockData
   size: 0x8
   vars:
-  - name: XPosition
+  - name: xPosition
     type: u16
     offset: 0x0
-  - name: YPosition
+  - name: yPosition
     type: u16
     offset: 0x2
-  - name: Behavior
+  - name: behavior
     type: u16
     offset: 0x4
-  - name: BlockBehavior
+  - name: blockBehavior
     type: u8
     offset: 0x6
   loc: null
 - name: CollectedTank
   size: 0x4
   vars:
-  - name: RoomId
+  - name: roomId
     type: u8
     offset: 0x0
-  - name: TankType
+  - name: tankType
     type: u8
     offset: 0x1
     enum: TankType
-  - name: XPosition
+  - name: xPosition
     type: u8
     offset: 0x2
-  - name: YPosition
+  - name: yPosition
     type: u8
     offset: 0x3
   loc: null
 - name: CollectibleTankAnim
   size: 0x4
   vars:
-  - name: Delay
+  - name: delay
     type: u8
     offset: 0x0
-  - name: Frame
+  - name: frame
     type: u8
     offset: 0x1
-  - name: Unused
+  - name: unused
     type: u16
     offset: 0x2
   loc: null
@@ -424,18 +424,18 @@
 - name: ComputerConvoPopUpGfx
   size: 0x18
   vars:
-  - name: UnkPtr
+  - name: pUnk
     type: u8*
     offset: 0x0
-  - name: PaletteRow0Ptr
+  - name: pPaletteRow0
     type: u16*
     cat: palette
     offset: 0x8
-  - name: PaletteRow1Ptr
+  - name: pPaletteRow1
     type: u16*
     cat: palette
     offset: 0xC
-  - name: GfxPtr
+  - name: pGfx
     type: u8*
     cat: gfx
     offset: 0x14
@@ -443,31 +443,31 @@
 - name: CurrPowerBomb
   size: 0x14
   vars:
-  - name: AnimState
+  - name: animState
     type: u8
     offset: 0x0
   - name: unk_01
     type: u8
     offset: 0x1
-  - name: SemiMinorAxis
+  - name: semiMinorAxis
     type: u8
     offset: 0x2
-  - name: XPosition
+  - name: xPosition
     type: u16
     offset: 0x4
-  - name: YPosition
+  - name: yPosition
     type: u16
     offset: 0x6
-  - name: HitboxLeftOffset
+  - name: hitboxLeftOffset
     type: u16
     offset: 0x8
-  - name: HitboxRightOffset
+  - name: hitboxRightOffset
     type: u16
     offset: 0xA
-  - name: HitboxTopOffset
+  - name: hitboxTopOffset
     type: u16
     offset: 0xC
-  - name: HitboxBottomOffset
+  - name: hitboxBottomOffset
     type: u16
     offset: 0xE
   - name: unk_10
@@ -476,95 +476,95 @@
   - name: unk_11
     type: u8
     offset: 0x11
-  - name: Exists
+  - name: exists
     type: u8
     offset: 0x12
   loc: null
 - name: CurrRoomEntry
   size: 0x1C
   vars:
-  - name: TilesetNum
+  - name: tilesetNum
     type: u8
     offset: 0x0
-  - name: Bg0Properties
+  - name: bg0Properties
     type: u8
     offset: 0x1
     enum: BgProperty
-  - name: Bg1Properties
+  - name: bg1Properties
     type: u8
     offset: 0x2
     enum: BgProperty
-  - name: Bg2Properties
+  - name: bg2Properties
     type: u8
     offset: 0x3
     enum: BgProperty
-  - name: Bg3Properties
+  - name: bg3Properties
     type: u8
     offset: 0x4
     enum: BgProperty
-  - name: ScrollsFlag
+  - name: scrollsFlag
     type: u8
     offset: 0x5
     enum: ScrollsFlag
-  - name: Bg3ScrollingMethod
+  - name: bg3ScrollingMethod
     type: u8
     offset: 0x6
-  - name: Transparency
+  - name: transparency
     type: u8
     offset: 0x7
-  - name: SpriteLayoutDataPtr
+  - name: pSpriteLayoutData
     type: struct RoomSpriteEntry*
     offset: 0x8
-  - name: EventToUseTheFirstSpriteset
+  - name: eventToUseTheFirstSpriteset
     type: u8
     offset: 0xC
     enum: Event
-  - name: EventToUseTheSecondSpriteset
+  - name: eventToUseTheSecondSpriteset
     type: u8
     offset: 0xD
     enum: Event
-  - name: MapXCoordinate
+  - name: mapXCoordinate
     type: u8
     offset: 0xE
-  - name: MapYCoordinate
+  - name: mapYCoordinate
     type: u8
     offset: 0xF
-  - name: RoomEffect
+  - name: roomEffect
     type: u8
     offset: 0x10
     enum: RoomEffect
-  - name: RoomEffectYPosition
+  - name: roomEffectYPosition
     type: u16
     offset: 0x12
-  - name: RoomEffectForSuits
+  - name: roomEffectForSuits
     type: u8
     offset: 0x14
     enum: RoomEffect
-  - name: MusicTrack
+  - name: musicTrack
     type: u16
     offset: 0x16
-  - name: Bg0Size
+  - name: bg0Size
     type: u8
     offset: 0x18
     enum: Lz77BackgroundSize
-  - name: Bg3Size
+  - name: bg3Size
     type: u8
     offset: 0x19
     enum: Lz77BackgroundSize
-  - name: AnimatedTilesetNum
+  - name: animatedTilesetNum
     type: u8
     offset: 0x1A
-  - name: AnimatedPaletteNum
+  - name: animatedPaletteNum
     type: u8
     offset: 0x1B
   loc: null
 - name: CurrScrolls
   size: 0x18
   vars:
-  - name: FirstScroll
+  - name: firstScroll
     type: struct Scroll
     offset: 0x0
-  - name: SecondScroll
+  - name: secondScroll
     type: struct Scroll
     offset: 0xC
   loc: null
@@ -582,37 +582,37 @@
 - name: DebugMenuOptions
   size: 0xC
   vars:
-  - name: Bldcnt_Mode_Unused
+  - name: bldcnt_Mode_Unused
     type: u16
     offset: 0x0
-  - name: Bldcnt_Evb_Unused
+  - name: bldcnt_Evb_Unused
     type: u8
     offset: 0x2
-  - name: Bldcnt_Eva_Unused
+  - name: bldcnt_Eva_Unused
     type: u8
     offset: 0x3
-  - name: Bldcnt_Evy_Unused
+  - name: bldcnt_Evy_Unused
     type: u8
     offset: 0x4
-  - name: FrontWideCamera
+  - name: frontWideCamera
     type: u8
     offset: 0x5
-  - name: SectionCursor
+  - name: sectionCursor
     type: u8
     offset: 0x6
-  - name: SectionSelection
+  - name: sectionSelection
     type: u8
     offset: 0x7
-  - name: DownloadedMaps
+  - name: downloadedMaps
     type: u8
     cat: flags
     offset: 0x8
     enum: AreaBitFlags
-  - name: SecurityHatchLevel
+  - name: securityHatchLevel
     type: u8
     offset: 0x9
     enum: SecurityLevel
-  - name: MapScanAndStereoFlag_Unused
+  - name: mapScanAndStereoFlag_Unused
     type: u8
     offset: 0xA
   loc: null
@@ -710,11 +710,11 @@
 - name: DimLightingEvent
   size: 0x2
   vars:
-  - name: Event
+  - name: event
     type: u8
     offset: 0x0
     enum: Event
-  - name: SetDimFlag
+  - name: setDimFlag
     type: u8
     offset: 0x1
   loc: null
@@ -752,10 +752,10 @@
 - name: DoorPositionStart
   size: 0x4
   vars:
-  - name: XPositionStart
+  - name: xPositionStart
     type: u16
     offset: 0x0
-  - name: YPositionStart
+  - name: yPositionStart
     type: u16
     offset: 0x2
   loc: null
@@ -794,23 +794,23 @@
 - name: EndingTextDrawInfo
   size: 0xC
   vars:
-  - name: Type
+  - name: type
     desc: 1 = single character, 2 = full line
     type: u8
     offset: 0x0
-  - name: DrawDelay
+  - name: drawDelay
     type: u8
     offset: 0x1
   - name: unk_02
     type: u8
     offset: 0x2
-  - name: XPosition
+  - name: xPosition
     type: u16
     offset: 0x4
-  - name: YPosition
+  - name: yPosition
     type: u16
     offset: 0x6
-  - name: OamFramePtr
+  - name: pOamFrame
     type: u16*
     cat: oam_frame
     offset: 0x8
@@ -818,16 +818,16 @@
 - name: Envelope
   size: 0x4
   vars:
-  - name: Attack
+  - name: attack
     type: u8
     offset: 0x0
-  - name: Decay
+  - name: decay
     type: u8
     offset: 0x1
-  - name: Sustain
+  - name: sustain
     type: u8
     offset: 0x2
-  - name: Release
+  - name: release
     type: u8
     offset: 0x3
   loc: null
@@ -905,18 +905,18 @@
 - name: EventBasedConnection
   size: 0x4
   vars:
-  - name: SourceArea
+  - name: sourceArea
     type: u8
     offset: 0x0
     enum: Area
-  - name: SourceDoor
+  - name: sourceDoor
     type: u8
     offset: 0x1
-  - name: Event
+  - name: event
     type: u8
     offset: 0x2
     enum: Event
-  - name: DestinationDoor
+  - name: destinationDoor
     type: u8
     offset: 0x3
   loc: null
@@ -959,32 +959,32 @@
 - name: EveryKeySplitInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     desc: 40 for key split
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: SubInstrumentsPtr
+  - name: pSubInstruments
     type: u8*
     offset: 0x4
   loc: null
 - name: FloatingPointNum
   size: 0x14
   vars:
-  - name: Class
+  - name: class
     type: u32
     offset: 0x0
     enum: FloatingPointClass
-  - name: Sign
+  - name: sign
     type: u32
     offset: 0x4
-  - name: NormalizedExponent
+  - name: normalizedExponent
     type: s32
     offset: 0x8
-  - name: FractionLowerBits
+  - name: fractionLowerBits
     type: u32
     offset: 0xC
-  - name: FractionUpperBits
+  - name: fractionUpperBits
     type: u32
     offset: 0x10
   loc: null
@@ -1001,10 +1001,10 @@
 - name: GameCompletion
   size: 0x4
   vars:
-  - name: CompletedGameFlag
+  - name: completedGameFlag
     type: u8
     offset: 0x0
-  - name: IntroPlayedFlag
+  - name: introPlayedFlag
     type: u8
     offset: 0x1
   loc: null
@@ -1049,18 +1049,18 @@
 - name: HatchLockEvent
   size: 0x4
   vars:
-  - name: Event
+  - name: event
     type: u8
     offset: 0x0
     enum: Event
-  - name: Area
+  - name: area
     type: u8
     offset: 0x1
     enum: Area
-  - name: RoomId_Plus1
+  - name: roomId_Plus1
     type: u8
     offset: 0x2
-  - name: HatchesToLock
+  - name: hatchesToLock
     type: u8
     cat: flags
     offset: 0x3
@@ -1097,10 +1097,10 @@
 - name: InGameScreenFadeTable
   size: 0x8
   vars:
-  - name: TablePtr
+  - name: pTable
     type: u8*
     offset: 0x0
-  - name: TableSize
+  - name: tableSize
     type: u8
     offset: 0x4
   loc: null
@@ -1157,15 +1157,15 @@
 - name: KeySplitInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     desc: 40 for key split
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: SubInstrumentsPtr
+  - name: pSubInstruments
     type: u8*
     offset: 0x4
-  - name: KeySplitTablePtr
+  - name: pKeySplitTable
     type: u8*
     offset: 0x8
   loc: null
@@ -1357,10 +1357,10 @@
 - name: NavConversationSoundEvent
   size: 0x4
   vars:
-  - name: NavConversationNum
+  - name: navConversationNum
     type: u8
     offset: 0x0
-  - name: SoundEvent
+  - name: soundEvent
     type: u16
     offset: 0x2
     enum: SoundEvent
@@ -1368,19 +1368,19 @@
 - name: NavRoomHatchLockEvent
   size: 0x4
   vars:
-  - name: Event
+  - name: event
     type: u8
     offset: 0x0
     enum: Event
-  - name: NavRooms_1_to_4_Hatches
+  - name: navRooms_1_to_4_Hatches
     type: u8
     cat: flags
     offset: 0x1
-  - name: NavRooms_5_to_8_Hatches
+  - name: navRooms_5_to_8_Hatches
     type: u8
     cat: flags
     offset: 0x2
-  - name: NavRooms_9_to_C_Hatches
+  - name: navRooms_9_to_C_Hatches
     type: u8
     cat: flags
     offset: 0x3
@@ -1388,31 +1388,31 @@
 - name: NavRoomLocation
   size: 0x2
   vars:
-  - name: Area
+  - name: area
     type: u8
     offset: 0x0
     enum: Area
-  - name: RoomId_Plus1
+  - name: roomId_Plus1
     type: u8
     offset: 0x1
   loc: null
 - name: NavTarget
   size: 0x8
   vars:
-  - name: NavConversationNum
+  - name: navConversationNum
     type: u8
     offset: 0x0
-  - name: TargetLocation
+  - name: targetLocation
     type: u8
     offset: 0x1
     enum: NavigationTargetLocation
-  - name: TargetXPosition
+  - name: targetXPosition
     type: u8
     offset: 0x2
-  - name: TargetYPosition
+  - name: targetYPosition
     type: u8
     offset: 0x3
-  - name: TextDirection
+  - name: textDirection
     type: u8
     offset: 0x4
     enum: NavTargetTextDirection
@@ -1420,137 +1420,137 @@
 - name: NeverReformBlock
   size: 0x3
   vars:
-  - name: RoomId
+  - name: roomId
     type: u8
     offset: 0x0
-  - name: XPosition
+  - name: xPosition
     type: u8
     offset: 0x1
-  - name: YPosition
+  - name: yPosition
     type: u8
     offset: 0x2
   loc: null
 - name: NoiseInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     desc: 4 for noise
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: MidiKey
+  - name: midiKey
     type: u8
     offset: 0x1
-  - name: HardwareTimeLength
+  - name: hardwareTimeLength
     type: u8
     offset: 0x2
-  - name: Period
+  - name: period
     type: u8
     offset: 0x4
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   loc: null
 - name: NonGameplayRam_Ending
   size: 0x540
   vars:
-  - name: EndingImageTier
+  - name: endingImageTier
     type: u8
     offset: 0x99
-  - name: EndingPercent
+  - name: endingPercent
     type: u8
     offset: 0x9A
   loc: null
 - name: NonGameplayRam_FileSelect
   size: 0x540
   vars:
-  - name: StereoFlag
+  - name: stereoFlag
     type: u8
     offset: 0x26D
   loc: null
 - name: NonGameplayRam_Pause
   size: 0x540
   vars:
-  - name: MapTargetXPosition
+  - name: mapTargetXPosition
     type: u8
     offset: 0x20C
-  - name: MapTargetYPosition
+  - name: mapTargetYPosition
     type: u8
     offset: 0x20D
   loc: null
 - name: NonGameplayRam_Title
   size: 0x540
   vars:
-  - name: TODO
+  - name: tODO
     type: u8
     offset: 0x0
   loc: null
 - name: NumNeverReformBlocksBroken
   size: 0x8
   vars:
-  - name: NumNeverReformBlocksBrokenInMainDeck
+  - name: numNeverReformBlocksBrokenInMainDeck
     type: u8
     offset: 0x0
-  - name: NumNeverReformBlocksBrokenInSector1
+  - name: numNeverReformBlocksBrokenInSector1
     type: u8
     offset: 0x1
-  - name: NumNeverReformBlocksBrokenInSector2
+  - name: numNeverReformBlocksBrokenInSector2
     type: u8
     offset: 0x2
-  - name: NumNeverReformBlocksBrokenInSector3
+  - name: numNeverReformBlocksBrokenInSector3
     type: u8
     offset: 0x3
-  - name: NumNeverReformBlocksBrokenInSector4
+  - name: numNeverReformBlocksBrokenInSector4
     type: u8
     offset: 0x4
-  - name: NumNeverReformBlocksBrokenInSector5
+  - name: numNeverReformBlocksBrokenInSector5
     type: u8
     offset: 0x5
-  - name: NumNeverReformBlocksBrokenInSector6
+  - name: numNeverReformBlocksBrokenInSector6
     type: u8
     offset: 0x6
-  - name: NumNeverReformBlocksBrokenInDebug1
+  - name: numNeverReformBlocksBrokenInDebug1
     type: u8
     offset: 0x7
   loc: null
 - name: NumTanksCollected
   size: 0x8
   vars:
-  - name: NumTanksCollectedInMainDeck
+  - name: numTanksCollectedInMainDeck
     type: u8
     offset: 0x0
-  - name: NumTanksCollectedInSector1
+  - name: numTanksCollectedInSector1
     type: u8
     offset: 0x1
-  - name: NumTanksCollectedInSector2
+  - name: numTanksCollectedInSector2
     type: u8
     offset: 0x2
-  - name: NumTanksCollectedInSector3
+  - name: numTanksCollectedInSector3
     type: u8
     offset: 0x3
-  - name: NumTanksCollectedInSector4
+  - name: numTanksCollectedInSector4
     type: u8
     offset: 0x4
-  - name: NumTanksCollectedInSector5
+  - name: numTanksCollectedInSector5
     type: u8
     offset: 0x5
-  - name: NumTanksCollectedInSector6
+  - name: numTanksCollectedInSector6
     type: u8
     offset: 0x6
-  - name: NumTanksCollectedInDebug1
+  - name: numTanksCollectedInDebug1
     type: u8
     offset: 0x7
   loc: null
 - name: NumTanksInArea
   size: 0x3
   vars:
-  - name: EnergyTanks
+  - name: energyTanks
     type: u8
     offset: 0x0
-  - name: MissileTanks
+  - name: missileTanks
     type: u8
     offset: 0x1
-  - name: PowerBombTanks
+  - name: powerBombTanks
     type: u8
     offset: 0x2
   loc: null
@@ -2153,16 +2153,16 @@
 - name: PcmSample
   size: 0x10
   vars:
-  - name: LoopedFlag
+  - name: loopedFlag
     type: u32
     offset: 0x0
-  - name: Pitch
+  - name: pitch
     type: u32
     offset: 0x4
-  - name: LoopRelativeStartingPoint
+  - name: loopRelativeStartingPoint
     type: u32
     offset: 0x8
-  - name: SampleSize
+  - name: sampleSize
     type: u32
     offset: 0xC
   loc: null
@@ -2212,30 +2212,30 @@
 - name: PrimarySpriteStats
   size: 0xE
   vars:
-  - name: SpawnHealth
+  - name: spawnHealth
     type: u16
     offset: 0x0
-  - name: Damage
+  - name: damage
     type: u16
     offset: 0x2
-  - name: SuitDamageReduction
+  - name: suitDamageReduction
     type: u16
     offset: 0x4
     enum: SuitDamageReduction
-  - name: Weakness
+  - name: weakness
     type: u16
     cat: flags
     offset: 0x6
     enum: SpriteWeakness
-  - name: HealthXProbability
+  - name: healthXProbability
     desc: Out of 0x400
     type: u16
     offset: 0x8
-  - name: MissileXProbability
+  - name: missileXProbability
     desc: Out of 0x400
     type: u16
     offset: 0xA
-  - name: RedXProbability
+  - name: redXProbability
     desc: Out of 0x400
     type: u16
     offset: 0xC
@@ -2320,10 +2320,10 @@
   - name: unk_03
     type: u8
     offset: 0x3
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x4
-  - name: NoteDelay
+  - name: noteDelay
     type: u16
     offset: 0x8
   - name: unk_0A
@@ -2389,10 +2389,10 @@
   - name: unk_1F
     type: u8
     offset: 0x1F
-  - name: Sample
+  - name: sample
     type: u32*
     offset: 0x20
-  - name: Variables
+  - name: variables
     type: struct TrackVariables*
     offset: 0x24
   loc: null
@@ -2492,13 +2492,13 @@
 - name: RoomSpriteEntry
   size: 0x3
   vars:
-  - name: YPosition
+  - name: yPosition
     type: u8
     offset: 0x0
-  - name: XPosition
+  - name: xPosition
     type: u8
     offset: 0x1
-  - name: Properties
+  - name: properties
     type: u8
     offset: 0x2
   loc: null
@@ -2666,42 +2666,42 @@
 - name: SampleInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: MidiKey
+  - name: midiKey
     type: u8
     offset: 0x1
-  - name: Unused
+  - name: unused
     type: u8
     offset: 0x2
-  - name: Panning
+  - name: panning
     type: u8
     offset: 0x3
-  - name: SampleDataPtr
+  - name: pSampleData
     type: u8*
     offset: 0x4
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   loc: null
 - name: SamusAnimData
   size: 0x10
   vars:
-  - name: TorsoGfxPtr
+  - name: pTorsoGfx
     type: u8*
     cat: gfx
     offset: 0x0
-  - name: LegsGfxPtr
+  - name: pLegsGfx
     type: u8*
     cat: gfx
     offset: 0x4
-  - name: OamFramePtr
+  - name: pOamFrame
     type: u16*
     cat: oam_frame
     offset: 0x8
-  - name: Timer
+  - name: timer
     type: u8
     offset: 0xC
   loc: null
@@ -2836,13 +2836,13 @@
 - name: SamusEcho
   size: 0xC
   vars:
-  - name: EchoFlag
+  - name: echoFlag
     type: u8
     offset: 0x0
-  - name: Timer
+  - name: timer
     type: u8
     offset: 0x1
-  - name: Position
+  - name: position
     type: u8
     offset: 0x2
   loc: null
@@ -2945,16 +2945,16 @@
 - name: SamusHitboxOffsets
   size: 0x8
   vars:
-  - name: HitboxLeftOffset
+  - name: hitboxLeftOffset
     type: u16
     offset: 0x0
-  - name: HitboxTopOffset
+  - name: hitboxTopOffset
     type: u16
     offset: 0x2
-  - name: HitboxRightOffset
+  - name: hitboxRightOffset
     type: u16
     offset: 0x4
-  - name: HitboxBottomOffset
+  - name: hitboxBottomOffset
     type: u16
     offset: 0x6
   loc: null
@@ -2989,186 +2989,186 @@
 - name: SaveFileRam
   size: 0x1200
   vars:
-  - name: MetroidEpisode4A_Text
+  - name: metroidEpisode4A_Text
     type: s8
     count: 0x10
     cat: ascii
     offset: 0x0
-  - name: Checksum
+  - name: checksum
     type: u32
     offset: 0x10
-  - name: BitwiseNotOfChecksum
+  - name: bitwiseNotOfChecksum
     type: u32
     offset: 0x14
-  - name: GameCompletion
+  - name: gameCompletion
     type: struct GameCompletion
     offset: 0x18
   - name: unk_1C
     type: u8
     offset: 0x1C
-  - name: Area
+  - name: area
     type: u8
     offset: 0x1D
     enum: Area
-  - name: RoomId
+  - name: roomId
     type: u8
     offset: 0x1E
-  - name: PrevDoor
+  - name: prevDoor
     type: u8
     offset: 0x1F
-  - name: AbilityCount
+  - name: abilityCount
     type: u8
     offset: 0x20
     enum: AbilityCount
-  - name: EventCounter
+  - name: eventCounter
     type: u8
     offset: 0x21
     enum: Event
-  - name: PrevNavConversation
+  - name: prevNavConversation
     type: u8
     offset: 0x22
-  - name: PrevCutscene
+  - name: prevCutscene
     type: u8
     offset: 0x23
-  - name: MinimapXCoordinate
+  - name: minimapXCoordinate
     type: u8
     offset: 0x24
-  - name: MinimapYCoordinate
+  - name: minimapYCoordinate
     type: u8
     offset: 0x25
-  - name: SubEventCounter
+  - name: subEventCounter
     type: u16
     offset: 0x26
-  - name: PrevSubEvent
+  - name: prevSubEvent
     type: u16
     offset: 0x28
-  - name: CurrFlashingSectorNum
+  - name: currFlashingSectorNum
     type: u8
     offset: 0x2A
-  - name: BackupOfSecurityHatchFlashLevelDuringPowerOutage
+  - name: backupOfSecurityHatchFlashLevelDuringPowerOutage
     type: u8
     offset: 0x2B
     enum: SecurityLevel
-  - name: ScreenPositionAndVelocity
+  - name: screenPositionAndVelocity
     type: struct ScreenPositionAndVelocity
     offset: 0x2C
-  - name: Bg0XPosition
+  - name: bg0XPosition
     type: u16
     offset: 0x40
-  - name: Bg0YPosition
+  - name: bg0YPosition
     type: u16
     offset: 0x42
-  - name: Bg1XPosition
+  - name: bg1XPosition
     type: u16
     offset: 0x44
-  - name: Bg1YPosition
+  - name: bg1YPosition
     type: u16
     offset: 0x46
-  - name: Bg2XPosition
+  - name: bg2XPosition
     type: u16
     offset: 0x48
-  - name: Bg2YPosition
+  - name: bg2YPosition
     type: u16
     offset: 0x4A
-  - name: Bg3XPosition
+  - name: bg3XPosition
     type: u16
     offset: 0x4C
-  - name: Bg3YPosition
+  - name: bg3YPosition
     type: u16
     offset: 0x4E
-  - name: NumNeverReformBlocksBroken
+  - name: numNeverReformBlocksBroken
     type: struct NumNeverReformBlocksBroken
     offset: 0x50
-  - name: NumTanksCollected
+  - name: numTanksCollected
     type: struct NumTanksCollected
     offset: 0x58
-  - name: SamusData
+  - name: samusData
     type: struct SamusData
     offset: 0x60
-  - name: SamusAnimInfo
+  - name: samusAnimInfo
     type: struct SamusAnimInfo
     offset: 0x8C
-  - name: SamusEcho
+  - name: samusEcho
     type: struct SamusEcho
     offset: 0x98
-  - name: SamusEnvironmentalEffect
+  - name: samusEnvironmentalEffect
     type: struct SamusEnvironmentalEffect
     offset: 0xA4
-  - name: Equipment
+  - name: equipment
     type: struct Equipment
     offset: 0xC4
-  - name: FreezeMovementTimer
+  - name: freezeMovementTimer
     type: u16
     offset: 0xD4
-  - name: DisableDrawingSamusAndScrollingFlag
+  - name: disableDrawingSamusAndScrollingFlag
     type: u8
     offset: 0xD6
-  - name: AtmosphericStabilizersOnline
+  - name: atmosphericStabilizersOnline
     type: u16
     cat: flags
     offset: 0xD8
-  - name: NormalXBarrierCoresDestroyed
+  - name: normalXBarrierCoresDestroyed
     type: u16
     cat: flags
     offset: 0xDA
-  - name: SuperXBarrierCoresDestroyed
+  - name: superXBarrierCoresDestroyed
     type: u16
     cat: flags
     offset: 0xDC
-  - name: PowerXBarrierCoresDestroyed
+  - name: powerXBarrierCoresDestroyed
     type: u16
     cat: flags
     offset: 0xDE
-  - name: EyedoorsDestroyed
+  - name: eyedoorsDestroyed
     type: u16
     cat: flags
     offset: 0xE0
-  - name: MissileHatchDestroyed
+  - name: missileHatchDestroyed
     type: u8
     offset: 0xE2
-  - name: WaterLoweredFlag
+  - name: waterLoweredFlag
     type: u8
     offset: 0xE3
-  - name: InGameTimer
+  - name: inGameTimer
     type: struct InGameTime
     offset: 0xE4
-  - name: MusicSlot1
+  - name: musicSlot1
     type: u16
     offset: 0xE8
-  - name: MusicSlot2
+  - name: musicSlot2
     type: u16
     offset: 0xEA
-  - name: MusicSlotSwitch
+  - name: musicSlotSwitch
     type: u8
     offset: 0xEC
-  - name: EventBasedMusicFlag
+  - name: eventBasedMusicFlag
     type: u8
     offset: 0xED
-  - name: MusicRelated
+  - name: musicRelated
     type: u8
     offset: 0xEE
-  - name: Difficulty
+  - name: difficulty
     type: u8
     offset: 0xF0
     enum: Difficulty
-  - name: BestCompletionTimes_Unused
+  - name: bestCompletionTimes_Unused
     type: struct InGameTime
     count: 0xC
     offset: 0xF4
-  - name: SAVE_END_Text
+  - name: sAVE_END_Text
     type: s8
     count: 0x8
     cat: ascii
     offset: 0x124
-  - name: MinimapVisitedTiles
+  - name: minimapVisitedTiles
     type: u8
     count: 0x380
     offset: 0x300
-  - name: NeverReformBlocks
+  - name: neverReformBlocks
     type: struct NeverReformBlock
     count: 0x300
     offset: 0x680
-  - name: TanksCollected
+  - name: tanksCollected
     type: struct CollectedTank
     count: 0xA0
     offset: 0xF80
@@ -3176,16 +3176,16 @@
 - name: ScreenPositionAndVelocity
   size: 0x14
   vars:
-  - name: ScreenXPosition
+  - name: screenXPosition
     type: u16
     offset: 0x0
-  - name: ScreenYPosition
+  - name: screenYPosition
     type: u16
     offset: 0x4
-  - name: ScreenXVelocity
+  - name: screenXVelocity
     type: u8
     offset: 0x6
-  - name: ScreenYVelocity
+  - name: screenYVelocity
     type: u8
     offset: 0x7
   - name: unk_08
@@ -3194,7 +3194,7 @@
   - name: unk_09
     type: u8
     offset: 0x9
-  - name: Bg3Related
+  - name: bg3Related
     type: u8
     offset: 0xA
   - name: unk_0C
@@ -3239,17 +3239,17 @@
 - name: SecondarySpriteStats
   size: 0x8
   vars:
-  - name: SpawnHealth
+  - name: spawnHealth
     type: u16
     offset: 0x0
-  - name: Damage
+  - name: damage
     type: u16
     offset: 0x2
-  - name: SuitDamageReduction
+  - name: suitDamageReduction
     type: u16
     offset: 0x4
     enum: SuitDamageReduction
-  - name: Weakness
+  - name: weakness
     type: u16
     cat: flags
     offset: 0x6
@@ -3304,7 +3304,7 @@
   - name: unk_07
     type: u8
     offset: 0x7
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   - name: unk_0C
@@ -3331,7 +3331,7 @@
   - name: unk_13
     type: u8
     offset: 0x13
-  - name: Size
+  - name: size
     type: u32*
     offset: 0x14
   - name: unk_18
@@ -3340,32 +3340,32 @@
   - name: unk_1C
     type: u32
     offset: 0x1C
-  - name: Sample
+  - name: sample
     type: u32*
     offset: 0x20
-  - name: Data
+  - name: data
     type: u8*
     offset: 0x24
-  - name: Variables
+  - name: variables
     type: struct TrackVariables*
     offset: 0x28
-  - name: Channel1
+  - name: channel1
     type: struct SoundChannel*
     offset: 0x2C
-  - name: Channel2
+  - name: channel2
     type: struct SoundChannel*
     offset: 0x30
   loc: null
 - name: SoundDataEntry
   size: 0x8
   vars:
-  - name: SoundHeaderPtr
+  - name: pSoundHeader
     type: u8*
     offset: 0x0
-  - name: TrackGroupNum
+  - name: trackGroupNum
     type: u16
     offset: 0x4
-  - name: TrackGroupNum
+  - name: trackGroupNum
     type: u16
     offset: 0x6
   loc: null
@@ -3532,36 +3532,36 @@
 - name: SpritesetEntry
   size: 0x2
   vars:
-  - name: SpriteId
+  - name: spriteId
     type: u8
     offset: 0x0
     enum: PrimarySpriteId
-  - name: GfxRow
+  - name: gfxRow
     type: u8
     offset: 0x1
   loc: null
 - name: SquareInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     desc: 1 or 2 for square
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: MidiKey
+  - name: midiKey
     type: u8
     offset: 0x1
-  - name: HardwareTimeLength
+  - name: hardwareTimeLength
     type: u8
     offset: 0x2
-  - name: Sweep
+  - name: sweep
     desc: Square 1 only
     type: u8
     offset: 0x3
-  - name: DutyCycle
+  - name: dutyCycle
     type: u8
     offset: 0x4
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   loc: null
@@ -3596,15 +3596,15 @@
 - name: SuitDamageReductionPercent
   size: 0x6
   vars:
-  - name: FractionOfDamageDealt_FusionSuit
+  - name: fractionOfDamageDealt_FusionSuit
     desc: Out of 10
     type: u16
     offset: 0x0
-  - name: FractionOfDamageDealt_VariaSuit
+  - name: fractionOfDamageDealt_VariaSuit
     desc: Out of 10
     type: u16
     offset: 0x2
-  - name: FractionOfDamageDealt_GravitySuit
+  - name: fractionOfDamageDealt_GravitySuit
     desc: Out of 10
     type: u16
     offset: 0x4
@@ -3612,13 +3612,13 @@
 - name: TankIncreaseAmounts
   size: 0x3
   vars:
-  - name: Energy
+  - name: energy
     type: u8
     offset: 0x0
-  - name: Missiles
+  - name: missiles
     type: u8
     offset: 0x1
-  - name: PowerBombs
+  - name: powerBombs
     type: u8
     offset: 0x2
   loc: null
@@ -3638,28 +3638,28 @@
 - name: TilesetEntry
   size: 0x14
   vars:
-  - name: RleBgGfxPtr
+  - name: pRleBgGfx
     type: u8*
     cat: gfx
     comp: lz
     offset: 0x0
-  - name: BgPalettePtr
+  - name: pBgPalette
     type: u16*
     cat: palette
     offset: 0x4
-  - name: Lz77BgGfxPtr
+  - name: pLz77BgGfx
     type: u8*
     cat: gfx
     comp: lz
     offset: 0x8
-  - name: RleBgTilemapPtr
+  - name: pRleBgTilemap
     type: u16*
     cat: tilemap
     offset: 0xC
-  - name: AnimatedTileset
+  - name: animatedTileset
     type: u8
     offset: 0x10
-  - name: AnimatedPalette
+  - name: animatedPalette
     type: u8
     offset: 0x11
   loc: null
@@ -3733,10 +3733,10 @@
 - name: TrackData
   size: 0x40
   vars:
-  - name: Flags
+  - name: flags
     type: u8
     offset: 0x0
-  - name: AmountOfTracks
+  - name: amountOfTracks
     type: u8
     offset: 0x1
   - name: undefined_02
@@ -3745,16 +3745,16 @@
   - name: unk_03
     type: u8
     offset: 0x3
-  - name: CurrTrack
+  - name: currTrack
     type: u8
     offset: 0x4
-  - name: MaxAmountOfTracks
+  - name: maxAmountOfTracks
     type: u8
     offset: 0x5
-  - name: Volume
+  - name: volume
     type: u16
     offset: 0x6
-  - name: FadingTimer
+  - name: fadingTimer
     type: u16
     offset: 0x8
   - name: unk_0A
@@ -3766,16 +3766,16 @@
   - name: unk_0E
     type: u16
     offset: 0xE
-  - name: Header
+  - name: header
     type: u8*
     offset: 0x10
-  - name: Voice
+  - name: voice
     type: struct Voice*
     offset: 0x14
-  - name: Variables
+  - name: variables
     type: struct TrackVariables*
     offset: 0x18
-  - name: Occupied
+  - name: occupied
     type: u8
     offset: 0x1C
   - name: unk_1D
@@ -3784,13 +3784,13 @@
   - name: unk_1E
     type: u8
     offset: 0x1E
-  - name: Priority
+  - name: priority
     type: u8
     offset: 0x1F
-  - name: MusicTrack
+  - name: musicTrack
     type: u16
     offset: 0x20
-  - name: MaxSoundChannels
+  - name: maxSoundChannels
     type: u8
     offset: 0x22
   - name: unk_23
@@ -3802,7 +3802,7 @@
   - name: unk_26
     type: u16
     offset: 0x26
-  - name: QueueFlags
+  - name: queueFlags
     type: u8
     offset: 0x28
   - name: undefined_29
@@ -3884,13 +3884,13 @@
   - name: unk_01
     type: u8
     offset: 0x1
-  - name: Delay
+  - name: delay
     type: u8
     offset: 0x2
   - name: unk_03
     type: u8
     offset: 0x3
-  - name: Volume
+  - name: volume
     type: u8
     offset: 0x4
   - name: unk_05
@@ -3908,10 +3908,10 @@
   - name: unk_09
     type: u8
     offset: 0x9
-  - name: RepeatCount
+  - name: repeatCount
     type: u8
     offset: 0xA
-  - name: Priority
+  - name: priority
     type: u8
     offset: 0xB
   - name: unk_0C
@@ -3926,13 +3926,13 @@
   - name: unk_0F
     type: u8
     offset: 0xF
-  - name: LfoSpeed
+  - name: lfoSpeed
     type: u8
     offset: 0x10
-  - name: ModulationDepth
+  - name: modulationDepth
     type: u8
     offset: 0x11
-  - name: ModulationType
+  - name: modulationType
     type: u8
     offset: 0x12
   - name: unk_13
@@ -3953,22 +3953,22 @@
   - name: unk_18
     type: u8
     offset: 0x18
-  - name: PitchBend
+  - name: pitchBend
     type: s8
     offset: 0x19
-  - name: BendRange
+  - name: bendRange
     type: u8
     offset: 0x1A
   - name: unk_1B
     type: u8
     offset: 0x1B
-  - name: KeyShift
+  - name: keyShift
     type: u8
     offset: 0x1C
   - name: unk_1D
     type: u8
     offset: 0x1D
-  - name: Tune
+  - name: tune
     type: u8
     offset: 0x1E
   - name: unk_1F
@@ -3977,14 +3977,14 @@
   - name: unk_20
     type: u32
     offset: 0x20
-  - name: RawData
+  - name: rawData
     type: u8*
     offset: 0x24
-  - name: PatternStartPointers
+  - name: patternStartPointers
     type: u8*
     count: 0x3
     offset: 0x28
-  - name: Channel
+  - name: channel
     type: u8
     offset: 0x34
   - name: unk_35
@@ -3996,32 +3996,32 @@
   - name: unk_37
     type: u8
     offset: 0x37
-  - name: Sample1
+  - name: sample1
     type: u32*
     offset: 0x38
-  - name: Envelope1
+  - name: envelope1
     type: struct Envelope
     offset: 0x3C
-  - name: Sample2
+  - name: sample2
     type: u32*
     offset: 0x40
-  - name: Envelope2
+  - name: envelope2
     type: struct Envelope
     offset: 0x44
-  - name: Channel
+  - name: channel
     type: struct SoundChannel*
     offset: 0x48
-  - name: SoundPsg
+  - name: soundPsg
     type: struct PsgSoundData*
     offset: 0x4C
   loc: null
 - name: Voice
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     type: u8
     offset: 0x0
-  - name: Pitch
+  - name: pitch
     type: u8
     offset: 0x1
   - name: unk_02
@@ -4030,31 +4030,31 @@
   - name: unk_03
     type: u8
     offset: 0x3
-  - name: SamplePtr
+  - name: pSample
     type: u32*
     offset: 0x4
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   loc: null
 - name: WaveInstrumentDef
   size: 0xC
   vars:
-  - name: InstrumentType
+  - name: instrumentType
     desc: 3 for wave
     type: u8
     offset: 0x0
     enum: InstrumentType
-  - name: MidiKey
+  - name: midiKey
     type: u8
     offset: 0x1
-  - name: HardwareTimeLength
+  - name: hardwareTimeLength
     type: u8
     offset: 0x2
-  - name: WaveformDataPtr
+  - name: pWaveformData
     type: u8*
     offset: 0x4
-  - name: Envelope
+  - name: envelope
     type: struct Envelope
     offset: 0x8
   loc: null
