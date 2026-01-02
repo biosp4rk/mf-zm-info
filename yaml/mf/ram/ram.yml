@@ -1,4 +1,4 @@
-- name: PauseBg0Map
+- name: gPauseBg0Map
   type: u16
   count: 0x400
   cat: tilemap
@@ -8,7 +8,7 @@
     J: 0x200F800
     C: 0x200F800
   loc: null
-- name: SleepModeBg0Map
+- name: gSleepModeBg0Map
   type: u16
   count: 0x800
   cat: tilemap
@@ -18,7 +18,7 @@
     J: 0x2010000
     C: 0x2010000
   loc: null
-- name: PausedCommonSpriteGfx
+- name: gPausedCommonSpriteGfx
   desc: Holds common sprite graphics while paused
   type: u8
   count: 0x4000
@@ -29,7 +29,7 @@
     J: 0x201C000
     C: 0x201C000
   loc: null
-- name: PausedRoomSpriteGfx
+- name: gPausedRoomSpriteGfx
   desc: Holds room sprite graphics while paused
   type: u8
   count: 0x4000
@@ -40,7 +40,7 @@
     J: 0x2020000
     C: 0x2020000
   loc: null
-- name: DecompClipdata
+- name: gDecompClipdata
   type: u16
   count: 0x1800
   addr:
@@ -49,7 +49,7 @@
     J: 0x2026000
     C: 0x2026000
   loc: null
-- name: DecompBg0Data
+- name: gDecompBg0Data
   type: u16
   count: 0x1800
   addr:
@@ -58,7 +58,7 @@
     J: 0x2029000
     C: 0x2029000
   loc: null
-- name: DecompBg1Data
+- name: gDecompBg1Data
   type: u16
   count: 0x1800
   addr:
@@ -67,7 +67,7 @@
     J: 0x202C000
     C: 0x202C000
   loc: null
-- name: DecompBg2Data
+- name: gDecompBg2Data
   type: u16
   count: 0x1800
   addr:
@@ -76,7 +76,7 @@
     J: 0x202F000
     C: 0x202F000
   loc: null
-- name: DecompBg3Data
+- name: gDecompBg3Data
   type: u16
   count: 0x1000
   addr:
@@ -85,7 +85,7 @@
     J: 0x2032000
     C: 0x2032000
   loc: null
-- name: CurrMinimapData
+- name: gCurrMinimapData
   type: u16
   count: 0x400
   addr:
@@ -94,7 +94,7 @@
     J: 0x2034000
     C: 0x2034000
   loc: null
-- name: DecompMinimapData
+- name: gDecompMinimapData
   type: u16
   count: 0x400
   addr:
@@ -103,7 +103,7 @@
     J: 0x2034800
     C: 0x2034800
   loc: null
-- name: BackgroundPalette
+- name: gBackgroundPalette
   type: u16
   count: 0x10
   cat: palette
@@ -113,7 +113,7 @@
     J: 0x2035400
     C: 0x2035400
   loc: null
-- name: SpritePalette
+- name: gSpritePalette
   type: u16
   count: 0x10
   cat: palette
@@ -129,7 +129,7 @@
   addr:
     U: 0x2035D20
   loc: include/structs/block.h:8
-- name: TextRelated
+- name: gTextRelated
   type: u8
   count: 0x40
   addr:
@@ -138,7 +138,7 @@
     J: 0x2035DA0
     C: 0x2035DA0
   loc: null
-- name: NeverReformBlocks
+- name: gNeverReformBlocks
   type: struct NeverReformBlock
   count: 0x600
   addr:
@@ -147,7 +147,7 @@
     J: 0x2036000
     C: 0x2036000
   loc: null
-- name: TanksCollected
+- name: gTanksCollected
   type: struct CollectedTank
   count: 0x280
   addr:
@@ -156,7 +156,7 @@
     J: 0x2037200
     C: 0x2037200
   loc: null
-- name: MinimapVisitedTiles
+- name: gMinimapVisitedTiles
   type: u8
   count: 0x400
   addr:
@@ -165,7 +165,7 @@
     J: 0x2037C00
     C: 0x2037C00
   loc: null
-- name: SramHeader
+- name: gSramHeader
   desc: 00-7F of SRAM
   type: u8
   count: 0x80
@@ -175,7 +175,7 @@
     J: 0x2038000
     C: 0x2038000
   loc: null
-- name: SramHeaderCopy
+- name: gSramHeaderCopy
   type: u8
   count: 0x80
   addr:
@@ -184,7 +184,7 @@
     J: 0x2038080
     C: 0x2038080
   loc: null
-- name: Sram
+- name: gSram
   type: struct SaveFileRam
   count: 0x6
   addr:
@@ -209,7 +209,7 @@
     J: 0x3000002
     C: 0x3000002
   loc: include/globals.h:33
-- name: StereoFlag
+- name: gStereoFlag
   type: u8
   addr:
     J: 0x3000004
@@ -239,7 +239,7 @@
     J: 0x300000A
     C: 0x300000A
   loc: include/globals.h:61
-- name: WrittenToBg3CNT
+- name: gWrittenToBg3CNT
   desc: BG3 control
   type: u16
   addr:
@@ -272,7 +272,7 @@
     J: 0x3000010
     C: 0x3000010
   loc: include/globals.h:103
-- name: CopiedTo203800C
+- name: gCopiedTo203800C
   type: u8
   addr:
     U: 0x3000010
@@ -280,7 +280,7 @@
     J: 0x3000012
     C: 0x3000012
   loc: null
-- name: Language
+- name: gLanguage
   type: u8
   addr:
     U: 0x3000011
@@ -289,7 +289,7 @@
     C: 0x3000014
   enum: Language
   loc: null
-- name: GameCompletion
+- name: gGameCompletion
   type: struct GameCompletion
   addr:
     U: 0x3000014
@@ -297,7 +297,7 @@
     J: 0x3000018
     C: 0x3000018
   loc: null
-- name: FadeBgBlackWhite
+- name: gFadeBgBlackWhite
   type: u8
   addr:
     U: 0x3000018
@@ -331,7 +331,7 @@
     C: 0x300001F
   enum: AbilityCount
   loc: include/structs/event.h:45
-- name: Difficulty
+- name: gDifficulty
   type: u8
   addr:
     J: 0x3000020
@@ -389,7 +389,7 @@
     J: 0x3000026
     C: 0x3000026
   loc: include/structs/scroll.h:85
-- name: DisableMusicFlag
+- name: gDisableMusicFlag
   type: u8
   addr:
     U: 0x3000022
@@ -413,7 +413,7 @@
     J: 0x300002A
     C: 0x300002A
   loc: include/globals.h:49
-- name: CollectingTankFlag
+- name: gCollectingTankFlag
   type: u8
   addr:
     U: 0x3000026
@@ -421,7 +421,7 @@
     J: 0x300002B
     C: 0x300002B
   loc: null
-- name: DisableAnimatedGfxTimer
+- name: gDisableAnimatedGfxTimer
   type: u8
   addr:
     U: 0x3000027
@@ -429,7 +429,7 @@
     J: 0x300002C
     C: 0x300002C
   loc: null
-- name: AnimatedGfxToUpdate
+- name: gAnimatedGfxToUpdate
   type: u16
   cat: flags
   addr:
@@ -446,7 +446,7 @@
     J: 0x3000030
     C: 0x3000030
   loc: include/globals.h:165
-- name: DisablePauseFlag
+- name: gDisablePauseFlag
   type: u8
   addr:
     U: 0x300002B
@@ -479,7 +479,7 @@
     J: 0x3000034
     C: 0x3000034
   loc: include/structs/connection.h:66
-- name: PrevDoorProperties
+- name: gPrevDoorProperties
   type: u8
   addr:
     U: 0x300002F
@@ -495,7 +495,7 @@
     J: 0x3000036
     C: 0x3000036
   loc: include/globals.h:56
-- name: MinimapXPosition
+- name: gMinimapXPosition
   type: u8
   addr:
     U: 0x3000031
@@ -503,7 +503,7 @@
     J: 0x3000037
     C: 0x3000037
   loc: null
-- name: MinimapYPosition
+- name: gMinimapYPosition
   type: u8
   addr:
     U: 0x3000032
@@ -511,7 +511,7 @@
     J: 0x3000038
     C: 0x3000038
   loc: null
-- name: NumNeverReformBlocksBroken
+- name: gNumNeverReformBlocksBroken
   type: struct NumNeverReformBlocksBroken
   addr:
     U: 0x3000033
@@ -519,7 +519,7 @@
     J: 0x3000039
     C: 0x3000039
   loc: null
-- name: NumTanksCollected
+- name: gNumTanksCollected
   type: struct NumTanksCollected
   addr:
     U: 0x300003B
@@ -527,7 +527,7 @@
     J: 0x3000041
     C: 0x3000041
   loc: null
-- name: ForegroundEffect
+- name: gForegroundEffect
   type: u8
   addr:
     U: 0x3000043
@@ -588,7 +588,7 @@
     C: 0x3000051
   enum: EventBasedEffect
   loc: include/globals.h:42
-- name: CurrFlashingSectorNum
+- name: gCurrFlashingSectorNum
   type: u8
   addr:
     U: 0x300004D
@@ -629,7 +629,7 @@
     C: 0x3000059
   enum: ClipdataAffectingAction
   loc: include/structs/clipdata.h:39
-- name: SpritesetEntryUsed
+- name: gSpritesetEntryUsed
   desc: Which spriteset entry was used
   type: u8
   addr:
@@ -638,7 +638,7 @@
     J: 0x300005A
     C: 0x300005A
   loc: null
-- name: UseAltAnimatedTilesetFlag
+- name: gUseAltAnimatedTilesetFlag
   desc: Unused flag to use alternate animated tileset
   type: u8
   count: 0x5
@@ -752,7 +752,7 @@
     J: 0x30000F8
     C: 0x30000F8
   loc: include/structs/screen_shake.h:23
-- name: CurrScrolls
+- name: gCurrScrolls
   type: struct CurrScrolls
   addr:
     U: 0x30000F8
@@ -768,7 +768,7 @@
     J: 0x3000114
     C: 0x3000114
   loc: include/structs/power_bomb.h:23
-- name: ScreenPositionAndVelocity
+- name: gScreenPositionAndVelocity
   type: struct ScreenPositionAndVelocity
   addr:
     U: 0x3000124
@@ -792,7 +792,7 @@
     J: 0x3000140
     C: 0x3000140
   loc: include/globals.h:104
-- name: BestCompletionTimes
+- name: gBestCompletionTimes
   desc: Seems to be unused
   type: struct InGameTime
   count: 0xC
@@ -1317,7 +1317,7 @@
     J: 0x3000BBF
     C: 0x3000BBF
   loc: include/globals.h:36
-- name: MostRecentSaveFile
+- name: gMostRecentSaveFile
   type: u8
   addr:
     U: 0x3000B8D
@@ -1325,7 +1325,7 @@
     J: 0x3000BC1
     C: 0x3000BC1
   loc: null
-- name: SramCorruptFlag
+- name: gSramCorruptFlag
   type: u8
   addr:
     U: 0x3000B8E
@@ -1341,7 +1341,7 @@
     J: 0x3000BC3
     C: 0x3000BC3
   loc: include/globals.h:38
-- name: SaveFileData
+- name: gSaveFileData
   type: u8
   count: 0x3C
   addr:
@@ -1529,7 +1529,7 @@
     J: 0x3001256
     C: 0x3001256
   loc: include/globals.h:66
-- name: Bg0XPosition
+- name: gBg0XPosition
   type: u16
   addr:
     U: 0x3001224
@@ -1537,7 +1537,7 @@
     J: 0x3001258
     C: 0x3001258
   loc: null
-- name: Bg0YPosition
+- name: gBg0YPosition
   type: u16
   addr:
     U: 0x3001226
@@ -1561,7 +1561,7 @@
     J: 0x300125E
     C: 0x300125E
   loc: include/globals.h:52
-- name: Bg2XPosition
+- name: gBg2XPosition
   type: u16
   addr:
     U: 0x300122C
@@ -1569,7 +1569,7 @@
     J: 0x3001260
     C: 0x3001260
   loc: null
-- name: Bg2YPosition
+- name: gBg2YPosition
   type: u16
   addr:
     U: 0x300122E
@@ -1577,7 +1577,7 @@
     J: 0x3001262
     C: 0x3001262
   loc: null
-- name: Bg3XPosition
+- name: gBg3XPosition
   type: u16
   addr:
     U: 0x3001230
@@ -1585,7 +1585,7 @@
     J: 0x3001264
     C: 0x3001264
   loc: null
-- name: Bg3YPosition
+- name: gBg3YPosition
   type: u16
   addr:
     U: 0x3001232
@@ -1642,7 +1642,7 @@
     J: 0x300130C
     C: 0x300130C
   loc: include/structs/samus.h:122
-- name: SamusEcho
+- name: gSamusEcho
   type: struct SamusEcho
   addr:
     U: 0x30012E4
@@ -1667,7 +1667,7 @@
     J: 0x3001344
     C: 0x3001344
   loc: include/structs/samus.h:120
-- name: HorizontalMovementDirection
+- name: gHorizontalMovementDirection
   type: u16
   cat: flags
   addr:
@@ -1677,7 +1677,7 @@
     C: 0x3001354
   enum: HorizontalDirection
   loc: null
-- name: VerticalMovementDirection
+- name: gVerticalMovementDirection
   type: u16
   cat: flags
   addr:
@@ -1687,7 +1687,7 @@
     C: 0x3001356
   enum: VerticalDirection
   loc: null
-- name: SamusHitboxType
+- name: gSamusHitboxType
   type: u8
   addr:
     U: 0x3001329
@@ -1704,7 +1704,7 @@
     J: 0x3001364
     C: 0x3001364
   loc: include/structs/samus.h:123
-- name: PrevValueOfSamusData0
+- name: gPrevValueOfSamusData0
   type: u8
   addr:
     U: 0x3001340
@@ -1752,7 +1752,7 @@
     J: 0x300137E
     C: 0x300137E
   loc: include/structs/samus.h:133
-- name: Prev64Positions
+- name: gPrev64Positions
   desc: Used for Samus echo effects
   type: u16
   count: 0x80
@@ -1762,7 +1762,7 @@
     J: 0x3001380
     C: 0x3001380
   loc: null
-- name: PrevPositionCounter
+- name: gPrevPositionCounter
   type: u16
   addr:
     U: 0x300144C
@@ -1837,7 +1837,7 @@
     J: 0x3001A04
     C: 0x3001A04
   loc: include/structs/audio.h:46
-- name: SoundCodeAPtr
+- name: gSoundCodeAPtr
   type: void*
   cat: arm
   addr:
@@ -1846,7 +1846,7 @@
     J: 0x3003688
     C: 0x3003688
   loc: null
-- name: SoundCodeARam
+- name: gSoundCodeARam
   type: u8
   count: 0x658
   cat: arm
@@ -1856,7 +1856,7 @@
     J: 0x300368C
     C: 0x300368C
   loc: null
-- name: SoundCodeBPtr
+- name: gSoundCodeBPtr
   type: void*
   cat: arm
   addr:
@@ -1865,7 +1865,7 @@
     J: 0x3003CE4
     C: 0x3003CE4
   loc: null
-- name: SoundCodeBRam
+- name: gSoundCodeBRam
   type: u8
   count: 0xA4
   addr:
@@ -1874,7 +1874,7 @@
     J: 0x3003CE8
     C: 0x3003CE8
   loc: null
-- name: SoundCodeCPtr
+- name: gSoundCodeCPtr
   type: void*
   cat: arm
   addr:
@@ -1883,7 +1883,7 @@
     J: 0x3003D8C
     C: 0x3003D8C
   loc: null
-- name: SoundCodeCRam
+- name: gSoundCodeCRam
   type: u8
   count: 0xAC
   addr:
@@ -2022,7 +2022,7 @@
     J: 0x3004E0C
     C: 0x3004E0C
   loc: include/structs/clipdata.h:36
-- name: CurrMusicTrack
+- name: gCurrMusicTrack
   type: u16
   addr:
     U: 0x3004DE8
@@ -2047,7 +2047,7 @@
     J: 0x3004E3C
     C: 0x3004E3C
   loc: include/structs/connection.h:70
-- name: Bg3Movement
+- name: gBg3Movement
   type: struct Bg3Movement
   addr:
     U: 0x3004E18
@@ -2055,7 +2055,7 @@
     J: 0x3004E48
     C: 0x3004E48
   loc: null
-- name: TilesetTransparentColor
+- name: gTilesetTransparentColor
   type: u16
   addr:
     U: 0x3004E28
@@ -2071,7 +2071,7 @@
     J: 0x3004E68
     C: 0x3004E68
   loc: include/structs/connection.h:68
-- name: DoorLockedFlag
+- name: gDoorLockedFlag
   type: u8
   addr:
     U: 0x3004E3B
@@ -2104,7 +2104,7 @@
     J: 0x3004E88
     C: 0x3004E88
   loc: include/globals.h:166
-- name: BrokenReformBlocks
+- name: gBrokenReformBlocks
   type: struct BrokenReformBlock
   count: 0x20
   addr:
@@ -2113,7 +2113,7 @@
     J: 0x3004E90
     C: 0x3004E90
   loc: null
-- name: AnimatedPaletteTiming
+- name: gAnimatedPaletteTiming
   type: struct AnimatedPaletteTiming
   addr:
     U: 0x3004FC0
@@ -2121,7 +2121,7 @@
     J: 0x3004FF0
     C: 0x3004FF0
   loc: null
-- name: AnimatedPaletteAndTilesetNum
+- name: gAnimatedPaletteAndTilesetNum
   type: struct AnimatedPaletteAndTilesetNum
   addr:
     U: 0x3004FC8
@@ -2138,7 +2138,7 @@
     J: 0x3005348
     C: 0x3005348
   loc: include/structs/clipdata.h:34
-- name: AnimatedTilesetData
+- name: gAnimatedTilesetData
   type: u8
   count: 0x30
   addr:
@@ -2147,7 +2147,7 @@
     J: 0x300534C
     C: 0x300534C
   loc: null
-- name: CollectibleTankAnim
+- name: gCollectibleTankAnim
   type: struct CollectibleTankAnim
   count: 0x3
   addr:
@@ -2156,7 +2156,7 @@
     J: 0x300540C
     C: 0x300540C
   loc: null
-- name: RoomScrollsPtr
+- name: gRoomScrollsPtr
   type: u8*
   addr:
     U: 0x30053E8
@@ -2164,7 +2164,7 @@
     J: 0x3005418
     C: 0x3005418
   loc: null
-- name: SpaceCutsceneRandomNum
+- name: gSpaceCutsceneRandomNum
   type: u16
   addr:
     U: 0x3005404
