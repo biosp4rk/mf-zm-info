@@ -279,6 +279,6 @@ if __name__ == "__main__":
     # Print function
     func = Function(rom, addr, syms)
     from asm_writer import AsmWriter, AsmFormat
-    asm_format = AsmFormat.DECOMP if args.decomp else AsmFormat.DEFAULT
+    asm_format = AsmFormat.DECOMP if args.decomp else AsmFormat.ARMIPS
     writer = AsmWriter.create(rom, syms, func.branches, asm_format)
     print(writer.function_str(func, args.symbols, args.addr_comments))

@@ -180,6 +180,14 @@ class VarEntry(InfoEntry):
     def __str__(self) -> str:
         return self.type_str()
 
+    def c_str(self) -> str:
+        t = self.type
+        if self.arr_count is not None:
+            if not isinstance(self.arr_count, int):
+                raise ValueError()
+            t = ArrayType(t, self.arr_count)
+        return t.decl_str()
+
     def spec_kind(self) -> TypeSpecKind:
         return self.type.spec_kind()
 
@@ -328,6 +336,9 @@ class NamedVarEntry(VarEntry):
     ):
         super().__init__(desc, type, arr_count, cat, comp, enum)
         self.name = name
+
+    def c_str(self) -> str:
+        return super().c_str() + " " + self.name
 
     @staticmethod
     def from_obj(obj: Any) -> "NamedVarEntry":
@@ -538,6 +549,13 @@ class StructEntry(InfoEntry):
 
     def __lt__(self, other: "StructEntry") -> bool:
         return self.name < other.name
+
+    def c_str(self) -> str:
+        lines = [f"struct {self.name} {{"]
+        for v in self.vars:
+            lines.append("    " + v.c_str() + ";")
+        lines.append("};")
+        return "\n".join(lines)
 
     def get_var(self, name: str) -> StructVarEntry:
         for var in self.vars:

@@ -14,42 +14,59 @@ WORD = ".word"
 
 
 class BranchFormat(Enum):
-
     ORDERED = auto()
     ADDRESS = auto()
 
 
-class AsmFormat(Enum):
+class CommentChar(Enum):
+    SEMICOLON = auto()
+    AT = auto()
 
-    DEFAULT = auto()
+
+class AsmFormat(Enum):
+    ARMIPS = auto()
     DECOMP = auto()
 
 
 @dataclass(frozen=True)
 class FormatOptions:
-
+    unified: bool
+    comma_space: bool
     branch_format: BranchFormat
     prefixed_local: bool
     prefixed_immed: bool
     braced_reg_list: bool
+    reg_list_range: bool
     dx_directive: bool
-    # TODO: Add hex format, lr/pc vs r14/15
+    dot_pool: bool
+    comment_char: CommentChar
+    # TODO: Add hex format, lr/pc vs r14/15, pool format
 
 
 FORMAT_OPTIONS = {
-    AsmFormat.DEFAULT: FormatOptions(
+    AsmFormat.ARMIPS: FormatOptions(
+        unified=False,
+        comma_space=False,
         branch_format=BranchFormat.ORDERED,
         prefixed_local=True,
         prefixed_immed=False,
         braced_reg_list=False,
-        dx_directive=True
+        reg_list_range=True,
+        dx_directive=True,
+        dot_pool=True,
+        comment_char=CommentChar.SEMICOLON,
     ),
     AsmFormat.DECOMP: FormatOptions(
+        unified=True,
+        comma_space=True,
         branch_format=BranchFormat.ADDRESS,
         prefixed_local=False,
         prefixed_immed=True,
         braced_reg_list=True,
-        dx_directive=False
+        reg_list_range=False,
+        dx_directive=False,
+        dot_pool=False,
+        comment_char=CommentChar.AT,
     ),
 }
 
@@ -66,6 +83,11 @@ class AsmWriter:
         self.symbols = symbols
         self.branches = branches
         self.format_opts = format_opts
+        match format_opts.comment_char:
+            case CommentChar.SEMICOLON:
+                self.comment_char = ";"
+            case CommentChar.AT:
+                self.comment_char = "@"
     
     @classmethod
     def create(cls,
@@ -87,23 +109,30 @@ class AsmWriter:
 
         lines = []
         if include_syms:
+            # TODO: Handle non-armips syntax
             syms = self._get_func_symbols(func)
             syms = sorted(syms.items())
             for addr, label in syms:
                 lines.append(f".definelabel {label},0x{addr:X}")
             lines.append("")
 
+        if self.format_opts.unified:
+            lines.append(".syntax unified")
+            lines.append("")
+
         # Add address
-        lines.append(f"; {func.start_addr:X}")
+        lines.append(f"{self.comment_char} {func.start_addr:X}")
 
         # Get label for function name
         func_addr = func.start_addr + ROM_OFFSET
         label = self._get_label(func_addr, LabelType.Code)
+        if self.format_opts.unified:
+            lines.append(f"thumb_func_start {label}")
         lines.append(label + ":")
 
         # Add size
         size = func.end_addr - func.start_addr
-        lines.append(f"; Size: {size:X}")
+        lines.append(f"{self.comment_char} Size: {size:X}")
 
         # Go until end of function
         func.addr = func.start_addr
@@ -114,15 +143,26 @@ class AsmWriter:
                 label = self._get_local(func.addr)
                 lines.append(label + ":")
             if func.in_data_pool():
-                # If already in a data pool, do nothing
-                # If just entered a data pool, write .pool
-                if not in_pool:
-                    lines.append(INDENT + DOT_POOL)
-                    in_pool = True
-                    func.align(4)
+                if self.format_opts.dot_pool:
+                    # If already in a data pool, do nothing
+                    # If just entered a data pool, write .pool
+                    if not in_pool:
+                        lines.append(INDENT + DOT_POOL)
+                        in_pool = True
+                        func.align(4)
+                else:
+                    if not in_pool:
+                        lines.append(f"{INDENT}.align 2, 0")
+                        in_pool = True
+                        func.align(4)
+                    addr_str = self._get_local(func.addr)
+                    word = self.rom.read_32(func.addr)
+                    label = self._get_label(word, LabelType.Imm)
+                    lines.append(f"{addr_str}: .4byte {label}")
                 func.addr += 4
             elif func.addr in func.jump_tables:
-                lines.append(self._get_local(func.addr) + ":")
+                addr_str = self._get_local(func.addr)
+                lines.append(f"{addr_str}: {self.comment_char} jump table")
                 jumps = []
                 while True:
                     if func.addr in self.branches:
@@ -130,18 +170,22 @@ class AsmWriter:
                     jump = self.rom.read_ptr(func.addr)
                     jumps.append(self._get_local(jump))
                     func.addr += 4
-                num_jumps = len(jumps)
-                dw = DW if self.format_opts.dx_directive else WORD
-                for j in range(0, num_jumps, 4):
-                    end = j + min(4, num_jumps - j)
-                    jump_labels = ",".join(jumps[j:end])
-                    lines.append(f"{INDENT}{dw} {jump_labels}")
+                if self.format_opts.unified:
+                    for i, jump in enumerate(jumps):
+                        lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")
+                else:
+                    num_jumps = len(jumps)
+                    dw = DW if self.format_opts.dx_directive else WORD
+                    for j in range(0, num_jumps, 4):
+                        end = j + min(4, num_jumps - j)
+                        jump_labels = self._comma_join(jumps[j:end])
+                        lines.append(f"{INDENT}{dw} {jump_labels}")
                 in_pool = False
             elif func.addr in func.instructs:
                 instruct = func.instructs[func.addr]
                 asm_str = self.instruct_str(instruct)
                 if include_addrs:
-                    asm_str = f"{asm_str:35} ; {func.addr:X}"
+                    asm_str = f"{asm_str:35} {self.comment_char} {func.addr:X}"
                 lines.append("    " + asm_str)
                 if instruct.format == ThumbForm.Link:
                     func.addr += 4
@@ -186,8 +230,14 @@ class AsmWriter:
                 args.append(f"r{instruct.rs}")
         elif instruct.format == ThumbForm.LdPC:
             args.append(f"r{instruct.rd}")
-            word = self.rom.read_32(instruct.pc_rel_addr())
-            args.append("=" + self._get_label(word, LabelType.Imm))
+            addr = instruct.pc_rel_addr()
+            word = self.rom.read_32(addr)
+            label = self._get_label(word, LabelType.Imm)
+            if self.format_opts.unified:
+                addr_str = self._get_local(addr)
+                args.append(f"{addr_str} {self.comment_char} ={label}")
+            else:
+                args.append("=" + label)
         elif (instruct.format == ThumbForm.LdStR or
             instruct.format == ThumbForm.LdStRS):
             args.append(f"r{instruct.rd}")
@@ -249,7 +299,7 @@ class AsmWriter:
             raise ValueError()
         
         lhs = instruct.opname.name.lower()
-        rhs = ",".join(args)
+        rhs = self._comma_join(args)
         if rhs == "":
             return f"{lhs}"
         return f"{lhs:8}{rhs}"
@@ -304,7 +354,7 @@ class AsmWriter:
             prefix = "@@" if self.format_opts.prefixed_local else ""
             return f"{prefix}_{idx:03X}"
         else:
-            return f"lbl_{addr + ROM_OFFSET:08x}"
+            return f"_{addr + ROM_OFFSET:08x}"
 
     def _get_label(self, addr: int, type: LabelType = LabelType.Undef) -> str:
         # Check for existing label
@@ -357,25 +407,35 @@ class AsmWriter:
         prefix = "#" if self.format_opts.prefixed_immed else ""
         return prefix + self._hex_str(val)
 
+    def _comma_join(self, items: list[str]) -> str:
+        sep = ", " if self.format_opts.comma_space else ","
+        return sep.join(items)
+
     def _rlist_str(self, instruct: ThumbInstruct) -> str:
-        bits = instruct.rlist_bits()
-        regs = ""
-        run = 0
-        for i in range(8):
-            if (bits >> i & 1) == 0:
-                run = 0
-            else:
-                if run < 2:
-                    regs += f"r{i},"
+        if self.format_opts.reg_list_range:
+            runs = []
+            prev = instruct.rlist[0]
+            start = prev
+            run = 1
+            for reg in instruct.rlist[1:]:
+                if reg == prev + 1:
+                    run += 1
                 else:
-                    regs = regs[:-4] + f"-r{i},"
-                run += 1
-        if instruct.format == ThumbForm.PushPop and (bits & 0x100) != 0:
-            if instruct.opname == ThumbOp.PUSH:
-                regs += "r14"
-            else:
-                regs += "r15"
-        result = regs.rstrip(",")
+                    runs.append((start, run))
+                    start = reg
+                    run = 1
+                prev = reg
+            runs.append((start, run))
+            reg_strs = []
+            for start, run in runs:
+                if run < 3:
+                    for i in range(run):
+                        reg_strs.append(f"r{start + i}")
+                else:
+                    reg_strs.append(f"r{start}-r{start + run - 1}")
+        else:
+            reg_strs = [f"r{n}" for n in instruct.rlist]
+        result = self._comma_join(reg_strs)
         if self.format_opts.braced_reg_list:
             result = "{" + result + "}"
         return result

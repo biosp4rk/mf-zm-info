@@ -12,6 +12,7 @@ from info.info_file_utils import get_info_file_from_json, get_info_file_from_yam
 class InfoSource(Enum):
     JSON = auto()
     YAML = auto()
+    # TODO: Get rid of unknown
     YAML_UNK = auto()
 
 
