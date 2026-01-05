@@ -1,3 +1,4 @@
+from collections import defaultdict
 from dataclasses import dataclass
 from enum import Enum, auto
 
@@ -137,11 +138,15 @@ class AsmWriter:
         # Go until end of function
         func.addr = func.start_addr
         in_pool = False
+        cases: defaultdict[int, list[int]] = defaultdict(list)
         while func.addr < func.end_addr:
             # Check if anything branches to current offset
             if func.addr in self.branches:
-                label = self._get_local(func.addr)
-                lines.append(label + ":")
+                line = self._get_local(func.addr) + ":"
+                if func.addr in cases:
+                    case_nums = ", ".join(str(c) for c in cases[func.addr])
+                    line += f" {self.comment_char} case {case_nums}"
+                lines.append(line)
             if func.in_data_pool():
                 if self.format_opts.dot_pool:
                     # If already in a data pool, do nothing
@@ -164,12 +169,15 @@ class AsmWriter:
                 addr_str = self._get_local(func.addr)
                 lines.append(f"{addr_str}: {self.comment_char} jump table")
                 jumps = []
+                c = 0
                 while True:
                     if func.addr in self.branches:
                         break
                     jump = self.rom.read_ptr(func.addr)
                     jumps.append(self._get_local(jump))
+                    cases[jump].append(c)
                     func.addr += 4
+                    c += 1
                 if self.format_opts.unified:
                     for i, jump in enumerate(jumps):
                         lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")

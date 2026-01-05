@@ -87,6 +87,10 @@ class InfoEntry(ABC):
     def to_region(self, region: str) -> bool:
         return True
 
+    # @abstractmethod
+    # def c_str(self) -> str:
+    #     pass
+
     @staticmethod
     @abstractmethod
     def from_obj(obj: Any) -> "InfoEntry":
@@ -338,7 +342,12 @@ class NamedVarEntry(VarEntry):
         self.name = name
 
     def c_str(self) -> str:
-        return super().c_str() + " " + self.name
+        t = self.type
+        if self.arr_count is not None:
+            if not isinstance(self.arr_count, int):
+                raise ValueError()
+            t = ArrayType(t, self.arr_count)
+        return t.decl_str(self.name)
 
     @staticmethod
     def from_obj(obj: Any) -> "NamedVarEntry":
@@ -610,6 +619,13 @@ class UnionEntry(InfoEntry):
     def __lt__(self, other: "UnionEntry") -> bool:
         return self.name < other.name
 
+    def c_str(self) -> str:
+        lines = [f"union {self.name} {{"]
+        for v in self.vars:
+            lines.append("    " + v.c_str() + ";")
+        lines.append("};")
+        return "\n".join(lines)
+
     def get_var(self, name: str) -> NamedVarEntry:
         for var in self.vars:
             if var.name == name:
@@ -772,6 +788,13 @@ class EnumEntry(InfoEntry):
 
     def __lt__(self, other: "EnumEntry") -> bool:
         return self.name < other.name
+
+    def c_str(self) -> str:
+        lines = [f"enum {self.name} {{"]
+        for v in self.vals:
+            lines.append(f"    {v.name} = {v.val},")
+        lines.append("};")
+        return "\n".join(lines)        
 
     @staticmethod
     def from_obj(obj: Any) -> "EnumEntry":
