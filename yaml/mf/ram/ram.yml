@@ -1434,7 +1434,7 @@
     C: 0x3000C1C
   loc: include/globals.h:83
 - name: gOamData
-  type: union OamData
+  type: struct FrameData
   count: 0xA0
   addr:
     U: 0x3000DE8
@@ -1837,7 +1837,7 @@
     J: 0x3001A04
     C: 0x3001A04
   loc: include/structs/audio.h:46
-- name: gSoundCodeAPtr
+- name: gSoundCodeAPointer
   type: void*
   cat: arm
   addr:
@@ -1856,7 +1856,7 @@
     J: 0x300368C
     C: 0x300368C
   loc: null
-- name: gSoundCodeBPtr
+- name: gSoundCodeBPointer
   type: void*
   cat: arm
   addr:
@@ -1874,7 +1874,7 @@
     J: 0x3003CE8
     C: 0x3003CE8
   loc: null
-- name: gSoundCodeCPtr
+- name: gSoundCodeCPointer
   type: void*
   cat: arm
   addr:
@@ -2156,7 +2156,7 @@
     J: 0x300540C
     C: 0x300540C
   loc: null
-- name: gRoomScrollsPtr
+- name: gRoomScrollsPointer
   type: u8*
   addr:
     U: 0x30053E8
