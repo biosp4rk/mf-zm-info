@@ -245,12 +245,16 @@ def all_functions(rom: Rom) -> Iterator[Function]:
 
 
 if __name__ == "__main__":
+    from asm_writer import AsmWriter, AsmFormat
+    formats = [n.name.lower() for n in AsmFormat]
+    default_format = AsmFormat.ARMIPS.name.lower()
+
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-n", "--name", type=str)
-    parser.add_argument("-d", "--decomp", action="store_true")
+    parser.add_argument("-f", "--format", type=str, choices=formats, default=default_format)
     parser.add_argument("-s", "--symbols", action="store_true")
     parser.add_argument("-c", "--addr_comments", action="store_true")
 
@@ -278,7 +282,6 @@ if __name__ == "__main__":
 
     # Print function
     func = Function(rom, addr, syms)
-    from asm_writer import AsmWriter, AsmFormat
-    asm_format = AsmFormat.DECOMP if args.decomp else AsmFormat.ARMIPS
+    asm_format = AsmFormat[args.format.upper()]
     writer = AsmWriter.create(rom, syms, func.branches, asm_format)
     print(writer.function_str(func, args.symbols, args.addr_comments))

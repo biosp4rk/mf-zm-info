@@ -10,8 +10,6 @@ from thumb import ThumbInstruct, ThumbOp, ThumbForm, Reg
 
 INDENT = " " * 4
 DOT_POOL = ".pool"
-DW = ".dw"
-WORD = ".word"
 
 
 class BranchFormat(Enum):
@@ -26,7 +24,8 @@ class CommentChar(Enum):
 
 class AsmFormat(Enum):
     ARMIPS = auto()
-    DECOMP = auto()
+    DECOMP_ME = auto()
+    DECOMP_REPO = auto()
 
 
 @dataclass(frozen=True)
@@ -38,7 +37,7 @@ class FormatOptions:
     prefixed_immed: bool
     braced_reg_list: bool
     reg_list_range: bool
-    dx_directive: bool
+    data_directive: str
     dot_pool: bool
     comment_char: CommentChar
     # TODO: Add hex format, lr/pc vs r14/15, pool format
@@ -53,11 +52,23 @@ FORMAT_OPTIONS = {
         prefixed_immed=False,
         braced_reg_list=False,
         reg_list_range=True,
-        dx_directive=True,
+        data_directive=".dw",
         dot_pool=True,
         comment_char=CommentChar.SEMICOLON,
     ),
-    AsmFormat.DECOMP: FormatOptions(
+    AsmFormat.DECOMP_ME: FormatOptions(
+        unified=False,
+        comma_space=True,
+        branch_format=BranchFormat.ADDRESS,
+        prefixed_local=False,
+        prefixed_immed=True,
+        braced_reg_list=True,
+        reg_list_range=False,
+        data_directive=".word",
+        dot_pool=True,
+        comment_char=CommentChar.AT,
+    ),
+    AsmFormat.DECOMP_REPO: FormatOptions(
         unified=True,
         comma_space=True,
         branch_format=BranchFormat.ADDRESS,
@@ -65,7 +76,7 @@ FORMAT_OPTIONS = {
         prefixed_immed=True,
         braced_reg_list=True,
         reg_list_range=False,
-        dx_directive=False,
+        data_directive=".4byte",
         dot_pool=False,
         comment_char=CommentChar.AT,
     ),
@@ -137,6 +148,7 @@ class AsmWriter:
 
         # Go until end of function
         func.addr = func.start_addr
+        dd = self.format_opts.data_directive
         in_pool = False
         cases: defaultdict[int, list[int]] = defaultdict(list)
         while func.addr < func.end_addr:
@@ -163,7 +175,7 @@ class AsmWriter:
                     addr_str = self._get_local(func.addr)
                     word = self.rom.read_32(func.addr)
                     label = self._get_label(word, LabelType.Imm)
-                    lines.append(f"{addr_str}: .4byte {label}")
+                    lines.append(f"{addr_str}: {dd} {label}")
                 func.addr += 4
             elif func.addr in func.jump_tables:
                 addr_str = self._get_local(func.addr)
@@ -183,11 +195,10 @@ class AsmWriter:
                         lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")
                 else:
                     num_jumps = len(jumps)
-                    dw = DW if self.format_opts.dx_directive else WORD
                     for j in range(0, num_jumps, 4):
                         end = j + min(4, num_jumps - j)
                         jump_labels = self._comma_join(jumps[j:end])
-                        lines.append(f"{INDENT}{dw} {jump_labels}")
+                        lines.append(f"{INDENT}{dd} {jump_labels}")
                 in_pool = False
             elif func.addr in func.instructs:
                 instruct = func.instructs[func.addr]

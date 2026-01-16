@@ -105,21 +105,6 @@ def gen_sym_file(rom: Rom) -> list[str]:
     return lines
 
 
-def gen_ghidra_sym_file(info: GameInfo) -> list[str]:
-    lines = []
-    for entry in info.ram:
-        name = "g" + entry.name
-        lines.append(f"{name} {entry.addr:X} l")
-    for entry in info.data:
-        name = "s" + entry.name
-        addr = entry.addr + ROM_OFFSET
-        lines.append(f"{name} {addr:X} l")
-    for entry in info.code:
-        addr = entry.addr + ROM_OFFSET
-        lines.append(f"{entry.name} {addr:X} f")
-    return lines
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)

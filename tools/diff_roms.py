@@ -21,8 +21,8 @@ def diff_roms(rom_base: Rom, rom_new: Rom, options: DiffOpt) -> None:
         start = rom_base.data_start()
     else:
         start = 0
-        writer_base = AsmWriter.create(rom_base, Symbols(), set(), AsmFormat.DECOMP)
-        writer_new = AsmWriter.create(rom_new, Symbols(), set(), AsmFormat.DECOMP)
+        writer_base = AsmWriter.create(rom_base, Symbols(), set(), AsmFormat.ARMIPS)
+        writer_new = AsmWriter.create(rom_new, Symbols(), set(), AsmFormat.ARMIPS)
     end = 0x800000
     for addr in range(start, end, 4):
         val_base = rom_base.read_32(addr)
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     if args.data_only:
         opt |= DiffOpt.DATA_ONLY
 
-    diff_roms(rom_base, rom_new, DiffOpt.NONE)
+    diff_roms(rom_base, rom_new, opt)
