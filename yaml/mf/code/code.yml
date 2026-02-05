@@ -8627,7 +8627,7 @@
   params: null
   return: null
   loc: null
-- name: SetEventBasedEffectBit7
+- name: StartStopEventBasedEffect
   addr:
     U: 0x6368C
     E: 0x6368C
@@ -8651,7 +8651,7 @@
   params: null
   return: null
   loc: null
-- name: CheckSetEventBasedEffectBit7
+- name: CheckStopEventBasedEffect
   addr:
     U: 0x636DC
     E: 0x636DC
@@ -23981,7 +23981,7 @@
     type: u8
     cat: bool
   loc: null
-- name: bx_r0
+- name: _call_via_r0
   addr:
     U: 0xA342C
     E: 0xA3A88
@@ -23993,7 +23993,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r1
+- name: _call_via_r1
   addr:
     U: 0xA3430
     E: 0xA3A8C
@@ -24005,7 +24005,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r2
+- name: _call_via_r2
   addr:
     U: 0xA3434
     E: 0xA3A90
@@ -24017,7 +24017,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r3
+- name: _call_via_r3
   addr:
     U: 0xA3438
     E: 0xA3A94
@@ -24029,7 +24029,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r4
+- name: _call_via_r4
   addr:
     U: 0xA343C
     E: 0xA3A98
@@ -24041,7 +24041,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r5
+- name: _call_via_r5
   addr:
     U: 0xA3440
     E: 0xA3A9C
@@ -24053,7 +24053,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r6
+- name: _call_via_r6
   addr:
     U: 0xA3444
     E: 0xA3AA0
@@ -24065,7 +24065,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r7
+- name: _call_via_r7
   addr:
     U: 0xA3448
     E: 0xA3AA4
@@ -24077,7 +24077,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r8
+- name: _call_via_r8
   addr:
     U: 0xA344C
     E: 0xA3AA8
@@ -24089,7 +24089,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r9
+- name: _call_via_r9
   addr:
     U: 0xA3450
     E: 0xA3AAC
@@ -24101,7 +24101,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r10
+- name: _call_via_sl
   addr:
     U: 0xA3454
     E: 0xA3AB0
@@ -24113,7 +24113,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r11
+- name: _call_via_fp
   addr:
     U: 0xA3458
     E: 0xA3AB4
@@ -24125,7 +24125,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r12
+- name: _call_via_ip
   addr:
     U: 0xA345C
     E: 0xA3AB8
@@ -24137,7 +24137,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r13
+- name: _call_via_sp
   addr:
     U: 0xA3460
     E: 0xA3ABC
@@ -24149,7 +24149,7 @@
   params: null
   return: null
   loc: null
-- name: bx_r14
+- name: _call_via_lr
   addr:
     U: 0xA3464
     E: 0xA3AC0
@@ -24162,7 +24162,7 @@
   return: null
   loc: null
 - name: __divsi3
-  desc: Signed division (function __divsi3 from divmod.c in libgcc)
+  desc: Signed division (function __divsi3 from libgcc)
   addr:
     U: 0xA3468
     E: 0xA3AC4
@@ -24185,7 +24185,7 @@
     desc: Quotient
     type: s32
   loc: null
-- name: DivideBy0Handler
+- name: __div0
   desc: Divide by 0 handler (empty)
   addr:
     U: 0xA34FC
@@ -24198,7 +24198,7 @@
   params: null
   return: null
   loc: null
-- name: DoubleToInt_Overflow
+- name: __fixunsdfsi
   desc: If the double is >= 2^31, treat as integer overflow and return a negative value
   addr:
     U: 0xA3500
@@ -24218,7 +24218,7 @@
     type: s32
   loc: null
 - name: __modsi3
-  desc: Signed modulo (function __modsi3 from divmod.c in libgcc)
+  desc: Signed modulo (function __modsi3 from libgcc)
   addr:
     U: 0xA3544
     E: 0xA3BA0
@@ -24242,7 +24242,7 @@
     type: s32
   loc: null
 - name: __udivsi3
-  desc: Unsigned division (function __udivsi3 from udivmod.c in libgcc)
+  desc: Unsigned division (function __udivsi3 from libgcc)
   addr:
     U: 0xA3614
     E: 0xA3C70
@@ -24266,7 +24266,7 @@
     type: u32
   loc: null
 - name: __umodsi3
-  desc: Unsigned modulo (function __umodsi3 from udivmod.c in libgcc)
+  desc: Unsigned modulo (function __umodsi3 from libgcc)
   addr:
     U: 0xA368C
     E: 0xA3CE8
@@ -24289,8 +24289,8 @@
     desc: Remainder
     type: u32
   loc: null
-- name: PackDouble
-  desc: Function pack_d from fp-bit.c in libgcc
+- name: __pack_d
+  desc: Pack double (function __pack_d from libgcc)
   addr:
     U: 0xA374C
     E: 0xA3DA8
@@ -24306,8 +24306,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: UnpackDouble
-  desc: Function unpack_d in fp-bit.c in libgcc
+- name: __unpack_d
+  desc: Unpack double (function __unpack_d in fp-bit.c in libgcc)
   addr:
     U: 0xA3894
     E: 0xA3EF0
@@ -24323,8 +24323,8 @@
     type: u8*
   return: null
   loc: null
-- name: AddDoubleParts
-  desc: Function _fpadd_parts in fp-bit.c in libgcc
+- name: _fpadd_parts
+  desc: Add double parts (function _fpadd_parts in fp-bit.c in libgcc)
   addr:
     U: 0xA396C
     E: 0xA3FC8
@@ -24344,8 +24344,8 @@
     desc: Unpacked double result pointer
     type: struct FloatingPointNum*
   loc: null
-- name: AddDoubles
-  desc: Function add from fp-bit.c in libgcc
+- name: __adddf3
+  desc: Add doubles (function __adddf3 from libgcc)
   addr:
     U: 0xA3BD8
     E: 0xA4234
@@ -24367,8 +24367,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: SubtractDoubles
-  desc: Function sub from fp-bit.c in libgcc
+- name: __subdf3
+  desc: Subtract doubles (function __subdf3 from libgcc
   addr:
     U: 0xA3C08
     E: 0xA4264
@@ -24390,8 +24390,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: MultiplyDoubles
-  desc: Function multiply from fp-bit.c in libgcc
+- name: __muldf3
+  desc: Multiply doubles (function __muldf3 from libgcc)
   addr:
     U: 0xA3C40
     E: 0xA429C
@@ -24413,8 +24413,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: DivideDoubles
-  desc: Function divide from fp-bit.c in libgcc
+- name: __divdf3
+  desc: Divide doubles (function __divdf3 from libgcc)
   addr:
     U: 0xA3EE8
     E: 0xA4544
@@ -24436,8 +24436,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: CompareDoubleParts
-  desc: Function __fpcmp_parts from fp-bit.c in libgcc
+- name: __fpcmp_parts_d
+  desc: Compare double parts (function __fpcmp_parts_d from libgcc)
   addr:
     U: 0xA4070
     E: 0xA46CC
@@ -24455,8 +24455,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: CompareDoubles
-  desc: Function compare from fp-bit.c in libgcc
+- name: __cmpdf2
+  desc: Compare doubles (function __cmpdf2 from libgcc)
   addr:
     U: 0xA4170
     E: 0xA47CC
@@ -24478,8 +24478,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesEqual
-  desc: Function _eq_f2 from fp-bit.c in libgcc
+- name: __eqdf2
+  desc: Doubles equal (function __eqdf2 from libgcc)
   addr:
     U: 0xA419C
     E: 0xA47F8
@@ -24501,8 +24501,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesNotEqual
-  desc: Function _ne_f2 from fp-bit.c in libgcc
+- name: __nedf2
+  desc: Doubles not equal (function __nedf2 from libgcc)
   addr:
     U: 0xA41E8
     E: 0xA4844
@@ -24524,8 +24524,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesGreaterThan
-  desc: Function _gt_f2 from fp-bit.c in libgcc
+- name: __gtdf2
+  desc: Doubles greater than (function __gtdf2 from libgcc)
   addr:
     U: 0xA4234
     E: 0xA4890
@@ -24547,8 +24547,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesGreaterEqual
-  desc: Function _ge_f2 from fp-bit.c in libgcc
+- name: __gedf2
+  desc: Doubles greater equal (function __gedf2 from libgcc)
   addr:
     U: 0xA4280
     E: 0xA48DC
@@ -24570,8 +24570,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesLessThan
-  desc: Function _lt_f2 from fp-bit.c in libgcc
+- name: __ltdf2
+  desc: Doubles less than (function __ltdf2 from libgcc)
   addr:
     U: 0xA42CC
     E: 0xA4928
@@ -24593,8 +24593,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: DoublesLessEqual
-  desc: Function _le_f2 from fp-bit.c in libgcc
+- name: __ledf2
+  desc: Doubles less equal (function __ledf2 from libgcc)
   addr:
     U: 0xA4318
     E: 0xA4974
@@ -24616,8 +24616,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: IntToDouble
-  desc: Function si_to_float from fp-bit.c in libgcc
+- name: __floatsidf
+  desc: Int to double (function __floatsidf from libgcc)
   addr:
     U: 0xA4364
     E: 0xA49C0
@@ -24633,8 +24633,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: DoubleToInt
-  desc: Function float_to_si from fp-bit.c in libgcc
+- name: __fixdfsi
+  desc: Double to int (function __fixdfsi from libgcc)
   addr:
     U: 0xA43E0
     E: 0xA4A3C
@@ -24652,8 +24652,8 @@
     desc: Integer
     type: s32
   loc: null
-- name: NegateDouble
-  desc: Function negate from fp-bit.c in libgcc
+- name: __negdf2
+  desc: Negate double (function __negdf2 from libgcc)
   addr:
     U: 0xA4454
     E: 0xA4AB0
@@ -24671,8 +24671,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: CreateDouble
-  desc: Function __make_fp from fp-bit.c in libgcc
+- name: __make_dp
+  desc: Create double (function __make_dp from libgcc)
   addr:
     U: 0xA447C
     E: 0xA4AD8
@@ -24697,8 +24697,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: DoubleToFloat
-  desc: Function df_to_sf from fp-bit.c in libgcc
+- name: __truncdfsf2
+  desc: Double to float (function __truncdfsf2 from libgcc)
   addr:
     U: 0xA44A4
     E: 0xA4B00
@@ -24716,8 +24716,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: PackFloat
-  desc: Function pack_d from fp-bit.c in libgcc
+- name: __pack_f
+  desc: Pack float (function __pack_f from libgcc)
   addr:
     U: 0xA44E8
     E: 0xA4B44
@@ -24733,8 +24733,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: UnpackFloat
-  desc: Function unpack_d in fp-bit.c in libgcc
+- name: __unpack_f
+  desc: Unpack float (function __unpack_f from libgcc)
   addr:
     U: 0xA45A0
     E: 0xA4BFC
@@ -24750,8 +24750,8 @@
     type: struct FloatingPointNum*
   return: null
   loc: null
-- name: AddFloatParts
-  desc: Function _fpadd_parts in fp-bit.c in libgcc
+- name: _fpadd_parts
+  desc: Add float parts (function _fpadd_parts from libgcc)
   addr:
     U: 0xA461C
     E: 0xA4C78
@@ -24771,8 +24771,8 @@
     desc: Unpacked float result pointer
     type: struct FloatingPointNum*
   loc: null
-- name: AddFloats
-  desc: Function add from fp-bit.c in libgcc
+- name: __addsf3
+  desc: Add floats (function __addsf3 from libgcc)
   addr:
     U: 0xA4798
     E: 0xA4DF4
@@ -24790,8 +24790,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: SubtractFloats
-  desc: Function sub from fp-bit.c in libgcc
+- name: __subsf3
+  desc: Subtract floats (function __subsf3 from libgcc)
   addr:
     U: 0xA47C4
     E: 0xA4E20
@@ -24809,8 +24809,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: MultiplyFloats
-  desc: Function multiply from fp-bit.c in libgcc
+- name: __mulsf3
+  desc: Multiply floats (function __mulsf3 from libgcc)
   addr:
     U: 0xA47F8
     E: 0xA4E54
@@ -24828,8 +24828,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: DivideFloats
-  desc: Function divide from fp-bit.c in libgcc
+- name: __divsf3
+  desc: Divide floats (function __divsf3 from libgcc)
   addr:
     U: 0xA495C
     E: 0xA4FB8
@@ -24847,8 +24847,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: CompareFloatParts
-  desc: Function __fpcmp_parts from fp-bit.c in libgcc
+- name: __fpcmp_parts_f
+  desc: Compare float parts (function __fpcmp_parts_f from libgcc)
   addr:
     U: 0xA4A48
     E: 0xA50A4
@@ -24866,8 +24866,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: CompareFloats
-  desc: Function compare from fp-bit.c in libgcc
+- name: __cmpsf2
+  desc: Compare floats (function __cmpsf2 from libgcc)
   addr:
     U: 0xA4B2C
     E: 0xA5188
@@ -24885,8 +24885,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsEqual
-  desc: Function _eq_f2 from fp-bit.c in libgcc
+- name: __eqsf2
+  desc: Floats equal (function __eqsf2 from libgcc)
   addr:
     U: 0xA4B54
     E: 0xA51B0
@@ -24904,8 +24904,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsNotEqual
-  desc: Function _ne_f2 from fp-bit.c in libgcc
+- name: __nesf2
+  desc: Floats not equal (function __nesf2 from libgcc)
   addr:
     U: 0xA4B9C
     E: 0xA51F8
@@ -24923,8 +24923,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsGreaterThan
-  desc: Function _gt_f2 from fp-bit.c in libgcc
+- name: __gtsf2
+  desc: Floats greater than (function __gtsf2 from libgcc)
   addr:
     U: 0xA4BE4
     E: 0xA5240
@@ -24942,8 +24942,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsGreaterEqual
-  desc: Function _ge_f2 from fp-bit.c in libgcc
+- name: __gesf2
+  desc: Floats greater equal (function __gesf2 from libgcc)
   addr:
     U: 0xA4C2C
     E: 0xA5288
@@ -24961,8 +24961,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsLessThan
-  desc: Function _lt_f2 from fp-bit.c in libgcc
+- name: __ltsf2
+  desc: Floats less than (function __ltsf2 from libgcc)
   addr:
     U: 0xA4C74
     E: 0xA52D0
@@ -24980,8 +24980,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: FloatsLessEqual
-  desc: Function _le_f2 from fp-bit.c in libgcc
+- name: __lesf2
+  desc: Floats less equal (function __lesf2 from libgcc)
   addr:
     U: 0xA4CBC
     E: 0xA5318
@@ -24999,8 +24999,8 @@
     desc: Comparison result (-1 = less, 0 = equal, 1 = greater)
     type: s8
   loc: null
-- name: IntToFloat
-  desc: Function si_to_float from fp-bit.c in libgcc
+- name: __floatsisf
+  desc: Int to float (function __floatsisf from libgcc)
   addr:
     U: 0xA4D04
     E: 0xA5360
@@ -25016,8 +25016,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: FloatToInt
-  desc: Function float_to_si from fp-bit.c in libgcc
+- name: __fixsfsi
+  desc: Float to int (function __fixsfsi from libgcc)
   addr:
     U: 0xA4D64
     E: 0xA53C0
@@ -25033,8 +25033,8 @@
     desc: Integer
     type: s32
   loc: null
-- name: NegateFloat
-  desc: Function negate from fp-bit.c in libgcc
+- name: __negsf2
+  desc: Negate float (function __negsf2 from libgcc)
   addr:
     U: 0xA4DCC
     E: 0xA5428
@@ -25050,8 +25050,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: CreateFloat
-  desc: Function __make_fp from fp-bit.c in libgcc
+- name: __make_fp
+  desc: Create float (function __make_fp from libgcc)
   addr:
     U: 0xA4DF0
     E: 0xA544C
@@ -25074,8 +25074,8 @@
     desc: Float value
     type: u32
   loc: null
-- name: FloatToDouble
-  desc: Function sf_to_df from fp-bit.c in libgcc
+- name: __extendsfdf2
+  desc: Float to double (function __extendsfdf2 from libgcc)
   addr:
     U: 0xA4E08
     E: 0xA5464
@@ -25091,7 +25091,8 @@
     desc: Double value (Uses r0 and r1)
     type: u32
   loc: null
-- name: RightShiftLongInt
+- name: __lshrdi3
+  desc: Right shift long int (function __lshrdi3 from libgcc)
   addr:
     U: 0xA4E34
     E: 0xA5490
@@ -25111,7 +25112,8 @@
     desc: Long int (Uses r0 and r1)
     type: u32
   loc: null
-- name: MultiplyLongInts
+- name: __muldi3
+  desc: Multiply long ints (function __muldi3 from libgcc)
   addr:
     U: 0xA4E68
     E: 0xA54C4
@@ -25133,7 +25135,8 @@
     desc: Long int (Uses r0 and r1)
     type: u32
   loc: null
-- name: NegateLongInt
+- name: __negdi2
+  desc: Negate long int (function __negdi2 from libgcc)
   addr:
     U: 0xA4ED8
     E: 0xA5534
@@ -25151,8 +25154,8 @@
     desc: Long int (Uses r0 and r1)
     type: u32
   loc: null
-- name: MemoryCopy
-  desc: Function memcpy from memcpy.c in libgcc
+- name: memcpy
+  desc: Memory copy (function memcpy from libgcc)
   addr:
     U: 0xA4EF0
     E: 0xA554C
@@ -25172,8 +25175,8 @@
     desc: Destination address
     type: u8*
   loc: null
-- name: MemorySet
-  desc: Function memset from memset.c in libgcc
+- name: memset
+  desc: Memory set (function memset from libgcc)
   addr:
     U: 0xA4F50
     E: 0xA55AC

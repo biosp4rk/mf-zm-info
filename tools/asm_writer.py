@@ -111,6 +111,7 @@ class AsmWriter:
         format_opts = FORMAT_OPTIONS[asm_format]
         return cls(rom, symbols, branches, format_opts)
 
+    # TODO: Split into smaller functions
     def function_str(self,
         func: Function,
         include_syms: bool,
@@ -220,6 +221,7 @@ class AsmWriter:
         delattr(func, "addr")
         return "\n".join(lines)
 
+    # TODO: Use match/case
     def instruct_str(self, instruct: ThumbInstruct) -> str:
         args = []
         if instruct.format == ThumbForm.Shift:
@@ -318,6 +320,11 @@ class AsmWriter:
             raise ValueError()
         
         lhs = instruct.opname.name.lower()
+        if self.format_opts.unified:
+            if instruct.opname == ThumbOp.LDSB:
+                lhs = "ldrsb"
+            elif instruct.opname == ThumbOp.LDSH:
+                lhs = "ldrsh"
         rhs = self._comma_join(args)
         if rhs == "":
             return f"{lhs}"
@@ -349,7 +356,7 @@ class AsmWriter:
                     (val >= 0x2000000 and val < 0x2040000) or
                     (val >= 0x3000000 and val < 0x3008000)
                 ):
-                    label = self._get_label(val, LabelType.Data)
+                    label = self._get_label(val, LabelType.Ram)
                     syms[val] = label
                 # Check if in rom
                 elif val >= rom_start and val < rom_end:
@@ -387,12 +394,15 @@ class AsmWriter:
             return self._get_local(pa)
         # Create label using addr
         label = f"{addr:X}"
-        if type == LabelType.Imm:
-            label = "0x" + label
-        elif type == LabelType.Data:
-            label = f"sUnk_{pa:x}"
-        elif type == LabelType.Code:
-            label = f"unk_{pa:x}"
+        match type:
+            case LabelType.Imm:
+                label = "0x" + label
+            case LabelType.Ram:
+                label = f"gUnk_{addr:x}"
+            case LabelType.Data:
+                label = f"sUnk_{pa:x}"
+            case LabelType.Code:
+                label = f"unk_{pa:x}"
         return label
 
     def _imm_str(self, instruct: ThumbInstruct) -> str:

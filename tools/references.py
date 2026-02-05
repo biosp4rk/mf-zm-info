@@ -309,7 +309,7 @@ class References(object):
     
     def get_data_ref(self, addr: int, entry: DataEntry) -> DataRef:
         if entry is not None:
-            length = entry.get_size(self.info.structs)
+            length = entry.get_size(self.info.sizes)
             offset = self.get_offset_within_entry(addr, entry.addr, length)
             if offset != -1:
                 count = entry.get_count()

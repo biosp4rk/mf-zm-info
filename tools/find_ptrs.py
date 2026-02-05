@@ -231,7 +231,7 @@ def find_prim_at_offset(
     entry = entries[idx]
     # Check if address within entry
     entry_off = getattr(entry, off_attr)
-    length = entry.get_size(info.structs)
+    length = entry.get_size(info.sizes)
     if offset < entry_off + length:
         # Get offset within single item
         off = offset - entry_off

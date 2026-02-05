@@ -9,6 +9,7 @@ class LabelType(Enum):
 
     Undef = auto()
     Imm = auto()
+    Ram = auto()
     Data = auto()
     Code = auto()
 
