@@ -165,6 +165,44 @@ def get_text(char_map: dict[int, str], rom: Rom, addr: int, fmt: TextFormat) -> 
         text += ch
 
 
+KANJI_START = 0x4A0
+KANJI_WIDTH = 10
+MAX_LINE_WIDTH = 224
+
+CHAR_WIDTHS_ADDR = {
+    GAME_MF: {
+        REGION_U: 0x576234,
+    },
+    GAME_ZM: {
+        REGION_U: 0x40D7B0,
+    }
+}
+
+
+def center_text(rom: Rom, char_map: dict[int, str], text: str) -> int:
+    # Get value mapping
+    val_map = {}
+    for k, v in char_map.items():
+        if v not in val_map:
+            val_map[v] = k
+    char_widths_addr = CHAR_WIDTHS_ADDR[rom.game][rom.region]
+    line_width = 0
+    index = 0
+    for c in text:
+        char_val = val_map[c]
+        line_width += get_char_width(rom, char_widths_addr, char_val)
+    assert line_width <= MAX_LINE_WIDTH
+    return (MAX_LINE_WIDTH - line_width) // 2
+
+
+def get_char_width(rom: Rom, char_widths_addr: int, char_val: int) -> int:
+    if char_val >= 0x8000:
+        return 0
+    if char_val < KANJI_START:
+        return rom.read_8(char_widths_addr + char_val)
+    return KANJI_WIDTH
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_arg(parser, apu.ArgType.ROM_PATH)
