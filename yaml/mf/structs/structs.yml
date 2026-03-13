@@ -3049,8 +3049,8 @@
     type: u8
     offset: 0x2B
     enum: SecurityLevel
-  - name: screenPositionAndVelocity
-    type: struct ScreenPositionAndVelocity
+  - name: camera
+    type: struct Camera
     offset: 0x2C
   - name: bg0XPosition
     type: u16
@@ -3173,31 +3173,31 @@
     count: 0xA0
     offset: 0xF80
   loc: null
-- name: ScreenPositionAndVelocity
+- name: Camera
   size: 0x14
   vars:
-  - name: screenXPosition
+  - name: xPosition
     type: u16
     offset: 0x0
-  - name: screenYPosition
+  - name: yPosition
     type: u16
     offset: 0x4
-  - name: screenXVelocity
-    type: u8
+  - name: xVelocity
+    type: s8
     offset: 0x6
-  - name: screenYVelocity
-    type: u8
+  - name: yVelocity
+    type: s8
     offset: 0x7
-  - name: unk_08
+  - name: unk_8
     type: u8
     offset: 0x8
-  - name: unk_09
+  - name: unk_9
     type: u8
     offset: 0x9
-  - name: bg3Related
+  - name: unk_a
     type: u8
     offset: 0xA
-  - name: unk_0C
+  - name: unk_c
     type: u16
     offset: 0xC
   loc: null
