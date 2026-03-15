@@ -61,6 +61,14 @@ class AssetType(ABC):
     def decl_str(self, decl: str = "") -> str:
         pass
 
+    @abstractmethod
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, "AssetType"]) -> int:
+        pass
+
+    @abstractmethod
+    def get_alignment(self, typedefs: dict[str, "AssetType"]) -> int:
+        pass
+
 
 class SpecifierType(AssetType):
 
@@ -87,6 +95,44 @@ class SpecifierType(AssetType):
         if decl:
             spec_str += decl if decl[0] == "*" else " " + decl
         return spec_str
+    
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, AssetType]) -> int:
+        if self.kind == TypeSpecKind.BUILT_IN:
+            sn = self.spec_names()
+            if "long" in sn:
+                return 8
+            size = BUILT_IN_SIZES.get(sn[-1])
+            if size is not None:
+                return size
+            return 4 # int by default
+        elif self.kind == TypeSpecKind.TYPEDEF:
+            return typedefs[self.spec_name()].get_size(sizes, typedefs)
+        elif self.kind == TypeSpecKind.STRUCT or self.kind == TypeSpecKind.UNION:
+            size = sizes.get(self.spec_name())
+            if size is not None:
+                return size
+            ks = self.kind.name.lower()
+            raise ValueError(f"Invalid {ks} name {self.spec_name()}")
+        elif self.kind == TypeSpecKind.ENUM:
+            raise ValueError("Can't compute size of enum")
+        else:
+            raise RuntimeError()
+    
+    def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
+        if self.kind == TypeSpecKind.BUILT_IN:
+            sn = self.spec_names()
+            size = BUILT_IN_SIZES.get(sn[-1])
+            if size is not None:
+                return size
+            return 4 # int by default
+        elif self.kind == TypeSpecKind.TYPEDEF:
+            return typedefs[self.spec_name()].get_alignment(typedefs)
+        elif self.kind == TypeSpecKind.STRUCT or self.kind == TypeSpecKind.UNION:
+            return 4
+        elif self.kind == TypeSpecKind.ENUM:
+            raise ValueError("Can't compute alignment of enum")
+        else:
+            raise RuntimeError()
 
     def __str__(self) -> str:
         return self.decl_str()
@@ -126,6 +172,12 @@ class PointerType(OuterType):
             ptr_str = f"({ptr_str})"
         return self.inner_type.decl_str(ptr_str)
 
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, AssetType]) -> int:
+        return 4
+
+    def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
+        return 4
+
     def __str__(self) -> str:
         parts = [q.name.lower() for q in self.quals]
         parts.append(f"pointer to {self.inner_type}")
@@ -141,6 +193,12 @@ class ArrayType(OuterType):
     def decl_str(self, decl: str = "") -> str:
         arr_str = f"[0x{self.size:X}]"
         return self.inner_type.decl_str(decl + arr_str)
+
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, "AssetType"]) -> int:
+        return self.size * self.inner_type.get_size(sizes, typedefs)
+
+    def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
+        return self.inner_type.get_alignment(typedefs)
 
     def __str__(self) -> str:
         size_str = "" if self.size is None else f" {self.size}"
@@ -158,6 +216,12 @@ class FunctionType(OuterType):
         if self.params:
             param_str = ", ".join(p.decl_str() for p in self.params)
         return self.inner_type.decl_str(decl + f"({param_str})")
+
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, "AssetType"]) -> int:
+        raise ValueError("Function types must be pointers")
+
+    def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
+        raise ValueError("Function types must be pointers")
 
     def __str__(self) -> str:
         param_str = ""

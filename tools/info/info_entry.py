@@ -4,8 +4,8 @@ from typing import Any, Union
 
 from constants import *
 from info.asset_type import (
-    BUILT_IN_SIZES, TypeSpecKind, OuterType, PointerType,
-    ArrayType, FunctionType, TypeTokenizer, TypeParser
+    BUILT_IN_SIZES, TypeSpecKind, AssetType, SpecifierType, OuterType,
+    PointerType, ArrayType, FunctionType, TypeTokenizer, TypeParser
 )
 
 
@@ -206,28 +206,37 @@ class VarEntry(InfoEntry):
     def type_str(self) -> str:
         return self.type.decl_str()
 
-    def is_ptr(self) -> bool:
+    def is_ptr(self, typedefs: dict[str, AssetType]) -> bool:
+        """Returns true if the type is a pointer."""
         type = self.type
-        while isinstance(type, OuterType):
+        while True:
             if isinstance(type, PointerType):
                 return True
-            type = type.inner_type
+            if isinstance(type, OuterType):
+                type = type.inner_type
+            elif isinstance(type, SpecifierType) and type.kind == TypeSpecKind.TYPEDEF:
+                type = typedefs[type.spec_name()]
+            else:
+                return False
 
     def has_ptr(self,
         structs: dict[str, "StructEntry"],
-        unions: dict[str, "UnionEntry"]
+        unions: dict[str, "UnionEntry"],
+        typedefs: dict[str, AssetType]
     ) -> bool:
-        if self.is_ptr():
+        """Returns true if the type or any of its fields is a pointer."""
+        if self.is_ptr(typedefs):
             return True
-        tk = self.spec_kind()
-        if tk == TypeSpecKind.STRUCT:
-            se = structs[self.spec_name()]
-            if any(v.has_ptr(structs, unions) for v in se.vars):
-                return True
-        elif tk == TypeSpecKind.UNION:
-            ue = unions[self.spec_name()]
-            if any(v.has_ptr(structs, unions) for v in ue.vars):
-                return True
+        if isinstance(self.type, SpecifierType):
+            tk = self.type.kind
+            if tk == TypeSpecKind.STRUCT:
+                se = structs[self.spec_name()]
+                if any(v.has_ptr(structs, unions, typedefs) for v in se.vars):
+                    return True
+            elif tk == TypeSpecKind.UNION:
+                ue = unions[self.spec_name()]
+                if any(v.has_ptr(structs, unions, typedefs) for v in ue.vars):
+                    return True
         return False
 
     def get_count(self) -> int:
@@ -242,54 +251,12 @@ class VarEntry(InfoEntry):
         else:
             return self.arr_count
 
-    def get_total_count(self) -> int:
-        count = self.get_count()
-        type = self.type
-        while isinstance(type, OuterType):
-            if isinstance(type, ArrayType):
-                count *= type.size
-            elif isinstance(type, PointerType):
-                break
-            elif isinstance(type, FunctionType):
-                raise RuntimeError()
-            type = type.inner_type
-        return count
-
-    def get_size(self, sizes: dict[str, int]) -> int:
+    def get_size(self, sizes: dict[str, int], typedefs: dict[str, AssetType]) -> int:
         """Gets the total size of the entry."""
-        spec_size = 4 if self.is_ptr() else self.get_spec_size(sizes)
-        return spec_size * self.get_total_count()
+        return self.type.get_size(sizes, typedefs) * self.get_count()
 
-    def get_spec_size(self, sizes: dict[str, int]) -> int:
-        """Gets the size of a single item of this type."""
-        sk = self.spec_kind()
-        if sk == TypeSpecKind.BUILT_IN:
-            sn = self.spec_names()
-            if "long" in sn:
-                return 8
-            size = BUILT_IN_SIZES.get(sn[-1])
-            if size is not None:
-                return size
-            return 4 # int by default
-        elif sk == TypeSpecKind.TYPEDEF or sk == TypeSpecKind.STRUCT or sk == TypeSpecKind.UNION:
-            size = sizes.get(self.spec_name())
-            if size is not None:
-                return size
-            ks = sk.name.lower()
-            raise ValueError(f"Invalid {ks} name {self.spec_name()}")
-        elif sk == TypeSpecKind.ENUM:
-            raise ValueError("Can't compute size of enum")
-        else:
-            raise RuntimeError()
-
-    def get_alignment(self, sizes: dict[str, int]) -> int:
-        if self.is_ptr():
-            return 4
-        tk = self.type.spec_kind()
-        # TODO: Determine if unions always have 4 byte alignment
-        if tk == TypeSpecKind.STRUCT or tk == TypeSpecKind.UNION:
-            return 4
-        return self.get_spec_size(sizes)
+    def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
+        self.type.get_alignment(self, typedefs)
 
     @staticmethod
     def from_obj(obj: Any) -> "VarEntry":

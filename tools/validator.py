@@ -178,7 +178,7 @@ class Validator(object):
         if map_type == MAP_CODE:
             prev_len = prev.size
         else:
-            prev_len = prev.get_size(self.info.sizes)
+            prev_len = prev.get_size(self.info.sizes, self.info.types)
         if isinstance(prev_len, int):
             prev_len = {r: prev_len for r in ALL_REGIONS}
         prev_end = {

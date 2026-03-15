@@ -48,7 +48,7 @@ def coverage(rom: Rom):
     # Get total size of data entries
     data_cov = 0
     for entry in info.data:
-        data_cov += entry.get_size(info.sizes)
+        data_cov += entry.get_size(info.sizes, info.types)
     # Compute percent of rom covered
     code_size = rom.code_end() - 0xC0
     data_size = rom.data_end() - rom.data_start()

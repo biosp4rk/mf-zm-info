@@ -8,6 +8,10 @@
 # - Load existing info entries
 # - Update entry fields (except for cat, comp, enum, and refs)
 
+# Updating existing entries:
+# - Code, data, and RAM entries are updated based on address
+# - All others are updated based on name
+
 # Elf file command:
 # readelf <game>.elf -s -W > <output>
 
@@ -35,17 +39,15 @@ DOC_STR_LINE = re.compile(r"\*\s+(.+)")
 DOC_STR_ADDR_SIZE = re.compile(r"\w+\s*\|\s*\w+\s*\|\s*(.+)")
 
 
-def get_files_with_ext(dir: str, ext: str, exclude: str = None) -> list[str]:
+def get_files_with_ext(dir: str, ext: str, exclude: set[str] = None) -> list[str]:
     """Recursively search for files with the given extension."""
+    if exclude is None:
+        exclude = set()
     paths = []
-    is_top = True
     for dirpath, dirnames, filenames in os.walk(dir):
-        if is_top and exclude:
-            dirnames.remove(exclude)
         for filename in filenames:
-            if filename.endswith(ext):
+            if filename.endswith(ext) and filename not in exclude:
                 paths.append(os.path.join(dirpath, filename))
-        is_top = False
     return paths
 
 
@@ -102,7 +104,7 @@ class Extractor:
         include_path = os.path.join(decomp_path, "include")
         src_path = os.path.join(decomp_path, "src")
         h_files = get_files_with_ext(include_path, ".h")
-        c_files = get_files_with_ext(src_path, ".c")
+        c_files = get_files_with_ext(src_path, ".c", {"globals1.c", "globals2.c"})
         # h_files = ["decomp/test.h"]
         # c_files = ["decomp/test.c"]
         all_files = [
@@ -174,7 +176,6 @@ class Extractor:
         are preferred over locations from header files."""
         loc = self._get_node_loc(node.coord)
         if isinstance(node, c_ast.Typedef):
-            self._add_warning(f"typedef in src file\n{loc}")
             self.locations[node.name] = loc
             return True
         elif isinstance(node, c_ast.Decl):
@@ -185,7 +186,6 @@ class Extractor:
                 name = node.name
                 self.funcs[name] = nt
             elif isinstance(nt, c_ast.Enum):
-                self._add_warning(f"enum decl in src file\n{loc}")
                 name = nt.name
                 self.enums[name] = nt
             elif isinstance(nt, c_ast.Struct):
@@ -583,7 +583,7 @@ class Extractor:
                 if entry.cat is not None:
                     filename = CAT_TO_STR[entry.cat]
             elif map_type == MAP_CODE:
-                if entry.loc and "sprites_AI" in entry.loc:
+                if entry.loc and "sprites_ai" in entry.loc:
                     filename = "sprite_ai"
             # Get name of entry
             name = entry.name
