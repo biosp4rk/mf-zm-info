@@ -225,32 +225,32 @@ class AsmWriter:
     def instruct_str(self, instruct: ThumbInstruct) -> str:
         args = []
         if instruct.format == ThumbForm.Shift:
-            args.append(f"r{instruct.rd}")
-            args.append(f"r{instruct.rs}")
+            args.append(self._reg_name(instruct.rd))
+            args.append(self._reg_name(instruct.rs))
             args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.AddSub:
-            args.append(f"r{instruct.rd}")
-            args.append(f"r{instruct.rs}")
+            args.append(self._reg_name(instruct.rd))
+            args.append(self._reg_name(instruct.rs))
             if instruct.opname != ThumbOp.MOV:
                 if instruct.rn is not None:
-                    args.append(f"r{instruct.rn}")
+                    args.append(self._reg_name(instruct.rn))
                 else:
                     args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.Immed:
-            args.append(f"r{instruct.rd}")
+            args.append(self._reg_name(instruct.rd))
             args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.AluOp:
-            args.append(f"r{instruct.rd}")
-            args.append(f"r{instruct.rs}")
+            args.append(self._reg_name(instruct.rd))
+            args.append(self._reg_name(instruct.rs))
         elif instruct.format == ThumbForm.HiReg:
             if instruct.opname != ThumbOp.NOP:
                 if (instruct.opname == ThumbOp.ADD or
                     instruct.opname == ThumbOp.CMP or
                     instruct.opname == ThumbOp.MOV):
-                    args.append(f"r{instruct.rd}")
-                args.append(f"r{instruct.rs}")
+                    args.append(self._reg_name(instruct.rd))
+                args.append(self._reg_name(instruct.rs))
         elif instruct.format == ThumbForm.LdPC:
-            args.append(f"r{instruct.rd}")
+            args.append(self._reg_name(instruct.rd))
             addr = instruct.pc_rel_addr()
             word = self.rom.read_32(addr)
             label = self._get_label(word, LabelType.Imm)
@@ -261,26 +261,26 @@ class AsmWriter:
                 args.append("=" + label)
         elif (instruct.format == ThumbForm.LdStR or
             instruct.format == ThumbForm.LdStRS):
-            args.append(f"r{instruct.rd}")
-            args.append(f"[r{instruct.rs}")
-            args.append(f"r{instruct.ro}]")
+            args.append(self._reg_name(instruct.rd))
+            args.append(f"[{self._reg_name(instruct.rs)}")
+            args.append(f"{self._reg_name(instruct.ro)}]")
         elif (instruct.format == ThumbForm.LdStI or
             instruct.format == ThumbForm.LdStIH):
-            args.append(f"r{instruct.rd}")
+            args.append(self._reg_name(instruct.rd))
             if instruct.imm == 0:
-                args.append(f"[r{instruct.rs}]")
+                args.append(f"[{self._reg_name(instruct.rs)}]")
             else:
-                args.append(f"[r{instruct.rs}")
+                args.append(f"[{self._reg_name(instruct.rs)}")
                 args.append(f"{self._imm_str(instruct)}]")
         elif instruct.format == ThumbForm.LdStSP:
-            args.append(f"r{instruct.rd}")
+            args.append(self._reg_name(instruct.rd))
             if instruct.imm == 0:
-                args.append("[sp]")
+                args.append(f"[{self._reg_name(Reg.SP)}]")
             else:
-                args.append("[sp")
+                args.append(f"[{self._reg_name(Reg.SP)}")
                 args.append(f"{self._imm_str(instruct)}]")
         elif instruct.format == ThumbForm.RelAddr:
-            args.append(f"r{instruct.rd}")
+            args.append(self._reg_name(instruct.rd))
             if instruct.rs == Reg.PC:
                 pa = instruct.pc_rel_addr()
                 if pa in self.branches:
@@ -289,15 +289,15 @@ class AsmWriter:
                     va = pa + ROM_OFFSET
                     args.append("=" + self._get_label(va, LabelType.Imm))
             else:
-                args.append("sp")
+                args.append(self._reg_name(Reg.SP))
                 args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.AddSP:
-            args.append("sp")
+            args.append(self._reg_name(Reg.SP))
             args.append(self._imm_str(instruct))
         elif instruct.format == ThumbForm.PushPop:
             args.append(self._rlist_str(instruct))
         elif instruct.format == ThumbForm.LdStM:
-            args.append(f"r{instruct.rd}!")
+            args.append(self._reg_name(instruct.rd) + "!")
             args.append(self._rlist_str(instruct))
         elif (instruct.format == ThumbForm.CondB or
             instruct.format == ThumbForm.UncondB):
@@ -405,6 +405,11 @@ class AsmWriter:
                 label = f"unk_{pa:x}"
         return label
 
+    def _reg_name(self, reg: int) -> str:
+        if reg == Reg.SP:
+            return "sp"
+        return f"r{reg}"
+
     def _imm_str(self, instruct: ThumbInstruct) -> str:
         val = None
         if instruct.format in {
@@ -459,11 +464,12 @@ class AsmWriter:
             for start, run in runs:
                 if run < 3:
                     for i in range(run):
-                        reg_strs.append(f"r{start + i}")
+                        reg_strs.append(self._reg_name(start + i))
                 else:
-                    reg_strs.append(f"r{start}-r{start + run - 1}")
+                    reg_strs.append(self._reg_name(start) + "-" +
+                        self._reg_name(start + run - 1))
         else:
-            reg_strs = [f"r{n}" for n in instruct.rlist]
+            reg_strs = [self._reg_name(n) for n in instruct.rlist]
         result = self._comma_join(reg_strs)
         if self.format_opts.braced_reg_list:
             result = "{" + result + "}"

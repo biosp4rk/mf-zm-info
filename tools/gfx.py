@@ -29,8 +29,23 @@ class Palette(object):
     def __getitem__(self, key) -> RGB:
         return self.colors[key]
 
-    @staticmethod
-    def grayscale() -> "Palette":
+    @classmethod
+    def from_raw(cls, data: bytes) -> "Palette":
+        size = len(data)
+        if size % 32 != 0:
+            raise ValueError()
+        pal = Palette(size // 32)
+        for i in range(len(pal.colors)):
+            idx = i * 2
+            rgb = (data[idx+1] << 8) | data[idx]
+            r = rgb & 0x1F
+            g = (rgb >> 5) & 0x1F
+            b = (rgb >> 10)
+            pal.colors[i] = (r * 8, g * 8, b * 8)
+        return pal
+
+    @classmethod
+    def grayscale(cls) -> "Palette":
         pal = Palette(1)
         for i in range(16):
             c = i * 16
@@ -44,7 +59,12 @@ class Palette(object):
 
 class Gfx(object):
 
-    def __init__(self,
+    def __init__(self, data: bytes, tile_width: int = 32):
+        self.data = bytearray(data)
+        self.set_tile_width(tile_width)
+
+    @classmethod
+    def from_rom(cls,
         rom: Rom,
         addr: int,
         size: int = None,
@@ -52,12 +72,12 @@ class Gfx(object):
     ):
         if size is None:
             # Compressed
-            self.data, _ = decomp_lz77(rom.data, addr)
+            data, _ = decomp_lz77(rom.data, addr)
         else:
             # Uncompressed
             assert size % 32 == 0
-            self.data = rom.read_bytes(addr, size)
-        self.set_tile_width(tile_width)
+            data = rom.read_bytes(addr, size)
+        return Gfx(data, tile_width)
 
     def set_tile_width(self, tile_width: int):
         assert 1 <= tile_width <= 32
@@ -66,7 +86,7 @@ class Gfx(object):
     def get_num_tiles(self) -> int:
         return len(self.data) // 32
 
-    def get_at(self, x: int, y: int) -> int:
+    def _get_index(self, x: int, y: int) -> int:
         i = (
             y // 8 * 32 * self.tile_width + # Y tile
             y % 8 * 4 +                     # Y pixel
@@ -74,11 +94,24 @@ class Gfx(object):
             x % 8 // 2                      # X pixel
         )
         if i >= len(self.data):
-            return 0
+            raise ValueError()
+        return i
+
+    def get_at(self, x: int, y: int) -> int:
+        i = self._get_index(x, y)
         if x % 2 == 0:
             return self.data[i] & 0xF
         else:
             return self.data[i] >> 4
+
+    def set_at(self, x: int, y: int, color: int) -> None:
+        if color < 0 or color >= 16:
+            raise ValueError()
+        i = self._get_index(x, y)
+        if x % 2 == 0:
+            self.data[i] = (self.data[i] & 0xF0) | color
+        else:
+            self.data[i] = (self.data[i] & 0xF) | (color << 4)
 
     def draw(self, palette: Palette = None) -> png.Image:
         if palette is None:

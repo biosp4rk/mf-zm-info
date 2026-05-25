@@ -4,7 +4,7 @@ from enum import Flag, auto
 from asm_writer import AsmWriter, AsmFormat
 from rom import Rom, ROM_OFFSET
 from symbols import Symbols
-from thumb import ThumbInstruct
+from thumb import ThumbInstruct, ThumbForm
 
 
 class DiffOpt(Flag):
@@ -54,10 +54,13 @@ def diff_roms(rom_base: Rom, rom_new: Rom, options: DiffOpt) -> None:
 
 def print_inst_diff(writer_base: AsmWriter, writer_new: AsmWriter, addr: int) -> None:
     for i in range(0, 4, 2):
-        inst = ThumbInstruct(writer_base.rom, addr + i)
-        str_base = writer_base.instruct_str(inst)
-        inst = ThumbInstruct(writer_new.rom, addr + i)
-        str_new = writer_new.instruct_str(inst)
+        try:
+            inst = ThumbInstruct(writer_base.rom, addr + i)
+            str_base = writer_base.instruct_str(inst)
+            inst = ThumbInstruct(writer_new.rom, addr + i)
+            str_new = writer_new.instruct_str(inst)
+        except:
+            return
         if str_base != str_new:
             print(f"{addr:X}\t{str_base}\t{str_new}")
 

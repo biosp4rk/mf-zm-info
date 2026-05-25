@@ -40,7 +40,7 @@
     J: 0x2020000
     C: 0x2020000
   loc: null
-- name: gDecompClipdata
+- name: gDecompClipdataMap
   type: u16
   count: 0x1800
   addr:
@@ -49,7 +49,7 @@
     J: 0x2026000
     C: 0x2026000
   loc: null
-- name: gDecompBg0Data
+- name: gDecompBg0Map
   type: u16
   count: 0x1800
   addr:
@@ -58,7 +58,7 @@
     J: 0x2029000
     C: 0x2029000
   loc: null
-- name: gDecompBg1Data
+- name: gDecompBg1Map
   type: u16
   count: 0x1800
   addr:
@@ -67,7 +67,7 @@
     J: 0x202C000
     C: 0x202C000
   loc: null
-- name: gDecompBg2Data
+- name: gDecompBg2Map
   type: u16
   count: 0x1800
   addr:
@@ -76,7 +76,7 @@
     J: 0x202F000
     C: 0x202F000
   loc: null
-- name: gDecompBg3Data
+- name: gDecompBg3Map
   type: u16
   count: 0x1000
   addr:
@@ -393,7 +393,7 @@
     J: 0x300002B
     C: 0x300002B
   loc: null
-- name: gDisableAnimatedGfxTimer
+- name: gDisableAnimatedGraphicsTimer
   type: u8
   addr:
     U: 0x3000027
@@ -451,7 +451,7 @@
     J: 0x3000034
     C: 0x3000034
   loc: include/structs/connection.h:66
-- name: gPrevDoorProperties
+- name: gLastDoorProperties
   type: u8
   addr:
     U: 0x300002F
@@ -551,7 +551,7 @@
     C: 0x3000050
   enum: EventBasedEffect
   loc: include/globals.h:41
-- name: gCurrentEventBasedEffectCopy
+- name: gQueuedEventBasedEffect
   type: u8
   addr:
     U: 0x300004B
@@ -610,7 +610,7 @@
     J: 0x300005A
     C: 0x300005A
   loc: null
-- name: gUseAltAnimatedTilesetFlag
+- name: gUseAlternateAnimatedTilesetFlags
   desc: Unused flag to use alternate animated tileset
   type: u8
   count: 0x5
@@ -1994,7 +1994,7 @@
     J: 0x3004E0C
     C: 0x3004E0C
   loc: include/structs/clipdata.h:36
-- name: gCurrMusicTrack
+- name: gCurrentMusicTrack
   type: u16
   addr:
     U: 0x3004DE8
@@ -2043,7 +2043,7 @@
     J: 0x3004E68
     C: 0x3004E68
   loc: include/structs/connection.h:68
-- name: gDoorLockedFlag
+- name: gLockedHatches
   type: u8
   addr:
     U: 0x3004E3B
@@ -2076,8 +2076,8 @@
     J: 0x3004E88
     C: 0x3004E88
   loc: include/globals.h:166
-- name: gBrokenReformBlocks
-  type: struct BrokenReformBlock
+- name: gBrokenBlocks
+  type: struct BrokenBlock
   count: 0x20
   addr:
     U: 0x3004E60
