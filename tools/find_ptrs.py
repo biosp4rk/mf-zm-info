@@ -1,262 +1,92 @@
 import argparse
-from enum import Enum
-from typing import Union
 
 import argparse_utils as apu
 from constants import *
-from function import all_functions
+from function import Function
+from info.asset_type import AssetType, ArrayType, PointerType, SpecifierType, TypeSpecKind
 from info.game_info import GameInfo, InfoSource
-from info.info_entry import DataEntry, StructEntry, StructVarEntry, CodeEntry
-from rom import Rom, ROM_OFFSET
-
-
-class Validity(Enum):
-
-    UNKNOWN = 0
-    INVALID = 1
-    VALID = 2
-
-VALID_STR = {
-    Validity.UNKNOWN: "unk",
-    Validity.INVALID: "no",
-    Validity.VALID: "yes"
-}
-
-
-class Status(Enum):
-
-    UNKNOWN = 0
-    # The primitive at the pointer's location is not 4-byte aligned (invalid)
-    LOC_NOT_ALIGNED = 1
-    # The primitive at the pointer's location is not a pointer (invalid)
-    LOC_NOT_PTR = 2
-    # The primitive at the pointer's location is a pointer (valid)
-    LOC_IS_PTR = 3
-    # The pointer points to the middle of a function (invalid)
-    PTR_CODE_MIDDLE = 4
-    # The pointer points to the start of a function (likely valid)
-    PTR_CODE = 5
-    # The pointer points to the middle of a data entry (likely invalid)
-    PTR_DATA_MIDDLE = 6
-    # The pointer points to the start of a piece of data (likely valid)
-    PTR_DATA = 7
-
-STATUS_STR = {
-    Status.UNKNOWN: "unk",
-    Status.LOC_NOT_ALIGNED: "loc not aligned",
-    Status.LOC_NOT_PTR: "loc not ptr",
-    Status.LOC_IS_PTR: "loc is ptr",
-    Status.PTR_CODE_MIDDLE: "ptr middle code",
-    Status.PTR_CODE: "ptr code",
-    Status.PTR_DATA_MIDDLE: "ptr middle data",
-    Status.PTR_DATA: "ptr data",
-}
+from rom import Rom, ROM_OFFSET, SIZE_8MB
 
 
 class PtrLoc:
-
-    def __init__(self,
-        loc_addr: int,
-        ptr_val: int,
-        validity = Validity.UNKNOWN,
-        status = Status.UNKNOWN,
-        entry: Union[DataEntry, CodeEntry] = None
-    ):
-        self.loc_addr = loc_addr
-        self.ptr_val = ptr_val
-        self.validity = validity
-        self.status = status
-        self.entry = entry
-
-    def print(self, diff: int) -> None:
-        entry = f"{self.entry.addr:X} {self.entry.name}" if self.entry else ""
-        print("\t".join([
-            f"{self.loc_addr:X}",
-            f"{self.ptr_val:X}",
-            f"{diff:X}",
-            VALID_STR[self.validity],
-            STATUS_STR[self.status],
-            entry
-        ]))
+    def __init__(self, name: str, idx: int):
+        self.name = name
+        self.idx = idx
 
 
-def find_code_ptrs(rom: Rom) -> list[int]:
-    """Finds all pointers in code data pools. These are all assumed to be valid."""
-    v_code_start = rom.code_start(True)
-    v_data_end = rom.data_end(True)
-    ptr_locs: list[int] = []
-    funcs = all_functions(rom)
-    for func in funcs:
-        ptr_locs += func.get_jump_tables()
-        for loc in func.data_pool:
-            val = rom.read_32(loc)
-            # Check if value falls within rom
-            if val >= v_code_start and val < v_data_end:
-                ptr_locs.append(loc)
-    ptr_locs.sort()
-    return ptr_locs
+class PtrFinder:
+    def __init__(self, rom: Rom, info: GameInfo):
+        self.rom = rom
+        self.info = info
 
+    def find_ptrs(self) -> set[int]:
+        print("Finding code pointers...")
+        ptr_locs = self._find_code_ptrs()
+        ptr_locs = set()
+        print("Finding data pointers...")
+        ptr_locs.update(self._find_data_ptrs())
+        return ptr_locs
 
-def find_sound_header_ptrs(rom: Rom, info: GameInfo) -> list[int]:
-    sound_entries = info.get_data("SoundDataEntries")
-    se_addr = sound_entries.addr
-    count = sound_entries.arr_count
-    size = info.get_struct(sound_entries.struct_name()).size
-    ptr_locs: list[int] = []
-    for idx in range(count):
-        addr = rom.read_ptr(se_addr + (idx * size))
-        num_tracks = rom.read_8(addr)
-        if num_tracks == 0:
-            continue
-        #ptr_locs.append(addr + 4)
-        for j in range(num_tracks):
-            ptr_locs.append(addr + 8 + (j * 4))
-    ptr_locs.sort()
-    return ptr_locs
+    def _find_code_ptrs(self) -> set[int]:
+        rom = self.rom
+        v_data_start = rom.data_start(True)
+        v_data_end = rom.data_end(True)
+        ptr_locs: set[int] = set()
+        for entry in self.info.code:
+            func = Function(rom, entry.addr)
+            for loc in func.data_pool:
+                val = rom.read_32(loc)
+                # Check if value falls within rom
+                if val >= v_data_start and val < v_data_end:
+                    ptr_locs.add(loc)
+        return ptr_locs
 
+    def _find_data_ptrs(self) -> set[int]:
+        info = self.info
+        ptr_locs: set[int] = set()
+        for entry in info.data:
+            if not entry.has_ptr(info.structs, info.unions, info.types):
+                continue
+            addr = entry.addr
+            for _ in range(entry.get_count()):
+                self._find_data_ptr(ptr_locs, addr, entry.type)
+                addr += entry.type.get_size(info.sizes, info.types)
+        return ptr_locs
 
-def get_track_start_end(rom: Rom) -> tuple[int, int]:
-    """Returns the start and end address of all track data."""
-    addrs = None
-    if rom.game == GAME_MF:
-        if rom.region == REGION_U:
-            addrs = (0x25895C, 0x289960)
-    elif rom.game == GAME_ZM:
-        if rom.region == REGION_U:
-            addrs = (0x20B090, 0x2320B0)
-    if addrs is None:
-        raise NotImplementedError()
-    return addrs
-
-
-def find_track_ptrs(rom: Rom):
-    """Finds all pointers within track data (these don't need to be 4-byte aligned)."""
-    start, end = get_track_start_end(rom)
-    v_start = start + ROM_OFFSET
-    v_end = end + ROM_OFFSET
-    ptr_locs: list[int] = []
-    for addr in range(start, end):
-        val = rom.read_8(addr)
-        if val != 0xB2 and val != 0xB3:
-            continue
-        addr += 1
-        val = rom.read_32(addr)
-        if val < v_start or val >= v_end:
-            continue
-        val -= ROM_OFFSET
-        if val >= addr:
-            continue
-        ptr_locs.append(addr)
-    return ptr_locs
-
-
-def find_data_ptrs(rom: Rom, info: GameInfo) -> list[int]:
-    code_dict = {c.addr: c for c in info.code}
-    data_list = info.data
-
-    code_end = rom.code_end()
-    data_start = rom.data_start()
-    data_end = rom.data_end()
-    v_code_start = rom.code_start(True)
-    v_data_end = rom.data_end(True)
-
-    idx = 0
-    ptr_locs: list[PtrLoc] = []
-
-    for addr in range(data_start, data_end, 4):
-        # Check if value at address falls within rom
-        val = rom.read_32(addr)
-        if val < v_code_start or val >= v_data_end:
-            continue
-        val -= ROM_OFFSET
-        # Check if this address falls within a known asset
-        validity = Validity.UNKNOWN
-        status = Status.UNKNOWN
-        main_entry = None
-        idx, entry, _, _ = find_prim_at_offset(data_list, idx, addr, info)
-        if entry:
-            main_entry = data_list[idx]
-            if main_entry.addr % 4 != 0:
-                validity = Validity.INVALID
-                status = Status.LOC_NOT_ALIGNED
-            elif not entry.is_ptr():
-                validity = Validity.INVALID
-                status = Status.LOC_NOT_PTR
+    def _find_data_ptr(self, ptr_locs: set[int], addr: int, type: AssetType) -> None:
+        info = self.info
+        if isinstance(type, PointerType):
+            val = rom.read_32(addr)
+            if val >= rom.data_start(True) and val < ROM_OFFSET + SIZE_8MB:
+                ptr_locs.add(addr)
+        elif isinstance(type, ArrayType):
+            inner = type.inner_type
+            size = inner.get_size(info.sizes, info.types)
+            for i in range(size):
+                self._find_data_ptr(ptr_locs, addr + i * size, inner)
+        elif isinstance(type, SpecifierType):
+            if type.kind == TypeSpecKind.STRUCT:
+                struct = info.structs[type.spec_name()]
+                for sv in struct.vars:
+                    type = sv.type
+                    # Align
+                    alignment = type.get_alignment(info.types)
+                    if addr % alignment != 0:
+                        addr += alignment - (addr % alignment)
+                    self._find_data_ptr(ptr_locs, addr, type)
+                    addr += type.get_size(info.sizes, info.types)
+            elif type.kind == TypeSpecKind.UNION:
+                union = info.unions[type.spec_name()]
+                for uv in union.vars:
+                    self._find_data_ptr(ptr_locs, addr, uv.type)
+            elif type.kind == TypeSpecKind.TYPEDEF:
+                type = info.types[type.spec_name()]
+                self._find_data_ptr(ptr_locs, addr, type)
             else:
-                validity = Validity.VALID
-                status = Status.LOC_IS_PTR
-        
-        # Check if the value points to known asset
+                raise ValueError(f"Unsupported TypeSpecKind {type.kind}")
         else:
-            if val < code_end:
-                # Check if value points to code
-                # Subtract one for thumb code pointers
-                val -= 1
-                if val not in code_dict:
-                    status = Status.PTR_CODE_MIDDLE
-                else:
-                    main_entry = code_dict[val]
-                    status = Status.PTR_CODE
-            else:
-                # Check if value points to known data
-                j, entry, prim_idx, prim_off = find_prim_at_offset(data_list, 0, val, info)
-                if entry:
-                    main_entry = data_list[j]
-                    if prim_idx != 0 or prim_off != 0:
-                        status = Status.PTR_DATA_MIDDLE
-                    else:
-                        status = Status.PTR_DATA
-        ptr_loc = PtrLoc(addr, val, validity, status, main_entry)
-        ptr_locs.append(ptr_loc)
-    return ptr_locs
-
-
-def find_prim_at_offset(
-    entries: Union[list[DataEntry], list[StructVarEntry]],
-    idx: int,
-    offset: int,
-    info: GameInfo
-) -> tuple[int, Union[DataEntry, StructEntry], int, int]:
-    """
-    Tries to find the primitive at the provided address (for data entries)
-    or offset (for struct var entries).
-    Returns (entry_index, entry, prim_num, prim_offset).
-    """
-    if len(entries) == 0:
-        return (idx, None, None, None)
-    off_attr = "offset" if isinstance(entries[0], StructVarEntry) else "addr"
-    while idx < len(entries) and getattr(entries[idx], off_attr) <= offset:
-        idx += 1
-    idx -= 1
-    entry = entries[idx]
-    # Check if address within entry
-    entry_off = getattr(entry, off_attr)
-    length = entry.get_size(info.sizes)
-    if offset < entry_off + length:
-        # Get offset within single item
-        off = offset - entry_off
-        num = 0
-        count = entry.get_count()
-        if count > 1:
-            size = length // count
-            num = off // size
-            off %= size
-        # Check type
-        is_ptr = entry.is_ptr()
-        if not is_ptr and entry.is_struct():
-            # Check primitive at offset
-            s_entry = info.get_struct(entry.struct_name())
-            _, entry, num, off = find_prim_at_offset(s_entry.vars, 0, off, info)
-        return (idx, entry, num, off)
-    return (idx, None, None, None)
-
-
-def print_ptr_list(title: str, ptrs: list[int]) -> None:
-    print(title + ":")
-    for loc in ptrs:
-        print(f"{loc:05X}")
-    print()
-
+            raise ValueError(f"Unsupported type: {type}")
+        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -264,25 +94,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    info = GameInfo(rom.game, rom.region, InfoSource.YAML_UNK)
+    print("Loading game info...")
+    info = GameInfo(rom.game, rom.region, InfoSource.JSON)
 
-    c_ptrs = find_code_ptrs(rom)
-    sh_ptrs = find_sound_header_ptrs(rom, info)
-    t_ptrs = find_track_ptrs(rom)
-    d_ptr_locs = find_data_ptrs(rom, info)
-    d_ptrs = [p.loc_addr for p in d_ptr_locs if p.validity != Validity.INVALID]
-    all_ptrs = c_ptrs + sh_ptrs + t_ptrs + d_ptrs
-    assert len(set(all_ptrs)) == len(all_ptrs)
-    
-    print_ptr_list("Code Pointers", c_ptrs)
-    print_ptr_list("Sound Header Pointers", sh_ptrs)
-    print_ptr_list("Track Pointers", t_ptrs)
-    print_ptr_list("Known Data Pointers", d_ptrs)
+    ptr_finder = PtrFinder(rom, info)
+    ptr_locs = ptr_finder.find_ptrs()
 
-    print("All Data Pointers:")
-    prev_addr = 0
-    for ptr_loc in d_ptr_locs:
-        addr = ptr_loc.loc_addr
-        diff = addr - prev_addr
-        ptr_loc.print(diff)
-        prev_addr = addr
+    for loc in sorted(ptr_locs):
+        print(f"{loc:X}")
+    print(len(ptr_locs))
