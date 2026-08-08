@@ -24,110 +24,43 @@
     offset: 0x6
     enum: SoundEvent
   loc: include/structs/event.h:6
-- name: AnimatedGraphicsEntry
-  size: 0x8
+- name: AnimatedPaletteAndTileset
+  size: 0x4
   vars:
-  - name: animType
+  - name: animatedPalette
     type: u8
     offset: 0x0
-    enum: GraphicsAnimType
-  - name: framesPerState
+  - name: animatedTileset
     type: u8
     offset: 0x1
-  - name: numOfStates
-    type: u8
-    offset: 0x2
-  - name: pGfx
-    type: u8*
-    cat: gfx
-    offset: 0x4
-  loc: null
-- name: AnimatedPaletteAndTilesetNum
-  size: 0x2
-  vars:
-  - name: animatedPaletteNum
-    type: u8
-    offset: 0x0
-  - name: animatedTilesetNum
-    type: u8
-    offset: 0x1
-  loc: null
-- name: AnimatedPaletteEntry
-  size: 0x8
-  vars:
-  - name: animType
-    type: u8
-    offset: 0x0
-    enum: PaletteAnimType
-  - name: framesPerState
-    type: u8
-    offset: 0x1
-  - name: numOfStates
-    type: u8
-    offset: 0x2
-  - name: pPalette
-    type: u16*
-    cat: palette
-    offset: 0x4
-  loc: null
+  loc: include/structs/animated_graphics.h:6
 - name: AnimatedPaletteTiming
-  size: 0x3
+  size: 0x4
   vars:
-  - name: counter
+  - name: timer1
     type: u8
     offset: 0x0
-  - name: state
-    type: u8
+  - name: row1
+    type: s8
     offset: 0x1
-  - name: counter_OmegaRoom
+  - name: timer2
     type: u8
     offset: 0x2
-  - name: paletteRow_OmegaRoom
-    type: u8
+  - name: row2
+    type: s8
     offset: 0x3
-  loc: null
-- name: AreaConnection
-  size: 0x3
-  vars:
-  - name: sourceArea
-    type: u8
-    offset: 0x0
-    enum: Area
-  - name: sourceDoor
-    type: u8
-    offset: 0x1
-  - name: destinationArea
-    type: u8
-    offset: 0x2
-    enum: Area
-  loc: null
+  loc: include/structs/animated_graphics.h:11
 - name: ArmCannonAnimData
   size: 0x8
   vars:
-  - name: pOpeningOffsets
-    type: struct ArmCannonOpeningOffsets*
+  - name: pOffset
+    type: const s16*
     offset: 0x0
-  - name: pOamFrame
-    type: u16*
+  - name: pOam
+    type: const u16*
     cat: oam_frame
     offset: 0x4
-  loc: null
-- name: ArmCannonOpeningOffsets
-  size: 0x8
-  vars:
-  - name: chargingYOffset
-    type: u16
-    offset: 0x0
-  - name: chargingXOffset
-    type: u16
-    offset: 0x2
-  - name: newProjectileYOffset
-    type: u16
-    offset: 0x4
-  - name: newProjectileXOffset
-    type: u16
-    offset: 0x6
-  loc: null
+  loc: include/structs/samus.h:147
 - name: BackgroundPositions
   size: 0x14
   vars:
@@ -138,7 +71,7 @@
   - name: doorTransition
     type: struct RawCoordsX
     offset: 0x10
-  loc: include/globals.h:86
+  loc: include/globals.h:132
 - name: BackgroundsData
   size: 0x20
   vars:
@@ -169,129 +102,22 @@
     type: u16
     offset: 0x6
   loc: include/structs/bg_clip.h:44
-- name: BackupOfIoRegisters
-  size: 0x12
-  vars:
-  - name: backupOfDispcnt_NonGameplay
-    desc: LCD control
-    type: u16
-    offset: 0x0
-  - name: backupOfBldcnt_NonGameplay
-    desc: Color special effects selection
-    type: u16
-    offset: 0x2
-  - name: backupOfBldalpha_NonGameplay
-    desc: Alpha blending coefficients
-    type: u16
-    offset: 0x4
-  - name: backupOfWININ_H_NonGameplay
-    desc: Inside of window 1
-    type: u8
-    offset: 0x6
-  - name: backupOfWINOUT_L_NonGameplay
-    desc: Outside of windows
-    type: u8
-    offset: 0x7
-  - name: backupOfBg0CNT_WriteOnly
-    desc: BG0 control
-    type: u16
-    offset: 0x8
-  - name: backupOfBg1CNT
-    desc: BG1 control
-    type: u16
-    offset: 0xA
-  - name: backupOfBg2CNT
-    desc: BG2 control
-    type: u16
-    offset: 0xC
-  - name: backupOfBg3CNT
-    desc: BG3 control
-    type: u16
-    offset: 0xE
-  - name: backupOfBg0CNT
-    desc: BG0 control
-    type: u16
-    offset: 0x10
-  loc: null
 - name: Bg3Movement
-  size: 0x6
+  size: 0x8
   vars:
   - name: direction
-    type: u8
-    offset: 0x0
-  - name: counter
-    type: u8
-    offset: 0x1
-  - name: moveLeftToRightStage
-    type: u8
-    offset: 0x2
-  - name: xPositionOffset
-    type: u16
-    offset: 0x4
-  loc: null
-- name: BgPositions
-  size: 0x14
-  vars:
-  - name: bg0XPosition
-    type: u16
-    offset: 0x0
-  - name: bg0YPosition
-    type: u16
-    offset: 0x2
-  - name: bg1XPosition
-    type: u16
-    offset: 0x4
-  - name: bg1YPosition
-    type: u16
-    offset: 0x6
-  - name: bg2XPosition
-    type: u16
-    offset: 0x8
-  - name: bg2YPosition
-    type: u16
-    offset: 0xA
-  - name: bg3XPosition
-    type: u16
-    offset: 0xC
-  - name: bg3YPosition
-    type: u16
-    offset: 0xE
-  - name: doorTransitionXPosition
-    type: u16
-    offset: 0x10
-  - name: doorTransitionYPosition
-    type: u16
-    offset: 0x12
-  loc: null
-- name: BossPartOamData
-  size: 0x6
-  vars:
-  - name: oamTableIndex
-    type: u16
-    offset: 0x0
-  - name: yOffset
-    type: s16
-    offset: 0x2
-  - name: xOffset
-    type: s16
-    offset: 0x4
-  loc: null
-- name: BrokenReformBlock
-  size: 0x4
-  vars:
-  - name: stage
     type: u8
     offset: 0x0
   - name: timer
     type: u8
     offset: 0x1
-  - name: xPosition
+  - name: leftToRightStage
     type: u8
     offset: 0x2
-  - name: yPosition
-    type: u8
-    offset: 0x3
-  loc: null
+  - name: xOffset
+    type: u16
+    offset: 0x4
+  loc: include/structs/room.h:35
 - name: ButtonAssignments
   size: 0x8
   vars:
@@ -311,7 +137,7 @@
     type: u16
     offset: 0x6
     enum: ButtonInput
-  loc: include/globals.h:150
+  loc: include/globals.h:206
 - name: Camera
   size: 0x8
   vars:
@@ -344,52 +170,6 @@
     type: s16
     offset: 0x6
   loc: include/structs/scroll.h:77
-- name: ClipdataBlockData
-  size: 0x8
-  vars:
-  - name: xPosition
-    type: u16
-    offset: 0x0
-  - name: yPosition
-    type: u16
-    offset: 0x2
-  - name: behavior
-    type: u16
-    offset: 0x4
-  - name: blockBehavior
-    type: u8
-    offset: 0x6
-  loc: null
-- name: CollectedTank
-  size: 0x4
-  vars:
-  - name: roomId
-    type: u8
-    offset: 0x0
-  - name: tankType
-    type: u8
-    offset: 0x1
-    enum: TankType
-  - name: xPosition
-    type: u8
-    offset: 0x2
-  - name: yPosition
-    type: u8
-    offset: 0x3
-  loc: null
-- name: CollectibleTankAnim
-  size: 0x4
-  vars:
-  - name: delay
-    type: u8
-    offset: 0x0
-  - name: frame
-    type: u8
-    offset: 0x1
-  - name: unused
-    type: u16
-    offset: 0x2
-  loc: null
 - name: CollisionData
   size: 0x1C
   vars:
@@ -421,153 +201,6 @@
     type: u16
     offset: 0x1A
   loc: include/structs/clipdata.h:8
-- name: ComputerConvoPopUpGfx
-  size: 0x18
-  vars:
-  - name: pUnk
-    type: u8*
-    offset: 0x0
-  - name: pPaletteRow0
-    type: u16*
-    cat: palette
-    offset: 0x8
-  - name: pPaletteRow1
-    type: u16*
-    cat: palette
-    offset: 0xC
-  - name: pGfx
-    type: u8*
-    cat: gfx
-    offset: 0x14
-  loc: null
-- name: CurrPowerBomb
-  size: 0x14
-  vars:
-  - name: animState
-    type: u8
-    offset: 0x0
-  - name: unk_01
-    type: u8
-    offset: 0x1
-  - name: semiMinorAxis
-    type: u8
-    offset: 0x2
-  - name: xPosition
-    type: u16
-    offset: 0x4
-  - name: yPosition
-    type: u16
-    offset: 0x6
-  - name: hitboxLeftOffset
-    type: u16
-    offset: 0x8
-  - name: hitboxRightOffset
-    type: u16
-    offset: 0xA
-  - name: hitboxTopOffset
-    type: u16
-    offset: 0xC
-  - name: hitboxBottomOffset
-    type: u16
-    offset: 0xE
-  - name: unk_10
-    type: u8
-    offset: 0x10
-  - name: unk_11
-    type: u8
-    offset: 0x11
-  - name: exists
-    type: u8
-    offset: 0x12
-  loc: null
-- name: CurrRoomEntry
-  size: 0x1C
-  vars:
-  - name: tilesetNum
-    type: u8
-    offset: 0x0
-  - name: bg0Properties
-    type: u8
-    offset: 0x1
-    enum: BgProperty
-  - name: bg1Properties
-    type: u8
-    offset: 0x2
-    enum: BgProperty
-  - name: bg2Properties
-    type: u8
-    offset: 0x3
-    enum: BgProperty
-  - name: bg3Properties
-    type: u8
-    offset: 0x4
-    enum: BgProperty
-  - name: scrollsFlag
-    type: u8
-    offset: 0x5
-    enum: ScrollsFlag
-  - name: bg3ScrollingMethod
-    type: u8
-    offset: 0x6
-  - name: transparency
-    type: u8
-    offset: 0x7
-  - name: pSpriteLayoutData
-    type: struct RoomSpriteEntry*
-    offset: 0x8
-  - name: eventToUseTheFirstSpriteset
-    type: u8
-    offset: 0xC
-    enum: Event
-  - name: eventToUseTheSecondSpriteset
-    type: u8
-    offset: 0xD
-    enum: Event
-  - name: mapXCoordinate
-    type: u8
-    offset: 0xE
-  - name: mapYCoordinate
-    type: u8
-    offset: 0xF
-  - name: roomEffect
-    type: u8
-    offset: 0x10
-    enum: RoomEffect
-  - name: roomEffectYPosition
-    type: u16
-    offset: 0x12
-  - name: roomEffectForSuits
-    type: u8
-    offset: 0x14
-    enum: RoomEffect
-  - name: musicTrack
-    type: u16
-    offset: 0x16
-  - name: bg0Size
-    type: u8
-    offset: 0x18
-    enum: Lz77BackgroundSize
-  - name: bg3Size
-    type: u8
-    offset: 0x19
-    enum: Lz77BackgroundSize
-  - name: animatedTilesetNum
-    type: u8
-    offset: 0x1A
-  - name: animatedPaletteNum
-    type: u8
-    offset: 0x1B
-  loc: null
-- name: CurrScrolls
-  size: 0x18
-  vars:
-  - name: firstScroll
-    type: struct Scroll
-    offset: 0x0
-  - name: secondScroll
-    type: struct Scroll
-    offset: 0xC
-  loc: null
 - name: CurrentAffectingClipdata
   size: 0x4
   vars:
@@ -579,43 +212,22 @@
     offset: 0x2
     enum: Hazard
   loc: include/structs/clipdata.h:26
-- name: DebugMenuOptions
-  size: 0xC
+- name: DefaultTransparency
+  size: 0x8
   vars:
-  - name: bldcnt_Mode_Unused
-    type: u16
+  - name: unk_0
+    type: u8
     offset: 0x0
-  - name: bldcnt_Evb_Unused
+  - name: evbCoef
+    type: u8
+    offset: 0x1
+  - name: evaCoef
     type: u8
     offset: 0x2
-  - name: bldcnt_Eva_Unused
-    type: u8
-    offset: 0x3
-  - name: bldcnt_Evy_Unused
-    type: u8
+  - name: bldcnt
+    type: u16
     offset: 0x4
-  - name: frontWideCamera
-    type: u8
-    offset: 0x5
-  - name: sectionCursor
-    type: u8
-    offset: 0x6
-  - name: sectionSelection
-    type: u8
-    offset: 0x7
-  - name: downloadedMaps
-    type: u8
-    cat: flags
-    offset: 0x8
-    enum: AreaBitFlags
-  - name: securityHatchLevel
-    type: u8
-    offset: 0x9
-    enum: SecurityLevel
-  - name: mapScanAndStereoFlag_Unused
-    type: u8
-    offset: 0xA
-  loc: null
+  loc: include/globals.h:195
 - name: DemoData
   size: 0x10
   vars:
@@ -707,17 +319,19 @@
     type: u8
     offset: 0x3
   loc: include/structs/hud.h:7
-- name: DimLightingEvent
-  size: 0x2
+- name: Dma
+  size: 0xC
   vars:
-  - name: event
-    type: u8
+  - name: pSrc
+    type: const void*
     offset: 0x0
-    enum: Event
-  - name: setDimFlag
-    type: u8
-    offset: 0x1
-  loc: null
+  - name: pDst
+    type: void*
+    offset: 0x4
+  - name: control
+    type: u32
+    offset: 0x8
+  loc: src/dma.c:5
 - name: Door
   size: 0xC
   vars:
@@ -749,16 +363,6 @@
     type: s8
     offset: 0x8
   loc: include/structs/connection.h:19
-- name: DoorPositionStart
-  size: 0x4
-  vars:
-  - name: xPositionStart
-    type: u16
-    offset: 0x0
-  - name: yPositionStart
-    type: u16
-    offset: 0x2
-  loc: null
 - name: ElevatorDisabledEvent
   size: 0x10
   vars:
@@ -791,30 +395,108 @@
     type: u8
     offset: 0x3
   loc: include/structs/connection.h:31
-- name: EndingTextDrawInfo
-  size: 0xC
+- name: EndingData
+  size: 0x220
   vars:
-  - name: type
-    desc: 1 = single character, 2 = full line
+  - name: unk_0
     type: u8
     offset: 0x0
-  - name: drawDelay
+  - name: unk_1
     type: u8
     offset: 0x1
-  - name: unk_02
-    type: u8
+  - name: unk_2
+    type: u16
     offset: 0x2
-  - name: xPosition
+  - name: unk_4
     type: u16
     offset: 0x4
-  - name: yPosition
+  - name: unk_6
     type: u16
     offset: 0x6
-  - name: pOamFrame
-    type: u16*
-    cat: oam_frame
+  - name: unk_8
+    type: u16
     offset: 0x8
-  loc: null
+  - name: unk_A
+    type: u16
+    count: 0x1F
+    offset: 0xA
+  - name: padding
+    type: u8
+    count: 0x44
+    offset: 0x48
+  - name: unk_8C
+    type: u32
+    offset: 0x8C
+  - name: unk_90
+    type: u32
+    offset: 0x90
+  - name: timer
+    type: u16
+    offset: 0x94
+  - name: unk_96
+    type: u8
+    offset: 0x96
+  - name: unk_97
+    type: u8
+    offset: 0x97
+  - name: unk_98
+    type: u8
+    offset: 0x98
+  - name: unk_99
+    type: u8
+    offset: 0x99
+  - name: unk_9A
+    type: u8
+    offset: 0x9A
+  - name: unk_9B
+    type: u8
+    offset: 0x9B
+  - name: unk_9C
+    type: u8
+    offset: 0x9C
+  - name: unk_9D
+    type: u8
+    offset: 0x9D
+  - name: padding2
+    type: u8
+    count: 0x2
+    offset: 0x9E
+  - name: unk_A0
+    type: u16*
+    offset: 0xA0
+  - name: padding_A4
+    type: u8
+    count: 0x80
+    offset: 0xA4
+  - name: unk_124
+    type: u8
+    count: 0x6
+    offset: 0x124
+  - name: padding3
+    type: u8
+    count: 0x36
+    offset: 0x12A
+  - name: unk_160
+    type: u8
+    count: 0x1D
+    offset: 0x160
+  - name: oamXPositions
+    type: u16
+    count: 0x1E
+    offset: 0x17E
+  - name: oamYPositions
+    type: u16
+    count: 0x1E
+    offset: 0x1BA
+  - name: padding4
+    type: u8
+    count: 0x2
+    offset: 0x1F6
+  - name: oamFramePointers
+    type: u16*
+    count: 0xA
+    offset: 0x1F8
+  loc: include/structs/ending.h:6
 - name: Envelope
   size: 0x4
   vars:
@@ -830,7 +512,7 @@
   - name: release
     type: u8
     offset: 0x3
-  loc: null
+  loc: include/structs/audio.h:7
 - name: Equipment
   size: 0x10
   vars:
@@ -902,24 +584,16 @@
     type: u8
     offset: 0x5
   loc: include/structs/escape.h:7
-- name: EventBasedConnection
+- name: EventBasedEffectInfo
   size: 0x4
   vars:
-  - name: sourceArea
-    type: u8
+  - name: stage
+    type: u16
     offset: 0x0
-    enum: Area
-  - name: sourceDoor
-    type: u8
-    offset: 0x1
-  - name: event
-    type: u8
+  - name: timer
+    type: u16
     offset: 0x2
-    enum: Event
-  - name: destinationDoor
-    type: u8
-    offset: 0x3
-  loc: null
+  loc: include/globals.h:280
 - name: EventLocationAndNavigationInfo
   size: 0xC
   vars:
@@ -956,38 +630,6 @@
     offset: 0x8
     bits: 0x1
   loc: include/structs/event.h:32
-- name: EveryKeySplitInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    desc: 40 for key split
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: pSubInstruments
-    type: u8*
-    offset: 0x4
-  loc: null
-- name: FloatingPointNum
-  size: 0x14
-  vars:
-  - name: class
-    type: u32
-    offset: 0x0
-    enum: FloatingPointClass
-  - name: sign
-    type: u32
-    offset: 0x4
-  - name: normalizedExponent
-    type: s32
-    offset: 0x8
-  - name: fractionLowerBits
-    type: u32
-    offset: 0xC
-  - name: fractionUpperBits
-    type: u32
-    offset: 0x10
-  loc: null
 - name: FrameData
   size: 0x8
   vars:
@@ -1001,37 +643,37 @@
 - name: GameCompletion
   size: 0x4
   vars:
-  - name: completedGameFlag
-    type: u8
+  - name: completedGame
+    type: s8
     offset: 0x0
-  - name: introPlayedFlag
-    type: u8
+  - name: introPlayed
+    type: s8
     offset: 0x1
-  loc: null
-- name: Hatch
+  loc: include/globals.h:112
+- name: HatchData
   size: 0x4
   vars:
-  - name: unk_0_0
+  - name: exists
     type: u8
     offset: 0x0
     bits: 0x1
-  - name: unk_0_1
+  - name: currentAnimation
     type: u8
     offset: 0x0
     bits: 0x3
-  - name: unk_0_4
+  - name: facingRight
     type: u8
     offset: 0x0
     bits: 0x1
-  - name: unk_0_5
+  - name: lockType
     type: u8
     offset: 0x0
     bits: 0x3
-  - name: unk_1_0
+  - name: state
     type: u8
     offset: 0x1
     bits: 0x2
-  - name: unk_1_2
+  - name: locked
     type: u8
     offset: 0x1
     bits: 0x1
@@ -1057,14 +699,35 @@
     type: u8
     offset: 0x1
     enum: Area
-  - name: roomId_Plus1
+  - name: room
     type: u8
     offset: 0x2
-  - name: hatchesToLock
+  - name: hatch0
     type: u8
     cat: flags
     offset: 0x3
-  loc: null
+    bits: 0x1
+  - name: hatch1
+    type: u8
+    offset: 0x3
+    bits: 0x1
+  - name: hatch2
+    type: u8
+    offset: 0x3
+    bits: 0x1
+  - name: hatch3
+    type: u8
+    offset: 0x3
+    bits: 0x1
+  - name: hatch4
+    type: u8
+    offset: 0x3
+    bits: 0x1
+  - name: hatch5
+    type: u8
+    offset: 0x3
+    bits: 0x1
+  loc: include/structs/connection.h:74
 - name: Haze
   size: 0x8
   vars:
@@ -1085,7 +748,7 @@
     type: u8
     offset: 0x7
     bits: 0x1
-  loc: include/globals.h:93
+  loc: include/globals.h:139
 - name: InGameData
   size: 0x280
   vars:
@@ -1093,17 +756,7 @@
     type: u8
     count: 0x280
     offset: 0x0
-  loc: include/globals.h:8
-- name: InGameScreenFadeTable
-  size: 0x8
-  vars:
-  - name: pTable
-    type: u8*
-    offset: 0x0
-  - name: tableSize
-    type: u8
-    offset: 0x4
-  loc: null
+  loc: include/globals.h:11
 - name: InGameTime
   size: 0x4
   vars:
@@ -1119,9 +772,91 @@
   - name: frames
     type: u8
     offset: 0x3
-  loc: include/globals.h:106
+  loc: include/globals.h:151
+- name: InGameTimer
+  size: 0x4
+  vars:
+  - name: hours
+    type: u8
+    offset: 0x0
+  - name: minutes
+    type: u8
+    offset: 0x1
+  - name: seconds
+    type: u8
+    offset: 0x2
+  - name: frames
+    type: u8
+    offset: 0x3
+  loc: include/structs/in_game_timer.h:6
+- name: IntroData
+  size: 0x220
+  vars:
+  - name: pText
+    type: u16*
+    offset: 0x0
+  - name: padding1
+    type: u8
+    count: 0x4
+    offset: 0x4
+  - name: stage
+    type: u16
+    offset: 0x8
+  - name: unk_A
+    type: u16
+    offset: 0xA
+  - name: unk_C
+    type: u16
+    offset: 0xC
+  - name: unk_E
+    type: u16
+    offset: 0xE
+  - name: padding2
+    type: u8
+    count: 0x100
+    offset: 0x10
+  - name: unk_110
+    type: u8
+    offset: 0x110
+  - name: padding3
+    type: u8
+    count: 0xFD
+    offset: 0x111
+  - name: unk_20E
+    type: u16
+    offset: 0x20E
+  - name: timer
+    type: u16
+    offset: 0x210
+  - name: unk_212
+    type: u8
+    offset: 0x212
+  - name: unk_213
+    type: u8
+    offset: 0x213
+  - name: unk_214
+    type: u8
+    offset: 0x214
+  - name: unk_215
+    type: u8
+    offset: 0x215
+  - name: padding4
+    type: u8
+    count: 0x2
+    offset: 0x216
+  - name: unk_218
+    type: u8
+    offset: 0x218
+  - name: padding_219
+    type: u8
+    count: 0x3
+    offset: 0x219
+  - name: unk_21C
+    type: u32
+    offset: 0x21C
+  loc: include/globals.h:15
 - name: IoRegisters
-  size: 0x10
+  size: 0x14
   vars:
   - name: dispcnt
     type: u16
@@ -1135,10 +870,10 @@
   - name: bldalpha_evb
     type: u8
     offset: 0x5
-  - name: winin_L
+  - name: winin_H
     type: u8
     offset: 0x6
-  - name: winin_R
+  - name: winout_L
     type: u8
     offset: 0x7
   - name: bg0Cnt
@@ -1153,22 +888,10 @@
   - name: bg3Cnt
     type: u16
     offset: 0xE
-  loc: include/globals.h:133
-- name: KeySplitInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    desc: 40 for key split
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: pSubInstruments
-    type: u8*
-    offset: 0x4
-  - name: pKeySplitTable
-    type: u8*
-    offset: 0x8
-  loc: null
+  - name: unk_10
+    type: u16
+    offset: 0x10
+  loc: include/globals.h:179
 - name: LockScreen
   size: 0x8
   vars:
@@ -1239,31 +962,38 @@
     type: u16
     offset: 0x6
   loc: include/structs/event.h:23
+- name: MultiSpriteData
+  size: 0x8
+  vars:
+  - name: pData
+    type: MultiSpriteDataInfo_T
+    offset: 0x0
+  - name: timer
+    type: u8
+    offset: 0x4
+  loc: include/structs/sprite.h:91
 - name: MusicInfo
-  size: 0x28
+  size: 0x1A60
   vars:
   - name: unk_0
     type: u8
     offset: 0x0
-  - name: unk_1
-    type: u8
+  - name: occupied
+    type: boolu8
     offset: 0x1
   - name: unk_2
-    type: u8
+    type: u16
     offset: 0x2
-  - name: unk_3
-    type: u8
-    offset: 0x3
-  - name: unk_4
+  - name: reverb
     type: u8
     offset: 0x4
-  - name: unk_5
+  - name: maxSoundChannels
     type: u8
     offset: 0x5
-  - name: unk_6
+  - name: volume
     type: u8
     offset: 0x6
-  - name: unk_7
+  - name: freqIndex
     type: u8
     offset: 0x7
   - name: unk_8
@@ -1272,10 +1002,10 @@
   - name: unk_9
     type: u8
     offset: 0x9
-  - name: unk_A
+  - name: currentSoundChannel
     type: u8
     offset: 0xA
-  - name: unk_B
+  - name: volumeDownFlag
     type: u8
     offset: 0xB
   - name: unk_C
@@ -1296,264 +1026,148 @@
   - name: unk_11
     type: u8
     offset: 0x11
-  - name: unk_12
-    type: u8
+  - name: sampleRate
+    type: u16
     offset: 0x12
-  - name: unk_13
-    type: u8
-    offset: 0x13
   - name: unk_14
-    type: u8
+    type: u32
     offset: 0x14
-  - name: unk_15
-    type: u8
-    offset: 0x15
-  - name: unk_16
-    type: u8
-    offset: 0x16
-  - name: unk_17
-    type: u8
-    offset: 0x17
-  - name: unk_18
-    type: u8
+  - name: pitch
+    type: u32
     offset: 0x18
-  - name: unk_19
-    type: u8
-    offset: 0x19
-  - name: unk_1A
-    type: u8
-    offset: 0x1A
-  - name: unk_1B
-    type: u8
-    offset: 0x1B
-  - name: unk_1C
-    type: u8
+  - name: musicTrack
+    type: u16
     offset: 0x1C
-  - name: unk_1D
-    type: u8
-    offset: 0x1D
   - name: unk_1E
-    type: u8
+    type: u16
     offset: 0x1E
-  - name: unk_1F
-    type: u8
-    offset: 0x1F
   - name: unk_20
     type: u8
     offset: 0x20
-  - name: unk_21
+  - name: priority
     type: u8
     offset: 0x21
-  - name: unk_22
-    type: u8
+  - name: musicTrackOnTransition
+    type: u16
     offset: 0x22
-  - name: unk_23
-    type: u8
-    offset: 0x23
-  - name: unk_24
-    type: u8
+  - name: musicRawData
+    type: u32
+    count: 0x300
     offset: 0x24
-  loc: include/structs/audio.h:6
-- name: NavConversationSoundEvent
+  - name: soundRawData
+    type: u8
+    count: 0xC00
+    offset: 0xC24
+  - name: soundChannels
+    type: struct SoundChannel
+    count: 0xB
+    offset: 0x1824
+  loc: include/structs/audio.h:218
+- name: MusicTrack
   size: 0x4
   vars:
-  - name: navConversationNum
-    type: u8
-    offset: 0x0
-  - name: soundEvent
+  - name: number
     type: u16
+    offset: 0x0
+  - name: lowered
+    type: u8
     offset: 0x2
-    enum: SoundEvent
-  loc: null
-- name: NavRoomHatchLockEvent
+  loc: include/structs/audio.h:251
+- name: NavigationRoomHatchLockEvent
   size: 0x4
   vars:
   - name: event
     type: u8
     offset: 0x0
-    enum: Event
-  - name: navRooms_1_to_4_Hatches
-    type: u8
-    cat: flags
-    offset: 0x1
-  - name: navRooms_5_to_8_Hatches
-    type: u8
-    cat: flags
-    offset: 0x2
-  - name: navRooms_9_to_C_Hatches
-    type: u8
-    cat: flags
-    offset: 0x3
-  loc: null
-- name: NavRoomLocation
-  size: 0x2
-  vars:
-  - name: area
-    type: u8
-    offset: 0x0
-    enum: Area
-  - name: roomId_Plus1
+  - name: room1LeftHatch
     type: u8
     offset: 0x1
-  loc: null
-- name: NavTarget
-  size: 0x8
-  vars:
-  - name: navConversationNum
-    type: u8
-    offset: 0x0
-  - name: targetLocation
+    bits: 0x1
+  - name: room1RightHatch
     type: u8
     offset: 0x1
-    enum: NavigationTargetLocation
-  - name: targetXPosition
+    bits: 0x1
+  - name: room2LeftHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room2RightHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room3LeftHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room3RightHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room4LeftHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room4RightHatch
+    type: u8
+    offset: 0x1
+    bits: 0x1
+  - name: room5LeftHatch
     type: u8
     offset: 0x2
-  - name: targetYPosition
-    type: u8
-    offset: 0x3
-  - name: textDirection
-    type: u8
-    offset: 0x4
-    enum: NavTargetTextDirection
-  loc: null
-- name: NeverReformBlock
-  size: 0x3
-  vars:
-  - name: roomId
-    type: u8
-    offset: 0x0
-  - name: xPosition
-    type: u8
-    offset: 0x1
-  - name: yPosition
+    bits: 0x1
+  - name: room5RightHatch
     type: u8
     offset: 0x2
-  loc: null
-- name: NoiseInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    desc: 4 for noise
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: midiKey
-    type: u8
-    offset: 0x1
-  - name: hardwareTimeLength
+    bits: 0x1
+  - name: room6LeftHatch
     type: u8
     offset: 0x2
-  - name: period
-    type: u8
-    offset: 0x4
-  - name: envelope
-    type: struct Envelope
-    offset: 0x8
-  loc: null
-- name: NonGameplayRam_Ending
-  size: 0x540
-  vars:
-  - name: endingImageTier
-    type: u8
-    offset: 0x99
-  - name: endingPercent
-    type: u8
-    offset: 0x9A
-  loc: null
-- name: NonGameplayRam_FileSelect
-  size: 0x540
-  vars:
-  - name: stereoFlag
-    type: u8
-    offset: 0x26D
-  loc: null
-- name: NonGameplayRam_Pause
-  size: 0x540
-  vars:
-  - name: mapTargetXPosition
-    type: u8
-    offset: 0x20C
-  - name: mapTargetYPosition
-    type: u8
-    offset: 0x20D
-  loc: null
-- name: NonGameplayRam_Title
-  size: 0x540
-  vars:
-  - name: tODO
-    type: u8
-    offset: 0x0
-  loc: null
-- name: NumNeverReformBlocksBroken
-  size: 0x8
-  vars:
-  - name: numNeverReformBlocksBrokenInMainDeck
-    type: u8
-    offset: 0x0
-  - name: numNeverReformBlocksBrokenInSector1
-    type: u8
-    offset: 0x1
-  - name: numNeverReformBlocksBrokenInSector2
+    bits: 0x1
+  - name: room6RightHatch
     type: u8
     offset: 0x2
-  - name: numNeverReformBlocksBrokenInSector3
+    bits: 0x1
+  - name: room7LeftHatch
+    type: u8
+    offset: 0x2
+    bits: 0x1
+  - name: room7RightHatch
+    type: u8
+    offset: 0x2
+    bits: 0x1
+  - name: room8LeftHatch
+    type: u8
+    offset: 0x2
+    bits: 0x1
+  - name: room8RightHatch
+    type: u8
+    offset: 0x2
+    bits: 0x1
+  - name: room9LeftHatch
     type: u8
     offset: 0x3
-  - name: numNeverReformBlocksBrokenInSector4
-    type: u8
-    offset: 0x4
-  - name: numNeverReformBlocksBrokenInSector5
-    type: u8
-    offset: 0x5
-  - name: numNeverReformBlocksBrokenInSector6
-    type: u8
-    offset: 0x6
-  - name: numNeverReformBlocksBrokenInDebug1
-    type: u8
-    offset: 0x7
-  loc: null
-- name: NumTanksCollected
-  size: 0x8
-  vars:
-  - name: numTanksCollectedInMainDeck
-    type: u8
-    offset: 0x0
-  - name: numTanksCollectedInSector1
-    type: u8
-    offset: 0x1
-  - name: numTanksCollectedInSector2
-    type: u8
-    offset: 0x2
-  - name: numTanksCollectedInSector3
+    bits: 0x1
+  - name: room9RightHatch
     type: u8
     offset: 0x3
-  - name: numTanksCollectedInSector4
+    bits: 0x1
+  - name: room10LeftHatch
     type: u8
-    offset: 0x4
-  - name: numTanksCollectedInSector5
+    offset: 0x3
+    bits: 0x1
+  - name: room10RightHatch
     type: u8
-    offset: 0x5
-  - name: numTanksCollectedInSector6
+    offset: 0x3
+    bits: 0x1
+  - name: room11LeftHatch
     type: u8
-    offset: 0x6
-  - name: numTanksCollectedInDebug1
+    offset: 0x3
+    bits: 0x1
+  - name: room11RightHatch
     type: u8
-    offset: 0x7
-  loc: null
-- name: NumTanksInArea
-  size: 0x3
-  vars:
-  - name: energyTanks
-    type: u8
-    offset: 0x0
-  - name: missileTanks
-    type: u8
-    offset: 0x1
-  - name: powerBombTanks
-    type: u8
-    offset: 0x2
-  loc: null
+    offset: 0x3
+    bits: 0x1
+  loc: include/structs/connection.h:44
 - name: OamData__all
   size: 0x8
   vars:
@@ -1569,7 +1183,7 @@
   - name: affineParam
     type: u16
     offset: 0x6
-  loc: include/oam.h:133
+  loc: include/oam.h:134
 - name: OamData__split
   size: 0x8
   vars:
@@ -1641,7 +1255,7 @@
     type: u16
     offset: 0x7
     bits: 0x1
-  loc: include/oam.h:110
+  loc: include/oam.h:111
 - name: ParticleEffect
   size: 0xC
   vars:
@@ -1675,15 +1289,9 @@
 - name: PauseDebugOptions
   size: 0xC
   vars:
-  - name: bldcnt
-    type: u16
+  - name: bld
+    type: union PauseDebugOptions__bld
     offset: 0x0
-  - name: bldalpha_evb
-    type: u8
-    offset: 0x2
-  - name: bldalpha_eva
-    type: u8
-    offset: 0x3
   - name: bldalpha_evy
     type: u8
     offset: 0x4
@@ -1706,6 +1314,29 @@
     type: u8
     offset: 0xA
   loc: include/structs/menus/pause_debug.h:7
+- name: PauseDebugOptions__bld__split
+  size: 0x4
+  vars:
+  - name: cnt
+    type: u16
+    offset: 0x0
+  - name: alpha_evb
+    type: u8
+    offset: 0x2
+  - name: alpha_eva
+    type: u8
+    offset: 0x3
+  loc: include/structs/menus/pause_debug.h:9
+- name: PauseDebugOptions__bld__whole
+  size: 0x4
+  vars:
+  - name: cnt
+    type: u16
+    offset: 0x0
+  - name: alpha
+    type: u16
+    offset: 0x2
+  loc: include/structs/menus/pause_debug.h:14
 - name: PauseScreenData
   size: 0x288
   vars:
@@ -2150,22 +1781,6 @@
     type: u8
     offset: 0x284
   loc: include/structs/menus/pause_screen.h:20
-- name: PcmSample
-  size: 0x10
-  vars:
-  - name: loopedFlag
-    type: u32
-    offset: 0x0
-  - name: pitch
-    type: u32
-    offset: 0x4
-  - name: loopRelativeStartingPoint
-    type: u32
-    offset: 0x8
-  - name: sampleSize
-    type: u32
-    offset: 0xC
-  loc: null
 - name: PowerBomb
   size: 0x14
   vars:
@@ -2209,37 +1824,6 @@
     type: u8
     offset: 0x12
   loc: include/structs/power_bomb.h:7
-- name: PrimarySpriteStats
-  size: 0xE
-  vars:
-  - name: spawnHealth
-    type: u16
-    offset: 0x0
-  - name: damage
-    type: u16
-    offset: 0x2
-  - name: suitDamageReduction
-    type: u16
-    offset: 0x4
-    enum: SuitDamageReduction
-  - name: weakness
-    type: u16
-    cat: flags
-    offset: 0x6
-    enum: SpriteWeakness
-  - name: healthXProbability
-    desc: Out of 0x400
-    type: u16
-    offset: 0x8
-  - name: missileXProbability
-    desc: Out of 0x400
-    type: u16
-    offset: 0xA
-  - name: redXProbability
-    desc: Out of 0x400
-    type: u16
-    offset: 0xC
-  loc: null
 - name: ProjectileData
   size: 0x20
   vars:
@@ -2308,40 +1892,40 @@
 - name: PsgSoundData
   size: 0x28
   vars:
-  - name: unk_00
+  - name: unk_0
     type: u8
     offset: 0x0
-  - name: unk_01
+  - name: unk_1
     type: u8
     offset: 0x1
-  - name: unk_02
+  - name: unk_2
     type: u8
     offset: 0x2
-  - name: unk_03
+  - name: unk_3
     type: u8
     offset: 0x3
   - name: envelope
     type: struct Envelope
     offset: 0x4
-  - name: noteDelay
+  - name: maybe_noteDelay
     type: u16
     offset: 0x8
-  - name: unk_0A
+  - name: unk_A
     type: u8
     offset: 0xA
-  - name: unk_0B
+  - name: unk_B
     type: u8
     offset: 0xB
-  - name: unk_0C
+  - name: unk_C
     type: u8
     offset: 0xC
-  - name: unk_0D
+  - name: unk_D
     type: u8
     offset: 0xD
-  - name: unk_0E
+  - name: unk_E
     type: u8
     offset: 0xE
-  - name: unk_0F
+  - name: unk_F
     type: u8
     offset: 0xF
   - name: unk_10
@@ -2389,13 +1973,13 @@
   - name: unk_1F
     type: u8
     offset: 0x1F
-  - name: sample
+  - name: pSample
     type: u32*
     offset: 0x20
-  - name: variables
+  - name: pVariables
     type: struct TrackVariables*
     offset: 0x24
-  loc: null
+  loc: include/structs/audio.h:63
 - name: RawCoordsX
   size: 0x4
   vars:
@@ -2405,7 +1989,7 @@
   - name: y
     type: u16
     offset: 0x2
-  loc: include/types.h:91
+  loc: include/types.h:104
 - name: RawCoordsY
   size: 0x4
   vars:
@@ -2415,7 +1999,7 @@
   - name: x
     type: u16
     offset: 0x2
-  loc: include/types.h:96
+  loc: include/types.h:109
 - name: RoomEntry
   size: 0x1C
   vars:
@@ -2471,7 +2055,7 @@
   - name: damagingEffect
     type: u8
     offset: 0x14
-  - name: musicTrakc
+  - name: musicTrack
     type: u16
     offset: 0x16
   - name: bg0Size
@@ -2488,20 +2072,86 @@
   - name: animatedPalette
     type: u8
     offset: 0x1B
-  loc: include/structs/room.h:7
-- name: RoomSpriteEntry
-  size: 0x3
+  loc: include/structs/room.h:11
+- name: RoomEntryRom
+  size: 0x3C
   vars:
-  - name: yPosition
+  - name: tileset
     type: u8
     offset: 0x0
-  - name: xPosition
+  - name: bg0Prop
     type: u8
     offset: 0x1
-  - name: properties
+  - name: bg1Prop
     type: u8
     offset: 0x2
-  loc: null
+  - name: bg2Prop
+    type: u8
+    offset: 0x3
+  - name: bg3Prop
+    type: u8
+    offset: 0x4
+  - name: pBg0Data
+    type: const u8*
+    offset: 0x8
+  - name: pBg1Data
+    type: const u8*
+    offset: 0xC
+  - name: pBg2Data
+    type: const u8*
+    offset: 0x10
+  - name: pClipData
+    type: const u8*
+    offset: 0x14
+  - name: pBg3Data
+    type: const u32*
+    offset: 0x18
+  - name: bg3Scrolling
+    type: u8
+    offset: 0x1C
+  - name: transparency
+    type: u8
+    offset: 0x1D
+  - name: pDefaultSpriteData
+    type: const u8*
+    offset: 0x20
+  - name: defaultSpriteset
+    type: u8
+    offset: 0x24
+  - name: firstSpritesetEvent
+    type: u8
+    offset: 0x25
+  - name: pFirstSpriteData
+    type: const u8*
+    offset: 0x28
+  - name: firstSpriteset
+    type: u8
+    offset: 0x2C
+  - name: secondSpritesetEvent
+    type: u8
+    offset: 0x2D
+  - name: pSecondSpriteData
+    type: const u8*
+    offset: 0x30
+  - name: secondSpriteset
+    type: u8
+    offset: 0x34
+  - name: mapX
+    type: u8
+    offset: 0x35
+  - name: mapY
+    type: u8
+    offset: 0x36
+  - name: effect
+    type: u8
+    offset: 0x37
+  - name: effectY
+    type: u8
+    offset: 0x38
+  - name: musicTrack
+    type: u16
+    offset: 0x3A
+  loc: include/structs/room.h:55
 - name: SaXAnimationData
   size: 0xC
   vars:
@@ -2515,6 +2165,19 @@
     type: u8
     offset: 0x8
   loc: include/structs/sa_x.h:40
+- name: SaXCloseUpData
+  size: 0x4
+  vars:
+  - name: unk_0
+    type: u8
+    offset: 0x0
+  - name: stage
+    type: u8
+    offset: 0x1
+  - name: timer
+    type: u8
+    offset: 0x2
+  loc: include/structs/sa_x_close_up.h:6
 - name: SaXData
   size: 0x24
   vars:
@@ -2663,50 +2326,27 @@
     type: u8
     offset: 0x7
   loc: include/structs/sa_x.h:29
-- name: SampleInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: midiKey
-    type: u8
-    offset: 0x1
-  - name: unused
-    type: u8
-    offset: 0x2
-  - name: panning
-    type: u8
-    offset: 0x3
-  - name: pSampleData
-    type: u8*
-    offset: 0x4
-  - name: envelope
-    type: struct Envelope
-    offset: 0x8
-  loc: null
 - name: SamusAnimData
   size: 0x10
   vars:
-  - name: pTorsoGfx
-    type: u8*
+  - name: pTopGfx
+    type: const u8*
     cat: gfx
     offset: 0x0
-  - name: pLegsGfx
-    type: u8*
+  - name: pBottomGfx
+    type: const u8*
     cat: gfx
     offset: 0x4
-  - name: pOamFrame
-    type: u16*
+  - name: pOam
+    type: const u16*
     cat: oam_frame
     offset: 0x8
   - name: timer
     type: u8
     offset: 0xC
-  loc: null
+  loc: include/structs/samus.h:140
 - name: SamusAnimationInfo
-  size: 0x8
+  size: 0xC
   vars:
   - name: loadingSave
     type: u8
@@ -2723,7 +2363,51 @@
   - name: shinesparkTimer
     type: u8
     offset: 0x4
+  - name: unk_6
+    type: u8
+    count: 0x7
+    offset: 0x5
   loc: include/structs/samus.h:85
+- name: SamusCollisionData
+  size: 0x10
+  vars:
+  - name: horizontalMovingDirection
+    type: u16
+    offset: 0x0
+  - name: verticalMovingDirection
+    type: u16
+    offset: 0x2
+  - name: unk_4
+    type: u8
+    offset: 0x4
+  - name: unk_5
+    type: u8
+    offset: 0x5
+  - name: unk_6
+    type: s16
+    offset: 0x6
+  - name: standingStatus
+    type: u8
+    offset: 0x8
+  - name: collisionType
+    type: u8
+    offset: 0x9
+  - name: unk_A
+    type: u8
+    offset: 0xA
+  - name: unk_B
+    type: u8
+    offset: 0xB
+  - name: touchingSideBlock
+    type: u8
+    offset: 0xC
+  - name: touchingTopBlock
+    type: u8
+    offset: 0xD
+  - name: unk_E
+    type: u8
+    offset: 0xE
+  loc: include/structs/samus.h:118
 - name: SamusData
   size: 0x2C
   vars:
@@ -2836,7 +2520,7 @@
 - name: SamusEcho
   size: 0xC
   vars:
-  - name: echoFlag
+  - name: active
     type: u8
     offset: 0x0
   - name: timer
@@ -2845,7 +2529,11 @@
   - name: position
     type: u8
     offset: 0x2
-  loc: null
+  - name: unk_4
+    type: u8
+    count: 0x9
+    offset: 0x3
+  loc: include/structs/samus.h:133
 - name: SamusEnvironmentalEffect
   size: 0x10
   vars:
@@ -2879,7 +2567,7 @@
   - name: pOamFrame
     type: const u16*
     offset: 0xC
-  loc: include/structs/samus.h:104
+  loc: include/structs/samus.h:105
 - name: SamusGraphicsInfo
   size: 0x3C
   vars:
@@ -2942,22 +2630,6 @@
     type: u16
     offset: 0x38
   loc: include/structs/samus.h:57
-- name: SamusHitboxOffsets
-  size: 0x8
-  vars:
-  - name: hitboxLeftOffset
-    type: u16
-    offset: 0x0
-  - name: hitboxTopOffset
-    type: u16
-    offset: 0x2
-  - name: hitboxRightOffset
-    type: u16
-    offset: 0x4
-  - name: hitboxBottomOffset
-    type: u16
-    offset: 0x6
-  loc: null
 - name: SamusPhysics
   size: 0x10
   vars:
@@ -2985,222 +2657,15 @@
   - name: xVelocityCap
     type: s16
     offset: 0xE
-  loc: include/structs/samus.h:93
-- name: SaveFileRam
+  loc: include/structs/samus.h:94
+- name: SaveFile
   size: 0x1200
   vars:
-  - name: metroidEpisode4A_Text
-    type: s8
-    count: 0x10
-    cat: ascii
+  - name: todo
+    type: u8
+    count: 0x1200
     offset: 0x0
-  - name: checksum
-    type: u32
-    offset: 0x10
-  - name: bitwiseNotOfChecksum
-    type: u32
-    offset: 0x14
-  - name: gameCompletion
-    type: struct GameCompletion
-    offset: 0x18
-  - name: unk_1C
-    type: u8
-    offset: 0x1C
-  - name: area
-    type: u8
-    offset: 0x1D
-    enum: Area
-  - name: roomId
-    type: u8
-    offset: 0x1E
-  - name: prevDoor
-    type: u8
-    offset: 0x1F
-  - name: abilityCount
-    type: u8
-    offset: 0x20
-    enum: AbilityCount
-  - name: eventCounter
-    type: u8
-    offset: 0x21
-    enum: Event
-  - name: prevNavConversation
-    type: u8
-    offset: 0x22
-  - name: prevCutscene
-    type: u8
-    offset: 0x23
-  - name: minimapXCoordinate
-    type: u8
-    offset: 0x24
-  - name: minimapYCoordinate
-    type: u8
-    offset: 0x25
-  - name: subEventCounter
-    type: u16
-    offset: 0x26
-  - name: prevSubEvent
-    type: u16
-    offset: 0x28
-  - name: currFlashingSectorNum
-    type: u8
-    offset: 0x2A
-  - name: backupOfSecurityHatchFlashLevelDuringPowerOutage
-    type: u8
-    offset: 0x2B
-    enum: SecurityLevel
-  - name: camera
-    type: struct Camera
-    offset: 0x2C
-  - name: bg0XPosition
-    type: u16
-    offset: 0x40
-  - name: bg0YPosition
-    type: u16
-    offset: 0x42
-  - name: bg1XPosition
-    type: u16
-    offset: 0x44
-  - name: bg1YPosition
-    type: u16
-    offset: 0x46
-  - name: bg2XPosition
-    type: u16
-    offset: 0x48
-  - name: bg2YPosition
-    type: u16
-    offset: 0x4A
-  - name: bg3XPosition
-    type: u16
-    offset: 0x4C
-  - name: bg3YPosition
-    type: u16
-    offset: 0x4E
-  - name: numNeverReformBlocksBroken
-    type: struct NumNeverReformBlocksBroken
-    offset: 0x50
-  - name: numTanksCollected
-    type: struct NumTanksCollected
-    offset: 0x58
-  - name: samusData
-    type: struct SamusData
-    offset: 0x60
-  - name: samusAnimInfo
-    type: struct SamusAnimInfo
-    offset: 0x8C
-  - name: samusEcho
-    type: struct SamusEcho
-    offset: 0x98
-  - name: samusEnvironmentalEffect
-    type: struct SamusEnvironmentalEffect
-    offset: 0xA4
-  - name: equipment
-    type: struct Equipment
-    offset: 0xC4
-  - name: freezeMovementTimer
-    type: u16
-    offset: 0xD4
-  - name: disableDrawingSamusAndScrollingFlag
-    type: u8
-    offset: 0xD6
-  - name: atmosphericStabilizersOnline
-    type: u16
-    cat: flags
-    offset: 0xD8
-  - name: normalXBarrierCoresDestroyed
-    type: u16
-    cat: flags
-    offset: 0xDA
-  - name: superXBarrierCoresDestroyed
-    type: u16
-    cat: flags
-    offset: 0xDC
-  - name: powerXBarrierCoresDestroyed
-    type: u16
-    cat: flags
-    offset: 0xDE
-  - name: eyedoorsDestroyed
-    type: u16
-    cat: flags
-    offset: 0xE0
-  - name: missileHatchDestroyed
-    type: u8
-    offset: 0xE2
-  - name: waterLoweredFlag
-    type: u8
-    offset: 0xE3
-  - name: inGameTimer
-    type: struct InGameTime
-    offset: 0xE4
-  - name: musicSlot1
-    type: u16
-    offset: 0xE8
-  - name: musicSlot2
-    type: u16
-    offset: 0xEA
-  - name: musicSlotSwitch
-    type: u8
-    offset: 0xEC
-  - name: eventBasedMusicFlag
-    type: u8
-    offset: 0xED
-  - name: musicRelated
-    type: u8
-    offset: 0xEE
-  - name: difficulty
-    type: u8
-    offset: 0xF0
-    enum: Difficulty
-  - name: bestCompletionTimes_Unused
-    type: struct InGameTime
-    count: 0xC
-    offset: 0xF4
-  - name: sAVE_END_Text
-    type: s8
-    count: 0x8
-    cat: ascii
-    offset: 0x124
-  - name: minimapVisitedTiles
-    type: u8
-    count: 0x380
-    offset: 0x300
-  - name: neverReformBlocks
-    type: struct NeverReformBlock
-    count: 0x300
-    offset: 0x680
-  - name: tanksCollected
-    type: struct CollectedTank
-    count: 0xA0
-    offset: 0xF80
-  loc: null
-- name: Camera
-  size: 0x14
-  vars:
-  - name: xPosition
-    type: u16
-    offset: 0x0
-  - name: yPosition
-    type: u16
-    offset: 0x4
-  - name: xVelocity
-    type: s8
-    offset: 0x6
-  - name: yVelocity
-    type: s8
-    offset: 0x7
-  - name: unk_8
-    type: u8
-    offset: 0x8
-  - name: unk_9
-    type: u8
-    offset: 0x9
-  - name: unk_a
-    type: u8
-    offset: 0xA
-  - name: unk_c
-    type: u16
-    offset: 0xC
-  loc: null
+  loc: include/structs/save_file.h:11
 - name: ScreenShake
   size: 0x4
   vars:
@@ -3236,25 +2701,6 @@
     type: u16
     offset: 0x8
   loc: include/structs/scroll.h:56
-- name: SecondarySpriteStats
-  size: 0x8
-  vars:
-  - name: spawnHealth
-    type: u16
-    offset: 0x0
-  - name: damage
-    type: u16
-    offset: 0x2
-  - name: suitDamageReduction
-    type: u16
-    offset: 0x4
-    enum: SuitDamageReduction
-  - name: weakness
-    type: u16
-    cat: flags
-    offset: 0x6
-    enum: SpriteWeakness
-  loc: null
 - name: SecurityUnlockEvent
   size: 0x8
   vars:
@@ -3280,43 +2726,43 @@
 - name: SoundChannel
   size: 0x34
   vars:
-  - name: unk_00
+  - name: unk_0
     type: u8
     offset: 0x0
-  - name: unk_01
+  - name: unk_1
     type: u8
     offset: 0x1
-  - name: unk_02
+  - name: unk_2
     type: u8
     offset: 0x2
-  - name: unk_03
+  - name: unk_3
     type: u8
     offset: 0x3
-  - name: unk_04
+  - name: unk_4
     type: u8
     offset: 0x4
-  - name: unk_05
+  - name: unk_5
     type: u8
     offset: 0x5
-  - name: unk_06
+  - name: unk_6
     type: u8
     offset: 0x6
-  - name: unk_07
+  - name: unk_7
     type: u8
     offset: 0x7
   - name: envelope
     type: struct Envelope
     offset: 0x8
-  - name: unk_0C
+  - name: unk_C
     type: u8
     offset: 0xC
-  - name: unk_0D
+  - name: unk_D
     type: u8
     offset: 0xD
-  - name: unk_0E
+  - name: unk_E
     type: u8
     offset: 0xE
-  - name: unk_0F
+  - name: unk_F
     type: u8
     offset: 0xF
   - name: unk_10
@@ -3331,7 +2777,7 @@
   - name: unk_13
     type: u8
     offset: 0x13
-  - name: size
+  - name: pSize
     type: u32*
     offset: 0x14
   - name: unk_18
@@ -3340,35 +2786,61 @@
   - name: unk_1C
     type: u32
     offset: 0x1C
-  - name: sample
+  - name: pSample
     type: u32*
     offset: 0x20
-  - name: data
+  - name: pData
     type: u8*
     offset: 0x24
-  - name: variables
+  - name: pVariables
     type: struct TrackVariables*
     offset: 0x28
-  - name: channel1
+  - name: pChannel1
     type: struct SoundChannel*
     offset: 0x2C
-  - name: channel2
+  - name: pChannel2
     type: struct SoundChannel*
     offset: 0x30
-  loc: null
-- name: SoundDataEntry
+  loc: include/structs/audio.h:30
+- name: SoundChannelBackup
+  size: 0x38
+  vars:
+  - name: pChannel
+    type: struct SoundChannel*
+    offset: 0x0
+  - name: channel
+    type: struct SoundChannel
+    offset: 0x4
+  loc: include/structs/audio.h:58
+- name: SoundEntry
   size: 0x8
   vars:
-  - name: pSoundHeader
-    type: u8*
+  - name: pHeader
+    type: const u8*
     offset: 0x0
-  - name: trackGroupNum
+  - name: trackGroupNumber
     type: u16
     offset: 0x4
-  - name: trackGroupNum
+  - name: trackGroupNumber_2
     type: u16
     offset: 0x6
-  loc: null
+  loc: include/structs/audio.h:212
+- name: SoundQueue
+  size: 0x8
+  vars:
+  - name: exists
+    type: u8
+    offset: 0x0
+  - name: priority
+    type: u8
+    offset: 0x1
+  - name: fadingTimer
+    type: u16
+    offset: 0x2
+  - name: pHeader
+    type: const u8*
+    offset: 0x4
+  loc: include/structs/audio.h:23
 - name: SpriteData
   size: 0x38
   vars:
@@ -3497,7 +2969,7 @@
   - name: numberOfXToForm
     type: u8
     offset: 0x36
-  loc: include/structs/sprite.h:11
+  loc: include/structs/sprite.h:37
 - name: SpriteDebris
   size: 0x10
   vars:
@@ -3529,47 +3001,11 @@
     type: u8
     offset: 0xE
   loc: include/structs/sprite_debris.h:9
-- name: SpritesetEntry
-  size: 0x2
-  vars:
-  - name: spriteId
-    type: u8
-    offset: 0x0
-    enum: PrimarySpriteId
-  - name: gfxRow
-    type: u8
-    offset: 0x1
-  loc: null
-- name: SquareInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    desc: 1 or 2 for square
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: midiKey
-    type: u8
-    offset: 0x1
-  - name: hardwareTimeLength
-    type: u8
-    offset: 0x2
-  - name: sweep
-    desc: Square 1 only
-    type: u8
-    offset: 0x3
-  - name: dutyCycle
-    type: u8
-    offset: 0x4
-  - name: envelope
-    type: struct Envelope
-    offset: 0x8
-  loc: null
 - name: SubSpriteData
   size: 0x10
   vars:
   - name: pMultiOam
-    type: const struct FrameData*
+    type: const struct MultiSpriteData*
     offset: 0x0
   - name: currentAnimationFrame
     type: u16
@@ -3592,36 +3028,7 @@
   - name: work1
     type: u8
     offset: 0xF
-  loc: include/structs/sprite.h:54
-- name: SuitDamageReductionPercent
-  size: 0x6
-  vars:
-  - name: fractionOfDamageDealt_FusionSuit
-    desc: Out of 10
-    type: u16
-    offset: 0x0
-  - name: fractionOfDamageDealt_VariaSuit
-    desc: Out of 10
-    type: u16
-    offset: 0x2
-  - name: fractionOfDamageDealt_GravitySuit
-    desc: Out of 10
-    type: u16
-    offset: 0x4
-  loc: null
-- name: TankIncreaseAmounts
-  size: 0x3
-  vars:
-  - name: energy
-    type: u8
-    offset: 0x0
-  - name: missiles
-    type: u8
-    offset: 0x1
-  - name: powerBombs
-    type: u8
-    offset: 0x2
-  loc: null
+  loc: include/structs/sprite.h:80
 - name: TilemapAndClipPointers
   size: 0xC
   vars:
@@ -3638,22 +3045,22 @@
 - name: TilesetEntry
   size: 0x14
   vars:
-  - name: pRleBgGfx
-    type: u8*
+  - name: pTileGraphics
+    type: const u32*
     cat: gfx
     comp: lz
     offset: 0x0
-  - name: pBgPalette
-    type: u16*
+  - name: pPalette
+    type: const u16*
     cat: palette
     offset: 0x4
-  - name: pLz77BgGfx
-    type: u8*
+  - name: pBackgroundGraphics
+    type: const u32*
     cat: gfx
     comp: lz
     offset: 0x8
-  - name: pRleBgTilemap
-    type: u16*
+  - name: pTilemap
+    type: const u8*
     cat: tilemap
     offset: 0xC
   - name: animatedTileset
@@ -3662,7 +3069,7 @@
   - name: animatedPalette
     type: u8
     offset: 0x11
-  loc: null
+  loc: include/structs/room.h:46
 - name: TitleScreenData
   size: 0x6C
   vars:
@@ -3726,7 +3133,7 @@
   - name: pOam
     type: const struct FrameData*
     offset: 0x10
-  - name: pSubroutine
+  - name: pHandler
     type: TitleScreenObjectFunc_T
     offset: 0x14
   loc: include/structs/menus/title_screen.h:10
@@ -3739,40 +3146,40 @@
   - name: amountOfTracks
     type: u8
     offset: 0x1
-  - name: undefined_02
+  - name: undefined_2
     type: u8
     offset: 0x2
-  - name: unk_03
+  - name: unk_3
     type: u8
     offset: 0x3
-  - name: currTrack
+  - name: currentTrack
     type: u8
     offset: 0x4
   - name: maxAmountOfTracks
     type: u8
     offset: 0x5
-  - name: volume
+  - name: maybe_volume
     type: u16
     offset: 0x6
   - name: fadingTimer
     type: u16
     offset: 0x8
-  - name: unk_0A
+  - name: unk_A
     type: u16
     offset: 0xA
-  - name: unk_0C
+  - name: unk_C
     type: u16
     offset: 0xC
-  - name: unk_0E
+  - name: unk_E
     type: u16
     offset: 0xE
-  - name: header
-    type: u8*
+  - name: pHeader
+    type: const u8*
     offset: 0x10
-  - name: voice
+  - name: pVoice
     type: struct Voice*
     offset: 0x14
-  - name: variables
+  - name: pVariables
     type: struct TrackVariables*
     offset: 0x18
   - name: occupied
@@ -3874,38 +3281,54 @@
   - name: undefined_3F
     type: u8
     offset: 0x3F
-  loc: null
+  loc: include/structs/audio.h:145
+- name: TrackGroupRomData
+  size: 0xC
+  vars:
+  - name: pTrack
+    type: struct TrackData*
+    offset: 0x0
+  - name: pVariables
+    type: struct TrackVariables*
+    offset: 0x4
+  - name: maxAmountOfTracks
+    type: u16
+    offset: 0x8
+  - name: unk_A
+    type: u16
+    offset: 0xA
+  loc: include/structs/audio.h:205
 - name: TrackVariables
   size: 0x50
   vars:
-  - name: unk_00
+  - name: unk_0
     type: u8
     offset: 0x0
-  - name: unk_01
+  - name: unk_1
     type: u8
     offset: 0x1
   - name: delay
     type: u8
     offset: 0x2
-  - name: unk_03
+  - name: unk_3
     type: u8
     offset: 0x3
   - name: volume
     type: u8
     offset: 0x4
-  - name: unk_05
+  - name: unk_5
     type: u8
     offset: 0x5
-  - name: unk_06
+  - name: unk_6
     type: u8
     offset: 0x6
-  - name: unk_07
+  - name: unk_7
     type: u8
     offset: 0x7
-  - name: unk_08
+  - name: unk_8
     type: u8
     offset: 0x8
-  - name: unk_09
+  - name: unk_9
     type: u8
     offset: 0x9
   - name: repeatCount
@@ -3914,16 +3337,16 @@
   - name: priority
     type: u8
     offset: 0xB
-  - name: unk_0C
+  - name: unk_C
     type: u8
     offset: 0xC
-  - name: unk_0D
+  - name: unk_D
     type: u8
     offset: 0xD
-  - name: unk_0E
+  - name: unk_E
     type: u8
     offset: 0xE
-  - name: unk_0F
+  - name: unk_F
     type: u8
     offset: 0xF
   - name: lfoSpeed
@@ -3977,11 +3400,11 @@
   - name: unk_20
     type: u32
     offset: 0x20
-  - name: rawData
-    type: u8*
+  - name: pRawData
+    type: const u8*
     offset: 0x24
   - name: patternStartPointers
-    type: u8*
+    type: const u8*
     count: 0x3
     offset: 0x28
   - name: channel
@@ -3996,25 +3419,46 @@
   - name: unk_37
     type: u8
     offset: 0x37
-  - name: sample1
+  - name: pSample1
     type: u32*
     offset: 0x38
   - name: envelope1
     type: struct Envelope
     offset: 0x3C
-  - name: sample2
+  - name: pSample2
     type: u32*
     offset: 0x40
   - name: envelope2
     type: struct Envelope
     offset: 0x44
-  - name: channel
+  - name: pChannel
     type: struct SoundChannel*
     offset: 0x48
-  - name: soundPsg
+  - name: pSoundPsg
     type: struct PsgSoundData*
     offset: 0x4C
-  loc: null
+  loc: include/structs/audio.h:95
+- name: Unk_3004e44
+  size: 0x4
+  vars:
+  - name: unk_0
+    type: s8
+    offset: 0x0
+  - name: unk_1
+    type: u8
+    offset: 0x1
+  loc: include/globals.h:266
+- name: Unk_3004e4c
+  size: 0xC
+  vars:
+  - name: unk_0
+    type: u8
+    count: 0x8
+    offset: 0x0
+  - name: unk_8
+    type: s16
+    offset: 0x8
+  loc: include/globals.h:273
 - name: Voice
   size: 0xC
   vars:
@@ -4024,10 +3468,10 @@
   - name: pitch
     type: u8
     offset: 0x1
-  - name: unk_02
+  - name: unk_2
     type: u8
     offset: 0x2
-  - name: unk_03
+  - name: unk_3
     type: u8
     offset: 0x3
   - name: pSample
@@ -4036,30 +3480,9 @@
   - name: envelope
     type: struct Envelope
     offset: 0x8
-  loc: null
-- name: WaveInstrumentDef
-  size: 0xC
-  vars:
-  - name: instrumentType
-    desc: 3 for wave
-    type: u8
-    offset: 0x0
-    enum: InstrumentType
-  - name: midiKey
-    type: u8
-    offset: 0x1
-  - name: hardwareTimeLength
-    type: u8
-    offset: 0x2
-  - name: pWaveformData
-    type: u8*
-    offset: 0x4
-  - name: envelope
-    type: struct Envelope
-    offset: 0x8
-  loc: null
+  loc: include/structs/audio.h:14
 - name: WindowBorder
-  size: 0x4
+  size: 0x8
   vars:
   - name: left
     type: u8
@@ -4073,4 +3496,7 @@
   - name: bottom
     type: u8
     offset: 0x3
-  loc: include/globals.h:74
+  - name: timer
+    type: u8
+    offset: 0x4
+  loc: include/globals.h:119

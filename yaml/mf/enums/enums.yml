@@ -40,7 +40,7 @@
     val: 0x12
   - name: ABILITY_COUNT_END
     val: 0x13
-  loc: include/constants/event.h:396
+  loc: include/constants/event.h:403
 - name: Area
   vals:
   - name: AREA_MAIN_DECK
@@ -70,23 +70,6 @@
   - name: AREA_END
     val: 0xA
   loc: include/constants/connection.h:4
-- name: AreaBitFlags
-  vals:
-  - name: MainDeck
-    val: 0x1
-  - name: Sector1
-    val: 0x2
-  - name: Sector2
-    val: 0x4
-  - name: Sector3
-    val: 0x8
-  - name: Sector4
-    val: 0x10
-  - name: Sector5
-    val: 0x20
-  - name: Sector6
-    val: 0x40
-  loc: null
 - name: AreaConnectionField
   vals:
   - name: AREA_CONNECTION_FIELD_SOURCE_AREA
@@ -97,16 +80,16 @@
     val: 0x2
   - name: AREA_CONNECTION_FIELD_COUNT
     val: 0x3
-  loc: include/structs/connection.h:44
+  loc: include/structs/connection.h:93
 - name: ArmCannonDirection
   vals:
   - name: ACD_NONE
     val: 0x0
   - name: ACD_FORWARD
     val: 0x1
-  - name: ACD_DIAGONALLY_UP
+  - name: ACD_DIAGONAL_UP
     val: 0x2
-  - name: ACD_DIAGONALLY_DOWN
+  - name: ACD_DIAGONAL_DOWN
     val: 0x3
   - name: ACD_UP
     val: 0x4
@@ -114,29 +97,16 @@
     val: 0x5
   - name: ACD_END
     val: 0x6
-  loc: include/constants/samus.h:106
-- name: BackgroundFade
+  loc: include/constants/samus.h:109
+- name: ArmCannonOffsetFields
   vals:
-  - name: Nothing
+  - name: ACO_Y
     val: 0x0
-  - name: FadeToBlack
+  - name: ACO_X
     val: 0x1
-  - name: FadeToWhite
+  - name: ACO_COUNT
     val: 0x2
-  loc: null
-- name: BeamStatus
-  vals:
-  - name: ChargeBeam
-    val: 0x1
-  - name: WideBeam
-    val: 0x2
-  - name: PlasmaBeam
-    val: 0x4
-  - name: WaveBeam
-    val: 0x8
-  - name: IceBeam
-    val: 0x10
-  loc: null
+  loc: include/constants/samus.h:120
 - name: Bg3ScrollingType
   vals:
   - name: BG3_SCROLLING_TYPE_NONE
@@ -150,61 +120,296 @@
   loc: include/structs/scroll.h:46
 - name: BgProperty
   vals:
-  - name: None
+  - name: BG_PROP_NONE
     val: 0x0
-  - name: RleCompressed
+  - name: BG_PROP_RLE_COMPRESSED
     val: 0x10
-  - name: DimRoomsDuringPowerOutage
+  - name: BG_PROP_LZ77_COMPRESSED
+    val: 0x40
+  - name: BG_PROP_DISABLE_TRANSPARENCY
     val: 0x12
-  - name: ElevatorHall
+  - name: BG_PROP_13
     val: 0x13
-  - name: NettoriPowerRooms_RestrictedLabRooms
+  - name: BG_PROP_14
     val: 0x14
-  - name: Lz77Compressed
-    val: 0x40
-  - name: NightmaresRoom
+  - name: BG_PROP_NIGHTMARE_ROOM
     val: 0x41
-  - name: AlwaysDarkRoom
+  - name: BG_PROP_DARK_ROOM
     val: 0x43
-  - name: SaxRoom
+  - name: BG_PROP_SA_X_ROOM
     val: 0x44
-  - name: DarkRoom_MainDeck
+  - name: BG_PROP_DIM_ROOM
     val: 0x45
-  - name: ElectricWaterRoom
+  - name: BG_PROP_WATER_DRAIN_ROOM
     val: 0x46
-  - name: AtmosphericStabilizerRoom
+  - name: BG_PROP_FOG
     val: 0x47
-  - name: MeltdownRoom
+  - name: BG_PROP_MELTDOWN
     val: 0x48
-  - name: NightmareShadow
+  - name: BG_PROP_NIGHTMARE_SHADOW
     val: 0x49
-  - name: OmegaMetroidRoom
+  - name: BG_PROP_SR388
     val: 0x4A
-  loc: null
-- name: ButtonInput
+  loc: include/constants/room.h:32
+- name: BoxBombMovementStage
   vals:
-  - name: A
+  - name: BOX_BOMB_MOVEMENT_STAGE_LAUNCHING
+    val: 0x0
+  - name: BOX_BOMB_MOVEMENT_STAGE_FALLING_1
     val: 0x1
-  - name: B
+  - name: BOX_BOMB_MOVEMENT_STAGE_FIRST_BOUNCE
     val: 0x2
-  - name: Select
+  - name: BOX_BOMB_MOVEMENT_STAGE_FALLING_2
+    val: 0x3
+  - name: BOX_BOMB_MOVEMENT_STAGE_SECOND_BOUNCE
     val: 0x4
-  - name: Start
+  - name: BOX_BOMB_MOVEMENT_STAGE_FALLING_3
+    val: 0x5
+  - name: BOX_BOMB_MOVEMENT_STAGE_LANDED
+    val: 0x6
+  loc: src/sprites_AI/box.c:1448
+- name: BoxOam
+  vals:
+  - name: BOX_OAM_PART_FRONT_LEFT_LEG_COVER_UNDAMAGED
+    val: 0x0
+  - name: BOX_OAM_3479B8
+    val: 0x1
+  - name: BOX_OAM_PART_FRONT_LEFT_LEG_COVER_DAMAGED
+    val: 0x2
+  - name: BOX_OAM_347A00
+    val: 0x3
+  - name: BOX_OAM_347A10
+    val: 0x4
+  - name: BOX_OAM_PART_FRONT_LEFT_LEG_0
+    val: 0x5
+  - name: BOX_OAM_PART_FRONT_LEFT_LEG_1
+    val: 0x6
+  - name: BOX_OAM_PART_FRONT_LEFT_LEG_2
+    val: 0x7
+  - name: BOX_OAM_347A50
     val: 0x8
-  - name: Right
+  - name: BOX_OAM_347A60
+    val: 0x9
+  - name: BOX_OAM_347A70
+    val: 0xA
+  - name: BOX_OAM_347A80
+    val: 0xB
+  - name: BOX_OAM_347A90
+    val: 0xC
+  - name: BOX_OAM_PART_FRONT_RIGHT_LEG_COVER_UNDAMAGED
+    val: 0xD
+  - name: BOX_OAM_347AB0
+    val: 0xE
+  - name: BOX_OAM_347AE8
+    val: 0xF
+  - name: BOX_OAM_347AF8
     val: 0x10
-  - name: Left
+  - name: BOX_OAM_347B08
+    val: 0x11
+  - name: BOX_OAM_347B18
+    val: 0x12
+  - name: BOX_OAM_347B28
+    val: 0x13
+  - name: BOX_OAM_347B38
+    val: 0x14
+  - name: BOX_OAM_347B48
+    val: 0x15
+  - name: BOX_OAM_347B58
+    val: 0x16
+  - name: BOX_OAM_347B68
+    val: 0x17
+  - name: BOX_OAM_347B78
+    val: 0x18
+  - name: BOX_OAM_347B88
+    val: 0x19
+  - name: BOX_OAM_PART_CENTER_UNDAMAGED
+    val: 0x1A
+  - name: BOX_OAM_347BA8
+    val: 0x1B
+  - name: BOX_OAM_347BB8
+    val: 0x1C
+  - name: BOX_OAM_347BC8
+    val: 0x1D
+  - name: BOX_OAM_PART_BRAIN
+    val: 0x1E
+  - name: BOX_OAM_347C38
+    val: 0x1F
+  - name: BOX_OAM_347C70
     val: 0x20
-  - name: Up
+  - name: BOX_OAM_347C98
+    val: 0x21
+  - name: BOX_OAM_347CA8
+    val: 0x22
+  - name: BOX_OAM_347CD8
+    val: 0x23
+  - name: BOX_OAM_347CF8
+    val: 0x24
+  - name: BOX_OAM_347D18
+    val: 0x25
+  - name: BOX_OAM_347D28
+    val: 0x26
+  - name: BOX_OAM_347D38
+    val: 0x27
+  - name: BOX_OAM_347D48
+    val: 0x28
+  - name: BOX_OAM_347D58
+    val: 0x29
+  - name: BOX_OAM_347D68
+    val: 0x2A
+  - name: BOX_OAM_347D88
+    val: 0x2B
+  - name: BOX_OAM_347E58
+    val: 0x2C
+  - name: BOX_OAM_347E80
+    val: 0x2D
+  - name: BOX_OAM_347FA8
+    val: 0x2E
+  - name: BOX_OAM_347FB8
+    val: 0x2F
+  - name: BOX_OAM_347FC8
+    val: 0x30
+  - name: BOX_OAM_347FD8
+    val: 0x31
+  - name: BOX_OAM_347FE8
+    val: 0x32
+  - name: BOX_OAM_347FF8
+    val: 0x33
+  - name: BOX_OAM_348008
+    val: 0x34
+  - name: BOX_OAM_348018
+    val: 0x35
+  - name: BOX_OAM_348028
+    val: 0x36
+  - name: BOX_OAM_348038
+    val: 0x37
+  - name: BOX_OAM_348048
+    val: 0x38
+  - name: BOX_OAM_3480A8
+    val: 0x39
+  - name: BOX_OAM_END
+    val: 0x3A
+  loc: include/data/sprites/box.h:9
+- name: BoxPart
+  vals:
+  - name: BOX_PART_FRONT_LEFT_LEG_COVER
+    val: 0x0
+  - name: BOX_PART_FRONT_LEFT_LEG
+    val: 0x1
+  - name: BOX_PART_FRONT_RIGHT_LEG_COVER
+    val: 0x2
+  - name: BOX_PART_FRONT_RIGHT_LEG
+    val: 0x3
+  - name: BOX_PART_MIDDLE_LEFT_LEG
+    val: 0x4
+  - name: BOX_PART_MIDDLE_RIGHT_LEG
+    val: 0x5
+  - name: BOX_PART_CENTER
+    val: 0x6
+  - name: BOX_PART_BRAIN
+    val: 0x7
+  - name: BOX_PART_CENTER_BOTTOM
+    val: 0x8
+  - name: BOX_PART_LAUNCHER
+    val: 0x9
+  - name: BOX_PART_BACK_LEFT_LEG
+    val: 0xA
+  - name: BOX_PART_BACK_RIGHT_LEG
+    val: 0xB
+  - name: BOX_PART_END
+    val: 0xC
+  loc: src/sprites_AI/box.c:2371
+- name: BoxPose
+  vals:
+  - name: BOX_POSE_CRAWLING_INIT
+    val: 0x1
+  - name: BOX_POSE_CRAWLING
+    val: 0x2
+  - name: BOX_POSE_WAITING_TO_RUN_INIT
+    val: 0x17
+  - name: BOX_POSE_WAITING_TO_RUN
+    val: 0x18
+  - name: BOX_POSE_SLOW_RUN_INIT
+    val: 0x19
+  - name: BOX_POSE_SLOW_RUN
+    val: 0x1A
+  - name: BOX_POSE_FAST_RUN_INIT
+    val: 0x1B
+  - name: BOX_POSE_FAST_RUN
+    val: 0x1C
+  - name: BOX_POSE_SKIDDING_INIT
+    val: 0x1D
+  - name: BOX_POSE_SKIDDING
+    val: 0x1E
+  - name: BOX_POSE_STOP_SKIDDING_INIT
+    val: 0x1F
+  - name: BOX_POSE_STOP_SKIDDING
+    val: 0x20
+  - name: BOX_POSE_FINISHED_CRAWLING_INIT
+    val: 0x7
+  - name: BOX_POSE_FINISHED_CRAWLING
+    val: 0x8
+  - name: BOX_POSE_BONKING_INIT
+    val: 0x37
+  - name: BOX_POSE_BONKING
+    val: 0x38
+  - name: BOX_POSE_LANDING_FROM_BONK_INIT
+    val: 0x4B
+  - name: BOX_POSE_LANDING_FROM_BONK
+    val: 0x4C
+  - name: BOX_POSE_LANDING_INIT
+    val: 0x39
+  - name: BOX_POSE_LANDING
+    val: 0x3A
+  - name: BOX_POSE_JUMP_WARNING_INIT
+    val: 0x3B
+  - name: BOX_POSE_JUMP_WARNING
+    val: 0x3C
+  - name: BOX_POSE_JUMPING_INIT
+    val: 0x3D
+  - name: BOX_POSE_JUMPING
+    val: 0x3E
+  - name: BOX_POSE_STOPPING_TO_FIRE_BOMB_INIT
+    val: 0x27
+  - name: BOX_POSE_STOPPING_TO_FIRE_BOMB
+    val: 0x28
+  - name: BOX_POSE_LOWERING_TO_FIRE_BOMB_INIT
+    val: 0x29
+  - name: BOX_POSE_LOWERING_TO_FIRE_BOMB
+    val: 0x2A
+  - name: BOX_POSE_FIRING_BOMB
+    val: 0x2C
+  - name: BOX_POSE_DONE_FIRING_BOMB
+    val: 0x2E
+  - name: BOX_POSE_WAITING_TO_EMERGE_INIT
+    val: 0x3F
+  - name: BOX_POSE_WAITING_TO_EMERGE
     val: 0x40
-  - name: Down
-    val: 0x80
-  - name: R
-    val: 0x100
-  - name: L
-    val: 0x200
-  loc: null
-- name: ClipBehavior
+  - name: BOX_POSE_FIRST_JUMP_INIT
+    val: 0x41
+  - name: BOX_POSE_FIRST_JUMP
+    val: 0x42
+  - name: BOX_POSE_DEFEATED_INIT
+    val: 0x43
+  - name: BOX_POSE_DEFEATED
+    val: 0x44
+  - name: BOX_POSE_MOVING_TO_FINAL_JUMP_INIT
+    val: 0x45
+  - name: BOX_POSE_MOVING_TO_FINAL_JUMP
+    val: 0x46
+  - name: BOX_POSE_WAITING_FOR_FINAL_JUMP_INIT
+    val: 0x47
+  - name: BOX_POSE_WAITING_FOR_FINAL_JUMP
+    val: 0x48
+  - name: BOX_POSE_CROUCHING_FOR_FINAL_JUMP_INIT
+    val: 0x49
+  - name: BOX_POSE_CROUCHING_FOR_FINAL_JUMP
+    val: 0x4A
+  - name: BOX_POSE_FINAL_JUMP_INIT
+    val: 0x4D
+  - name: BOX_POSE_FINAL_JUMP
+    val: 0x4E
+  loc: src/sprites_AI/box.c:19
+- name: ClipBehavior_
   vals:
   - name: CLIP_BEHAVIOR_NONE
     val: 0x0
@@ -524,226 +729,7 @@
     val: 0x9D
   - name: CLIP_BEHAVIOR_END
     val: 0x9E
-  loc: include/constants/clipdata.h:96
-- name: Clipdata
-  vals:
-  - name: CLIPDATA_AIR
-    val: 0x0
-  - name: CLIPDATA_PASS_THROUGH_BOTTOM
-    val: 0x1
-  - name: CLIPDATA_PREVENT_CLIMBING_INTO
-    val: 0x9
-  - name: CLIPDATA_SOLID
-    val: 0x10
-  - name: CLIPDATA_RIGHT_STEEP_FLOOR_SLOPE
-    val: 0x11
-  - name: CLIPDATA_LEFT_STEEP_FLOOR_SLOPE
-    val: 0x12
-  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE
-    val: 0x13
-  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE
-    val: 0x14
-  - name: CLIPDATA_LEFT_UPPER_SLIGHT_FLOOR_SLOPE
-    val: 0x15
-  - name: CLIPDATA_LEFT_LOWER_SLIGHT_FLOOR_SLOPE
-    val: 0x16
-  - name: CLIPDATA_STOP_ENEMY
-    val: 0x17
-  - name: CLIPDATA_CEILING_RUNGS
-    val: 0x18
-  - name: CLIPDATA_RIGHT_WALL_RUNGS
-    val: 0x19
-  - name: CLIPDATA_LEFT_WALL_RUNGS
-    val: 0x1A
-  - name: CLIPDATA_WATER
-    val: 0x1B
-  - name: CLIPDATA_WET_GROUND
-    val: 0x1C
-  - name: CLIPDATA_DUSTY_GROUND
-    val: 0x1D
-  - name: CLIPDATA_UNUSED_SOLID_1E
-    val: 0x1E
-  - name: CLIPDATA_UNUSED_SOLID_1F
-    val: 0x1F
-  - name: CLIPDATA_DOOR_TRANSITION
-    val: 0x20
-  - name: CLIPDATA_LEFT_STEEP_CEILING_SLOPE
-    val: 0x21
-  - name: CLIPDATA_RIGHT_STEEP_CEILING_SLOPE
-    val: 0x22
-  - name: CLIPDATA_LEFT_UPPER_SLIGHT_CEILING_SLOPE
-    val: 0x23
-  - name: CLIPDATA_LEFT_LOWER_SLIGHT_CEILING_SLOPE
-    val: 0x24
-  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_CEILING_SLOPE
-    val: 0x25
-  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_CEILING_SLOPE
-    val: 0x26
-  - name: CLIPDATA_VERTICAL_UP_TRANSITION
-    val: 0x27
-  - name: CLIPDATA_VERTICAL_DOWN_TRANSITION
-    val: 0x28
-  - name: CLIPDATA_ELEVATOR_UP
-    val: 0x29
-  - name: CLIPDATA_ELEVATOR_DOWN
-    val: 0x2A
-  - name: CLIPDATA_UNUSED_AIR_2B
-    val: 0x2B
-  - name: CLIPDATA_BUBBLY_GROUND
-    val: 0x2C
-  - name: CLIPDATA_VERY_DUSTY_GROUND
-    val: 0x2D
-  - name: CLIPDATA_UNUSED_AIR_2E
-    val: 0x2E
-  - name: CLIPDATA_UNUSED_AIR_2F
-    val: 0x2F
-  - name: CLIPDATA_WHITE_DOOR_SLOT_0
-    val: 0x30
-  - name: CLIPDATA_WHITE_DOOR_SLOT_1
-    val: 0x31
-  - name: CLIPDATA_WHITE_DOOR_SLOT_2
-    val: 0x32
-  - name: CLIPDATA_WHITE_DOOR_SLOT_3
-    val: 0x33
-  - name: CLIPDATA_WHITE_DOOR_SLOT_4
-    val: 0x34
-  - name: CLIPDATA_WHITE_DOOR_SLOT_5
-    val: 0x35
-  - name: CLIPDATA_BLUE_DOOR_SLOT_0
-    val: 0x36
-  - name: CLIPDATA_BLUE_DOOR_SLOT_1
-    val: 0x37
-  - name: CLIPDATA_BLUE_DOOR_SLOT_2
-    val: 0x38
-  - name: CLIPDATA_BLUE_DOOR_SLOT_3
-    val: 0x39
-  - name: CLIPDATA_BLUE_DOOR_SLOT_4
-    val: 0x3A
-  - name: CLIPDATA_BLUE_DOOR_SLOT_5
-    val: 0x3B
-  - name: CLIPDATA_RED_DOOR_SLOT_0
-    val: 0x3C
-  - name: CLIPDATA_RED_DOOR_SLOT_1
-    val: 0x3D
-  - name: CLIPDATA_RED_DOOR_SLOT_2
-    val: 0x3E
-  - name: CLIPDATA_GRAY_DOOR
-    val: 0x3F
-  - name: CLIPDATA_GREEN_DOOR_SLOT_0
-    val: 0x40
-  - name: CLIPDATA_GREEN_DOOR_SLOT_1
-    val: 0x41
-  - name: CLIPDATA_GREEN_DOOR_SLOT_2
-    val: 0x42
-  - name: CLIPDATA_GREEN_DOOR_SLOT_3
-    val: 0x43
-  - name: CLIPDATA_GREEN_DOOR_SLOT_4
-    val: 0x44
-  - name: CLIPDATA_GREEN_DOOR_SLOT_5
-    val: 0x45
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_0
-    val: 0x46
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_1
-    val: 0x47
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_2
-    val: 0x48
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_3
-    val: 0x49
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_4
-    val: 0x4A
-  - name: CLIPDATA_YELLOW_DOOR_SLOT_5
-    val: 0x4B
-  - name: CLIPDATA_RED_DOOR_SLOT_3
-    val: 0x4C
-  - name: CLIPDATA_RED_DOOR_SLOT_4
-    val: 0x4D
-  - name: CLIPDATA_RED_DOOR_SLOT_5
-    val: 0x4E
-  - name: CLIPDATA_UNUSED_AIR_4F
-    val: 0x4F
-  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NEVER_REFORM
-    val: 0x50
-  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NEVER_REFORM
-    val: 0x51
-  - name: CLIPDATA_SHOT_BLOCK_NEVER_REFORM
-    val: 0x52
-  - name: CLIPDATA_SHOT_BLOCK_REFORM
-    val: 0x53
-  - name: CLIPDATA_MISSILE_BLOCK_NEVER_REFORM
-    val: 0x54
-  - name: CLIPDATA_BOMB_BLOCK_NEVER_REFORM
-    val: 0x55
-  - name: CLIPDATA_BOMB_BLOCK_REFORM
-    val: 0x56
-  - name: CLIPDATA_POWER_BOMB_BLOCK_NEVER_REFORM
-    val: 0x57
-  - name: CLIPDATA_SPEEDBOOST_BLOCK_NO_REFORM
-    val: 0x58
-  - name: CLIPDATA_SCREW_ATTACK_NO_REFORM
-    val: 0x59
-  - name: CLIPDATA_CRUMBLE
-    val: 0x5A
-  - name: CLIPDATA_SHOT_BLOCK_NO_REFORM
-    val: 0x5B
-  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NO_REFORM
-    val: 0x5C
-  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NO_REFORM
-    val: 0x5D
-  - name: CLIPDATA_MISSILE_BLOCK_NO_REFORM
-    val: 0x5E
-  - name: CLIPDATA_UNUSED_AIR_5F
-    val: 0x5F
-  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NEVER_REFORM
-    val: 0x60
-  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NEVER_REFORM
-    val: 0x61
-  - name: CLIPDATA_MISSILE_TANK
-    val: 0x62
-  - name: CLIPDATA_ENERGY_TANK
-    val: 0x63
-  - name: CLIPDATA_HIDDEN_MISSILE_TANK
-    val: 0x64
-  - name: CLIPDATA_HIDDEN_ENERGY_TANK
-    val: 0x65
-  - name: CLIPDATA_UNDERWATER_MISSILE_TANK
-    val: 0x66
-  - name: CLIPDATA_UNDERWATER_ENERGY_TANK
-    val: 0x67
-  - name: CLIPDATA_POWER_BOMB_TANK
-    val: 0x68
-  - name: CLIPDATA_HIDDEN_POWER_BOMB_TANK
-    val: 0x69
-  - name: CLIPDATA_UNDERWATER_POWER_BOMB_TANK
-    val: 0x6A
-  - name: CLIPDATA_SPEEDBOOST_BLOCK_REFORM
-    val: 0x6B
-  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NO_REFORM
-    val: 0x6C
-  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NO_REFORM
-    val: 0x6D
-  - name: CLIPDATA_UNUSED_AIR_6E
-    val: 0x6E
-  - name: CLIPDATA_UNUSED_AIR_6F
-    val: 0x6F
-  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_1
-    val: 0x70
-  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_2
-    val: 0x71
-  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_3
-    val: 0x72
-  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_4
-    val: 0x73
-  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_1
-    val: 0x74
-  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_2
-    val: 0x75
-  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_3
-    val: 0x76
-  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_4
-    val: 0x77
-  - name: CLIPDATA_END
-    val: 0xB0
-  loc: include/constants/clipdata.h:269
+  loc: include/constants/clipdata.h:99
 - name: ClipdataAffectingAction
   vals:
   - name: CAA_NONE
@@ -776,7 +762,7 @@
     val: 0xD
   - name: CAA_END
     val: 0xE
-  loc: include/constants/clipdata.h:4
+  loc: include/constants/clipdata.h:7
 - name: ClipdataMovement
   vals:
   - name: CLIPDATA_MOVEMENT_NONE
@@ -799,7 +785,170 @@
     val: 0x8
   - name: CLIPDATA_MOVEMENT_END
     val: 0x9
-  loc: include/constants/clipdata.h:70
+  loc: include/constants/clipdata.h:73
+- name: ClipdataTest
+  vals:
+  - name: CLIPDATA_TEST_AIR
+    val: 0x0
+  - name: CLIPDATA_TEST_PASS_THROUGH_BOTTOM
+    val: 0x1
+  - name: CLIPDATA_TEST_STOP_ENEMY
+    val: 0x2
+  - name: CLIPDATA_TEST_VERTICAL_UP_TRANSITION
+    val: 0x3
+  - name: CLIPDATA_TEST_VERTICAL_DOWN_TRANSITION
+    val: 0x4
+  - name: CLIPDATA_TEST_SOLID
+    val: 0x10
+  - name: CLIPDATA_TEST_RIGHT_STEEP_FLOOR_SLOPE
+    val: 0x11
+  - name: CLIPDATA_TEST_LEFT_STEEP_FLOOR_SLOPE
+    val: 0x12
+  - name: CLIPDATA_TEST_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x13
+  - name: CLIPDATA_TEST_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x14
+  - name: CLIPDATA_TEST_LEFT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x15
+  - name: CLIPDATA_TEST_LEFT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x16
+  - name: CLIPDATA_TEST_SHOT_BLOCK_NEVER_REFORM_UNUSED
+    val: 0x17
+  - name: CLIPDATA_TEST_DOOR_TRANSITION
+    val: 0x20
+  - name: CLIPDATA_TEST_WALL_RUNGS
+    val: 0x27
+  - name: CLIPDATA_TEST_CEILING_RUNGS
+    val: 0x28
+  - name: CLIPDATA_TEST_SHOT_BLOCK_NEVER_REFORM
+    val: 0x30
+  - name: CLIPDATA_TEST_TOP_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x31
+  - name: CLIPDATA_TEST_TOP_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x32
+  - name: CLIPDATA_TEST_BOMB_BLOCK_NEVER_REFORM
+    val: 0x33
+  - name: CLIPDATA_TEST_MISSILE_BLOCK_NEVER_REFORM
+    val: 0x34
+  - name: CLIPDATA_TEST_SCREW_ATTACK_BLOCK_NO_REFORM
+    val: 0x35
+  - name: CLIPDATA_TEST_MISSILE_BLOCK_NO_REFORM
+    val: 0x36
+  - name: CLIPDATA_TEST_BOTTOM_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x41
+  - name: CLIPDATA_TEST_BOTTOM_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x42
+  - name: CLIPDATA_TEST_CRUMBLE_BLOCK
+    val: 0x43
+  - name: CLIPDATA_TEST_POWER_BOMB_BLOCK_NEVER_REFORM
+    val: 0x44
+  - name: CLIPDATA_TEST_SPEED_BOOST_BLOCK_REFORM
+    val: 0x45
+  - name: CLIPDATA_TEST_SHOT_BLOCK_REFORM
+    val: 0x50
+  - name: CLIPDATA_TEST_BOMB_BLOCK_REFORM
+    val: 0x51
+  - name: CLIPDATA_TEST_HORIZONTAL_BOMB_CHAIN_1
+    val: 0x52
+  - name: CLIPDATA_TEST_HORIZONTAL_BOMB_CHAIN_2
+    val: 0x53
+  - name: CLIPDATA_TEST_HORIZONTAL_BOMB_CHAIN_3
+    val: 0x54
+  - name: CLIPDATA_TEST_HORIZONTAL_BOMB_CHAIN_4
+    val: 0x55
+  - name: CLIPDATA_TEST_ELEVATOR_UP
+    val: 0x60
+  - name: CLIPDATA_TEST_ELEVATOR_DOWN
+    val: 0x61
+  - name: CLIPDATA_TEST_VERTICAL_BOMB_CHAIN_1
+    val: 0x62
+  - name: CLIPDATA_TEST_VERTICAL_BOMB_CHAIN_2
+    val: 0x63
+  - name: CLIPDATA_TEST_VERTICAL_BOMB_CHAIN_3
+    val: 0x64
+  - name: CLIPDATA_TEST_VERTICAL_BOMB_CHAIN_4
+    val: 0x65
+  - name: CLIPDATA_TEST_ENERGY_TANK
+    val: 0x70
+  - name: CLIPDATA_TEST_MISSILE_TANK
+    val: 0x71
+  - name: CLIPDATA_TEST_POWER_BOMB_TANK
+    val: 0x72
+  - name: CLIPDATA_TEST_HIDDEN_ENERGY_TANK
+    val: 0x80
+  - name: CLIPDATA_TEST_HIDDEN_MISSILE_TANK
+    val: 0x81
+  - name: CLIPDATA_TEST_HIDDEN_POWER_BOMB_TANK
+    val: 0x82
+  - name: CLIPDATA_TEST_UNDERWATER_ENERGY_TANK
+    val: 0x90
+  - name: CLIPDATA_TEST_UNDERWATER_MISSILE_TANK
+    val: 0x91
+  - name: CLIPDATA_TEST_UNDERWATER_POWER_BOMB_TANK
+    val: 0x92
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_0
+    val: 0xE0
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_1
+    val: 0xE1
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_2
+    val: 0xE2
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_3
+    val: 0xE3
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_4
+    val: 0xE4
+  - name: CLIPDATA_TEST_WHITE_DOOR_SLOT_5
+    val: 0xE5
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_0
+    val: 0xE6
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_1
+    val: 0xE7
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_2
+    val: 0xE8
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_3
+    val: 0xE9
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_4
+    val: 0xEA
+  - name: CLIPDATA_TEST_BLUE_DOOR_SLOT_5
+    val: 0xEB
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_0
+    val: 0xEC
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_1
+    val: 0xED
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_2
+    val: 0xEE
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_0
+    val: 0xF0
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_1
+    val: 0xF1
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_2
+    val: 0xF2
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_3
+    val: 0xF3
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_4
+    val: 0xF4
+  - name: CLIPDATA_TEST_GREEN_DOOR_SLOT_5
+    val: 0xF5
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_0
+    val: 0xF6
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_1
+    val: 0xF7
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_2
+    val: 0xF8
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_3
+    val: 0xF9
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_4
+    val: 0xFA
+  - name: CLIPDATA_TEST_YELLOW_DOOR_SLOT_5
+    val: 0xFB
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_3
+    val: 0xFC
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_4
+    val: 0xFD
+  - name: CLIPDATA_TEST_RED_DOOR_SLOT_5
+    val: 0xFE
+  - name: CLIPDATA_TEST_END
+    val: 0x100
+  loc: include/constants/clipdata.h:863
 - name: ClipdataTilemap
   vals:
   - name: CLIPDATA_TILEMAP_0
@@ -1732,7 +1881,9 @@
     val: 0x1CF
   - name: CLIPDATA_TILEMAP_COUNT
     val: 0x1D0
-  loc: include/constants/clipdata.h:389
+  - name: CLIPDATA_TILEMAP_FLAG
+    val: 0x8000
+  loc: include/constants/clipdata.h:392
 - name: ClipdataType
   vals:
   - name: CLIPDATA_TYPE_AIR
@@ -1763,7 +1914,228 @@
     val: 0xC
   - name: CLIPDATA_TYPE_END
     val: 0xD
-  loc: include/constants/clipdata.h:50
+  - name: CLIPDATA_TYPE_SOLID_FLAG
+    val: 0x1000000
+  loc: include/constants/clipdata.h:53
+- name: Clipdata_
+  vals:
+  - name: CLIPDATA_AIR
+    val: 0x0
+  - name: CLIPDATA_PASS_THROUGH_BOTTOM
+    val: 0x1
+  - name: CLIPDATA_PREVENT_CLIMBING_INTO
+    val: 0x9
+  - name: CLIPDATA_SOLID
+    val: 0x10
+  - name: CLIPDATA_RIGHT_STEEP_FLOOR_SLOPE
+    val: 0x11
+  - name: CLIPDATA_LEFT_STEEP_FLOOR_SLOPE
+    val: 0x12
+  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x13
+  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x14
+  - name: CLIPDATA_LEFT_UPPER_SLIGHT_FLOOR_SLOPE
+    val: 0x15
+  - name: CLIPDATA_LEFT_LOWER_SLIGHT_FLOOR_SLOPE
+    val: 0x16
+  - name: CLIPDATA_STOP_ENEMY
+    val: 0x17
+  - name: CLIPDATA_CEILING_RUNGS
+    val: 0x18
+  - name: CLIPDATA_RIGHT_WALL_RUNGS
+    val: 0x19
+  - name: CLIPDATA_LEFT_WALL_RUNGS
+    val: 0x1A
+  - name: CLIPDATA_WATER
+    val: 0x1B
+  - name: CLIPDATA_WET_GROUND
+    val: 0x1C
+  - name: CLIPDATA_DUSTY_GROUND
+    val: 0x1D
+  - name: CLIPDATA_UNUSED_SOLID_1E
+    val: 0x1E
+  - name: CLIPDATA_UNUSED_SOLID_1F
+    val: 0x1F
+  - name: CLIPDATA_DOOR_TRANSITION
+    val: 0x20
+  - name: CLIPDATA_LEFT_STEEP_CEILING_SLOPE
+    val: 0x21
+  - name: CLIPDATA_RIGHT_STEEP_CEILING_SLOPE
+    val: 0x22
+  - name: CLIPDATA_LEFT_UPPER_SLIGHT_CEILING_SLOPE
+    val: 0x23
+  - name: CLIPDATA_LEFT_LOWER_SLIGHT_CEILING_SLOPE
+    val: 0x24
+  - name: CLIPDATA_RIGHT_LOWER_SLIGHT_CEILING_SLOPE
+    val: 0x25
+  - name: CLIPDATA_RIGHT_UPPER_SLIGHT_CEILING_SLOPE
+    val: 0x26
+  - name: CLIPDATA_VERTICAL_UP_TRANSITION
+    val: 0x27
+  - name: CLIPDATA_VERTICAL_DOWN_TRANSITION
+    val: 0x28
+  - name: CLIPDATA_ELEVATOR_UP
+    val: 0x29
+  - name: CLIPDATA_ELEVATOR_DOWN
+    val: 0x2A
+  - name: CLIPDATA_UNUSED_AIR_2B
+    val: 0x2B
+  - name: CLIPDATA_BUBBLY_GROUND
+    val: 0x2C
+  - name: CLIPDATA_VERY_DUSTY_GROUND
+    val: 0x2D
+  - name: CLIPDATA_UNUSED_AIR_2E
+    val: 0x2E
+  - name: CLIPDATA_UNUSED_AIR_2F
+    val: 0x2F
+  - name: CLIPDATA_WHITE_DOOR_SLOT_0
+    val: 0x30
+  - name: CLIPDATA_WHITE_DOOR_SLOT_1
+    val: 0x31
+  - name: CLIPDATA_WHITE_DOOR_SLOT_2
+    val: 0x32
+  - name: CLIPDATA_WHITE_DOOR_SLOT_3
+    val: 0x33
+  - name: CLIPDATA_WHITE_DOOR_SLOT_4
+    val: 0x34
+  - name: CLIPDATA_WHITE_DOOR_SLOT_5
+    val: 0x35
+  - name: CLIPDATA_BLUE_DOOR_SLOT_0
+    val: 0x36
+  - name: CLIPDATA_BLUE_DOOR_SLOT_1
+    val: 0x37
+  - name: CLIPDATA_BLUE_DOOR_SLOT_2
+    val: 0x38
+  - name: CLIPDATA_BLUE_DOOR_SLOT_3
+    val: 0x39
+  - name: CLIPDATA_BLUE_DOOR_SLOT_4
+    val: 0x3A
+  - name: CLIPDATA_BLUE_DOOR_SLOT_5
+    val: 0x3B
+  - name: CLIPDATA_RED_DOOR_SLOT_0
+    val: 0x3C
+  - name: CLIPDATA_RED_DOOR_SLOT_1
+    val: 0x3D
+  - name: CLIPDATA_RED_DOOR_SLOT_2
+    val: 0x3E
+  - name: CLIPDATA_GRAY_DOOR
+    val: 0x3F
+  - name: CLIPDATA_GREEN_DOOR_SLOT_0
+    val: 0x40
+  - name: CLIPDATA_GREEN_DOOR_SLOT_1
+    val: 0x41
+  - name: CLIPDATA_GREEN_DOOR_SLOT_2
+    val: 0x42
+  - name: CLIPDATA_GREEN_DOOR_SLOT_3
+    val: 0x43
+  - name: CLIPDATA_GREEN_DOOR_SLOT_4
+    val: 0x44
+  - name: CLIPDATA_GREEN_DOOR_SLOT_5
+    val: 0x45
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_0
+    val: 0x46
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_1
+    val: 0x47
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_2
+    val: 0x48
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_3
+    val: 0x49
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_4
+    val: 0x4A
+  - name: CLIPDATA_YELLOW_DOOR_SLOT_5
+    val: 0x4B
+  - name: CLIPDATA_RED_DOOR_SLOT_3
+    val: 0x4C
+  - name: CLIPDATA_RED_DOOR_SLOT_4
+    val: 0x4D
+  - name: CLIPDATA_RED_DOOR_SLOT_5
+    val: 0x4E
+  - name: CLIPDATA_UNUSED_AIR_4F
+    val: 0x4F
+  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x50
+  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x51
+  - name: CLIPDATA_SHOT_BLOCK_NEVER_REFORM
+    val: 0x52
+  - name: CLIPDATA_SHOT_BLOCK_REFORM
+    val: 0x53
+  - name: CLIPDATA_MISSILE_BLOCK_NEVER_REFORM
+    val: 0x54
+  - name: CLIPDATA_BOMB_BLOCK_NEVER_REFORM
+    val: 0x55
+  - name: CLIPDATA_BOMB_BLOCK_REFORM
+    val: 0x56
+  - name: CLIPDATA_POWER_BOMB_BLOCK_NEVER_REFORM
+    val: 0x57
+  - name: CLIPDATA_SPEEDBOOST_BLOCK_NO_REFORM
+    val: 0x58
+  - name: CLIPDATA_SCREW_ATTACK_NO_REFORM
+    val: 0x59
+  - name: CLIPDATA_CRUMBLE
+    val: 0x5A
+  - name: CLIPDATA_SHOT_BLOCK_NO_REFORM
+    val: 0x5B
+  - name: CLIPDATA_TOP_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x5C
+  - name: CLIPDATA_TOP_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x5D
+  - name: CLIPDATA_MISSILE_BLOCK_NO_REFORM
+    val: 0x5E
+  - name: CLIPDATA_UNUSED_AIR_5F
+    val: 0x5F
+  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x60
+  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NEVER_REFORM
+    val: 0x61
+  - name: CLIPDATA_MISSILE_TANK
+    val: 0x62
+  - name: CLIPDATA_ENERGY_TANK
+    val: 0x63
+  - name: CLIPDATA_HIDDEN_MISSILE_TANK
+    val: 0x64
+  - name: CLIPDATA_HIDDEN_ENERGY_TANK
+    val: 0x65
+  - name: CLIPDATA_UNDERWATER_MISSILE_TANK
+    val: 0x66
+  - name: CLIPDATA_UNDERWATER_ENERGY_TANK
+    val: 0x67
+  - name: CLIPDATA_POWER_BOMB_TANK
+    val: 0x68
+  - name: CLIPDATA_HIDDEN_POWER_BOMB_TANK
+    val: 0x69
+  - name: CLIPDATA_UNDERWATER_POWER_BOMB_TANK
+    val: 0x6A
+  - name: CLIPDATA_SPEEDBOOST_BLOCK_REFORM
+    val: 0x6B
+  - name: CLIPDATA_BOTTOM_LEFT_SHOT_BLOCK_NO_REFORM
+    val: 0x6C
+  - name: CLIPDATA_BOTTOM_RIGHT_SHOT_BLOCK_NO_REFORM
+    val: 0x6D
+  - name: CLIPDATA_UNUSED_AIR_6E
+    val: 0x6E
+  - name: CLIPDATA_UNUSED_AIR_6F
+    val: 0x6F
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_1
+    val: 0x70
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_2
+    val: 0x71
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_3
+    val: 0x72
+  - name: CLIPDATA_VERTICAL_BOMB_CHAIN_4
+    val: 0x73
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_1
+    val: 0x74
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_2
+    val: 0x75
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_3
+    val: 0x76
+  - name: CLIPDATA_HORIZONTAL_BOMB_CHAIN_4
+    val: 0x77
+  - name: CLIPDATA_COUNT
+    val: 0xB0
+  loc: include/constants/clipdata.h:272
 - name: CollisionActor
   vals:
   - name: COLLISION_ACTOR_SAMUS
@@ -1772,24 +2144,7 @@
     val: 0x1
   - name: COLLISION_ACTOR_SPRITE
     val: 0x2
-  loc: include/constants/clipdata.h:23
-- name: CollisionCheck
-  vals:
-  - name: AirOrNoCollision
-    val: 0x0
-  - name: LeftSlightFloorSlope
-    val: 0x2
-  - name: RightSlightFloorSlope
-    val: 0x3
-  - name: LeftSteepFloorSlope
-    val: 0x4
-  - name: RightSteepFloorSlope
-    val: 0x5
-  - name: PassThroughBottom
-    val: 0x10
-  - name: SolidOrCollision
-    val: 0x11
-  loc: null
+  loc: include/constants/clipdata.h:26
 - name: Cutscene
   vals:
   - name: CUTSCENE_NONE
@@ -1820,7 +2175,7 @@
     val: 0xC
   - name: CUTSCENE_END
     val: 0xD
-  loc: include/globals.h:115
+  loc: include/globals.h:161
 - name: DemoId
   vals:
   - name: DEMO_ID_SECTOR_2
@@ -1873,16 +2228,16 @@
     val: 0x2
   - name: DIAG_AIM_END
     val: 0x3
-  loc: include/constants/samus.h:117
-- name: Difficulty
+  loc: include/constants/samus.h:127
+- name: DimEventField
   vals:
-  - name: Easy
+  - name: DIM_EVENT_FIELD_EVENT
     val: 0x0
-  - name: Normal
+  - name: DIM_EVENT_FIELD_FLAG
     val: 0x1
-  - name: Hard
+  - name: DIM_EVENT_FIELD_COUNT
     val: 0x2
-  loc: null
+  loc: include/structs/connection.h:86
 - name: DoorType
   vals:
   - name: DOOR_TYPE_NONE
@@ -1899,11 +2254,13 @@
     val: 0x5
   - name: DOOR_TYPE_NO_FLAGS
     val: 0xF
+  - name: DOOR_TYPE_NORMAL
+    val: 0x10
   - name: DOOR_TYPE_LOAD_EVENT_BASED_ROOM
     val: 0x20
   - name: DOOR_TYPE_DISPLAY_LOCATION_NAME
     val: 0x40
-  loc: include/constants/connection.h:40
+  loc: include/constants/connection.h:43
 - name: Elevator
   vals:
   - name: ELEVATOR_MAIN_DECK_TO_OPERATIONS_DECK
@@ -1930,7 +2287,57 @@
     val: 0xA
   - name: ELEVATOR_END
     val: 0xB
-  loc: include/constants/connection.h:55
+  loc: include/constants/connection.h:59
+- name: EnvEffect
+  vals:
+  - name: ENV_EFFECT_NONE
+    val: 0x0
+  - name: ENV_EFFECT_WALKING_ON_WET_GROUND
+    val: 0x1
+  - name: ENV_EFFECT_WALKING_ON_BUBBLY_GROUND
+    val: 0x2
+  - name: ENV_EFFECT_WALKING_ON_DUSTY_GROUND
+    val: 0x3
+  - name: ENV_EFFECT_WALKING_ON_VERY_DUSTY_GROUND
+    val: 0x4
+  - name: ENV_EFFECT_JUMPING_IN_OR_OUT_OF_WATER
+    val: 0x5
+  - name: ENV_EFFECT_WALKING_IN_OR_OUT_OF_WATER
+    val: 0x6
+  - name: ENV_EFFECT_TAKING_DAMAGE_IN_LAVA
+    val: 0x7
+  - name: ENV_EFFECT_LANDING_ON_WET_GROUND
+    val: 0x8
+  - name: ENV_EFFECT_LANDING_ON_BUBBLY_GROUND
+    val: 0x9
+  - name: ENV_EFFECT_LANDING_ON_DUSTY_GROUND
+    val: 0xA
+  - name: ENV_EFFECT_LANDING_ON_VERY_DUSTY_GROUND
+    val: 0xB
+  - name: ENV_EFFECT_SKIDDING_ON_WET_GROUND
+    val: 0xC
+  - name: ENV_EFFECT_SKIDDING_ON_DUSTY_GROUND
+    val: 0xD
+  - name: ENV_EFFECT_BREATHING_BUBBLES
+    val: 0xE
+  - name: ENV_EFFECT_END
+    val: 0xF
+  loc: include/constants/samus.h:141
+- name: EnvEffectRequest
+  vals:
+  - name: ENV_REQUEST_GROUND_EFFECT
+    val: 0x0
+  - name: ENV_REQUEST_SKIDDING_EFFECT
+    val: 0x1
+  - name: ENV_REQUEST_LANDING_EFFECT
+    val: 0x2
+  - name: ENV_REQUEST_JUMPING_IN_OR_OUT_OF_WATER
+    val: 0x3
+  - name: ENV_REQUEST_WALKING_IN_OR_OUT_OF_WATER
+    val: 0x4
+  - name: ENV_REQUEST_BREATHING_BUBBLES
+    val: 0x5
+  loc: include/constants/samus.h:161
 - name: EscapeStatus
   vals:
   - name: ESCAPE_STATUS_NONE
@@ -2177,134 +2584,95 @@
     val: 0x3
   - name: EVENT_BASED_CONNECTION_FIELD_COUNT
     val: 0x4
-  loc: include/structs/connection.h:52
+  loc: include/structs/connection.h:101
 - name: EventBasedEffect
   vals:
   - name: EVENT_EFFECT_NONE
     val: 0x0
   - name: EVENT_EFFECT_ATMOSPHERIC_STABILIZER
     val: 0x1
+  - name: EVENT_EFFECT_2
+    val: 0x2
   - name: EVENT_EFFECT_BOX2_ROOM
-    val: 0x2
-  - name: EVENT_EFFECT_SECTOR1_NON_STABILIZER
     val: 0x3
+  - name: EVENT_EFFECT_SECTOR_1_NON_STABILIZER
+    val: 0x4
   - name: EVENT_EFFECT_ELECTRIFIED_WATER
-    val: 0x4
-  - name: EVENT_EFFECT_MELTDOWN
     val: 0x5
+  - name: EVENT_EFFECT_MELTDOWN
+    val: 0x6
   - name: EVENT_EFFECT_AUX_POWER_INACTIVE
-    val: 0x6
-  - name: EVENT_EFFECT_SAX_ELEVATOR_EXPLOSION
     val: 0x7
-  - name: EVENT_EFFECT_SAX_ELEVATOR_POWER
+  - name: EVENT_EFFECT_SA_X_ELEVATOR_EXPLOSION
     val: 0x8
+  - name: EVENT_EFFECT_SA_X_ELEVATOR_POWER
+    val: 0x9
   - name: EVENT_EFFECT_MAIN_BOILER_ROOM
-    val: 0x9
-  - name: EVENT_EFFECT_REACTOR_CORE_ACTIVE
     val: 0xA
-  - name: EVENT_EFFECT_YAKUZA_ROOM
+  - name: EVENT_EFFECT_REACTOR_CORE_ACTIVE
     val: 0xB
-  - name: EVENT_EFFECT_RESTRICTED_LAB
+  - name: EVENT_EFFECT_12
     val: 0xC
-  - name: EVENT_EFFECT_NIGHTMARE_SHADOW
+  - name: EVENT_EFFECT_YAKUZA_ROOM
     val: 0xD
-  - name: EVENT_EFFECT_NIGHTMARE_ROOM
+  - name: EVENT_EFFECT_RESTRICTED_LAB
     val: 0xE
-  - name: EVENT_EFFECT_OPERATIONS_ROOM
+  - name: EVENT_EFFECT_NIGHTMARE_SHADOW
     val: 0xF
-  - name: EVENT_EFFECT_OMEGA_METROID_ROOM
+  - name: EVENT_EFFECT_NIGHTMARE_ROOM
     val: 0x10
-  - name: EVENT_EFFECT_POWER_OUTAGE_MISSILES
+  - name: EVENT_EFFECT_OPERATIONS_ROOM
     val: 0x11
-  - name: EVENT_EFFECT_POWER_OUTAGE_YAKUZA
+  - name: EVENT_EFFECT_OMEGA_METROID_ROOM
     val: 0x12
-  - name: EVENT_EFFECT_RECOVERING_SUIT
+  - name: EVENT_EFFECT_POWER_OUTAGE_MISSILES
     val: 0x13
-  loc: include/constants/event.h:373
-- name: FloatingPointClass
-  vals:
-  - name: SignalingNan
-    val: 0x0
-  - name: QuietNan
-    val: 0x1
-  - name: Zero
-    val: 0x2
-  - name: Number
-    val: 0x3
-  - name: Infinity
-    val: 0x4
-  loc: null
-- name: ForcedMovement
-  vals:
-  - name: NoneOrSparkingUpwards
-    val: 0x0
-  - name: BouncingWallJumpingSparkingSidewards
-    val: 0x1
-  - name: SparkingDiagonally
-    val: 0x2
-  - name: DroppingThroughClipdata
-    val: 0x3
-  - name: HoldingJumpWhenBouncing_Frame1
+  - name: EVENT_EFFECT_POWER_OUTAGE_YAKUZA
     val: 0x14
-  - name: HoldingJumpWhenBouncing_Frame2
+  - name: EVENT_EFFECT_21
     val: 0x15
-  - name: HoldingJumpWhenBouncing_Frame3
+  - name: EVENT_EFFECT_RECOVERING_SUIT
     val: 0x16
-  loc: null
-- name: ForegroundEffect
-  vals:
-  - name: Nothing
-    val: 0x0
-  - name: GradientBg
-    val: 0x1
-  - name: AcidOrElectricWaterRoom
-    val: 0x2
-  - name: HeatHaze_Bg3
-    val: 0x3
-  - name: AtmosphericStabilizerRoom
-    val: 0x4
-  - name: HeatHaze_Bg2_Bg3
-    val: 0x6
-  - name: NightmaresRoom
-    val: 0x7
-  - name: PowerBombExploding
-    val: 0x8
-  - name: PowerBombImploding
-    val: 0x9
-  loc: null
+  - name: EVENT_EFFECT_COUNT
+    val: 0x17
+  - name: EVENT_EFFECT_80
+    val: 0x80
+  loc: include/constants/event.h:373
 - name: GameMode
   vals:
-  - name: Title
+  - name: GAME_MODE_TITLE
     val: 0x0
-  - name: InGame
+  - name: GAME_MODE_IN_GAME
     val: 0x1
-  - name: SoftReset
+  - name: GAME_MODE_SOFT_RESET
     val: 0x2
-  - name: PauseScreen
+  - name: GAME_MODE_MAP_SCREEN
     val: 0x3
-  - name: Cutscene
+  - name: GAME_MODE_CUTSCENE
     val: 0x4
-  - name: SaxCloseUp
+  - name: GAME_MODE_SA_X_CLOSE_UP
     val: 0x5
-  - name: EraseSramMenu
+  - name: GAME_MODE_ERASE_SRAM_MENU
     val: 0x6
-  - name: FileSelectAndIntro
+  - name: GAME_MODE_FILE_SELECT_OR_INTRO
     val: 0x7
-  - name: GameOver
+  - name: GAME_MODE_GAME_OVER
     val: 0x8
-  - name: Ending
+  - name: GAME_MODE_ENDING
     val: 0x9
-  - name: DiedFromSR388Collision
+  - name: GAME_MODE_DIED_FROM_SR388_COLLISION
     val: 0xA
-  - name: Credits
+  - name: GAME_MODE_CREDITS
     val: 0xB
-  - name: Demo
+  - name: GAME_MODE_DEMO
     val: 0xC
-  - name: Unknown
+  - name: GAME_MODE_UNKNOWN
     val: 0xD
-  - name: DebugMenu_BetaOnly
+  - name: GAME_MODE_DEBUG
     val: 0xE
-  loc: null
+  - name: GAME_MODE_COUNT
+    val: 0xF
+  loc: include/globals.h:225
 - name: GateType
   vals:
   - name: GATE_TYPE_LEFT_THIN
@@ -2318,15 +2686,55 @@
   - name: GATE_TYPE_HABITATION
     val: 0x5
   loc: src/sprites_AI/gate.c:18
-- name: GraphicsAnimType
+- name: GenesisPose
   vals:
-  - name: NotAnimated
-    val: 0x0
-  - name: Normal
-    val: 0x1
-  - name: Alternate
+  - name: GENESIS_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: GENESIS_POSE_TURNING_AROUND_1
     val: 0x4
-  loc: null
+  - name: GENESIS_POSE_TURNING_AROUND_2
+    val: 0x5
+  - name: GENESIS_POSE_WAITING_INIT
+    val: 0x7
+  - name: GENESIS_POSE_WAITING
+    val: 0x8
+  - name: GENESIS_POSE_REACHED_WALL_INIT
+    val: 0x9
+  - name: GENESIS_POSE_REACHED_WALL
+    val: 0xA
+  - name: GENESIS_POSE_SPITTING
+    val: 0x2A
+  loc: src/sprites_AI/genesis.c:15
+- name: GerubossPose
+  vals:
+  - name: GERUBOSS_POSE_STALLING
+    val: 0x8
+  - name: GERUBOSS_POSE_CHARGING_INIT
+    val: 0x29
+  - name: GERUBOSS_POSE_CHARGING
+    val: 0x2A
+  - name: GERUBOSS_POSE_GOING_DOWN
+    val: 0x2C
+  - name: GERUBOSS_POSE_CHANGING_DIRECTION
+    val: 0x2E
+  - name: GERUBOSS_POSE_GOING_UP
+    val: 0x30
+  - name: GERUBOSS_POSE_GRABBING_CEILING
+    val: 0x32
+  loc: src/sprites_AI/geruboss.c:16
+- name: GerutaPose
+  vals:
+  - name: GERUTA_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: GERUTA_POSE_TURNING_AROUND
+    val: 0x4
+  - name: GERUTA_POSE_ATTACK_WARNING_INIT
+    val: 0x29
+  - name: GERUTA_POSE_ATTACK_WARNING
+    val: 0x2A
+  - name: GERUTA_POSE_ATTACKING
+    val: 0x2C
+  loc: src/sprites_AI/geruta.c:20
 - name: GroudEffect
   vals:
   - name: GROUND_EFFECT_NONE
@@ -2343,7 +2751,39 @@
     val: 0x5
   - name: GROUND_EFFECT_END
     val: 0x6
-  loc: include/constants/clipdata.h:29
+  loc: include/constants/clipdata.h:32
+- name: HatchLockType
+  vals:
+  - name: HATCH_LOCK_GRAY
+    val: 0x0
+  - name: HATCH_LOCK_LEVEL_1
+    val: 0x1
+  - name: HATCH_LOCK_LEVEL_2
+    val: 0x2
+  - name: HATCH_LOCK_LEVEL_3
+    val: 0x3
+  - name: HATCH_LOCK_LEVEL_4
+    val: 0x4
+  - name: HATCH_LOCK_CAN_LOCK
+    val: 0x5
+  - name: HATCH_LOCK_OPEN
+    val: 0x6
+  - name: HATCH_LOCK_COUNT
+    val: 0x7
+  loc: include/constants/connection.h:94
+- name: HatchState
+  vals:
+  - name: HATCH_STATE_0
+    val: 0x0
+  - name: HATCH_STATE_1
+    val: 0x1
+  - name: HATCH_STATE_2
+    val: 0x2
+  - name: HATCH_STATE_3
+    val: 0x3
+  - name: HATCH_STATE_COUNT
+    val: 0x4
+  loc: include/constants/connection.h:106
 - name: Hazard
   vals:
   - name: HAZARD_NONE
@@ -2362,14 +2802,7 @@
     val: 0x6
   - name: HAZARD_END
     val: 0x7
-  loc: include/constants/clipdata.h:84
-- name: HorizontalDirection
-  vals:
-  - name: Right
-    val: 0x10
-  - name: Left
-    val: 0x20
-  loc: null
+  loc: include/constants/clipdata.h:87
 - name: HornoadRangeAction
   vals:
   - name: HRANGE_NONE
@@ -2379,40 +2812,6 @@
   - name: HRANGE_TURN
     val: 0x2
   loc: src/sprites_AI/hornoad.c:15
-- name: InstrumentType
-  vals:
-  - name: Sample
-    val: 0x0
-  - name: Square1
-    desc: Game Boy channel 1
-    val: 0x1
-  - name: Square2
-    desc: Game Boy channel 2
-    val: 0x2
-  - name: Wave
-    desc: Game Boy channel 3
-    val: 0x3
-  - name: Noise
-    desc: Game Boy channel 4
-    val: 0x4
-  - name: Sample_NeverResampled
-    val: 0x8
-  - name: Square1
-    desc: Game Boy channel 1
-    val: 0x9
-  - name: Square2
-    desc: Game Boy channel 2
-    val: 0xA
-  - name: Wave
-    desc: Game Boy channel 3
-    val: 0xB
-  - name: Noise
-    val: 0xC
-  - name: KeySplit
-    val: 0x40
-  - name: EveryKeySplit
-    val: 0x80
-  loc: null
 - name: KihunterGroundRange
   vals:
   - name: KIHUNTER_GROUND_OUT_OF_RANGE
@@ -2422,23 +2821,43 @@
   - name: KIHUNTER_GROUND_SAMUS_BEHIND
     val: 0x2
   loc: src/sprites_AI/kihunter.c:18
-- name: Language
+- name: Language_
   vals:
-  - name: Japanese_Kanji
+  - name: LANGUAGE_JAPANESE
     val: 0x0
-  - name: Japanese_Hiragana
+  - name: LANGUAGE_HIRAGANA
     val: 0x1
-  - name: English
+  - name: LANGUAGE_ENGLISH
     val: 0x2
-  - name: German
+  - name: LANGUAGE_GERMAN
     val: 0x3
-  - name: French
+  - name: LANGUAGE_FRENCH
     val: 0x4
-  - name: Italian
+  - name: LANGUAGE_ITALIAN
     val: 0x5
-  - name: Spanish
+  - name: LANGUAGE_SPANISH
     val: 0x6
-  loc: null
+  - name: LANGUAGE_COUNT
+    val: 0x7
+  loc: include/constants/game_state.h:7
+- name: LavaPlumePose
+  vals:
+  - name: LAVA_PLUME_POSE_GO_UP_INIT
+    val: 0x1
+  - name: LAVA_PLUME_POSE_GO_UP
+    val: 0x2
+  - name: LAVA_PLUME_POSE_STOP_INIT
+    val: 0x17
+  - name: LAVA_PLUME_POSE_STOP
+    val: 0x18
+  - name: LAVA_PLUME_POSE_IDLE
+    val: 0x1A
+  loc: src/sprites_AI/lava_plume.c:13
+- name: LavaPlumeWarningPose
+  vals:
+  - name: LAVA_PLUME_WARNING_POSE_IDLE
+    val: 0x2
+  loc: src/sprites_AI/lava_plume.c:23
 - name: LocationText
   vals:
   - name: LT_MAIN_DECK
@@ -2505,15 +2924,6 @@
   - name: LOCK_SCREEN_TYPE_MIDDLE
     val: 0x2
   loc: include/structs/scroll.h:29
-- name: Lz77BackgroundSize
-  vals:
-  - name: Size_256_256
-    val: 0x0
-  - name: Size_512_256
-    val: 0x1
-  - name: Size_256_512
-    val: 0x2
-  loc: null
 - name: MeltdownState
   vals:
   - name: MELTDOWN_NONE
@@ -2522,33 +2932,18 @@
     val: 0x1
   - name: MELTDOWN_CAN_BE_STOPPED
     val: 0x2
-  loc: include/constants/event.h:426
-- name: MissileBombStatus
+  loc: include/constants/event.h:433
+- name: MultiSpriteDataElements
   vals:
-  - name: Missiles
-    val: 0x1
-  - name: SuperMissiles
-    val: 0x2
-  - name: IceMissiles
-    val: 0x4
-  - name: DiffusionMissiles
-    val: 0x8
-  - name: Bombs
-    val: 0x10
-  - name: PowerBombs
-    val: 0x20
-  loc: null
-- name: NavTargetTextDirection
-  vals:
-  - name: Top
+  - name: MULTI_SPRITE_DATA_ELEMENT_OAM_INDEX
     val: 0x0
-  - name: Bottom
+  - name: MULTI_SPRITE_DATA_ELEMENT_Y_OFFSET
     val: 0x1
-  - name: Left
+  - name: MULTI_SPRITE_DATA_ELEMENT_X_OFFSET
     val: 0x2
-  - name: Right
+  - name: MULTI_SPRITE_DATA_ELEMENT_END
     val: 0x3
-  loc: null
+  loc: include/structs/sprite.h:14
 - name: NavigationConversation
   vals:
   - name: NAV_CONVO_NONE
@@ -2674,6 +3069,8 @@
   loc: include/constants/event.h:308
 - name: NavigationRoom
   vals:
+  - name: NAV_ROOM_NONE
+    val: 0x0
   - name: NAV_ROOM_MAIN_DECK_ROOM_0
     val: 0x0
   - name: NAV_ROOM_MAIN_DECK_ROOM_16
@@ -2684,13 +3081,13 @@
     val: 0x3
   - name: NAV_ROOM_SECTOR_1_ROOM_2
     val: 0x4
-  - name: NAV_ROOM_SECTOR_2_ROOM_2
+  - name: NAV_ROOM_SECTOR_5_ROOM_2
     val: 0x5
-  - name: NAV_ROOM_SECTOR_3_ROOM_2
+  - name: NAV_ROOM_SECTOR_2_ROOM_2
     val: 0x6
   - name: NAV_ROOM_SECTOR_4_ROOM_2
     val: 0x7
-  - name: NAV_ROOM_SECTOR_5_ROOM_2
+  - name: NAV_ROOM_SECTOR_3_ROOM_2
     val: 0x8
   - name: NAV_ROOM_SECTOR_6_ROOM_2
     val: 0x9
@@ -2698,8 +3095,10 @@
     val: 0xA
   - name: NAV_ROOM_MAIN_DECK_ROOM_66
     val: 0xB
-  - name: NAV_ROOM_END
+  - name: NAV_ROOM_ANY
     val: 0xC
+  - name: NAV_ROOM_COUNT
+    val: 0xD
   loc: include/constants/connection.h:23
 - name: NavigationTargetLocation
   vals:
@@ -2731,7 +3130,7 @@
     val: 0xC
   - name: NAV_TARGET_LOC_END
     val: 0xD
-  loc: include/constants/connection.h:72
+  loc: include/constants/connection.h:76
 - name: NettoriPart
   desc: Nettori part AI
   vals:
@@ -2751,7 +3150,7 @@
     val: 0x6
   - name: NETTORI_PART_END
     val: 0x7
-  loc: src/sprites_AI/nettori.c:1470
+  loc: src/sprites_AI/nettori.c:1469
 - name: NettoriShootingPosition
   vals:
   - name: NETTORI_SHOOTING_POSITION_NONE
@@ -2760,48 +3159,153 @@
     val: 0x1
   - name: NETTORI_SHOOTING_POSITION_LOW
     val: 0x2
-  loc: src/sprites_AI/nettori.c:21
-- name: NewProjectileType
+  loc: src/sprites_AI/nettori.c:22
+- name: NighmareFallingPart
   vals:
-  - name: None
+  - name: NIGHTMARE_FALLING_PART_RIGHT_ARM_TOP
     val: 0x0
-  - name: Beam
+  - name: NIGHTMARE_FALLING_PART_RIGHT_TURRET_1
     val: 0x1
-  - name: Missile
+  - name: NIGHTMARE_FALLING_PART_RIGHT_TURRET_2
     val: 0x2
-  - name: Unused
+  - name: NIGHTMARE_FALLING_PART_RIGHT_TURRET_3
     val: 0x3
-  - name: Bomb
+  - name: NIGHTMARE_FALLING_PART_RIGHT_ARM_BOTTOM
     val: 0x4
-  - name: ChargedBeam
+  - name: NIGHTMARE_FALLING_PART_LEFT_TURRET_1
     val: 0x5
-  - name: PowerBomb
+  - name: NIGHTMARE_FALLING_PART_LEFT_TURRET_2
     val: 0x6
-  loc: null
-- name: NonGameplayFlag
+  - name: NIGHTMARE_FALLING_PART_LEFT_TURRET_3
+    val: 0x7
+  - name: NIGHTMARE_FALLING_PART_END
+    val: 0x8
+  loc: include/data/sprites/nightmare.h:71
+- name: NightmareOam
   vals:
-  - name: FirstNavConversation
-    val: 0x1
-  - name: PauseScreen
-    val: 0x2
-  - name: NavConversation
-    val: 0x3
-  - name: FederationConversation
-    val: 0x4
-  - name: SelfDestructMonologue
-    val: 0x5
-  - name: SaxFaceCloseUp
-    val: 0x6
-  loc: null
-- name: PaletteAnimType
-  vals:
-  - name: NotAnimated
+  - name: NIGHTMARE_OAM_PART_BODY
     val: 0x0
-  - name: Normal
+  - name: NIGHTMARE_OAM_PART_EYE_SLUDGE
     val: 0x1
-  - name: Alternate
+  - name: NIGHTMARE_OAM_PART_EYE_SLUDGE_DROPPING_TO_CHIN
     val: 0x2
-  loc: null
+  - name: NIGHTMARE_OAM_PART_CHIN_SLUDGE
+    val: 0x3
+  - name: NIGHTMARE_OAM_BEAM
+    val: 0x4
+  - name: NIGHTMARE_OAM_EXPLOSION_UNUSED
+    val: 0x5
+  - name: NIGHTMARE_OAM_PART_EYE_NOT_DROOPING
+    val: 0x6
+  - name: NIGHTMARE_OAM_PART_MOUTH_NOT_DROOPING
+    val: 0x7
+  - name: NIGHTMARE_OAM_PART_EYE_DROOPING_SLIGHTLY
+    val: 0x8
+  - name: NIGHTMARE_OAM_PART_MOUTH_DROOPING_SLIGHTLY
+    val: 0x9
+  - name: NIGHTMARE_OAM_PART_EYE_DROOPING_MORE
+    val: 0xA
+  - name: NIGHTMARE_OAM_PART_MOUTH_DROOPING_MORE
+    val: 0xB
+  - name: NIGHTMARE_OAM_PART_EYE_AND_MOUTH_DROOPING_SLIGHTLY
+    val: 0xC
+  - name: NIGHTMARE_OAM_PART_EYE_AND_MOUTH_DROOPING_MORE
+    val: 0xD
+  - name: NIGHTMARE_OAM_PART_X
+    val: 0xE
+  - name: NIGHTMARE_OAM_PART_GENERATOR_STATIONARY
+    val: 0xF
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_VERY_FAST
+    val: 0x10
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_FAST
+    val: 0x11
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_SLIGHTLY_FAST
+    val: 0x12
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_SLIGHTLY_SLOW
+    val: 0x13
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_SLOW
+    val: 0x14
+  - name: NIGHTMARE_OAM_PART_GENERATOR_SPINNING_VERY_SLOW
+    val: 0x15
+  - name: NIGHTMARE_OAM_PART_RIGHT_ARM_TOP
+    val: 0x16
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_1_IDLE
+    val: 0x17
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_2_IDLE
+    val: 0x18
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_3_IDLE
+    val: 0x19
+  - name: NIGHTMARE_OAM_PART_RIGHT_ARM_BOTTOM
+    val: 0x1A
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_1_IDLE
+    val: 0x1B
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_2_IDLE
+    val: 0x1C
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_3_IDLE
+    val: 0x1D
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_1_FIRING
+    val: 0x1E
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_2_FIRING
+    val: 0x1F
+  - name: NIGHTMARE_OAM_PART_RIGHT_TURRET_3_FIRING
+    val: 0x20
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_1_FIRING
+    val: 0x21
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_2_FIRING
+    val: 0x22
+  - name: NIGHTMARE_OAM_PART_LEFT_TURRET_3_FIRING
+    val: 0x23
+  - name: NIGHTMARE_OAM_SLUDGE_FALLING
+    val: 0x24
+  - name: NIGHTMARE_OAM_SLUDGE_EXPLODING
+    val: 0x25
+  - name: NIGHTMARE_OAM_END
+    val: 0x26
+  loc: include/data/sprites/nightmare.h:9
+- name: NightmarePart
+  vals:
+  - name: NIGHTMARE_PART_CHIN_SLUDGE
+    val: 0x0
+  - name: NIGHTMARE_PART_EYE_SLUDGE
+    val: 0x1
+  - name: NIGHTMARE_PART_EYE
+    val: 0x2
+  - name: NIGHTMARE_PART_MOUTH
+    val: 0x3
+  - name: NIGHTMARE_PART_RIGHT_ARM_TOP
+    val: 0x4
+  - name: NIGHTMARE_PART_RIGHT_TURRET_1
+    val: 0x5
+  - name: NIGHTMARE_PART_RIGHT_TURRET_2
+    val: 0x6
+  - name: NIGHTMARE_PART_RIGHT_TURRET_3
+    val: 0x7
+  - name: NIGHTMARE_PART_RIGHT_ARM_BOTTOM
+    val: 0x8
+  - name: NIGHTMARE_PART_GENERATOR
+    val: 0x9
+  - name: NIGHTMARE_PART_BODY
+    val: 0xA
+  - name: NIGHTMARE_PART_LEFT_TURRET_1
+    val: 0xB
+  - name: NIGHTMARE_PART_LEFT_TURRET_2
+    val: 0xC
+  - name: NIGHTMARE_PART_LEFT_TURRET_3
+    val: 0xD
+  - name: NIGHTMARE_PART_END
+    val: 0xE
+  loc: src/sprites_AI/nightmare.c:2307
+- name: OwtchPose
+  vals:
+  - name: OWTCH_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: OWTCH_POSE_TURNING_AROUND
+    val: 0x4
+  - name: OWTCH_POSE_LANDING_INIT
+    val: 0x7
+  - name: OWTCH_POSE_LANDING
+    val: 0x8
+  loc: src/sprites_AI/owtch.c:19
 - name: ParticleId
   vals:
   - name: PE_NONE
@@ -3014,6 +3518,11 @@
   - name: PAUSE_DEBUG_SECTION_ALL
     val: 0xFF
   loc: include/constants/menus/pause_debug.h:8
+- name: PauseScreenFlag
+  vals:
+  - name: PAUSE_SCREEN_NONE
+    val: 0x0
+  loc: include/globals.h:245
 - name: PowerOutageState
   vals:
   - name: POWER_OUTAGE_BEFORE
@@ -3022,7 +3531,7 @@
     val: 0x1
   - name: POWER_OUTAGE_AFTER
     val: 0x2
-  loc: include/constants/event.h:420
+  loc: include/constants/event.h:427
 - name: PrimarySpriteId
   vals:
   - name: PSPRITE_TARGET_CIRCLES
@@ -3225,7 +3734,7 @@
     val: 0x62
   - name: PSPRITE_BLUE_ZORO
     val: 0x63
-  - name: PSPRITE_GERUDA
+  - name: PSPRITE_GERUTA
     val: 0x64
   - name: PSPRITE_PUMP_CONTROL_PAD
     val: 0x65
@@ -3371,9 +3880,9 @@
     val: 0xAB
   - name: PSPRITE_WATER_DROP
     val: 0xAC
-  - name: PSPRITE_FAKE_ENERGY_TANK
+  - name: PSPRITE_MIMIC_ENERGY_TANK
     val: 0xAD
-  - name: PSPRITE_FAKE_MISSILE_TANK
+  - name: PSPRITE_MIMIC_MISSILE_TANK
     val: 0xAE
   - name: PSPRITE_CORE_X_ABILITY_BEFORE_VARIA_CORE
     val: 0xAF
@@ -3441,7 +3950,7 @@
     val: 0xCE
   - name: PSPRITE_END
     val: 0xCF
-  loc: include/constants/sprite.h:57
+  loc: include/constants/sprite.h:64
 - name: ProjectileBombStage
   vals:
   - name: BOMB_STAGE_INIT
@@ -3505,25 +4014,6 @@
   - name: PROJECTILE_STAGE_TUMBLING
     val: 0x7
   loc: include/constants/projectile.h:163
-- name: ProjectileStatus
-  vals:
-  - name: Exists
-    val: 0x1
-  - name: OnScreen
-    val: 0x2
-  - name: Exploding
-    val: 0x4
-  - name: IgnoreCollision
-    val: 0x8
-  - name: CanAffectEnvironment
-    val: 0x10
-  - name: YFlip
-    val: 0x20
-  - name: XFlip
-    val: 0x40
-  - name: DrawUnderSprites
-    val: 0x80
-  loc: null
 - name: ProjectileType
   vals:
   - name: PROJ_TYPE_NORMAL_BEAM
@@ -3567,33 +4057,195 @@
   - name: PROJ_TYPE_END
     val: 0x13
   loc: include/constants/projectile.h:30
+- name: RidleyOam
+  vals:
+  - name: RIDLEY_OAM_PART_BODY_IDLE
+    val: 0x0
+  - name: RIDLEY_OAM_PART_BODY_SHOOTING_FIRE
+    val: 0x1
+  - name: RIDLEY_OAM_PART_BODY_SCREAMING_IN_PAIN
+    val: 0x2
+  - name: RIDLEY_OAM_PART_BODY_TURNING_AROUND
+    val: 0x3
+  - name: RIDLEY_OAM_PART_BODY_TURNING_AROUND_UNUSED
+    val: 0x4
+  - name: RIDLEY_OAM_PART_BODY_SCREAMING_AFTER_SPAWN
+    val: 0x5
+  - name: RIDLEY_OAM_3AF420
+    val: 0x6
+  - name: RIDLEY_OAM_3AF430
+    val: 0x7
+  - name: RIDLEY_OAM_3AF440
+    val: 0x8
+  - name: RIDLEY_OAM_3AF450
+    val: 0x9
+  - name: RIDLEY_OAM_3AF468
+    val: 0xA
+  - name: RIDLEY_OAM_3AF480
+    val: 0xB
+  - name: RIDLEY_OAM_3AF498
+    val: 0xC
+  - name: RIDLEY_OAM_PART_TAIL_SEGMENT
+    val: 0xD
+  - name: RIDLEY_OAM_PART_TAIL_TIP
+    val: 0xE
+  - name: RIDLEY_OAM_PART_FRONT_WING_IDLE
+    val: 0xF
+  - name: RIDLEY_OAM_PART_BACK_WING_IDLE
+    val: 0x10
+  - name: RIDLEY_OAM_PART_FRONT_WING_RISING_AFTER_SPAWN
+    val: 0x11
+  - name: RIDLEY_OAM_PART_BACK_WING_RISING_AFTER_SPAWN
+    val: 0x12
+  - name: RIDLEY_OAM_PART_FRONT_WING_SHOOTING_FIRE_OR_SCREAMING
+    val: 0x13
+  - name: RIDLEY_OAM_PART_BACK_WING_SHOOTING_FIRE_OR_SCREAMING
+    val: 0x14
+  - name: RIDLEY_OAM_PART_FRONT_WING_SCREAMING_AFTER_SPAWN
+    val: 0x15
+  - name: RIDLEY_OAM_PART_BACK_WING_SCREAMING_AFTER_SPAWN
+    val: 0x16
+  - name: RIDLEY_OAM_PART_FRONT_WING_STARTING_LIFTOFF
+    val: 0x17
+  - name: RIDLEY_OAM_PART_BACK_WING_STARTING_LIFTOFF
+    val: 0x18
+  - name: RIDLEY_OAM_UNUSED_FIRE_KANJI
+    val: 0x19
+  - name: RIDLEY_OAM_UNUSED_3AF798
+    val: 0x1A
+  - name: RIDLEY_OAM_UNUSED_3AF7D0
+    val: 0x1B
+  - name: RIDLEY_OAM_FIREBALL_BIG
+    val: 0x1C
+  - name: RIDLEY_OAM_PART_TAIL_TIP_X_FLIPPED
+    val: 0x1D
+  - name: RIDLEY_OAM_PART_BODY_GRABBING_SAMUS
+    val: 0x1E
+  - name: RIDLEY_OAM_END
+    val: 0x1F
+  loc: include/data/sprites/ridley.h:9
+- name: RidleyPart
+  vals:
+  - name: RIDLEY_PART_FRONT_WING
+    val: 0x0
+  - name: RIDLEY_PART_TAIL
+    val: 0x1
+  - name: RIDLEY_PART_BODY
+    val: 0x2
+  - name: RIDLEY_PART_BACK_WING
+    val: 0x3
+  - name: RIDLEY_PART_END
+    val: 0x4
+  loc: src/sprites_AI/ridley.c:1836
+- name: RidleyPose
+  vals:
+  - name: RIDLEY_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: RIDLEY_POSE_TURNING_AROUND_1
+    val: 0x4
+  - name: RIDLEY_POSE_TURNING_AROUND_2
+    val: 0x5
+  - name: RIDLEY_POSE_FLYING_BACKWARDS_INIT
+    val: 0x9
+  - name: RIDLEY_POSE_FLYING_BACKWARDS
+    val: 0xA
+  - name: RIDLEY_POSE_SCREAMING_AFTER_SPAWN
+    val: 0x18
+  - name: RIDLEY_POSE_RISING_AFTER_SPAWN
+    val: 0x1A
+  - name: RIDLEY_POSE_SCREAMING_INIT
+    val: 0x1F
+  - name: RIDLEY_POSE_SCREAMING
+    val: 0x20
+  - name: RIDLEY_POSE_PREPARING_TAIL_ATTACK
+    val: 0x29
+  - name: RIDLEY_POSE_TAIL_ATTACK
+    val: 0x2A
+  - name: RIDLEY_POSE_SHOOTING_FIRE_INIT
+    val: 0x2F
+  - name: RIDLEY_POSE_SHOOTING_FIRE
+    val: 0x30
+  - name: RIDLEY_POSE_TURNING_INTO_CORE_X
+    val: 0x38
+  loc: src/sprites_AI/ridley.c:22
+- name: RidleyTailPart
+  vals:
+  - name: RIDLEY_TAIL_PART_BODY_ATTACHMENT
+    val: 0x0
+  - name: RIDLEY_TAIL_PART_1
+    val: 0x1
+  - name: RIDLEY_TAIL_PART_2
+    val: 0x2
+  - name: RIDLEY_TAIL_PART_3
+    val: 0x3
+  - name: RIDLEY_TAIL_PART_4
+    val: 0x4
+  - name: RIDLEY_TAIL_PART_5
+    val: 0x5
+  - name: RIDLEY_TAIL_PART_6
+    val: 0x6
+  - name: RIDLEY_TAIL_PART_TIP
+    val: 0x7
+  - name: RIDLEY_TAIL_PART_END
+    val: 0x8
+  loc: src/sprites_AI/ridley.c:1888
+- name: RidleyTailPose
+  vals:
+  - name: RIDLEY_TAIL_POSE_WAITING_TO_WIND_UP
+    val: 0x38
+  - name: RIDLEY_TAIL_POSE_WINDING_UP_1
+    val: 0x3A
+  - name: RIDLEY_TAIL_POSE_WINDING_UP_2
+    val: 0x3C
+  - name: RIDLEY_TAIL_POSE_STRIKING_DOWN_1
+    val: 0x3E
+  - name: RIDLEY_TAIL_POSE_STRIKING_DOWN_2
+    val: 0x40
+  - name: RIDLEY_TAIL_POSE_STRIKING_DOWN_3
+    val: 0x42
+  - name: RIDLEY_TAIL_POSE_STRIKING_FORWARD
+    val: 0x44
+  - name: RIDLEY_TAIL_POSE_END_STRIKING
+    val: 0x46
+  loc: src/sprites_AI/ridley.c:39
 - name: RoomEffect
   vals:
-  - name: None
+  - name: EFFECT_NONE
     val: 0x0
-  - name: Water
+  - name: EFFECT_WATER
     val: 0x1
-  - name: Lava
+  - name: EFFECT_LAVA
     val: 0x2
-  - name: Lava_HeatDamage_Bg3Haze
+  - name: EFFECT_LAVA_HEAT_HAZE
     val: 0x3
-  - name: Acid
+  - name: EFFECT_ACID
     val: 0x4
-  - name: Snowflakes_ColdDamage_Knockback
+  - name: EFFECT_SNOWFLAKES_COLD_KNOCKBACK
     val: 0x5
-  - name: Snowflakes_ColdDamage
+  - name: EFFECT_SNOWFLAKES_COLD
     val: 0x6
-  - name: HeatHaze_Bg3
+  - name: EFFECT_HAZARD_COUNT
     val: 0x7
-  - name: HeatHaze_Bg2_Bg3
+  - name: EFFECT_HEAT_BG3_HAZE
+    val: 0x7
+  - name: EFFECT_HEAT_BG2_BG3_HAZE
     val: 0x8
-  - name: Gradient_Bg3
+  - name: EFFECT_BG3_GRADIENT
     val: 0x9
-  - name: Gradient_Bg2
+  - name: EFFECT_BG2_GRADIENT
     val: 0xA
-  - name: NightmaresRoom
+  - name: EFFECT_HAZE_BG1_BG2_BG3
     val: 0xB
-  loc: null
+  - name: EFFECT_HAZE_COUNT
+    val: 0xC
+  loc: include/constants/room.h:12
+- name: RoomScrollsFlag
+  vals:
+  - name: ROOM_SCROLLS_FLAG_NO_SCROLLS
+    val: 0x2
+  - name: ROOM_SCROLLS_FLAG_HAS_SCROLLS
+    val: 0x3
+  loc: include/constants/room.h:7
 - name: SaXPose
   vals:
   - name: SA_X_POSE_RUNNING
@@ -3664,7 +4316,39 @@
     val: 0x4
   - name: SCDF_COUNT
     val: 0x5
-  loc: include/constants/samus.h:137
+  loc: include/constants/samus.h:210
+- name: SamusCollisionType
+  vals:
+  - name: SCT_STANDING
+    val: 0x0
+  - name: SCT_MID_AIR
+    val: 0x1
+  - name: SCT_CROUCHED
+    val: 0x2
+  - name: SCT_3
+    val: 0x3
+  - name: SCT_SPINNING
+    val: 0x4
+  - name: SCT_MORPH_BALL
+    val: 0x5
+  - name: SCT_MORPH_BALL_MID_AIR
+    val: 0x6
+  - name: SCT_END
+    val: 0x7
+  loc: include/constants/samus.h:186
+- name: SamusDestructingAction
+  vals:
+  - name: SDA_NONE
+    val: 0x0
+  - name: SDA_SPEED_BOOSTER
+    val: 0x1
+  - name: SDA_SCREW_ATTACK
+    val: 0x2
+  - name: SDA_SCREW_ATTACK_SPEED_BOOSTER
+    val: 0x3
+  - name: SDA_SPEED_BOOSTER_ON_GROUND
+    val: 0x4
+  loc: include/constants/samus.h:228
 - name: SamusEaterSporePart
   vals:
   - name: SAMUS_EATER_SPORE_PART_FLOATING
@@ -3672,6 +4356,17 @@
   - name: SAMUS_EATER_SPORE_PART_MOVING
     val: 0x1
   loc: include/sprites_AI/nettori.h:18
+- name: SamusHitbox
+  vals:
+  - name: SAMUS_HITBOX_LEFT
+    val: 0x0
+  - name: SAMUS_HITBOX_RIGHT
+    val: 0x1
+  - name: SAMUS_HITBOX_TOP
+    val: 0x2
+  - name: SAMUS_HITBOX_END
+    val: 0x3
+  loc: include/constants/samus.h:220
 - name: SamusHitboxType
   vals:
   - name: SAMUS_HITBOX_TYPE_STANDING
@@ -3690,7 +4385,26 @@
     val: 0x6
   - name: SAMUS_HITBOX_TYPE_COUNT
     val: 0x7
-  loc: include/constants/samus.h:125
+  loc: include/constants/samus.h:198
+- name: SamusNewProjectile
+  vals:
+  - name: NEW_PROJ_NONE
+    val: 0x0
+  - name: NEW_PROJ_BEAM
+    val: 0x1
+  - name: NEW_PROJ_MISSILE
+    val: 0x2
+  - name: NEW_PROJ_3
+    val: 0x3
+  - name: NEW_PROJ_BOMB
+    val: 0x4
+  - name: NEW_PROJ_CHARGED_BEAM
+    val: 0x5
+  - name: NEW_PROJ_POWER_BOMB
+    val: 0x6
+  - name: NEW_PROJ_END
+    val: 0x7
+  loc: include/constants/samus.h:174
 - name: SamusPose
   vals:
   - name: SPOSE_STANDING
@@ -3739,17 +4453,17 @@
     val: 0x15
   - name: SPOSE_WALL_JUMPING
     val: 0x16
-  - name: SPOSE_USING_AN_ELEVATOR
+  - name: SPOSE_USING_ELEVATOR
     val: 0x17
   - name: SPOSE_HANGING_ON_LEDGE
     val: 0x18
-  - name: SPOSE_PULLING_YOURSELF_UP_FROM_HANGING
+  - name: SPOSE_PULLING_UP_FROM_HANGING
     val: 0x19
-  - name: SPOSE_PULLING_YOURSELF_FORWARD_FROM_HANGING
+  - name: SPOSE_PULLING_FORWARD_FROM_HANGING
     val: 0x1A
-  - name: SPOSE_PULLING_YOURSELF_INTO_MORPH_BALL_TUNNEL
+  - name: SPOSE_PULLING_INTO_MORPH_FROM_HANGING
     val: 0x1B
-  - name: SPOSE_PULLING_YOURSELF_DOWN_TO_START_HANGING
+  - name: SPOSE_LOWERING_DOWN_TO_START_HANGING
     val: 0x1C
   - name: SPOSE_SPACE_JUMPING
     val: 0x1D
@@ -3771,13 +4485,13 @@
     val: 0x25
   - name: SPOSE_HANGING_FROM_VERTICAL_LADDER
     val: 0x26
-  - name: SPOSE_STARTING_TO_HOLD_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
+  - name: SPOSE_STARTING_TO_HOLD_ARM_OUT_ON_VERTICAL_LADDER
     val: 0x27
-  - name: SPOSE_HOLDING_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
+  - name: SPOSE_HOLDING_ARM_OUT_ON_VERTICAL_LADDER
     val: 0x28
   - name: SPOSE_SHOOTING_ON_VERTICAL_LADDER
     val: 0x29
-  - name: SPOSE_STARTING_TO_PUT_AWAY_YOUR_ARM_CANNON_OUT_ON_A_VERTICAL_LADDER
+  - name: SPOSE_STARTING_TO_PUT_ARM_AWAY_ON_VERTICAL_LADDER
     val: 0x2A
   - name: SPOSE_HANGING_ON_HORIZONTAL_LADDER
     val: 0x2B
@@ -3843,22 +4557,7 @@
     val: 0xFE
   - name: SPOSE_NONE
     val: 0xFF
-  loc: include/constants/samus.h:6
-- name: SamusSlopeType
-  vals:
-  - name: Steep
-    desc: 45 degree angle
-    val: 0x1
-  - name: Slight
-    desc: 26.5 degree angle
-    val: 0x2
-  - name: Right
-    desc: Fills the bottom right of a block
-    val: 0x10
-  - name: Left
-    desc: Fills the bottom left of a block
-    val: 0x20
-  loc: null
+  loc: include/constants/samus.h:7
 - name: SamusSpriteCollision
   vals:
   - name: SSC_NONE
@@ -3921,7 +4620,7 @@
     val: 0x1C
   - name: SSC_1D
     val: 0x1D
-  loc: include/constants/sprite.h:404
+  loc: include/constants/sprite.h:411
 - name: SamusStandingStatus
   vals:
   - name: STANDING_GROUND
@@ -3932,16 +4631,9 @@
     val: 0x2
   - name: STANDING_NOT_IN_CONTROL
     val: 0x3
-  loc: include/constants/samus.h:87
-- name: SaxOnScreenFlag
-  vals:
-  - name: NotPresent
-    val: 0x0
-  - name: NotOnScreen
-    val: 0x1
-  - name: OnScreen
-    val: 0x2
-  loc: null
+  - name: STANDING_INVALID
+    val: 0xFF
+  loc: include/constants/samus.h:88
 - name: ScrollSubData
   vals:
   - name: SCROLL_SUB_DATA_X_START
@@ -3974,13 +4666,6 @@
   - name: SCROLL_VELOCITY_CAP_END
     val: 0x3
   loc: include/structs/scroll.h:38
-- name: ScrollsFlag
-  vals:
-  - name: NoScrolls
-    val: 0x2
-  - name: RoomHasScrolls
-    val: 0x3
-  loc: null
 - name: SecondarySpriteId
   vals:
   - name: SSPRITE_SA_X_ICE_BEAM
@@ -4245,7 +4930,7 @@
     val: 0x81
   - name: SSPRITE_END
     val: 0x82
-  loc: include/constants/sprite.h:269
+  loc: include/constants/sprite.h:276
 - name: SecurityLevel
   vals:
   - name: SECURITY_LEVEL_0
@@ -4262,7 +4947,7 @@
     val: 0x5
   - name: SECURITY_LEVEL_NO_HATCHES
     val: 0xFF
-  loc: include/constants/samus.h:94
+  loc: include/constants/samus.h:97
 - name: SerrisPart
   desc: serris part AI
   vals:
@@ -4288,7 +4973,7 @@
     val: 0x9
   - name: SERRIS_PART_END
     val: 0xA
-  loc: src/sprites_AI/serris.c:2265
+  loc: src/sprites_AI/serris.c:2266
 - name: ShakeTrigger
   vals:
   - name: SHAKE_TRIGGER_SUPER_MISSILE_DOWNLOADED
@@ -4302,15 +4987,33 @@
   - name: SHAKE_TRIGGER_BOX_2_RUMBLE
     val: 0x4
   loc: src/sprites_AI/shake_trigger.c:95
+- name: SkulteraSize
+  vals:
+  - name: SKULTERA_SIZE_SMALL_HIDDEN
+    val: 0x0
+  - name: SKULTERA_SIZE_SMALL
+    val: 0x1
+  - name: SKULTERA_SIZE_LARGE
+    val: 0x2
+  loc: src/sprites_AI/skultera.c:18
+- name: SlopeType
+  vals:
+  - name: SLOPE_NONE
+    val: 0x0
+  - name: SLOPE_STEEP
+    val: 0x1
+  - name: SLOPE_SLIGHT
+    val: 0x2
+  loc: include/constants/samus.h:135
 - name: Sound
   vals:
   - name: MUSIC_NONE
     val: 0x0
-  - name: MUSIC_1
+  - name: MUSIC_UNUSED_1
     val: 0x1
   - name: MUSIC_2
     val: 0x2
-  - name: MUSIC_3
+  - name: MUSIC_AFTER_EVENT
     val: 0x3
   - name: MUSIC_SECTOR_1
     val: 0x4
@@ -4334,19 +5037,19 @@
     val: 0xD
   - name: MUSIC_E
     val: 0xE
-  - name: MUSIC_F
+  - name: MUSIC_SECURITY_DATA_ROOM
     val: 0xF
-  - name: MUSIC_ITEM_FANFARE
+  - name: MUSIC_ITEM_JINGLE
     val: 0x10
-  - name: MUSIC_11
+  - name: MUSIC_LOADING_SAVE
     val: 0x11
   - name: MUSIC_12
     val: 0x12
   - name: MUSIC_13
     val: 0x13
-  - name: SOUND_MESSAGE_POPUP
+  - name: MUSIC_MESSAGE_POPUP
     val: 0x14
-  - name: MUSIC_15
+  - name: MUSIC_SA_X_APPEARANCE
     val: 0x15
   - name: MUSIC_16
     val: 0x16
@@ -4364,11 +5067,11 @@
     val: 0x1C
   - name: MUSIC_1D
     val: 0x1D
-  - name: MUSIC_1E
+  - name: MUSIC_MAIN_DECK_AMBIENCE
     val: 0x1E
-  - name: MUSIC_1F
+  - name: MUSIC_UNUSED_1F
     val: 0x1F
-  - name: MUSIC_20
+  - name: MUSIC_UNUSED_20
     val: 0x20
   - name: MUSIC_21
     val: 0x21
@@ -4388,25 +5091,25 @@
     val: 0x28
   - name: MUSIC_29
     val: 0x29
-  - name: MUSIC_2A
+  - name: MUSIC_SILENCE_1_SHIP
     val: 0x2A
-  - name: MUSIC_2B
+  - name: MUSIC_TENSION
     val: 0x2B
-  - name: MUSIC_2C
+  - name: MUSIC_MAIN_DECK_LIVELY
     val: 0x2C
-  - name: MUSIC_2D
+  - name: MUSIC_OMEGA_METROID_DEFEATED
     val: 0x2D
-  - name: MUSIC_2E
+  - name: MUSIC_OPERATIONS_DECK
     val: 0x2E
-  - name: MUSIC_2F
+  - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE_SOUND_AND_AMBIENCE
     val: 0x2F
-  - name: MUSIC_30
+  - name: MUSIC_X_INVASION_DETECTION
     val: 0x30
-  - name: MUSIC_31
+  - name: MUSIC_SA_X_ELEVATOR
     val: 0x31
-  - name: MUSIC_32
+  - name: MUSIC_HEADING_TO_NIGHTMARE_RIDLEY
     val: 0x32
-  - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE
+  - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE_SOUND
     val: 0x33
   - name: MUSIC_OPERATIONS_DECK_ELEVATOR_OFFLINE_AMBIENCE
     val: 0x34
@@ -4416,7 +5119,7 @@
     val: 0x36
   - name: MUSIC_37
     val: 0x37
-  - name: MUSIC_ORBIT_CHANGE
+  - name: MUSIC_STATION_ESCAPE
     val: 0x38
   - name: MUSIC_39
     val: 0x39
@@ -4424,11 +5127,11 @@
     val: 0x3A
   - name: MUSIC_OBJECTIVE_COMPLETE
     val: 0x3B
-  - name: MUSIC_3C
+  - name: MUSIC_SECTOR_4_UNDERWATER
     val: 0x3C
   - name: MUSIC_3D
     val: 0x3D
-  - name: MUSIC_3E
+  - name: MUSIC_SECTOR_4_UNDERWATER_UNUSED
     val: 0x3E
   - name: MUSIC_SERRIS_YAKUZA_BATTLE
     val: 0x3F
@@ -4450,7 +5153,7 @@
     val: 0x47
   - name: MUSIC_48
     val: 0x48
-  - name: MUSIC_49
+  - name: MUSIC_PRE_TITLE_END
     val: 0x49
   - name: MUSIC_TITLE
     val: 0x4A
@@ -4470,31 +5173,31 @@
     val: 0x51
   - name: MUSIC_52
     val: 0x52
-  - name: MUSIC_53
+  - name: MUSIC_EPILOGUE_END
     val: 0x53
   - name: MUSIC_54
     val: 0x54
-  - name: MUSIC_55
+  - name: MUSIC_ENDING
     val: 0x55
-  - name: MUSIC_56
+  - name: MUSIC_EPILOGUE
     val: 0x56
-  - name: MUSIC_57
+  - name: MUSIC_DISQUIETING
     val: 0x57
-  - name: MUSIC_58
+  - name: MUSIC_SHOCK
     val: 0x58
-  - name: MUSIC_59
+  - name: MUSIC_SILENCE_1
     val: 0x59
-  - name: MUSIC_5A
+  - name: MUSIC_MAIN_BOILER_OVERHEATING
     val: 0x5A
-  - name: MUSIC_5B
+  - name: MUSIC_FINAL_ORDER
     val: 0x5B
-  - name: MUSIC_5C
+  - name: MUSIC_SILENCE_2
     val: 0x5C
-  - name: MUSIC_5D
+  - name: MUSIC_INTRIGUE
     val: 0x5D
-  - name: MUSIC_5E
+  - name: MUSIC_UNUSED_5E
     val: 0x5E
-  - name: MUSIC_5F
+  - name: MUSIC_UNEASE
     val: 0x5F
   - name: MUSIC_60
     val: 0x60
@@ -4504,6 +5207,8 @@
     val: 0x62
   - name: MUSIC_63
     val: 0x63
+  - name: MUSIC_COUNT
+    val: 0x64
   - name: SOUND_64
     val: 0x64
   - name: SOUND_65
@@ -4586,7 +5291,7 @@
     val: 0x8B
   - name: SOUND_8C
     val: 0x8C
-  - name: SOUND_8D
+  - name: SOUND_LOW_HEALTH
     val: 0x8D
   - name: SOUND_8E
     val: 0x8E
@@ -5096,9 +5801,9 @@
     val: 0x18A
   - name: SOUND_NAMIHE_HURT
     val: 0x18B
-  - name: SOUND_GERUDA_SWIPING
+  - name: SOUND_GERUTA_SWIPING
     val: 0x18C
-  - name: SOUND_GERUDA_HURT
+  - name: SOUND_GERUTA_HURT
     val: 0x18D
   - name: SOUND_SOVA_DROPPING_FLAME
     val: 0x18E
@@ -5234,7 +5939,7 @@
     val: 0x1CF
   - name: SOUND_1D0
     val: 0x1D0
-  - name: SOUND_1D1
+  - name: SOUND_ZOZORO_HURT
     val: 0x1D1
   - name: SOUND_ZORO_COCOON_TRANSFORMED_IDLE
     val: 0x1D2
@@ -5306,11 +6011,11 @@
     val: 0x1F3
   - name: SOUND_1F4
     val: 0x1F4
-  - name: SOUND_1F5
+  - name: SOUND_CHARACTER_APPEARING_ADAM
     val: 0x1F5
-  - name: SOUND_1F6
+  - name: SOUND_CHARACTER_APPEARING_SAMUS
     val: 0x1F6
-  - name: SOUND_1F7
+  - name: SOUND_CHARACTER_APPEARING_FEDERATION
     val: 0x1F7
   - name: SOUND_1F8
     val: 0x1F8
@@ -5796,7 +6501,7 @@
     val: 0x2E8
   - name: SOUND_COUNT
     val: 0x2E9
-  loc: include/constants/audio.h:4
+  loc: include/constants/audio.h:42
 - name: SoundEvent
   vals:
   - name: SOUND_EVENT_FIRST_CONVERSATION_STARTED
@@ -6155,6 +6860,44 @@
   - name: SEVENT_TTYPE_128
     val: 0x80
   loc: include/constants/event.h:282
+- name: SoundEventUpdateType
+  vals:
+  - name: SEVENT_UPDATE_LEAVING_ROOM
+    val: 0x1
+  - name: SEVENT_UPDATE_ENTERING_ROOM
+    val: 0x2
+  loc: src/sound_event.c:19
+- name: SoundModeFrequency
+  vals:
+  - name: SOUND_MODE_FREQ_NONE
+    val: 0x0
+  - name: SOUND_MODE_FREQ_05734
+    val: 0x1
+  - name: SOUND_MODE_FREQ_07884
+    val: 0x2
+  - name: SOUND_MODE_FREQ_10512
+    val: 0x3
+  - name: SOUND_MODE_FREQ_13379
+    val: 0x4
+  - name: SOUND_MODE_FREQ_15768
+    val: 0x5
+  - name: SOUND_MODE_FREQ_18157
+    val: 0x6
+  - name: SOUND_MODE_FREQ_21024
+    val: 0x7
+  - name: SOUND_MODE_FREQ_26758
+    val: 0x8
+  - name: SOUND_MODE_FREQ_31536
+    val: 0x9
+  - name: SOUND_MODE_FREQ_36314
+    val: 0xA
+  - name: SOUND_MODE_FREQ_40137
+    val: 0xB
+  - name: SOUND_MODE_FREQ_42048
+    val: 0xC
+  - name: SOUND_MODE_FREQ_END
+    val: 0xD
+  loc: include/constants/audio.h:796
 - name: SpriteDebrisCloudType
   vals:
   - name: DEBRIS_CLOUD_TYPE_NONE
@@ -6189,118 +6932,104 @@
   - name: DEBRIS_TYPE_BOUNCING
     val: 0x80
   loc: include/constants/sprite_debris.h:4
-- name: SpriteProperties
+- name: SpriteProperties_
   vals:
-  - name: NoCollision
+  - name: SP_ALWAYS_ACTIVE
     val: 0x1
-  - name: CanAbsorbXParasite
+  - name: SP_CAN_ABSORB_X
     val: 0x2
-  - name: Projectile
+  - name: SP_KILL_OFF_SCREEN
     val: 0x4
-  - name: SolidForProjectiles
+  - name: SP_SOLID_FOR_PROJECTILES
     val: 0x8
-  - name: Destroyed
+  - name: SP_DESTROYED
     val: 0x10
-  - name: MessageBanner
+  - name: SP_ABSOLUTE_POSITION
     val: 0x20
-  - name: ImmuneToProjectiles
+  - name: SP_IMMUNE_TO_PROJECTILES
     val: 0x40
-  - name: SecondarySprite
+  - name: SP_SECONDARY_SPRITE
     val: 0x80
-  loc: null
-- name: SpriteSamusCollision
+  loc: include/constants/sprite.h:27
+- name: SpriteStatus_
   vals:
-  - name: Solid
+  - name: SPRITE_STATUS_EXISTS
     val: 0x1
-  - name: HurtsSamus
+  - name: SPRITE_STATUS_ONSCREEN
     val: 0x2
-  - name: HurtsSamus_StopsWhenHit
+  - name: SPRITE_STATUS_NOT_DRAWN
     val: 0x4
-  - name: KnocksBackSamus
-    val: 0x5
-  - name: SaxIceBeam
-    val: 0x7
-  - name: SaxSuperMissile
+  - name: SPRITE_STATUS_ROTATION_SCALING_WHOLE
     val: 0x8
-  - name: SavePlatform
-    val: 0xA
-  - name: Yameba
-    val: 0xB
-  - name: CoreXAbility
-    val: 0xC
-  - name: HurtsSamus_CannotPassThrough
-    val: 0xD
-  - name: YellowXParasite_SpawnsOnRoomLoad
-    val: 0xF
-  - name: GreenXParasite
+  - name: SPRITE_STATUS_HIGH_PRIORITY
     val: 0x10
-  - name: RedXParasite
-    val: 0x11
-  - name: YellowXParasite
-    val: 0x12
-  - name: BlueXParasite
-    val: 0x13
-  - name: OmegaMetroidSwiping
-    val: 0x15
-  - name: OmegaMetroidBody
-    val: 0x16
-  - name: RidleyTailSerrisSegment
-    val: 0x18
-  - name: RidleyClaw_CanBeGrabbed
-    val: 0x1A
-  - name: RidleyClaw_WhileGrabbed
-    val: 0x1B
-  loc: null
-- name: SpriteStatus
-  vals:
-  - name: Exists
-    val: 0x1
-  - name: OnScreen
-    val: 0x2
-  - name: NotDrawn
-    val: 0x4
-  - name: unk_8
-    val: 0x8
-  - name: unk_10
-    val: 0x10
-  - name: MosaicFlag
+  - name: SPRITE_STATUS_MOSAIC
     val: 0x20
-  - name: XFlip
+  - name: SPRITE_STATUS_X_FLIP
     val: 0x40
-  - name: RotationScalingFlag
+  - name: SPRITE_STATUS_ROTATION_SCALING_SINGLE
     val: 0x80
-  - name: YFlip
+  - name: SPRITE_STATUS_Y_FLIP
     val: 0x100
-  - name: FacingRight
+  - name: SPRITE_STATUS_FACING_RIGHT
     val: 0x200
-  - name: SamusDetected
+  - name: SPRITE_STATUS_FACING_DOWN
     val: 0x400
-  - name: SamusColliding
+  - name: SPRITE_STATUS_SAMUS_DETECTED
+    val: 0x400
+  - name: SPRITE_STATUS_SAMUS_COLLIDING
     val: 0x800
-  - name: SamusOnTop
+  - name: SPRITE_STATUS_SAMUS_ON_TOP
     val: 0x1000
-  - name: AlphaBlending
+  - name: SPRITE_STATUS_HIDDEN
     val: 0x2000
-  - name: IgnoreProjectiles
+  - name: SPRITE_STATUS_DOUBLE_SIZE
+    val: 0x4000
+  - name: SPRITE_STATUS_IGNORE_PROJECTILES
     val: 0x8000
-  loc: null
-- name: SpriteWeakness
+  loc: include/constants/sprite.h:7
+- name: StatusScreenSection
   vals:
-  - name: ChargeBeam_NoNormalBeam
+  - name: STATUS_SECTION_BEAM
+    val: 0x0
+  - name: STATUS_SECTION_MISSILE
     val: 0x1
-  - name: BeamAndBombs
+  - name: STATUS_SECTION_BOMB
     val: 0x2
-  - name: SuperMissiles_NoNormalMissiles
+  - name: STATUS_SECTION_SUIT
+    val: 0x3
+  - name: STATUS_SECTION_MISC
     val: 0x4
-  - name: Missiles
+  - name: STATUS_SECTION_ENERGY_CURRENT
+    val: 0x5
+  - name: STATUS_SECTION_ENERGY_MAX
+    val: 0x6
+  - name: STATUS_SECTION_MISSILES_CURRENT
+    val: 0x7
+  - name: STATUS_SECTION_MISSILES_MAX
     val: 0x8
-  - name: PowerBombs
-    val: 0x10
-  - name: SpeedBoosterScrewAttack
-    val: 0x20
-  - name: CanBeFrozen
-    val: 0x40
-  loc: null
+  - name: STATUS_SECTION_POWER_BOMBS_CURRENT
+    val: 0x9
+  - name: STATUS_SECTION_POWER_BOMBS_MAX
+    val: 0xA
+  loc: include/constants/status_screen.h:4
+- name: SubGameMode
+  vals:
+  - name: SUB_GAME_MODE_DOOR_TRANSITION
+    val: 0x1
+  - name: SUB_GAME_MODE_PLAYING
+    val: 0x2
+  - name: SUB_GAME_MODE_LOADING_ROOM
+    val: 0x3
+  - name: SUB_GAME_MODE_SA_X_ELEVATOR
+    val: 0x4
+  - name: SUB_GAME_MODE_DYING
+    val: 0x5
+  - name: SUB_GAME_MODE_NO_CLIP
+    val: 0x6
+  - name: SUB_GAME_MODE_COUNT
+    val: 0x7
+  loc: include/globals.h:250
 - name: SuitDamageReduction
   vals:
   - name: SDR_POWER_SUIT
@@ -6311,7 +7040,7 @@
     val: 0x2
   - name: SDR_END
     val: 0x3
-  loc: include/constants/sprite.h:448
+  loc: include/constants/sprite.h:455
 - name: SuitDamageReductionType
   vals:
   - name: SDRT_30_10
@@ -6326,26 +7055,7 @@
     val: 0x4
   - name: SDRT_CAN_CREATE_DEBRIS
     val: 0x10
-  loc: include/constants/sprite.h:437
-- name: SuitMiscStatus
-  vals:
-  - name: HiJump
-    val: 0x1
-  - name: SpeedBooster
-    val: 0x2
-  - name: SpaceJump
-    val: 0x4
-  - name: ScrewAttack
-    val: 0x8
-  - name: VariaSuit
-    val: 0x10
-  - name: GravitySuit
-    val: 0x20
-  - name: MorphBall
-    val: 0x40
-  - name: SaxSuit
-    val: 0x80
-  loc: null
+  loc: include/constants/sprite.h:444
 - name: TankType
   vals:
   - name: TANK_ENERGY
@@ -6356,7 +7066,7 @@
     val: 0x2
   - name: TANK_COUNT
     val: 0x3
-  loc: include/constants/event.h:440
+  loc: include/constants/event.h:447
 - name: TimerEvent
   vals:
   - name: ESCAPE_NONE
@@ -6367,7 +7077,7 @@
     val: 0x2
   - name: ESCAPE_ORBIT_CHANGE
     val: 0x3
-  loc: include/constants/event.h:432
+  loc: include/constants/event.h:439
 - name: TitleScreenSection
   vals:
   - name: TITLE_SCREEN_SECTION_NONE
@@ -6385,13 +7095,6 @@
   - name: TITLE_SCREEN_SECTION_END
     val: 0x6
   loc: include/constants/menus/title_screen.h:6
-- name: VerticalDirection
-  vals:
-  - name: Up
-    val: 0x40
-  - name: Down
-    val: 0x80
-  loc: null
 - name: XParasiteFlyingStage
   vals:
   - name: X_PARASITE_FLYING_STAGE_FREE_FLOATING
@@ -6410,12 +7113,218 @@
   - name: X_PARASITE_TYPE_FROM_CORE_X
     val: 0x2
   loc: include/x_parasite_util.h:6
+- name: YakuzaOam
+  vals:
+  - name: YAKUZA_OAM_3B6F08
+    val: 0x0
+  - name: YAKUZA_OAM_3B6F30
+    val: 0x1
+  - name: YAKUZA_OAM_3B6F40
+    val: 0x2
+  - name: YAKUZA_OAM_3B6F58
+    val: 0x3
+  - name: YAKUZA_OAM_3B6F68
+    val: 0x4
+  - name: YAKUZA_OAM_3B6F90
+    val: 0x5
+  - name: YAKUZA_OAM_3B6FA8
+    val: 0x6
+  - name: YAKUZA_OAM_3B6FC0
+    val: 0x7
+  - name: YAKUZA_OAM_3B6FD0
+    val: 0x8
+  - name: YAKUZA_OAM_3B6FE8
+    val: 0x9
+  - name: YAKUZA_OAM_3B7010
+    val: 0xA
+  - name: YAKUZA_OAM_3B7028
+    val: 0xB
+  - name: YAKUZA_OAM_3B7060
+    val: 0xC
+  - name: YAKUZA_OAM_3B7088
+    val: 0xD
+  - name: YAKUZA_OAM_3B70B0
+    val: 0xE
+  - name: YAKUZA_OAM_3B70F8
+    val: 0xF
+  - name: YAKUZA_OAM_3B7120
+    val: 0x10
+  - name: YAKUZA_OAM_3B7140
+    val: 0x11
+  - name: YAKUZA_OAM_3B7150
+    val: 0x12
+  - name: YAKUZA_OAM_3B7188
+    val: 0x13
+  - name: YAKUZA_OAM_3B7198
+    val: 0x14
+  - name: YAKUZA_OAM_3B71C0
+    val: 0x15
+  - name: YAKUZA_OAM_3B7208
+    val: 0x16
+  - name: YAKUZA_OAM_3B7230
+    val: 0x17
+  - name: YAKUZA_OAM_3B7240
+    val: 0x18
+  - name: YAKUZA_OAM_3B7260
+    val: 0x19
+  - name: YAKUZA_OAM_3B7288
+    val: 0x1A
+  - name: YAKUZA_OAM_3B72C0
+    val: 0x1B
+  - name: YAKUZA_OAM_3B72E0
+    val: 0x1C
+  - name: YAKUZA_OAM_3B7300
+    val: 0x1D
+  - name: YAKUZA_OAM_END
+    val: 0x1E
+  loc: include/data/sprites/yakuza.h:9
+- name: YakuzaPart
+  vals:
+  - name: YAKUZA_PART_EYE
+    val: 0x0
+  - name: YAKUZA_PART_BODY
+    val: 0x1
+  - name: YAKUZA_PART_LEGS
+    val: 0x2
+  - name: YAKUZA_PART_END
+    val: 0x3
+  loc: src/sprites_AI/yakuza.c:1650
+- name: YardProjectileDirection
+  vals:
+  - name: YARD_PROJECTILE_DIRECTION_UP_LEFT
+    val: 0x0
+  - name: YARD_PROJECTILE_DIRECTION_DOWN_LEFT
+    val: 0x1
+  - name: YARD_PROJECTILE_DIRECTION_DOWN_RIGHT
+    val: 0x2
+  - name: YARD_PROJECTILE_DIRECTION_UP_RIGHT
+    val: 0x3
+  loc: src/sprites_AI/yard.c:20
+- name: ZazabiOam
+  vals:
+  - name: ZAZABI_OAM_LOWER_SHELL_IDLE
+    val: 0x0
+  - name: ZAZABI_OAM_LOWER_SHELL_EATING_SAMUS
+    val: 0x1
+  - name: ZAZABI_OAM_LOWER_SHELL_SWALLOWING_SAMUS
+    val: 0x2
+  - name: ZAZABI_OAM_372820
+    val: 0x3
+  - name: ZAZABI_OAM_MIDDLE_SHELL_IDLE
+    val: 0x4
+  - name: ZAZABI_OAM_MIDDLE_SHELL_EATING_SAMUS_3
+    val: 0x5
+  - name: ZAZABI_OAM_MIDDLE_SHELL_SWALLOWING_SAMUS
+    val: 0x6
+  - name: ZAZABI_OAM_MIDDLE_SHELL_EATING_SAMUS_2
+    val: 0x7
+  - name: ZAZABI_OAM_UPPER_SHELL_IDLE
+    val: 0x8
+  - name: ZAZABI_OAM_UPPER_SHELL_EATING_SAMUS_5
+    val: 0x9
+  - name: ZAZABI_OAM_UPPER_SHELL_SWALLOWING_SAMUS
+    val: 0xA
+  - name: ZAZABI_OAM_UPPER_SHELL_EATING_SAMUS_4
+    val: 0xB
+  - name: ZAZABI_OAM_EYE_SHELL_IDLE
+    val: 0xC
+  - name: ZAZABI_OAM_EYE_SHELL_SWALLOWING_SAMUS_LOW
+    val: 0xD
+  - name: ZAZABI_OAM_372950
+    val: 0xE
+  - name: ZAZABI_OAM_372970
+    val: 0xF
+  - name: ZAZABI_OAM_MOUTH_FRONT_IDLE
+    val: 0x10
+  - name: ZAZABI_OAM_MOUTH_FRONT_LANDING
+    val: 0x11
+  - name: ZAZABI_OAM_MOUTH_FRONT_CRAWLING_LOW
+    val: 0x12
+  - name: ZAZABI_OAM_MOUTH_FRONT_CRAWLING_HIGH
+    val: 0x13
+  - name: ZAZABI_OAM_MOUTH_FRONT_CRAWLING_HALTED
+    val: 0x14
+  - name: ZAZABI_OAM_MOUTH_FRONT_OPENING_1
+    val: 0x15
+  - name: ZAZABI_OAM_MOUTH_BACK_OPENING_1
+    val: 0x16
+  - name: ZAZABI_OAM_MOUTH_FRONT_OPENING_2
+    val: 0x17
+  - name: ZAZABI_OAM_MOUTH_BACK_OPENING_2
+    val: 0x18
+  - name: ZAZABI_OAM_MOUTH_FRONT_OPENED
+    val: 0x19
+  - name: ZAZABI_OAM_EYE_IDLE
+    val: 0x1A
+  - name: ZAZABI_OAM_EYE_EATING_SAMUS
+    val: 0x1B
+  - name: ZAZABI_OAM_PUPIL_BLINKING
+    val: 0x1C
+  - name: ZAZABI_OAM_HAIR_MOVING
+    val: 0x1D
+  - name: ZAZABI_OAM_HAIR_STILL
+    val: 0x1E
+  - name: ZAZABI_OAM_HAIR_DOWN_LOW
+    val: 0x1F
+  - name: ZAZABI_OAM_HAIR_DOWN_MID
+    val: 0x20
+  - name: ZAZABI_OAM_HAIR_DOWN_HIGH
+    val: 0x21
+  - name: ZAZABI_OAM_HAIR_EATING_SAMUS
+    val: 0x22
+  - name: ZAZABI_OAM_EYE_SHELL_JUMPING_RIGHT
+    val: 0x23
+  - name: ZAZABI_OAM_EYE_SHELL_JUMPING_SMALL_RIGHT
+    val: 0x24
+  - name: ZAZABI_OAM_EYE_SHELL_JUMPING_LEFT
+    val: 0x25
+  - name: ZAZABI_OAM_EYE_SHELL_JUMPING_SMALL_LEFT
+    val: 0x26
+  - name: ZAZABI_OAM_UPPER_SHELL_JUMPING_RIGHT
+    val: 0x27
+  - name: ZAZABI_OAM_UPPER_SHELL_JUMPING_LEFT
+    val: 0x28
+  - name: ZAZABI_OAM_HAIR_JUMPING_RIGHT_1
+    val: 0x29
+  - name: ZAZABI_OAM_HAIR_JUMPING_RIGHT_2
+    val: 0x2A
+  - name: ZAZABI_OAM_HAIR_JUMPING_RIGHT_3
+    val: 0x2B
+  - name: ZAZABI_OAM_HAIR_LANDING_LEFT_1
+    val: 0x2C
+  - name: ZAZABI_OAM_HAIR_LANDING_LEFT_2
+    val: 0x2D
+  - name: ZAZABI_OAM_HAIR_JUMPING_LEFT_1
+    val: 0x2E
+  - name: ZAZABI_OAM_HAIR_JUMPING_LEFT_2
+    val: 0x2F
+  - name: ZAZABI_OAM_HAIR_JUMPING_LEFT_3
+    val: 0x30
+  - name: ZAZABI_OAM_HAIR_LANDING_RIGHT_1
+    val: 0x31
+  - name: ZAZABI_OAM_HAIR_LANDING_RIGHT_2
+    val: 0x32
+  - name: ZAZABI_OAM_PUPIL_OPEN
+    val: 0x33
+  - name: ZAZABI_OAM_MOUTH_BACK_HIDDEN
+    val: 0x34
+  - name: ZAZABI_OAM_EYE_JUMPING_RIGHT
+    val: 0x35
+  - name: ZAZABI_OAM_EYE_LANDING_RIGHT
+    val: 0x36
+  - name: ZAZABI_OAM_EYE_JUMPING_LEFT
+    val: 0x37
+  - name: ZAZABI_OAM_EYE_LANDING_LEFT
+    val: 0x38
+  - name: ZAZABI_OAM_END
+    val: 0x39
+  loc: include/data/sprites/zazabi.h:9
 - name: ZazabiPart
   desc: Zazabi part AI
   vals:
-  - name: ZAZABI_PART_0
+  - name: ZAZABI_PART_MOUTH_FRONT
     val: 0x0
-  - name: ZAZABI_PART_MOUTH
+  - name: ZAZABI_PART_MOUTH_BACK
     val: 0x1
   - name: ZAZABI_PART_HAIR
     val: 0x2
@@ -6434,3 +7343,115 @@
   - name: ZAZABI_PART_END
     val: 0x9
   loc: src/sprites_AI/zazabi.c:2061
+- name: ZazabiPose
+  vals:
+  - name: ZAZABI_POSE_CRAWLING_INIT
+    val: 0x1
+  - name: ZAZABI_POSE_CRAWLING
+    val: 0x2
+  - name: ZAZABI_POSE_IDLE_INIT
+    val: 0x7
+  - name: ZAZABI_POSE_IDLE
+    val: 0x8
+  - name: ZAZABI_POSE_JUMP_WARNING_INIT
+    val: 0x17
+  - name: ZAZABI_POSE_JUMP_WARNING
+    val: 0x18
+  - name: ZAZABI_POSE_JUMPING_INIT
+    val: 0x19
+  - name: ZAZABI_POSE_JUMPING
+    val: 0x1A
+  - name: ZAZABI_POSE_FALLING_INIT
+    val: 0x1B
+  - name: ZAZABI_POSE_FALLING
+    val: 0x1C
+  - name: ZAZABI_POSE_LANDING_MOUTH_OPEN_INIT
+    val: 0x1D
+  - name: ZAZABI_POSE_LANDING_MOUTH_OPEN
+    val: 0x1E
+  - name: ZAZABI_POSE_LANDING_INIT
+    val: 0x1F
+  - name: ZAZABI_POSE_LANDING
+    val: 0x20
+  - name: ZAZABI_POSE_EATING_SAMUS_1_INIT
+    val: 0x37
+  - name: ZAZABI_POSE_EATING_SAMUS_1
+    val: 0x38
+  - name: ZAZABI_POSE_EATING_SAMUS_2_INIT
+    val: 0x39
+  - name: ZAZABI_POSE_EATING_SAMUS_2
+    val: 0x3A
+  - name: ZAZABI_POSE_EATING_SAMUS_3_INIT
+    val: 0x3B
+  - name: ZAZABI_POSE_EATING_SAMUS_3
+    val: 0x3C
+  - name: ZAZABI_POSE_EATING_SAMUS_4_INIT
+    val: 0x3D
+  - name: ZAZABI_POSE_EATING_SAMUS_4
+    val: 0x3E
+  - name: ZAZABI_POSE_EATING_SAMUS_5_INIT
+    val: 0x3F
+  - name: ZAZABI_POSE_EATING_SAMUS_5
+    val: 0x40
+  - name: ZAZABI_POSE_SPITTING_SAMUS_INIT
+    val: 0x41
+  - name: ZAZABI_POSE_SPITTING_SAMUS
+    val: 0x42
+  - name: ZAZABI_POSE_LANDING_AFTER_SPITTING_INIT
+    val: 0x43
+  - name: ZAZABI_POSE_LANDING_AFTER_SPITTING
+    val: 0x44
+  - name: ZAZABI_POSE_DYING_INIT
+    val: 0x45
+  - name: ZAZABI_POSE_DYING
+    val: 0x46
+  loc: src/sprites_AI/zazabi.c:30
+- name: ZebesianGroundBeamPose
+  vals:
+  - name: ZEBESIAN_GROUND_BEAM_POSE_SPAWNING
+    val: 0x2
+  - name: ZEBESIAN_GROUND_BEAM_POSE_EXTENDING
+    val: 0x18
+  - name: ZEBESIAN_GROUND_BEAM_POSE_EXTENDED
+    val: 0x1A
+  loc: src/sprites_AI/zebesian_ground.c:36
+- name: ZebesianGroundPose
+  vals:
+  - name: ZEBESIAN_GROUND_POSE_WALKING_INIT
+    val: 0x1
+  - name: ZEBESIAN_GROUND_POSE_WALKING
+    val: 0x2
+  - name: ZEBESIAN_GROUND_POSE_STANDING_INIT
+    val: 0x9
+  - name: ZEBESIAN_GROUND_POSE_STANDING
+    val: 0xA
+  - name: ZEBESIAN_GROUND_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: ZEBESIAN_GROUND_POSE_TURNING_AROUND_1
+    val: 0x4
+  - name: ZEBESIAN_GROUND_POSE_TURNING_AROUND_2
+    val: 0x5
+  - name: ZEBESIAN_GROUND_POSE_JUMP_WARNING_INIT
+    val: 0x17
+  - name: ZEBESIAN_GROUND_POSE_JUMP_WARNING
+    val: 0x18
+  - name: ZEBESIAN_GROUND_POSE_JUMPING
+    val: 0x1A
+  - name: ZEBESIAN_GROUND_POSE_LANDING_AFTER_JUMPING
+    val: 0x1C
+  - name: ZEBESIAN_GROUND_POSE_SHOOTING_INIT
+    val: 0x29
+  - name: ZEBESIAN_GROUND_POSE_SHOOTING
+    val: 0x2A
+  - name: ZEBESIAN_GROUND_POSE_SHOOTING_END_INIT
+    val: 0x2B
+  - name: ZEBESIAN_GROUND_POSE_SHOOTING_END
+    val: 0x2C
+  loc: src/sprites_AI/zebesian_ground.c:18
+- name: ZozoroPose
+  vals:
+  - name: ZOZORO_POSE_TURNING_AROUND_INIT
+    val: 0x3
+  - name: ZOZORO_POSE_TURNING_AROUND
+    val: 0x4
+  loc: src/sprites_AI/zozoro.c:18
