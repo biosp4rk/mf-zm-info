@@ -15,6 +15,12 @@
 # Elf file command:
 # readelf <game>.elf -s -W > <output>
 
+# TODO:
+# - Find a way to include asm functions
+# - Include data/functions specific to debug and non-us regions
+# - Handle arrays that don't specify length
+# - Determine function lengths when adding new functions
+
 import argparse
 from collections import defaultdict
 import os
@@ -22,7 +28,7 @@ from pathlib import Path
 import re
 import sys
 
-from pycparser import c_ast, parse_file, plyparser
+from pycparser import c_ast, parse_file
 
 from constants import *
 import decomp.elf_parser as ep
@@ -53,10 +59,11 @@ def get_files_with_ext(dir: str, ext: str, exclude: set[str] = None) -> list[str
 
 class Extractor:
 
-    def __init__(self, decomp_path: str, output_path: str, keep_existing: bool):
+    def __init__(self, decomp_path: str, output_path: str, keep_existing: bool, dry_run: bool):
         self.decomp_path = decomp_path
         self.output_path = output_path
         self.keep_existing = keep_existing
+        self.dry_run = dry_run
         self.warnings: list[str] = []
         self.typedefs: dict[str, c_ast.Typedef] = {}
         self.variables: dict[str, c_ast.Node] = {}
@@ -200,7 +207,7 @@ class Extractor:
                 name = node.name
                 # Don't overwrite var decl with definition (only the decl is needed)
                 if name not in self.locations:
-                    if "static" not in node.storage:
+                    if "static" not in node.storage and "extern" not in node.storage:
                         self._add_warning(f"var def without decl\n{loc}")
                     self.variables[name] = nt
             self.locations[name] = loc
@@ -233,7 +240,7 @@ class Extractor:
             return
         self.doc_strs[node.name] = lines[start:end+1]
 
-    def _get_node_loc(self, coord: plyparser.Coord) -> str:
+    def _get_node_loc(self, coord: Any) -> str:
         """Converts an AST's coord to a string."""
         rel = os.path.relpath(coord.file, self.decomp_path)
         return rel + ":" + str(coord.line)
@@ -243,14 +250,13 @@ class Extractor:
         # Create a copy of the values, since the dictionaries will be modified in-place
         structs_and_unions = list(self.structs.values()) + list(self.unions.values())
         for su in structs_and_unions:
-            self._find_unnamed_structs_and_unions_helper(su, [])
+            self._find_unnamed_structs_and_unions_helper(su, [su.name])
 
     def _find_unnamed_structs_and_unions_helper(self,
         node: Union[c_ast.Struct, c_ast.Union],
         names: list[str]
     ) -> None:
         """Recursive helper function to find unnamed structs/unions."""
-        names.append(node.name)
         decls: list[c_ast.Decl] = node.decls
         for decl in decls:
             dt = decl.type
@@ -583,7 +589,7 @@ class Extractor:
                 if entry.cat is not None:
                     filename = CAT_TO_STR[entry.cat]
             elif map_type == MAP_CODE:
-                if entry.loc and "sprites_ai" in entry.loc:
+                if entry.loc and "sprites_ai" in entry.loc.lower():
                     filename = "sprite_ai"
             # Get name of entry
             name = entry.name
@@ -660,7 +666,7 @@ class Extractor:
             # Get the filename for this entry
             filename = map_type
             if map_type == MAP_CODE:
-                if "sprites_AI" in loc:
+                if "sprites_ai" in loc.lower():
                     filename = "sprite_ai"
             # Create new entry
             if map_type == MAP_RAM or map_type == MAP_DATA:
@@ -702,7 +708,8 @@ class Extractor:
         for filename, data in entries.items():
             data.sort()
             path = os.path.join(map_dir, filename + YAML_EXT)
-            ifu.write_info_file(path, map_type, data)
+            if not self.dry_run:
+                ifu.write_info_file(path, map_type, data)
         # Add warnings
         if existing_missing_from_elf:
             items = ", ".join(existing_missing_from_elf)
@@ -726,6 +733,7 @@ class Extractor:
         if entry and entry.params:
             entry_params = entry.params
         pl: c_ast.ParamList = node.args
+        # TODO: Handle cases where params are blank instead of "void" (add a warning)
         # Check if not void
         if not isinstance(pl.params[0], c_ast.Typename):
             params = []
@@ -825,16 +833,19 @@ class Extractor:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Dump AST")
-    parser.add_argument("game", type=str)
-    parser.add_argument("region", type=str)
+    parser.add_argument("game", type=str, choices=GAMES)
+    parser.add_argument("region", type=str, choices=ALL_REGIONS)
     parser.add_argument("decomp_path", type=str,
         help="Path to root directory of decomp (mf or mzm)")
-    parser.add_argument("elf_path", type=str)
+    parser.add_argument("elf_path", type=str,
+        help="Path to a parsed elf file (use `readelf <game>.elf -s -W`)")
     parser.add_argument("-cpp", "--cpp_path", type=str, default="gcc")
     parser.add_argument("-o", "--output_path", type=str, default=None,
         help="Output directory for yaml files (omitting this will overwrite existing yaml files)")
     parser.add_argument("-k", "--keep_existing", action="store_true",
         help="Keeps existing entries that aren't found in the decomp")
+    parser.add_argument("-d", "--dry_run", action="store_true",
+        help="Skips overwriting info entries")
 
     args = parser.parse_args()
     game = args.game.lower()
@@ -844,6 +855,7 @@ if __name__ == "__main__":
     cpp_path = args.cpp_path
     output_path = args.output_path
     keep_existing = args.keep_existing
+    dry_run = args.dry_run
     
-    extractor = Extractor(decomp_path, output_path, keep_existing)
+    extractor = Extractor(decomp_path, output_path, keep_existing, dry_run)
     extractor.extract(game, region, cpp_path, elf_path)
