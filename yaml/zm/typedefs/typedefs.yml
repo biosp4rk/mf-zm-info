@@ -1,42 +1,237 @@
+- name: AbilityGroup
+  type: u8
+  loc: include/constants/menus/status_screen.h:31
+- name: ActiveTransfer
+  type: u8
+  loc: include/constants/cable_link.h:7
+- name: AnimatedGfxId
+  type: u8
+  loc: include/constants/animated_graphics.h:63
+- name: AnimatedGfxType
+  type: u8
+  loc: include/constants/animated_graphics.h:53
+- name: AnimatedPaletteId
+  type: u8
+  loc: include/constants/animated_graphics.h:46
+- name: AnimatedPaletteType
+  type: u8
+  loc: include/constants/animated_graphics.h:38
 - name: Area
   type: u8
   loc: include/constants/connection.h:7
+- name: AreaConnectionField
+  type: u8
+  loc: include/structs/connection.h:90
 - name: ArmCannonDirection
   type: u8
   loc: include/constants/samus.h:144
+- name: ArrowCopyPose
+  type: u8
+  loc: include/constants/menus/file_select.h:290
 - name: BackgroundEffectBehaviorEntry_T
   type: const u16 [0x3]
-  loc: include/structs/animated_graphics.h:68
+  loc: include/structs/animated_graphics.h:70
+- name: BackgroundEffectBehaviorField
+  type: u8
+  loc: include/structs/animated_graphics.h:62
+- name: BackgroundEffectCommand
+  type: u8
+  loc: include/constants/animated_graphics.h:21
+- name: BackgroundEffectNum
+  type: u8
+  loc: include/constants/animated_graphics.h:7
 - name: BackgroundFlash
   type: u8
   loc: include/constants/in_game_cutscene.h:20
 - name: BeamBombFlags
   type: u8
   loc: include/constants/samus.h:6
+- name: BgProperty
+  type: u8
+  loc: include/constants/room.h:41
 - name: BlockFunc_T
   type: u32 (*)(struct ClipdataBlockData*)
-  loc: include/structs/block.h:63
+  loc: include/structs/block.h:66
+- name: BlockLifeType
+  type: u8
+  loc: include/constants/block.h:62
+- name: BlockSubType
+  type: u8
+  loc: include/constants/block.h:70
+- name: BlockType
+  type: u8
+  loc: include/constants/block.h:7
+- name: BombActivation
+  type: u8
+  loc: include/constants/menus/status_screen.h:13
+- name: BombChainType
+  type: u8
+  loc: include/constants/block.h:80
+- name: BootDebugColor
+  type: u8
+  loc: include/constants/menus/boot_debug.h:113
+- name: BootDebugDemoMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:94
+- name: BootDebugEtcMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:104
+- name: BootDebugMenuDepth
+  type: u8
+  loc: include/constants/menus/boot_debug.h:9
+- name: BootDebugModeMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:59
+- name: BootDebugOam
+  type: u8
+  loc: include/constants/menus/boot_debug.h:30
+- name: BootDebugSamusMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:76
+- name: BootDebugSaveMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:66
+- name: BootDebugSectionMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:39
+- name: BootDebugSoundMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:86
+- name: BootDebugSubMenu
+  type: u8
+  loc: include/constants/menus/boot_debug.h:15
+- name: BorderArrowOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:197
+- name: BossIconOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:215
+- name: CaaDamageType
+  type: u16
+  loc: include/constants/block.h:44
+- name: ChozoStatueBehavior
+  type: u8
+  loc: include/sprites_ai/chozo_statue.h:9
+- name: ChozoStatueHintConditionType
+  type: u8
+  loc: include/constants/menus/pause_screen.h:96
+- name: ChozoStatueHintMovementStage
+  type: u8
+  loc: include/constants/menus/pause_screen.h:301
+- name: ChozoStatueHintScrollingStage
+  type: u8
+  loc: include/constants/menus/pause_screen.h:311
+- name: ChozoStatueHintStage
+  type: u8
+  loc: include/constants/menus/pause_screen.h:319
+- name: ChozoStatueOam
+  type: u8
+  loc: include/data/sprites/chozo_statue.h:10
+- name: ChozoStatuePartId
+  type: u8
+  loc: include/sprites_ai/chozo_statue.h:32
+- name: ChozoStatueTargetLocation
+  type: u8
+  loc: include/constants/menus/pause_screen.h:76
 - name: ChozodiaEscapeFunc_T
   type: u8 (*)(void)
   loc: include/chozodia_escape.h:6
+- name: ClipBehavior
+  type: u16
+  loc: include/constants/clipdata.h:124
 - name: ClipFunc_T
   type: u32 (*)(struct CollisionData*)
-  loc: include/structs/clipdata.h:43
+  loc: include/structs/clipdata.h:44
+- name: Clipdata
+  type: u16
+  loc: include/constants/clipdata.h:226
+- name: ClipdataActor
+  type: s32
+  loc: include/constants/clipdata.h:74
+- name: ClipdataAffectingAction
+  type: u8
+  loc: include/constants/clipdata.h:7
+- name: ClipdataMovement
+  type: u16
+  loc: include/constants/clipdata.h:43
+- name: ClipdataTest
+  type: u16
+  loc: include/constants/clipdata.h:453
+- name: ClipdataTilemap
+  type: u16
+  loc: include/constants/clipdata.h:341
+- name: ClipdataType
+  type: u32
+  loc: include/constants/clipdata.h:80
+- name: CollisionResult
+  type: u8
+  loc: include/constants/clipdata.h:28
+- name: ColorFadingEffect
+  type: u8
+  loc: include/constants/color_fading.h:27
 - name: ColorFadingFunc_T
   type: u8 (*)(u8, u8)
-  loc: include/structs/color_effects.h:8
+  loc: include/structs/color_effects.h:10
+- name: ColorFadingFunction
+  type: u8
+  loc: include/constants/color_fading.h:83
+- name: ColorFadingSpeed
+  type: u8
+  loc: include/constants/color_fading.h:72
+- name: ColorFadingStage
+  type: u8
+  loc: include/constants/color_fading.h:64
+- name: ColorFadingStatus
+  type: u8
+  loc: include/constants/color_fading.h:101
+- name: ColorFadingType
+  type: u8
+  loc: include/constants/color_fading.h:57
 - name: ColorFadingUnkFunc_T
   type: u8 (*)(void)
-  loc: include/structs/color_effects.h:9
+  loc: include/structs/color_effects.h:11
+- name: ConnectStage
+  type: u8
+  loc: include/constants/cable_link.h:13
+- name: CreditLineType
+  type: u8
+  loc: include/constants/ending_and_gallery.h:27
 - name: CreditsFunc_T
   type: u8 (*)(void)
   loc: include/ending_and_gallery.h:6
+- name: CrocomireOam
+  type: u8
+  loc: include/data/sprites/crocomire.h:9
+- name: CrocomirePartId
+  type: u8
+  loc: include/sprites_ai/crocomire.h:7
+- name: CursorCopyPose
+  type: u8
+  loc: include/constants/menus/file_select.h:283
+- name: CursorErasePose
+  type: u8
+  loc: include/constants/menus/file_select.h:297
+- name: CursorOptionsPose
+  type: u8
+  loc: include/constants/menus/file_select.h:304
+- name: CursorPose
+  type: u8
+  loc: include/constants/menus/file_select.h:273
 - name: Cutscene
   type: s8
   loc: include/constants/cutscene.h:9
+- name: CutsceneBgEdit
+  type: u8
+  loc: include/constants/cutscene.h:45
 - name: CutsceneFunc_T
   type: u8 (*)(void)
-  loc: include/structs/cutscene.h:41
+  loc: include/structs/cutscene.h:42
+- name: CutsceneSpecialEffectStatus
+  type: u8
+  loc: include/constants/cutscene.h:50
+- name: CutsceneStage
+  type: u8
+  loc: include/constants/cutscene.h:29
 - name: CutsceneType
   type: u8
   loc: include/constants/cutscene.h:37
@@ -51,7 +246,7 @@
   loc: include/constants/text.h:144
 - name: DestructingAction
   type: u16
-  loc: include/constants/samus.h:210
+  loc: include/constants/samus.h:212
 - name: DiagonalAim
   type: u8
   loc: include/constants/samus.h:38
@@ -61,15 +256,45 @@
 - name: DoorType
   type: u8
   loc: include/constants/connection.h:34
+- name: EasySleepMenuStage
+  type: u8
+  loc: include/constants/menus/pause_screen.h:292
+- name: EffectCutscene
+  type: u8
+  loc: include/constants/color_fading.h:15
 - name: ElevatorDirection
   type: s8
   loc: include/constants/connection.h:109
 - name: ElevatorRoute
   type: u8
   loc: include/constants/connection.h:95
+- name: EndingFlags
+  type: u8
+  loc: include/constants/ending_and_gallery.h:7
+- name: EndingImage
+  type: u8
+  loc: include/constants/ending_and_gallery.h:42
+- name: EndingImageLine
+  type: u32
+  loc: include/constants/ending_and_gallery.h:16
+- name: EndingOamType
+  type: u8
+  loc: include/constants/ending_and_gallery.h:55
 - name: EnvEffect
   type: u8
-  loc: include/constants/samus.h:171
+  loc: include/constants/samus.h:173
+- name: EraseSramInputAction
+  type: u32
+  loc: include/constants/menus/erase_sram.h:18
+- name: EraseSramOamId
+  type: u8
+  loc: include/constants/menus/erase_sram.h:24
+- name: EraseSramOption
+  type: u8
+  loc: include/constants/menus/erase_sram.h:7
+- name: EraseSramSound
+  type: u32
+  loc: include/constants/menus/erase_sram.h:36
 - name: Escape
   type: u8
   loc: include/constants/escape.h:7
@@ -82,15 +307,45 @@
 - name: EventAction
   type: u8
   loc: include/constants/event.h:94
+- name: EventBasedConnectionField
+  type: u8
+  loc: include/structs/connection.h:98
 - name: FileScreenMessageInfoId
   type: u8
   loc: include/constants/text.h:106
+- name: FileScreenProcessTextStage
+  type: u8
+  loc: include/constants/menus/file_select.h:20
 - name: FileScreenTextId
   type: u8
   loc: include/constants/text.h:64
+- name: FileSelectCursorPosition
+  type: u8
+  loc: include/constants/menus/file_select.h:319
+- name: FileSelectEraseFileStage
+  type: u8
+  loc: include/constants/menus/file_select.h:34
+- name: FileSelectFadingStage
+  type: u8
+  loc: include/constants/menus/file_select.h:13
+- name: FileSelectOam
+  type: u8
+  loc: include/constants/menus/file_select.h:80
+- name: FileSelectOamId
+  type: u8
+  loc: include/constants/menus/file_select.h:138
+- name: FileSelectSelectionSet
+  type: u8
+  loc: include/constants/menus/file_select.h:7
+- name: FileSelectSubMenu
+  type: u8
+  loc: include/constants/menus/file_select.h:68
 - name: ForcedMovement
   type: u8
-  loc: include/constants/samus.h:236
+  loc: include/constants/samus.h:240
+- name: FullyPoweredItemsStage
+  type: u8
+  loc: include/constants/menus/status_screen.h:52
 - name: Func_T
   type: void (*)(void)
   loc: include/types.h:110
@@ -103,6 +358,15 @@
 - name: GameOverOamId
   type: u8
   loc: include/constants/game_over.h:15
+- name: GameRegion
+  type: u8
+  loc: include/constants/game_region.h:6
+- name: GettingFullyPoweredSuitOamId
+  type: u8
+  loc: include/cutscenes/getting_fully_powered_suit.h:8
+- name: GroundEffect
+  type: u8
+  loc: include/constants/clipdata.h:65
 - name: HatchAction
   type: u8
   loc: include/constants/connection.h:76
@@ -112,42 +376,144 @@
 - name: HatchLockState
   type: u16
   loc: include/constants/connection.h:70
+- name: HatchOpeningAction
+  type: u32
+  loc: include/constants/connection.h:82
 - name: HatchState
   type: u8
   loc: include/constants/connection.h:63
 - name: HatchType
   type: u8
   loc: include/constants/connection.h:50
+- name: HazardType
+  type: u16
+  loc: include/constants/clipdata.h:54
 - name: HazeFunc_T
   type: u32 (*)(void)
-  loc: include/structs/haze.h:6
+  loc: include/structs/haze.h:8
+- name: HazeValue
+  type: u8
+  loc: include/constants/haze.h:12
 - name: HorizontalMovingDir
   type: u8
-  loc: include/constants/samus.h:159
+  loc: include/constants/samus.h:161
 - name: HudHighlightStatus
   type: u8
   loc: include/structs/hud.h:9
+- name: IgtAndTanksVramAddress
+  type: u8
+  loc: include/constants/menus/pause_screen.h:279
+- name: ImagoCocoonOam
+  type: u8
+  loc: include/data/sprites/imago_cocoon.h:9
+- name: ImagoCocoonPartId
+  type: u8
+  loc: include/sprites_ai/imago_cocoon.h:7
+- name: ImagoLarvaOam
+  type: u8
+  loc: include/data/sprites/imago_larva.h:9
+- name: ImagoLarvaPartId
+  type: u8
+  loc: include/sprites_ai/imago_larva.h:7
+- name: ImagoOam
+  type: u8
+  loc: include/data/sprites/imago.h:9
+- name: ImagoPartId
+  type: u8
+  loc: include/sprites_ai/imago.h:7
 - name: InGameCutsceneFunc_T
   type: u32 (*)(u8, u8)
   loc: include/structs/in_game_cutscene.h:9
+- name: InGameCutsceneResult
+  type: u32
+  loc: include/constants/in_game_cutscene.h:27
 - name: InGameCutsceneScene
   type: u8
   loc: include/constants/in_game_cutscene.h:7
 - name: IntroFunc_T
   type: u8 (*)(void)
   loc: include/structs/intro.h:40
+- name: IntroTextAction
+  type: u8
+  loc: include/constants/intro.h:7
+- name: ItemAcquisition
+  type: u8
+  loc: include/constants/menus/pause_screen.h:43
+- name: ItemToggleAction
+  type: u8
+  loc: include/constants/menus/status_screen.h:7
+- name: ItemType
+  type: u8
+  loc: include/constants/block.h:34
+- name: KraidOam
+  type: u8
+  loc: include/data/sprites/kraid.h:9
+- name: KraidPartId
+  type: u8
+  loc: include/sprites_ai/kraid.h:7
+- name: KraidRisingOamId
+  type: u8
+  loc: include/cutscenes/kraid_rising.h:8
+- name: LagStatus
+  type: u8
+  loc: include/constants/cable_link.h:61
 - name: Language
   type: s8
   loc: include/constants/game_state.h:35
+- name: LinkStage
+  type: u8
+  loc: include/constants/cable_link.h:38
+- name: LinkState
+  type: u8
+  loc: include/constants/cable_link.h:47
 - name: LocationTextId
   type: u8
   loc: include/location_text.h:7
+- name: LockScreenType
+  type: u8
+  loc: include/structs/scroll.h:29
+- name: MaintainedInputSpeed
+  type: u8
+  loc: include/constants/menus/pause_screen.h:337
+- name: MechaRidleyOam
+  type: u8
+  loc: include/data/sprites/mecha_ridley.h:9
+- name: MechaRidleyPartId
+  type: u8
+  loc: include/sprites_ai/mecha_ridley.h:7
+- name: MenuSoundRequest
+  type: u8
+  loc: include/constants/menus/file_select.h:347
 - name: MessageId
   type: u8
   loc: include/constants/text.h:18
 - name: MinimapFunc_T
   type: void (*)(u32*, u16*, u8)
-  loc: include/structs/minimap.h:10
+  loc: include/structs/minimap.h:13
+- name: MinimapUpdateFlag
+  type: u8
+  loc: include/constants/minimap.h:7
+- name: MiscOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:102
+- name: MissileActivation
+  type: u8
+  loc: include/constants/menus/status_screen.h:21
+- name: MonochromeFading
+  type: u8
+  loc: include/constants/color_fading.h:92
+- name: MotherBrainCloseUpOamId
+  type: u8
+  loc: include/cutscenes/mother_brain_close_up.h:7
+- name: MotherBrainOam
+  type: u8
+  loc: include/data/sprites/mother_brain.h:9
+- name: MotherBrainPartId
+  type: u8
+  loc: include/sprites_ai/mother_brain.h:9
+- name: MultiSpriteDataElements
+  type: u8
+  loc: include/structs/sprite.h:13
 - name: MultiSpriteDataInfo_T
   type: const s16 (*)[0x3]
   loc: include/structs/sprite.h:21
@@ -168,10 +534,25 @@
   loc: include/data/nes_metroid.h:6
 - name: OamArrayPreAction
   type: u8
-  loc: include/structs/cutscene.h:11
+  loc: include/structs/cutscene.h:12
+- name: OptionId
+  type: u8
+  loc: include/constants/menus/file_select.h:332
 - name: OptionsFunc_T
   type: u8 (*)(void)
   loc: include/structs/menus/file_select.h:15
+- name: OptionsOam
+  type: u8
+  loc: include/constants/menus/file_select.h:107
+- name: OptionsOamId
+  type: u8
+  loc: include/constants/menus/file_select.h:192
+- name: OptionsTimeAttackStage
+  type: u8
+  loc: include/constants/menus/file_select.h:49
+- name: OverlayOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:159
 - name: ParticleEffectId
   type: u8
   loc: include/constants/particle.h:7
@@ -181,42 +562,105 @@
 - name: ParticleStatus
   type: u8
   loc: include/constants/particle.h:73
+- name: PauseScreenFading
+  type: u8
+  loc: include/constants/menus/pause_screen.h:67
 - name: PauseScreenFlag
   type: s8
   loc: include/constants/game_state.h:59
+- name: PauseScreenState
+  type: u8
+  loc: include/constants/menus/pause_screen.h:7
+- name: PauseScreenTargetOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:225
+- name: PauseScreenType
+  type: u16
+  loc: include/constants/menus/pause_screen.h:29
+- name: PowerBombState
+  type: u8
+  loc: include/constants/power_bomb_explosion.h:7
 - name: PrimarySprite
   type: u8
   loc: include/constants/sprite.h:37
 - name: ProjFunc_T
   type: void (*)(struct ProjectileData*)
   loc: include/structs/projectile.h:38
+- name: ProjectileBombStage
+  type: u8
+  loc: include/constants/projectile.h:120
 - name: ProjectileCategory
   type: u8
   loc: include/constants/projectile.h:19
+- name: ProjectilePowerBombStage
+  type: u8
+  loc: include/constants/projectile.h:139
+- name: ProjectileStage
+  type: u8
+  loc: include/constants/projectile.h:171
 - name: ProjectileStatus
   type: u8
   loc: include/constants/projectile.h:7
 - name: ProjectileType
   type: u8
   loc: include/constants/projectile.h:31
+- name: QueueFull
+  type: u8
+  loc: include/constants/cable_link.h:55
+- name: RidleyInSpaceOamId
+  type: u8
+  loc: include/cutscenes/ridley_in_space.h:7
+- name: RidleyInSpaceShipSlot
+  type: u8
+  loc: include/cutscenes/ridley_in_space.h:24
+- name: RidleyLandingOamId
+  type: u8
+  loc: include/cutscenes/ridley_landing.h:7
+- name: RidleyOam
+  type: u8
+  loc: include/data/sprites/ridley.h:9
+- name: RidleyPartId
+  type: u8
+  loc: include/sprites_ai/ridley.h:7
+- name: RidleySpawnOamId
+  type: u8
+  loc: include/cutscenes/ridley_spawn.h:7
+- name: RidleyTailPartId
+  type: u8
+  loc: include/sprites_ai/ridley.h:18
+- name: RoomEffect
+  type: u8
+  loc: include/constants/room.h:12
+- name: RoomScrollFlags
+  type: u8
+  loc: include/constants/room.h:7
+- name: RuinsTestFightStage
+  type: u8
+  loc: include/sprites_ai/ruins_test.h:7
 - name: SamusAnimState
   type: u8
-  loc: include/constants/samus.h:218
+  loc: include/constants/samus.h:220
 - name: SamusBlockHitbox
   type: u8
-  loc: include/constants/samus.h:278
+  loc: include/constants/samus.h:282
 - name: SamusCollisionDataFields
   type: u8
-  loc: include/constants/samus.h:295
+  loc: include/constants/samus.h:299
+- name: SamusCollisionDetection
+  type: u8
+  loc: include/constants/samus.h:226
 - name: SamusFunc_T
   type: SamusPose (*)(struct SamusData*)
   loc: include/structs/samus.h:180
 - name: SamusHitbox
   type: u8
-  loc: include/constants/samus.h:286
+  loc: include/constants/samus.h:290
 - name: SamusHitboxType
   type: u8
-  loc: include/constants/samus.h:266
+  loc: include/constants/samus.h:270
+- name: SamusIconOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:207
 - name: SamusPose
   type: u8
   loc: include/constants/samus.h:51
@@ -229,12 +673,24 @@
 - name: SamusStandingStatus
   type: u8
   loc: include/constants/samus.h:133
+- name: SamusWireframeDataId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:267
 - name: ScrewSpeedFlag
   type: u8
-  loc: include/constants/samus.h:303
+  loc: include/constants/samus.h:307
+- name: ScrollSubData
+  type: u8
+  loc: include/structs/scroll.h:7
+- name: ScrollVelocityCap
+  type: u8
+  loc: include/structs/scroll.h:38
 - name: SecondarySprite
   type: u8
   loc: include/constants/sprite.h:248
+- name: SlopeType
+  type: u16
+  loc: include/constants/samus.h:155
 - name: Sound
   type: u16
   loc: include/constants/audio.h:7
@@ -247,51 +703,153 @@
 - name: SoundCodeCFunc_T
   type: u8* (*)(u32*, u32*, u8)
   loc: include/structs/audio.h:303
+- name: SoundModeFrequency
+  type: u8
+  loc: include/constants/audio.h:837
+- name: SpacePirateAim
+  type: u8
+  loc: include/sprites_ai/space_pirate.h:69
 - name: SplashSize
   type: u8
   loc: include/constants/sprite_util.h:39
 - name: SpriteDeathType
   type: u8
   loc: include/constants/sprite_util.h:33
+- name: SpritePose
+  type: u8
+  loc: include/constants/sprite.h:424
 - name: SpritePropery
   type: u8
   loc: include/constants/sprite.h:26
+- name: SpriteStatsIndex
+  type: u8
+  loc: include/constants/sprite.h:380
 - name: SpriteStatus
   type: u16
   loc: include/constants/sprite.h:7
 - name: SpriteWeakness
   type: u16
-  loc: include/constants/sprite.h:380
+  loc: include/constants/sprite.h:394
+- name: SramOperation
+  type: u8
+  loc: include/sram_misc.h:7
 - name: SramStructSize
   type: char [0x1]
   loc: include/structs/save_file.h:240
+- name: StatueOpeningOamId
+  type: u8
+  loc: include/cutscenes/statue_opening.h:7
+- name: StatusScreenBeamAbilityOffset
+  type: u8
+  loc: include/constants/menus/status_screen.h:106
+- name: StatusScreenBombAbilityOffset
+  type: u8
+  loc: include/constants/menus/status_screen.h:123
+- name: StatusScreenMiscAbilityOffset
+  type: u8
+  loc: include/constants/menus/status_screen.h:137
+- name: StatusScreenMissileAbilityOffset
+  type: u8
+  loc: include/constants/menus/status_screen.h:116
+- name: StatusScreenSuitAbilityOffset
+  type: u8
+  loc: include/constants/menus/status_screen.h:130
+- name: StatusSlots
+  type: u8
+  loc: include/constants/menus/status_screen.h:68
+- name: StereoUpdateFlags
+  type: u16
+  loc: include/constants/menus/file_select.h:311
 - name: StoryTextId
   type: u8
   loc: include/constants/text.h:7
+- name: SubBombChainRequest
+  type: u8
+  loc: include/constants/block.h:93
+- name: SubGameMode
+  type: u8
+  loc: include/constants/game_state.h:73
 - name: SuitMiscFlags
   type: u8
   loc: include/constants/samus.h:16
 - name: SuitType
   type: u8
   loc: include/constants/samus.h:30
+- name: TangleVineGerutaPartId
+  type: u8
+  loc: include/sprites_ai/tangle_vine.h:7
+- name: TangleVineOam
+  type: u8
+  loc: include/data/sprites/tangle_vine.h:9
+- name: TargetMovementType
+  type: u8
+  loc: include/constants/menus/pause_screen.h:332
 - name: TextState
   type: s32
   loc: include/constants/text.h:277
+- name: TilemapRequest
+  type: u8
+  loc: include/constants/menus/file_select.h:222
 - name: TimeAttackFunc_T
   type: void (*)(u8*, s32)
   loc: include/structs/time_attack.h:7
+- name: TitleScreenAnimatedPalette
+  type: u8
+  loc: include/structs/menus/title_screen.h:20
+- name: TitleScreenCopyrightSymbol
+  type: u8
+  loc: include/constants/menus/title_screen.h:44
+- name: TitleScreenIdleStage
+  type: u8
+  loc: include/constants/menus/title_screen.h:20
+- name: TitleScreenMenuOption
+  type: u8
+  loc: include/constants/menus/title_screen.h:50
+- name: TitleScreenOamId
+  type: u8
+  loc: include/constants/menus/title_screen.h:32
+- name: TitleScreenType
+  type: u8
+  loc: include/constants/menus/title_screen.h:7
 - name: TourianEscapeFunc_T
   type: u8 (*)(void)
   loc: include/tourian_escape.h:6
+- name: TransferDataStage
+  type: u8
+  loc: include/constants/transfer.h:26
+- name: TransferError
+  type: u8
+  loc: include/constants/transfer.h:7
+- name: TransferResult
+  type: u8
+  loc: include/constants/cable_link.h:29
+- name: TransferStage
+  type: u8
+  loc: include/constants/transfer.h:35
+- name: TransferVerify
+  type: u8
+  loc: include/constants/transfer.h:17
+- name: UnknownItemChozoStatueOam
+  type: u8
+  loc: include/data/sprites/unknown_item_chozo_statue.h:9
+- name: UnknownItemChozoStatuePartId
+  type: u8
+  loc: include/sprites_ai/unknown_item_chozo_statue.h:7
 - name: VerticalMovingDir
   type: u8
-  loc: include/constants/samus.h:165
+  loc: include/constants/samus.h:167
 - name: WantingEffect
   type: u32
-  loc: include/constants/samus.h:195
+  loc: include/constants/samus.h:197
 - name: WeaponHightlighted
   type: u8
   loc: include/constants/samus.h:44
+- name: WorldMapOamId
+  type: u8
+  loc: include/constants/menus/pause_screen.h:244
+- name: bg3ScrollingType
+  type: u8
+  loc: include/structs/scroll.h:46
 - name: bools16
   type: s16
   loc: include/types.h:32

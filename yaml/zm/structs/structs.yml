@@ -2,7 +2,7 @@
   size: 0x8
   vars:
   - name: type
-    type: u8
+    type: AnimatedGfxType
     offset: 0x0
   - name: framesPerState
     type: u8
@@ -13,22 +13,22 @@
   - name: pGraphics
     type: const u8* const
     offset: 0x4
-  loc: include/structs/animated_graphics.h:46
+  loc: include/structs/animated_graphics.h:48
 - name: AnimatedGraphicsEntry
   size: 0x4
   vars:
   - name: palette
-    type: u8
+    type: AnimatedPaletteId
     offset: 0x0
   - name: tileset
     type: u8
     offset: 0x1
-  loc: include/structs/room.h:10
+  loc: include/structs/room.h:13
 - name: AnimatedGraphicsInfo
   size: 0xC
   vars:
   - name: type
-    type: u8
+    type: AnimatedGfxType
     offset: 0x0
   - name: framesPerState
     type: u8
@@ -43,17 +43,17 @@
     type: s8
     offset: 0x4
   - name: graphicsEntry
-    type: u8
+    type: AnimatedGfxId
     offset: 0x5
   - name: pGraphics
     type: const u8*
     offset: 0x8
-  loc: include/structs/animated_graphics.h:36
+  loc: include/structs/animated_graphics.h:38
 - name: AnimatedPaletteData
   size: 0x8
   vars:
   - name: type
-    type: u8
+    type: AnimatedPaletteType
     offset: 0x0
   - name: framesPerState
     type: u8
@@ -64,7 +64,7 @@
   - name: pPalette
     type: const u16*
     offset: 0x4
-  loc: include/structs/animated_graphics.h:53
+  loc: include/structs/animated_graphics.h:55
 - name: AnimatedPaletteTiming
   size: 0x4
   vars:
@@ -80,7 +80,7 @@
   - name: row2
     type: s8
     offset: 0x3
-  loc: include/structs/animated_graphics.h:28
+  loc: include/structs/animated_graphics.h:30
 - name: AnimatedTiming
   size: 0x4
   vars:
@@ -93,7 +93,7 @@
   - name: unk_2
     type: u8
     offset: 0x2
-  loc: include/structs/animated_graphics.h:22
+  loc: include/structs/animated_graphics.h:24
 - name: ArmCannonAnimationData
   size: 0x8
   vars:
@@ -132,7 +132,7 @@
   - name: yOffset
     type: u16
     offset: 0x6
-  loc: include/structs/room.h:100
+  loc: include/structs/room.h:103
 - name: BG2Movement
   size: 0x4
   vars:
@@ -142,7 +142,7 @@
   - name: yOffset
     type: s16
     offset: 0x2
-  loc: include/structs/bg_clip.h:20
+  loc: include/structs/bg_clip.h:55
 - name: BG3Movement
   size: 0x8
   vars:
@@ -158,7 +158,7 @@
   - name: xOffset
     type: u16
     offset: 0x4
-  loc: include/structs/room.h:108
+  loc: include/structs/room.h:111
 - name: BackgroundEffect
   size: 0x8
   vars:
@@ -172,7 +172,7 @@
     type: u8
     offset: 0x4
   - name: type
-    type: u8
+    type: BackgroundEffectNum
     offset: 0x5
   - name: stage
     type: u8
@@ -180,7 +180,7 @@
   - name: unk_7
     type: u8
     offset: 0x7
-  loc: include/structs/animated_graphics.h:6
+  loc: include/structs/animated_graphics.h:8
 - name: BackgroundEffectColorData
   size: 0x8
   vars:
@@ -196,7 +196,7 @@
   - name: applyToObj
     type: u8
     offset: 0x6
-  loc: include/structs/animated_graphics.h:15
+  loc: include/structs/animated_graphics.h:17
 - name: BackgroundPointersAndDimensions
   size: 0x20
   vars:
@@ -213,7 +213,7 @@
   - name: clipdataHeight
     type: u16
     offset: 0x1E
-  loc: include/structs/bg_clip.h:9
+  loc: include/structs/bg_clip.h:44
 - name: BackgroundPointersAndDimensions__backgrounds
   size: 0x8
   vars:
@@ -226,7 +226,7 @@
   - name: height
     type: u16
     offset: 0x6
-  loc: include/structs/bg_clip.h:10
+  loc: include/structs/bg_clip.h:45
 - name: BackgroundPositions
   size: 0x14
   vars:
@@ -237,8 +237,8 @@
   - name: doorTransition
     type: struct Coordinates
     offset: 0x10
-  loc: include/structs/room.h:88
-- name: BeforeCharlieEwramData
+  loc: include/structs/room.h:91
+- name: BeforeRuinsTestEwramData
   size: 0x3900
   vars:
   - name: wallPal
@@ -261,7 +261,7 @@
     type: u16
     count: 0x80
     offset: 0x3800
-  loc: include/cutscenes/before_charlie.h:10
+  loc: include/cutscenes/before_ruins_test.h:10
 - name: BldalphaData
   size: 0x8
   vars:
@@ -313,13 +313,13 @@
   size: 0x4
   vars:
   - name: lifeType
-    type: u8
+    type: BlockLifeType
     offset: 0x0
   - name: subType
-    type: u8
+    type: BlockSubType
     offset: 0x1
   - name: type
-    type: u8
+    type: BlockType
     offset: 0x2
   - name: isSpeedboost
     type: u8
@@ -329,7 +329,7 @@
     type: u8
     offset: 0x3
     bits: 0x4
-  loc: include/structs/block.h:43
+  loc: include/structs/block.h:46
 - name: BombChain
   size: 0x4
   vars:
@@ -343,7 +343,7 @@
     type: u8
     offset: 0x2
   - name: type
-    type: u8
+    type: BombChainType
     offset: 0x3
     bits: 0x3
   - name: padding
@@ -358,7 +358,7 @@
     type: u8
     offset: 0x3
     bits: 0x1
-  loc: include/structs/block.h:26
+  loc: include/structs/block.h:29
 - name: BombChainReverseData
   size: 0x4
   vars:
@@ -368,12 +368,12 @@
   - name: behavior
     type: u16
     offset: 0x2
-  loc: include/structs/block.h:51
+  loc: include/structs/block.h:54
 - name: BootDebugData
   size: 0x60
   vars:
   - name: menuCursor
-    type: u8
+    type: BootDebugSubMenu
     offset: 0x0
   - name: subMenu
     type: u8
@@ -385,7 +385,7 @@
     type: u8
     offset: 0x3
   - name: menuDepth
-    type: u8
+    type: BootDebugMenuDepth
     offset: 0x4
   - name: bg3vofs
     type: u8
@@ -398,7 +398,7 @@
     count: 0x5
     offset: 0x7
   - name: soundTestId
-    type: u16
+    type: Sound
     offset: 0xC
   - name: bg0vofs
     type: u16
@@ -416,7 +416,7 @@
     type: struct MenuOamData
     count: 0x4
     offset: 0x20
-  loc: include/structs/menus/boot_debug.h:19
+  loc: include/structs/menus/boot_debug.h:23
 - name: BootDebugText
   size: 0xC
   vars:
@@ -430,7 +430,7 @@
     type: u8
     offset: 0x2
   - name: palette
-    type: u8
+    type: BootDebugColor
     offset: 0x3
   - name: size
     type: u8
@@ -438,7 +438,7 @@
   - name: text
     type: const u8*
     offset: 0x8
-  loc: include/structs/menus/boot_debug.h:10
+  loc: include/structs/menus/boot_debug.h:14
 - name: BossFlameData
   size: 0xC
   vars:
@@ -469,7 +469,7 @@
   - name: yPosition
     type: u16
     offset: 0xA
-  loc: include/structs/menus/pause_screen.h:136
+  loc: include/structs/menus/pause_screen.h:137
 - name: BossWork
   size: 0x30
   vars:
@@ -556,7 +556,7 @@
     type: u8
     offset: 0x1
   - name: type
-    type: u8
+    type: BlockType
     offset: 0x2
   - name: xPosition
     type: u8
@@ -567,7 +567,7 @@
   - name: timer
     type: u16
     offset: 0x6
-  loc: include/structs/block.h:10
+  loc: include/structs/block.h:13
 - name: ButtonAssignments
   size: 0x8
   vars:
@@ -652,7 +652,7 @@
   - name: speedMultiplier
     type: u16
     offset: 0x12
-  loc: include/structs/menus/pause_screen.h:101
+  loc: include/structs/menus/pause_screen.h:102
 - name: ChozoHintTarget
   size: 0xC
   vars:
@@ -669,7 +669,7 @@
     type: u16
     offset: 0x4
   - name: activeMovementScrollingFlag
-    type: u8
+    type: TargetMovementType
     offset: 0x6
   - name: movementStage
     type: u8
@@ -686,7 +686,7 @@
   - name: unk_4B
     type: u8
     offset: 0xB
-  loc: include/structs/menus/pause_screen.h:88
+  loc: include/structs/menus/pause_screen.h:89
 - name: ChozoStatueTarget
   size: 0xC
   vars:
@@ -720,7 +720,7 @@
   - name: endIcon
     type: u8
     offset: 0x9
-  loc: include/structs/menus/pause_screen.h:16
+  loc: include/structs/menus/pause_screen.h:17
 - name: ChozodiaEscapeData
   size: 0x574
   vars:
@@ -828,7 +828,7 @@
   - name: blockBehavior
     type: u8
     offset: 0x6
-  loc: include/structs/block.h:19
+  loc: include/structs/block.h:22
 - name: CollisionData
   size: 0x14
   vars:
@@ -843,7 +843,7 @@
     type: s32
     offset: 0x8
   - name: actorType
-    type: s32
+    type: ClipdataActor
     offset: 0xC
   - name: tileX
     type: u16
@@ -851,12 +851,12 @@
   - name: tileY
     type: u16
     offset: 0x12
-  loc: include/structs/clipdata.h:26
+  loc: include/structs/clipdata.h:27
 - name: ColorFading
   size: 0x8
   vars:
   - name: type
-    type: u8
+    type: ColorFadingEffect
     offset: 0x0
   - name: stage
     type: u8
@@ -868,15 +868,15 @@
     type: u8
     offset: 0x3
   - name: status
-    type: u8
+    type: ColorFadingStatus
     offset: 0x4
   - name: useSecondColorSet
-    type: u8
+    type: boolu8
     offset: 0x5
-  - name: subroutineTimer
+  - name: workTimer
     type: u16
     offset: 0x6
-  loc: include/structs/color_effects.h:13
+  loc: include/structs/color_effects.h:15
 - name: ColorFadingColorInfo
   size: 0x8
   vars:
@@ -886,24 +886,24 @@
   - name: size
     type: u8
     offset: 0x4
-  loc: include/structs/color_effects.h:34
+  loc: include/structs/color_effects.h:36
 - name: ColorFadingData
   size: 0x18
   vars:
   - name: isWhite
     type: boolu8
     offset: 0x0
-  - name: pUpdateSubroutine
+  - name: pUpdateFunction
     type: ColorFadingUnkFunc_T
     offset: 0x4
   - name: firstColorSet
-    type: u8
+    type: ColorFadingSpeed
     offset: 0x8
-  - name: pProcessSubroutine
+  - name: pProcessFunction
     type: ColorFadingUnkFunc_T
     offset: 0xC
   - name: secondColorSet
-    type: u8
+    type: ColorFadingSpeed
     offset: 0x10
   - name: bgColorMask
     type: u16
@@ -911,10 +911,10 @@
   - name: objColorMask
     type: u16
     offset: 0x14
-  - name: fadeSubroutine
-    type: u8
+  - name: fadeFunction
+    type: ColorFadingFunction
     offset: 0x16
-  loc: include/structs/color_effects.h:23
+  loc: include/structs/color_effects.h:25
 - name: Coordinates
   size: 0x4
   vars:
@@ -929,23 +929,23 @@
   size: 0x24
   vars:
   - name: type
-    type: u8
+    type: CreditLineType
     offset: 0x0
   - name: text
     type: u8
     count: 0x23
     offset: 0x1
-  loc: include/structs/ending_and_gallery.h:17
+  loc: include/structs/ending_and_gallery.h:20
 - name: CurrentAffectingClip
   size: 0x4
   vars:
   - name: movement
-    type: u16
+    type: ClipdataMovement
     offset: 0x0
   - name: hazard
-    type: u16
+    type: HazardType
     offset: 0x2
-  loc: include/structs/clipdata.h:21
+  loc: include/structs/clipdata.h:22
 - name: CutsceneData
   size: 0x4B0
   vars:
@@ -1025,7 +1025,7 @@
     type: u8
     offset: 0xBE
   - name: fadingType
-    type: u8
+    type: ColorFadingType
     offset: 0xBF
   - name: graphicsData
     type: struct CutsceneGraphicsData
@@ -1035,7 +1035,7 @@
     type: struct CutsceneOamData
     count: 0x1E
     offset: 0xF0
-  loc: include/structs/cutscene.h:171
+  loc: include/structs/cutscene.h:172
 - name: CutsceneGraphicsData
   size: 0xC
   vars:
@@ -1058,7 +1058,7 @@
     type: u8
     count: 0x6
     offset: 0x6
-  loc: include/structs/cutscene.h:105
+  loc: include/structs/cutscene.h:106
 - name: CutsceneInfo
   size: 0x10
   vars:
@@ -1095,7 +1095,7 @@
   - name: event
     type: Event
     offset: 0xD
-  loc: include/structs/cutscene.h:64
+  loc: include/structs/cutscene.h:65
 - name: CutsceneOamData
   size: 0x20
   vars:
@@ -1115,7 +1115,7 @@
   - name: currentAnimationFrame
     type: u8
     offset: 0x9
-  - name: oamID
+  - name: oamId
     type: u8
     offset: 0xA
   - name: priority
@@ -1177,7 +1177,7 @@
   - name: unk_1E
     type: u8
     offset: 0x1E
-  loc: include/structs/cutscene.h:129
+  loc: include/structs/cutscene.h:130
 - name: CutscenePageData
   size: 0x8
   vars:
@@ -1196,7 +1196,7 @@
   - name: screenSize
     type: u16
     offset: 0x6
-  loc: include/structs/cutscene.h:43
+  loc: include/structs/cutscene.h:44
 - name: CutscenePaletteData
   size: 0x4
   vars:
@@ -1212,7 +1212,7 @@
   - name: maxTimer
     type: u8
     offset: 0x3
-  loc: include/structs/cutscene.h:98
+  loc: include/structs/cutscene.h:99
 - name: CutsceneScreenShake
   size: 0x8
   vars:
@@ -1231,7 +1231,7 @@
   - name: currentSubSet
     type: u8
     offset: 0x5
-  loc: include/structs/cutscene.h:82
+  loc: include/structs/cutscene.h:83
 - name: CutsceneScreenShakeInfo
   size: 0x4
   vars:
@@ -1244,7 +1244,7 @@
   - name: set
     type: u16
     offset: 0x2
-  loc: include/structs/cutscene.h:51
+  loc: include/structs/cutscene.h:52
 - name: CutsceneScrolling
   size: 0xC
   vars:
@@ -1263,7 +1263,7 @@
   - name: maxDelay
     type: s8
     offset: 0x8
-  loc: include/structs/cutscene.h:90
+  loc: include/structs/cutscene.h:91
 - name: CutsceneScrollingInfo
   size: 0x8
   vars:
@@ -1279,12 +1279,12 @@
   - name: maxDelay
     type: s8
     offset: 0x5
-  loc: include/structs/cutscene.h:57
+  loc: include/structs/cutscene.h:58
 - name: CutsceneSpecialEffect
   size: 0x10
   vars:
   - name: status
-    type: u8
+    type: CutsceneSpecialEffectStatus
     offset: 0x0
   - name: s_WrittenToBLDY
     type: u8
@@ -1319,18 +1319,17 @@
   - name: bg_Timer
     type: s8
     offset: 0xE
-  loc: include/structs/cutscene.h:114
-- name: CutsceneSubroutineData
+  loc: include/structs/cutscene.h:115
+- name: CutsceneStageData
   size: 0x8
   vars:
   - name: pFunction
     type: CutsceneFunc_T
-    cat: thumb
     offset: 0x0
   - name: oamLength
     type: u8
     offset: 0x4
-  loc: include/structs/cutscene.h:77
+  loc: include/structs/cutscene.h:78
 - name: CutsceneTimeInfo
   size: 0x8
   vars:
@@ -1349,7 +1348,7 @@
   - name: customTimer
     type: u8
     offset: 0x6
-  loc: include/structs/cutscene.h:155
+  loc: include/structs/cutscene.h:156
 - name: Cutscene_Unused
   size: 0x4
   vars:
@@ -1365,7 +1364,7 @@
   - name: unk_3
     type: u8
     offset: 0x3
-  loc: include/structs/cutscene.h:164
+  loc: include/structs/cutscene.h:165
 - name: DMA
   size: 0xC
   vars:
@@ -1498,7 +1497,7 @@
   - name: mapY2
     type: u8
     offset: 0x7
-  loc: include/structs/clipdata.h:10
+  loc: include/structs/clipdata.h:11
 - name: EndingData
   size: 0x2C4
   vars:
@@ -1544,7 +1543,7 @@
     type: u32
     offset: 0x94
   - name: endingNumber
-    type: u8
+    type: EndingImage
     offset: 0x98
   - name: completionPercentage
     type: u8
@@ -1632,12 +1631,12 @@
   - name: bldcnt
     type: u16
     offset: 0x2C2
-  loc: include/structs/ending_and_gallery.h:22
+  loc: include/structs/ending_and_gallery.h:25
 - name: EndingImageOam
   size: 0xC
   vars:
   - name: type
-    type: u8
+    type: EndingOamType
     offset: 0x0
   - name: spawnDelay
     type: u8
@@ -1654,7 +1653,7 @@
   - name: pFrame
     type: const u16* const
     offset: 0x8
-  loc: include/structs/ending_and_gallery.h:8
+  loc: include/structs/ending_and_gallery.h:11
 - name: Envelope
   size: 0x4
   vars:
@@ -1752,10 +1751,10 @@
   size: 0x40
   vars:
   - name: currentOption
-    type: u8
+    type: EraseSramOption
     offset: 0x0
   - name: nextOption
-    type: u8
+    type: EraseSramOption
     offset: 0x1
   - name: language
     type: u8
@@ -1779,7 +1778,7 @@
     type: struct MenuOamData
     count: 0x3
     offset: 0x10
-  loc: include/structs/menus/erase_sram.h:9
+  loc: include/structs/menus/erase_sram.h:12
 - name: EscapeDigits
   size: 0x8
   vars:
@@ -1845,7 +1844,7 @@
   - name: timeAttack
     type: u32
     offset: 0x8
-  loc: include/structs/game_state.h:17
+  loc: include/structs/game_state.h:18
 - name: FileSelectCursorOamData
   size: 0x8
   vars:
@@ -1885,7 +1884,7 @@
     type: u16
     offset: 0xA
   - name: fadingStage
-    type: u8
+    type: FileSelectFadingStage
     offset: 0xC
   - name: colorToApply
     type: u8
@@ -1934,19 +1933,19 @@
     type: u8
     offset: 0x25
   - name: copySourceFile
-    type: u8
+    type: FileSelectCursorPosition
     offset: 0x26
   - name: currentFile
-    type: u8
+    type: FileSelectCursorPosition
     offset: 0x27
   - name: eraseFile
-    type: u8
+    type: FileSelectCursorPosition
     offset: 0x28
   - name: fileSelectCursors
     type: struct FileSelectMenuCursors
     offset: 0x2C
   - name: processTextStage
-    type: u8
+    type: FileScreenProcessTextStage
     offset: 0x34
   - name: messageInfoIdQueue
     type: FileScreenMessageInfoId
@@ -1971,12 +1970,12 @@
     type: u8
     offset: 0x3E
   - name: fileSelectCursorPosition
-    type: u8
+    type: FileSelectCursorPosition
     offset: 0x3F
-  - name: subroutineStage
+  - name: subMenuStage
     type: u8
     offset: 0x40
-  - name: subroutineTimer
+  - name: subMenuTimer
     type: u16
     offset: 0x42
   - name: corruptMessageFileA
@@ -1989,7 +1988,7 @@
     type: u8
     offset: 0x46
   - name: corruptFile
-    type: u8
+    type: FileSelectCursorPosition
     offset: 0x47
   - name: timeAttackPassword
     type: u8
@@ -2000,7 +1999,7 @@
     count: 0x2
     offset: 0x50
   - name: optionsUnlocked
-    type: u8
+    type: OptionId
     count: 0x7
     offset: 0x5C
   - name: soundTestId
@@ -2151,7 +2150,7 @@
   - name: timer
     type: u8
     offset: 0x4
-  loc: include/oam.h:64
+  loc: include/oam.h:96
 - name: FusionGalleryData
   size: 0x2C4
   vars:
@@ -2320,7 +2319,7 @@
   - name: language
     type: u8
     offset: 0x2
-  loc: include/structs/game_state.h:9
+  loc: include/structs/game_state.h:10
 - name: GameOverData
   size: 0x48
   vars:
@@ -2582,7 +2581,7 @@
     type: u8
     offset: 0x7
     bits: 0x1
-  loc: include/structs/haze.h:8
+  loc: include/structs/haze.h:10
 - name: HazeLoop
   size: 0x4
   vars:
@@ -2595,7 +2594,7 @@
   - name: unk_3
     type: u8
     offset: 0x3
-  loc: include/structs/haze.h:16
+  loc: include/structs/haze.h:18
 - name: HudDigits
   size: 0x4
   vars:
@@ -2630,7 +2629,7 @@
   - name: unknown
     type: u8
     offset: 0x5
-  - name: pSubroutine
+  - name: pFunction
     type: InGameCutsceneFunc_T
     offset: 0x8
   loc: include/structs/in_game_cutscene.h:19
@@ -2644,7 +2643,7 @@
     type: Area
     cat: thumb
     offset: 0x1
-  - name: pSubroutine
+  - name: pFunction
     type: InGameCutsceneFunc_T
     offset: 0x4
   loc: include/structs/in_game_cutscene.h:28
@@ -2802,16 +2801,16 @@
     type: u16
     offset: 0x6
   - name: active
-    type: u8
+    type: ActiveTransfer
     offset: 0x8
   - name: connectStage
-    type: u8
+    type: ConnectStage
     offset: 0x9
   - name: linkStage
-    type: u8
+    type: LinkStage
     offset: 0xA
   - name: result
-    type: u8
+    type: TransferResult
     offset: 0xB
   - name: errorFlag
     type: u8
@@ -2831,7 +2830,7 @@
   - name: musicPriority
     type: u16
     offset: 0x14
-  loc: include/structs/cable_link.h:6
+  loc: include/structs/cable_link.h:8
 - name: ItemInfo
   size: 0x4
   vars:
@@ -2847,7 +2846,7 @@
   - name: yPosition
     type: u8
     offset: 0x3
-  loc: include/structs/bg_clip.h:31
+  loc: include/structs/bg_clip.h:66
 - name: KraidRisingEwramData
   size: 0x3800
   vars:
@@ -2875,7 +2874,7 @@
     type: u8
     count: 0x800
     offset: 0x3000
-  loc: include/cutscenes/kraid_rising.h:20
+  loc: include/cutscenes/kraid_rising.h:18
 - name: LanguageColorAnimation
   size: 0x4
   vars:
@@ -2933,7 +2932,7 @@
   - name: mapY
     type: u8
     offset: 0x3
-  loc: include/structs/minimap.h:12
+  loc: include/structs/minimap.h:15
 - name: LastElevatorUsed
   size: 0x4
   vars:
@@ -2959,7 +2958,7 @@
   - name: yPosition
     type: u8
     offset: 0x3
-  loc: include/structs/bg_clip.h:25
+  loc: include/structs/bg_clip.h:60
 - name: LinkConnection
   size: 0xC
   vars:
@@ -2990,7 +2989,7 @@
   - name: recvCmdIndex
     type: u8
     offset: 0x9
-  loc: include/structs/link.h:95
+  loc: include/structs/link.h:67
 - name: LinkInfo
   size: 0x1A4
   vars:
@@ -3006,7 +3005,7 @@
   - name: recvQueue
     type: struct RecvQueue
     offset: 0xA0
-  loc: include/structs/link.h:119
+  loc: include/structs/link.h:91
 - name: LinkSession
   size: 0x10
   vars:
@@ -3014,7 +3013,7 @@
     type: u8
     offset: 0x0
   - name: state
-    type: u8
+    type: LinkState
     offset: 0x1
   - name: localId
     type: u8
@@ -3032,12 +3031,12 @@
   - name: serialIntrCounter
     type: u8
     offset: 0xD
-  loc: include/structs/link.h:85
+  loc: include/structs/link.h:57
 - name: LockScreen
   size: 0x8
   vars:
   - name: lock
-    type: u8
+    type: LockScreenType
     offset: 0x0
   - name: xPositionCenter
     type: u16
@@ -3063,12 +3062,12 @@
     type: u8
     count: 0x8
     offset: 0x0
-  loc: include/structs/menus/pause_screen.h:55
+  loc: include/structs/menus/pause_screen.h:56
 - name: MapScreenFading
   size: 0x4
   vars:
   - name: stage
-    type: u8
+    type: PauseScreenFading
     offset: 0x0
     enum: PauseScreenFading
   - name: colorToApply
@@ -3077,7 +3076,7 @@
   - name: paletteUpdated
     type: u8
     offset: 0x2
-  loc: include/structs/menus/pause_screen.h:115
+  loc: include/structs/menus/pause_screen.h:116
 - name: MenuOamData
   size: 0x10
   vars:
@@ -3105,7 +3104,7 @@
   - name: currentAnimationFrame
     type: u8
     offset: 0x9
-  - name: oamID
+  - name: oamId
     type: u8
     offset: 0xA
   - name: priority
@@ -3164,7 +3163,7 @@
   - name: delay
     type: u8
     offset: 0x9
-  - name: messageID
+  - name: messageId
     type: u8
     offset: 0xA
   - name: gfxSlot
@@ -3213,7 +3212,7 @@
   - name: yOffset2
     type: s8
     offset: 0x9
-  loc: include/structs/menus/pause_screen.h:59
+  loc: include/structs/menus/pause_screen.h:60
 - name: MultiBootData
   size: 0x4C
   vars:
@@ -3311,7 +3310,7 @@
     type: u8
     offset: 0x6
   - name: freqIndex
-    type: u8
+    type: SoundModeFrequency
     offset: 0x7
   - name: unk_8
     type: u8
@@ -3405,7 +3404,7 @@
   - name: preAction
     type: OamArrayPreAction
     offset: 0x4
-  loc: include/structs/cutscene.h:24
+  loc: include/structs/cutscene.h:25
 - name: OamData__all
   size: 0x8
   vars:
@@ -3421,7 +3420,7 @@
   - name: affineParam
     type: u16
     offset: 0x6
-  loc: include/oam.h:106
+  loc: include/oam.h:138
 - name: OamData__split
   size: 0x8
   vars:
@@ -3493,8 +3492,8 @@
     type: u16
     offset: 0x7
     bits: 0x1
-  loc: include/oam.h:83
-- name: OptionsSubroutineInfo
+  loc: include/oam.h:115
+- name: OptionsSubMenuInfo
   size: 0x8
   vars:
   - name: pFunction
@@ -3504,97 +3503,6 @@
     type: u8
     offset: 0x4
   loc: include/structs/menus/file_select.h:34
-- name: PSGSoundData
-  size: 0x28
-  vars:
-  - name: unk_0
-    type: u8
-    offset: 0x0
-  - name: unk_1
-    type: u8
-    offset: 0x1
-  - name: unk_2
-    type: u8
-    offset: 0x2
-  - name: unk_3
-    type: u8
-    offset: 0x3
-  - name: envelope
-    type: struct Envelope
-    offset: 0x4
-  - name: maybe_noteDelay
-    type: u16
-    offset: 0x8
-  - name: unk_A
-    type: u8
-    offset: 0xA
-  - name: unk_B
-    type: u8
-    offset: 0xB
-  - name: unk_C
-    type: u8
-    offset: 0xC
-  - name: unk_D
-    type: u8
-    offset: 0xD
-  - name: unk_E
-    type: u8
-    offset: 0xE
-  - name: unk_F
-    type: u8
-    offset: 0xF
-  - name: unk_10
-    type: u8
-    offset: 0x10
-  - name: unk_11
-    type: u8
-    offset: 0x11
-  - name: unk_12
-    type: u8
-    offset: 0x12
-  - name: undefined_13
-    type: u8
-    offset: 0x13
-  - name: unk_14
-    type: u16
-    offset: 0x14
-  - name: unk_16
-    type: u8
-    offset: 0x16
-  - name: unk_17
-    type: u8
-    offset: 0x17
-  - name: unk_18
-    type: u8
-    offset: 0x18
-  - name: unk_19
-    type: s8
-    offset: 0x19
-  - name: unk_1A
-    type: u8
-    offset: 0x1A
-  - name: unk_1B
-    type: u8
-    offset: 0x1B
-  - name: unk_1C
-    type: u8
-    offset: 0x1C
-  - name: unk_1D
-    type: u8
-    offset: 0x1D
-  - name: unk_1E
-    type: u8
-    offset: 0x1E
-  - name: unk_1F
-    type: u8
-    offset: 0x1F
-  - name: pSample
-    type: u32*
-    offset: 0x20
-  - name: pVariables
-    type: struct TrackVariables*
-    offset: 0x24
-  loc: include/structs/audio.h:73
 - name: ParticleEffect
   size: 0xC
   vars:
@@ -3628,13 +3536,13 @@
   size: 0x8
   vars:
   - name: nameOamId
-    type: u8
+    type: OverlayOamId
     offset: 0x0
   - name: nameSpawningOamId
-    type: u8
+    type: OverlayOamId
     offset: 0x1
   - name: outlineOamId
-    type: u8
+    type: OverlayOamId
     offset: 0x2
   - name: xPosition
     type: u16
@@ -3642,15 +3550,15 @@
   - name: yPosition
     type: u16
     offset: 0x6
-  loc: include/structs/menus/pause_screen.h:30
+  loc: include/structs/menus/pause_screen.h:31
 - name: PauseScreenData
   size: 0x628
   vars:
   - name: typeFlags
-    type: u16
+    type: PauseScreenType
     offset: 0x0
-  - name: subroutineInfo
-    type: struct PauseScreenSubroutineData
+  - name: stateInfo
+    type: struct PauseScreenStateData
     offset: 0x4
   - name: unk_10
     type: u8
@@ -3990,7 +3898,7 @@
     type: struct MenuOamData
     count: 0x18
     offset: 0x4A8
-  loc: include/structs/menus/pause_screen.h:172
+  loc: include/structs/menus/pause_screen.h:173
 - name: PauseScreenEwramData
   size: 0xD800
   vars:
@@ -4078,12 +3986,12 @@
     type: u16
     count: 0x400
     offset: 0xD000
-  loc: include/structs/menus/pause_screen.h:148
-- name: PauseScreenSubroutineData
+  loc: include/structs/menus/pause_screen.h:149
+- name: PauseScreenStateData
   size: 0xC
   vars:
-  - name: currentSubroutine
-    type: u8
+  - name: state
+    type: PauseScreenState
     offset: 0x0
   - name: padding_1
     type: u8
@@ -4101,7 +4009,7 @@
   - name: fadeWireframeTimer
     type: u16
     offset: 0xA
-  loc: include/structs/menus/pause_screen.h:73
+  loc: include/structs/menus/pause_screen.h:74
 - name: PauseScreenWireframeData
   size: 0x10
   vars:
@@ -4126,12 +4034,12 @@
   - name: yPosition2
     type: u16
     offset: 0xC
-  loc: include/structs/menus/pause_screen.h:38
+  loc: include/structs/menus/pause_screen.h:39
 - name: PowerBomb
   size: 0x14
   vars:
   - name: animationState
-    type: u8
+    type: PowerBombState
     offset: 0x0
   - name: stage
     type: u8
@@ -4161,7 +4069,7 @@
     type: s16
     offset: 0xE
   - name: powerBombPlaced
-    type: u8
+    type: boolu8
     offset: 0x10
   - name: owner
     type: u8
@@ -4169,7 +4077,7 @@
   - name: unk_12
     type: u8
     offset: 0x12
-  loc: include/structs/power_bomb_explosion.h:8
+  loc: include/structs/power_bomb_explosion.h:10
 - name: ProjectileData
   size: 0x1C
   vars:
@@ -4220,6 +4128,97 @@
     type: s16
     offset: 0x1A
   loc: include/structs/projectile.h:10
+- name: PsgSoundData
+  size: 0x28
+  vars:
+  - name: unk_0
+    type: u8
+    offset: 0x0
+  - name: unk_1
+    type: u8
+    offset: 0x1
+  - name: unk_2
+    type: u8
+    offset: 0x2
+  - name: unk_3
+    type: u8
+    offset: 0x3
+  - name: envelope
+    type: struct Envelope
+    offset: 0x4
+  - name: maybe_noteDelay
+    type: u16
+    offset: 0x8
+  - name: unk_A
+    type: u8
+    offset: 0xA
+  - name: unk_B
+    type: u8
+    offset: 0xB
+  - name: unk_C
+    type: u8
+    offset: 0xC
+  - name: unk_D
+    type: u8
+    offset: 0xD
+  - name: unk_E
+    type: u8
+    offset: 0xE
+  - name: unk_F
+    type: u8
+    offset: 0xF
+  - name: unk_10
+    type: u8
+    offset: 0x10
+  - name: unk_11
+    type: u8
+    offset: 0x11
+  - name: unk_12
+    type: u8
+    offset: 0x12
+  - name: undefined_13
+    type: u8
+    offset: 0x13
+  - name: unk_14
+    type: u16
+    offset: 0x14
+  - name: unk_16
+    type: u8
+    offset: 0x16
+  - name: unk_17
+    type: u8
+    offset: 0x17
+  - name: unk_18
+    type: u8
+    offset: 0x18
+  - name: unk_19
+    type: s8
+    offset: 0x19
+  - name: unk_1A
+    type: u8
+    offset: 0x1A
+  - name: unk_1B
+    type: u8
+    offset: 0x1B
+  - name: unk_1C
+    type: u8
+    offset: 0x1C
+  - name: unk_1D
+    type: u8
+    offset: 0x1D
+  - name: unk_1E
+    type: u8
+    offset: 0x1E
+  - name: unk_1F
+    type: u8
+    offset: 0x1F
+  - name: pSample
+    type: u32*
+    offset: 0x20
+  - name: pVariables
+    type: struct TrackVariables*
+    offset: 0x24
+  loc: include/structs/audio.h:73
 - name: RecvQueue
   size: 0x104
   vars:
@@ -4233,7 +4232,7 @@
   - name: count
     type: u8
     offset: 0x101
-  loc: include/structs/link.h:113
+  loc: include/structs/link.h:85
 - name: RoomEntry
   size: 0x20
   vars:
@@ -4255,7 +4254,7 @@
     type: u8
     offset: 0x4
   - name: scrollsFlag
-    type: u8
+    type: RoomScrollFlags
     offset: 0x5
   - name: bg3Scrolling
     type: u8
@@ -4285,10 +4284,10 @@
     type: u16
     offset: 0x12
   - name: damageEffect
-    type: u8
+    type: RoomEffect
     offset: 0x14
   - name: musicTrack
-    type: u16
+    type: Sound
     offset: 0x16
   - name: bg0Size
     type: u8
@@ -4305,7 +4304,7 @@
   - name: animatedPalette
     type: u8
     offset: 0x1C
-  loc: include/structs/room.h:26
+  loc: include/structs/room.h:29
 - name: RoomEntryRom
   size: 0x3C
   vars:
@@ -4376,15 +4375,15 @@
     type: u8
     offset: 0x36
   - name: effect
-    type: u8
+    type: RoomEffect
     offset: 0x37
   - name: effectY
     type: u8
     offset: 0x38
   - name: musicTrack
-    type: u16
+    type: Sound
     offset: 0x3A
-  loc: include/structs/room.h:51
+  loc: include/structs/room.h:54
 - name: SamusAnimationData
   size: 0x10
   vars:
@@ -4933,10 +4932,10 @@
     type: s8
     offset: 0x12
   - name: language
-    type: s8
+    type: Language
     offset: 0x13
   - name: difficulty
-    type: u8
+    type: Difficulty
     offset: 0x14
   - name: timeAttack
     type: u8
@@ -5187,7 +5186,7 @@
   - name: count
     type: u8
     offset: 0x81
-  loc: include/structs/link.h:107
+  loc: include/structs/link.h:79
 - name: SoundChannel
   size: 0x34
   vars:
@@ -5545,18 +5544,18 @@
     count: 0x6
     offset: 0xB
   - name: bombActivation
-    type: BeamBombFlags
+    type: BombActivation
     count: 0x2
     offset: 0x11
   - name: missilesActivation
-    type: u8
+    type: MissileActivation
     count: 0x2
     offset: 0x13
   - name: padding_15
     type: u8
     count: 0x3
     offset: 0x15
-  loc: include/structs/menus/pause_screen.h:121
+  loc: include/structs/menus/pause_screen.h:122
 - name: StatusScreenGroupPositions
   size: 0x8
   vars:
@@ -5575,7 +5574,7 @@
   - name: group
     type: u8
     offset: 0x4
-  loc: include/structs/menus/status_screen.h:21
+  loc: include/structs/menus/status_screen.h:23
 - name: StatusScreenItemAcquisitionData
   size: 0x4
   vars:
@@ -5589,9 +5588,9 @@
     type: u8
     offset: 0x2
   - name: statusSlot
-    type: u8
+    type: StatusSlots
     offset: 0x3
-  loc: include/structs/menus/status_screen.h:14
+  loc: include/structs/menus/status_screen.h:16
 - name: StatusScreenItemData
   size: 0x4
   vars:
@@ -5607,7 +5606,7 @@
   - name: unk_3
     type: u8
     offset: 0x3
-  loc: include/structs/menus/status_screen.h:7
+  loc: include/structs/menus/status_screen.h:9
 - name: SubSpriteData
   size: 0x14
   vars:
@@ -5674,18 +5673,18 @@
   size: 0x8
   vars:
   - name: itemType
-    type: u8
+    type: ItemType
     offset: 0x0
   - name: underwater
     type: boolu8
     offset: 0x1
-  - name: messageID
-    type: u8
+  - name: messageId
+    type: MessageId
     offset: 0x2
   - name: revealedClipdata
     type: u16
     offset: 0x4
-  loc: include/structs/block.h:56
+  loc: include/structs/block.h:59
 - name: TankList
   size: 0x4
   vars:
@@ -5701,7 +5700,7 @@
   - name: powerBomb
     type: u8
     offset: 0x3
-  loc: include/structs/block.h:36
+  loc: include/structs/block.h:39
 - name: TilemapAndClipPointers
   size: 0xC
   vars:
@@ -5714,7 +5713,7 @@
   - name: pClipBehaviors
     type: u16*
     offset: 0x8
-  loc: include/structs/clipdata.h:35
+  loc: include/structs/clipdata.h:36
 - name: TilesetEntry
   size: 0x14
   vars:
@@ -5738,7 +5737,7 @@
   - name: animatedPalette
     type: u8
     offset: 0x11
-  loc: include/structs/room.h:79
+  loc: include/structs/room.h:82
 - name: TilesetTransparentColor
   size: 0x4
   vars:
@@ -5748,7 +5747,7 @@
   - name: field_2
     type: u16
     offset: 0x2
-  loc: include/structs/room.h:17
+  loc: include/structs/room.h:20
 - name: TimeAttackData
   size: 0x64
   vars:
@@ -5836,7 +5835,7 @@
   - name: unk_4
     type: u8
     offset: 0x4
-  loc: include/structs/menus/title_screen.h:17
+  loc: include/structs/menus/title_screen.h:20
 - name: TitleScreenData
   size: 0xBC
   vars:
@@ -5856,7 +5855,7 @@
     type: u16
     offset: 0x8
   - name: activeAnimatedPalettes
-    type: u8
+    type: TitleScreenAnimatedPalette
     offset: 0xA
   - name: type
     type: u16
@@ -5908,7 +5907,7 @@
     type: struct MenuOamData
     count: 0x7
     offset: 0x4C
-  loc: include/structs/menus/title_screen.h:33
+  loc: include/structs/menus/title_screen.h:36
 - name: TitleScreenOamTiming
   size: 0x4
   vars:
@@ -5918,7 +5917,7 @@
   - name: timer
     type: u16
     offset: 0x2
-  loc: include/structs/menus/title_screen.h:9
+  loc: include/structs/menus/title_screen.h:12
 - name: TitleScreenPageData
   size: 0xC
   vars:
@@ -5940,7 +5939,7 @@
   - name: tiletablePointer
     type: const u32* const
     offset: 0x8
-  loc: include/structs/menus/title_screen.h:24
+  loc: include/structs/menus/title_screen.h:27
 - name: TourianEscapeData
   size: 0xCC
   vars:
@@ -6349,8 +6348,8 @@
   - name: pChannel
     type: struct SoundChannel*
     offset: 0x48
-  - name: pSoundPSG
-    type: struct PSGSoundData*
+  - name: pSoundPsg
+    type: struct PsgSoundData*
     offset: 0x4C
   loc: include/structs/audio.h:105
 - name: TransferData
@@ -6368,7 +6367,7 @@
   - name: checksum
     type: u32
     offset: 0xC
-  loc: include/structs/transfer.h:15
+  loc: include/structs/transfer.h:17
 - name: TransferManager
   size: 0x18
   vars:
@@ -6378,7 +6377,7 @@
   - name: data
     type: struct TransferData
     offset: 0x8
-  loc: include/structs/transfer.h:22
+  loc: include/structs/transfer.h:24
 - name: TransferStatus
   size: 0x8
   vars:
@@ -6386,21 +6385,21 @@
     type: u8
     offset: 0x0
   - name: stage
-    type: u8
+    type: TransferStage
     offset: 0x1
   - name: unk_2
     type: u8
     offset: 0x2
   - name: dataTransferStage
-    type: u8
+    type: TransferDataStage
     offset: 0x3
   - name: verifyTransferResult
-    type: u8
+    type: TransferVerify
     offset: 0x4
   - name: errorDuringTransfer
-    type: u8
+    type: TransferError
     offset: 0x5
-  loc: include/structs/transfer.h:6
+  loc: include/structs/transfer.h:8
 - name: TransparencyRelated
   size: 0x4
   vars:
@@ -6429,7 +6428,7 @@
   - name: flashingNumber
     type: u8
     offset: 0x3
-  loc: include/structs/menus/pause_screen.h:82
+  loc: include/structs/menus/pause_screen.h:83
 - name: Unused_3005504
   size: 0x8
   vars:
@@ -6439,7 +6438,7 @@
   - name: field_4
     type: u32
     offset: 0x4
-  loc: include/structs/room.h:115
+  loc: include/structs/room.h:118
 - name: Voice
   size: 0xC
   vars:
@@ -6477,7 +6476,7 @@
   - name: yOffset
     type: s8
     offset: 0x3
-  loc: include/structs/room.h:93
+  loc: include/structs/room.h:96
 - name: WaveData
   size: 0x10
   vars:
@@ -6537,4 +6536,4 @@
   - name: yPosition
     type: u16
     offset: 0x4
-  loc: include/structs/menus/pause_screen.h:48
+  loc: include/structs/menus/pause_screen.h:49

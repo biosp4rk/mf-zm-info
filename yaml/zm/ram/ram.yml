@@ -3,66 +3,66 @@
   count: 0x400
   addr: 0x2002000
   enum: ClipdataType
-  loc: include/structs/room.h:120
+  loc: include/structs/room.h:123
 - name: gClipdataCollisionTypes_Tilemap
   type: u8
   count: 0x200
   addr: 0x2002400
   enum: ClipdataType
-  loc: include/structs/room.h:121
+  loc: include/structs/room.h:124
 - name: gClipdataBehaviorTypes
   type: u16
   count: 0x400
   addr: 0x2003000
   enum: ClipBehavior
-  loc: include/structs/room.h:123
+  loc: include/structs/room.h:126
 - name: gClipdataBehaviorTypes_Tilemap
   type: u16
   count: 0x200
   addr: 0x2003800
   enum: ClipBehavior
-  loc: include/structs/room.h:124
+  loc: include/structs/room.h:127
 - name: gTilemap
   type: u16
   count: 0x400
   addr: 0x2004000
-  loc: include/structs/room.h:126
+  loc: include/structs/room.h:129
 - name: gCommonTilemap
   type: u16
   count: 0x400
   addr: 0x2006000
-  loc: include/structs/room.h:128
+  loc: include/structs/room.h:131
 - name: gDecompBg3Map
   type: u16
   count: 0x800
   addr:
     U: 0x2007000
-  loc: include/structs/room.h:134
+  loc: include/structs/room.h:137
 - name: gMakeSolidBlocks
   type: u16
   count: 0x40
   addr: 0x2027780
-  loc: include/structs/block.h:66
+  loc: include/structs/block.h:69
 - name: gDecompClipdataMap
   type: u16
   count: 0x400
   addr: 0x2027800
-  loc: include/structs/room.h:130
+  loc: include/structs/room.h:133
 - name: gDecompBg0Map
   type: u16
   count: 0x1800
   addr: 0x202A800
-  loc: include/structs/room.h:131
+  loc: include/structs/room.h:134
 - name: gDecompBg1Map
   type: u16
   count: 0x1800
   addr: 0x202D800
-  loc: include/structs/room.h:132
+  loc: include/structs/room.h:135
 - name: gDecompBg2Map
   type: u16
   count: 0x1800
   addr: 0x2030800
-  loc: include/structs/room.h:133
+  loc: include/structs/room.h:136
 - name: gUnk_02035400
   type: u16
   addr:
@@ -72,7 +72,7 @@
   type: u32
   count: 0x8
   addr: 0x2037E00
-  loc: include/event.h:8
+  loc: include/event.h:13
 - name: gSramDemoInputData
   type: u16
   count: 0x100
@@ -88,16 +88,16 @@
 - name: gDebugMode
   type: u8
   addr: 0x3000000
-  loc: include/structs/game_state.h:32
+  loc: include/structs/game_state.h:33
 - name: gBootDebugActive
   type: u8
   cat: bool
   addr: 0x3000001
-  loc: include/structs/game_state.h:33
+  loc: include/structs/game_state.h:34
 - name: gFrameCounter16Bit
   type: u16
   addr: 0x3000002
-  loc: include/structs/game_state.h:47
+  loc: include/structs/game_state.h:48
 - name: gStereoFlag
   type: u8
   addr: 0x3000004
@@ -105,7 +105,7 @@
 - name: gSubGameModeStage
   type: u8
   addr: 0x3000005
-  loc: include/structs/game_state.h:58
+  loc: include/structs/game_state.h:59
 - name: gWrittenToBldalpha
   type: u16
   addr: 0x3000006
@@ -137,25 +137,25 @@
 - name: gFileScreenOptionsUnlocked
   type: struct FileScreenOptionsUnlocked
   addr: 0x3000014
-  loc: include/structs/game_state.h:27
+  loc: include/structs/game_state.h:28
 - name: gLanguage
   type: Language
   addr: 0x3000020
   enum: Language
-  loc: include/structs/game_state.h:49
+  loc: include/structs/game_state.h:50
 - name: gGameCompletion
   type: struct GameCompletion
   addr: 0x3000024
-  loc: include/structs/game_state.h:15
+  loc: include/structs/game_state.h:16
 - name: gCompletedGameFlagCopy
   type: u8
   addr: 0x3000028
-  loc: include/structs/game_state.h:62
+  loc: include/structs/game_state.h:63
 - name: gMonochromeBgFading
-  type: u8
+  type: MonochromeFading
   addr: 0x3000029
-  loc: include/structs/visual_effects.h:6
-- name: gWhichBGPositionIsWrittenToBG3OFS
+  loc: include/structs/visual_effects.h:8
+- name: gWhichBgPositionIsWrittenToBG3OFS
   type: u8
   addr: 0x300002A
   loc: include/structs/connection.h:116
@@ -167,19 +167,19 @@
   type: Difficulty
   addr: 0x300002C
   enum: Difficulty
-  loc: include/structs/game_state.h:48
+  loc: include/structs/game_state.h:49
 - name: gUseMotherShipDoors
   type: boolu8
   addr: 0x300002D
   loc: include/structs/connection.h:118
 - name: gTimeAttackFlag
-  type: u8
+  type: boolu8
   addr: 0x300002E
-  loc: include/structs/game_state.h:39
+  loc: include/structs/game_state.h:40
 - name: gCutsceneToSkip
   type: u8
   addr: 0x300002F
-  loc: include/structs/cutscene.h:201
+  loc: include/structs/cutscene.h:202
 - name: gMusicTrackInfo
   type: struct MusicTrackInfo
   addr: 0x3000030
@@ -189,70 +189,70 @@
   addr: 0x3000038
   loc: include/structs/demo.h:25
 - name: gResetGame
-  type: u8
+  type: boolu8
   addr: 0x300003C
-  loc: include/structs/game_state.h:50
+  loc: include/structs/game_state.h:51
 - name: gDisableScrolling
   type: u8
   addr: 0x300003D
-  loc: include/structs/game_state.h:37
+  loc: include/structs/game_state.h:38
 - name: gSlowScrollingTimer
   type: u16
   addr: 0x300003E
   loc: include/structs/scroll.h:86
 - name: gDisableMusic
-  type: u8
+  type: boolu8
   addr: 0x3000040
-  loc: include/structs/game_state.h:34
-- name: gDisableCutscenes_Unused
-  type: u8
-  addr: 0x3000041
   loc: include/structs/game_state.h:35
+- name: gDisableCutscenes_Unused
+  type: boolu8
+  addr: 0x3000041
+  loc: include/structs/game_state.h:36
 - name: gSkipDoorTransition
-  type: u8
+  type: boolu8
   addr: 0x3000042
   loc: include/structs/scroll.h:87
 - name: gDisableSoftReset
   type: boolu8
   addr: 0x3000043
-  loc: include/structs/game_state.h:31
+  loc: include/structs/game_state.h:32
 - name: gCollectingTank
   type: s8
   addr: 0x3000044
-  loc: include/structs/bg_clip.h:72
+  loc: include/structs/bg_clip.h:107
 - name: gDisableAnimatedGraphicsTimer
   type: u8
   addr: 0x3000045
-  loc: include/structs/animated_graphics.h:76
+  loc: include/structs/animated_graphics.h:78
 - name: gAnimatedGraphicsToUpdate
   type: u16
   cat: flags
   addr: 0x3000046
-  loc: include/structs/animated_graphics.h:77
+  loc: include/structs/animated_graphics.h:79
 - name: gDisableDoorAndTanks
   type: u8
   addr: 0x3000048
-  loc: include/structs/bg_clip.h:73
+  loc: include/structs/bg_clip.h:108
 - name: gDisablePause
   type: s8
   addr: 0x3000049
-  loc: include/structs/game_state.h:36
+  loc: include/structs/game_state.h:37
 - name: gHideHud
   type: boolu8
   addr: 0x300004A
   loc: include/structs/hud.h:26
 - name: gShipLandingFlag
-  type: u8
+  type: boolu8
   addr: 0x300004B
-  loc: include/structs/game_state.h:38
+  loc: include/structs/game_state.h:39
 - name: gDisableClipdataChangingTransparency
   type: u8
   addr: 0x300004C
-  loc: include/structs/bg_clip.h:74
+  loc: include/structs/bg_clip.h:109
 - name: gDisableAnimatedPalette
   type: s8
   addr: 0x300004D
-  loc: include/structs/animated_graphics.h:75
+  loc: include/structs/animated_graphics.h:77
 - name: gInGameCutscenesTriggered
   type: u32
   count: 0x1
@@ -284,34 +284,35 @@
 - name: gMinimapX
   type: u8
   addr: 0x3000059
-  loc: include/structs/minimap.h:20
+  loc: include/structs/minimap.h:23
 - name: gMinimapY
   type: u8
   addr: 0x300005A
-  loc: include/structs/minimap.h:21
+  loc: include/structs/minimap.h:24
 - name: gNumberOfNeverReformBlocks
+  desc: Sets a clipdata block value using `gBgPointersAndDimensions` (order is width * y + x) pDecomp; pClipDecomp; NEVER_REFORM_BLOCK_INFO_SIZE) USE_EWRAM_SYMBOLS */
   type: u8
   count: 0x8
   addr: 0x300005B
-  loc: include/structs/bg_clip.h:54
+  loc: include/structs/bg_clip.h:89
 - name: gNumberOfItemsCollected
   type: u8
   count: 0x8
   addr: 0x3000063
-  loc: include/structs/bg_clip.h:55
+  loc: include/structs/bg_clip.h:90
 - name: gCurrentHazeValue
-  type: u8
+  type: HazeValue
   addr: 0x300006B
   enum: HazeValue
-  loc: include/structs/haze.h:32
+  loc: include/structs/haze.h:34
 - name: gEffectYPosition
   type: u16
   addr: 0x300006C
-  loc: include/structs/clipdata.h:53
+  loc: include/structs/clipdata.h:54
 - name: gEffectYPositionOffset
   type: s16
   addr: 0x300006E
-  loc: include/structs/clipdata.h:54
+  loc: include/structs/clipdata.h:55
 - name: gScreenShakeXOffset
   type: u8
   addr: 0x3000071
@@ -331,16 +332,16 @@
 - name: gSpriteset
   type: u8
   addr: 0x3000078
-  loc: include/structs/room.h:136
+  loc: include/structs/room.h:139
 - name: gCurrentClipdataAffectingAction
-  type: u8
+  type: ClipdataAffectingAction
   addr: 0x3000079
   enum: ClipdataAffectingAction
-  loc: include/structs/clipdata.h:49
+  loc: include/structs/clipdata.h:50
 - name: gSpritesetEntryUsed
   type: u8
   addr: 0x300007A
-  loc: include/structs/room.h:137
+  loc: include/structs/room.h:140
 - name: gDoorUnlockTimer
   type: s8
   addr: 0x300007B
@@ -352,11 +353,11 @@
 - name: gCurrentCutscene
   type: Cutscene
   addr: 0x300007D
-  loc: include/structs/cutscene.h:202
+  loc: include/structs/cutscene.h:203
 - name: gTourianEscapeCutsceneStage
   type: s8
   addr: 0x300007E
-  loc: include/structs/game_state.h:29
+  loc: include/structs/game_state.h:30
 - name: gNoClipLockCamera
   type: u8
   cat: bool
@@ -365,7 +366,7 @@
 - name: gHazeInfo
   type: struct Haze
   addr: 0x3000080
-  loc: include/structs/haze.h:22
+  loc: include/structs/haze.h:24
 - name: gIoRegistersBackup
   type: struct IoRegistersBackup
   addr: 0x3000088
@@ -373,27 +374,27 @@
 - name: gBgPointersAndDimensions
   type: struct BackgroundPointersAndDimensions
   addr: 0x300009C
-  loc: include/structs/bg_clip.h:57
+  loc: include/structs/bg_clip.h:92
 - name: gCurrentRoomEntry
   type: struct RoomEntry
   addr: 0x30000BC
-  loc: include/structs/room.h:144
+  loc: include/structs/room.h:147
 - name: gCurrentAffectingClipdata
   type: struct CurrentAffectingClip
   addr: 0x30000DC
-  loc: include/structs/clipdata.h:50
+  loc: include/structs/clipdata.h:51
 - name: gBackgroundPositions
   type: struct BackgroundPositions
   addr: 0x30000E4
-  loc: include/structs/room.h:145
+  loc: include/structs/room.h:148
 - name: gWaitingSpacePiratesPosition
   type: struct Coordinates
   addr: 0x30000F8
-  loc: include/structs/room.h:138
+  loc: include/structs/room.h:141
 - name: gBg2Movement
   type: struct BG2Movement
   addr: 0x30000FC
-  loc: include/structs/bg_clip.h:59
+  loc: include/structs/bg_clip.h:94
 - name: gLockScreen
   type: struct LockScreen
   addr: 0x3000100
@@ -418,7 +419,7 @@
 - name: gCurrentPowerBomb
   type: struct PowerBomb
   addr: 0x3000130
-  loc: include/structs/power_bomb_explosion.h:24
+  loc: include/structs/power_bomb_explosion.h:26
 - name: gCamera
   type: struct Camera
   addr: 0x3000144
@@ -435,12 +436,12 @@
   type: struct InGameTimer
   count: 0xC
   addr: 0x3000154
-  loc: include/structs/in_game_timer.h:18
+  loc: include/structs/in_game_timer.h:17
 - name: gInGameTimerAtBosses
   type: struct InGameTimer
   count: 0x5
   addr: 0x3000184
-  loc: include/structs/in_game_timer.h:17
+  loc: include/structs/in_game_timer.h:18
 - name: gLastElevatorUsed
   type: struct LastElevatorUsed
   addr: 0x3000198
@@ -458,7 +459,7 @@
   count: 0x18
   addr: 0x30001AC
   loc: include/structs/sprite.h:126
-- name: gSpritesetSpritesID
+- name: gSpritesetSpritesId
   type: u8
   count: 0xF
   addr: 0x30006EC
@@ -534,9 +535,9 @@
   addr: 0x3000902
   loc: include/structs/hud.h:29
 - name: gUpdateMinimapFlag
-  type: u8
+  type: MinimapUpdateFlag
   addr: 0x3000903
-  loc: include/structs/minimap.h:22
+  loc: include/structs/minimap.h:25
 - name: gEnergyDigits
   type: struct HudDigits
   addr: 0x3000904
@@ -626,7 +627,7 @@
   type: PauseScreenFlag
   addr: 0x3000BF0
   enum: PauseScreenFlag
-  loc: include/structs/game_state.h:44
+  loc: include/structs/game_state.h:45
 - name: gAreaBeforeTransition
   type: Area
   addr: 0x3000BF1
@@ -683,7 +684,7 @@
 - name: gLastAreaNameVisited
   type: struct LastAreaName
   addr: 0x3000C08
-  loc: include/structs/minimap.h:19
+  loc: include/structs/minimap.h:22
 - name: gCurrentMessage
   type: struct Message
   addr: 0x3000C0C
@@ -697,16 +698,16 @@
   type: bools8
   cat: bool
   addr: 0x3000C1D
-  loc: include/structs/game_state.h:43
+  loc: include/structs/game_state.h:44
 - name: gMostRecentSaveFile
   type: s8
   addr: 0x3000C1E
-  loc: include/structs/game_state.h:61
+  loc: include/structs/game_state.h:62
 - name: gHasSaved
   type: boolu8
   cat: bool
   addr: 0x3000C1F
-  loc: include/structs/game_state.h:60
+  loc: include/structs/game_state.h:61
 - name: gUnk_3000C20
   type: u8
   addr: 0x3000C20
@@ -728,57 +729,57 @@
   type: GameMode
   addr: 0x3000C70
   enum: GameMode
-  loc: include/structs/game_state.h:54
-- name: gGameModeSub1
+  loc: include/structs/game_state.h:55
+- name: gSubGameMode1
   type: s16
   addr: 0x3000C72
-  loc: include/structs/game_state.h:55
-- name: gGameModeSub2
+  loc: include/structs/game_state.h:56
+- name: gSubGameMode2
   type: s8
   addr: 0x3000C74
-  loc: include/structs/game_state.h:56
-- name: gGameModeSub3
+  loc: include/structs/game_state.h:57
+- name: gSubGameMode3
   type: s8
   addr: 0x3000C75
-  loc: include/structs/game_state.h:57
+  loc: include/structs/game_state.h:58
 - name: gVblankActive
   type: bools8
   addr: 0x3000C76
-  loc: include/structs/game_state.h:45
+  loc: include/structs/game_state.h:46
 - name: gFrameCounter8Bit
   type: u8
   addr: 0x3000C77
-  loc: include/structs/game_state.h:46
+  loc: include/structs/game_state.h:47
 - name: gVBlankRequestFlag
   type: vu16
   addr: 0x3000C78
-  loc: include/structs/game_state.h:30
+  loc: include/structs/game_state.h:31
 - name: gInterruptCode
-  type: u16
-  count: 0x100
+  type: u32
+  count: 0x80
   addr: 0x3000C7C
   loc: include/globals.h:6
 - name: gOamData
   type: union OamData
   count: 0xA0
   addr: 0x3000E7C
-  loc: include/oam.h:119
+  loc: include/oam.h:151
 - name: gButtonInput
   type: u16
   addr: 0x300137C
-  loc: include/structs/game_state.h:40
+  loc: include/structs/game_state.h:41
 - name: gPreviousButtonInput
   type: u16
   addr: 0x300137E
-  loc: include/structs/game_state.h:41
+  loc: include/structs/game_state.h:42
 - name: gChangedInput
   type: u16
   addr: 0x3001380
-  loc: include/structs/game_state.h:42
+  loc: include/structs/game_state.h:43
 - name: gNextOamSlot
   type: u8
   addr: 0x3001382
-  loc: include/oam.h:114
+  loc: include/oam.h:146
 - name: gWrittenToBg2X
   type: s32
   addr: 0x3001394
@@ -830,43 +831,43 @@
 - name: gWrittenToBldalpha_L
   type: u16
   addr: 0x30013B0
-  loc: include/structs/display.h:30
+  loc: include/structs/display.h:29
 - name: gWrittenToBldalpha_H
   type: u16
   addr: 0x30013B2
-  loc: include/structs/display.h:29
+  loc: include/structs/display.h:30
 - name: gBg0XPosition
   type: u16
   addr: 0x30013B4
-  loc: include/structs/bg_clip.h:63
+  loc: include/structs/bg_clip.h:98
 - name: gBg0YPosition
   type: u16
   addr: 0x30013B6
-  loc: include/structs/bg_clip.h:64
+  loc: include/structs/bg_clip.h:99
 - name: gBg1XPosition
   type: u16
   addr: 0x30013B8
-  loc: include/structs/bg_clip.h:65
+  loc: include/structs/bg_clip.h:100
 - name: gBg1YPosition
   type: u16
   addr: 0x30013BA
-  loc: include/structs/bg_clip.h:66
+  loc: include/structs/bg_clip.h:101
 - name: gBg2XPosition
   type: u16
   addr: 0x30013BC
-  loc: include/structs/bg_clip.h:67
+  loc: include/structs/bg_clip.h:102
 - name: gBg2YPosition
   type: u16
   addr: 0x30013BE
-  loc: include/structs/bg_clip.h:68
+  loc: include/structs/bg_clip.h:103
 - name: gBg3XPosition
   type: u16
   addr: 0x30013C0
-  loc: include/structs/bg_clip.h:69
+  loc: include/structs/bg_clip.h:104
 - name: gBg3YPosition
   type: u16
   addr: 0x30013C2
-  loc: include/structs/bg_clip.h:70
+  loc: include/structs/bg_clip.h:105
 - name: gDemoState
   type: DemoState
   addr: 0x30013D2
@@ -918,9 +919,9 @@
   addr: 0x3001602
   loc: include/structs/samus.h:195
 - name: gEndingFlags
-  type: u8
+  type: EndingFlags
   addr: 0x3001604
-  loc: include/structs/game_state.h:52
+  loc: include/structs/game_state.h:53
 - name: gPreventMovementTimer
   type: u16
   addr: 0x3001606
@@ -936,7 +937,7 @@
 - name: gButtonAssignments
   type: struct ButtonAssignments
   addr: 0x300168C
-  loc: include/structs/game_state.h:28
+  loc: include/structs/game_state.h:29
 - name: gTimeAttackRecord
   type: struct TimeAttackRecord
   addr: 0x3001694
@@ -975,12 +976,12 @@
   addr: 0x3001D00
   loc: include/structs/audio.h:269
 - name: gUnk_300376C
-  type: struct PSGSoundData
+  type: struct PsgSoundData
   count: 0x0
   addr: 0x300376C
   loc: include/structs/audio.h:312
 - name: gPsgSounds
-  type: struct PSGSoundData
+  type: struct PsgSoundData
   count: 0x4
   addr: 0x3003794
   loc: include/structs/audio.h:313
@@ -1104,30 +1105,30 @@
   type: u8
   cat: bool
   addr: 0x30053D0
-  loc: include/structs/game_state.h:51
+  loc: include/structs/game_state.h:52
 - name: gDebugVCount_InGameStart
   type: s16
   addr:
     U: 0x30053D2
-  loc: include/structs/game_state.h:64
+  loc: include/structs/game_state.h:65
 - name: gDebugVCount_InGameEnd
   type: u16
   addr:
     U: 0x30053D4
-  loc: include/structs/game_state.h:65
+  loc: include/structs/game_state.h:66
 - name: gDebugVCount_VBlankEnd
   type: s16
   addr:
     U: 0x30053D6
-  loc: include/structs/game_state.h:66
+  loc: include/structs/game_state.h:67
 - name: gDebugVCount_AudioMax
   type: s16
   addr:
     U: 0x30053D8
-  loc: include/structs/game_state.h:67
+  loc: include/structs/game_state.h:68
 - name: gSamusPalette
   type: u16
-  count: 0x20
+  count: 0x30
   cat: palette
   addr: 0x30053E0
   loc: include/structs/samus.h:199
@@ -1150,7 +1151,7 @@
 - name: gTilemapAndClipPointers
   type: struct TilemapAndClipPointers
   addr: 0x3005450
-  loc: include/structs/clipdata.h:51
+  loc: include/structs/clipdata.h:52
 - name: gHatchData
   type: struct HatchData
   count: 0x10
@@ -1171,19 +1172,19 @@
 - name: gBg3Movement
   type: struct BG3Movement
   addr: 0x30054EC
-  loc: include/structs/bg_clip.h:60
+  loc: include/structs/bg_clip.h:95
 - name: gBg0Movement
   type: struct BG0Movement
   addr: 0x30054F4
-  loc: include/structs/bg_clip.h:61
+  loc: include/structs/bg_clip.h:96
 - name: gTilesetTransparentColor
   type: struct TilesetTransparentColor
   addr: 0x30054FC
-  loc: include/structs/room.h:22
+  loc: include/structs/room.h:25
 - name: gUnusedStruct_3005504
   type: struct Unused_3005504
   addr: 0x3005504
-  loc: include/structs/room.h:147
+  loc: include/structs/room.h:150
 - name: gSamusDoorPositionOffset
   type: s16
   addr: 0x300550C
@@ -1191,19 +1192,19 @@
 - name: gDestinationRoom
   type: u8
   addr: 0x300550E
-  loc: include/structs/room.h:149
+  loc: include/structs/room.h:152
 - name: gBg3CntDuringDoorTransition
   type: u16
   addr: 0x3005510
-  loc: include/structs/color_effects.h:43
+  loc: include/structs/color_effects.h:44
 - name: gBg1CntDuringDoorTransition
   type: u16
   addr: 0x3005512
-  loc: include/structs/color_effects.h:42
+  loc: include/structs/color_effects.h:45
 - name: gUnk_3005514
   type: u8
   addr: 0x3005514
-  loc: include/structs/haze.h:28
+  loc: include/structs/haze.h:30
 - name: gScreenYOffset
   type: s8
   addr: 0x3005515
@@ -1215,34 +1216,34 @@
 - name: gRainSoundEffect
   type: u16
   addr: 0x3005518
-  loc: include/structs/room.h:141
+  loc: include/structs/room.h:144
 - name: gWaterMovement
   type: struct WaterMovement
   addr: 0x300551C
-  loc: include/structs/room.h:142
+  loc: include/structs/room.h:145
 - name: gColorFading
   type: struct ColorFading
   addr: 0x3005520
-  loc: include/structs/color_effects.h:41
+  loc: include/structs/color_effects.h:43
 - name: gBrokenBlocks
   type: struct BrokenBlock
   count: 0x30
   addr: 0x3005528
-  loc: include/structs/block.h:65
+  loc: include/structs/block.h:68
 - name: gLastTankCollected
   type: struct LastTank
   addr: 0x30056A8
-  loc: include/structs/bg_clip.h:56
+  loc: include/structs/bg_clip.h:91
 - name: gBombChains
   type: struct BombChain
   count: 0x4
   addr: 0x30056AC
-  loc: include/structs/block.h:67
+  loc: include/structs/block.h:70
 - name: gActiveBombChainTypes
   type: u8
   cat: flags
   addr: 0x30056BC
-  loc: include/structs/block.h:68
+  loc: include/structs/block.h:71
 - name: gTransparencyRelated
   type: struct TransparencyRelated
   addr: 0x30056C0
@@ -1270,7 +1271,7 @@
 - name: gAnimatedPaletteTiming
   type: struct AnimatedPaletteTiming
   addr: 0x30056EC
-  loc: include/structs/animated_graphics.h:73
+  loc: include/structs/animated_graphics.h:75
 - name: gHatchFlashingAnimation
   type: struct AnimatedPaletteTiming
   addr: 0x30056F0
@@ -1278,19 +1279,19 @@
 - name: gAnimatedGraphicsEntry
   type: struct AnimatedGraphicsEntry
   addr: 0x30056F4
-  loc: include/structs/room.h:15
+  loc: include/structs/room.h:18
 - name: gBackgroundEffect
   type: struct BackgroundEffect
   addr: 0x30056F8
-  loc: include/structs/animated_graphics.h:70
+  loc: include/structs/animated_graphics.h:72
 - name: gScrollCounter
   type: u8
   addr: 0x3005700
-  loc: include/structs/room.h:143
+  loc: include/structs/room.h:146
 - name: gClipdataCodePointer
   type: ClipFunc_T
   addr: 0x3005704
-  loc: include/structs/clipdata.h:48
+  loc: include/structs/clipdata.h:49
 - name: gCurrentRoomScrollDataPointer
   type: const u8*
   addr: 0x3005708
@@ -1303,32 +1304,32 @@
   type: struct HazeLoop
   count: 0x3
   addr: 0x300571C
-  loc: include/structs/haze.h:23
+  loc: include/structs/haze.h:25
 - name: gUnk_3005728
   type: u8
   addr:
     U: 0x3005728
-  loc: include/structs/haze.h:25
+  loc: include/structs/haze.h:27
 - name: gUnk_3005729
   type: u8
   addr:
     U: 0x3005729
-  loc: include/structs/haze.h:26
+  loc: include/structs/haze.h:28
 - name: gHazeProcessCodePointer
   type: HazeFunc_T
   cat: thumb
   addr: 0x300572C
-  loc: include/structs/haze.h:30
+  loc: include/structs/haze.h:32
 - name: gAnimatedGraphicsData
   type: struct AnimatedGraphicsInfo
   count: 0x10
   addr: 0x3005730
-  loc: include/structs/animated_graphics.h:72
+  loc: include/structs/animated_graphics.h:74
 - name: gTankAnimations
   type: struct AnimatedTiming
   count: 0x4
   addr: 0x30057F0
-  loc: include/structs/animated_graphics.h:71
+  loc: include/structs/animated_graphics.h:73
 - name: gMaintainedInputData
   type: struct MaintainedInput
   addr: 0x3005800
@@ -1340,39 +1341,39 @@
 - name: gOamXOffset_NonGameplay
   type: s8
   addr: 0x3005806
-  loc: include/structs/cutscene.h:204
+  loc: include/structs/cutscene.h:205
 - name: gOamYOffset_NonGameplay
   type: s8
   addr: 0x3005807
-  loc: include/structs/cutscene.h:205
+  loc: include/structs/cutscene.h:206
 - name: gIoTransferInfo
   type: struct IoTransferInfo
   addr: 0x3005808
-  loc: include/structs/cable_link.h:22
+  loc: include/structs/cable_link.h:24
 - name: gMultiBootParamData
   type: struct MultiBootData
   addr: 0x3005820
-  loc: include/structs/cable_link.h:24
+  loc: include/structs/cable_link.h:26
 - name: gDataSentPointer
   type: const u8*
   addr: 0x300586C
-  loc: include/structs/cable_link.h:25
+  loc: include/structs/cable_link.h:27
 - name: gDataSentSize
   type: u32
   addr: 0x3005870
-  loc: include/structs/cable_link.h:26
+  loc: include/structs/cable_link.h:28
 - name: gMultibootErrorFlags
   type: u32
   addr: 0x3005874
-  loc: include/structs/cable_link.h:28
+  loc: include/structs/cable_link.h:30
 - name: gMultibootUnk_3005880
   type: u32
   addr: 0x3005880
-  loc: include/structs/cable_link.h:30
+  loc: include/structs/cable_link.h:31
 - name: gMultibootInProgress
   type: u8
   addr: 0x3005884
-  loc: include/structs/cable_link.h:29
+  loc: include/structs/cable_link.h:32
 - name: gMultiBootRequiredData
   type: u16
   count: 0x3
@@ -1381,129 +1382,129 @@
 - name: gTransferManager
   type: struct TransferManager
   addr: 0x3005890
-  loc: include/structs/transfer.h:41
+  loc: include/structs/transfer.h:43
 - name: gTransferUpdateResult
   type: u16
   addr: 0x30058A8
-  loc: include/structs/transfer.h:40
+  loc: include/structs/transfer.h:42
 - name: gTransferUnk_30058aa
   type: u8
   addr: 0x30058AA
-  loc: include/structs/transfer.h:33
+  loc: include/structs/transfer.h:35
 - name: gTransferDataTimer
   type: u16
   addr: 0x30058AC
-  loc: include/structs/transfer.h:34
+  loc: include/structs/transfer.h:36
 - name: gTransferStartupTimer
   type: u8
   addr: 0x30058AE
-  loc: include/structs/transfer.h:35
+  loc: include/structs/transfer.h:37
 - name: gTransferUnk_30058af
   type: u8
   addr: 0x30058AF
-  loc: include/structs/transfer.h:36
+  loc: include/structs/transfer.h:38
 - name: gTransferGbaDetectedCount
   type: u8
   addr: 0x30058B0
-  loc: include/structs/transfer.h:37
+  loc: include/structs/transfer.h:39
 - name: gTransferGbaId
   type: u8
   addr: 0x30058B1
-  loc: include/structs/transfer.h:38
+  loc: include/structs/transfer.h:40
 - name: gRegIme_Backup
   type: u16
   addr: 0x30058B2
-  loc: include/structs/transfer.h:27
+  loc: include/structs/transfer.h:29
 - name: gRegIe_Backup
   type: u16
   addr: 0x30058B4
-  loc: include/structs/transfer.h:28
+  loc: include/structs/transfer.h:30
 - name: gRegTm3Cnt_H_Backup
   type: u16
   addr: 0x30058B6
-  loc: include/structs/transfer.h:29
+  loc: include/structs/transfer.h:31
 - name: gRegSiocnt_Backup
   type: u16
   addr: 0x30058B8
-  loc: include/structs/transfer.h:30
+  loc: include/structs/transfer.h:32
 - name: gRegRcnt_Backup
   type: u16
   addr: 0x30058BA
-  loc: include/structs/transfer.h:31
+  loc: include/structs/transfer.h:33
 - name: gLinkStatus
   type: u32
   addr: 0x30058BC
-  loc: include/structs/link.h:126
+  loc: include/structs/link.h:98
 - name: gSendCmd
   type: u16
   count: 0x2
   addr: 0x30058C0
-  loc: include/structs/link.h:127
+  loc: include/structs/link.h:99
 - name: gRecvCmds
   type: u16 [0x2]
   count: 0x2
   addr: 0x30058C4
-  loc: include/structs/link.h:128
+  loc: include/structs/link.h:100
 - name: gShouldAdvanceLinkState
   type: u8
   addr: 0x30058CC
-  loc: include/structs/link.h:130
+  loc: include/structs/link.h:102
 - name: gLinkPlayerCount
   type: u8
   addr: 0x30058CD
-  loc: include/structs/link.h:131
+  loc: include/structs/link.h:103
 - name: gLinkLocalId
   type: u8
   addr: 0x30058CE
-  loc: include/structs/link.h:132
+  loc: include/structs/link.h:104
 - name: gLinkUnkFlag9
   type: u8
   addr: 0x30058CF
-  loc: include/structs/link.h:133
+  loc: include/structs/link.h:105
 - name: gLinkSavedIme
   type: u16
   addr: 0x30058D0
-  loc: include/structs/link.h:134
+  loc: include/structs/link.h:106
 - name: gNumVBlanksWithoutSerialIntr
   type: u8
   addr: 0x30058D2
-  loc: include/structs/link.h:136
+  loc: include/structs/link.h:108
 - name: gSendBufferEmpty
   type: u8
   addr: 0x30058D3
-  loc: include/structs/link.h:137
+  loc: include/structs/link.h:109
 - name: gHandshakePlayerCount
   type: u8
   addr: 0x30058D5
-  loc: include/structs/link.h:138
+  loc: include/structs/link.h:110
 - name: gChecksumAvailable
   type: u8
   addr: 0x30058D6
-  loc: include/structs/link.h:139
+  loc: include/structs/link.h:111
 - name: gSendNonzeroCheck
   type: u16
   addr: 0x30058D8
-  loc: include/structs/link.h:140
+  loc: include/structs/link.h:112
 - name: gRecvNonzeroCheck
   type: u16
   addr: 0x30058DA
-  loc: include/structs/link.h:141
+  loc: include/structs/link.h:113
 - name: gTrackData8
   type: struct TrackData
   addr: 0x3005910
-  loc: include/structs/audio.h:285
+  loc: include/structs/audio.h:277
 - name: gTrackData3
   type: struct TrackData
   addr: 0x3005950
-  loc: include/structs/audio.h:280
+  loc: include/structs/audio.h:278
 - name: gTrackData1
   type: struct TrackData
   addr: 0x3005990
-  loc: include/structs/audio.h:278
+  loc: include/structs/audio.h:279
 - name: gTrackData6
   type: struct TrackData
   addr: 0x30059D0
-  loc: include/structs/audio.h:283
+  loc: include/structs/audio.h:280
 - name: gTrackData4
   type: struct TrackData
   addr: 0x3005A10
@@ -1511,48 +1512,38 @@
 - name: gTrackData0
   type: struct TrackData
   addr: 0x3005A50
-  loc: include/structs/audio.h:277
+  loc: include/structs/audio.h:282
 - name: gTrackData7
   type: struct TrackData
   addr: 0x3005A90
-  loc: include/structs/audio.h:284
+  loc: include/structs/audio.h:283
 - name: gTrackData2
   type: struct TrackData
   addr: 0x3005AD0
-  loc: include/structs/audio.h:279
+  loc: include/structs/audio.h:284
 - name: gTrackData5
   type: struct TrackData
   addr: 0x3005B10
-  loc: include/structs/audio.h:282
+  loc: include/structs/audio.h:285
 - name: gLastSendQueueCount
   type: u8
   addr: 0x3005B50
-  loc: include/structs/link.h:143
+  loc: include/structs/link.h:115
 - name: gLastRecvQueueCount
   type: u8
   addr: 0x3005B54
-  loc: include/structs/link.h:144
+  loc: include/structs/link.h:116
 - name: gLink
   type: struct LinkInfo
   addr: 0x3005B60
-  loc: include/structs/link.h:145
-- name: gSpSys
-  type: void*
-  addr:
-    U: 0x3007E60
-  loc: include/globals.h:8
-- name: gSpIrq
-  type: void*
-  addr:
-    U: 0x3007FA0
-  loc: include/globals.h:9
+  loc: include/structs/link.h:117
 - name: gInterruptCheckFlag
   type: u16
   addr:
     U: 0x3007FF8
-  loc: include/globals.h:13
+  loc: include/globals.h:11
 - name: gIntrCodePointer
-  type: u16 (*)[0x100]
+  type: u32 (*)[0x80]
   addr:
     U: 0x3007FFC
-  loc: include/globals.h:11
+  loc: include/globals.h:9
