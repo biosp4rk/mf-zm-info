@@ -1,5 +1,5 @@
 import argparse
-from enum import Enum
+from enum import Enum, auto
 from typing import Any
 
 import yaml
@@ -13,10 +13,9 @@ from thumb import ThumbForm, ThumbInstruct
 
 
 class RefType(Enum):
-
-    BL = 1
-    POOL = 2
-    DATA = 3
+    BL = auto()
+    POOL = auto()
+    DATA = auto()
 
 
 class Ref:
@@ -134,10 +133,9 @@ class DataRef(Ref):
 
 class References(object):
 
-    def __init__(self, rom: Rom, include_unk = False):
+    def __init__(self, rom: Rom):
         self.rom = rom
-        source = InfoSource.YAML_UNK if include_unk else InfoSource.JSON
-        self.info = GameInfo(rom.game, rom.region, source)
+        self.info = GameInfo(rom.game, rom.region, InfoSource.YAML)
 
     def find(self, addr: int) -> tuple[list[BlRef], list[PoolRef], list[DataRef]]:
         rom = self.rom
@@ -349,11 +347,10 @@ if __name__ == "__main__":
     group.add_argument("-a", "--addr", type=str)
     group.add_argument("-n", "--name", type=str)
     group.add_argument("--all", action="store_true")
-    parser.add_argument("-u", "--unk", action="store_true")
 
     args = parser.parse_args()
     rom = apu.get_rom(args.rom_path)
-    refs = References(rom, args.unk)
+    refs = References(rom)
 
     if args.all:
         all_refs = refs.find_all()

@@ -3,7 +3,6 @@ import argparse
 import argparse_utils as apu
 from constants import MAP_CODE, MAP_DATA, MAP_RAM
 from function import all_functions
-from info.game_info import GameInfo
 from info.info_entry import DataEntry, CodeEntry
 from info.info_file_utils import get_info_file_from_json
 from rom import Rom, ROM_OFFSET

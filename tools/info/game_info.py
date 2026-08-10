@@ -1,10 +1,7 @@
 from enum import Enum, auto
 
 from constants import *
-from info.asset_type import (
-    BUILT_IN_SIZES, TypeSpecKind, AssetType,
-    SpecifierType, PointerType, ArrayType, FunctionType
-)
+from info.asset_type import AssetType
 from info.info_entry import *
 from info.info_file_utils import get_info_file_from_json, get_info_file_from_yaml
 
@@ -12,8 +9,6 @@ from info.info_file_utils import get_info_file_from_json, get_info_file_from_yam
 class InfoSource(Enum):
     JSON = auto()
     YAML = auto()
-    # TODO: Get rid of unknown
-    YAML_UNK = auto()
 
 
 class GameInfo(object):
@@ -25,36 +20,35 @@ class GameInfo(object):
     ):
         self.game = game
         self.region = region
+
         # Get info from data files
-        if source == InfoSource.JSON:
-            self.ram: list[DataEntry] = get_info_file_from_json(game, MAP_RAM, region)
-            self.code: list[CodeEntry] = get_info_file_from_json(game, MAP_CODE, region)
-            self.data: list[DataEntry] = get_info_file_from_json(game, MAP_DATA, region)
-            struct_list: list[StructEntry] = get_info_file_from_json(game, MAP_STRUCTS, region)
-            enum_list: list[EnumEntry] = get_info_file_from_json(game, MAP_ENUMS, region)
-            union_list: list[UnionEntry] = get_info_file_from_json(game, MAP_UNIONS, region)
-            typedef_list: list[TypedefEntry] = get_info_file_from_json(game, MAP_TYPEDEFS, region)
-        else:
-            include_unk = source == InfoSource.YAML_UNK
-            self.ram: list[DataEntry] = get_info_file_from_yaml(game, MAP_RAM, region, include_unk)
-            self.code: list[CodeEntry] = get_info_file_from_yaml(game, MAP_CODE, region, include_unk)
-            self.data: list[DataEntry] = get_info_file_from_yaml(game, MAP_DATA, region, include_unk)
-            struct_list: list[StructEntry] = get_info_file_from_yaml(game, MAP_STRUCTS, region, include_unk)
-            enum_list: list[EnumEntry] = get_info_file_from_yaml(game, MAP_ENUMS, region, include_unk)
-            union_list: list[UnionEntry] = get_info_file_from_yaml(game, MAP_UNIONS, region, include_unk)
-            typedef_list: list[TypedefEntry] = get_info_file_from_yaml(game, MAP_TYPEDEFS, region, include_unk)
+        get_info_file = (
+            get_info_file_from_json
+            if source == InfoSource.JSON
+            else get_info_file_from_yaml
+        )
+        self.ram: list[DataEntry] = get_info_file(game, MAP_RAM, region)
+        self.code: list[CodeEntry] = get_info_file(game, MAP_CODE, region)
+        self.data: list[DataEntry] = get_info_file(game, MAP_DATA, region)
+        struct_list: list[StructEntry] = get_info_file(game, MAP_STRUCTS, region)
+        enum_list: list[EnumEntry] = get_info_file(game, MAP_ENUMS, region)
+        union_list: list[UnionEntry] = get_info_file(game, MAP_UNIONS, region)
+        typedef_list: list[TypedefEntry] = get_info_file(game, MAP_TYPEDEFS, region)
+
         # Convert lists to dictionaries
         self.structs: dict[str, StructEntry] = {e.name: e for e in struct_list}
         self.enums: dict[str, EnumEntry] = {e.name: e for e in enum_list}
         self.unions: dict[str, UnionEntry] = {e.name: e for e in union_list}
         self.typedefs: dict[str, TypedefEntry] = {e.name: e for e in typedef_list}
         self.types: dict[str, AssetType] = {e.name: e.type for e in typedef_list}
+
         # Get sizes of structs, unions, and typedefs
         self.sizes: dict[str, int] = {}
         for e in struct_list:
             self.sizes[e.name] = e.size
         for e in union_list:
             self.sizes[e.name] = e.size
+        # TODO: Is this needed?
         # for e in typedef_list:
         #     if e.name not in self.sizes:
         #         self.sizes[e.name] = self._type_size(e.type)

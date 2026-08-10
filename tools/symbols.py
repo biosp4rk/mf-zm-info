@@ -43,10 +43,8 @@ class Symbols(object):
         self.locals.add(addr)
 
     def finalize_locals(self):
-        idx = 0
-        for addr in sorted(self.locals):
-            self.local_indexes[addr] = idx
-            idx += 1
+        for i, addr in enumerate(sorted(self.locals)):
+            self.local_indexes[addr] = i
 
     def reset_locals(self):
         self.locals = set()

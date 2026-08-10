@@ -19,19 +19,13 @@ def hex_int_presenter(dumper, data: int):
 yaml.representer.SafeRepresenter.add_representer(int, hex_int_presenter)
 
 
-def find_yaml_files(
-    game: str,
-    map_type: str,
-    include_unk: bool = False
-) -> list[str]:
+def find_yaml_files(game: str, map_type: str) -> list[str]:
     """Finds all yaml files of the provided type and returns their paths."""
     dir_path = os.path.join(YAML_PATH, game, map_type)
     paths = None
     if not os.path.isdir(dir_path):
         raise ValueError("No directory found")
     paths = [p for p in os.listdir(dir_path) if p.endswith(YAML_EXT)]
-    if not include_unk:
-        paths = [p for p in paths if not p.startswith("unk")]
     return [os.path.join(dir_path, p) for p in paths]
 
 
@@ -109,15 +103,14 @@ def combine_info_files(data_list: list[InfoFile]) -> InfoFile:
 def get_info_file_from_yaml(
     game: str,
     map_type: str,
-    region: str = None,
-    include_unk: bool = False
+    region: str = None
 ) -> InfoFile:
     """
     Finds, loads, and parses all yaml files of the provided type
     and returns them as a single sorted list of InfoEntry.
     """
     # Load files and combine
-    paths = find_yaml_files(game, map_type, include_unk)
+    paths = find_yaml_files(game, map_type)
     ylists = load_yaml_files(paths)
     ifiles = parse_obj_lists(ylists, map_type)
     ifile = combine_info_files(ifiles)

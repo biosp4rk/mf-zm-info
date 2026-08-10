@@ -19,14 +19,14 @@ SOUNDS_ADDR = {
     GAME_ZM:
     {
         REGION_U: 0x8F2C0,
-        REGION_BETA: 0x94B50
+        REGION_ZM_U_12_02: 0x94B50
     }
 }
 TRACK_0_ADDR = {
     GAME_ZM:
     {
         REGION_U: 0x908E0,
-        REGION_BETA: 0x96170
+        REGION_ZM_U_12_02: 0x96170
     }
 }
 
@@ -57,7 +57,7 @@ VOICE_GROUPS = {
             0x8F004,
             0x8F070
         ],
-        REGION_BETA: [
+        REGION_ZM_U_12_02: [
             0x92800,
             0x92CD4,
             0x92FB0,

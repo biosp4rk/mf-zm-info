@@ -87,7 +87,7 @@ class Extractor:
         elf_addrs = {v: k for k, v in elf_names.items()}
         # Update yaml files
         print("Loading existing entries...")
-        info = GameInfo(game, source=InfoSource.YAML_UNK)
+        info = GameInfo(game, source=InfoSource.YAML)
         print("Updating yaml files...")
         for map_type in MAP_TYPES:
             self._write_entries(map_type, region, info, elf_names, elf_addrs)
