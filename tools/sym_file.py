@@ -106,11 +106,11 @@ def gen_sym_file(rom: Rom) -> list[str]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     parser.add_argument("out_path", type=str)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
+    rom = args.rom_path
     
     lines = gen_sym_file(rom)
     with open(args.out_path, 'w') as f:

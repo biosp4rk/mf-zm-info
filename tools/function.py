@@ -250,29 +250,25 @@ if __name__ == "__main__":
     default_format = AsmFormat.ARMIPS.name.lower()
 
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("-a", "--addr", type=apu.hex_arg)
     group.add_argument("-n", "--name", type=str)
     parser.add_argument("-f", "--format", type=str, choices=formats, default=default_format)
     parser.add_argument("-s", "--symbols", action="store_true")
     parser.add_argument("-c", "--addr_comments", action="store_true")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
-    
+    rom = args.rom_path
+
     # Load symbols
     info = GameInfo(rom.game, rom.region)
     syms = Symbols(info)
 
     # Get address
     addr = None
-    if args.addr:
-        try:
-            addr = int(args.addr, 16)
-        except:
-            print(f"Invalid hex address {args.addr}")
-            quit()
+    if args.addr is not None:
+        addr = args.addr
     elif args.name:
         entry = info.get_code(args.name)
         if entry is None:

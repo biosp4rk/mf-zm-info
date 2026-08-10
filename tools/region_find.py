@@ -119,14 +119,14 @@ class Finder(object):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH, "src_rom_path")
-    apu.add_arg(parser, apu.ArgType.ROM_PATH, "target_rom_path")
-    apu.add_arg(parser, apu.ArgType.ADDR_LIST)
+    apu.add_rom(parser, "src_rom_path")
+    apu.add_rom(parser, "target_rom_path")
+    apu.add_addr_list(parser)
 
     args = parser.parse_args()
-    src_rom = apu.get_rom(args.src_rom_path)
-    target_rom = apu.get_rom(args.target_rom_path)
-    addrs = apu.get_hex_list(args.addr_list)
+    src_rom = args.src_rom_path
+    target_rom = args.target_rom_path
+    addrs = args.addr_list
 
     finder = Finder(src_rom, target_rom)
     matches = finder.find(addrs)

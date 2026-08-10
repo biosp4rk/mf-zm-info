@@ -75,10 +75,10 @@ def get_attr_str(attr: int) -> str:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    apu.add_rom(parser)
+    apu.add_addr(parser)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
-    addr = apu.get_hex(args.addr)
+    rom = args.rom_path
+    addr = args.addr
     dump(rom, addr)

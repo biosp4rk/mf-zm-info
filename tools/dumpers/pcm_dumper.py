@@ -238,18 +238,17 @@ def dump_pcm(rom: Rom, addr: int, format: str, path: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("-a", "--addr", type=apu.hex_arg)
     group.add_argument("--all", action="store_true")
     parser.add_argument("format", type=str, choices=("wav", "aiff"))
     parser.add_argument("path", type=str)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
-    if args.addr:
-        addr = apu.get_hex(args.addr)
-        dump_pcm(rom, addr, args.format, args.path)
+    rom = args.rom_path
+    if args.addr is not None:
+        dump_pcm(rom, args.addr, args.format, args.path)
     elif args.all:
         info = GameInfo(rom.game, rom.region)
         addrs = [e.addr for e in info.data if e.cat == Category.PCM]

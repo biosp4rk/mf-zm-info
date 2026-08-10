@@ -342,14 +342,14 @@ def print_refs(bls: list[BlRef], pools: list[PoolRef], datas: list[DataRef]) -> 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-a", "--addr", type=str)
+    group.add_argument("-a", "--addr", type=apu.hex_arg)
     group.add_argument("-n", "--name", type=str)
     group.add_argument("--all", action="store_true")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
+    rom = args.rom_path
     refs = References(rom)
 
     if args.all:
@@ -372,12 +372,8 @@ if __name__ == "__main__":
     else:
         # Get address
         addr = None
-        if args.addr:
-            try:
-                addr = int(args.addr, 16)
-            except:
-                print(f"Invalid hex address {args.addr}")
-                quit()
+        if args.addr is not None:
+            addr = args.addr
         elif args.name:
             entry = refs.info.get_entry(args.name)
             if entry is None:

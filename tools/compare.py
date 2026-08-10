@@ -30,16 +30,16 @@ def compare_block_bg(rom_1: Rom, rom_2: Rom, addr_1: int, addr_2: int) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("data_type", type=str, choices=["block_bg"])
-    apu.add_arg(parser, apu.ArgType.ROM_PATH, "rom_path_1")
-    apu.add_arg(parser, apu.ArgType.ROM_PATH, "rom_path_2")
-    apu.add_arg(parser, apu.ArgType.ADDR, "addr_1")
-    apu.add_arg(parser, apu.ArgType.ADDR, "addr_2")
-    
+    apu.add_rom(parser, "rom_path_1")
+    apu.add_rom(parser, "rom_path_2")
+    apu.add_addr(parser, "addr_1")
+    apu.add_addr(parser, "addr_2")
+
     args = parser.parse_args()
-    rom_1 = apu.get_rom(args.rom_path_1)
-    rom_2 = apu.get_rom(args.rom_path_2)
-    addr_1 = apu.get_hex(args.addr_1)
-    addr_2 = apu.get_hex(args.addr_2)
+    rom_1 = args.rom_path_1
+    rom_2 = args.rom_path_2
+    addr_1 = args.addr_1
+    addr_2 = args.addr_2
 
     if args.data_type == "block_bg":
         compare_block_bg(rom_1, rom_2, addr_1, addr_2)

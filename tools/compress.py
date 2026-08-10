@@ -46,15 +46,11 @@ def decomp_rle(input: bytes, idx: int) -> tuple[bytes, int]:
                 amount %= flag
                 val = input[idx]
                 idx += 1
-                while amount > 0:
-                    passes.append(val)
-                    amount -= 1
+                passes += [val] * amount
             else:
                 # Uncompressed
-                while amount > 0:
-                    passes.append(input[idx])
-                    idx +=1
-                    amount -=1
+                passes += input[idx:idx + amount]
+                idx += amount
     
     # Each pass must be equal length
     if len(passes) != half * 2:
@@ -78,12 +74,10 @@ def decomp_lz77(input: bytes, idx: int) -> tuple[bytes, int]:
 
     # Get length of decompressed data
     remain = input[idx + 1] | (input[idx + 2] << 8) | (input[idx + 3] << 16)
-    output = bytearray([0] * remain)
-
-    # Check for valid data size
     if remain == 0:
         raise ValueError("Invalid data size")
 
+    output = bytearray(remain)
     start = idx
     idx += 4
     dst = 0
@@ -149,7 +143,7 @@ def is_lz77(input: bytes, idx: int) -> int:
             else:
                 # Compressed
                 amount_to_copy = (input[idx] >> 4) + MIN_MATCH_SIZE
-                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + 1
+                window = ((input[idx] & 0xF) << 8) + input[idx + 1] + MIN_WINDOW_SIZE
                 idx += 2
                 remain -= amount_to_copy
                 
@@ -166,16 +160,20 @@ def is_lz77(input: bytes, idx: int) -> int:
 
 
 def comp_lz77(input: bytes, method: LzCompMethod = LzCompMethod.GREEDY) -> bytes:
+    if len(input) > 0xFFFFFF:
+        raise ValueError("Input is too large")
+
     if method == LzCompMethod.MATCHING or method == LzCompMethod.GREEDY:
         matching = method == LzCompMethod.MATCHING
         return _comp_lz77_greedy(input, matching)
     elif method == LzCompMethod.OPTIMAL:
         return _comp_lz77_optimal(input)
+    else:
+        raise ValueError()
 
 
 def _comp_lz77_greedy(input: bytes, matching: bool) -> bytes:
     """LZ77 compresses data by greedily selecting the longest match at each step."""
-    # Assumes input stream starts at 0
     length = len(input)
     idx = 0
     longest_matches = _find_longest_matches(input, matching)
@@ -217,7 +215,6 @@ def _comp_lz77_greedy(input: bytes, matching: bool) -> bytes:
 
 def _comp_lz77_optimal(input: bytes) -> bytes:
     """LZ77 compresses data by finding the optimal sequence of matches."""
-    # Assumes input stream starts at 0
     length = len(input)
     idx = 0
     flag_counter = 8
@@ -376,12 +373,12 @@ def _construct_path(came_from: dict[int, int], idx: int) -> list[int]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("action", type=str, choices=["rle", "lz", "is_lz"])
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    apu.add_rom(parser)
+    apu.add_addr(parser)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
-    addr = apu.get_hex(args.addr)
+    rom = args.rom_path
+    addr = args.addr
 
     if args.action == "rle":
         raw, size = decomp_rle(rom.data, addr)

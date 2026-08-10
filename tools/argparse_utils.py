@@ -1,47 +1,39 @@
-from argparse import ArgumentParser
-from enum import Enum, auto
+from argparse import ArgumentParser, ArgumentTypeError
 
 from rom import Rom
 
 
-class ArgType(Enum):
-
-    ROM_PATH = auto()
-    ADDR = auto()
-    ADDR_LIST = auto()
-
-
-ARG_INFO = {
-    ArgType.ROM_PATH: (str, "Path to a GBA ROM file"),
-    ArgType.ADDR: (str, "Hex address"),
-    ArgType.ADDR_LIST: (str, "Comma separated hex addresses"),
-}
-
-
-def add_arg(parser: ArgumentParser, arg_type: ArgType, *name_or_flags: str):
-    if len(name_or_flags) == 0:
-        name_or_flags = (arg_type.name.lower(),)
-    type, help = ARG_INFO[arg_type]
-    parser.add_argument(*name_or_flags, type=type, help=help)
-
-
-def get_rom(rom_path: str) -> Rom:
+def rom_arg(s: str) -> Rom:
     try:
-        return Rom(rom_path)
-    except:
-        raise ValueError(f"Could not open rom at {rom_path}")
+        return Rom(s)
+    except Exception:
+        raise ArgumentTypeError(f"Could not open rom at {s}")
 
 
-def get_hex(hex_str: str) -> int:
+def hex_arg(s: str) -> int:
     try:
-        return int(hex_str, 16)
-    except:
-        raise ValueError(f"Invalid hex address {hex_str}")
+        return int(s, 16)
+    except ValueError:
+        raise ArgumentTypeError(f"Invalid hex address {s}")
 
 
-def get_hex_list(hex_list: str) -> list[int]:
-    hex_strs = hex_list.split(",")
+def hex_list_arg(s: str) -> list[int]:
     try:
-        return [int(a, 16) for a in hex_strs]
-    except:
-        raise ValueError(f"Invalid hex address in {hex_strs}")
+        return [int(a, 16) for a in s.split(",")]
+    except ValueError:
+        raise ArgumentTypeError(f"Invalid hex address in {s}")
+
+
+def add_rom(parser: ArgumentParser, *name_or_flags: str):
+    parser.add_argument(*(name_or_flags or ("rom_path",)), type=rom_arg,
+        help="Path to a GBA ROM file")
+
+
+def add_addr(parser: ArgumentParser, *name_or_flags: str):
+    parser.add_argument(*(name_or_flags or ("addr",)), type=hex_arg,
+        help="Hex address")
+
+
+def add_addr_list(parser: ArgumentParser, *name_or_flags: str):
+    parser.add_argument(*(name_or_flags or ("addr_list",)), type=hex_list_arg,
+        help="Comma separated hex addresses")

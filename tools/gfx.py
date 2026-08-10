@@ -130,23 +130,22 @@ class Gfx(object):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
-    apu.add_arg(parser, apu.ArgType.ADDR)
+    apu.add_rom(parser)
+    apu.add_addr(parser)
     parser.add_argument("-s", "--size", type=str)
-    apu.add_arg(parser, apu.ArgType.ADDR, "-p", "--palette")
+    apu.add_addr(parser, "-p", "--palette")
     parser.add_argument("path", type=str,
         help="Output path for png file")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
-    gfx_addr = apu.get_hex(args.addr)
+    rom = args.rom_path
+    gfx_addr = args.addr
     size = None
     if args.size:
         size = int(args.size, 16)
     pal = None
-    if args.palette:
-        pal_addr = apu.get_hex(args.palette)
-        pal = Palette(1, rom, pal_addr)
+    if args.palette is not None:
+        pal = Palette(1, rom, args.palette)
     gfx = Gfx(rom, gfx_addr, size)
     image = gfx.draw(pal)
     image.save(args.path)

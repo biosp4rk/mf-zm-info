@@ -60,12 +60,12 @@ def coverage(rom: Rom):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     subparsers = parser.add_subparsers(dest="command")
     # bytes command
     subparser = subparsers.add_parser("bytes",
         help="Dumps raw bytes from the ROM")
-    apu.add_arg(subparser, apu.ArgType.ADDR)
+    apu.add_addr(subparser)
     subparser.add_argument("length", type=str)
     subparser.add_argument("-s", "--size", type=int,
         choices=[1, 2, 4], default=1)
@@ -78,9 +78,9 @@ if __name__ == "__main__":
         help="Computes the percent of ROM code and data with labeled entries")
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
+    rom = args.rom_path
     if args.command == "bytes":
-        addr = apu.get_hex(args.addr)
+        addr = args.addr
         length = int(args.length, 16)
         per_line = int(args.per_line, 16) if args.per_line else None
         dump_bytes(rom, addr, length, args.size, per_line)

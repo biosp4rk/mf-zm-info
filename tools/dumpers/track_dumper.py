@@ -616,9 +616,9 @@ def dump_all_sounds(rom: Rom, output_path: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
     parser.add_argument("output_path", type=str)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
+    rom = args.rom_path
     dump_all_sounds(rom, args.output_path)

@@ -90,10 +90,10 @@ class PtrFinder:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    apu.add_arg(parser, apu.ArgType.ROM_PATH)
+    apu.add_rom(parser)
 
     args = parser.parse_args()
-    rom = apu.get_rom(args.rom_path)
+    rom = args.rom_path
     print("Loading game info...")
     info = GameInfo(rom.game, rom.region, InfoSource.JSON)
 
