@@ -49,35 +49,5 @@
         },
         "required": ["name", "addr", "size", "mode", "params", "return", "loc"],
         "additionalProperties": false
-    },
-    "$defs": {
-        "CodeVar": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "urn:definitions#/definitions/Name"
-                },
-                "desc": {
-                    "$ref": "urn:definitions#/definitions/Description"
-                },
-                "type": {
-                    "$ref": "urn:definitions#/definitions/Type"
-                },
-                "count": {
-                    "$ref": "urn:definitions#/definitions/RegionInt"
-                },
-                "cat": {
-                    "$ref": "urn:definitions#/definitions/Category"
-                },
-                "comp": {
-                    "$ref": "urn:definitions#/definitions/Compression"
-                },
-                "enum": {
-                    "$ref": "urn:definitions#/definitions/Name"
-                }
-            },
-            "required": ["name", "type"],
-            "additionalProperties": false
-        }
     }
 }

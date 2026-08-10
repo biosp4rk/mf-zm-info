@@ -626,7 +626,7 @@ class Extractor:
                 decl, count = self._decl_str_and_count(node)
                 new_entry = DataEntry(
                     name, brief, decl, count,
-                    addr, loc, entry.cat, entry.comp, entry.enum
+                    addr, loc, entry.cat, entry.comp
                 )
             elif map_type == MAP_CODE:
                 params, ret = self._create_params_and_ret(node, param_docs, ret_doc, entry)
@@ -745,7 +745,6 @@ class Extractor:
                 if entry_params and i < len(entry_params):
                     pe.cat = entry_params[i].cat
                     pe.comp = entry_params[i].comp
-                    pe.enum = entry_params[i].enum
                 params.append(pe)
         # Create ret
         ret: VarEntry = None
@@ -756,7 +755,6 @@ class Extractor:
             if entry and entry.ret:
                 ret.cat = entry.ret.cat
                 ret.comp = entry.ret.comp
-                ret.enum = entry.ret.enum
         return params, ret
 
     def _create_struct_vars(self,
@@ -796,7 +794,6 @@ class Extractor:
                 ve = existing[bits]
                 new_ve.cat = ve.cat
                 new_ve.comp = ve.comp
-                new_ve.enum = ve.enum
             vars.append(new_ve)
             bits = new_bits
         return vars
@@ -817,7 +814,6 @@ class Extractor:
                 ve = existing[decl.name]
                 new_ve.cat = ve.cat
                 new_ve.comp = ve.comp
-                new_ve.enum = ve.enum
             vars.append(new_ve)
         return vars
 

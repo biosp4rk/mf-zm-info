@@ -4316,7 +4316,6 @@
   - name: pose
     desc: Pose
     type: u8
-    enum: SamusPose
   return: null
   loc: src/samus.c:4689
 - name: SamusSetMidAirPose
@@ -4511,7 +4510,6 @@
   - name: collisionType
     desc: Collision type
     type: u8
-    enum: ClipdataType
   - name: pNextX
     desc: Result X position
     type: u16*
@@ -4559,7 +4557,6 @@
   - name: collisionType
     desc: Collision type
     type: u8
-    enum: ClipdataType
   - name: yPosition
     desc: Y position
     type: u16
@@ -5062,7 +5059,6 @@
   - name: pose
     desc: Pose
     type: u8
-    enum: SaXPose
   return: null
   loc: src/sa_x.c:361
 - name: SaXUpdatePosition
@@ -5546,7 +5542,6 @@
   - name: spriteId
     desc: Sprite id
     type: u8
-    enum: PrimarySpriteId
   - name: gfxRow
     desc: Graphics row
     type: u8
@@ -5569,7 +5564,6 @@
   - name: spriteId
     desc: Sprite id
     type: u8
-    enum: PrimarySpriteId
   - name: gfxRow
     desc: Graphics row
     type: u8
@@ -5642,7 +5636,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: SecondarySpriteId
   - name: partNumber
     desc: Part number
     type: u8
@@ -5662,7 +5655,6 @@
     desc: Additional status
     type: u16
     cat: flags
-    enum: SpriteStatus
   return:
     desc: u8 Assigned sprite ram slot
     type: u8
@@ -5681,7 +5673,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: PrimarySpriteId
   - name: partNumber
     desc: Part number
     type: u8
@@ -5719,7 +5710,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: PrimarySpriteId
   - name: partNumber
     desc: Part number
     type: u8
@@ -5742,7 +5732,6 @@
     desc: Additional status
     type: u16
     cat: flags
-    enum: SpriteStatus
   return:
     desc: u8 Assigned sprite ram slot
     type: u8
@@ -6510,7 +6499,6 @@
   - name: spriteId
     desc: Secondary sprite id
     type: u8
-    enum: SecondarySpriteId
   - name: ramSlot
     desc: Primary sprite slot
     type: u8
@@ -6985,7 +6973,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: SecondarySpriteId
   return:
     desc: u8 count
     type: u8
@@ -7004,7 +6991,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: PrimarySpriteId
   return:
     desc: u8 count
     type: u8
@@ -7023,7 +7009,6 @@
   - name: spriteId
     desc: Sprite id
     type: u8
-    enum: PrimarySpriteId
   return:
     desc: u8 Sprite ram slot
     type: u8
@@ -7042,7 +7027,6 @@
   - name: spriteId
     desc: Sprite id
     type: u8
-    enum: SecondarySpriteId
   return:
     desc: u8 Sprite ram slot
     type: u8
@@ -7061,7 +7045,6 @@
   - name: spriteId
     desc: Sprite ID
     type: u8
-    enum: SecondarySpriteId
   - name: ramSlot
     desc: Primary sprite ram slot
     type: u8
@@ -7374,11 +7357,9 @@
   - name: cloudType
     desc: Cloud type
     type: u8
-    enum: SpriteDebrisCloudType
   - name: debrisType
     desc: Debris type
     type: u8
-    enum: SpriteDebrisType
   - name: yPosition
     desc: Y Position
     type: u16
@@ -9250,7 +9231,6 @@
   params:
   - name: caa
     type: u8
-    enum: ClipdataAffectingAction
   return: null
   loc: src/sprites_AI/box.c:1814
 - name: BoxDebrisInit
@@ -13454,7 +13434,6 @@
   params:
   - name: caa
     type: u32
-    enum: ClipdataAffectingAction
   return: null
   loc: src/sprites_AI/frozen_ridley.c:21
 - name: FrozenRidleyInit
@@ -13925,7 +13904,6 @@
   params:
   - name: caa
     type: u8
-    enum: ClipdataAffectingAction
   return: null
   loc: src/sprites_AI/omega_metroid_husk.c:20
 - name: OmegaMetroidHuskInit
@@ -16551,7 +16529,6 @@
   - name: event
     desc: New event
     type: u8
-    enum: Event
   return:
     desc: u32 bool, was set
     type: u32
@@ -17826,7 +17803,6 @@
   - name: effect
     desc: Event based effect to set
     type: u8
-    enum: EventBasedEffect
   return: null
   loc: src/room_effect.c:977
 - name: RoomEffectSetupCurrentEventBased
@@ -18320,7 +18296,6 @@
   return:
     desc: u32 Current affecting
     type: s32
-    enum: ClipdataAffectingAction
   loc: src/clipdata.c:660
 - name: ClipdataCheckElevatorDisabled
   desc: Checks if an elevator is disabled
@@ -18361,7 +18336,6 @@
   return:
     desc: u32 Ground effect
     type: u32
-    enum: GroudEffect
   loc: src/clipdata.c:888
 - name: ConnectionCheckEnterDoor
   desc: Tries to find a door
@@ -18569,11 +18543,9 @@
   - name: soundEvent
     desc: Sound event
     type: u8
-    enum: SoundEvent
   - name: triggerType
     desc: Sound event trigger type
     type: u8
-    enum: SoundEventTriggerType
   return: null
   loc: src/sound_event.c:340
 - name: SoundEventUpdateMusic
@@ -18595,7 +18567,6 @@
   - name: triggerType
     desc: Sound event trigger type
     type: u8
-    enum: SoundEventTriggerType
   return: null
   loc: src/sound_event.c:351
 - name: PlayRoomMusicTrack
@@ -18611,7 +18582,6 @@
   params:
   - name: area
     type: u8
-    enum: Area
   - name: room
     type: u8
   return: null
@@ -18994,7 +18964,6 @@
     type: u16
   - name: effect
     type: u8
-    enum: ParticleId
   return: null
   loc: src/particle.c:285
 - name: ParticleUpdateAnimation
@@ -19988,7 +19957,6 @@
   - name: event
     desc: Event
     type: u8
-    enum: Event
   return: null
   loc: src/event.c:21
 - name: EventCheckPlayCutsceneDuringTransition
@@ -20005,7 +19973,6 @@
     type: u8
   return:
     type: u8
-    enum: Cutscene
   loc: src/event.c:141
 - name: EventCheckUpdateAfterCutscene
   desc: Checks to update the event/sound event after a cutscene
@@ -21018,7 +20985,6 @@
   - name: type
     desc: Projectile type
     type: u8
-    enum: ProjectileType
   - name: limit
     desc: Limit
     type: u8
@@ -21041,7 +21007,6 @@
   - name: type
     desc: Projectile type
     type: u8
-    enum: ProjectileType
   - name: yPosition
     desc: Y position
     type: u16
@@ -21069,7 +21034,6 @@
   - name: type
     desc: Projectile type
     type: u8
-    enum: ProjectileType
   - name: yPosition
     desc: Y position
     type: u16
@@ -21083,11 +21047,9 @@
     desc: Status to add
     type: u8
     cat: flags
-    enum: ProjectileStatus
   - name: direction
     desc: Direction
     type: u8
-    enum: ArmCannonDirection
   - name: ramSlot
     desc: Primary projectile ram slot
     type: u8
@@ -21314,7 +21276,6 @@
   params:
   - name: particle
     type: u8
-    enum: ParticleId
   - name: delay
     type: u8
   return: null
@@ -21331,7 +21292,6 @@
   params:
   - name: particle
     type: u8
-    enum: ParticleId
   - name: delay
     type: u8
   return: null
@@ -21390,7 +21350,6 @@
     desc: u16 Weakness
     type: u16
     cat: flags
-    enum: SpriteWeakness
   loc: src/projectile.c:1750
 - name: ProjectileRandomSpriteDebris
   desc: Spawns random sprite debris at the given location
@@ -21405,7 +21364,6 @@
   - name: cloudType
     desc: Cloud type
     type: u8
-    enum: SpriteDebrisCloudType
   - name: flashTimer
     desc: Flash timer
     type: u8
@@ -21436,7 +21394,6 @@
   - name: cloudType
     desc: Cloud type
     type: u8
-    enum: SpriteDebrisCloudType
   - name: flashTimer
     desc: Flash timer
     type: u8

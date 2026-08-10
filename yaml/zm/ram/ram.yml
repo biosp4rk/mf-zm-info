@@ -2,25 +2,21 @@
   type: u8
   count: 0x400
   addr: 0x2002000
-  enum: ClipdataType
   loc: include/structs/room.h:123
 - name: gClipdataCollisionTypes_Tilemap
   type: u8
   count: 0x200
   addr: 0x2002400
-  enum: ClipdataType
   loc: include/structs/room.h:124
 - name: gClipdataBehaviorTypes
   type: u16
   count: 0x400
   addr: 0x2003000
-  enum: ClipBehavior
   loc: include/structs/room.h:126
 - name: gClipdataBehaviorTypes_Tilemap
   type: u16
   count: 0x200
   addr: 0x2003800
-  enum: ClipBehavior
   loc: include/structs/room.h:127
 - name: gTilemap
   type: u16
@@ -141,7 +137,6 @@
 - name: gLanguage
   type: Language
   addr: 0x3000020
-  enum: Language
   loc: include/structs/game_state.h:50
 - name: gGameCompletion
   type: struct GameCompletion
@@ -166,7 +161,6 @@
 - name: gDifficulty
   type: Difficulty
   addr: 0x300002C
-  enum: Difficulty
   loc: include/structs/game_state.h:49
 - name: gUseMotherShipDoors
   type: boolu8
@@ -258,12 +252,10 @@
   count: 0x1
   cat: flags
   addr: 0x3000050
-  enum: InGameCutsceneScene
   loc: include/structs/in_game_cutscene.h:37
 - name: gCurrentArea
   type: Area
   addr: 0x3000054
-  enum: Area
   loc: include/structs/connection.h:119
 - name: gCurrentRoom
   type: u8
@@ -303,7 +295,6 @@
 - name: gCurrentHazeValue
   type: HazeValue
   addr: 0x300006B
-  enum: HazeValue
   loc: include/structs/haze.h:34
 - name: gEffectYPosition
   type: u16
@@ -336,7 +327,6 @@
 - name: gCurrentClipdataAffectingAction
   type: ClipdataAffectingAction
   addr: 0x3000079
-  enum: ClipdataAffectingAction
   loc: include/structs/clipdata.h:50
 - name: gSpritesetEntryUsed
   type: u8
@@ -463,7 +453,6 @@
   type: u8
   count: 0xF
   addr: 0x30006EC
-  enum: PrimarySprite
   loc: include/structs/sprite.h:127
 - name: gSpritesetGfxSlots
   type: u8
@@ -572,7 +561,6 @@
 - name: gCurrentEscapeStatus
   type: EscapeStatus
   addr: 0x300095C
-  enum: EscapeStatus
   loc: include/structs/escape.h:22
 - name: gEscapeTimerCounter
   type: u8
@@ -626,12 +614,10 @@
 - name: gPauseScreenFlag
   type: PauseScreenFlag
   addr: 0x3000BF0
-  enum: PauseScreenFlag
   loc: include/structs/game_state.h:45
 - name: gAreaBeforeTransition
   type: Area
   addr: 0x3000BF1
-  enum: Area
   loc: include/structs/connection.h:120
 - name: gCurrentItemBeingAcquired
   type: s8
@@ -728,7 +714,6 @@
 - name: gMainGameMode
   type: GameMode
   addr: 0x3000C70
-  enum: GameMode
   loc: include/structs/game_state.h:55
 - name: gSubGameMode1
   type: s16
@@ -871,7 +856,6 @@
 - name: gDemoState
   type: DemoState
   addr: 0x30013D2
-  enum: DemoState
   loc: include/structs/demo.h:24
 - name: gSamusData
   type: struct SamusData

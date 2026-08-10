@@ -4,15 +4,12 @@
   - name: beamStatus
     type: u8
     offset: 0x0
-    enum: BeamStatus
   - name: weaponStatus
     type: u8
     offset: 0x1
-    enum: MissileBombStatus
   - name: suitStatus
     type: u8
     offset: 0x2
-    enum: SuitMiscStatus
   - name: isSuit
     type: u8
     offset: 0x3
@@ -22,7 +19,6 @@
   - name: soundEvent
     type: u16
     offset: 0x6
-    enum: SoundEvent
   loc: include/structs/event.h:6
 - name: AnimatedPaletteAndTileset
   size: 0x4
@@ -124,19 +120,15 @@
   - name: armMissiles
     type: u16
     offset: 0x0
-    enum: ButtonInput
   - name: diagonalAim
     type: u16
     offset: 0x2
-    enum: ButtonInput
   - name: swapMissiles
     type: u16
     offset: 0x4
-    enum: ButtonInput
   - name: pause
     type: u16
     offset: 0x6
-    enum: ButtonInput
   loc: include/globals.h:206
 - name: Camera
   size: 0x8
@@ -210,7 +202,6 @@
   - name: hazard
     type: u16
     offset: 0x2
-    enum: Hazard
   loc: include/structs/clipdata.h:26
 - name: DefaultTransparency
   size: 0x8
@@ -250,30 +241,25 @@
   - name: area
     type: u8
     offset: 0x0
-    enum: Area
   - name: lastDoorUsed
     type: u8
     offset: 0x1
   - name: securityLevel
     type: u8
     offset: 0x2
-    enum: SecurityLevel
   - name: downloadedMaps
     type: u8
     cat: flags
     offset: 0x3
-    enum: AreaBitFlags
   - name: event
     type: u8
     offset: 0x4
-    enum: Event
   - name: soundEvent
     type: u16
     offset: 0x6
   - name: abilityCount
     type: u8
     offset: 0x8
-    enum: AbilityCount
   - name: maxEnergy
     type: u16
     offset: 0xA
@@ -295,7 +281,6 @@
   - name: samusDirection
     type: u16
     offset: 0x14
-    enum: HorizontalDirection
   - name: samusX
     type: u16
     offset: 0x16
@@ -383,14 +368,12 @@
   - name: area1
     type: u8
     offset: 0x0
-    enum: Area
   - name: room1
     type: u8
     offset: 0x1
   - name: area2
     type: u8
     offset: 0x2
-    enum: Area
   - name: room2
     type: u8
     offset: 0x3
@@ -538,26 +521,21 @@
     type: u8
     cat: flags
     offset: 0xA
-    enum: BeamStatus
   - name: weaponsStatus
     type: u8
     cat: flags
     offset: 0xB
-    enum: MissileBombStatus
   - name: suitMiscStatus
     type: u8
     cat: flags
     offset: 0xC
-    enum: SuitMiscStatus
   - name: securityHatchLevel
     type: u8
     offset: 0xD
-    enum: SecurityLevel
   - name: downloadedMaps
     type: u8
     cat: flags
     offset: 0xE
-    enum: AreaBitFlags
   - name: lowHealth
     type: u8
     offset: 0xF
@@ -694,11 +672,9 @@
   - name: event
     type: u8
     offset: 0x0
-    enum: Event
   - name: area
     type: u8
     offset: 0x1
-    enum: Area
   - name: room
     type: u8
     offset: 0x2
@@ -945,7 +921,6 @@
   - name: event
     type: u8
     offset: 0x0
-    enum: Event
   - name: elevatorRoomPair
     type: u8
     offset: 0x1
@@ -1269,7 +1244,6 @@
   - name: effect
     type: u8
     offset: 0x2
-    enum: ParticleId
   - name: stage
     type: u8
     offset: 0x3
@@ -1831,7 +1805,6 @@
     type: u8
     cat: flags
     offset: 0x0
-    enum: ProjectileStatus
   - name: pOam
     type: const struct FrameData*
     offset: 0x4
@@ -1850,11 +1823,9 @@
   - name: type
     type: u8
     offset: 0xF
-    enum: ProjectileType
   - name: direction
     type: u8
     offset: 0x10
-    enum: ArmCannonDirection
   - name: palette
     type: u8
     offset: 0x11
@@ -2009,19 +1980,15 @@
   - name: bg0Prop
     type: u8
     offset: 0x1
-    enum: BgProperty
   - name: bg1Prop
     type: u8
     offset: 0x2
-    enum: BgProperty
   - name: bg2Prop
     type: u8
     offset: 0x3
-    enum: BgProperty
   - name: bg3Prop
     type: u8
     offset: 0x4
-    enum: BgProperty
   - name: scrollsFlag
     type: u8
     offset: 0x5
@@ -2417,14 +2384,12 @@
   - name: pose
     type: u8
     offset: 0x1
-    enum: SamusPose
   - name: turning
     type: u8
     offset: 0x2
   - name: forcedMovement
     type: u8
     offset: 0x3
-    enum: ForcedMovement
   - name: walljumpTimer
     type: u8
     offset: 0x4
@@ -2437,14 +2402,12 @@
   - name: armCannonDirection
     type: u8
     offset: 0x7
-    enum: ArmCannonDirection
   - name: weaponHighlighted
     type: u8
     offset: 0x8
   - name: newProjectile
     type: u8
     offset: 0x9
-    enum: NewProjectileType
   - name: cooldownTimer
     type: u8
     offset: 0xA
@@ -2457,7 +2420,6 @@
   - name: diagonalAim
     type: u8
     offset: 0xD
-    enum: DiagonalAim
   - name: armRunningFlag
     type: u8
     offset: 0xE
@@ -2467,11 +2429,9 @@
   - name: lastWallTouchedMidAir
     type: u16
     offset: 0x10
-    enum: HorizontalDirection
   - name: direction
     type: u16
     offset: 0x12
-    enum: HorizontalDirection
   - name: elevatorOrClimbingDirection
     type: u16
     offset: 0x14
@@ -2490,11 +2450,9 @@
   - name: slopeType
     type: u16
     offset: 0x1E
-    enum: SamusSlopeType
   - name: standingStatus
     type: u8
     offset: 0x20
-    enum: SamusStandingStatus
   - name: animationDurationCounter
     type: u8
     offset: 0x21
@@ -2710,15 +2668,12 @@
   - name: area
     type: u8
     offset: 0x1
-    enum: Area
   - name: previousEvent
     type: u8
     offset: 0x2
-    enum: Event
   - name: nextEvent
     type: u8
     offset: 0x3
-    enum: Event
   - name: soundEvent
     type: u16
     offset: 0x4
@@ -2848,7 +2803,6 @@
     type: u16
     cat: flags
     offset: 0x0
-    enum: SpriteStatus
   - name: yPosition
     type: u16
     offset: 0x2
@@ -2915,7 +2869,6 @@
   - name: samusCollision
     type: u8
     offset: 0x25
-    enum: SpriteSamusCollision
   - name: ignoreSamusCollisionTimer
     type: u8
     offset: 0x26
@@ -2962,7 +2915,6 @@
     type: u8
     cat: flags
     offset: 0x34
-    enum: SpriteProperties
   - name: frozenPaletteRowOffset
     type: u8
     offset: 0x35

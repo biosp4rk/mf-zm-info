@@ -4,8 +4,8 @@ from typing import Any, Union
 
 from constants import *
 from info.asset_type import (
-    BUILT_IN_SIZES, TypeSpecKind, AssetType, SpecifierType, OuterType,
-    PointerType, ArrayType, FunctionType, TypeTokenizer, TypeParser
+    TypeSpecKind, AssetType, SpecifierType, OuterType,
+    PointerType, ArrayType, TypeTokenizer, TypeParser
 )
 
 
@@ -170,8 +170,7 @@ class VarEntry(InfoEntry):
         # arr_count of 1 implies array [1]
         arr_count: RegionInt,
         cat: Category = None,
-        comp: Compression = None,
-        enum: str = None
+        comp: Compression = None
     ):
         super().__init__(desc)
         tokens = TOKENIZER.tokenize(type)
@@ -179,7 +178,6 @@ class VarEntry(InfoEntry):
         self.arr_count = arr_count
         self.cat = cat
         self.comp = comp
-        self.enum = enum
 
     def __str__(self) -> str:
         return self.type_str()
@@ -271,8 +269,7 @@ class VarEntry(InfoEntry):
             obj[K_TYPE],
             obj.get(K_COUNT),
             cat,
-            comp,
-            obj.get(K_ENUM)
+            comp
         )
 
     @staticmethod
@@ -287,8 +284,6 @@ class VarEntry(InfoEntry):
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
         if entry.comp:
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
-        if entry.enum:
-            obj.append((K_ENUM, entry.enum))
         return dict(obj)
 
 
@@ -302,10 +297,9 @@ class NamedVarEntry(VarEntry):
         # arr_count of 1 implies array [1]
         arr_count: RegionInt,
         cat: Category = None,
-        comp: Compression = None,
-        enum: str = None
+        comp: Compression = None
     ):
-        super().__init__(desc, type, arr_count, cat, comp, enum)
+        super().__init__(desc, type, arr_count, cat, comp)
         self.name = name
 
     def c_str(self) -> str:
@@ -330,8 +324,7 @@ class NamedVarEntry(VarEntry):
             obj[K_TYPE],
             obj.get(K_COUNT),
             cat,
-            comp,
-            obj.get(K_ENUM)
+            comp
         )
 
     @staticmethod
@@ -346,8 +339,6 @@ class NamedVarEntry(VarEntry):
             obj.append((K_CAT, CAT_TO_STR[entry.cat]))
         if entry.comp:
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
-        if entry.enum:
-            obj.append((K_ENUM, entry.enum))
         return dict(obj)
 
 
@@ -361,10 +352,9 @@ class DataEntry(NamedVarEntry):
         addr: RegionInt,
         loc: str,
         cat: Category = None,
-        comp: Compression = None,
-        enum: str = None
+        comp: Compression = None
     ):
-        super().__init__(name, desc, type, arr_count, cat, comp, enum)
+        super().__init__(name, desc, type, arr_count, cat, comp)
         self.addr = addr
         self.loc = loc
 
@@ -403,8 +393,7 @@ class DataEntry(NamedVarEntry):
                 obj[K_ADDR],
                 obj.get(K_LOC),
                 cat,
-                comp,
-                obj.get(K_ENUM)
+                comp
             )
         except:
             raise Exception(f"Error parsing data entry: {obj}")
@@ -422,8 +411,6 @@ class DataEntry(NamedVarEntry):
         if entry.comp:
             obj.append((K_COMP, COMP_TO_STR[entry.comp]))
         obj.append((K_ADDR, entry.addr))
-        if entry.enum:
-            obj.append((K_ENUM, entry.enum))
         obj.append((K_LOC, entry.loc))
         return dict(obj)
 
@@ -438,11 +425,10 @@ class StructVarEntry(NamedVarEntry):
         offset: RegionInt,
         bits: int = None,
         cat: Category = None,
-        comp: Compression = None,
-        enum: str = None
+        comp: Compression = None
     ):
         super().__init__(
-            name, desc, type, arr_count, cat, comp, enum
+            name, desc, type, arr_count, cat, comp
         )
         self.offset = offset
         self.bits = bits
@@ -481,8 +467,7 @@ class StructVarEntry(NamedVarEntry):
             obj[K_OFFSET],
             obj.get(K_BITS),
             cat,
-            comp,
-            obj.get(K_ENUM)
+            comp
         )
 
     @staticmethod
@@ -500,8 +485,6 @@ class StructVarEntry(NamedVarEntry):
         obj.append((K_OFFSET, entry.offset))
         if entry.bits:
             obj.append((K_BITS, entry.bits))
-        if entry.enum:
-            obj.append((K_ENUM, entry.enum))
         return dict(obj)
 
 
