@@ -111,7 +111,6 @@ class AsmWriter:
         format_opts = FORMAT_OPTIONS[asm_format]
         return cls(rom, symbols, branches, format_opts)
 
-    # TODO: Split into smaller functions
     def function_str(self,
         func: Function,
         include_syms: bool,
@@ -119,12 +118,16 @@ class AsmWriter:
     ) -> str:
         self.symbols.locals = func.locals
         self.symbols.local_indexes = func.local_indexes
+        lines = self._header_lines(func, include_syms)
+        lines += self._body_lines(func, include_addrs)
+        self.symbols.reset_locals()
+        return "\n".join(lines)
 
+    def _header_lines(self, func: Function, include_syms: bool) -> list[str]:
         lines = []
         if include_syms:
             # TODO: Handle non-armips syntax
-            syms = self._get_func_symbols(func)
-            syms = sorted(syms.items())
+            syms = sorted(self._get_func_symbols(func).items())
             for addr, label in syms:
                 lines.append(f".definelabel {label},0x{addr:X}")
             lines.append("")
@@ -146,79 +149,108 @@ class AsmWriter:
         # Add size
         size = func.end_addr - func.start_addr
         lines.append(f"{self.comment_char} Size: {size:X}")
+        return lines
 
-        # Go until end of function
+    def _body_lines(self, func: Function, include_addrs: bool) -> list[str]:
+        lines: list[str] = []
         addr = func.start_addr
-        dd = self.format_opts.data_directive
         in_pool = False
         cases: defaultdict[int, list[int]] = defaultdict(list)
         while addr < func.end_addr:
             # Check if anything branches to current offset
             if addr in self.branches:
-                line = self._get_local(addr) + ":"
-                if addr in cases:
-                    case_nums = ", ".join(str(c) for c in cases[addr])
-                    line += f" {self.comment_char} case {case_nums}"
-                lines.append(line)
+                lines.append(self._branch_label(addr, cases))
             if func.in_data_pool(addr):
-                if self.format_opts.dot_pool:
-                    # If already in a data pool, do nothing
-                    # If just entered a data pool, write .pool
-                    if not in_pool:
-                        lines.append(INDENT + DOT_POOL)
-                        in_pool = True
-                        addr = func.align(addr, 4)
-                else:
-                    if not in_pool:
-                        lines.append(f"{INDENT}.align 2, 0")
-                        in_pool = True
-                        addr = func.align(addr, 4)
-                    addr_str = self._get_local(addr)
-                    word = self.rom.read_32(addr)
-                    label = self._get_label(word, LabelType.Imm)
-                    lines.append(f"{addr_str}: {dd} {label}")
-                addr += 4
+                addr, in_pool = self._data_pool_lines(func, addr, in_pool, lines)
             elif addr in func.jump_tables:
-                addr_str = self._get_local(addr)
-                lines.append(f"{addr_str}: {self.comment_char} jump table")
-                jumps = []
-                c = 0
-                while True:
-                    if addr in self.branches:
-                        break
-                    jump = self.rom.read_ptr(addr)
-                    jumps.append(self._get_local(jump))
-                    cases[jump].append(c)
-                    addr += 4
-                    c += 1
-                if self.format_opts.unified:
-                    for i, jump in enumerate(jumps):
-                        lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")
-                else:
-                    num_jumps = len(jumps)
-                    for j in range(0, num_jumps, 4):
-                        end = j + min(4, num_jumps - j)
-                        jump_labels = self._comma_join(jumps[j:end])
-                        lines.append(f"{INDENT}{dd} {jump_labels}")
+                addr = self._jump_table_lines(addr, cases, lines)
                 in_pool = False
             elif addr in func.instructs:
-                instruct = func.instructs[addr]
-                asm_str = self.instruct_str(instruct)
-                if include_addrs:
-                    asm_str = f"{asm_str:35} {self.comment_char} {addr:X}"
-                lines.append("    " + asm_str)
-                if instruct.format == ThumbForm.Link:
-                    addr += 4
-                else:
-                    addr += 2
+                addr = self._instruct_lines(func, addr, include_addrs, lines)
                 in_pool = False
             elif addr + 2 == func.end_addr:
                 break
             else:
-                err = f"Unsure what to output at {addr:X}"
-                raise ValueError(err)
-        self.symbols.reset_locals()
-        return "\n".join(lines)
+                raise ValueError(f"Unsure what to output at {addr:X}")
+        return lines
+
+    def _branch_label(self, addr: int, cases: dict[int, list[int]]) -> str:
+        line = self._get_local(addr) + ":"
+        if addr in cases:
+            case_nums = ", ".join(str(c) for c in cases[addr])
+            line += f" {self.comment_char} case {case_nums}"
+        return line
+
+    def _data_pool_lines(self,
+        func: Function,
+        addr: int,
+        in_pool: bool,
+        lines: list[str]
+    ) -> tuple[int, bool]:
+        if self.format_opts.dot_pool:
+            # If already in a data pool, do nothing
+            # If just entered a data pool, write .pool
+            if not in_pool:
+                lines.append(INDENT + DOT_POOL)
+                in_pool = True
+                addr = func.align(addr, 4)
+        else:
+            if not in_pool:
+                lines.append(f"{INDENT}.align 2, 0")
+                in_pool = True
+                addr = func.align(addr, 4)
+            addr_str = self._get_local(addr)
+            word = self.rom.read_32(addr)
+            label = self._get_label(word, LabelType.Imm)
+            lines.append(f"{addr_str}: {self.format_opts.data_directive} {label}")
+        addr += 4
+        return addr, in_pool
+
+    def _jump_table_lines(self,
+        addr: int,
+        cases: defaultdict[int, list[int]],
+        lines: list[str]
+    ) -> int:
+        addr_str = self._get_local(addr)
+        lines.append(f"{addr_str}: {self.comment_char} jump table")
+        jumps = []
+        c = 0
+        while True:
+            if addr in self.branches:
+                break
+            jump = self.rom.read_ptr(addr)
+            jumps.append(self._get_local(jump))
+            cases[jump].append(c)
+            addr += 4
+            c += 1
+        if self.format_opts.unified:
+            for i, jump in enumerate(jumps):
+                lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")
+        else:
+            dd = self.format_opts.data_directive
+            num_jumps = len(jumps)
+            for j in range(0, num_jumps, 4):
+                end = j + min(4, num_jumps - j)
+                jump_labels = self._comma_join(jumps[j:end])
+                lines.append(f"{INDENT}{dd} {jump_labels}")
+        return addr
+
+    def _instruct_lines(self,
+        func: Function,
+        addr: int,
+        include_addrs: bool,
+        lines: list[str]
+    ) -> int:
+        instruct = func.instructs[addr]
+        asm_str = self.instruct_str(instruct)
+        if include_addrs:
+            asm_str = f"{asm_str:35} {self.comment_char} {addr:X}"
+        lines.append("    " + asm_str)
+        if instruct.format == ThumbForm.Link:
+            addr += 4
+        else:
+            addr += 2
+        return addr
 
     # TODO: Use match/case
     def instruct_str(self, instruct: ThumbInstruct) -> str:
