@@ -24,8 +24,6 @@ class Function:
         self.jump_tables: set[int] = set()
         self.branches: set[int] = set()
         self.data_pool: set[int] = set()
-        self.at_end = False
-        self.at_jump = False
         self.locals: set[int] = None
         self.local_indexes: dict[int, int] = None
         self.step_through()
@@ -35,60 +33,62 @@ class Function:
         return [self.instructs[a] for a in keys]
 
     def step_through(self) -> None:
-        self.addr = self.start_addr
+        addr = self.start_addr
+        at_end = False
         # Step through each instruction
-        while not self.at_end:
+        while not at_end:
             # Skip if in data pool
-            if self.in_data_pool():
-                self.align(4)
-                self.addr += 4
+            if self.in_data_pool(addr):
+                addr = self.align(addr, 4)
+                addr += 4
                 continue
 
             # Get current instruction
-            inst = ThumbInstruct(self.rom, self.addr)
+            inst = ThumbInstruct(self.rom, addr)
 
             # Check for branches, data pools, jump tables, and end of function
+            at_jump = False
             if inst.format == ThumbForm.HiReg:
                 if inst.opname == ThumbOp.MOV:
                     if inst.rd == 15:
                         if inst.rs == 14:
                             # mov r15,r14
-                            self.at_end = True
+                            at_end = True
                         else:
                             # mov r15,Rs
-                            self.at_jump = True
+                            at_jump = True
                 elif inst.opname == ThumbOp.BX:
                     # bx Rs
-                    self.at_end = True
+                    at_end = True
             elif inst.format == ThumbForm.LdPC:
                 # ldr Rd,=Word
                 self.data_pool.add(inst.pc_rel_addr())
             elif inst.format == ThumbForm.PushPop:
                 if inst.opname == ThumbOp.POP and 15 in inst.rlist:
                     # pop r15
-                    self.at_end = True
+                    at_end = True
             elif (inst.format == ThumbForm.CondB or
                 inst.format == ThumbForm.UncondB):
                 self.branches.add(inst.branch_addr())
 
             # Add current instruction to dictionary
-            self.instructs[self.addr] = inst
-            
+            self.instructs[addr] = inst
+
             # Increment address
             if inst.format == ThumbForm.Link:
-                self.addr += 4
+                addr += 4
             else:
-                self.addr += 2
+                addr += 2
 
             # Check if at jump
-            if self.at_jump:
-                self.handle_jump()
+            if at_jump:
+                addr = self.handle_jump(addr)
 
         # Find end of last data pool (if present)
-        self.align(4)
-        while (self.addr in self.data_pool):
-            self.addr += 4
-        self.end_addr = self.addr
+        addr = self.align(addr, 4)
+        while addr in self.data_pool:
+            addr += 4
+        self.end_addr = addr
 
         # Find any BLs that are local branches
         for inst in self.instructs.values():
@@ -104,29 +104,29 @@ class Function:
         self.locals = self.symbols.locals
         self.local_indexes = self.symbols.local_indexes
         self.symbols.reset_locals()
-        delattr(self, "addr")
 
-    def align(self, num: int) -> None:
-        r = self.addr % num
+    def align(self, addr: int, num: int) -> int:
+        r = addr % num
         if r != 0:
-            self.addr += num - r
+            addr += num - r
+        return addr
 
-    def handle_jump(self) -> None:
+    def handle_jump(self, addr: int) -> int:
         # Find start of table (should start after data pool)
-        self.align(4)
-        while self.addr in self.data_pool:
-            self.addr += 4
+        addr = self.align(addr, 4)
+        while addr in self.data_pool:
+            addr += 4
         # Add offset to jump tables and symbols
-        self.jump_tables.add(self.addr)
-        self.symbols.add_local(self.addr)
+        self.jump_tables.add(addr)
+        self.symbols.add_local(addr)
         # Find all branches in table
         while True:
-            if self.addr in self.branches:
+            if addr in self.branches:
                 break
-            jump = self.rom.read_ptr(self.addr)
+            jump = self.rom.read_ptr(addr)
             self.branches.add(jump)
-            self.addr += 4
-        self.at_jump = False
+            addr += 4
+        return addr
 
     def get_jump_tables(self) -> set[int]:
         jumps = set()
@@ -137,11 +137,11 @@ class Function:
                 offset += 4
         return jumps
 
-    def in_data_pool(self) -> bool:
-        return self.addr in self.data_pool or (
-            self.addr % 4 == 2 and
-            self.rom.read_16(self.addr) == 0 and
-            self.addr + 2 in self.data_pool
+    def in_data_pool(self, addr: int) -> bool:
+        return addr in self.data_pool or (
+            addr % 4 == 2 and
+            self.rom.read_16(addr) == 0 and
+            addr + 2 in self.data_pool
         )
 
     def get_data_pools(self) -> list[tuple[int, int]]:

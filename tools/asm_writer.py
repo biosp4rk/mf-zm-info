@@ -148,48 +148,48 @@ class AsmWriter:
         lines.append(f"{self.comment_char} Size: {size:X}")
 
         # Go until end of function
-        func.addr = func.start_addr
+        addr = func.start_addr
         dd = self.format_opts.data_directive
         in_pool = False
         cases: defaultdict[int, list[int]] = defaultdict(list)
-        while func.addr < func.end_addr:
+        while addr < func.end_addr:
             # Check if anything branches to current offset
-            if func.addr in self.branches:
-                line = self._get_local(func.addr) + ":"
-                if func.addr in cases:
-                    case_nums = ", ".join(str(c) for c in cases[func.addr])
+            if addr in self.branches:
+                line = self._get_local(addr) + ":"
+                if addr in cases:
+                    case_nums = ", ".join(str(c) for c in cases[addr])
                     line += f" {self.comment_char} case {case_nums}"
                 lines.append(line)
-            if func.in_data_pool():
+            if func.in_data_pool(addr):
                 if self.format_opts.dot_pool:
                     # If already in a data pool, do nothing
                     # If just entered a data pool, write .pool
                     if not in_pool:
                         lines.append(INDENT + DOT_POOL)
                         in_pool = True
-                        func.align(4)
+                        addr = func.align(addr, 4)
                 else:
                     if not in_pool:
                         lines.append(f"{INDENT}.align 2, 0")
                         in_pool = True
-                        func.align(4)
-                    addr_str = self._get_local(func.addr)
-                    word = self.rom.read_32(func.addr)
+                        addr = func.align(addr, 4)
+                    addr_str = self._get_local(addr)
+                    word = self.rom.read_32(addr)
                     label = self._get_label(word, LabelType.Imm)
                     lines.append(f"{addr_str}: {dd} {label}")
-                func.addr += 4
-            elif func.addr in func.jump_tables:
-                addr_str = self._get_local(func.addr)
+                addr += 4
+            elif addr in func.jump_tables:
+                addr_str = self._get_local(addr)
                 lines.append(f"{addr_str}: {self.comment_char} jump table")
                 jumps = []
                 c = 0
                 while True:
-                    if func.addr in self.branches:
+                    if addr in self.branches:
                         break
-                    jump = self.rom.read_ptr(func.addr)
+                    jump = self.rom.read_ptr(addr)
                     jumps.append(self._get_local(jump))
                     cases[jump].append(c)
-                    func.addr += 4
+                    addr += 4
                     c += 1
                 if self.format_opts.unified:
                     for i, jump in enumerate(jumps):
@@ -201,24 +201,23 @@ class AsmWriter:
                         jump_labels = self._comma_join(jumps[j:end])
                         lines.append(f"{INDENT}{dd} {jump_labels}")
                 in_pool = False
-            elif func.addr in func.instructs:
-                instruct = func.instructs[func.addr]
+            elif addr in func.instructs:
+                instruct = func.instructs[addr]
                 asm_str = self.instruct_str(instruct)
                 if include_addrs:
-                    asm_str = f"{asm_str:35} {self.comment_char} {func.addr:X}"
+                    asm_str = f"{asm_str:35} {self.comment_char} {addr:X}"
                 lines.append("    " + asm_str)
                 if instruct.format == ThumbForm.Link:
-                    func.addr += 4
+                    addr += 4
                 else:
-                    func.addr += 2
+                    addr += 2
                 in_pool = False
-            elif func.addr + 2 == func.end_addr:
+            elif addr + 2 == func.end_addr:
                 break
             else:
-                err = f"Unsure what to output at {func.addr:X}"
+                err = f"Unsure what to output at {addr:X}"
                 raise ValueError(err)
         self.symbols.reset_locals()
-        delattr(func, "addr")
         return "\n".join(lines)
 
     # TODO: Use match/case
