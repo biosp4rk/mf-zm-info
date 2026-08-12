@@ -223,11 +223,11 @@ class AsmWriter:
             cases[jump].append(c)
             addr += 4
             c += 1
+        dd = self.format_opts.data_directive
         if self.format_opts.unified:
             for i, jump in enumerate(jumps):
-                lines.append(f"{INDENT}.4byte {jump} {self.comment_char} case {i}")
+                lines.append(f"{INDENT}{dd} {jump} {self.comment_char} case {i}")
         else:
-            dd = self.format_opts.data_directive
             num_jumps = len(jumps)
             for j in range(0, num_jumps, 4):
                 end = j + min(4, num_jumps - j)
@@ -252,103 +252,86 @@ class AsmWriter:
             addr += 2
         return addr
 
-    # TODO: Use match/case
     def instruct_str(self, instruct: ThumbInstruct) -> str:
         args = []
-        if instruct.format == ThumbForm.Shift:
-            args.append(self._reg_name(instruct.rd))
-            args.append(self._reg_name(instruct.rs))
-            args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.AddSub:
-            args.append(self._reg_name(instruct.rd))
-            args.append(self._reg_name(instruct.rs))
-            if instruct.opname != ThumbOp.MOV:
-                if instruct.rn is not None:
-                    args.append(self._reg_name(instruct.rn))
-                else:
-                    args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.Immed:
-            args.append(self._reg_name(instruct.rd))
-            args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.AluOp:
-            args.append(self._reg_name(instruct.rd))
-            args.append(self._reg_name(instruct.rs))
-        elif instruct.format == ThumbForm.HiReg:
-            if instruct.opname != ThumbOp.NOP:
-                if (instruct.opname == ThumbOp.ADD or
-                    instruct.opname == ThumbOp.CMP or
-                    instruct.opname == ThumbOp.MOV):
-                    args.append(self._reg_name(instruct.rd))
+        match instruct.format:
+            case ThumbForm.Shift:
+                args.append(self._reg_name(instruct.rd))
                 args.append(self._reg_name(instruct.rs))
-        elif instruct.format == ThumbForm.LdPC:
-            args.append(self._reg_name(instruct.rd))
-            addr = instruct.pc_rel_addr()
-            word = self.rom.read_32(addr)
-            label = self._get_label(word, LabelType.Imm)
-            if self.format_opts.unified:
-                addr_str = self._get_local(addr)
-                args.append(f"{addr_str} {self.comment_char} ={label}")
-            else:
-                args.append("=" + label)
-        elif (instruct.format == ThumbForm.LdStR or
-            instruct.format == ThumbForm.LdStRS):
-            args.append(self._reg_name(instruct.rd))
-            args.append(f"[{self._reg_name(instruct.rs)}")
-            args.append(f"{self._reg_name(instruct.ro)}]")
-        elif (instruct.format == ThumbForm.LdStI or
-            instruct.format == ThumbForm.LdStIH):
-            args.append(self._reg_name(instruct.rd))
-            if instruct.imm == 0:
-                args.append(f"[{self._reg_name(instruct.rs)}]")
-            else:
-                args.append(f"[{self._reg_name(instruct.rs)}")
-                args.append(f"{self._imm_str(instruct)}]")
-        elif instruct.format == ThumbForm.LdStSP:
-            args.append(self._reg_name(instruct.rd))
-            if instruct.imm == 0:
-                args.append(f"[{self._reg_name(Reg.SP)}]")
-            else:
-                args.append(f"[{self._reg_name(Reg.SP)}")
-                args.append(f"{self._imm_str(instruct)}]")
-        elif instruct.format == ThumbForm.RelAddr:
-            args.append(self._reg_name(instruct.rd))
-            if instruct.rs == Reg.PC:
-                pa = instruct.pc_rel_addr()
-                if pa in self.branches:
-                    args.append(self._get_local(pa))
+                args.append(self._imm_str(instruct))
+            case ThumbForm.AddSub:
+                args.append(self._reg_name(instruct.rd))
+                args.append(self._reg_name(instruct.rs))
+                if instruct.opname != ThumbOp.MOV:
+                    if instruct.rn is not None:
+                        args.append(self._reg_name(instruct.rn))
+                    else:
+                        args.append(self._imm_str(instruct))
+            case ThumbForm.Immed:
+                args.append(self._reg_name(instruct.rd))
+                args.append(self._imm_str(instruct))
+            case ThumbForm.AluOp:
+                args.append(self._reg_name(instruct.rd))
+                args.append(self._reg_name(instruct.rs))
+            case ThumbForm.HiReg:
+                if instruct.opname != ThumbOp.NOP:
+                    if instruct.opname in {ThumbOp.ADD, ThumbOp.CMP, ThumbOp.MOV}:
+                        args.append(self._reg_name(instruct.rd))
+                    args.append(self._reg_name(instruct.rs))
+            case ThumbForm.LdPC:
+                args.append(self._reg_name(instruct.rd))
+                addr = instruct.pc_rel_addr()
+                word = self.rom.read_32(addr)
+                label = self._get_label(word, LabelType.Imm)
+                if self.format_opts.unified:
+                    addr_str = self._get_local(addr)
+                    args.append(f"{addr_str} {self.comment_char} ={label}")
                 else:
-                    va = pa + ROM_OFFSET
-                    args.append("=" + self._get_label(va, LabelType.Imm))
-            else:
+                    args.append("=" + label)
+            case ThumbForm.LdStR | ThumbForm.LdStRS:
+                args.append(self._reg_name(instruct.rd))
+                args.append(f"[{self._reg_name(instruct.rs)}")
+                args.append(f"{self._reg_name(instruct.ro)}]")
+            case ThumbForm.LdStI | ThumbForm.LdStIH:
+                args.append(self._reg_name(instruct.rd))
+                if instruct.imm == 0:
+                    args.append(f"[{self._reg_name(instruct.rs)}]")
+                else:
+                    args.append(f"[{self._reg_name(instruct.rs)}")
+                    args.append(f"{self._imm_str(instruct)}]")
+            case ThumbForm.LdStSP:
+                args.append(self._reg_name(instruct.rd))
+                if instruct.imm == 0:
+                    args.append(f"[{self._reg_name(Reg.SP)}]")
+                else:
+                    args.append(f"[{self._reg_name(Reg.SP)}")
+                    args.append(f"{self._imm_str(instruct)}]")
+            case ThumbForm.RelAddr:
+                args.append(self._reg_name(instruct.rd))
+                if instruct.rs == Reg.PC:
+                    pa = instruct.pc_rel_addr()
+                    args.append(self._target_str(pa, LabelType.Imm, "="))
+                else:
+                    args.append(self._reg_name(Reg.SP))
+                    args.append(self._imm_str(instruct))
+            case ThumbForm.AddSP:
                 args.append(self._reg_name(Reg.SP))
                 args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.AddSP:
-            args.append(self._reg_name(Reg.SP))
-            args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.PushPop:
-            args.append(self._rlist_str(instruct))
-        elif instruct.format == ThumbForm.LdStM:
-            args.append(self._reg_name(instruct.rd) + "!")
-            args.append(self._rlist_str(instruct))
-        elif (instruct.format == ThumbForm.CondB or
-            instruct.format == ThumbForm.UncondB):
-            pa = instruct.branch_addr()
-            if pa in self.branches:
-                args.append(self._get_local(pa))
-            else:
-                va = pa + ROM_OFFSET
-                args.append(self._get_label(va, LabelType.Imm))
-        elif instruct.format == ThumbForm.Swi:
-            args.append(self._imm_str(instruct))
-        elif instruct.format == ThumbForm.Link:
-            pa = instruct.branch_addr()
-            if pa in self.branches:
-                args.append(self._get_local(pa))
-            else:
-                va = pa + ROM_OFFSET
-                args.append(self._get_label(va, LabelType.Code))
-        else:
-            raise ValueError()
+            case ThumbForm.PushPop:
+                args.append(self._rlist_str(instruct))
+            case ThumbForm.LdStM:
+                args.append(self._reg_name(instruct.rd) + "!")
+                args.append(self._rlist_str(instruct))
+            case ThumbForm.CondB | ThumbForm.UncondB:
+                pa = instruct.branch_addr()
+                args.append(self._target_str(pa, LabelType.Imm))
+            case ThumbForm.Swi:
+                args.append(self._imm_str(instruct))
+            case ThumbForm.Link:
+                pa = instruct.branch_addr()
+                args.append(self._target_str(pa, LabelType.Code))
+            case _:
+                raise ValueError()
         
         lhs = instruct.opname.name.lower()
         if self.format_opts.unified:
@@ -360,6 +343,13 @@ class AsmWriter:
         if rhs == "":
             return f"{lhs}"
         return f"{lhs:8}{rhs}"
+
+    def _target_str(self, pa: int, label_type: LabelType, prefix: str = "") -> str:
+        # A local branch label if the target is within the function,
+        # otherwise an external label for the address
+        if pa in self.branches:
+            return self._get_local(pa)
+        return prefix + self._get_label(pa + ROM_OFFSET, label_type)
 
     def _get_func_symbols(self, func: Function) -> dict[int, str]:
         syms = {}
@@ -413,7 +403,7 @@ class AsmWriter:
         else:
             return f"_{addr + ROM_OFFSET:08x}"
 
-    def _get_label(self, addr: int, type: LabelType = LabelType.Undef) -> str:
+    def _get_label(self, addr: int, label_type: LabelType = LabelType.Undef) -> str:
         # Check for existing label
         if addr in self.symbols.globals:
             return self.symbols.globals[addr]
@@ -425,7 +415,7 @@ class AsmWriter:
             return self._get_local(pa)
         # Create label using addr
         label = f"{addr:X}"
-        match type:
+        match label_type:
             case LabelType.Imm:
                 label = "0x" + label
             case LabelType.Ram:
