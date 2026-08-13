@@ -37,8 +37,10 @@ class FormatOptions:
     prefixed_immed: bool
     braced_reg_list: bool
     reg_list_range: bool
+
     data_directive: str
     dot_pool: bool
+    thumb_bit: bool
     comment_char: CommentChar
     # TODO: Add hex format, lr/pc vs r14/15, pool format
 
@@ -54,6 +56,7 @@ FORMAT_OPTIONS = {
         reg_list_range=True,
         data_directive=".dw",
         dot_pool=True,
+        thumb_bit=True,
         comment_char=CommentChar.SEMICOLON,
     ),
     AsmFormat.DECOMP_ME: FormatOptions(
@@ -66,6 +69,7 @@ FORMAT_OPTIONS = {
         reg_list_range=False,
         data_directive=".word",
         dot_pool=True,
+        thumb_bit=False,
         comment_char=CommentChar.AT,
     ),
     AsmFormat.DECOMP_REPO: FormatOptions(
@@ -78,6 +82,7 @@ FORMAT_OPTIONS = {
         reg_list_range=False,
         data_directive=".4byte",
         dot_pool=False,
+        thumb_bit=False,
         comment_char=CommentChar.AT,
     ),
 }
@@ -282,7 +287,7 @@ class AsmWriter:
                 args.append(self._reg_name(instruct.rd))
                 addr = instruct.pc_rel_addr()
                 word = self.rom.read_32(addr)
-                label = self._get_label(word, LabelType.Imm)
+                label = self._load_pc_label(word)
                 if self.format_opts.unified:
                     addr_str = self._get_local(addr)
                     args.append(f"{addr_str} {self.comment_char} ={label}")
@@ -334,11 +339,11 @@ class AsmWriter:
                 raise ValueError()
         
         lhs = instruct.opname.name.lower()
-        if self.format_opts.unified:
-            if instruct.opname == ThumbOp.LDSB:
-                lhs = "ldrsb"
-            elif instruct.opname == ThumbOp.LDSH:
-                lhs = "ldrsh"
+        # TODO: Separate flag for this
+        if instruct.opname == ThumbOp.LDSB:
+            lhs = "ldrsb"
+        elif instruct.opname == ThumbOp.LDSH:
+            lhs = "ldrsh"
         rhs = self._comma_join(args)
         if rhs == "":
             return f"{lhs}"
@@ -365,34 +370,19 @@ class AsmWriter:
                 syms[addr] = label
         # Check all data pools
         pools = func.get_data_pools()
-        rom_start = self.rom.code_start(True)
-        rom_end = self.rom.data_end(True)
-        code_end = self.rom.code_end()
         for addr, size in pools:
             end = addr + size
             for i in range(addr, end, 4):
                 val = self.rom.read_32(i)
-                # Check if in ram
-                if (
-                    (val >= 0x2000000 and val < 0x2040000) or
-                    (val >= 0x3000000 and val < 0x3008000)
-                ):
-                    label = self._get_label(val, LabelType.Ram)
-                    syms[val] = label
-                # Check if in rom
-                elif val >= rom_start and val < rom_end:
+                label_type = self._classify_value(val)
+                if label_type == LabelType.Imm:
+                    continue
+                # Skip code pointers within this function
+                if label_type == LabelType.Code:
                     pa = val - ROM_OFFSET
-                    label_type: LabelType = None
-                    if pa < code_end:
-                        # Skip if within this function
-                        if pa >= func.start_addr and pa < func.end_addr:
-                            continue
-                        label_type = LabelType.Code
-                        val -= 1
-                    else:
-                        label_type = LabelType.Data
-                    label = self._get_label(val, label_type)
-                    syms[val] = label
+                    if pa >= func.start_addr and pa < func.end_addr:
+                        continue
+                syms[val] = self._get_label(val, label_type)
         return syms
 
     def _get_local(self, addr: int) -> str:
@@ -409,7 +399,10 @@ class AsmWriter:
             return self.symbols.globals[addr]
         # Check for code
         if addr % 4 == 1 and addr in self.symbols.thumb_code:
-            return self.symbols.globals[addr - 1] + "+1"
+            label = self.symbols.globals[addr - 1]
+            if self.format_opts.thumb_bit:
+                label += "+1"
+            return label
         pa = addr - ROM_OFFSET
         if pa in self.symbols.locals:
             return self._get_local(pa)
@@ -424,6 +417,31 @@ class AsmWriter:
                 label = f"sUnk_{pa:x}"
             case LabelType.Code:
                 label = f"unk_{pa:x}"
+        return label
+
+    def _classify_value(self, val: int) -> LabelType:
+        if ((val >= 0x2000000 and val < 0x2040000) or
+            (val >= 0x3000000 and val < 0x3008000)):
+            return LabelType.Ram
+        if self.rom.code_start(True) <= val < self.rom.data_end(True):
+            if val < self.rom.code_end(True):
+                return LabelType.Code
+            return LabelType.Data
+        return LabelType.Imm
+
+    def _load_pc_label(self, word: int) -> str:
+        label_type = self._classify_value(word)
+        if label_type == LabelType.Imm:
+            return self._get_label(word, LabelType.Imm)
+        label = self._get_label(word, label_type)
+        is_local = word - ROM_OFFSET in self.symbols.locals
+        addr = word
+        if label_type == LabelType.Code and addr % 4 == 1:
+            addr -= 1
+            if self.format_opts.thumb_bit:
+                label += "+1"
+        if not is_local and addr not in self.symbols.globals:
+            self.symbols.add_global(addr, label)
         return label
 
     def _reg_name(self, reg: int) -> str:
