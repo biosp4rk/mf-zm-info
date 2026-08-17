@@ -136,30 +136,6 @@ def get_entry_names(entries: list[ElfSym]) -> dict[int, str]:
     return {e.value: e.name for e in entries}
 
 
-# def update_info_files(game: str, region: str, entry_names: dict[int, str]) -> None:
-#     # Find all yaml files
-#     yaml_files = []
-#     for map_type in (MAP_CODE, MAP_RAM, MAP_DATA):
-#         paths = ifu.find_yaml_files(game, map_type, True)
-#         yaml_files += [(p, map_type) for p in paths]
-#     # Parse files and output
-#     for path, map_type in yaml_files:
-#         name = os.path.basename(path)
-#         print(f"Checking {game} {map_type} {name}")
-#         data = ifu.load_yaml_file(path)
-#         ifile = ifu.parse_obj_list(data, map_type)
-#         for entry in ifile:
-#             addr = entry.addr
-#             if isinstance(addr, dict):
-#                 addr = addr.get(region)
-#                 if addr is None:
-#                     continue
-#             name = entry_names.get(addr)
-#             if name is not None:
-#                 entry.name = name
-#         ifu.write_info_file(path, map_type, ifile)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("elf_path", type=str, help="Path to elf file")
