@@ -438,8 +438,6 @@ class AsmWriter:
         addr = word
         if label_type == LabelType.Code and addr % 4 == 1:
             addr -= 1
-            if self.format_opts.thumb_bit:
-                label += "+1"
         if not is_local and addr not in self.symbols.globals:
             self.symbols.add_global(addr, label)
         return label
