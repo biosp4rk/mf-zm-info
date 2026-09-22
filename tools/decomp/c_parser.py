@@ -14,6 +14,7 @@
 
 # Elf file command:
 # readelf <game>.elf -s -W > <output>
+# Mac: arm-none-eabi-readelf
 
 # TODO:
 # - Find a way to include asm functions
@@ -25,6 +26,7 @@ import argparse
 from collections import defaultdict
 import os
 from pathlib import Path
+import pickle
 import re
 import sys
 
@@ -43,6 +45,11 @@ DOC_STR_PARAM = re.compile(r"@param\s+(\w+)\s+(.+)")
 DOC_STR_RETURN = re.compile(r"@return\s+(.+)")
 DOC_STR_LINE = re.compile(r"\*\s+(.+)")
 DOC_STR_ADDR_SIZE = re.compile(r"\w+\s*\|\s*\w+\s*\|\s*(.+)")
+
+SNAPSHOT_ATTRS = [
+    "typedefs", "variables", "funcs", "enums",
+    "structs", "unions", "locations", "doc_strs", "warnings"
+]
 
 
 def get_files_with_ext(dir: str, ext: str, exclude: set[str] = None) -> list[str]:
@@ -76,8 +83,20 @@ class Extractor:
         self.enum_vals: dict[str, int] = {}
         self.sizes: dict[str, int] = {}
 
-    def extract(self, game: str, region: str, cpp_path: str, elf_path: str) -> None:
-        self._find_and_process_files(cpp_path)
+    def extract(self,
+        game: str,
+        region: str,
+        cpp_path: str,
+        elf_path: str,
+        snapshot_path: str = None,
+        load_snapshot: bool = False
+    ) -> None:
+        if load_snapshot:
+            self._load_snapshot(snapshot_path)
+        else:
+            self._find_and_process_files(cpp_path)
+            if snapshot_path:
+                self._save_snapshot(snapshot_path)
         self._compute_enum_vals()
         self._find_unnamed_structs_and_unions()
         self._compute_sizes()
@@ -95,12 +114,28 @@ class Extractor:
     
     def _log_warnings(self) -> None:
         if self.warnings:
+            self.warnings.sort()
             with open("_log.txt", "w") as f:
                 for msg in self.warnings:
                     f.write(msg + "\n\n")
 
     def _add_warning(self, msg: str) -> None:
         self.warnings.append(msg)
+
+    # -------- Saving/loading snapshots --------
+
+    def _save_snapshot(self, path: str) -> None:
+        print("Saving snapshot...")
+        data = {a: getattr(self, a) for a in SNAPSHOT_ATTRS}
+        with open(path, "wb") as f:
+            pickle.dump(data, f)
+
+    def _load_snapshot(self, path: str) -> None:
+        print("Loading snapshot...")
+        with open(path, "rb") as f:
+            data = pickle.load(f)
+        for a, v in data.items():
+            setattr(self, a, v)
 
     # -------- Process files --------
 
@@ -118,6 +153,11 @@ class Extractor:
             (h_files, ".h", self._process_h_file),
             (c_files, ".c", self._process_c_file),
         ]
+        args = [
+            "-E", f"-I{include_path}",
+            "-D__attribute__(x)=", "-D__inline__=", "-Dasm(x)=",
+            "-DUSE_EWRAM_SYMBOLS"
+        ]
         # Find declarations in all files
         for files, ext, process_file in all_files:
             file_count = len(files)
@@ -125,10 +165,7 @@ class Extractor:
             for i, path in enumerate(files):
                 # Try parsing the file
                 try:
-                    ast: c_ast.FileAST = parse_file(
-                        path, True, cpp_path,
-                        ["-E", f"-I{include_path}", "-D__attribute__(x)=", "-D__inline__=", "-Dasm(x)="]
-                    )
+                    ast: c_ast.FileAST = parse_file(path, True, cpp_path, args)
                 except Exception as ex:
                     print(f"Could not parse {path}\n{ex}")
                     continue
@@ -311,7 +348,6 @@ class Extractor:
         """Recursively computes the value for an AST node that is a constant integer."""
         if isinstance(node, c_ast.Constant):
             if "." in node.value:
-                s: str = node.value
                 return float(node.value.rstrip("f"))
             else:
                 return int(node.value, 0)
@@ -557,10 +593,24 @@ class Extractor:
         # Get the existing info entries (list) and decomp entries (dict)
         if map_type == MAP_RAM:
             existing = info.ram
-            decomp_entries = {k: v for k, v in self.variables.items() if k[0] == "g" and k[1].isupper()}
+            decomp_entries = {}
+            for k, v in self.variables.items():
+                addr = elf_addrs.get(k)
+                if addr is not None:
+                    if addr >= 0x200_0000:
+                        decomp_entries[k] = v
+                elif k[0] == "g" and k[1].isupper():
+                    decomp_entries[k] = v
         elif map_type == MAP_DATA:
             existing = info.data
-            decomp_entries = {k: v for k, v in self.variables.items() if k[0] == "s"}
+            decomp_entries = {}
+            for k, v in self.variables.items():
+                addr = elf_addrs.get(k)
+                if addr is not None:
+                    if addr < 0x200_0000:
+                        decomp_entries[k] = v
+                elif k[0] == "s" and k[1].isupper():
+                    decomp_entries[k] = v
         elif map_type == MAP_CODE:
             existing = info.code
             decomp_entries = self.funcs
@@ -733,9 +783,11 @@ class Extractor:
         if entry and entry.params:
             entry_params = entry.params
         pl: c_ast.ParamList = node.args
-        # TODO: Handle cases where params are blank instead of "void" (add a warning)
+        if pl is None:
+            loc = self._get_node_loc(node.coord)
+            self._add_warning(f"function has blank params insted of void\n{loc}")
         # Check if not void
-        if not isinstance(pl.params[0], c_ast.Typename):
+        elif not isinstance(pl.params[0], c_ast.Typename):
             params = []
             ps: list[c_ast.Decl] = pl.params
             for i, p in enumerate(ps):
@@ -842,6 +894,10 @@ if __name__ == "__main__":
         help="Keeps existing entries that aren't found in the decomp")
     parser.add_argument("-d", "--dry_run", action="store_true",
         help="Skips overwriting info entries")
+    parser.add_argument("-s", "--snapshot_path", type=str,
+        help="Path to store a snapshot of the processed files")
+    parser.add_argument("-l", "--load_snapshot", action="store_true",
+        help="Load processed files from a snapshot")
 
     args = parser.parse_args()
     game = args.game.lower()
@@ -852,6 +908,11 @@ if __name__ == "__main__":
     output_path = args.output_path
     keep_existing = args.keep_existing
     dry_run = args.dry_run
+    snapshot_path = args.snapshot_path
+    load_snapshot = args.load_snapshot
+
+    if load_snapshot and not snapshot_path:
+        raise ValueError("Snapshot path must be provided when loading a snapshot")
     
     extractor = Extractor(decomp_path, output_path, keep_existing, dry_run)
-    extractor.extract(game, region, cpp_path, elf_path)
+    extractor.extract(game, region, cpp_path, elf_path, snapshot_path, load_snapshot)
