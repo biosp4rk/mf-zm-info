@@ -17,7 +17,6 @@
 # Mac: arm-none-eabi-readelf
 
 # TODO:
-# - Find a way to include asm functions
 # - Include data/functions specific to debug and non-us regions
 # - Handle arrays that don't specify length
 # - Determine function lengths when adding new functions
@@ -142,7 +141,7 @@ class Extractor:
     def _find_and_process_files(self, cpp_path: str) -> None:
         """Finds all header and source files, and parses them to get AST nodes
         and docstrings for all declarations/definitions."""
-        # Find all .h and .c files
+        # Find all relevant .h and .c files
         include_path = os.path.join(decomp_path, "include")
         src_path = os.path.join(decomp_path, "src")
         h_files = get_files_with_ext(include_path, ".h")
@@ -182,6 +181,8 @@ class Extractor:
                 print(f"Processing {ext} files... {i+1}/{file_count}", end="\r")
                 sys.stdout.flush()
             print()
+        # Get all locations from asm files
+        self._process_s_files()
 
     # TODO: Combine this with process c file
     def _process_h_file(self, node: c_ast.Node) -> bool:
@@ -257,6 +258,27 @@ class Extractor:
             return True
         else:
             return False
+
+    def _process_s_files(self) -> None:
+        """Gets the location of all labels within asm files."""
+        label_patt = re.compile(r"\b([A-Za-z][A-Za-z0-9_]*)\s*:")
+        # Find all relevant .s files
+        asm_path = os.path.join(decomp_path, "asm")
+        s_files = get_files_with_ext(asm_path, ".s")
+        asm_path = os.path.join(decomp_path, "sound")
+        s_files += get_files_with_ext(asm_path, ".s")
+        # Go through each file
+        print(f"Processing .s files...")
+        for path in s_files:
+            rel = os.path.relpath(path, self.decomp_path)
+            with open(path, "r") as f:
+                for j, line in enumerate(f):
+                    m = label_patt.search(line)
+                    if m is None:
+                        continue
+                    label = m.group(1)
+                    loc = f"{rel}:{j + 1}"
+                    self.locations[label] = loc
 
     def _try_get_doc_str(self, node: c_ast.Node, lines: list[str]) -> str:
         """Checks for a docstring in the lines above a C declaration or definition."""
@@ -633,17 +655,10 @@ class Extractor:
         existing_missing_from_decomp: set[str] = set()
         # Go through each existing entry
         for entry in existing:
-            # Get the filename for this entry
-            filename = map_type
-            if map_type == MAP_DATA:
-                if entry.cat is not None:
-                    filename = CAT_TO_STR[entry.cat]
-            elif map_type == MAP_CODE:
-                if entry.loc and "sprites_ai" in entry.loc.lower():
-                    filename = "sprite_ai"
             # Get name of entry
             name = entry.name
             if map_type == MAP_RAM or map_type == MAP_DATA or map_type == MAP_CODE:
+                filename = self._get_entry_filename(map_type, name, entry, elf_addrs)
                 # Get address for this region
                 addr = entry.addr
                 if isinstance(addr, dict):
@@ -661,6 +676,7 @@ class Extractor:
                     if self.keep_existing:
                         entries[filename].append(entry)
                     continue
+            filename = self._get_entry_filename(map_type, name, entry, elf_addrs)
             # Get AST node
             node = decomp_entries.get(name)
             if node is None:
@@ -714,10 +730,7 @@ class Extractor:
             brief, param_docs, ret_doc = self._parse_doc_str(name)
             loc = self.locations[name]
             # Get the filename for this entry
-            filename = map_type
-            if map_type == MAP_CODE:
-                if "sprites_ai" in loc.lower():
-                    filename = "sprite_ai"
+            filename = self._get_entry_filename(map_type, name, None, elf_addrs)
             # Create new entry
             if map_type == MAP_RAM or map_type == MAP_DATA:
                 decl, count = self._decl_str_and_count(node)
@@ -770,6 +783,33 @@ class Extractor:
         if existing_missing_from_decomp:
             items = ", ".join(existing_missing_from_decomp)
             self._add_warning(f"existing {map_type} entries missing from decomp:\n{items}")
+
+    def _get_entry_filename(self,
+        map_type: str,
+        name: str,
+        entry: InfoEntry,
+        elf_addrs: dict[str, int]
+    ) -> str:
+        filename = map_type
+        if map_type == MAP_RAM:
+            if entry is not None:
+                addr = entry.addr
+                if isinstance(addr, dict):
+                    addr = next(iter(addr.values()))
+            else:
+                addr = elf_addrs.get(name)
+            if addr is not None:
+                filename = "ewram" if addr < 0x300_0000 else "iwram"
+        elif map_type == MAP_DATA:
+            if entry is not None and entry.cat is not None:
+                filename = CAT_TO_STR[entry.cat]
+        elif map_type == MAP_CODE:
+            loc = self.locations.get(name)
+            if loc is None and entry is not None and entry.loc is not None:
+                loc = entry.loc
+            if loc is not None and "sprites_ai" in loc.lower():
+                filename = "sprite_ai"
+        return filename
 
     def _create_params_and_ret(self,
         node: c_ast.FuncDecl,
