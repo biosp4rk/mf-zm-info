@@ -1,3 +1,11 @@
+- name: BootDebugOptions__bld
+  size: 0x4
+  vars:
+  - name: split
+    type: struct BootDebugOptions__bld__split
+  - name: whole
+    type: struct BootDebugOptions__bld__whole
+  loc: include/structs/menus/boot_debug.h:7
 - name: NonGameplayRam
   size: 0x540
   vars:
@@ -16,7 +24,7 @@
   - name: size
     type: u8
     count: 0x540
-  loc: include/globals.h:37
+  loc: include/globals.h:16
 - name: OamData
   size: 0x8
   vars:
@@ -25,11 +33,3 @@
   - name: all
     type: struct OamData__all
   loc: include/oam.h:110
-- name: PauseDebugOptions__bld
-  size: 0x4
-  vars:
-  - name: split
-    type: struct PauseDebugOptions__bld__split
-  - name: whole
-    type: struct PauseDebugOptions__bld__whole
-  loc: include/structs/menus/pause_debug.h:8

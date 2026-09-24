@@ -677,6 +677,10 @@ class Extractor:
                         entries[filename].append(entry)
                     continue
             filename = self._get_entry_filename(map_type, name, entry, elf_addrs)
+            # Try updating location now, since entry may only exist in asm
+            loc = self.locations.get(name)
+            if loc is not None:
+                entry.loc = loc
             # Get AST node
             node = decomp_entries.get(name)
             if node is None:
@@ -684,9 +688,8 @@ class Extractor:
                 if self.keep_existing:
                     entries[filename].append(entry)
                 continue
-            # Get docstrings (if any) and location
+            # Get docstrings (if any)
             brief, param_docs, ret_doc = self._parse_doc_str(name)
-            loc = self.locations[name]
             # Create new entry using info from existing entry
             if map_type == MAP_RAM or map_type == MAP_DATA:
                 decl, count = self._decl_str_and_count(node)

@@ -7,7 +7,7 @@
     E: 0x201C000
     J: 0x201C000
     C: 0x201C000
-  loc: include/globals.h:54
+  loc: include/globals.h:34
 - name: gRoomSpriteGfxBackup
   type: u8
   count: 0x4000
@@ -17,7 +17,37 @@
     E: 0x2020000
     J: 0x2020000
     C: 0x2020000
-  loc: include/globals.h:55
+  loc: include/globals.h:35
+- name: gDecompClipdataMap
+  type: u16
+  count: 0x400
+  addr:
+    U: 0x2026000
+  loc: include/structs/room.h:129
+- name: gDecompBg0Map
+  type: u16
+  count: 0x1800
+  addr:
+    U: 0x2029000
+  loc: include/structs/room.h:130
+- name: gDecompBg1Map
+  type: u16
+  count: 0x1800
+  addr:
+    U: 0x202C000
+  loc: include/structs/room.h:131
+- name: gDecompBg2Map
+  type: u16
+  count: 0x1800
+  addr:
+    U: 0x202F000
+  loc: include/structs/room.h:132
+- name: gDecompBg3Map
+  type: u16
+  count: 0x800
+  addr:
+    U: 0x2032000
+  loc: include/structs/room.h:133
 - name: gBackgroundPalette
   type: u16
   count: 0x100
@@ -33,4 +63,4 @@
   count: 0x40
   addr:
     U: 0x2035D20
-  loc: include/structs/block.h:8
+  loc: include/structs/block.h:74

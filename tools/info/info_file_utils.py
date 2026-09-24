@@ -14,7 +14,11 @@ InfoFile = list[InfoEntry]
 
 
 def hex_int_presenter(dumper, data: int):
-    return dumper.represent_int(f"0x{data:X}")
+    if data < 0:
+        s = f"-0x{abs(data):X}"
+    else:
+        s = f"0x{data:X}"
+    return dumper.represent_int(s)
 
 yaml.representer.SafeRepresenter.add_representer(int, hex_int_presenter)
 

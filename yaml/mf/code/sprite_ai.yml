@@ -11974,15 +11974,6 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:1631
-- name: unk_Beta_37a58
-  addr:
-    B: 0x37A58
-  size:
-    B: 0xA4
-  mode: thumb
-  params: null
-  return: null
-  loc: null
 - name: BoxFireInit
   addr:
     U: 0x37A10
@@ -12007,33 +11998,6 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:1656
-- name: unk_Beta_37afc
-  addr:
-    B: 0x37AFC
-  size:
-    B: 0xA4
-  mode: thumb
-  params: null
-  return: null
-  loc: null
-- name: unk_Beta_37ba0
-  addr:
-    B: 0x37BA0
-  size:
-    B: 0xC8
-  mode: thumb
-  params: null
-  return: null
-  loc: null
-- name: unk_Beta_37c68
-  addr:
-    B: 0x37C68
-  size:
-    B: 0x60
-  mode: thumb
-  params: null
-  return: null
-  loc: null
 - name: BoxFireMovingLow
   addr:
     U: 0x37C44
@@ -12046,6 +12010,42 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:1755
+- name: unk_Beta_37a58
+  addr:
+    B: 0x37A58
+  size:
+    B: 0xA4
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
+- name: unk_Beta_37afc
+  addr:
+    B: 0x37AFC
+  size:
+    B: 0xA4
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
+- name: unk_Beta_37ba0
+  addr:
+    B: 0x37BA0
+  size:
+    B: 0xC8
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
+- name: unk_Beta_37c68
+  addr:
+    B: 0x37C68
+  size:
+    B: 0x60
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
 - name: BoxSpawnFallingDebris
   addr:
     U: 0x37CCC
@@ -12180,15 +12180,6 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:2371
-- name: unk_Beta_38938
-  addr:
-    B: 0x38938
-  size:
-    B: 0x40
-  mode: thumb
-  params: null
-  return: null
-  loc: null
 - name: BoxMissile
   addr:
     U: 0x38888
@@ -12201,15 +12192,6 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:2421
-- name: unk_Beta_38978
-  addr:
-    B: 0x38978
-  size:
-    B: 0x20
-  mode: thumb
-  params: null
-  return: null
-  loc: null
 - name: BoxBomb
   addr:
     U: 0x388C8
@@ -12234,6 +12216,24 @@
   params: null
   return: null
   loc: src/sprites_AI/box.c:2465
+- name: unk_Beta_38938
+  addr:
+    B: 0x38938
+  size:
+    B: 0x40
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
+- name: unk_Beta_38978
+  addr:
+    B: 0x38978
+  size:
+    B: 0x20
+  mode: thumb
+  params: null
+  return: null
+  loc: src/sprites_AI/box.c
 - name: BoxDebris
   addr:
     U: 0x3893C
@@ -18162,7 +18162,7 @@
   params: null
   return: null
   loc: src/sprites_AI/pillar.c:163
-- name: Pillar_Extended
+- name: PillarExtended
   addr:
     J: 0x4AF50
     C: 0x4AF50
@@ -18172,7 +18172,7 @@
   mode: thumb
   params: null
   return: null
-  loc: null
+  loc: src/sprites_AI/pillar.c
 - name: Pillar
   addr:
     U: 0x4AD68
@@ -18548,7 +18548,7 @@
   mode: thumb
   params: null
   return: null
-  loc: null
+  loc: src/sprites_AI/mimic.c
 - name: MimicInit
   addr:
     U: 0x4BDF0
@@ -18743,6 +18743,7 @@
   return: null
   loc: src/sprites_AI/flashing_number.c:64
 - name: ZebesianAquaXMovement
+  desc: Moves an aqua zebesian horizontally
   addr:
     U: 0x4C744
     E: 0x4C744
@@ -18751,10 +18752,16 @@
     B: 0x4C3D4
   size: 0x8C
   mode: thumb
-  params: null
-  return: null
-  loc: asm/disasm_0x0804C744.s:6
+  params:
+  - name: distance
+    desc: The amount to move
+    type: u16
+  return:
+    desc: u8 bool, collided with solid
+    type: boolu8
+  loc: src/sprites_AI/zebesian_aqua.c:34
 - name: ZebesianAquaTurningIntoX
+  desc: Handles an aqua zebesian turning into an X parasite
   addr:
     U: 0x4C7D0
     E: 0x4C7D0
@@ -18765,8 +18772,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:85
+  loc: src/sprites_AI/zebesian_aqua.c:76
 - name: ZebesianAquaInit
+  desc: Initializes an aqua zebesian
   addr:
     U: 0x4C810
     E: 0x4C810
@@ -18782,8 +18790,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:118
+  loc: src/sprites_AI/zebesian_aqua.c:90
 - name: ZebesianAquaIdleInit
+  desc: Initializes an aqua zebesian to be idle
   addr:
     U: 0x4C8B4
     E: 0x4C8B4
@@ -18794,8 +18803,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:201
+  loc: src/sprites_AI/zebesian_aqua.c:131
 - name: ZebesianAquaIdle
+  desc: Handles an aqua zebesian being idle
   addr:
     U: 0x4C8E0
     E: 0x4C8E0
@@ -18805,8 +18815,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:224
+  loc: src/sprites_AI/zebesian_aqua.c:146
 - name: ZebesianAquaLungeInit
+  desc: Initializes an aqua zebesian to lunge
   addr:
     U: 0x4CA64
     E: 0x4CA64
@@ -18816,8 +18827,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:420
+  loc: src/sprites_AI/zebesian_aqua.c:236
 - name: ZebesianAquaLunge
+  desc: Handles an aqua zebesian lunging
   addr:
     U: 0x4CA7C
     E: 0x4CA7C
@@ -18833,8 +18845,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:434
+  loc: src/sprites_AI/zebesian_aqua.c:246
 - name: ZebesianAquaShootingInit
+  desc: Initializes an aqua zebesian to be shooting
   addr:
     U: 0x4CB1C
     E: 0x4CB1C
@@ -18845,8 +18858,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:514
+  loc: src/sprites_AI/zebesian_aqua.c:292
 - name: ZebesianAquaShooting
+  desc: Handles an aqua zebesian shooting
   addr:
     U: 0x4CB3C
     E: 0x4CB3C
@@ -18857,8 +18871,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:531
+  loc: src/sprites_AI/zebesian_aqua.c:306
 - name: ZebesianAquaTurningAroundInit
+  desc: Initializes an aqua zebesian to be turning around
   addr:
     U: 0x4CC74
     E: 0x4CC74
@@ -18869,8 +18884,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:682
+  loc: src/sprites_AI/zebesian_aqua.c:356
 - name: ZebesianAquaTurningAround
+  desc: Handles an aqua zebesian turning around
   addr:
     U: 0x4CC94
     E: 0x4CC94
@@ -18886,8 +18902,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:699
+  loc: src/sprites_AI/zebesian_aqua.c:370
 - name: ZebesianAquaProjectileInit
+  desc: Initializes an aqua zebesian projectile
   addr:
     U: 0x4CD50
     E: 0x4CD50
@@ -18903,8 +18920,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:792
+  loc: src/sprites_AI/zebesian_aqua.c:405
 - name: ZebesianAqua
+  desc: Aqua zebesian AI
   addr:
     U: 0x4CDF4
     E: 0x4CDF4
@@ -18920,8 +18938,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:874
+  loc: src/sprites_AI/zebesian_aqua.c:445
 - name: ZebesianAquaProjectile
+  desc: Aqua zebesian projectile AI
   addr:
     U: 0x4D004
     E: 0x4D004
@@ -18932,8 +18951,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1049
+  loc: src/sprites_AI/zebesian_aqua.c:516
 - name: DachoraCheckDoHeadMovement
+  desc: Checks if dachora should do a head movement
   addr:
     U: 0x4D038
     E: 0x4D038
@@ -18943,9 +18963,12 @@
   size: 0xC0
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x0804C744.s:1079
+  return:
+    desc: u8 bool, dachora started a head movement
+    type: boolu8
+  loc: src/sprites_AI/animals.c:127
 - name: DachoraInit
+  desc: Initializes dachora
   addr:
     U: 0x4D0F8
     E: 0x4D0F8
@@ -18956,8 +18979,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1166
+  loc: src/sprites_AI/animals.c:176
 - name: DachoraIdleInit
+  desc: Initializes dachora to be idle
   addr:
     U: 0x4D190
     E: 0x4D190
@@ -18968,8 +18992,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1242
+  loc: src/sprites_AI/animals.c:216
 - name: DachoraIdle
+  desc: Handles dachora being idle
   addr:
     U: 0x4D1C8
     E: 0x4D1C8
@@ -18980,8 +19005,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1271
+  loc: src/sprites_AI/animals.c:230
 - name: DachoraStandingInit
+  desc: Initializes dachora to stand
   addr:
     U: 0x4D2DC
     E: 0x4D2DC
@@ -18992,8 +19018,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1409
+  loc: src/sprites_AI/animals.c:282
 - name: DachoraStanding
+  desc: Handles dachora standing
   addr:
     U: 0x4D300
     E: 0x4D300
@@ -19004,8 +19031,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1429
+  loc: src/sprites_AI/animals.c:295
 - name: DachoraHeadMovementInit
+  desc: Initializes dachora to do a head movement
   addr:
     U: 0x4D324
     E: 0x4D324
@@ -19016,8 +19044,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1450
+  loc: src/sprites_AI/animals.c:306
 - name: DachoraHeadMovement
+  desc: Handles dachora doing a head movement
   addr:
     U: 0x4D374
     E: 0x4D374
@@ -19028,8 +19057,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1495
+  loc: src/sprites_AI/animals.c:327
 - name: DachoraTurningAroundInit
+  desc: Initializes dachora to turn around
   addr:
     U: 0x4D3B4
     E: 0x4D3B4
@@ -19040,8 +19070,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1531
+  loc: src/sprites_AI/animals.c:348
 - name: DachoraTurningAround
+  desc: Handles dachora turning around
   addr:
     U: 0x4D3D4
     E: 0x4D3D4
@@ -19052,8 +19083,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1548
+  loc: src/sprites_AI/animals.c:360
 - name: DachoraTurningAroundSecondPart
+  desc: Handles dachora turning around (2nd part)
   addr:
     U: 0x4D418
     E: 0x4D418
@@ -19064,8 +19096,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1585
+  loc: src/sprites_AI/animals.c:381
 - name: DachoraTurningAroundWhileLeavingInit
+  desc: Initializes dachora to turn around while leaving
   addr:
     U: 0x4D434
     E: 0x4D434
@@ -19076,8 +19109,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1601
+  loc: src/sprites_AI/animals.c:391
 - name: DachoraTurningAroundWhileLeaving
+  desc: Handles dachora turning around while leaving
   addr:
     U: 0x4D454
     E: 0x4D454
@@ -19088,8 +19122,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1618
+  loc: src/sprites_AI/animals.c:403
 - name: DachoraTurningAroundWhileLeavingSecondPart
+  desc: Handles dachora turning around while leaving (2nd part)
   addr:
     U: 0x4D488
     E: 0x4D488
@@ -19100,8 +19135,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1645
+  loc: src/sprites_AI/animals.c:419
 - name: DachoraLeavingEnclosureInit
+  desc: Initializes dachora to leave the enclosure
   addr:
     U: 0x4D4A4
     E: 0x4D4A4
@@ -19112,8 +19148,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1661
+  loc: src/sprites_AI/animals.c:429
 - name: DachoraLeavingEnclosure
+  desc: Handles dachora leaving the enclosure
   addr:
     U: 0x4D4C8
     E: 0x4D4C8
@@ -19124,8 +19161,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1682
+  loc: src/sprites_AI/animals.c:441
 - name: DachoraWalkingToWaitingSpotInit
+  desc: Initializes dachora to walk to the waiting spot
   addr:
     U: 0x4D53C
     E: 0x4D53C
@@ -19136,8 +19174,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1745
+  loc: src/sprites_AI/animals.c:471
 - name: DachoraWalkingToWaitingSpot
+  desc: Handles dachora walking to the waiting spot
   addr:
     U: 0x4D558
     E: 0x4D558
@@ -19148,8 +19187,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1761
-- name: DachorawaitingForOthers
+  loc: src/sprites_AI/animals.c:483
+- name: DachoraWaitingForOthers
+  desc: Handles dachora waiting for the etecoons
   addr:
     U: 0x4D590
     E: 0x4D590
@@ -19160,8 +19200,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1792
+  loc: src/sprites_AI/animals.c:502
 - name: DachoraWaitingToSpawnBaby
+  desc: Handles dachora waiting to spawn baby dachora
   addr:
     U: 0x4D610
     E: 0x4D610
@@ -19172,8 +19213,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1861
+  loc: src/sprites_AI/animals.c:538
 - name: DachoraWaitingForBaby
+  desc: Handles dachora waiting for baby dachora
   addr:
     U: 0x4D678
     E: 0x4D678
@@ -19184,8 +19226,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1916
+  loc: src/sprites_AI/animals.c:557
 - name: DachoraBowing
+  desc: Handles dachora bowing
   addr:
     U: 0x4D6E4
     E: 0x4D6E4
@@ -19196,8 +19239,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:1970
-- name: DachoraWaitingToRun
+  loc: src/sprites_AI/animals.c:577
+- name: DachoraWaitingToRunAway
+  desc: Handles dachora waiting to run away
   addr:
     U: 0x4D768
     E: 0x4D768
@@ -19208,8 +19252,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2036
-- name: DachoraRunning
+  loc: src/sprites_AI/animals.c:612
+- name: DachoraRunningAway
+  desc: Handles dachora running away
   addr:
     U: 0x4D7A0
     E: 0x4D7A0
@@ -19220,8 +19265,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2066
+  loc: src/sprites_AI/animals.c:630
 - name: BabyDachoraInit
+  desc: Initializes baby dachora
   addr:
     U: 0x4D7C8
     E: 0x4D7C8
@@ -19232,8 +19278,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2090
+  loc: src/sprites_AI/animals.c:643
 - name: BabyDachoraWalkingToGate
+  desc: Handles baby dachora walking to the gate
   addr:
     U: 0x4D848
     E: 0x4D848
@@ -19244,8 +19291,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2154
+  loc: src/sprites_AI/animals.c:672
 - name: BabyDachoraLeavingEnclosure
+  desc: Handles baby dachora leaving the enclosure
   addr:
     U: 0x4D87C
     E: 0x4D87C
@@ -19256,8 +19304,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2184
+  loc: src/sprites_AI/animals.c:690
 - name: BabyDachoraWalkingToWaitingSpot
+  desc: Handles baby dachora walking to the waiting spot
   addr:
     U: 0x4D8D4
     E: 0x4D8D4
@@ -19268,8 +19317,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2231
-- name: BabyDachoraWaitingToRun
+  loc: src/sprites_AI/animals.c:715
+- name: BabyDachoraWaitingToRunAway
+  desc: Handles baby dachora waiting to run away
   addr:
     U: 0x4D918
     E: 0x4D918
@@ -19280,8 +19330,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2268
-- name: BabyDachoraRunning
+  loc: src/sprites_AI/animals.c:736
+- name: BabyDachoraRunningAway
+  desc: Handles baby dachora running away
   addr:
     U: 0x4D97C
     E: 0x4D97C
@@ -19292,8 +19343,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2321
+  loc: src/sprites_AI/animals.c:763
 - name: EtecoonCheckGrabTireSwing
+  desc: Checks if an etecoon should grab a tire swing
   addr:
     U: 0x4D9D8
     E: 0x4D9D8
@@ -19303,9 +19355,12 @@
   size: 0xE4
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x0804C744.s:2370
+  return:
+    desc: u8 bool, should grab a tire swing
+    type: boolu8
+  loc: src/sprites_AI/animals.c:794
 - name: EtecoonCheckFaceForeground
+  desc: Checks if an etecoon should face the foreground
   addr:
     U: 0x4DABC
     E: 0x4DABC
@@ -19315,9 +19370,12 @@
   size: 0xA8
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x0804C744.s:2487
+  return:
+    desc: u8 bool, should face the foreground
+    type: boolu8
+  loc: src/sprites_AI/animals.c:856
 - name: EtecoonInit
+  desc: Initializes an etecoon
   addr:
     U: 0x4DB64
     E: 0x4DB64
@@ -19328,8 +19386,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2562
+  loc: src/sprites_AI/animals.c:898
 - name: EtecoonIdleInit
+  desc: Initializes an etecoon to be idle
   addr:
     U: 0x4DC40
     E: 0x4DC40
@@ -19340,8 +19399,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2668
+  loc: src/sprites_AI/animals.c:944
 - name: EtecoonIdle
+  desc: Handles an etecoon being idle
   addr:
     U: 0x4DCA0
     E: 0x4DCA0
@@ -19352,8 +19412,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2718
+  loc: src/sprites_AI/animals.c:965
 - name: EtecoonStandingInit
+  desc: Initializes an etecoon to stand
   addr:
     U: 0x4DDFC
     E: 0x4DDFC
@@ -19364,8 +19425,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2894
+  loc: src/sprites_AI/animals.c:1041
 - name: EtecoonStanding
+  desc: Handles an etecoon standing
   addr:
     U: 0x4DE20
     E: 0x4DE20
@@ -19376,8 +19438,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2914
+  loc: src/sprites_AI/animals.c:1054
 - name: EtecoonFacingForegroundInit
+  desc: Initializes an etecoon to face the foreground
   addr:
     U: 0x4DE68
     E: 0x4DE68
@@ -19388,8 +19451,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:2952
+  loc: src/sprites_AI/animals.c:1077
 - name: EtecoonFacingForeground
+  desc: Handles an etecoon facing the foreground
   addr:
     U: 0x4DEC4
     E: 0x4DEC4
@@ -19400,8 +19464,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3003
+  loc: src/sprites_AI/animals.c:1099
 - name: EtecoonTurningAroundInit
+  desc: Initializes an etecoon to turn around
   addr:
     U: 0x4DF90
     E: 0x4DF90
@@ -19412,8 +19477,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3105
+  loc: src/sprites_AI/animals.c:1142
 - name: EtecoonTurningAround
+  desc: Handles an etecoon turning around
   addr:
     U: 0x4DFB0
     E: 0x4DFB0
@@ -19424,8 +19490,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3122
+  loc: src/sprites_AI/animals.c:1154
 - name: EtecoonTurningAroundSecondPart
+  desc: Handles an etecoon turning around (2nd part)
   addr:
     U: 0x4DFF4
     E: 0x4DFF4
@@ -19436,8 +19503,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3159
+  loc: src/sprites_AI/animals.c:1175
 - name: EtecoonJumpingToTire
+  desc: Handles an etecoon jumping to a tire
   addr:
     U: 0x4E010
     E: 0x4E010
@@ -19448,8 +19516,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3175
+  loc: src/sprites_AI/animals.c:1185
 - name: EtecoonSwingingFromTire
+  desc: Handles an etecoon swinging from a tire
   addr:
     U: 0x4E070
     E: 0x4E070
@@ -19460,8 +19529,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3222
+  loc: src/sprites_AI/animals.c:1209
 - name: EtecoonFallingFromTire
+  desc: Handles an etecoon falling from a tire
   addr:
     U: 0x4E104
     E: 0x4E104
@@ -19472,8 +19542,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3294
+  loc: src/sprites_AI/animals.c:1246
 - name: EtecoonTurningAroundWhileLeavingInit
+  desc: Initializes an etecoon to turn around while leaving
   addr:
     U: 0x4E144
     E: 0x4E144
@@ -19484,8 +19555,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3326
+  loc: src/sprites_AI/animals.c:1264
 - name: EtecoonTurningAroundWhileLeaving
+  desc: Handles an etecoon turning around while leaving
   addr:
     U: 0x4E164
     E: 0x4E164
@@ -19496,8 +19568,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3343
+  loc: src/sprites_AI/animals.c:1276
 - name: EtecoonTurningAroundWhileLeavingSecondPart
+  desc: Handles an etecoon turning around while leaving (2nd part)
   addr:
     U: 0x4E198
     E: 0x4E198
@@ -19508,8 +19581,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3370
+  loc: src/sprites_AI/animals.c:1292
 - name: EtecoonLeavingEnclosureInit
+  desc: Initializes an etecoon to leave the enclosure
   addr:
     U: 0x4E1B4
     E: 0x4E1B4
@@ -19520,8 +19594,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3386
+  loc: src/sprites_AI/animals.c:1302
 - name: EtecoonLeavingEnclosure
+  desc: Handles an etecoon leaving the enclosure
   addr:
     U: 0x4E1D8
     E: 0x4E1D8
@@ -19532,8 +19607,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3407
+  loc: src/sprites_AI/animals.c:1316
 - name: EtecoonWalkingToWaitingSpotInit
+  desc: Initializes an etecoon to walk to the waiting spot
   addr:
     U: 0x4E2C0
     E: 0x4E2C0
@@ -19544,8 +19620,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3533
+  loc: src/sprites_AI/animals.c:1376
 - name: EtecoonWalkingToWaitingSpot
+  desc: Handles an etecoon walking to the waiting spot
   addr:
     U: 0x4E2DC
     E: 0x4E2DC
@@ -19556,8 +19633,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3549
+  loc: src/sprites_AI/animals.c:1388
 - name: EtecoonWaitingForOthersInit
+  desc: Initializes an etecoon to wait for dachora
   addr:
     U: 0x4E384
     E: 0x4E384
@@ -19568,8 +19646,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3638
+  loc: src/sprites_AI/animals.c:1430
 - name: EtecoonWaitingForOthers
+  desc: Handles an etecoon waiting for dachora
   addr:
     U: 0x4E3A0
     E: 0x4E3A0
@@ -19580,8 +19659,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3654
-- name: EtecoonRunning
+  loc: src/sprites_AI/animals.c:1442
+- name: EtecoonRunningAway
+  desc: Handles an etecoon running away
   addr:
     U: 0x4E420
     E: 0x4E420
@@ -19592,8 +19672,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3719
+  loc: src/sprites_AI/animals.c:1472
 - name: TireSwingInit
+  desc: Initializes a tire swing
   addr:
     U: 0x4E46C
     E: 0x4E46C
@@ -19604,8 +19685,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3761
+  loc: src/sprites_AI/animals.c:1498
 - name: TireSwingIdle
+  desc: Handles a tire swing being idle
   addr:
     U: 0x4E4D8
     E: 0x4E4D8
@@ -19616,8 +19698,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3814
+  loc: src/sprites_AI/animals.c:1524
 - name: Dachora
+  desc: Dachora AI
   addr:
     U: 0x4E520
     E: 0x4E520
@@ -19628,8 +19711,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3850
+  loc: src/sprites_AI/animals.c:1540
 - name: BabyDachora
+  desc: Baby dachora AI
   addr:
     U: 0x4E6B4
     E: 0x4E6B4
@@ -19640,8 +19724,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:3998
+  loc: src/sprites_AI/animals.c:1637
 - name: Etecoon
+  desc: Etecoon AI
   addr:
     U: 0x4E76C
     E: 0x4E76C
@@ -19652,8 +19737,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4067
+  loc: src/sprites_AI/animals.c:1673
 - name: TireSwing
+  desc: Tire swing AI
   addr:
     U: 0x4E914
     E: 0x4E914
@@ -19664,8 +19750,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4219
+  loc: src/sprites_AI/animals.c:1769
 - name: HabitationGateLight
+  desc: Habitation gate light AI
   addr:
     U: 0x4E944
     E: 0x4E944
@@ -19676,8 +19763,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4246
+  loc: src/sprites_AI/animals.c:1789
 - name: HabitationGate
+  desc: Habitation gate AI
   addr:
     U: 0x4EA14
     E: 0x4EA14
@@ -19688,8 +19776,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4350
+  loc: src/sprites_AI/animals.c:1843
 - name: MetroidInit
+  desc: Initializes a metroid
   addr:
     U: 0x4EAEC
     E: 0x4EAEC
@@ -19700,8 +19789,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4462
+  loc: src/sprites_AI/metroid.c:36
 - name: MetroidSwaying
+  desc: Handles a metroid swaying
   addr:
     U: 0x4ED14
     E: 0x4ED14
@@ -19712,8 +19802,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4739
+  loc: src/sprites_AI/metroid.c:149
 - name: MetroidFloatingInTube
+  desc: Handles a metroid floating in tube
   addr:
     U: 0x4ED78
     E: 0x4ED78
@@ -19724,8 +19815,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:4791
+  loc: src/sprites_AI/metroid.c:180
 - name: MetroidFloatingNearSaX
+  desc: Handles a metroid floating near SA-X
   addr:
     U: 0x4F05C
     E: 0x4F05C
@@ -19736,8 +19828,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5200
-- name: MetroidFloatingTowardsSaX
+  loc: src/sprites_AI/metroid.c:386
+- name: MetroidFloatingTowardSaX
+  desc: Handles a metroid floating toward SA-X
   addr:
     U: 0x4F11C
     E: 0x4F11C
@@ -19748,8 +19841,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5296
+  loc: src/sprites_AI/metroid.c:433
 - name: Metroid
+  desc: Metroid AI
   addr:
     U: 0x4F464
     E: 0x4F464
@@ -19760,8 +19854,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5740
+  loc: src/sprites_AI/metroid.c:648
 - name: LabDebrisSetCollision
+  desc: Sets collision for lab debris based on which piece it is
   addr:
     U: 0x4F518
     E: 0x4F518
@@ -19770,10 +19865,14 @@
     B: 0x4EF80
   size: 0x60
   mode: thumb
-  params: null
+  params:
+  - name: clipAction
+    desc: Clipdata affecting action
+    type: u8
   return: null
-  loc: asm/disasm_0x0804C744.s:5804
+  loc: src/sprites_AI/lab_debris.c:33
 - name: LabDebrisInit
+  desc: Initializes lab debris
   addr:
     U: 0x4F578
     E: 0x4F578
@@ -19784,8 +19883,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5851
+  loc: src/sprites_AI/lab_debris.c:61
 - name: LabDebrisIdle
+  desc: Handles lab debris being idle
   addr:
     U: 0x4F614
     E: 0x4F614
@@ -19796,8 +19896,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5930
+  loc: src/sprites_AI/lab_debris.c:100
 - name: LabDebrisFalling
+  desc: Handles lab debris falling
   addr:
     U: 0x4F670
     E: 0x4F670
@@ -19808,8 +19909,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:5982
+  loc: src/sprites_AI/lab_debris.c:122
 - name: LabDebrisCrumbling
+  desc: Handles lab debris crumbling
   addr:
     U: 0x4F844
     E: 0x4F844
@@ -19820,8 +19922,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6214
+  loc: src/sprites_AI/lab_debris.c:263
 - name: LabDebris
+  desc: Lab debris AI
   addr:
     U: 0x4F890
     E: 0x4F890
@@ -19832,8 +19935,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6255
+  loc: src/sprites_AI/lab_debris.c:287
 - name: PowampInit
+  desc: Initializes a powamp
   addr:
     U: 0x4F8D8
     E: 0x4F8D8
@@ -19844,8 +19948,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6295
+  loc: src/sprites_AI/powamp.c:29
 - name: PowampIdleInit
+  desc: Initializes a powamp to be idle
   addr:
     U: 0x4F994
     E: 0x4F994
@@ -19856,8 +19961,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6390
+  loc: src/sprites_AI/powamp.c:80
 - name: PowampIdle
+  desc: Handles a powamp being idle
   addr:
     U: 0x4F9B4
     E: 0x4F9B4
@@ -19868,8 +19974,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6407
+  loc: src/sprites_AI/powamp.c:92
 - name: PowampExtendingInit
+  desc: Initializes a powamp to extend
   addr:
     U: 0x4F9E8
     E: 0x4F9E8
@@ -19880,8 +19987,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6435
+  loc: src/sprites_AI/powamp.c:104
 - name: PowampExtending
+  desc: Handles a powamp extending
   addr:
     U: 0x4FA1C
     E: 0x4FA1C
@@ -19892,8 +20000,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6463
+  loc: src/sprites_AI/powamp.c:119
 - name: PowampExtendedInit
+  desc: Initializes a powamp to be extended
   addr:
     U: 0x4FA4C
     E: 0x4FA4C
@@ -19904,8 +20013,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6490
+  loc: src/sprites_AI/powamp.c:132
 - name: PowampExtended
+  desc: Handles a powamp being extended
   addr:
     U: 0x4FA6C
     E: 0x4FA6C
@@ -19916,8 +20026,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6507
+  loc: src/sprites_AI/powamp.c:144
 - name: PowampRetractingInit
+  desc: Initializes a powamp to retract
   addr:
     U: 0x4FA90
     E: 0x4FA90
@@ -19928,8 +20039,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6527
+  loc: src/sprites_AI/powamp.c:156
 - name: PowampRetracting
+  desc: Handles a powamp retracting
   addr:
     U: 0x4FAC8
     E: 0x4FAC8
@@ -19940,8 +20052,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6555
+  loc: src/sprites_AI/powamp.c:171
 - name: Powamp
+  desc: Powamp AI
   addr:
     U: 0x4FB30
     E: 0x4FB30
@@ -19952,7 +20065,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x0804C744.s:6607
+  loc: src/sprites_AI/powamp.c:195
 - name: ZozoroCheckCollidingWithAir
   desc: Checks if a zozoro is colliding with air
   addr:
@@ -20128,6 +20241,7 @@
   return: null
   loc: src/sprites_AI/zozoro.c:808
 - name: SaXMonsterSyncSubSprites
+  desc: Syncs all the parts of the SA-X monster
   addr:
     U: 0x507F4
     E: 0x507F4
@@ -20138,8 +20252,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:6
+  loc: src/sprites_AI/sa_x_monster.c:52
 - name: SaXMonsterProjectilesCollision
+  desc: Handles wave beam colliding with the SA-X monster
   addr:
     U: 0x5085C
     E: 0x5085C
@@ -20150,8 +20265,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:60
-- name: SaXMonsterCheckScreaming
+  loc: src/sprites_AI/sa_x_monster.c:77
+- name: SaXMonsterCheckScream
+  desc: Checks if the SA-X monster should scream
   addr:
     U: 0x50938
     E: 0x50938
@@ -20160,10 +20276,16 @@
     B: 0x503A0
   size: 0x40
   mode: thumb
-  params: null
-  return: null
-  loc: asm/disasm_0x080507F4.s:173
+  params:
+  - name: airborne
+    desc: True if the SA-X monster is mid-air, false when grounded
+    type: boolu8
+  return:
+    desc: s32 bool, whether the SA-X should scream
+    type: bools32
+  loc: src/sprites_AI/sa_x_monster.c:126
 - name: SaXMonsterXMovement
+  desc: Moves the SA-X monster horizontally
   addr:
     U: 0x50978
     E: 0x50978
@@ -20177,10 +20299,14 @@
     C: 0x80
     B: 0xD0
   mode: thumb
-  params: null
+  params:
+  - name: checkSamusPosition
+    desc: Whether the SA-X monster should only move if facing Samus
+    type: boolu8
   return: null
-  loc: asm/disasm_0x080507F4.s:207
+  loc: src/sprites_AI/sa_x_monster.c:147
 - name: SaXMonsterSetSideHitboxes
+  desc: Sets the horizontal hitboxes for the SA-X monster
   addr:
     U: 0x50A48
     E: 0x50A48
@@ -20190,8 +20316,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:309
-- name: SaXMonsterFall
+  loc: src/sprites_AI/sa_x_monster.c:181
+- name: SaXMonsterFallingMovement
+  desc: Moves the SA-X monster vertically when falling
   addr:
     U: 0x50A78
     E: 0x50A78
@@ -20201,8 +20328,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:337
+  loc: src/sprites_AI/sa_x_monster.c:199
 - name: SaXMonsterSpawningFromX
+  desc: Handles the SA-X monster spawning from X
   addr:
     U: 0x50B0C
     E: 0x50B0C
@@ -20213,8 +20341,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:409
+  loc: src/sprites_AI/sa_x_monster.c:235
 - name: SaXMonsterInit
+  desc: Initializes the SA-X monster
   addr:
     U: 0x50BC0
     E: 0x50BC0
@@ -20230,8 +20359,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:497
+  loc: src/sprites_AI/sa_x_monster.c:274
 - name: SaXMonsterDroppingInit
+  desc: Initializes the SA-X monster to drop
   addr:
     U: 0x50D90
     E: 0x50D90
@@ -20242,8 +20372,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:715
+  loc: src/sprites_AI/sa_x_monster.c:342
 - name: SaXMonsterDropping
+  desc: Handles the SA-X monster dropping
   addr:
     U: 0x50DA8
     E: 0x50DA8
@@ -20259,8 +20390,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:729
+  loc: src/sprites_AI/sa_x_monster.c:352
 - name: SaXMonsterIdleInit
+  desc: Initializes the SA-X monster to be idle
   addr:
     U: 0x50DD0
     E: 0x50DD0
@@ -20271,8 +20403,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:751
+  loc: src/sprites_AI/sa_x_monster.c:366
 - name: SaXMonsterIdle
+  desc: Handles the SA-X monster being idle
   addr:
     U: 0x50E1C
     E: 0x50E1C
@@ -20283,8 +20416,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:791
+  loc: src/sprites_AI/sa_x_monster.c:384
 - name: SaXMonsterJumpWarningInit
+  desc: Initializes the SA-X monster to do a jump warning
   addr:
     U: 0x50E7C
     E: 0x50E7C
@@ -20295,8 +20429,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:844
+  loc: src/sprites_AI/sa_x_monster.c:417
 - name: SaXMonsterJumpWarning
+  desc: Handles the SA-X monster doing a jump warning
   addr:
     U: 0x50EC8
     E: 0x50EC8
@@ -20307,8 +20442,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:884
+  loc: src/sprites_AI/sa_x_monster.c:434
 - name: SaXMonsterJumping
+  desc: Handles the SA-X monster jumping
   addr:
     U: 0x50F2C
     E: 0x50F2C
@@ -20319,8 +20455,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:932
+  loc: src/sprites_AI/sa_x_monster.c:458
 - name: SaXMonsterFallingInit
+  desc: Initializes the SA-X monster to fall
   addr:
     U: 0x50F84
     E: 0x50F84
@@ -20331,8 +20468,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:977
+  loc: src/sprites_AI/sa_x_monster.c:483
 - name: SaXMonsterFalling
+  desc: Handles the SA-X monster falling
   addr:
     U: 0x50F9C
     E: 0x50F9C
@@ -20348,8 +20486,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:991
+  loc: src/sprites_AI/sa_x_monster.c:493
 - name: SaXMonsterLandingInit
+  desc: Initializes the SA-X monster to land
   addr:
     U: 0x50FCC
     E: 0x50FCC
@@ -20360,8 +20499,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1015
+  loc: src/sprites_AI/sa_x_monster.c:508
 - name: SaXMonsterLanding
+  desc: Handles the SA-X monster landing
   addr:
     U: 0x51020
     E: 0x51020
@@ -20372,8 +20512,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1057
+  loc: src/sprites_AI/sa_x_monster.c:527
 - name: SaXMonsterTurningAroundInit
+  desc: Initializes the SA-X monster to turn around
   addr:
     U: 0x51080
     E: 0x51080
@@ -20389,8 +20530,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1110
+  loc: src/sprites_AI/sa_x_monster.c:559
 - name: SaXMonsterTurningAround
+  desc: Handles the SA-X monster turning around
   addr:
     U: 0x510CC
     E: 0x510CC
@@ -20406,8 +20548,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1150
+  loc: src/sprites_AI/sa_x_monster.c:582
 - name: SaXMonsterScreamingAirborneInit
+  desc: Initializes the SA-X monster to scream while airborne
   addr:
     U: 0x51108
     E: 0x51108
@@ -20418,8 +20561,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1180
+  loc: src/sprites_AI/sa_x_monster.c:600
 - name: SaXMonsterScreamingAirborne
+  desc: Handles the SA-X monster screaming while airborne
   addr:
     U: 0x5115C
     E: 0x5115C
@@ -20430,8 +20574,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1223
+  loc: src/sprites_AI/sa_x_monster.c:618
 - name: SaXMonsterScreamingGroundedInit
+  desc: Initializes the SA-X monster to scream while grounded
   addr:
     U: 0x511E0
     E: 0x511E0
@@ -20442,8 +20587,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1288
+  loc: src/sprites_AI/sa_x_monster.c:645
 - name: SaXMonsterScreamingGrounded
+  desc: Handles the SA-X monster screaming while grounded
   addr:
     U: 0x5122C
     E: 0x5122C
@@ -20454,8 +20600,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1326
+  loc: src/sprites_AI/sa_x_monster.c:662
 - name: SaXMonsterPanting
+  desc: Handles the SA-X monster panting
   addr:
     U: 0x512B0
     E: 0x512B0
@@ -20466,8 +20613,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1396
+  loc: src/sprites_AI/sa_x_monster.c:703
 - name: SaXMonsterDying
+  desc: Handles the SA-X monster dying
   addr:
     U: 0x5134C
     E: 0x5134C
@@ -20478,8 +20626,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1471
+  loc: src/sprites_AI/sa_x_monster.c:733
 - name: SaXMonsterTurningIntoCoreX
+  desc: Handles the SA-X monster turning into a core-X
   addr:
     U: 0x51390
     E: 0x51390
@@ -20490,8 +20639,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1507
+  loc: src/sprites_AI/sa_x_monster.c:751
 - name: SaXMonsterPartInit
+  desc: Initializes an SA-X monster part
   addr:
     U: 0x51424
     E: 0x51424
@@ -20502,8 +20652,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1584
+  loc: src/sprites_AI/sa_x_monster.c:785
 - name: SaXMonsterPartIdle
+  desc: Handles an SA-X monster part being idle
   addr:
     U: 0x514B8
     E: 0x514B8
@@ -20514,8 +20665,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1662
+  loc: src/sprites_AI/sa_x_monster.c:821
 - name: SaXMonster
+  desc: SA-X monster AI
   addr:
     U: 0x515B0
     E: 0x515B0
@@ -20526,8 +20678,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1788
+  loc: src/sprites_AI/sa_x_monster.c:873
 - name: SaXMonsterPart
+  desc: SA-X monster part AI
   addr:
     U: 0x517C4
     E: 0x517C4
@@ -20538,7 +20691,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080507F4.s:1965
+  loc: src/sprites_AI/sa_x_monster.c:971
 - name: ContinualXSpawnerIdle
   addr:
     U: 0x517E8
@@ -20564,6 +20717,7 @@
   return: null
   loc: src/sprites_AI/continual_x_spawner.c:84
 - name: Box2SyncSubSprites
+  desc: Syncs all the parts of BOX 2
   addr:
     U: 0x519AC
     E: 0x519AC
@@ -20574,8 +20728,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6
+  loc: src/sprites_AI/box_2.c:116
 - name: Box2XMovement
+  desc: Moves BOX 2 horizontally
   addr:
     U: 0x51A14
     E: 0x51A14
@@ -20584,10 +20739,19 @@
     B: 0x5142C
   size: 0xA4
   mode: thumb
-  params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:60
+  params:
+  - name: speed
+    desc: X speed
+    type: u16
+  - name: collidedPose
+    desc: Pose to set if collided with wall
+    type: u8
+  return:
+    desc: u8 bool, collided with wall
+    type: boolu8
+  loc: src/sprites_AI/box_2.c:144
 - name: Box2Init
+  desc: Initializes BOX 2
   addr:
     U: 0x51AB8
     E: 0x51AB8
@@ -20598,8 +20762,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:143
+  loc: src/sprites_AI/box_2.c:186
 - name: Box2WaitingToRunInit
+  desc: Initializes BOX 2 to wait to run
   addr:
     U: 0x51CAC
     E: 0x51CAC
@@ -20610,8 +20775,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:377
+  loc: src/sprites_AI/box_2.c:258
 - name: Box2WaitingToRun
+  desc: Handles BOX 2 waiting to run
   addr:
     U: 0x51CE4
     E: 0x51CE4
@@ -20622,8 +20788,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:404
+  loc: src/sprites_AI/box_2.c:274
 - name: Box2SlowRunningInit
+  desc: Initializes BOX 2 to slow run
   addr:
     U: 0x51D24
     E: 0x51D24
@@ -20634,8 +20801,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:439
+  loc: src/sprites_AI/box_2.c:291
 - name: Box2SlowRunning
+  desc: Handles BOX 2 slow running
   addr:
     U: 0x51D78
     E: 0x51D78
@@ -20646,8 +20814,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:480
+  loc: src/sprites_AI/box_2.c:310
 - name: Box2FastRunningInit
+  desc: Initializes BOX 2 to fast run
   addr:
     U: 0x51E1C
     E: 0x51E1C
@@ -20658,8 +20827,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:560
+  loc: src/sprites_AI/box_2.c:346
 - name: Box2FastRunning
+  desc: Handles BOX 2 fast running
   addr:
     U: 0x51E68
     E: 0x51E68
@@ -20670,8 +20840,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:598
+  loc: src/sprites_AI/box_2.c:363
 - name: Box2SkiddingInit
+  desc: Initializes BOX 2 to skid
   addr:
     U: 0x51F40
     E: 0x51F40
@@ -20682,8 +20853,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:705
+  loc: src/sprites_AI/box_2.c:409
 - name: Box2Skidding
+  desc: Handles BOX 2 skidding
   addr:
     U: 0x51F94
     E: 0x51F94
@@ -20694,8 +20866,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:746
+  loc: src/sprites_AI/box_2.c:428
 - name: Box2StopSkiddingInit
+  desc: Initializes BOX 2 to stop skidding
   addr:
     U: 0x51FE4
     E: 0x51FE4
@@ -20706,8 +20879,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:790
+  loc: src/sprites_AI/box_2.c:454
 - name: Box2StopSkidding
+  desc: Handles BOX 2 stopping skidding
   addr:
     U: 0x52028
     E: 0x52028
@@ -20718,8 +20892,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:825
+  loc: src/sprites_AI/box_2.c:470
 - name: Box2BonkingInit
+  desc: Initializes BOX 2 to bonk
   addr:
     U: 0x52064
     E: 0x52064
@@ -20735,8 +20910,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:858
+  loc: src/sprites_AI/box_2.c:487
 - name: Box2Bonking
+  desc: Handles BOX 2 bonking
   addr:
     U: 0x520B8
     E: 0x520B8
@@ -20747,8 +20923,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:898
+  loc: src/sprites_AI/box_2.c:506
 - name: Box2LandingFromBonkInit
+  desc: Initializes BOX 2 to land from bonk
   addr:
     U: 0x521AC
     E: 0x521AC
@@ -20759,8 +20936,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1018
+  loc: src/sprites_AI/box_2.c:563
 - name: Box2LandingFromBonk
+  desc: Handles BOX 2 landing from bonk
   addr:
     U: 0x521EC
     E: 0x521EC
@@ -20771,8 +20949,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1048
+  loc: src/sprites_AI/box_2.c:580
 - name: Box2LandingInit
+  desc: Initializes BOX 2 to land
   addr:
     U: 0x52244
     E: 0x52244
@@ -20783,8 +20962,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1095
+  loc: src/sprites_AI/box_2.c:605
 - name: Box2Landing
+  desc: Handles BOX 2 landing
   addr:
     U: 0x5227C
     E: 0x5227C
@@ -20795,8 +20975,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1122
+  loc: src/sprites_AI/box_2.c:620
 - name: Box2FinishedCrawlingInit
+  desc: Initializes BOX 2 to finish crawling
   addr:
     U: 0x522B4
     E: 0x522B4
@@ -20807,8 +20988,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1156
+  loc: src/sprites_AI/box_2.c:643
 - name: Box2FinishCrawling
+  desc: Handles BOX 2 finishing crawling
   addr:
     U: 0x522F0
     E: 0x522F0
@@ -20819,8 +21001,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1186
+  loc: src/sprites_AI/box_2.c:658
 - name: Box2JumpWarningInit
+  desc: Initializes BOX 2 to do a jump warning
   addr:
     U: 0x5234C
     E: 0x5234C
@@ -20831,8 +21014,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1236
+  loc: src/sprites_AI/box_2.c:680
 - name: Box2JumpWarning
+  desc: Handles BOX 2 doing a jump warning
   addr:
     U: 0x52398
     E: 0x52398
@@ -20843,8 +21027,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1275
+  loc: src/sprites_AI/box_2.c:702
 - name: Box2JumpingInit
+  desc: Initializes BOX 2 to jump
   addr:
     U: 0x523B4
     E: 0x523B4
@@ -20855,8 +21040,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1291
+  loc: src/sprites_AI/box_2.c:712
 - name: Box2Jumping
+  desc: Handles BOX 2 jumping
   addr:
     U: 0x524D4
     E: 0x524D4
@@ -20867,8 +21053,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1429
+  loc: src/sprites_AI/box_2.c:775
 - name: Box2StoppingToFireMissilesInit
+  desc: Initializes BOX 2 to stop to fire missiles
   addr:
     U: 0x52578
     E: 0x52578
@@ -20884,8 +21071,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1509
+  loc: src/sprites_AI/box_2.c:818
 - name: Box2StoppingToFireMissiles
+  desc: Handles BOX 2 stopping to fire missiles
   addr:
     U: 0x525B4
     E: 0x525B4
@@ -20896,8 +21084,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1539
+  loc: src/sprites_AI/box_2.c:833
 - name: Box2LoweringToFireMissilesInit
+  desc: Initializes BOX 2 to lower to fire missiles
   addr:
     U: 0x525F0
     E: 0x525F0
@@ -20908,8 +21097,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1571
+  loc: src/sprites_AI/box_2.c:851
 - name: Box2LoweringToFireMissiles
+  desc: Handles BOX 2 lowering to fire missiles
   addr:
     U: 0x52620
     E: 0x52620
@@ -20920,8 +21110,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1594
+  loc: src/sprites_AI/box_2.c:865
 - name: Box2FiringMissiles
+  desc: Handles BOX 2 firing missiles
   addr:
     U: 0x52650
     E: 0x52650
@@ -20932,8 +21123,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1618
+  loc: src/sprites_AI/box_2.c:880
 - name: Box2DoneFiringMissiles
+  desc: Handles BOX 2 done firing missiles
   addr:
     U: 0x52758
     E: 0x52758
@@ -20944,8 +21136,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1743
+  loc: src/sprites_AI/box_2.c:927
 - name: Box2DyingInit
+  desc: Initializes BOX 2 to die
   addr:
     U: 0x52774
     E: 0x52774
@@ -20956,8 +21149,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1759
+  loc: src/sprites_AI/box_2.c:937
 - name: Box2Dying
+  desc: Handles BOX 2 dying
   addr:
     U: 0x527AC
     E: 0x527AC
@@ -20968,8 +21162,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1786
+  loc: src/sprites_AI/box_2.c:954
 - name: Box2ExplodingInit
+  desc: Initializes BOX 2 to explode
   addr:
     U: 0x527E8
     E: 0x527E8
@@ -20980,8 +21175,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1817
+  loc: src/sprites_AI/box_2.c:974
 - name: Box2Exploding
+  desc: Handles BOX 2 exploding
   addr:
     U: 0x52818
     E: 0x52818
@@ -20992,8 +21188,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1841
+  loc: src/sprites_AI/box_2.c:990
 - name: Box2BrainRisingInit
+  desc: Initializes BOX 2 to have the brain rise
   addr:
     U: 0x52878
     E: 0x52878
@@ -21004,8 +21201,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1892
+  loc: src/sprites_AI/box_2.c:1011
 - name: Box2BrainRising
+  desc: Handles BOX 2 brain rising
   addr:
     U: 0x528AC
     E: 0x528AC
@@ -21016,8 +21214,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:1919
+  loc: src/sprites_AI/box_2.c:1027
 - name: Box2BrainFloating
+  desc: Handles BOX 2 brain floating
   addr:
     U: 0x52AC4
     E: 0x52AC4
@@ -21028,8 +21227,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2127
-- name: Box2IdleInit
+  loc: src/sprites_AI/box_2.c:1088
+- name: Box2CrawlingInit
+  desc: Initializes BOX 2 to crawl
   addr:
     U: 0x52AE4
     E: 0x52AE4
@@ -21040,8 +21240,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2147
+  loc: src/sprites_AI/box_2.c:1099
 - name: Box2Crawling
+  desc: Handles BOX 2 crawling
   addr:
     U: 0x52B28
     E: 0x52B28
@@ -21052,8 +21253,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2182
-- name: Box2PartSetBoxWorkVar2
+  loc: src/sprites_AI/box_2.c:1115
+- name: Box2PartSetBoxJumpCounter
+  desc: Sets BOX 2's jump counter
   addr:
     U: 0x52B38
     E: 0x52B38
@@ -21062,10 +21264,16 @@
     B: 0x52548
   size: 0x28
   mode: thumb
-  params: null
+  params:
+  - name: slot
+    type: u8
+  - name: jumps
+    desc: The number of jumps to set
+    type: u8
   return: null
-  loc: asm/disasm_0x080519AC.s:2192
-- name: Box2PartCenterSetImmunity
+  loc: src/sprites_AI/box_2.c:1126
+- name: Box2PartCenterUpdateImmunity
+  desc: Updates projectile immunity on BOX 2's center
   addr:
     U: 0x52B60
     E: 0x52B60
@@ -21074,10 +21282,13 @@
     B: 0x52570
   size: 0xE0
   mode: thumb
-  params: null
+  params:
+  - name: slot
+    type: u8
   return: null
-  loc: asm/disasm_0x080519AC.s:2215
-- name: Box2PartRemoveIgnoreProjectiles
+  loc: src/sprites_AI/box_2.c:1137
+- name: Box2PartLegRemoveIgnoreProjectiles
+  desc: Removes ignore projectile status on a BOX 2 leg
   addr:
     U: 0x52C40
     E: 0x52C40
@@ -21086,10 +21297,13 @@
     B: 0x52650
   size: 0x14
   mode: thumb
-  params: null
+  params:
+  - name: ramSlot
+    type: u8
   return: null
-  loc: asm/disasm_0x080519AC.s:2307
+  loc: src/sprites_AI/box_2.c:1170
 - name: Box2PartInit
+  desc: Initializes a BOX 2 part
   addr:
     U: 0x52C54
     E: 0x52C54
@@ -21105,8 +21319,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2319
+  loc: src/sprites_AI/box_2.c:1179
 - name: Box2PartFrontLeftLeg
+  desc: Handles BOX 2's front left leg
   addr:
     U: 0x52E0C
     E: 0x52E0C
@@ -21117,8 +21332,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2523
+  loc: src/sprites_AI/box_2.c:1270
 - name: Box2PartFrontRightLeg
+  desc: Handles BOX 2's front right leg
   addr:
     U: 0x52FA8
     E: 0x52FA8
@@ -21129,8 +21345,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2733
-- name: Box2PartTopShell
+  loc: src/sprites_AI/box_2.c:1368
+- name: Box2PartCenter
+  desc: Handles BOX 2's center
   addr:
     U: 0x53148
     E: 0x53148
@@ -21146,8 +21363,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:2944
-- name: Box2PartBottomShell
+  loc: src/sprites_AI/box_2.c:1466
+- name: Box2PartBottom
+  desc: Handles BOX 2's bottom
   addr:
     U: 0x53288
     E: 0x53288
@@ -21158,8 +21376,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3107
+  loc: src/sprites_AI/box_2.c:1549
 - name: Box2PartDefault
+  desc: Default handler for a BOX 2 part
   addr:
     U: 0x5334C
     E: 0x5334C
@@ -21170,8 +21389,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3213
+  loc: src/sprites_AI/box_2.c:1612
 - name: Box2MissileInit
+  desc: Initializes a BOX 2 missile
   addr:
     U: 0x533F8
     E: 0x533F8
@@ -21182,8 +21402,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3309
+  loc: src/sprites_AI/box_2.c:1657
 - name: Box2MissileLaunching
+  desc: Handles a BOX 2 missile launching
   addr:
     U: 0x534A4
     E: 0x534A4
@@ -21194,8 +21415,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3390
+  loc: src/sprites_AI/box_2.c:1690
 - name: Box2MissileMoving
+  desc: Handles a BOX 2 missile moving
   addr:
     U: 0x5352C
     E: 0x5352C
@@ -21206,8 +21428,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3462
+  loc: src/sprites_AI/box_2.c:1721
 - name: Box2MissileExploding
+  desc: Handles a BOX 2 missile exploding
   addr:
     U: 0x53600
     E: 0x53600
@@ -21218,8 +21441,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3569
+  loc: src/sprites_AI/box_2.c:1777
 - name: Box2BrainTopInit
+  desc: Initializes the BOX 2 brain top
   addr:
     U: 0x53624
     E: 0x53624
@@ -21235,8 +21459,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3587
+  loc: src/sprites_AI/box_2.c:1788
 - name: Box2BrainTopRising
+  desc: Handles the BOX 2 brain top rising
   addr:
     U: 0x536C8
     E: 0x536C8
@@ -21252,8 +21477,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3666
+  loc: src/sprites_AI/box_2.c:1818
 - name: Box2BrainTopFloating
+  desc: Handles the BOX 2 brain top floating
   addr:
     U: 0x53748
     E: 0x53748
@@ -21269,8 +21495,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3737
+  loc: src/sprites_AI/box_2.c:1846
 - name: Box2BrainTopTransformingInit
+  desc: Initializes the BOX 2 brain top to transform
   addr:
     U: 0x537F8
     E: 0x537F8
@@ -21281,8 +21508,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3830
+  loc: src/sprites_AI/box_2.c:1884
 - name: Box2BrainTopTransforming
+  desc: Handles the BOX 2 brain top transforming
   addr:
     U: 0x53824
     E: 0x53824
@@ -21293,8 +21521,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3854
+  loc: src/sprites_AI/box_2.c:1898
 - name: Box2BrainBottomInit
+  desc: Initializes the BOX 2 brain bottom
   addr:
     U: 0x5389C
     E: 0x5389C
@@ -21304,8 +21533,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3914
+  loc: src/sprites_AI/box_2.c:1929
 - name: Box2BrainBottomIdle
+  desc: Handles the BOX 2 brain bottom being idle
   addr:
     U: 0x5391C
     E: 0x5391C
@@ -21316,8 +21546,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:3977
+  loc: src/sprites_AI/box_2.c:1956
 - name: Box2
+  desc: BOX 2 AI
   addr:
     U: 0x5397C
     E: 0x5397C
@@ -21328,8 +21559,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4028
+  loc: src/sprites_AI/box_2.c:1977
 - name: Box2Part
+  desc: BOX 2 part AI
   addr:
     U: 0x53B9C
     E: 0x53B9C
@@ -21340,8 +21572,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4226
+  loc: src/sprites_AI/box_2.c:2125
 - name: Box2Missile
+  desc: BOX 2 missile AI
   addr:
     U: 0x53C8C
     E: 0x53C8C
@@ -21352,8 +21585,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4346
+  loc: src/sprites_AI/box_2.c:2179
 - name: Box2BrainTop
+  desc: BOX 2 brain top AI
   addr:
     U: 0x53CCC
     E: 0x53CCC
@@ -21369,8 +21603,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4382
+  loc: src/sprites_AI/box_2.c:2205
 - name: Box2BrainBottom
+  desc: BOX 2 brain bottom AI
   addr:
     U: 0x53D14
     E: 0x53D14
@@ -21386,8 +21621,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4422
-- name: OmagaMetroidSyncSubSPrites
+  loc: src/sprites_AI/box_2.c:2234
+- name: OmegaMetroidSyncSubSprites
+  desc: Syncs all the parts of Omega Metroid
   addr:
     U: 0x53D38
     E: 0x53D38
@@ -21398,8 +21634,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4442
+  loc: src/sprites_AI/omega_metroid.c:119
 - name: OmegaMetroidPartSetDrawOrder
+  desc: Sets the draw order for Omega Metroid parts
   addr:
     U: 0x53DA0
     E: 0x53DA0
@@ -21410,8 +21647,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4496
-- name: OmegaMetroidPartSetDrawOrder_2
+  loc: src/sprites_AI/omega_metroid.c:144
+- name: OmegaMetroidPartSetDrawOrder_SaXCutscene
+  desc: Sets the draw order for Omega Metroid parts during the SA-X cutscene
   addr:
     U: 0x53DFC
     E: 0x53DFC
@@ -21422,8 +21660,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4541
+  loc: src/sprites_AI/omega_metroid.c:170
 - name: OmegaMetroidUpdatePalette
+  desc: Updates Omega Metroid's palette based on its health
   addr:
     U: 0x53E28
     E: 0x53E28
@@ -21433,8 +21672,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4569
+  loc: src/sprites_AI/omega_metroid.c:193
 - name: OmegaMetroidSaXIceBeamCollision
+  desc: Handles the SA-X's ice beam collision with Omega Metroid
   addr:
     U: 0x53ECC
     E: 0x53ECC
@@ -21445,8 +21685,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4649
+  loc: src/sprites_AI/omega_metroid.c:237
 - name: OmegaMetroidUpdateHeartPalette
+  desc: Updates Omega Metroid's heart palette
   addr:
     U: 0x53FA8
     E: 0x53FA8
@@ -21457,8 +21698,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4762
+  loc: src/sprites_AI/omega_metroid.c:294
 - name: OmegaMetroidUpdateHealthThreshold
+  desc: Updates Omega Metroid's health threshold
   addr:
     U: 0x53FF4
     E: 0x53FF4
@@ -21474,8 +21716,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4809
+  loc: src/sprites_AI/omega_metroid.c:324
 - name: OmegaMetroidCheckSamusOnLowHealth
+  desc: Checks if Samus is crouched in the corner with low health
   addr:
     U: 0x540B0
     E: 0x540B0
@@ -21485,9 +21728,12 @@
   size: 0x28
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:4898
-- name: OmegaMetroidBodyBlinking
+  return:
+    desc: bool u8, Samus crouched in the corner with low health
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:372
+- name: OmegaMetroidBodyFlashing_SaXCutscene
+  desc: Updates Omega Metroid's palette to flash during the SA-X cutscene
   addr:
     U: 0x540D8
     E: 0x540D8
@@ -21498,8 +21744,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4921
-- name: OmegaMetroidFullBodyBlinking
+  loc: src/sprites_AI/omega_metroid.c:384
+- name: OmegaMetroidBodyFlashing
+  desc: Updates Omega Metroid's palette to flash
   addr:
     U: 0x54120
     E: 0x54120
@@ -21510,8 +21757,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:4962
+  loc: src/sprites_AI/omega_metroid.c:405
 - name: OmegaMetroidCheckSamusInFrontRange
+  desc: Checks if Samus is nearby in front of Omega Metroid
   addr:
     U: 0x54168
     E: 0x54168
@@ -21521,9 +21769,12 @@
   size: 0x34
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5003
-- name: OmegaMEtroidCheckBehindRightTrigger
+  return:
+    desc: u8 bool, Samus nearby in front of Omega Metroid
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:427
+- name: OmegaMetroidCheckBehindRightTrigger
+  desc: Checks if Omega Metroid is behind a trigger on the right side of the screen
   addr:
     U: 0x5419C
     E: 0x5419C
@@ -21533,9 +21784,12 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5031
+  return:
+    desc: u8 bool, Omega Metroid behind trigger
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:446
 - name: OmegaMetroidCheckInFrontOfMiddleTrigger
+  desc: Checks if Omega Metroid is in front of a trigger in the middle of the screen
   addr:
     U: 0x541C8
     E: 0x541C8
@@ -21545,9 +21799,12 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5057
+  return:
+    desc: u8 bool, Omega Metroid in front of trigger
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:463
 - name: OmegaMetroidCheckInFrontOfLeftTrigger
+  desc: Checks if Omega Metroid is in front of a trigger on the left side of the screen
   addr:
     U: 0x541F4
     E: 0x541F4
@@ -21557,9 +21814,12 @@
   size: 0x2C
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5083
+  return:
+    desc: u8 bool, Omega Metroid in front of trigger
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:480
 - name: OmegaMetroidXMovement
+  desc: Moves Omega Metroid horizontally
   addr:
     U: 0x54220
     E: 0x54220
@@ -21569,9 +21829,12 @@
   size: 0x54
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5109
-- name: OmegaMetroidBackwardsMovement
+  return:
+    desc: u8 bool, Omega Metroid reached trigger
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:497
+- name: OmegaMetroidBackwardMovement
+  desc: Handles Omega Metroid moving backward
   addr:
     U: 0x54274
     E: 0x54274
@@ -21581,9 +21844,12 @@
   size: 0x94
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5154
+  return:
+    desc: u8 bool, Omega Metroid reached trigger
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:524
 - name: OmegaMetroidForwardMovement
+  desc: Handles Omega Metroid moving forward
   addr:
     U: 0x54308
     E: 0x54308
@@ -21593,9 +21859,12 @@
   size: 0xB8
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5224
-- name: OmegaMetroidSlowMovement
+  return:
+    desc: u8 bool, Omega Metroid should stop
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:573
+- name: OmegaMetroidStartWalking
+  desc: Handles Omega Metroid starting to walk
   addr:
     U: 0x543C0
     E: 0x543C0
@@ -21605,9 +21874,12 @@
   size: 0x44
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5312
+  return:
+    desc: u8 bool, Omega Metroid should stop
+    type: boolu8
+  loc: src/sprites_AI/omega_metroid.c:628
 - name: OmegaMetroidStandingMovement
+  desc: Handles Omega Metroid's standing movement
   addr:
     U: 0x54404
     E: 0x54404
@@ -21617,9 +21889,12 @@
   size: 0x34
   mode: thumb
   params: null
-  return: null
-  loc: asm/disasm_0x080519AC.s:5350
+  return:
+    desc: u8 Result (2 if Samus in range, 1 if reached trigger, 0 otherwise)
+    type: u8
+  loc: src/sprites_AI/omega_metroid.c:651
 - name: OmegaMetroidInit
+  desc: Initializes Omega Metroid
   addr:
     U: 0x54438
     E: 0x54438
@@ -21635,8 +21910,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5378
+  loc: src/sprites_AI/omega_metroid.c:670
 - name: OmegaMetroidWaitingToAppear
+  desc: Handles Omega Metroid waiting to appear
   addr:
     U: 0x54610
     E: 0x54610
@@ -21647,8 +21923,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5597
+  loc: src/sprites_AI/omega_metroid.c:742
 - name: OmegaMetroidFirstJump
+  desc: Handles Omega Metroid's first jump
   addr:
     U: 0x54650
     E: 0x54650
@@ -21664,8 +21941,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5631
+  loc: src/sprites_AI/omega_metroid.c:761
 - name: OmegaMetroidLandingFromFirstJump
+  desc: Handles Omega Metroid landing from first jump
   addr:
     U: 0x54718
     E: 0x54718
@@ -21676,8 +21954,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5730
+  loc: src/sprites_AI/omega_metroid.c:803
 - name: OmegaMetroidLandedAfterFirstJump
+  desc: Handles Omega Metroid after landing from first jump
   addr:
     U: 0x54748
     E: 0x54748
@@ -21688,8 +21967,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5754
+  loc: src/sprites_AI/omega_metroid.c:818
 - name: OmegaMetroidScreamingAfterFirstJump
+  desc: Handles Omega Metroid screaming after first jump
   addr:
     U: 0x54788
     E: 0x54788
@@ -21700,8 +21980,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5785
+  loc: src/sprites_AI/omega_metroid.c:836
 - name: OmegaMetroidFinishedScreamingAfterFirstJump
+  desc: Handles Omega Metroid after screaming after first jump
   addr:
     U: 0x547C0
     E: 0x547C0
@@ -21712,8 +21993,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5815
+  loc: src/sprites_AI/omega_metroid.c:852
 - name: OmegaMetroidJumpWarningInit
+  desc: Initializes Omega Metroid to do a jump warning
   addr:
     U: 0x54800
     E: 0x54800
@@ -21724,8 +22006,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5849
+  loc: src/sprites_AI/omega_metroid.c:874
 - name: OmegaMetroidJumpWarning
+  desc: Handles Omega Metroid doing a jump warning
   addr:
     U: 0x54830
     E: 0x54830
@@ -21736,8 +22019,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5872
+  loc: src/sprites_AI/omega_metroid.c:888
 - name: OmegaMetroidJumping
+  desc: Handles Omega Metroid jumping
   addr:
     U: 0x54868
     E: 0x54868
@@ -21748,8 +22032,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5900
-- name: OmegaMEtroidFalling
+  loc: src/sprites_AI/omega_metroid.c:904
+- name: OmegaMetroidFalling
+  desc: Handles Omega Metroid falling
   addr:
     U: 0x548BC
     E: 0x548BC
@@ -21760,8 +22045,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:5942
+  loc: src/sprites_AI/omega_metroid.c:929
 - name: OmegaMetroidLandingInit
+  desc: Initializes Omega Metroid to land
   addr:
     U: 0x54954
     E: 0x54954
@@ -21772,8 +22058,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6013
+  loc: src/sprites_AI/omega_metroid.c:966
 - name: OmegaMetroidLanding
+  desc: Handles Omega Metroid landing
   addr:
     U: 0x54978
     E: 0x54978
@@ -21784,8 +22071,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6031
+  loc: src/sprites_AI/omega_metroid.c:978
 - name: OmegaMetroidIdleInit
+  desc: Initializes Omega Metroid to be idle
   addr:
     U: 0x549E4
     E: 0x549E4
@@ -21796,8 +22084,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6086
+  loc: src/sprites_AI/omega_metroid.c:1008
 - name: OmegaMetroidIdle
+  desc: Handles Omega Metroid being idle
   addr:
     U: 0x54A3C
     E: 0x54A3C
@@ -21808,8 +22097,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6130
+  loc: src/sprites_AI/omega_metroid.c:1026
 - name: OmegaMetroidWalkingBeforeSaXInit
+  desc: Initializes Omega Metroid to walking before SA-X
   addr:
     U: 0x54AF8
     E: 0x54AF8
@@ -21820,8 +22110,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6224
+  loc: src/sprites_AI/omega_metroid.c:1071
 - name: OmegaMetroidWalkingBeforeSaX
+  desc: Handles Omega Metroid walking before SA-X
   addr:
     U: 0x54B20
     E: 0x54B20
@@ -21832,8 +22123,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6245
-- name: OmegaMetroidSlowWalkInit
+  loc: src/sprites_AI/omega_metroid.c:1084
+- name: OmegaMetroidSlowWalkingInit
+  desc: Initializes Omega Metroid to slow walk
   addr:
     U: 0x54BB8
     E: 0x54BB8
@@ -21844,8 +22136,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6322
-- name: OmegaMetroidSlowWalk
+  loc: src/sprites_AI/omega_metroid.c:1131
+- name: OmegaMetroidSlowWalking
+  desc: Handles Omega Metroid slow walking
   addr:
     U: 0x54BE4
     E: 0x54BE4
@@ -21856,8 +22149,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6344
-- name: OmegaMetroidWalkInit
+  loc: src/sprites_AI/omega_metroid.c:1144
+- name: OmegaMetroidWalkingInit
+  desc: Initializes Omega Metroid to walk
   addr:
     U: 0x54D08
     E: 0x54D08
@@ -21868,8 +22162,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6490
-- name: OmegaMetroidWalk
+  loc: src/sprites_AI/omega_metroid.c:1230
+- name: OmegaMetroidWalking
+  desc: Handles Omega Metroid walking
   addr:
     U: 0x54D34
     E: 0x54D34
@@ -21880,8 +22175,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6512
+  loc: src/sprites_AI/omega_metroid.c:1243
 - name: OmegaMetroidSwipingInit
+  desc: Initializes Omega Metroid to swipe
   addr:
     U: 0x54E58
     E: 0x54E58
@@ -21892,8 +22188,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6658
+  loc: src/sprites_AI/omega_metroid.c:1329
 - name: OmegaMetroidSwiping
+  desc: Handles Omega Metroid swiping
   addr:
     U: 0x54EDC
     E: 0x54EDC
@@ -21904,8 +22201,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6723
+  loc: src/sprites_AI/omega_metroid.c:1365
 - name: OmegaMetroidVerticalJumpInit
+  desc: Initializes Omega Metroid to do a vertical jump
   addr:
     U: 0x54FE8
     E: 0x54FE8
@@ -21916,8 +22214,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6852
+  loc: src/sprites_AI/omega_metroid.c:1416
 - name: OmegaMetroidVerticalJump
+  desc: Handles Omega Metroid doing a vertical jump
   addr:
     U: 0x5501C
     E: 0x5501C
@@ -21928,8 +22227,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6878
-- name: omegaMetroidSpawnSaX
+  loc: src/sprites_AI/omega_metroid.c:1431
+- name: OmegaMetroidSpawnSaX
+  desc: Handles Omega Metroid spawning SA-X
   addr:
     U: 0x550CC
     E: 0x550CC
@@ -21940,8 +22240,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:6964
+  loc: src/sprites_AI/omega_metroid.c:1475
 - name: OmegaMetroidWaitingForSaXInit
+  desc: Initializes Omega Metroid to wait for SA-X
   addr:
     U: 0x55120
     E: 0x55120
@@ -21952,8 +22253,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7006
+  loc: src/sprites_AI/omega_metroid.c:1492
 - name: OmegaMetroidWaitingForSaX
+  desc: Handles Omega Metroid waiting for SA-X
   addr:
     U: 0x55154
     E: 0x55154
@@ -21964,8 +22266,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7032
+  loc: src/sprites_AI/omega_metroid.c:1507
 - name: OmegaMetroidWatchingSaX
+  desc: Handles Omega Metroid watching SA-X
   addr:
     U: 0x55358
     E: 0x55358
@@ -21976,8 +22279,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7274
+  loc: src/sprites_AI/omega_metroid.c:1617
 - name: OmegaMetroidDamagedBySaX
+  desc: Handles Omega Metroid getting damaged by SA-X (part 1)
   addr:
     U: 0x553B4
     E: 0x553B4
@@ -21988,8 +22292,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7317
-- name: OmegaMetroidWalkingBackwardsFromSaX
+  loc: src/sprites_AI/omega_metroid.c:1637
+- name: OmegaMetroidWalkingBackwardFromSaX
+  desc: Handles Omega Metroid walking backward from SA-X
   addr:
     U: 0x55400
     E: 0x55400
@@ -22000,8 +22305,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7354
+  loc: src/sprites_AI/omega_metroid.c:1658
 - name: OmegaMetroidDamagedBySaX2
+  desc: Handles Omega Metroid getting damaged by SA-X (part 2)
   addr:
     U: 0x554A0
     E: 0x554A0
@@ -22012,8 +22318,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7430
+  loc: src/sprites_AI/omega_metroid.c:1699
 - name: OmegaMetroidWaitingToSwipeSaX
+  desc: Handles Omega Metroid waiting to swipe SA-X
   addr:
     U: 0x55508
     E: 0x55508
@@ -22029,8 +22336,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7480
-- name: OmegaMEtroidSwipingSaX
+  loc: src/sprites_AI/omega_metroid.c:1724
+- name: OmegaMetroidSwipingSaX
+  desc: Handles Omega Metroid swiping SA-X
   addr:
     U: 0x55548
     E: 0x55548
@@ -22046,8 +22354,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7509
+  loc: src/sprites_AI/omega_metroid.c:1744
 - name: OmegaMetroidKilledSaX
+  desc: Handles Omega Metroid after killing SA-X
   addr:
     U: 0x555EC
     E: 0x555EC
@@ -22058,8 +22367,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7584
+  loc: src/sprites_AI/omega_metroid.c:1780
 - name: OmegaMetroidScreamingAfterIceBeamObtained
+  desc: Handles Omega Metroid screaming after ice beam obtained
   addr:
     U: 0x55658
     E: 0x55658
@@ -22070,8 +22380,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7636
-- name: OmegaMetroidWalkingBackwardsInit
+  loc: src/sprites_AI/omega_metroid.c:1802
+- name: OmegaMetroidWalkingBackwardInit
+  desc: Initializes Omega Metroid to walk backward
   addr:
     U: 0x55700
     E: 0x55700
@@ -22082,8 +22393,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7720
-- name: OmegaMetroidWalkingBackwards
+  loc: src/sprites_AI/omega_metroid.c:1849
+- name: OmegaMetroidWalkingBackward
+  desc: Handles Omega Metroid walking backward
   addr:
     U: 0x55790
     E: 0x55790
@@ -22094,8 +22406,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7794
+  loc: src/sprites_AI/omega_metroid.c:1879
 - name: OmegaMetroidDyingInit
+  desc: Initializes Omega Metroid to die
   addr:
     U: 0x55844
     E: 0x55844
@@ -22106,8 +22419,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7882
+  loc: src/sprites_AI/omega_metroid.c:1930
 - name: OmegaMetroidDying1
+  desc: Handles Omega Metroid dying (part 1)
   addr:
     U: 0x55894
     E: 0x55894
@@ -22118,8 +22432,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7919
+  loc: src/sprites_AI/omega_metroid.c:1952
 - name: OmegaMetroidDying2
+  desc: Handles Omega Metroid dying (part 2)
   addr:
     U: 0x558E4
     E: 0x558E4
@@ -22130,8 +22445,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:7959
+  loc: src/sprites_AI/omega_metroid.c:1975
 - name: OmegaMetroidDying3
+  desc: Handles Omega Metroid dying (part 3)
   addr:
     U: 0x55A88
     E: 0x55A88
@@ -22142,8 +22458,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8173
+  loc: src/sprites_AI/omega_metroid.c:2059
 - name: OmegaMetroidPartInit
+  desc: Initializes an Omega Metroid part
   addr:
     U: 0x55B04
     E: 0x55B04
@@ -22154,8 +22471,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8236
+  loc: src/sprites_AI/omega_metroid.c:2085
 - name: OmegaMetroidPartIdle
+  desc: Handles an Omega Metroid part being idle
   addr:
     U: 0x55CF4
     E: 0x55CF4
@@ -22166,8 +22484,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8474
+  loc: src/sprites_AI/omega_metroid.c:2189
 - name: OmegaMetroid
+  desc: Omega Metroid AI
   addr:
     U: 0x55ED8
     E: 0x55ED8
@@ -22183,8 +22502,9 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8658
+  loc: src/sprites_AI/omega_metroid.c:2249
 - name: OmegaMetroidPart
+  desc: Omega Metroid part AI
   addr:
     U: 0x5611C
     E: 0x5611C
@@ -22195,7 +22515,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8873
+  loc: src/sprites_AI/omega_metroid.c:2420
 - name: GunshipEndSpawnBeams
   addr:
     U: 0x56140
@@ -22207,7 +22527,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:8892
+  loc: asm/disasm_0x08056140.s:6
 - name: GunshipEndInit
   addr:
     U: 0x56278
@@ -22219,7 +22539,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9036
+  loc: asm/disasm_0x08056140.s:150
 - name: GunshipEndWaiting
   addr:
     U: 0x56304
@@ -22231,7 +22551,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9105
+  loc: asm/disasm_0x08056140.s:219
 - name: GunshipEndMovingUp
   addr:
     U: 0x56338
@@ -22243,7 +22563,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9133
+  loc: asm/disasm_0x08056140.s:247
 - name: GunshipEndWaitingToEnter
   addr:
     U: 0x563E8
@@ -22255,7 +22575,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9228
+  loc: asm/disasm_0x08056140.s:342
 - name: GunshipEndEntering
   addr:
     U: 0x56444
@@ -22267,7 +22587,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9277
+  loc: asm/disasm_0x08056140.s:391
 - name: GunshipEndWaitingForSamus
   addr:
     U: 0x5659C
@@ -22279,7 +22599,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9444
+  loc: asm/disasm_0x08056140.s:558
 - name: GunshipEndLockingSamus
   addr:
     U: 0x56644
@@ -22291,7 +22611,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9527
+  loc: asm/disasm_0x08056140.s:641
 - name: GunshipEndMovingSamusUp
   addr:
     U: 0x5666C
@@ -22308,7 +22628,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9551
+  loc: asm/disasm_0x08056140.s:665
 - name: GunshipEndStartingEngine1
   addr:
     U: 0x566A8
@@ -22325,7 +22645,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9584
+  loc: asm/disasm_0x08056140.s:698
 - name: GunshipEndStartingEngine2
   addr:
     U: 0x56738
@@ -22337,7 +22657,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9651
+  loc: asm/disasm_0x08056140.s:765
 - name: GunshipEndTakingOff
   addr:
     U: 0x56804
@@ -22349,7 +22669,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9757
+  loc: asm/disasm_0x08056140.s:871
 - name: GunshipEndDone
   addr:
     U: 0x56898
@@ -22361,7 +22681,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9836
+  loc: asm/disasm_0x08056140.s:950
 - name: GunshipEndBottomIdle
   addr:
     U: 0x5689C
@@ -22373,7 +22693,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9841
+  loc: asm/disasm_0x08056140.s:955
 - name: GunshiEndpBeamInit
   addr:
     U: 0x56910
@@ -22385,7 +22705,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9903
+  loc: asm/disasm_0x08056140.s:1017
 - name: GunshipEndBeamMovingDown
   addr:
     U: 0x56984
@@ -22397,7 +22717,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:9961
+  loc: asm/disasm_0x08056140.s:1075
 - name: GunshipEndBeamMovingUp
   addr:
     U: 0x569F4
@@ -22409,7 +22729,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:10022
+  loc: asm/disasm_0x08056140.s:1136
 - name: GunshipEnd
   addr:
     U: 0x56A48
@@ -22421,7 +22741,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:10069
+  loc: asm/disasm_0x08056140.s:1183
 - name: GunshipEndBottom
   addr:
     U: 0x56BB0
@@ -22433,7 +22753,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:10193
+  loc: asm/disasm_0x08056140.s:1307
 - name: GunshipEndBeam
   addr:
     U: 0x56BD0
@@ -22445,7 +22765,7 @@
   mode: thumb
   params: null
   return: null
-  loc: asm/disasm_0x080519AC.s:10212
+  loc: asm/disasm_0x08056140.s:1326
 - name: ElectricWaterDamageBox2Init
   addr:
     U: 0x56C24
