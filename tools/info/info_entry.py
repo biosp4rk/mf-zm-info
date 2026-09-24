@@ -254,7 +254,7 @@ class VarEntry(InfoEntry):
         return self.type.get_size(sizes, typedefs) * self.get_count()
 
     def get_alignment(self, typedefs: dict[str, AssetType]) -> int:
-        self.type.get_alignment(self, typedefs)
+        return self.type.get_alignment(self, typedefs)
 
     @staticmethod
     def from_obj(obj: Any) -> "VarEntry":
