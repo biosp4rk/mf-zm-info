@@ -2326,7 +2326,7 @@
   - name: ELEVATOR_DIRECTION_DOWN
     val: 0x1
   - name: ELEVATOR_DIRECTION_UP
-    val: !!int '0x-1'
+    val: -0x1
   loc: include/constants/connection.h:109
 - name: ElevatorRoute_
   vals:
@@ -3335,9 +3335,9 @@
     val: 0x0
   - name: HATCH_LOCK_EVENT_TYPE_BEFORE
     val: 0x1
-  - name: HATCH_LOCK_EVENT_TYPE_AFTER_UNLOCKEABLE
+  - name: HATCH_LOCK_EVENT_TYPE_AFTER_UNLOCKABLE
     val: 0x2
-  - name: HATCH_LOCK_EVENT_TYPE_BEFORE_UNLOCKEABLE
+  - name: HATCH_LOCK_EVENT_TYPE_BEFORE_UNLOCKABLE
     val: 0x3
   loc: include/constants/connection.h:88
 - name: HatchLockState_
@@ -4365,7 +4365,7 @@
   - name: MESSAGE_COUNT
     val: 0x27
   - name: MESSAGE_NONE
-    val: !!int '0x-1'
+    val: -0x1
   loc: include/constants/text.h:18
 - name: MinimapUpdateFlag_
   vals:
@@ -8181,6 +8181,25 @@
   - name: SPRITE_POSE_PSEUDO_SCREW_DESTROYED
     val: 0x66
   loc: include/constants/sprite.h:424
+- name: SpriteProperty_
+  vals:
+  - name: SP_ALWAYS_ACTIVE
+    val: 0x1
+  - name: SP_DAMAGED
+    val: 0x2
+  - name: SP_KILL_OFF_SCREEN
+    val: 0x4
+  - name: SP_SOLID_FOR_PROJECTILES
+    val: 0x8
+  - name: SP_DESTROYED
+    val: 0x10
+  - name: SP_ABSOLUTE_POSITION
+    val: 0x20
+  - name: SP_IMMUNE_TO_PROJECTILES
+    val: 0x40
+  - name: SP_SECONDARY_SPRITE
+    val: 0x80
+  loc: include/constants/sprite.h:26
 - name: SpritePropery_
   vals:
   - name: SP_ALWAYS_ACTIVE
@@ -8588,7 +8607,7 @@
 - name: TextState_
   vals:
   - name: TEXT_STATE_NONE
-    val: !!int '0x-1'
+    val: -0x1
   - name: TEXT_STATE_NOTHING
     val: 0x0
   - name: TEXT_STATE_NEW_LINE

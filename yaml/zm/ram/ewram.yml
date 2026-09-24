@@ -34,6 +34,21 @@
   addr:
     U: 0x2007000
   loc: include/structs/room.h:137
+- name: gHazeValues
+  type: u16
+  count: 0x500
+  addr: 0x2026300
+  loc: include/structs/haze.h:37
+- name: gPreviousHazeValues
+  type: u16
+  count: 0x500
+  addr: 0x2026D00
+  loc: include/structs/haze.h:38
+- name: gCurrentCharacterGfx
+  type: u32
+  count: 0x20
+  addr: 0x2027700
+  loc: include/structs/text.h:28
 - name: gMakeSolidBlocks
   type: u16
   count: 0x40
@@ -59,16 +74,55 @@
   count: 0x1800
   addr: 0x2030800
   loc: include/structs/room.h:136
+- name: gMinimapTilesWithObtainedItems
+  type: u32
+  count: 0x100
+  addr: 0x2033800
+  loc: include/structs/minimap.h:28
+- name: gDecompressedMinimapVisitedTiles
+  type: u16
+  count: 0x400
+  addr: 0x2034000
+  loc: include/structs/minimap.h:29
+- name: gDecompressedMinimapData
+  type: u16
+  count: 0x400
+  addr: 0x2034800
+  loc: include/structs/minimap.h:30
 - name: gUnk_02035400
   type: u16
   addr:
     U: 0x2035400
   loc: include/temp_globals.h:56
+- name: gNeverReformBlocks
+  type: u8 [0x200]
+  count: 0x8
+  addr: 0x2035C00
+  loc: include/structs/bg_clip.h:83
+- name: gItemsCollected
+  type: struct ItemInfo [0x40]
+  count: 0x8
+  addr: 0x2036C00
+  loc: include/structs/bg_clip.h:82
+- name: gVisitedMinimapTiles
+  type: u32
+  count: 0x100
+  addr: 0x2037400
+  loc: include/structs/minimap.h:31
 - name: gEventsTriggered
   type: u32
   count: 0x8
   addr: 0x2037E00
   loc: include/event.h:13
+- name: gMinimapTilesGfx
+  type: u32
+  count: 0x78
+  addr: 0x2037E20
+  loc: include/structs/minimap.h:32
+- name: gSram
+  type: struct Sram
+  addr: 0x2038000
+  loc: include/structs/save_file.h:254
 - name: gSramDemoInputData
   type: u16
   count: 0x100

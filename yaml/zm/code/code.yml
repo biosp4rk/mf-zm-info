@@ -8,7 +8,7 @@
   mode: arm
   params: null
   return: null
-  loc: include/interrupts.h:4
+  loc: asm/intr_main.s:7
 - name: agbmain
   desc: 'Main loop of the game '
   addr:
@@ -2165,7 +2165,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/audio_wrappers.h:9
+  loc: asm/soundcode.s:11
 - name: CallSoundCodeC
   addr:
     U: 0x43B4
@@ -2177,7 +2177,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/audio_wrappers.h:10
+  loc: asm/soundcode.s:66
 - name: CallSoundCodeA
   addr:
     U: 0x4464
@@ -2189,7 +2189,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/audio_wrappers.h:8
+  loc: asm/soundcode.s:124
 - name: InitTrack
   addr:
     U: 0x4B50
@@ -2207,7 +2207,7 @@
   return:
     type: u8
     cat: bool
-  loc: include/audio/track_internal.h:6
+  loc: asm/audio_internal.s:11
 - name: StopMusicOrSound
   addr:
     U: 0x4C1C
@@ -2221,7 +2221,7 @@
   - name: pTrack
     type: struct TrackData*
   return: null
-  loc: include/audio/track_internal.h:7
+  loc: asm/audio_internal.s:122
 - name: ResetTrack
   addr:
     U: 0x4C94
@@ -2235,7 +2235,7 @@
   - name: pTrack
     type: struct TrackData*
   return: null
-  loc: include/audio/track_internal.h:8
+  loc: asm/audio_internal.s:192
 - name: unk_4cfc
   addr:
     U: 0x4CFC
@@ -2246,7 +2246,7 @@
     type: struct TrackData*
   return:
     type: u32
-  loc: include/audio/track_internal.h:9
+  loc: asm/audio_internal.s:253
 - name: unk_4d1c
   addr:
     U: 0x4D1C
@@ -2258,7 +2258,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:10
+  loc: asm/audio_internal.s:275
 - name: UpdateAudio
   addr:
     U: 0x4D48
@@ -2270,7 +2270,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/audio/track_internal.h:11
+  loc: asm/audio_internal.s:303
 - name: unk_4e10
   addr:
     U: 0x4E10
@@ -2280,7 +2280,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:12
+  loc: asm/audio_internal.s:406
 - name: unk_4eb4
   addr:
     U: 0x4EB4
@@ -2290,7 +2290,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:13
+  loc: asm/audio_internal.s:501
 - name: unk_4f10
   addr:
     U: 0x4F10
@@ -2300,7 +2300,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:14
+  loc: asm/audio_internal.s:553
 - name: unk_4f8c
   addr:
     U: 0x4F8C
@@ -2314,7 +2314,7 @@
   - name: param_3
     type: s32
   return: null
-  loc: include/audio/track_internal.h:15
+  loc: asm/audio_internal.s:624
 - name: AudioCommand_Goto
   addr:
     U: 0x5030
@@ -2328,7 +2328,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:16
+  loc: asm/audio_internal.s:713
 - name: AudioCommand_PatternPlay
   addr:
     U: 0x5070
@@ -2342,7 +2342,7 @@
   - name: pVariables
     type: struct TrackVariables*
   return: null
-  loc: include/audio/track_internal.h:17
+  loc: asm/audio_internal.s:752
 - name: UploadSampleToWaveRam
   addr:
     U: 0x50D0
@@ -2356,7 +2356,7 @@
   - name: pSample
     type: const u32*
   return: null
-  loc: include/audio/track_internal.h:18
+  loc: asm/audio_internal.s:809
 - name: unk_5104
   addr:
     U: 0x5104
@@ -2366,7 +2366,7 @@
   - name: pSound
     type: struct PsgSoundData*
   return: null
-  loc: include/audio/track_internal.h:19
+  loc: asm/audio_internal.s:837
 - name: CpuFastSet
   addr:
     U: 0x5190
@@ -2384,7 +2384,7 @@
   - name: size
     type: u16
   return: null
-  loc: include/syscalls.h:61
+  loc: asm/syscalls.s:7
 - name: CpuSet
   addr:
     U: 0x5194
@@ -2402,7 +2402,7 @@
   - name: size
     type: u32
   return: null
-  loc: include/syscalls.h:62
+  loc: asm/syscalls.s:12
 - name: DivarmDiv
   addr:
     U: 0x5198
@@ -2419,7 +2419,7 @@
     type: s32
   return:
     type: s32
-  loc: include/syscalls.h:63
+  loc: asm/syscalls.s:17
 - name: DivarmMod
   addr:
     U: 0x519C
@@ -2436,7 +2436,7 @@
     type: s32
   return:
     type: s32
-  loc: include/syscalls.h:64
+  loc: asm/syscalls.s:22
 - name: LZ77UncompVram
   addr:
     U: 0x51A4
@@ -2452,7 +2452,7 @@
   - name: dst
     type: void*
   return: null
-  loc: include/syscalls.h:65
+  loc: asm/syscalls.s:28
 - name: LZ77UncompWram
   addr:
     U: 0x51A8
@@ -2468,7 +2468,7 @@
   - name: dst
     type: void*
   return: null
-  loc: include/syscalls.h:66
+  loc: asm/syscalls.s:33
 - name: MidiKey2Freq
   addr:
     U: 0x51AC
@@ -2487,7 +2487,7 @@
     type: u8
   return:
     type: u32
-  loc: include/syscalls.h:67
+  loc: asm/syscalls.s:38
 - name: Multiboot
   addr:
     U: 0x51B0
@@ -2503,7 +2503,7 @@
   return:
     type: int
     cat: bool
-  loc: include/syscalls.h:68
+  loc: asm/syscalls.s:43
 - name: SoundBias0
   addr:
     U: 0x51B8
@@ -2515,7 +2515,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/syscalls.h:69
+  loc: asm/syscalls.s:49
 - name: SoundBias200
   addr:
     U: 0x51C0
@@ -2527,7 +2527,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/syscalls.h:70
+  loc: asm/syscalls.s:55
 - name: Sqrt
   addr:
     U: 0x51C8
@@ -2542,7 +2542,7 @@
     type: u32
   return:
     type: u16
-  loc: include/syscalls.h:71
+  loc: asm/syscalls.s:61
 - name: VBlankIntrWait
   addr:
     U: 0x51CC
@@ -2554,7 +2554,7 @@
   mode: thumb
   params: null
   return: null
-  loc: include/syscalls.h:72
+  loc: asm/syscalls.s:66
 - name: SramWriteUncheckedInternal
   addr:
     U: 0x51D4
