@@ -17,10 +17,10 @@ from rom import Rom, ROM_END_MAX, ROM_OFFSET
 from thumb import ThumbInstruct, ThumbForm
 
 
-EWRAM_START = 0x2000000
-EWRAM_END = 0x2040000
-IWRAM_START = 0x3000000
-IWRAM_END = 0x3008000
+EWRAM_START = 0x200_0000
+EWRAM_END = 0x204_0000
+IWRAM_START = 0x300_0000
+IWRAM_END = 0x300_8000
 
 class RefType(Enum):
     BL = auto()

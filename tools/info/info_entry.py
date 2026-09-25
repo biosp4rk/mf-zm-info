@@ -103,8 +103,13 @@ class InfoEntry(ABC):
 
     @staticmethod
     def sort_entries(entries: list[InfoEntry]) -> list[InfoEntry]:
-        if isinstance(entries[0], (DataEntry, CodeEntry)):
-            if isinstance(entries[0].addr, int):
+        first = entries[0]
+        # Make sure all entries are the same type
+        assert all(type(e) is type(first) for e in entries)
+        if isinstance(first, (DataEntry, CodeEntry)):
+            # Make sure all addresses are the same type
+            assert all(type(e.addr) is type(first.addr) for e in entries)
+            if isinstance(first.addr, int):
                 return sorted(entries, key=lambda e: e.addr)
             else:
                 return InfoEntry._sort_by_addr(entries)

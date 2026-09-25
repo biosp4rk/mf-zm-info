@@ -40,6 +40,9 @@ from info.info_entry import *
 import info.info_file_utils as ifu
 
 
+EWRAM_START = 0x200_0000
+IWRAM_START = 0x300_0000
+
 DOC_STR_BRIEF = re.compile(r"@brief\s+(.+)")
 DOC_STR_PARAM = re.compile(r"@param\s+(\w+)\s+(.+)")
 DOC_STR_RETURN = re.compile(r"@return\s+(.+)")
@@ -620,7 +623,7 @@ class Extractor:
             for k, v in self.variables.items():
                 addr = elf_addrs.get(k)
                 if addr is not None:
-                    if addr >= 0x200_0000:
+                    if addr >= EWRAM_START:
                         decomp_entries[k] = v
                 elif k[0] == "g" and k[1].isupper():
                     decomp_entries[k] = v
@@ -630,7 +633,7 @@ class Extractor:
             for k, v in self.variables.items():
                 addr = elf_addrs.get(k)
                 if addr is not None:
-                    if addr < 0x200_0000:
+                    if 0xC0 <= addr < EWRAM_START:
                         decomp_entries[k] = v
                 elif k[0] == "s" and k[1].isupper():
                     decomp_entries[k] = v
@@ -803,7 +806,7 @@ class Extractor:
             else:
                 addr = elf_addrs.get(name)
             if addr is not None:
-                filename = "ewram" if addr < 0x300_0000 else "iwram"
+                filename = "ewram" if addr < IWRAM_START else "iwram"
         elif map_type == MAP_DATA:
             if entry is not None and entry.cat is not None:
                 filename = CAT_TO_STR[entry.cat]
