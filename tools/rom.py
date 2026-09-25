@@ -36,16 +36,16 @@ class Rom(object):
             self.region = REGION_C
         elif title == "METROIDAGBJ\0METJ":
             self.game = GAME_MF
-            self.region = REGION_MF_E_09_11
+            self.region = BETA_E
         elif title == "ZEROMISSIONEBMXE":
             self.game = GAME_ZM
             # Check if beta
             beta = self.read_8(0x238) == 0x2C
-            self.region = REGION_ZM_U_12_02 if beta else REGION_U
+            self.region = BETA_U if beta else REGION_U
         elif title == "ZEROMISSIONPBMXP":
             self.game = GAME_ZM
             beta = self.read_8(0x238) == 0xF0
-            self.region = REGION_ZM_E_01_14 if beta else REGION_E
+            self.region = BETA_E if beta else REGION_E
         elif title == "ZEROMISSIONJBMXJ":
             self.game = GAME_ZM
             self.region = REGION_J

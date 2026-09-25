@@ -17,6 +17,7 @@
 # Mac: arm-none-eabi-readelf
 
 # TODO:
+# - Keep ique and libgcc functions as separate files
 # - Include data/functions specific to debug and non-us regions
 # - Handle arrays that don't specify length
 # - Determine function lengths when adding new functions

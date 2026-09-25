@@ -10,7 +10,7 @@ from info.asset_type import (
 
 
 RegionInt = Union[int, dict[str, int]]
-"""Type for numbers that can vary by region (addr, size)"""
+"""Type for numbers that can vary by region (addr, size)."""
 
 TOKENIZER = TypeTokenizer()
 PARSER = TypeParser()
@@ -102,24 +102,44 @@ class InfoEntry(ABC):
         pass
 
     @staticmethod
-    def less_than(ri1: RegionInt, ri2: RegionInt) -> bool:
-        # Get region dictionaries
-        addr1 = ri1
-        addr2 = ri2
-        if isinstance(ri1, int):
-            addr1 = {r: ri1 for r in ALL_REGIONS}
-        if isinstance(ri2, int):
-            addr2 = {r: ri2 for r in ALL_REGIONS}
-        # Compare by first region containing both
+    def sort_entries(entries: list[InfoEntry]) -> list[InfoEntry]:
+        if isinstance(entries[0], (DataEntry, CodeEntry)):
+            if isinstance(entries[0].addr, int):
+                return sorted(entries, key=lambda e: e.addr)
+            else:
+                return InfoEntry._sort_by_addr(entries)
+        else:
+            return sorted(entries, key=lambda e: e.name)
+
+    @staticmethod
+    def _sort_by_addr(entries: list[AddrEntry]) -> list[AddrEntry]:
+        buckets: dict[str, list[AddrEntry]] = {r: [] for r in ALL_REGIONS}
+        for entry in entries:
+            region = next((r for r in ALL_REGIONS if r in entry.addr), None)
+            assert region is not None, f"Entry {entry.name} has unexpected region"
+            buckets[region].append(entry)
+        result: list[AddrEntry] = []
         for r in ALL_REGIONS:
-            if r in addr1 and r in addr2:
-                return addr1[r] < addr2[r]
-        # Entries are unique to each region,
-        # so they're not directly comparable;
-        # just compare averages instead
-        avg1 = sum(addr1.values()) / len(addr1)
-        avg2 = sum(addr2.values()) / len(addr2)
-        return avg1 < avg2
+            buckets[r].sort(key=lambda e: e.addr[r])
+            result = InfoEntry._merge_by_region(result, buckets[r], r)
+        return result
+
+    @staticmethod
+    def _merge_by_region(
+        existing: list[AddrEntry],
+        new: list[AddrEntry],
+        region: str
+    ) -> list[AddrEntry]:
+        result: list[AddrEntry] = []
+        i = 0
+        for entry in existing:
+            if region in entry.addr:
+                while i < len(new) and new[i].addr[region] <= entry.addr[region]:
+                    result.append(new[i])
+                    i += 1
+            result.append(entry)
+        result.extend(new[i:])
+        return result
 
 
 class TypedefEntry(InfoEntry):
@@ -138,9 +158,6 @@ class TypedefEntry(InfoEntry):
 
     def __str__(self) -> str:
         return f"{self.name}"
-
-    def __lt__(self, other: "TypedefEntry") -> bool:
-        return self.name < other.name
 
     @staticmethod
     def from_obj(obj: Any) -> "TypedefEntry":
@@ -361,9 +378,6 @@ class DataEntry(NamedVarEntry):
     def __str__(self) -> str:
         return f"{self.name}"
 
-    def __lt__(self, other: "DataEntry") -> bool:
-        return InfoEntry.less_than(self.addr, other.addr)
-
     def to_region(self, region: str) -> bool:
         # Check addr
         if isinstance(self.addr, dict):
@@ -436,9 +450,6 @@ class StructVarEntry(NamedVarEntry):
     def __str__(self) -> str:
         return f"{self.offset:X} {self.name}"
 
-    def __lt__(self, other: "StructVarEntry") -> bool:
-        return InfoEntry.less_than(self.offset, other.offset)
-
     def to_region(self, region: str) -> bool:
         # Check offset
         if isinstance(self.offset, dict):
@@ -506,9 +517,6 @@ class StructEntry(InfoEntry):
     def __str__(self) -> str:
         return self.name
 
-    def __lt__(self, other: "StructEntry") -> bool:
-        return self.name < other.name
-
     def c_str(self) -> str:
         lines = [f"struct {self.name} {{"]
         for v in self.vars:
@@ -565,9 +573,6 @@ class UnionEntry(InfoEntry):
 
     def __str__(self) -> str:
         return self.name
-
-    def __lt__(self, other: "UnionEntry") -> bool:
-        return self.name < other.name
 
     def c_str(self) -> str:
         lines = [f"union {self.name} {{"]
@@ -631,9 +636,6 @@ class CodeEntry(InfoEntry):
 
     def __str__(self) -> str:
         return self.name
-
-    def __lt__(self, other: "CodeEntry") -> bool:
-        return InfoEntry.less_than(self.addr, other.addr)
 
     def to_region(self, region: str) -> bool:
         # Check addr
@@ -700,9 +702,6 @@ class EnumValEntry(InfoEntry):
     def __str__(self) -> str:
         return f"{self.val:X} {self.name}"
 
-    def __lt__(self, other: "EnumValEntry") -> bool:
-        return self.val < other.val
-
     @staticmethod
     def from_obj(obj: Any) -> "EnumValEntry":
         return EnumValEntry(
@@ -736,9 +735,6 @@ class EnumEntry(InfoEntry):
     def __str__(self) -> str:
         return self.name
 
-    def __lt__(self, other: "EnumEntry") -> bool:
-        return self.name < other.name
-
     def c_str(self) -> str:
         lines = [f"enum {self.name} {{"]
         for v in self.vals:
@@ -771,3 +767,4 @@ class EnumEntry(InfoEntry):
 
 
 NamedEntry = Union[NamedVarEntry, TypedefEntry, StructEntry, UnionEntry, EnumEntry, EnumValEntry]
+AddrEntry = Union[DataEntry, CodeEntry]

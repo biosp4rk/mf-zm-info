@@ -24,16 +24,15 @@ REGION_U = "U"
 REGION_E = "E"
 REGION_J = "J"
 REGION_C = "C"
-# MF
-REGION_MF_E_09_11 = "EB"
-REGION_MF_E_09_16 = "EB" # Virtually identical to 09/11
-MF_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, REGION_MF_E_09_11)
-# ZM
-REGION_ZM_U_12_02 = "UB"
-REGION_ZM_E_01_14 = "EB"
-ZM_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, REGION_ZM_U_12_02, REGION_ZM_E_01_14)
+BETA_U = "UB"
+BETA_E = "EB"
 
-ALL_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C)
+# Fusion has two E betas, 9/11 and 9/16 (they are virtually identical)
+MF_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, BETA_E)
+# Zero Mission has two betas, U 12/02 and E 1/14
+ZM_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, BETA_U, BETA_E)
+
+ALL_REGIONS = (REGION_U, REGION_E, REGION_J, REGION_C, "B")
 
 def game_regions(game: str) -> str:
     if game == GAME_MF:

@@ -121,7 +121,7 @@ def get_info_file_from_yaml(
     # Filter by region
     if region is not None:
         ifile = [e for e in ifile if e.to_region(region)]
-    ifile.sort()
+    ifile = InfoEntry.sort_entries(ifile)
     return ifile
 
 
@@ -141,7 +141,7 @@ def get_info_file_from_json(
     # Filter by region
     if region is not None:
         ifile = [e for e in ifile if e.to_region(region)]
-    ifile.sort()
+    ifile = InfoEntry.sort_entries(ifile)
     return ifile
 
 

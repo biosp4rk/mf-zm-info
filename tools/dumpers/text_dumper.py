@@ -213,13 +213,9 @@ if __name__ == "__main__":
     addr = args.addr
 
     region = rom.region
-    if region == REGION_ZM_U_12_02:
+    if region == BETA_U:
         region = REGION_U
-    elif (
-        region == REGION_ZM_E_01_14 or
-        region == REGION_MF_E_09_11 or
-        region == REGION_MF_E_09_11
-    ):
+    elif region == BETA_E:
         region = REGION_E
     char_map = get_char_map(rom.game, region)
     text = get_text(char_map, rom, addr, TextFormat.DECOMP)
