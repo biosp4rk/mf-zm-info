@@ -4,6 +4,7 @@
 
 import argparse
 from enum import Enum, auto
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -29,17 +30,21 @@ class RefType(Enum):
 
 
 class Ref:
+    key: str = None
+
     def __init__(self, addr: int, name: str, offset: int):
         assert (name is None) == (offset is None)
         self.addr = addr
         self.name = name
         self.offset = offset
 
-    def to_obj(self) -> Any:
+    def to_obj(self, include_addr: bool) -> Any:
         raise NotImplementedError()
 
 
 class BlRef(Ref):
+    key = "call"
+
     def __init__(self, addr: int, name: str = None, offset: int = None):
         super().__init__(addr, name, offset)
 
@@ -58,8 +63,10 @@ class BlRef(Ref):
             items.append(f"{self.offset:X}")
         return ",".join(items)
 
-    def to_obj(self) -> Any:
-        obj = [("addr", self.addr)]
+    def to_obj(self, include_addr: bool) -> Any:
+        obj = []
+        if include_addr:
+            obj.append(("addr", self.addr))
         if self.name:
             obj.append(("name", self.name))
             obj.append(("offset", self.offset))
@@ -67,6 +74,8 @@ class BlRef(Ref):
 
 
 class PoolRef(Ref):
+    key = "pool"
+
     def __init__(self,
         addr: int,
         ldrs: list[int],
@@ -92,8 +101,10 @@ class PoolRef(Ref):
             items.append(f"{self.offset:X}")
         return ",".join(items)
     
-    def to_obj(self) -> Any:
-        obj = [("addr", self.addr)]
+    def to_obj(self, include_addr: bool) -> Any:
+        obj = []
+        if include_addr:
+            obj.append(("addr", self.addr))
         if self.name:
             obj.append(("name", self.name))
             obj.append(("offset", self.offset))
@@ -101,6 +112,8 @@ class PoolRef(Ref):
 
 
 class DataRef(Ref):
+    key = "data"
+
     def __init__(self,
         addr: int,
         name: str = None,
@@ -128,8 +141,10 @@ class DataRef(Ref):
             items.append(f"{self.offset:X}")
         return ",".join(items)
 
-    def to_obj(self) -> Any:
-        obj = [("addr", self.addr)]
+    def to_obj(self, include_addr: bool) -> Any:
+        obj = []
+        if include_addr:
+            obj.append(("addr", self.addr))
         if self.name:
             obj.append(("name", self.name))
             obj.append(("index", self.index))
@@ -143,7 +158,7 @@ class References(object):
         self.include_ram = include_ram
         self.info = GameInfo(rom.game, rom.region)
 
-    def find_all(self) -> list[tuple[str, list[Ref]]]:
+    def find_all(self) -> dict[int, list[Ref]]:
         found_refs: dict[int, list[Ref]] = {}
         info = self.info
         rom = self.rom
@@ -185,14 +200,7 @@ class References(object):
                 self.find_data_ref(found_refs, addr, entry.type, entry)
                 addr += entry.type.get_size(info.sizes, info.types)
 
-        # Get all code and data names
-        entry_names = {}
-        for entry in info.code + info.data + info.ram:
-            entry_names[entry.addr] = entry.name
-        return [
-            (entry_names.get(addr, f"{addr:X}"), ref)
-            for addr, ref in sorted(found_refs.items())
-        ]
+        return found_refs
 
     def find(self, addr: int) -> tuple[list[BlRef], list[PoolRef], list[DataRef]]:
         if addr >= ROM_OFFSET and addr < ROM_END_MAX:
@@ -204,7 +212,7 @@ class References(object):
         bl_refs: list[BlRef] = []
         pool_refs: list[PoolRef] = []
         data_refs: list[DataRef] = []
-        for _, refs in all_refs:
+        for refs in all_refs.values():
             for ref in refs:
                 if isinstance(ref, BlRef):
                     inst = ThumbInstruct(self.rom, ref.addr)
@@ -377,59 +385,51 @@ def print_refs(bls: list[BlRef], pools: list[PoolRef], datas: list[DataRef]) -> 
     print("\n".join(lines))
 
 
-def print_all_refs_locs(all_refs: list[tuple[str, list[Ref]]]) -> None:
-    bl_locs: list[tuple[int, str]] = []
-    ptr_locs: list[tuple[int, str]] = []
-    for name, refs in all_refs:
-        for ref in refs:
-            if isinstance(ref, BlRef):
-                bl_locs.append((ref.addr, name + " " + str(ref.name)))
-            else:
-                ptr_locs.append((ref.addr, name + " " + str(ref.name)))
-    bl_locs.sort()
-    ptr_locs.sort()
-    print("# Function calls")
-    for loc, name in bl_locs:
-        print(f"{loc:X} ; {name}")
-    print("\n# Pointers")
-    for loc, name in ptr_locs:
-        print(f"{loc:X} ; {name}")
-
-
-def print_all_refs_yaml(all_refs: list[tuple[str, list[Ref]]]) -> None:
-    kinds = {
-        BlRef: "call",
-        PoolRef: "pool",
-        DataRef: "data"
+def output_all_refs(out_dir: str, all_refs: dict[int, list[Ref]], info: GameInfo) -> None:
+    entry_names = {
+        "ram": {e.addr: e.name for e in info.ram},
+        "code": {e.addr: e.name for e in info.code},
+        "data": {e.addr: e.name for e in info.data}
     }
-    all_entries = {}
-    for name, refs in all_refs:
-        entry = {}
-        for ref in refs:
-            key = kinds[type(ref)]
-            if key not in entry:
-                entry[key] = []
-            entry[key].append(ref.to_obj())
-        all_entries[name] = entry
-    print(yaml.safe_dump(all_entries, sort_keys=False))    
+    results = {mt: {} for mt in entry_names}
+    for addr, refs in sorted(all_refs.items()):
+        for map_type, names in entry_names.items():
+            name = names.get(addr)
+            if name is not None:
+                entry: dict[str, list] = {}
+                for ref in refs:
+                    if ref.key not in entry:
+                        entry[ref.key] = []
+                    entry[ref.key].append(ref.to_obj(False))
+                results[map_type][name] = entry
+                break
+    out_path = Path(out_dir)
+    out_path.mkdir(exist_ok=True)
+    for map_type, entries in results.items():
+        with open(out_path.joinpath(f"{map_type}.yml"), "w") as f:
+            yaml.safe_dump(entries, f, sort_keys=False)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     apu.add_rom(parser)
-    group = parser.add_mutually_exclusive_group(required=True)
+    subparsers = parser.add_subparsers(dest="command")
+
+    single_parser = subparsers.add_parser("single")
+    group = single_parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-a", "--addr", type=apu.hex_arg)
     group.add_argument("-n", "--name", type=str)
-    group.add_argument("--all", action="store_true")
+
+    all_parser = subparsers.add_parser("all")
+    all_parser.add_argument("out_dir", type=str)
 
     args = parser.parse_args()
     rom = args.rom_path
     refs = References(rom)
 
-    if args.all:
+    if args.command == "all":
         all_refs = refs.find_all()
-        print_all_refs_locs(all_refs)
-        # print_all_refs_yaml(all_refs)
+        output_all_refs(args.out_dir, all_refs, refs.info)
     else:
         # Get address
         addr = None

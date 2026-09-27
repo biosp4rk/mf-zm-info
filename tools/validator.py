@@ -56,14 +56,25 @@ def output_yamls() -> None:
 def output_jsons() -> None:
     for game in GAMES:
         json_dir = os.path.join(JSON_PATH, game)
-        # Convert each to json
+        # Convert each map file to json
         for map_type in MAP_TYPES:
             data = ifu.get_info_file_from_yaml(game, map_type)
             obj = ifu.info_file_to_obj(map_type, data)
-            p = os.path.join(json_dir, map_type + JSON_EXT)
-            with open(p, "w") as f:
+            path = os.path.join(json_dir, map_type + JSON_EXT)
+            with open(path, "w") as f:
                 json.dump(obj, f, ensure_ascii=False)
     print("Output JSON files")
+
+
+def output_refs_jsons() -> None:
+    for game in GAMES:
+        json_dir = os.path.join(JSON_PATH, game)
+        for map_type in [MAP_RAM, MAP_CODE, MAP_DATA]:
+            path = os.path.join(YAML_PATH, game, "refs", f"{map_type}{YAML_EXT}")
+            obj = ifu.load_yaml_file(path)
+            path = os.path.join(json_dir, f"{map_type}_refs{JSON_EXT}")
+            with open(path, "w") as f:
+                json.dump(obj, f, ensure_ascii=False)
 
 
 if __name__ == "__main__":

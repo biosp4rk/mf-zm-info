@@ -10,9 +10,6 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "addr": {
-                                "$ref": "urn:definitions#/definitions/RegionInt"
-                            },
                             "name": {
                                 "$ref": "urn:definitions#/definitions/Name"
                             },
@@ -20,7 +17,7 @@
                                 "$ref": "urn:definitions#/definitions/RegionInt"
                             }
                         },
-                        "required": ["addr"],
+                        "required": ["name", "offset"],
                         "additionalProperties": false
                     },
                     "minItems": 1
@@ -30,9 +27,6 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "addr": {
-                                "$ref": "urn:definitions#/definitions/RegionInt"
-                            },
                             "name": {
                                 "$ref": "urn:definitions#/definitions/Name"
                             },
@@ -40,7 +34,7 @@
                                 "$ref": "urn:definitions#/definitions/RegionInt"
                             }
                         },
-                        "required": ["addr"],
+                        "required": ["name", "offset"],
                         "additionalProperties": false
                     },
                     "minItems": 1
@@ -50,9 +44,6 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "addr": {
-                                "$ref": "urn:definitions#/definitions/RegionInt"
-                            },
                             "name": {
                                 "$ref": "urn:definitions#/definitions/Name"
                             },
@@ -63,7 +54,7 @@
                                 "$ref": "urn:definitions#/definitions/RegionInt"
                             }
                         },
-                        "required": ["addr"],
+                        "required": ["name", "index", "offset"],
                         "additionalProperties": false
                     },
                     "minItems": 1
