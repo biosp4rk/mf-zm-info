@@ -77,7 +77,7 @@ def dump_bytes(
     int_format = IntFormat.HEX,
     per_line: int = None,
     commas: bool = False
-):
+) -> str:
     size = SIZES[int_type]
     read_val = READ_FUNCS[int_type]
     signed = int_type in {IntType.S8, IntType.S16, IntType.S32}
@@ -90,12 +90,14 @@ def dump_bytes(
 
     end = addr + length
     inc = per_line * size
+    lines: list[str] = []
     for i in range(addr, end, inc):
         j = min(i + inc, end)
-        print(
+        lines.append(
             sep.join(num_str(read_val(rom, a, signed), size, int_format)
             for a in range(i, j, size)) + line_end
         )
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":
@@ -120,4 +122,4 @@ if __name__ == "__main__":
         "hex": IntFormat.HEX,
         "0x": IntFormat.HEX_0X
     }[args.format.lower()]
-    dump_bytes(rom, addr, length, int_type, int_format, args.per_line, args.commas)
+    print(dump_bytes(rom, addr, length, int_type, int_format, args.per_line, args.commas))
