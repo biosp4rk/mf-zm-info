@@ -240,7 +240,7 @@
 - name: gSpriteset
   type: u8
   addr: 0x3000078
-  loc: include/structs/room.h:139
+  loc: include/structs/room.h:145
 - name: gCurrentClipdataAffectingAction
   type: ClipdataAffectingAction
   addr: 0x3000079
@@ -248,7 +248,7 @@
 - name: gSpritesetEntryUsed
   type: u8
   addr: 0x300007A
-  loc: include/structs/room.h:140
+  loc: include/structs/room.h:146
 - name: gDoorUnlockTimer
   type: s8
   addr: 0x300007B
@@ -256,7 +256,7 @@
 - name: gDisableDrawingSprites
   type: u8
   addr: 0x300007C
-  loc: include/structs/sprite.h:139
+  loc: include/structs/sprite.h:136
 - name: gCurrentCutscene
   type: Cutscene
   addr: 0x300007D
@@ -285,7 +285,7 @@
 - name: gCurrentRoomEntry
   type: struct RoomEntry
   addr: 0x30000BC
-  loc: include/structs/room.h:147
+  loc: include/structs/room.h:153
 - name: gCurrentAffectingClipdata
   type: struct CurrentAffectingClip
   addr: 0x30000DC
@@ -293,11 +293,11 @@
 - name: gBackgroundPositions
   type: struct BackgroundPositions
   addr: 0x30000E4
-  loc: include/structs/room.h:148
+  loc: include/structs/room.h:154
 - name: gWaitingSpacePiratesPosition
   type: struct Coordinates
   addr: 0x30000F8
-  loc: include/structs/room.h:141
+  loc: include/structs/room.h:147
 - name: gBg2Movement
   type: struct BG2Movement
   addr: 0x30000FC
@@ -360,38 +360,38 @@
 - name: gAlarmTimer
   type: u16
   addr: 0x30001A8
-  loc: include/structs/sprite.h:125
+  loc: include/structs/sprite.h:122
 - name: gSpriteData
   type: struct SpriteData
   count: 0x18
   addr: 0x30001AC
-  loc: include/structs/sprite.h:126
+  loc: include/structs/sprite.h:123
 - name: gSpritesetSpritesId
   type: u8
   count: 0xF
   addr: 0x30006EC
-  loc: include/structs/sprite.h:127
+  loc: include/structs/sprite.h:124
 - name: gSpritesetGfxSlots
   type: u8
   count: 0xF
   addr: 0x30006FB
-  loc: include/structs/sprite.h:128
+  loc: include/structs/sprite.h:125
 - name: gSubSpriteData1
   type: struct SubSpriteData
   addr: 0x300070C
-  loc: include/structs/sprite.h:129
+  loc: include/structs/sprite.h:126
 - name: gSubSpriteData2
   type: struct SubSpriteData
   addr: 0x3000720
-  loc: include/structs/sprite.h:130
+  loc: include/structs/sprite.h:127
 - name: gParasiteRelated
   type: u8
   addr: 0x3000734
-  loc: include/structs/sprite.h:131
+  loc: include/structs/sprite.h:128
 - name: gCurrentSprite
   type: struct SpriteData
   addr: 0x3000738
-  loc: include/structs/sprite.h:132
+  loc: include/structs/sprite.h:129
 - name: gSpriteDebris
   type: struct SpriteDebris
   count: 0x8
@@ -400,29 +400,29 @@
 - name: gPreviousVerticalCollisionCheck
   type: u8
   addr: 0x30007F0
-  loc: include/structs/sprite.h:133
+  loc: include/structs/sprite.h:130
 - name: gPreviousCollisionCheck
   type: u8
   addr: 0x30007F1
-  loc: include/structs/sprite.h:134
+  loc: include/structs/sprite.h:131
 - name: gIgnoreSamusAndSpriteCollision
   type: u8
   cat: bool
   addr: 0x30007F2
-  loc: include/structs/sprite.h:135
+  loc: include/structs/sprite.h:132
 - name: gSpriteDrawOrder
   type: u8
   count: 0x18
   addr: 0x30007F3
-  loc: include/structs/sprite.h:136
+  loc: include/structs/sprite.h:133
 - name: gBossWork
   type: struct BossWork
   addr: 0x300080C
-  loc: include/structs/sprite.h:137
+  loc: include/structs/sprite.h:134
 - name: gSpriteRng
   type: u8
   addr: 0x300083C
-  loc: include/structs/sprite.h:138
+  loc: include/structs/sprite.h:135
 - name: gParticleEffects
   type: struct ParticleEffect
   count: 0x10
@@ -1077,11 +1077,11 @@
 - name: gTilesetTransparentColor
   type: struct TilesetTransparentColor
   addr: 0x30054FC
-  loc: include/structs/room.h:25
+  loc: include/structs/room.h:31
 - name: gUnusedStruct_3005504
   type: struct Unused_3005504
   addr: 0x3005504
-  loc: include/structs/room.h:150
+  loc: include/structs/room.h:156
 - name: gSamusDoorPositionOffset
   type: s16
   addr: 0x300550C
@@ -1089,7 +1089,7 @@
 - name: gDestinationRoom
   type: u8
   addr: 0x300550E
-  loc: include/structs/room.h:152
+  loc: include/structs/room.h:158
 - name: gBg3CntDuringDoorTransition
   type: u16
   addr: 0x3005510
@@ -1113,11 +1113,11 @@
 - name: gRainSoundEffect
   type: u16
   addr: 0x3005518
-  loc: include/structs/room.h:144
+  loc: include/structs/room.h:150
 - name: gWaterMovement
   type: struct WaterMovement
   addr: 0x300551C
-  loc: include/structs/room.h:145
+  loc: include/structs/room.h:151
 - name: gColorFading
   type: struct ColorFading
   addr: 0x3005520
@@ -1176,7 +1176,7 @@
 - name: gAnimatedGraphicsEntry
   type: struct AnimatedGraphicsEntry
   addr: 0x30056F4
-  loc: include/structs/room.h:18
+  loc: include/structs/room.h:24
 - name: gBackgroundEffect
   type: struct BackgroundEffect
   addr: 0x30056F8
@@ -1184,7 +1184,7 @@
 - name: gScrollCounter
   type: u8
   addr: 0x3005700
-  loc: include/structs/room.h:146
+  loc: include/structs/room.h:152
 - name: gClipdataCodePointer
   type: ClipFunc_T
   addr: 0x3005704
