@@ -19,6 +19,9 @@ class GameInfo(object):
         source: InfoSource = InfoSource.JSON
     ):
         self.game = game
+
+        if region in [BETA_U, BETA_E]:
+            region = "B"
         self.region = region
 
         # Get info from data files

@@ -202,12 +202,14 @@ def compare(func_a: Function, func_b: Function) -> FuncDiff:
 
 def compare_all(rom_a: Rom, rom_b: Rom) -> None:
     region_a = rom_a.region
-    region_b = rom_b.region
-    assert rom_a.game == rom_b.game and region_a != region_b
+    region_b = "B"
+    if rom_a.game != rom_b.game or region_a == region_b:
+        raise ValueError("Must compare different regions of the same game")
     info = GameInfo(rom_a.game)
     for entry in info.code:
         if entry.mode == CodeMode.Arm:
             continue
+        # Get addresses and compare functions
         addr_a = entry.addr.get(region_a)
         addr_b = entry.addr.get(region_b)
         msg = None
@@ -221,11 +223,26 @@ def compare_all(rom_a: Rom, rom_b: Rom) -> None:
             msg = f"{region_a} only"
         elif addr_b is not None:
             msg = f"{region_b} only"
-        if msg is not None:
-            addr_str_a = "" if addr_a is None else f"{addr_a:X}"
-            addr_str_b = "" if addr_b is None else f"{addr_b:X}"
-            print("\t".join([entry.name, msg, addr_str_a, addr_str_b]))
-
+        else:
+            # Function is not in either
+            continue
+        if msg is None:
+            # No difference found
+            continue
+        # Get size
+        size = entry.size
+        if isinstance(size, dict):
+            size_a = size.get(region_a)
+            size_b = size.get(region_b)
+        else:
+            size_a = size if addr_a else None
+            size_b = size if addr_b else None
+        # Print difference
+        addr_str_a = "-" if addr_a is None else f"{addr_a:X}"
+        addr_str_b = "-" if addr_b is None else f"{addr_b:X}"
+        size_str_a = "-" if size_a is None else f"{size_a:X}"
+        size_str_b = "-" if size_b is None else f"{size_b:X}"
+        print("\t".join([entry.name, msg, addr_str_a, size_str_a, addr_str_b, size_str_b]))
 
 
 def all_functions(rom: Rom) -> Iterator[Function]:

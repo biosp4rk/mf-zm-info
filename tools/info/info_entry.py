@@ -103,6 +103,8 @@ class InfoEntry(ABC):
 
     @staticmethod
     def sort_entries(entries: list[InfoEntry]) -> list[InfoEntry]:
+        if len(entries) == 0:
+            return entries
         first = entries[0]
         # Make sure all entries are the same type
         assert all(type(e) is type(first) for e in entries)
