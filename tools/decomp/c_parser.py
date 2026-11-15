@@ -17,7 +17,6 @@
 # Mac: arm-none-eabi-readelf
 
 # TODO:
-# - Keep ique and libgcc functions as separate files
 # - Include data/functions specific to debug and non-us regions
 # - Handle arrays that don't specify length
 # - Determine function lengths when adding new functions
@@ -54,6 +53,8 @@ SNAPSHOT_ATTRS = [
     "structs", "unions", "locations", "doc_strs", "warnings"
 ]
 
+KEEP_CODE_FILES = ["libgcc", "ique"]
+
 
 def get_files_with_ext(dir: str, ext: str, exclude: set[str] = None) -> list[str]:
     """Recursively search for files with the given extension."""
@@ -85,6 +86,7 @@ class Extractor:
         self.doc_strs: dict[str, list[str]] = {}
         self.enum_vals: dict[str, int] = {}
         self.sizes: dict[str, int] = {}
+        self.kept_code_files: dict[str, str] = {}
 
     def extract(self,
         game: str,
@@ -110,11 +112,22 @@ class Extractor:
         # Update yaml files
         print("Loading existing entries...")
         info = GameInfo(game, source=InfoSource.YAML)
+        self._load_kept_code_files(game)
         print("Updating yaml files...")
         for map_type in MAP_TYPES:
             self._write_entries(map_type, region, info, elf_names, elf_addrs)
         self._log_warnings()
-    
+
+    def _load_kept_code_files(self, game: str) -> None:
+        """Maps names of existing code entries to the file they must stay in."""
+        self.kept_code_files = {}
+        for filename in KEEP_CODE_FILES:
+            path = os.path.join(YAML_PATH, game, MAP_CODE, filename + YAML_EXT)
+            if not os.path.isfile(path):
+                continue
+            for obj in ifu.load_yaml_file(path) or []:
+                self.kept_code_files[obj["name"]] = filename
+
     def _log_warnings(self) -> None:
         if self.warnings:
             self.warnings.sort()
@@ -811,6 +824,8 @@ class Extractor:
             if entry is not None and entry.cat is not None:
                 filename = CAT_TO_STR[entry.cat]
         elif map_type == MAP_CODE:
+            if entry is not None and entry.name in self.kept_code_files:
+                return self.kept_code_files[entry.name]
             loc = self.locations.get(name)
             if loc is None and entry is not None and entry.loc is not None:
                 loc = entry.loc
