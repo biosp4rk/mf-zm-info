@@ -789,7 +789,7 @@ class Extractor:
             map_dir = os.path.join(self.output_path, map_type)
             Path(map_dir).mkdir(parents=True, exist_ok=True)
         for filename, data in entries.items():
-            data.sort()
+            data = InfoEntry.sort_entries(data)
             path = os.path.join(map_dir, filename + YAML_EXT)
             if not self.dry_run:
                 ifu.write_info_file(path, map_type, data)
