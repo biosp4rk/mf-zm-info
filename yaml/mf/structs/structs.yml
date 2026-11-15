@@ -186,7 +186,7 @@
   - name: yOffset
     type: u16
     offset: 0x6
-  loc: include/structs/room.h:62
+  loc: include/structs/room.h:63
 - name: Bg3Movement
   size: 0x8
   vars:
@@ -202,7 +202,7 @@
   - name: xOffset
     type: u16
     offset: 0x4
-  loc: include/structs/room.h:53
+  loc: include/structs/room.h:54
 - name: BlockBehavior
   size: 0x4
   vars:
@@ -350,7 +350,7 @@
   - name: pause
     type: u16
     offset: 0x6
-  loc: include/globals.h:228
+  loc: include/globals.h:218
 - name: Camera
   size: 0x10
   vars:
@@ -522,6 +522,135 @@
     type: u16
     offset: 0x2
   loc: include/structs/clipdata.h:26
+- name: CutsceneData
+  size: 0x540
+  vars:
+  - name: pText
+    type: const u16*
+    offset: 0x0
+  - name: pText2
+    type: const u16*
+    offset: 0x4
+  - name: stage
+    type: u16
+    offset: 0x8
+  - name: unk_A
+    type: u16
+    offset: 0xA
+  - name: unk_C
+    type: u16
+    offset: 0xC
+  - name: unk_E
+    type: u16
+    offset: 0xE
+  - name: unk_10
+    type: u16
+    offset: 0x10
+  - name: unk_12
+    type: u16
+    offset: 0x12
+  - name: unk_14
+    type: u8
+    count: 0xFC
+    offset: 0x14
+  - name: paletteTransferFlag
+    type: boolu8
+    offset: 0x110
+  - name: paletteTransferRow
+    type: u8
+    offset: 0x111
+  - name: unk_112
+    type: u8
+    count: 0x1A
+    offset: 0x112
+  - name: unk_12C
+    type: u8
+    offset: 0x12C
+  - name: unk_12D
+    type: u8
+    offset: 0x12D
+  - name: unk_12E
+    type: u8
+    count: 0x1A
+    offset: 0x12E
+  - name: unk_148
+    type: u8
+    offset: 0x148
+  - name: unk_149
+    type: u8
+    offset: 0x149
+  - name: unk_14A
+    type: u8
+    count: 0xA6
+    offset: 0x14A
+  - name: unk_1F0
+    type: u8
+    offset: 0x1F0
+  - name: unk_1F1
+    type: u8
+    offset: 0x1F1
+  - name: unk_1F2
+    type: u8
+    offset: 0x1F2
+  - name: unk_1F3
+    type: u8
+    offset: 0x1F3
+  - name: unk_1F4
+    type: u8
+    offset: 0x1F4
+  - name: unk_1F5
+    type: u8
+    offset: 0x1F5
+  - name: unk_1F6
+    type: u8
+    count: 0x16
+    offset: 0x1F6
+  - name: unk_20C
+    type: u16
+    offset: 0x20C
+  - name: unk_20E
+    type: u16
+    offset: 0x20E
+  - name: timer
+    type: u16
+    offset: 0x210
+  - name: unk_212
+    type: u8
+    offset: 0x212
+  - name: unk_213
+    type: u8
+    offset: 0x213
+  - name: subStage
+    type: u8
+    offset: 0x214
+  - name: unk_215
+    type: u8
+    offset: 0x215
+  - name: unk_216
+    type: s8
+    offset: 0x216
+  - name: unk_217
+    type: s8
+    offset: 0x217
+  - name: unk_218
+    type: u8
+    offset: 0x218
+  - name: unk_219
+    type: u8
+    count: 0x3
+    offset: 0x219
+  - name: oam
+    type: struct SpecialCutsceneOam
+    count: 0x14
+    offset: 0x21C
+  - name: hBlankCode
+    type: u8
+    count: 0x50
+    offset: 0x4EC
+  - name: hBlankCodePointer
+    type: u8*
+    offset: 0x53C
+  loc: include/structs/cutscene.h:38
 - name: DefaultTransparency
   size: 0x8
   vars:
@@ -537,7 +666,7 @@
   - name: bldcnt
     type: u16
     offset: 0x4
-  loc: include/globals.h:217
+  loc: include/globals.h:207
 - name: DemoData
   size: 0x10
   vars:
@@ -898,7 +1027,7 @@
   - name: timer
     type: u16
     offset: 0x2
-  loc: include/globals.h:294
+  loc: include/globals.h:284
 - name: EventLocationAndNavigationInfo
   size: 0xC
   vars:
@@ -1051,7 +1180,20 @@
     type: u8
     offset: 0x7
     bits: 0x1
-  loc: include/globals.h:161
+  loc: include/structs/haze.h:9
+- name: HazeLoop
+  size: 0x4
+  vars:
+  - name: timer
+    type: s16
+    offset: 0x0
+  - name: unk_2
+    type: u8
+    offset: 0x2
+  - name: unk_3
+    type: u8
+    offset: 0x3
+  loc: include/structs/haze.h:17
 - name: HorizontalTilemap
   size: 0x78
   vars:
@@ -1068,14 +1210,18 @@
     type: u16
     count: 0x38
     offset: 0x6
-  loc: include/structs/room.h:72
+  loc: include/structs/room.h:73
 - name: InGameData
-  size: 0x280
+  size: 0x480
   vars:
   - name: clipdataCode
     type: u8
     count: 0x280
     offset: 0x0
+  - name: hazeCode
+    type: u8
+    count: 0x200
+    offset: 0x280
   loc: include/globals.h:12
 - name: InGameTime
   size: 0x4
@@ -1092,7 +1238,7 @@
   - name: frames
     type: u8
     offset: 0x3
-  loc: include/globals.h:173
+  loc: include/globals.h:163
 - name: InGameTimer
   size: 0x4
   vars:
@@ -1239,7 +1385,7 @@
   - name: unk_10
     type: u16
     offset: 0x10
-  loc: include/globals.h:201
+  loc: include/globals.h:191
 - name: LastTankCollected
   size: 0x4
   vars:
@@ -1266,6 +1412,16 @@
     type: u16
     offset: 0x4
   loc: include/structs/scroll.h:70
+- name: MaintainedInput
+  size: 0x4
+  vars:
+  - name: delay
+    type: u8
+    offset: 0x0
+  - name: set
+    type: u8
+    offset: 0x1
+  loc: include/structs/menus/pause_screen.h:178
 - name: MenuOam
   size: 0xC
   vars:
@@ -1296,10 +1452,27 @@
   - name: oamId
     type: u8
     offset: 0xA
-  - name: status
+  - name: priority
     type: u8
     offset: 0xB
-  loc: include/structs/menus/pause_screen.h:7
+    bits: 0x2
+  - name: objMode
+    type: u8
+    offset: 0xB
+    bits: 0x2
+  - name: ended
+    type: u8
+    offset: 0xB
+    bits: 0x1
+  - name: notDrawn
+    type: u8
+    offset: 0xB
+    bits: 0x1
+  - name: exists
+    type: u8
+    offset: 0xB
+    bits: 0x2
+  loc: include/structs/menus/pause_screen.h:8
 - name: MonologueEvent
   size: 0x8
   vars:
@@ -1616,6 +1789,22 @@
     offset: 0x7
     bits: 0x1
   loc: include/oam.h:111
+- name: PSD_28
+  size: 0x4
+  vars:
+  - name: unk_0
+    type: u8
+    offset: 0x0
+  - name: unk_1
+    type: u8
+    offset: 0x1
+  - name: unk_2
+    type: u8
+    offset: 0x2
+  - name: unk_3
+    type: u8
+    offset: 0x3
+  loc: include/structs/menus/pause_screen.h:25
 - name: ParticleEffect
   size: 0xC
   vars:
@@ -1714,7 +1903,7 @@
   - name: timer
     type: u8
     offset: 0x6
-  - name: pauseDebugEditingValue
+  - name: subMenuStage
     type: u8
     offset: 0x7
   - name: unk_8
@@ -1788,17 +1977,8 @@
     type: u8
     offset: 0x27
   - name: unk_28
-    type: u8
+    type: struct PSD_28
     offset: 0x28
-  - name: unk_29
-    type: u8
-    offset: 0x29
-  - name: unk_2A
-    type: u8
-    offset: 0x2A
-  - name: unk_2B
-    type: u8
-    offset: 0x2B
   - name: oam
     type: struct MenuOam
     count: 0x28
@@ -2139,14 +2319,14 @@
   - name: unk_284
     type: u8
     offset: 0x284
-  loc: include/structs/menus/pause_screen.h:20
+  loc: include/structs/menus/pause_screen.h:32
 - name: PowerBomb
   size: 0x14
   vars:
   - name: animationState
     type: u8
     offset: 0x0
-  - name: unk_1
+  - name: stage
     type: u8
     offset: 0x1
   - name: semiMinorAxis
@@ -2182,7 +2362,7 @@
   - name: unk_12
     type: u8
     offset: 0x12
-  loc: include/structs/power_bomb.h:7
+  loc: include/structs/power_bomb.h:17
 - name: ProjectileData
   size: 0x20
   vars:
@@ -2424,7 +2604,7 @@
   - name: animatedPalette
     type: u8
     offset: 0x1B
-  loc: include/structs/room.h:18
+  loc: include/structs/room.h:19
 - name: RoomEntryRom
   size: 0x3C
   vars:
@@ -2503,7 +2683,7 @@
   - name: musicTrack
     type: u16
     offset: 0x3A
-  loc: include/structs/room.h:99
+  loc: include/structs/room.h:100
 - name: SaXAnimationData
   size: 0xC
   vars:
@@ -3024,7 +3204,7 @@
   - name: bottom
     type: u16
     offset: 0x6
-  loc: include/structs/room.h:44
+  loc: include/structs/room.h:45
 - name: ScreenShake
   size: 0x4
   vars:
@@ -3248,12 +3428,12 @@
   - name: unk_17
     type: u8
     offset: 0x17
-  - name: unk_18_0
-    type: u8
+  - name: isDrawn
+    type: boolu32
     offset: 0x18
     bits: 0x1
   - name: affineMode
-    type: u8
+    type: u32
     offset: 0x18
     bits: 0x2
   - name: unk_18_3
@@ -3288,7 +3468,7 @@
   - name: pFunction
     type: void*
     offset: 0x20
-  loc: include/structs/cutscene.h:6
+  loc: include/structs/cutscene.h:8
 - name: SpriteData
   size: 0x38
   vars:
@@ -3527,16 +3707,19 @@
   - name: animatedPalette
     type: u8
     offset: 0x11
-  loc: include/structs/room.h:90
+  loc: include/structs/room.h:91
 - name: TilesetTransparentColor
-  size: 0x4
+  size: 0x8
   vars:
   - name: transparentColor
     type: u16
     offset: 0x0
-  - name: field_2
+  - name: unk_2
     type: u16
     offset: 0x2
+  - name: unk_4
+    type: u16
+    offset: 0x4
   loc: include/structs/room.h:11
 - name: TitleScreenData
   size: 0x6C
@@ -3930,7 +4113,7 @@
   - name: unk_6
     type: u16
     offset: 0x6
-  loc: include/structs/room.h:139
+  loc: include/structs/room.h:140
 - name: Unk_3004e44
   size: 0x4
   vars:
@@ -3945,7 +4128,7 @@
   - name: unk_1
     type: u8
     offset: 0x1
-  loc: include/globals.h:286
+  loc: include/globals.h:276
 - name: Unk_3004e4c
   size: 0xC
   vars:
@@ -3973,7 +4156,7 @@
     type: u16
     count: 0x4C
     offset: 0x6
-  loc: include/structs/room.h:81
+  loc: include/structs/room.h:82
 - name: Voice
   size: 0xC
   vars:
@@ -4017,7 +4200,7 @@
   - name: unk_8
     type: s16
     offset: 0x8
-  loc: include/structs/room.h:151
+  loc: include/structs/room.h:152
 - name: WindowBorder
   size: 0x8
   vars:

@@ -314,7 +314,7 @@
     val: 0x3
   - name: BG0_MOVEMENT_SNOWFLAKES
     val: 0x4
-  loc: include/constants/room.h:32
+  loc: include/constants/room.h:38
 - name: Bg3ScrollingType
   vals:
   - name: BG3_SCROLLING_TYPE_NONE
@@ -360,7 +360,7 @@
     val: 0x49
   - name: BG_PROP_SR388
     val: 0x4A
-  loc: include/constants/room.h:40
+  loc: include/constants/room.h:46
 - name: BlockLifeType_
   vals:
   - name: BLOCK_LIFE_TYPE_NONE
@@ -3725,7 +3725,7 @@
     val: 0xC
   - name: CUTSCENE_END
     val: 0xD
-  loc: include/globals.h:183
+  loc: include/globals.h:173
 - name: DachoraHeadMovement
   desc: Handles dachora doing a head movement
   vals:
@@ -3834,6 +3834,41 @@
   - name: DIAG_AIM_END
     val: 0x3
   loc: include/constants/samus.h:127
+- name: DiedOnSr388CollisionOamType_
+  vals:
+  - name: DIED_ON_SR388_COLLISION_OAM_TYPE_NONE
+    val: 0x0
+  - name: DIED_ON_SR388_COLLISION_OAM_TYPE_FALLING_BSL
+    val: 0x1
+  - name: DIED_ON_SR388_COLLISION_OAM_TYPE_REENTRY_PLASMA
+    val: 0x2
+  - name: DIED_ON_SR388_COLLISION_OAM_TYPE_REENTRY_DEBRIS
+    val: 0x3
+  loc: include/cutscenes/died_from_sr388_collision.h:24
+- name: DiedOnSr388CollisionStage_
+  vals:
+  - name: DIED_ON_SR388_COLLISION_STAGE_INIT
+    val: 0x0
+  - name: DIED_ON_SR388_COLLISION_STAGE_FADE_IN
+    val: 0x1
+  - name: DIED_ON_SR388_COLLISION_STAGE_PROCESS
+    val: 0x2
+  - name: DIED_ON_SR388_COLLISION_STAGE_FADE_OUT
+    val: 0x3
+  loc: include/cutscenes/died_from_sr388_collision.h:9
+- name: DiedOnSr388CollisionSubstage_
+  vals:
+  - name: DIED_ON_SR388_COLLISION_SUBSTAGE_FADE_IN
+    val: 0x0
+  - name: DIED_ON_SR388_COLLISION_SUBSTAGE_BSL_FALLING
+    val: 0x1
+  - name: DIED_ON_SR388_COLLISION_SUBSTAGE_EXPLOSION_INIT
+    val: 0x2
+  - name: DIED_ON_SR388_COLLISION_SUBSTAGE_EXPLOSION
+    val: 0x3
+  - name: DIED_ON_SR388_COLLISION_SUBSTAGE_FADE_OUT
+    val: 0x4
+  loc: include/cutscenes/died_from_sr388_collision.h:16
 - name: DimEventField
   vals:
   - name: DIM_EVENT_FIELD_EVENT
@@ -3893,6 +3928,52 @@
   - name: ELEVATOR_END
     val: 0xB
   loc: include/constants/connection.h:59
+- name: EndingBslCrashingOamType_
+  vals:
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_FALLING_BSL
+    val: 0x1
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_REENTRY_PLASMA
+    val: 0x2
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_REENTRY_DEBRIS
+    val: 0x3
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_SHIP_SMALL
+    val: 0x4
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_SHIP_BIG
+    val: 0x5
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_EXPLOSION_AFTERGLOW
+    val: 0xA
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_FRONT_FACING_SHIP_THRUSTERS
+    val: 0xB
+  - name: ENDING_BSL_CRASHING_OAM_TYPE_FRONT_FACING_SHIP
+    val: 0xC
+  loc: include/constants/ending_cutscene.h:6
+- name: EndingDialogueOamType_
+  vals:
+  - name: ENDING_DIALOGUE_OAM_TYPE_MONOLOGUE_CURSOR
+    val: 0x1
+  - name: ENDING_DIALOGUE_OAM_TYPE_SHIP_TRAJECTORY
+    val: 0x2
+  - name: ENDING_DIALOGUE_OAM_TYPE_PLANETS
+    val: 0x3
+  - name: ENDING_DIALOGUE_OAM_TYPE_SHIP
+    val: 0x4
+  - name: ENDING_DIALOGUE_OAM_TYPE_BSL_EXPLOSION_POPUP
+    val: 0x5
+  - name: ENDING_DIALOGUE_OAM_TYPE_ADAM_TEXT_CURSOR
+    val: 0x6
+  - name: ENDING_DIALOGUE_OAM_TYPE_ADAM_PANEL_FRAME
+    val: 0x7
+  - name: ENDING_DIALOGUE_OAM_TYPE_ADAM_LENS
+    val: 0x8
+  - name: ENDING_DIALOGUE_OAM_TYPE_ADAM_PANEL_BACKGROUND
+    val: 0x9
+  - name: ENDING_DIALOGUE_OAM_TYPE_ANIMAL_SCROLLING
+    val: 0x14
+  - name: ENDING_DIALOGUE_OAM_TYPE_SCREEN_GLARE
+    val: 0x1E
+  - name: ENDING_DIALOGUE_OAM_TYPE_BSL_EXPLOSION_POPUP_2
+    val: 0xFF
+  loc: include/constants/ending_cutscene.h:18
 - name: EnvEffect
   vals:
   - name: ENV_EFFECT_NONE
@@ -4340,7 +4421,7 @@
     val: 0xE
   - name: GAME_MODE_COUNT
     val: 0xF
-  loc: include/globals.h:246
+  loc: include/globals.h:236
 - name: GateType
   vals:
   - name: GATE_TYPE_LEFT_THIN
@@ -4478,6 +4559,39 @@
   - name: HAZARD_END
     val: 0x7
   loc: include/constants/clipdata.h:87
+- name: HazeValue
+  vals:
+  - name: HAZE_VALUE_NONE
+    val: 0x0
+  - name: HAZE_VALUE_GRADIENT
+    val: 0x1
+  - name: HAZE_VALUE_BG3
+    val: 0x2
+  - name: HAZE_VALUE_BG3_STRONG_WEAK
+    val: 0x3
+  - name: HAZE_VALUE_BG0
+    val: 0x4
+  - name: HAZE_VALUE_BG3_NONE_WEAK
+    val: 0x5
+  - name: HAZE_VALUE_BG3_BG2_STRONG_WEAK_MEDIUM
+    val: 0x6
+  - name: HAZE_VALUE_BG3_BG2_BG1
+    val: 0x7
+  - name: HAZE_VALUE_POWER_BOMB_EXPANDING
+    val: 0x8
+  - name: HAZE_VALUE_POWER_BOMB_RETRACTING
+    val: 0x9
+  - name: HAZE_VALUE_AFTER_POWER_BOMB
+    val: 0xA
+  - name: HAZE_VALUE_COLD
+    val: 0xB
+  - name: HAZE_VALUE_12
+    val: 0xC
+  - name: HAZE_VALUE_13
+    val: 0xD
+  - name: HAZE_VALUE_14
+    val: 0xE
+  loc: include/constants/haze.h:4
 - name: HornoadRangeAction
   vals:
   - name: HRANGE_NONE
@@ -4487,6 +4601,45 @@
   - name: HRANGE_TURN
     val: 0x2
   loc: src/sprites_AI/hornoad.c:15
+- name: IntroArrivingAtBslOamType_
+  vals:
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP
+    val: 0x1
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_BSL
+    val: 0x2
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP_THRUSTER_1
+    val: 0x3
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP_THRUSTER_2
+    val: 0x4
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP_THRUSTER_3
+    val: 0x5
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP_THRUSTER_EXPLOSION
+    val: 0x6
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_BG3_SCROLLER
+    val: 0x7
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_BG2_SCROLLER
+    val: 0x8
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_ADAM_PANEL_FRAME
+    val: 0x14
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_ADAM_PANEL_BACKGROUND
+    val: 0x15
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_ADAM_LENS
+    val: 0x16
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_ADAM_TEXT_CURSOR
+    val: 0x17
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SHIP_TRAJECTORY
+    val: 0x18
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_PLANETS_AND_SHIP
+    val: 0x19
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_BSL_POPUP
+    val: 0x1A
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_SCREEN_GLARE
+    val: 0x1E
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_MONOLOGUE_CURSOR
+    val: 0x64
+  - name: INTRO_ARRIVING_AT_BSL_OAM_TYPE_UNK_255
+    val: 0xFF
+  loc: include/constants/new_file_intro.h:75
 - name: IntroInSr388OamType_
   vals:
   - name: INTRO_IN_SR388_OAM_TYPE_SAMUS
@@ -4522,6 +4675,59 @@
   - name: INTRO_IN_SR388_OAM_TYPE_UNK_255
     val: 0xFF
   loc: include/constants/new_file_intro.h:6
+- name: IntroLandingOnBslOamType_
+  vals:
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_BG_SCROLLER
+    val: 0x1
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_DOOR
+    val: 0x2
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_DOOR_LIGHT
+    val: 0x3
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_DOOR_TOP
+    val: 0x4
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_DOOR_BOTTOM
+    val: 0x5
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_PALETTE_CHANGER
+    val: 0x6
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_SHIP_UNUSED
+    val: 0x7
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_SMOKE
+    val: 0x8
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_DOOR_UNUSED
+    val: 0x9
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_SHIP_ARMS_EXTENDING
+    val: 0xA
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_LANDING_LIGHTS
+    val: 0xB
+  - name: INTRO_LANDING_ON_BSL_OAM_TYPE_SHIP
+    val: 0xC
+  loc: include/constants/new_file_intro.h:100
+- name: IntroSamusCuredOamType_
+  vals:
+  - name: INTRO_SAMUS_CURED_OAM_TYPE_SCREEN_SCROLLER
+    val: 0x1
+  - name: INTRO_SAMUS_CURED_OAM_TYPE_SCREEN_GLARE
+    val: 0x1E
+  - name: INTRO_SAMUS_CURED_OAM_TYPE_NEXT_PAGE_ARROW
+    val: 0xC8
+  loc: include/constants/new_file_intro.h:67
+- name: IntroSamusFoundOamType_
+  vals:
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_FADE_IN
+    val: 0x1
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_LOAD_GFX
+    val: 0x2
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_FADE_IN_LAYING
+    val: 0x3
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_LOAD_GFX_2
+    val: 0x4
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_FADE_IN_VACCINE
+    val: 0x5
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_SCREEN_SCROLLING
+    val: 0x6
+  - name: INTRO_SAMUS_FOUND_OAM_TYPE_NEXT_PAGE_ARROW
+    val: 0xC8
+  loc: include/constants/new_file_intro.h:56
 - name: IntroSamusGettingCuredOamType_
   vals:
   - name: INTRO_SAMUS_GETTING_CURED_OAM_TYPE_DOUBLE_HELIX
@@ -4694,6 +4900,27 @@
   - name: LOCK_SCREEN_TYPE_MIDDLE
     val: 0x2
   loc: include/structs/scroll.h:29
+- name: MapScreenTankTimeIndex
+  vals:
+  - name: MAP_SCREEN_CURR_ENERGY_IDX
+    val: 0x0
+  - name: MAP_SCREEN_TOTAL_ENERGY_IDX
+    val: 0x1
+  - name: MAP_SCREEN_CURR_MISSILE_IDX
+    val: 0x2
+  - name: MAP_SCREEN_TOTAL_MISSILE_IDX
+    val: 0x3
+  - name: MAP_SCREEN_CURR_POWER_BOMB_IDX
+    val: 0x4
+  - name: MAP_SCREEN_TOTAL_POWER_BOMB_IDX
+    val: 0x5
+  - name: MAP_SCREEN_IGT_HOURS_IDX
+    val: 0x6
+  - name: MAP_SCREEN_IGT_MINUTES_IDX
+    val: 0x7
+  - name: MAP_SCREEN_TANK_TIME_COUNT
+    val: 0x8
+  loc: include/constants/menus/pause_debug.h:45
 - name: MeltdownState
   vals:
   - name: MELTDOWN_NONE
@@ -4723,6 +4950,57 @@
   - name: METROID_SA_X_TOP
     val: 0x3
   loc: src/sprites_AI/metroid.c:21
+- name: MinimapArea
+  vals:
+  - name: MINIMAP_MAIN_DECK
+    val: 0x0
+  - name: MINIMAP_SECTOR_1
+    val: 0x1
+  - name: MINIMAP_SECTOR_2
+    val: 0x2
+  - name: MINIMAP_SECTOR_3
+    val: 0x3
+  - name: MINIMAP_SECTOR_4
+    val: 0x4
+  - name: MINIMAP_SECTOR_5
+    val: 0x5
+  - name: MINIMAP_SECTOR_6
+    val: 0x6
+  - name: MINIMAP_7
+    val: 0x7
+  - name: MINIMAP_8
+    val: 0x8
+  - name: MINIMAP_MAIN_DECK_NO_LAB
+    val: 0x9
+  - name: MINIMAP_BLANK
+    val: 0xA
+  - name: MINIMAP_COUNT
+    val: 0xB
+  loc: include/constants/minimap.h:26
+- name: MinimapTileType
+  vals:
+  - name: MINIMAP_TILE_TYPE_UNEXPLORED
+    val: 0x0
+  - name: MINIMAP_TILE_TYPE_NORMAL
+    val: 0x1
+  - name: MINIMAP_TILE_TYPE_HIDDEN
+    val: 0x2
+  - name: MINIMAP_TILE_TYPE_COUNT
+    val: 0x3
+  loc: include/constants/minimap.h:6
+- name: MinimapUpdateFlag
+  vals:
+  - name: MINIMAP_UPDATE_FLAG_NONE
+    val: 0x0
+  - name: MINIMAP_UPDATE_FLAG_UPPER_LINE
+    val: 0x1
+  - name: MINIMAP_UPDATE_FLAG_MIDDLE_LINE
+    val: 0x2
+  - name: MINIMAP_UPDATE_FLAG_LOWER_LINE
+    val: 0x3
+  - name: MINIMAP_UPDATE_FLAG_COUNT
+    val: 0x4
+  loc: include/constants/minimap.h:17
 - name: MonochromeFading_
   vals:
   - name: MONOCHROME_FADING_NONE
@@ -4747,6 +5025,24 @@
   - name: MULTI_SPRITE_DATA_ELEMENT_END
     val: 0x3
   loc: include/structs/sprite.h:14
+- name: NavSpeaker
+  vals:
+  - name: NAV_SPEAKER_ADAM
+    val: 0x0
+  - name: NAV_SPEAKER_SAMUS
+    val: 0x1
+  - name: NAV_SPEAKER_FEDERATION
+    val: 0x2
+  loc: include/constants/navigation.h:11
+- name: NavTextBox
+  vals:
+  - name: NAV_TEXT_BOX_BOTTOM
+    val: 0x0
+  - name: NAV_TEXT_BOX_TOP
+    val: 0x1
+  - name: NAV_TEXT_BOX_COUNT
+    val: 0x2
+  loc: include/constants/navigation.h:4
 - name: NavigationConversation
   vals:
   - name: NAV_CONVO_NONE
@@ -5542,7 +5838,7 @@
     val: 0x1
   - name: PAUSE_DEBUG_AMMO_TYPE_POWER_BOMBS
     val: 0x2
-  loc: include/constants/menus/pause_debug.h:41
+  loc: include/constants/menus/pause_debug.h:39
 - name: PauseDebugEditFlag
   vals:
   - name: PAUSE_DEBUG_EDIT_NONE
@@ -5553,7 +5849,7 @@
     val: 0x2
   - name: PAUSE_DEBUG_EDIT_REDRAW_ALL
     val: 0x3
-  loc: include/constants/menus/pause_debug.h:34
+  loc: include/constants/menus/pause_debug.h:32
 - name: PauseDebugSection
   vals:
   - name: PAUSE_DEBUG_SECTION_BEAM
@@ -5598,12 +5894,403 @@
     val: 0x13
   - name: PAUSE_DEBUG_SECTION_ALL
     val: 0xFF
-  loc: include/constants/menus/pause_debug.h:8
+  loc: include/constants/menus/pause_debug.h:6
+- name: PauseOamId
+  vals:
+  - name: PAUSE_OAM_ID_NONE
+    val: 0x0
+  - name: PAUSE_OAM_ID_BLINKING_SQUARE
+    val: 0x1
+  - name: PAUSE_OAM_ID_YES_NO_CURSOR
+    val: 0x2
+  - name: PAUSE_OAM_ID_NAV_TEXT_ARROW
+    val: 0x3
+  - name: PAUSE_OAM_ID_MAP_PREVIEW_POINT
+    val: 0x4
+  - name: PAUSE_OAM_ID_MAP_UP_ARROW
+    val: 0x5
+  - name: PAUSE_OAM_ID_MAP_DOWN_ARROW
+    val: 0x6
+  - name: PAUSE_OAM_ID_MAP_LEFT_ARROW
+    val: 0x7
+  - name: PAUSE_OAM_ID_MAP_RIGHT_ARROW
+    val: 0x8
+  - name: PAUSE_OAM_ID_PAUSE_DEBUG_CURSOR_ARROWS
+    val: 0x9
+  - name: PAUSE_OAM_ID_PAUSE_DEBUG_CURSOR_DOWN_ARROW
+    val: 0xA
+  - name: PAUSE_OAM_ID_NAV_TEXT_CURSOR
+    val: 0xB
+  - name: PAUSE_OAM_ID_NAV_TEXT_CURSOR_BLINKING
+    val: 0xC
+  - name: PAUSE_OAM_ID_UNK_13
+    val: 0xD
+  - name: PAUSE_OAM_ID_MAP_ELEVATOR_UP_ARROWS
+    val: 0xE
+  - name: PAUSE_OAM_ID_MAP_ELEVATOR_DOWN_ARROWS
+    val: 0xF
+  - name: PAUSE_OAM_ID_DOWNLOAD_SCAN_LINE_TRAILING
+    val: 0x10
+  - name: PAUSE_OAM_ID_DOWNLOAD_SCAN_LINE_LEADING
+    val: 0x11
+  - name: PAUSE_OAM_ID_MAP_TARGET_ABOVE
+    val: 0x12
+  - name: PAUSE_OAM_ID_MAP_TARGET_BELOW
+    val: 0x13
+  - name: PAUSE_OAM_ID_MAP_TARGET_LEFT
+    val: 0x14
+  - name: PAUSE_OAM_ID_MAP_TARGET_RIGHT
+    val: 0x15
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_TARGET_ABOVE
+    val: 0x16
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_TARGET_BELOW
+    val: 0x17
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_START_ABOVE
+    val: 0x18
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_START_BELOW
+    val: 0x19
+  - name: PAUSE_OAM_ID_MAIN_DECK_TEXT
+    val: 0x1A
+  - name: PAUSE_OAM_ID_MAIN_DECK_TEXT_APPEARING
+    val: 0x1B
+  - name: PAUSE_OAM_ID_SECTOR_1_TEXT
+    val: 0x1C
+  - name: PAUSE_OAM_ID_SECTOR_1_TEXT_APPEARING
+    val: 0x1D
+  - name: PAUSE_OAM_ID_SECTOR_2_TEXT
+    val: 0x1E
+  - name: PAUSE_OAM_ID_SECTOR_2_TEXT_APPEARING
+    val: 0x1F
+  - name: PAUSE_OAM_ID_SECTOR_3_TEXT
+    val: 0x20
+  - name: PAUSE_OAM_ID_SECTOR_3_TEXT_APPEARING
+    val: 0x21
+  - name: PAUSE_OAM_ID_SECTOR_4_TEXT
+    val: 0x22
+  - name: PAUSE_OAM_ID_SECTOR_4_TEXT_APPEARING
+    val: 0x23
+  - name: PAUSE_OAM_ID_SECTOR_5_TEXT
+    val: 0x24
+  - name: PAUSE_OAM_ID_SECTOR_5_TEXT_APPEARING
+    val: 0x25
+  - name: PAUSE_OAM_ID_SECTOR_6_TEXT
+    val: 0x26
+  - name: PAUSE_OAM_ID_SECTOR_6_TEXT_APPEARING
+    val: 0x27
+  - name: PAUSE_OAM_ID_STATUS_BUTTON
+    val: 0x28
+  - name: PAUSE_OAM_ID_STATUS_BUTTON_SELECTED
+    val: 0x29
+  - name: PAUSE_OAM_ID_SLEEP_BUTTON
+    val: 0x2A
+  - name: PAUSE_OAM_ID_SLEEP_BUTTON_SELECTED
+    val: 0x2B
+  - name: PAUSE_OAM_ID_L1_LOCK
+    val: 0x2C
+  - name: PAUSE_OAM_ID_L1_OPEN
+    val: 0x2D
+  - name: PAUSE_OAM_ID_L2_LOCK
+    val: 0x2E
+  - name: PAUSE_OAM_ID_L2_OPEN
+    val: 0x2F
+  - name: PAUSE_OAM_ID_L3_LOCK
+    val: 0x30
+  - name: PAUSE_OAM_ID_L3_OPEN
+    val: 0x31
+  - name: PAUSE_OAM_ID_L4_LOCK
+    val: 0x32
+  - name: PAUSE_OAM_ID_L4_OPEN
+    val: 0x33
+  - name: PAUSE_OAM_ID_OBJECTIVE_BUTTON
+    val: 0x34
+  - name: PAUSE_OAM_ID_UNK_53
+    val: 0x35
+  - name: PAUSE_OAM_ID_IN_GAME_TIMER
+    val: 0x36
+  - name: PAUSE_OAM_ID_COLLECTED_ENERGY_TANKS
+    val: 0x37
+  - name: PAUSE_OAM_ID_COLLECTED_MISSILE_TANKS
+    val: 0x38
+  - name: PAUSE_OAM_ID_COLLECTED_POWER_BOMB_TANKS
+    val: 0x39
+  - name: PAUSE_OAM_ID_ENERGY_TANK_CHECK_MARK
+    val: 0x3A
+  - name: PAUSE_OAM_ID_MISSILE_TANK_CHECK_MARK
+    val: 0x3B
+  - name: PAUSE_OAM_ID_POWER_BOMB_TANK_CHECK_MARK
+    val: 0x3C
+  - name: PAUSE_OAM_ID_NAVIGATION_PAD
+    val: 0x3D
+  - name: PAUSE_OAM_ID_NAVIGATION_PAD_WITH_SAMUS
+    val: 0x3E
+  - name: PAUSE_OAM_ID_LOCKED_HATCH_LEFT
+    val: 0x3F
+  - name: PAUSE_OAM_ID_LOCKED_HATCH_RIGHT
+    val: 0x40
+  - name: PAUSE_OAM_ID_POP_UP_WINDOW
+    val: 0x41
+  - name: PAUSE_OAM_ID_POP_UP_WINDOW_CLOSING
+    val: 0x42
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_OUTLINE
+    val: 0x43
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_OUTLINE_SHORT
+    val: 0x44
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_OUTLINE_CLOSING
+    val: 0x45
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_BACKGROUND
+    val: 0x46
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_BACKGROUND_SHORT
+    val: 0x47
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_BACKGROUND_CLOSING
+    val: 0x48
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_LIGHT_OPENING
+    val: 0x49
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_LIGHT_CLOSING
+    val: 0x4A
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_LIGHT_OFF
+    val: 0x4B
+  - name: PAUSE_OAM_ID_ADAM_TEXT_BOX_LIGHT_FLASHING
+    val: 0x4C
+  - name: PAUSE_OAM_ID_SAMUS_TEXT_BOX
+    val: 0x4D
+  - name: PAUSE_OAM_ID_SAMUS_TEXT_BOX_EDGE
+    val: 0x4E
+  - name: PAUSE_OAM_ID_SAMUS_TEXT_BOX_CLOSING
+    val: 0x4F
+  - name: PAUSE_OAM_ID_SAMUS_TEXT_BOX_BACKGROUND
+    val: 0x50
+  - name: PAUSE_OAM_ID_UNK_81
+    val: 0x51
+  - name: PAUSE_OAM_ID_SAMUS_TEXT_BOX_BACKGROUND_CLOSING
+    val: 0x52
+  - name: PAUSE_OAM_ID_FED_TEXT_BOX_OUTLINE
+    val: 0x53
+  - name: PAUSE_OAM_ID_FED_TEXT_BOX_EDGE
+    val: 0x54
+  - name: PAUSE_OAM_ID_FED_TEXT_BOX_CLOSING
+    val: 0x55
+  - name: PAUSE_OAM_ID_FED_TEXT_BOX_BACKGROUND
+    val: 0x56
+  - name: PAUSE_OAM_ID_UNK_87
+    val: 0x57
+  - name: PAUSE_OAM_ID_FED_TEXT_BOX_BACKGROUND_CLOSING
+    val: 0x58
+  - name: PAUSE_OAM_ID_OBJECTIVE_TEXT_BOX
+    val: 0x59
+  - name: PAUSE_OAM_ID_OBJECTIVE_TEXT_BOX_EDGE
+    val: 0x5A
+  - name: PAUSE_OAM_ID_OBJECTIVE_TEXT_BOX_CLOSING
+    val: 0x5B
+  - name: PAUSE_OAM_ID_OBJECTIVE_TEXT_BOX_BACKGROUND
+    val: 0x5C
+  - name: PAUSE_OAM_ID_UNK_93
+    val: 0x5D
+  - name: PAUSE_OAM_ID_OBJECTIVE_TEXT_BOX_BACKGROUND_CLOSING
+    val: 0x5E
+  - name: PAUSE_OAM_ID_SAMUS_PORTRAIT_OPENING
+    val: 0x5F
+  - name: PAUSE_OAM_ID_SAMUS_PORTRAIT_ANIMATED
+    val: 0x60
+  - name: PAUSE_OAM_ID_SAMUS_PORTRAIT_STILL
+    val: 0x61
+  - name: PAUSE_OAM_ID_SAMUS_PORTRAIT_CLOSING
+    val: 0x62
+  - name: PAUSE_OAM_ID_FEDERATION_PORTRAIT_OPENING
+    val: 0x63
+  - name: PAUSE_OAM_ID_FEDERATION_PORTRAIT_STILL
+    val: 0x64
+  - name: PAUSE_OAM_ID_FEDERATION_PORTRAIT_ANIMATING
+    val: 0x65
+  - name: PAUSE_OAM_ID_FEDERATION_PORTRAIT_CLOSING
+    val: 0x66
+  - name: PAUSE_OAM_ID_FEDERATION_PORTRAIT_FLICKERING
+    val: 0x67
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_0_DEGREES
+    val: 0x68
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_10_DEGREES
+    val: 0x69
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_20_DEGREES
+    val: 0x6A
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_30_DEGREES
+    val: 0x6B
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_40_DEGREES
+    val: 0x6C
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_50_DEGREES
+    val: 0x6D
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_60_DEGREES
+    val: 0x6E
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_70_DEGREES
+    val: 0x6F
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_80_DEGREES
+    val: 0x70
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_90_DEGREES
+    val: 0x71
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_100_DEGREES
+    val: 0x72
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_110_DEGREES
+    val: 0x73
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_120_DEGREES
+    val: 0x74
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_130_DEGREES
+    val: 0x75
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_140_DEGREES
+    val: 0x76
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_150_DEGREES
+    val: 0x77
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_160_DEGREES
+    val: 0x78
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_170_DEGREES
+    val: 0x79
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_180_DEGREES
+    val: 0x7A
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_190_DEGREES
+    val: 0x7B
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_200_DEGREES
+    val: 0x7C
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_210_DEGREES
+    val: 0x7D
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_220_DEGREES
+    val: 0x7E
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_230_DEGREES
+    val: 0x7F
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_240_DEGREES
+    val: 0x80
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_250_DEGREES
+    val: 0x81
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_260_DEGREES
+    val: 0x82
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_270_DEGREES
+    val: 0x83
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_280_DEGREES
+    val: 0x84
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_290_DEGREES
+    val: 0x85
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_300_DEGREES
+    val: 0x86
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_310_DEGREES
+    val: 0x87
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_320_DEGREES
+    val: 0x88
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_330_DEGREES
+    val: 0x89
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_340_DEGREES
+    val: 0x8A
+  - name: PAUSE_OAM_ID_BSL_DIAGRAM_350_DEGREES
+    val: 0x8B
+  - name: PAUSE_OAM_ID_COUNT
+    val: 0x8C
+  loc: include/constants/menus/pause_screen.h:58
+- name: PauseOamIndex
+  vals:
+  - name: PAUSE_OAM_IDX_PAUSE_DEBUG_CURSOR
+    val: 0x0
+  - name: PAUSE_OAM_IDX_CURSOR
+    val: 0x1
+  - name: PAUSE_OAM_IDX_TOP_TEXT_BOX_CURSOR
+    val: 0x2
+  - name: PAUSE_OAM_IDX_DOWNLOAD_SCAN_LINE_LEADING
+    val: 0x3
+  - name: PAUSE_OAM_IDX_DOWNLOAD_SCAN_LINE_TRAILING_1
+    val: 0x4
+  - name: PAUSE_OAM_IDX_DOWNLOAD_SCAN_LINE_TRAILING_2
+    val: 0x5
+  - name: PAUSE_OAM_IDX_DOWNLOAD_SCAN_LINE_TRAILING_3
+    val: 0x6
+  - name: PAUSE_OAM_IDX_ADAM_TEXT_BOX_LIGHT
+    val: 0x3
+  - name: PAUSE_OAM_IDX_ADAM_TEXT_BOX_OUTLINE
+    val: 0x4
+  - name: PAUSE_OAM_IDX_ADAM_TEXT_BOX_BACKGROUND
+    val: 0x5
+  - name: PAUSE_OAM_IDX_FED_PORTRAIT_FLICKERING
+    val: 0x6
+  - name: PAUSE_OAM_IDX_PORTRAIT
+    val: 0x7
+  - name: PAUSE_OAM_IDX_TOP_TEXT_BOX_OUTLINE
+    val: 0x8
+  - name: PAUSE_OAM_IDX_TOP_TEXT_BOX_BACKGROUND
+    val: 0x9
+  - name: PAUSE_OAM_IDX_BSL_DIAGRAM_TARGET
+    val: 0xA
+  - name: PAUSE_OAM_IDX_UNK_11
+    val: 0xB
+  - name: PAUSE_OAM_IDX_BSL_DIAGRAM
+    val: 0xC
+  - name: PAUSE_OAM_IDX_OBJECTIVE
+    val: 0xD
+  - name: PAUSE_OAM_IDX_OBJECTIVE_TEXT_BOX_BACKGROUND
+    val: 0xE
+  - name: PAUSE_OAM_IDX_POP_UP_WINDOW
+    val: 0xF
+  - name: PAUSE_OAM_IDX_STATUS_BUTTON
+    val: 0x10
+  - name: PAUSE_OAM_IDX_SLEEP_BUTTON
+    val: 0x11
+  - name: PAUSE_OAM_IDX_AREA_NAME
+    val: 0x12
+  - name: PAUSE_OAM_IDX_IN_GAME_TIMER
+    val: 0x13
+  - name: PAUSE_OAM_IDX_COLLECTED_ENERGY_TANKS
+    val: 0x14
+  - name: PAUSE_OAM_IDX_COLLECTED_MISSILE_TANKS
+    val: 0x15
+  - name: PAUSE_OAM_IDX_COLLECTED_POWER_BOMB_TANKS
+    val: 0x16
+  - name: PAUSE_OAM_IDX_ENERGY_TANK_CHECK_MARK
+    val: 0x17
+  - name: PAUSE_OAM_IDX_MISSILE_TANK_CHECK_MARK
+    val: 0x18
+  - name: PAUSE_OAM_IDX_POWER_BOMB_TANK_CHECK_MARK
+    val: 0x19
+  - name: PAUSE_OAM_IDX_L1_STATUS
+    val: 0x1A
+  - name: PAUSE_OAM_IDX_L2_STATUS
+    val: 0x1B
+  - name: PAUSE_OAM_IDX_L3_STATUS
+    val: 0x1C
+  - name: PAUSE_OAM_IDX_L4_STATUS
+    val: 0x1D
+  - name: PAUSE_OAM_IDX_UNK_30
+    val: 0x1E
+  - name: PAUSE_OAM_IDX_MAP_TARGET
+    val: 0x1F
+  - name: PAUSE_OAM_IDX_BLINKING_SQUARE
+    val: 0x20
+  - name: PAUSE_OAM_IDX_MAP_LEFT_ARROW
+    val: 0x21
+  - name: PAUSE_OAM_IDX_MAP_RIGHT_ARROW
+    val: 0x22
+  - name: PAUSE_OAM_IDX_MAP_UP_ARROW
+    val: 0x23
+  - name: PAUSE_OAM_IDX_MAP_DOWN_ARROW
+    val: 0x24
+  - name: PAUSE_OAM_IDX_NAVIGATION_PAD
+    val: 0x25
+  - name: PAUSE_OAM_IDX_LOCKED_HATCH_LEFT
+    val: 0x26
+  - name: PAUSE_OAM_IDX_LOCKED_HATCH_RIGHT
+    val: 0x27
+  - name: PAUSE_OAM_IDX_COUNT
+    val: 0x28
+  loc: include/constants/menus/pause_screen.h:6
+- name: PauseOamInfo
+  vals:
+  - name: PAUSE_OAM_INDEX
+    val: 0x0
+  - name: PAUSE_OAM_ID
+    val: 0x1
+  - name: PAUSE_OAM_X_POSITION
+    val: 0x2
+  - name: PAUSE_OAM_Y_POSITION
+    val: 0x3
+  - name: PAUSE_OAM_INFO_COUNT
+    val: 0x4
+  loc: include/data/menus/pause_screen_misc_data.h:24
 - name: PauseScreenFlag
   vals:
   - name: PAUSE_SCREEN_NONE
     val: 0x0
-  loc: include/globals.h:266
+  loc: include/globals.h:256
 - name: PowampPose
   vals:
   - name: POWAMP_POSE_EXTENDING_INIT
@@ -5619,6 +6306,21 @@
   - name: POWAMP_POSE_RETRACTING
     val: 0x1C
   loc: src/sprites_AI/powamp.c:13
+- name: PowerBombState_
+  vals:
+  - name: PB_STATE_NONE
+    val: 0x0
+  - name: PB_STATE_UNK_1
+    val: 0x1
+  - name: PB_STATE_UNK_2
+    val: 0x2
+  - name: PB_STATE_EXPLODING
+    val: 0x3
+  - name: PB_STATE_IMPLODING
+    val: 0x4
+  - name: PB_STATE_ENDING
+    val: 0x5
+  loc: include/structs/power_bomb.h:8
 - name: PowerOutageState
   vals:
   - name: POWER_OUTAGE_BEFORE
@@ -6332,8 +7034,18 @@
     val: 0xA
   - name: EFFECT_HAZE_BG1_BG2_BG3
     val: 0xB
-  - name: EFFECT_HAZE_COUNT
+  - name: EFFECT_HAZE_12
     val: 0xC
+  - name: EFFECT_HAZE_13
+    val: 0xD
+  - name: EFFECT_HAZE_14
+    val: 0xE
+  - name: EFFECT_HAZE_15
+    val: 0xF
+  - name: EFFECT_HAZE_16
+    val: 0x10
+  - name: EFFECT_HAZE_COUNT
+    val: 0x11
   loc: include/constants/room.h:12
 - name: RoomScrollsFlag
   vals:
@@ -7243,7 +7955,7 @@
     val: 0x3
   - name: SECURITY_LEVEL_4
     val: 0x4
-  - name: SECURITY_LEVEL_END
+  - name: SECURITY_LEVEL_COUNT
     val: 0x5
   - name: SECURITY_LEVEL_NO_HATCHES
     val: 0xFF
@@ -9389,7 +10101,7 @@
     val: 0x6
   - name: SUB_GAME_MODE_COUNT
     val: 0x7
-  loc: include/globals.h:271
+  loc: include/globals.h:261
 - name: SuitDamageReduction
   vals:
   - name: SDR_POWER_SUIT
@@ -9416,6 +10128,17 @@
   - name: SDRT_CAN_CREATE_DEBRIS
     val: 0x10
   loc: include/constants/sprite.h:444
+- name: TankNumberType
+  vals:
+  - name: TANK_NUM_ENERGY
+    val: 0x0
+  - name: TANK_NUM_MISSILE
+    val: 0x1
+  - name: TANK_NUM_POWER_BOMB
+    val: 0x2
+  - name: TANK_NUM_COUNT
+    val: 0x3
+  loc: include/constants/event.h:446
 - name: TankType
   vals:
   - name: TANK_ENERGY
