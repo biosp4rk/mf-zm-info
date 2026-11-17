@@ -42,7 +42,7 @@ CAT_TO_STR = {
     Category.TEXT: "text",
     Category.PALETTE: "palette",
     Category.GFX: "gfx",
-    Category.TILESET_MAP: "tilemap",
+    Category.TILESET_MAP: "tileset_map",
     Category.TILEMAP: "tilemap",
     Category.OAM_FRAME: "oam_frame",
     Category.BG_BLOCKS: "bg_blocks",
