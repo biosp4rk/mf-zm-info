@@ -23,9 +23,10 @@ class Category(Enum):
     ASCII = auto()
     SJIS = auto()
     TEXT = auto()
-    GFX = auto()
-    TILEMAP = auto()
     PALETTE = auto()
+    GFX = auto()
+    TILESET_MAP = auto()
+    TILEMAP = auto()
     OAM_FRAME = auto()
     BG_BLOCKS = auto()
     BG_MAP = auto()
@@ -39,9 +40,10 @@ CAT_TO_STR = {
     Category.ASCII: "ascii",
     Category.SJIS: "sjis",
     Category.TEXT: "text",
-    Category.GFX: "gfx",
-    Category.TILEMAP: "tilemap",
     Category.PALETTE: "palette",
+    Category.GFX: "gfx",
+    Category.TILESET_MAP: "tilemap",
+    Category.TILEMAP: "tilemap",
     Category.OAM_FRAME: "oam_frame",
     Category.BG_BLOCKS: "bg_blocks",
     Category.BG_MAP: "bg_map",
