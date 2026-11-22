@@ -1,0 +1,14 @@
+{
+  "branches": ["main"],
+  "tagFormat": "v${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "yaml.zip", "label": "YAML info files" },
+        { "path": "json.zip", "label": "JSON info files" }
+      ]
+    }]
+  ]
+}
