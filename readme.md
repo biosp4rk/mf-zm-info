@@ -27,3 +27,12 @@ The info includes RAM/ROM variables, functions, structs, unions, enums, and type
 Game directories are `mf` for Fusion and `zm` for Zero Mission.
 
 For an overview of the info file format, look at the [schema files](schema/) or [info_entry.py](tools/info/info_entry.py).
+
+## Releases
+Releases are created automatically by [semantic-release](https://semantic-release.gitbook.io/) when commits are pushed to `main`. The version is derived from [Conventional Commits](https://www.conventionalcommits.org/) messages:
+
+Each release is tagged `vX.Y.Z` and has two assets with the same info in different formats:
+- `yaml.zip` - the `yaml` directory
+- `json.zip` - the `json` directory
+
+`https://github.com/biosp4rk/mf-zm-info/releases/download/vX.Y.Z/yaml.zip`

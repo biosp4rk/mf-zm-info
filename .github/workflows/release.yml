@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write      # create tags and releases
+  issues: write        # comment on issues fixed by a release
+  pull-requests: write # comment on PRs included in a release
+
+jobs:
+  release:
+    # Only release from the original repo, never from forks
+    if: github.repository == 'biosp4rk/mf-zm-info'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # semantic-release needs full history and tags
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Generate JSON from YAML
+        working-directory: tools
+        run: |
+          pip install pyyaml jsonschema
+          python validator.py --json
+          python -c "import validator; validator.output_refs_jsons()"
+
+      - name: Package info files
+        run: |
+          zip -r yaml.zip yaml
+          zip -r json.zip json
+
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release@24
